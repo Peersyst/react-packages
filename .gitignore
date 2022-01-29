@@ -1,0 +1,7 @@
+.DS_STORE
+.idea
+.vscode/*
+!.vscode/launch.json
+*.log
+*.tsbuildinfo
+node_modules

@@ -1,0 +1,189 @@
+import {Canvas, Meta} from "@storybook/addon-docs";
+import {Toast, Row, ToastProvider} from "../../src";
+import themedContainer from "../styles/themedContainer";
+import ShowUncontrolledToast from "./component/ShowUncontrolledToast";
+import Example from "./component/Example";
+import ShowControlledToast from "./component/ShowControlledToast";
+import ToastPosition from "./component/ToastPosition";
+import ToastType from "./component/ToastType";
+import ToastAnimation from "./component/ToastAnimation";
+
+<Meta
+    title="Components/Feedback/Toast"
+    component={Toast}
+    parameters={
+        {
+            docs: {
+                container: themedContainer
+            },
+        }
+    }
+/>
+
+# Toast
+
+Toasts are used to provide brief notifications.
+
+## Example
+
+<Canvas>
+    <ToastProvider>
+        <Row justifyContent="center">
+            <Example />
+        </Row>
+    </ToastProvider>
+</Canvas>
+
+## Usage
+
+There are 2 types of usages:
+
+### Controlled usage
+
+This is the typical usage, put the Toast on your jsx tree and toggle its open prop.
+
+````jsx
+<Button onClick={() => setOpen(true)}>Show Controlled Toast</Button>
+  <Toast
+    message="I'm controlled!"
+    open={open}
+    onClose={() => setOpen(false)}
+  />
+````
+
+<Canvas>
+    <Row justifyContent="center">
+        <ShowControlledToast />
+    </Row>
+</Canvas>
+
+### ToastProvider usage
+
+This is a cooler usage using the ToastProvider. You can use the functions from the useToast hook to interact with the Toast.
+
+Many ui experts recommend to show only 1 toast at a time, that's why this approach only supports one toast at a time.
+
+#### useToast hook
+
+This hook is used to interact with Toasts in your app, injecting them into the Toaster.
+
+#### showToast
+
+Shows a toast. This function receives the toast's message and its props.
+
+#### hideToast
+
+Hides the active toast.
+
+#### Usage
+
+````jsx
+<ToastProvider>
+    <Button onClick={() => showToast("I'm uncontrolled!")}>
+      Show Uncontrolled toast
+    </Button>
+</ToastProvider>
+````
+
+<Canvas>
+    <ToastProvider>
+        <Row justifyContent="center"><ShowUncontrolledToast /></Row>
+    </ToastProvider>
+</Canvas>
+
+To use this, a ToastProvider has to be placed at the root of your app.
+
+### Toast position
+
+````jsx
+const toastPosition = [
+  'bottom-left',
+  'top-left',
+  'top-center',
+  'top-right',
+  'bottom-right',
+  'bottom-center',
+];
+
+{toastPosition.map((pos, index) => (
+    <Button
+      key={index.toString()}
+      onClick={() =>
+        showToast('Hello from ' + pos, { position: pos })
+      }
+    >
+      {pos}
+    </Button>
+  ))}
+````
+
+<Canvas>
+    <ToastProvider>
+        <Row justifyContent="space-around" gap={20} breakPoint="mini" rowGap={20}>
+            <ToastPosition/>
+        </Row>
+    </ToastProvider>
+</Canvas>
+
+### Toast type
+
+````jsx
+const toastType = [undefined, 'info', 'success', 'warning', 'error', 'loading'];
+
+{toastType.map((type, index) => (
+    <Button
+      key={index.toString()}
+      onClick={() => {
+        showToast(
+          "I'm a" +
+            (type === 'info' || type === 'error' ? 'n ' : ' ') +
+            (type || 'normal') +
+            ' toast',
+          {
+            type,
+            action: type === 'loading' && (
+              <p onClick={() => hideToast()} style={{ cursor: 'pointer' }}>
+                Hide
+              </p>
+            ),
+          }
+        );
+      }}
+    >
+      {type || 'normal'}
+    </Button>
+    ))}
+````
+
+<Canvas>
+    <ToastProvider>
+        <Row justifyContent="space-around" gap={20} breakPoint="mini" rowGap={20}>
+            <ToastType/>
+        </Row>
+    </ToastProvider>
+</Canvas>
+
+### Toast animation
+
+````jsx
+const toastAnimation = ['scale', 'fade', 'slide'];
+
+{toastAnimation.map((animation, i) => (
+    <Button
+      key={i.toString()}
+      onClick={() =>
+        showToast('Hello', { animation })
+      }
+    >
+      Show {animation} toast
+    </Button>
+))}
+````
+
+<Canvas>
+    <ToastProvider>
+        <Row justifyContent="space-around" gap={20}>
+            <ToastAnimation/>
+        </Row>
+    </ToastProvider>
+</Canvas>

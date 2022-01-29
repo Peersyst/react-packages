@@ -1,0 +1,15 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta title="Hooks/useControlled" />
+
+# useControlled
+
+This hook handles the logic behind a component that has its own state but can be controlled.
+
+## Usage
+
+It requires the default internal value, the controlled prop and the onChange prop.
+
+````typescript
+    const [state, setState] = useControlled(0, propState, onPropStateChange)
+````

@@ -1,0 +1,25 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta title="Hooks/useScrollTrigger" />
+
+# useScrollTrigger
+
+Hook from MUI that lets your components react to scroll.
+
+## Usage
+
+It returns a boolean whenever the scroll has passed the threshold provided.
+
+This hook accepts the following options:
+
+- trigger: Custom trigger
+- threshold: Scroll threshold. Defaults to 100.
+- disableHysteresis: Trigger is only fired when scrolling from top to bottom. Defaults to false, so trigger is fired when scrolling from top to bottom and viceversa.
+- target: Scrollable element. Defaults to window.
+
+````typescript
+const trigger = useScrollTrigger({
+    threshold: 0,
+    disableHysteresis: true,
+  });
+````

@@ -1,0 +1,9 @@
+.background-image {
+    background-position: right;
+    background-size: contain;
+    background-repeat: repeat;
+}
+/* Filter is applied in the after pseudo element */
+.background-image:after {
+    filter: contrast(2);
+}
