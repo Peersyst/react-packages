@@ -3,7 +3,7 @@
     "private": true,
     "scripts": {
         "release:version": "lerna version --no-changelog --no-push --no-git-tag-version",
-        "release:build": "lerna run --parallel --scope \"@mui/*\" build",
+        "release:build": "lerna run --parallel build",
         "release:publish": "lerna publish from-package --dist-tag latest --contents build",
         "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\""
     },
