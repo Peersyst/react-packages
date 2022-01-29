@@ -1,19 +1,24 @@
 {
-  "compilerOptions": {
-    "module": "esnext",
-    "target": "es5",
-    "lib": ["es2020", "dom"],
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noEmit": true,
-    "experimentalDecorators": true,
-    "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": false,
-    "allowJs": true,
-    "types": ["node", "react"]
-  },
-  "exclude": ["**/.*/", "**/build", "**/node_modules"]
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es5",
+        "lib": ["es2020", "dom"],
+        "jsx": "preserve",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noEmit": true,
+        "experimentalDecorators": true,
+        "baseUrl": "./",
+        "allowSyntheticDefaultImports": true,
+        "noErrorTruncation": false,
+        "allowJs": true,
+        "types": ["node", "react"],
+        // Ensure that .d.ts files are created by tsc, but not .js files
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        // Ensure that Babel can safely transpile files in the TypeScript project
+        "isolatedModules": true
+    },
+    "exclude": ["**/.*/", "**/build", "**/node_modules"]
 }
