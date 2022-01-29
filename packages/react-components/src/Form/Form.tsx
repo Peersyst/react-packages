@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FormProvider } from "./FormContext";
 import { useFormSubmit } from "./hooks";
 import { FieldNotification, FieldState, FormProps } from "./Form.types";

@@ -1,4 +1,3 @@
-import React from "react";
 import { useFormNotification } from "../Form";
 import { CheckboxRoot } from "./Checkbox.styles";
 import { CheckboxProps } from "./Checkbox.types";

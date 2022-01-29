@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, Ref } from "react";
+import { forwardRef, HTMLAttributes, Ref } from "react";
 import { PaperRoot } from "./Paper.styles";
 import { PaperProps } from "./Paper.types";
 

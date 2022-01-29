@@ -1,5 +1,6 @@
 import { Property } from "csstype";
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
+import * as React from "react";
 import { Breakpoint } from "../styles";
 
 export type RowBreakpointWidth = Breakpoint | number;

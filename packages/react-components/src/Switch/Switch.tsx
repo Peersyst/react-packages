@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import { Children } from "react";
 import { useFormNotification } from "../Form";
 import { SwitchChildren, SwitchRoot, SwitchThumb, SwitchTrack } from "./Switch.styles";
 import { Row } from "..";

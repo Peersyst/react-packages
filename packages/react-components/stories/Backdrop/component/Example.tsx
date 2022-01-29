@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Button, Backdrop, useBackdrop } from '../../../src';
 import { LoaderIcon } from '../../../src/assets/icons';
 

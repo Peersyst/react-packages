@@ -1,4 +1,3 @@
-import React from 'react';
 import { BackgroundImage } from '../../../src';
 import { BackgroundImageProps } from '../../../src/BackgroundImage/BackgroundImage.types';
 

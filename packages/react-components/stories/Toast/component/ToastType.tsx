@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, useToast } from '../../../src';
 import { ToastType as Type } from '../../../src/Toast/Toast.types';
 

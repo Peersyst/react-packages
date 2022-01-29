@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState } from "react";
+import { ComponentType, useCallback, useState } from "react";
 import { useControlled } from "../hooks";
 import { DisplayContent, SelectDisplay, SelectDropdown, SelectRoot } from "./Select.styles";
 import { SelectMenu } from "./SelectMenu";

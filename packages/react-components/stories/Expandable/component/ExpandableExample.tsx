@@ -1,4 +1,3 @@
-import React from 'react';
 import { Expandable } from '../../../src';
 
 const ExpandableExample = () => (

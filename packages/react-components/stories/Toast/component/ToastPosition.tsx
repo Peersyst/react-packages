@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, useToast } from '../../../src';
 import { ToastPosition as Position } from '../../../src/Toast/Toast.types';
 

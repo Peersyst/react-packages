@@ -1,4 +1,3 @@
-import React from "react";
 import { TableColumnsProps } from "./Table.types";
 import { TableColumnHeader, TableColumns as TableColumnsRow, TableTitle } from "./Table.styles";
 import { cx } from "../utils/cx";

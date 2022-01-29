@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Modal, Row, useModal } from '../../../src';
 
 function ShowUncontrolledModal(): JSX.Element {

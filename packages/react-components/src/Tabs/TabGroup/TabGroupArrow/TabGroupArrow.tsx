@@ -1,4 +1,3 @@
-import React from "react";
 import { TabGroupArrowProps } from "./TabGroupArrow.types";
 import { IconButton } from "../../../IconButton";
 

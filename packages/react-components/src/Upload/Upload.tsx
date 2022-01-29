@@ -1,4 +1,4 @@
-import React, { createRef, useState, DragEvent } from "react";
+import { createRef, useState, DragEvent } from "react";
 import { useFormNotification } from "../Form";
 import { checkFileTypes, getFileTypes, getValue, getValueFromInput } from "./helpers";
 import { UploadProps, UploadStyleProps } from "./Upload.types";

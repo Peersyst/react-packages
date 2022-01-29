@@ -1,4 +1,3 @@
-import React from "react";
 import { PaginationItemRoot } from "./PaginationItem.styles";
 import { PaginationItemProps } from "./PaginationItem.types";
 import { cx } from "../../utils/cx";

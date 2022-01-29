@@ -1,4 +1,3 @@
-import React from "react";
 import { DrawerMenu } from "./Drawer.styles";
 import { DrawerProps } from "./Drawer.types";
 import { useControlled } from "../hooks";
@@ -6,6 +5,7 @@ import { Backdrop, ForwardedBackdropProps } from "../Backdrop";
 import { Animated } from "../Animated";
 import { getAnimationDirection } from "./utils/getAnimationDirection";
 import { cx } from "../utils/cx";
+import { MouseEvent } from "react";
 
 /**
  * TODO:
@@ -56,7 +56,7 @@ export function Drawer({
                 size={size}
                 className={cx("Drawer", className)}
                 style={style}
-                onMouseDown={(e) => e.stopPropagation()}
+                onMouseDown={(e: MouseEvent) => e.stopPropagation()}
                 elevation={elevation}
                 square
             >

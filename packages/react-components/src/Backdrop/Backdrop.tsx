@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { BackdropProps } from "./Backdrop.types";
 import { usePreventBodyScroll } from "../hooks";
 import { Animated, TransitionStyles } from "../Animated";

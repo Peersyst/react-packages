@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Row, useBackdrop, Backdrop } from '../../../src';
 
 function ShowUncontrolledBackdrop(): JSX.Element {

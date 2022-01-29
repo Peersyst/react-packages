@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
 declare type MouseEvents = 'click' | 'mousedown' | 'mouseup';

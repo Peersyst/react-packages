@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Row, Backdrop } from '../../../src';
 
 function ShowControlledBackdrop(): JSX.Element {

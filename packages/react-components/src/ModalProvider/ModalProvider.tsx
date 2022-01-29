@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react";
+import { ComponentType } from "react";
 import { ModalContext, ModalContextType } from "./ModalContext";
 import { useModalReducer } from "./hooks/useModalReducer";
 import { CommonModalComponentProps, ModalActionType, ModalComponentProps, ModalProviderProps } from "./ModalProvider.types";

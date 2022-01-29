@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { InfiniteScrollProps } from "./InfiniteScroll.types";
 import { InfiniteScrollLoader } from "./InfiniteScroll.styles";
 import { OnScreenObserver } from "../OnScreenObserver";

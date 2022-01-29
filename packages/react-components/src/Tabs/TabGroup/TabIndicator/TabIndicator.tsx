@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TabIndicatorRoot } from "./TabIndicator.styles";
 import { TabsContext } from "../../TabsContext";
 import { TabIndicatorProps } from "./TabIndicator.types";

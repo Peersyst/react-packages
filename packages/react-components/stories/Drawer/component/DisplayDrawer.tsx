@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Drawer, DrawerProps } from '../../../src';
 
 function DisplayDrawer(props: Omit<DrawerProps, 'children'>): JSX.Element {

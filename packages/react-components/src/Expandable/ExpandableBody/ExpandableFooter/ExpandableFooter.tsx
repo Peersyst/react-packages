@@ -1,4 +1,3 @@
-import React from "react";
 import { ExpandableFooterRoot } from "./ExpandableFooter.styles";
 import { ExpandableFooterProps } from "../ExpandableBody.types";
 import { cx } from "../../../utils/cx";

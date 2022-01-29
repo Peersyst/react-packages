@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import ReactPlayer, { ReactPlayerProps } from "react-player";
 import { Skeleton } from "../Skeleton";
 import { PlayerRoot, PlayerSkeleton } from "./Player.styles";

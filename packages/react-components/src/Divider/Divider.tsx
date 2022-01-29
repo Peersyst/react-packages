@@ -1,4 +1,3 @@
-import React from "react";
 import { DividerRoot, DividerWithChildren } from "./Divider.styles";
 import { DividerProps } from "./Divider.types";
 import { cx } from "../utils/cx";

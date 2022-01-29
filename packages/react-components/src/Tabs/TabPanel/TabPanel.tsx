@@ -1,4 +1,3 @@
-import React from "react";
 import { TabsConsumer } from "../TabsContext";
 import { TabPanelRoot } from "./TabPanel.styles";
 import { TabPanelProps } from "./TabPanel.types";

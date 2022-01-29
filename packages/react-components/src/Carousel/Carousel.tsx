@@ -1,4 +1,3 @@
-import React from "react";
 import ReactMultiCarousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { CarouselProps } from "./Carousel.types";

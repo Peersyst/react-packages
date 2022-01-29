@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import { ComponentProps } from "react";
 import { LoaderIcon } from "../assets/icons";
 import { cx } from "../utils/cx";
 

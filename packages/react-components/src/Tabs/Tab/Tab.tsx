@@ -1,4 +1,4 @@
-import React, { createRef, useContext, useEffect } from "react";
+import { createRef, useContext, useEffect } from "react";
 import { TabsContext } from "../TabsContext";
 import { TabRoot } from "./Tab.styles";
 import { TabProps, TabStyleProps } from "./Tab.types";

@@ -1,5 +1,4 @@
 import { PaginationProps } from "./Pagination.types";
-import React from "react";
 import { PagesList, PaginationRoot } from "./Pagination.styles";
 import { cx } from "../utils/cx";
 import { PaginationItem } from "./PaginationItem";

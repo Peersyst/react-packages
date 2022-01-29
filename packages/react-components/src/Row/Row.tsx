@@ -1,4 +1,3 @@
-import React from "react";
 import { RowRoot } from "./Row.styles";
 import { RowProps } from "./Row.types";
 

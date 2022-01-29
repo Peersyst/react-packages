@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from "react";
+import { ReactElement, useContext } from "react";
 import { Toast } from "../../Toast";
 import { ToastContext } from "../ToastContext";
 

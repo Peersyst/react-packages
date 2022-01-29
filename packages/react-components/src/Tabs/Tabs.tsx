@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Col } from "../Col";
 import { TabsProvider } from "./TabsContext";
 import { TabsProps } from "./Tabs.types";

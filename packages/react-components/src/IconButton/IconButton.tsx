@@ -1,4 +1,3 @@
-import React from "react";
 import { IconButtonRoot } from "./IconButton.styles";
 import { IconButtonProps } from "./IconButton.types";
 import { cx } from "../utils/cx";

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { useFormNotification } from "../Form";
 import { SliderProps, SliderStyles } from "./Slider.types";
 import { useControlled } from "../hooks";

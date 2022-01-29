@@ -1,4 +1,3 @@
-import React from "react";
 import { ExpandableConsumer } from "../ExpandableContext";
 import { ExpandableFooter } from "./ExpandableFooter";
 import { ExpandableHeader } from "./ExpandableHeader";

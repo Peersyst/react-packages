@@ -1,4 +1,3 @@
-import React from "react";
 import { AppBarContent, AppBarRoot } from "./AppBar.styles";
 import { AppBarProps } from "./AppBar.types";
 import { useScrollTrigger } from "../hooks";

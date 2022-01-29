@@ -1,4 +1,3 @@
-import React from "react";
 import { FormConsumer } from "../Form";
 import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";

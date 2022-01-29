@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import { Children, ReactNode } from "react";
 import BaseGrid from "../BaseGrid";
 import { Property } from "csstype";
 import { IrregularGridRoot } from "./IrregularGrid.styles";

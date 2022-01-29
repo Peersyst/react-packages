@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ExpandableProvider } from "./ExpandableContext";
 import { ExpandableDisplay } from "./ExpandableDisplay";
 import { ExpandableBody, ExpandableHeader, ExpandableContent, ExpandableFooter } from "./ExpandableBody";

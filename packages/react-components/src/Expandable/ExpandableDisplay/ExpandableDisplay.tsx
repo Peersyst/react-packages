@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ExpandableContext } from "../ExpandableContext";
 import { ExpandableDisplayRoot, ExpandableDropdown } from "./ExpandableDisplay.styles";
 import { ExpandableDisplayProps } from "./ExpandableDisplay.types";

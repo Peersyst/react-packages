@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, useToast } from '../../../src';
 
 const ShowUncontrolledToast = () => {

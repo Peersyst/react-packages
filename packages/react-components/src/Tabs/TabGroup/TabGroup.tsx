@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import { createRef } from "react";
 import { TabGroupContainer, TabGroupRoot } from "./TabGroup.styles";
 import { TabIndicator } from "./TabIndicator";
 import { TabGroupArrow } from "./TabGroupArrow/TabGroupArrow";

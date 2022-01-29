@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { ThemeConsumer as StyledComponentsConsumer } from "styled-components";
 import { ThemeContextType } from "./Theme.types";
 import { ThemeContext } from "./ThemeProvider";

@@ -1,4 +1,3 @@
-import React from "react";
 import { SelectMenuRoot } from "./SelectMenu.styles";
 import { Animated } from "../../Animated";
 import { SelectMenuProps } from "./SelectMenu.types";

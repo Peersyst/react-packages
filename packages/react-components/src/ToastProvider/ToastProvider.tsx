@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useToasterReducer } from "./hooks/useToasterReducer";
 import { ToastContext } from "./ToastContext";
 import { ToasterActionType } from "./ToastProvider.types";

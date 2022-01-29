@@ -1,4 +1,3 @@
-import React from "react";
 import { useModalState } from "./hooks/useModalState";
 
 export function ModalManager(): JSX.Element {

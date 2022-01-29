@@ -1,4 +1,4 @@
-import React, { Ref } from "react";
+import { Ref } from "react";
 import { ExtendedSvg } from "./SvgIcon.styles";
 import { SvgIconProps } from "./SvgIcon.types";
 

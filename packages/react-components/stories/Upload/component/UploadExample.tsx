@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import { CSSProperties, useState } from "react";
 import { Image, Upload, Col, Typography } from "../../../src";
 
 const styles: CSSProperties = {

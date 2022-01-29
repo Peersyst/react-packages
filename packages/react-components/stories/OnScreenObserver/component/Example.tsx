@@ -1,4 +1,3 @@
-import React from "react";
 import { Animated, OnScreenObserver, Typography } from "../../../src";
 
 export default function Example(): JSX.Element {

@@ -1,4 +1,4 @@
-import React, { cloneElement, forwardRef } from "react";
+import { cloneElement, forwardRef } from "react";
 import { getDelay, getDuration, getTimingFunction, reflow } from "./helpers";
 import { AnimatedComponent, AnimatedProps } from "./Animated.types";
 import { Transition, TransitionStatus } from "react-transition-group";

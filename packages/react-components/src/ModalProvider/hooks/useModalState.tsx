@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import { ReactNode, useContext } from "react";
 import { ModalContext } from "../ModalContext";
 
 export function useModalState(): ReactNode[] {

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 import { SelectContext } from "../SelectContext";
 import { SelectItemRoot } from "./SelectItem.styles";
 import { useSelected } from "../hooks/useSelected";

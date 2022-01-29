@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useRef } from "react";
+import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { SlideProps } from "./Slide.types";
 import { Animated } from "../Animated";
 import { setTranslateValue } from "./utils/setTranslateValue";

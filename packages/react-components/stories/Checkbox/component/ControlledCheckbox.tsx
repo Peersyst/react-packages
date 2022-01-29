@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Checkbox, Row, Button } from '../../../src';
 
 export default function ControlledCheckbox(): JSX.Element {

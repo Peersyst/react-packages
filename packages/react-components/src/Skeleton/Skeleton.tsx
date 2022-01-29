@@ -1,4 +1,3 @@
-import React from "react";
 import { SkeletonRoot } from "./Skeleton.styles";
 import { SkeletonProps } from "./Skeleton.types";
 import { cx } from "../utils/cx";

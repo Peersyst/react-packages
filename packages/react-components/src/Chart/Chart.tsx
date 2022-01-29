@@ -1,4 +1,3 @@
-import React from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { ChartProps } from "./Chart.types";

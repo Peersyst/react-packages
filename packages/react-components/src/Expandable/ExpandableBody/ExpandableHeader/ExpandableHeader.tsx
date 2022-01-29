@@ -1,4 +1,3 @@
-import React from "react";
 import { ExpandableHeaderRoot } from "./ExpandableHeader.styles";
 import { ExpandableHeaderProps } from "../ExpandableBody.types";
 import { cx } from "../../../utils/cx";

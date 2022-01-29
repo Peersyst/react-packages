@@ -1,4 +1,3 @@
-import React from 'react';
 import { Table, TableCol } from '../../../src';
 
 interface TableDef {

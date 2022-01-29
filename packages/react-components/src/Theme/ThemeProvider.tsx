@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ThemeProvider as StyledComponentsProvider } from "styled-components";
 import getColorScheme from "./getColorScheme";
 import { ColorScheme, ColorSchemeContextType, ThemeProps } from "./Theme.types";
@@ -8,7 +8,7 @@ import { defaultTheme } from "../styles/defaultTheme";
 
 const systemColorScheme = getColorScheme();
 
-export const ThemeContext = React.createContext<ColorSchemeContextType>({
+export const ThemeContext = createContext<ColorSchemeContextType>({
     colorScheme: systemColorScheme,
     setColorScheme: () => undefined,
 });

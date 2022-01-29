@@ -1,4 +1,3 @@
-import React from "react";
 import BaseGrid from "../BaseGrid";
 import { GridRoot } from "./Grid.styles";
 import { Property } from "csstype";

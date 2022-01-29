@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Property } from "csstype";
 
 export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,4 +1,4 @@
-import React, { createRef, useCallback, useEffect, useState } from "react";
+import { createRef, useCallback, useEffect, useState } from "react";
 import { OnScreenObserverProps } from "./OnScreenObserver.types";
 import { OnScreenObserverWrapper } from "./OnScreenObserver.styles";
 

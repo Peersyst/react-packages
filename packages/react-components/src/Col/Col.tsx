@@ -1,4 +1,3 @@
-import React from "react";
 import { ColRoot } from "./Col.styles";
 import { ColProps } from "./Col.types";
 

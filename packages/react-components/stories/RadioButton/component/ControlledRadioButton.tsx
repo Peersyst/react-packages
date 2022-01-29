@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Row, Button, RadioButton } from '../../../src';
 
 export default function ControlledRadioButton(): JSX.Element {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Button, Modal, useModal } from '../../../src';
 
 function Example(): JSX.Element {

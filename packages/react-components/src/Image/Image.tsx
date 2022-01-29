@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Skeleton } from "../Skeleton";
 import { ImageProps } from "./Image.types";
 import { StyledImg } from "./Image.styles";

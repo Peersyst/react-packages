@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Row, useDrawer, DrawerProps } from '../../../src/';
 import DisplayDrawer from './DisplayDrawer';
 

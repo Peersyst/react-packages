@@ -1,4 +1,3 @@
-import React from "react";
 import { Animated, Col, Row, Button } from "../../../src";
 import { useState } from "react";
 

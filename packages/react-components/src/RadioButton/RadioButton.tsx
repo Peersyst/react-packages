@@ -1,4 +1,3 @@
-import React from "react";
 import { useFormNotification } from "../Form";
 import { RadioButtonRoot } from "./RadioButton.styles";
 import { RadioButtonProps } from "./RadioButton.types";

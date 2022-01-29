@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 import ReactPlayer, { Config } from 'react-player';
 import { SourceProps } from 'react-player/base';
 import { Player } from '../../../src';

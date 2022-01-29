@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, ToastAnimation as Animation, useToast } from "../../../src";
 
 const toastAnimation = ["scale", "fade", "slide", "fadingSlide"];

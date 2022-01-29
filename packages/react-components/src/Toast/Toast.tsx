@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ToastAction, ToastContainer, ToastContent } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
 import { useControlled } from "../hooks";

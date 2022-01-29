@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { AnimatedComponentProps, TransitionStyles } from "../Animated.types";
 import { Animated } from "../Animated";
 

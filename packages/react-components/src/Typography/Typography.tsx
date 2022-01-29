@@ -1,4 +1,3 @@
-import React from "react";
 import { TypographyRoot } from "./Typography.styles";
 import { TypographyProps } from "./Typography.types";
 import { useTheme } from "../Theme";

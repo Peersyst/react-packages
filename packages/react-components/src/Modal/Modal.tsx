@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { ModalProps } from "./Modal.types";
 import { useControlled } from "../hooks";
 import { Backdrop, ForwardedBackdropProps } from "../Backdrop";

@@ -1,4 +1,4 @@
-import React, { createRef, ReactNode, useCallback, useState } from "react";
+import { createRef, ReactNode, useCallback, useState } from "react";
 import { PopoverProps } from "./Popover.types";
 import { PopoverContent, PopoverPaper, PopoverPopper, PopoverRoot } from "./Popover.styles";
 import { findSlot } from "../utils/find-slot";

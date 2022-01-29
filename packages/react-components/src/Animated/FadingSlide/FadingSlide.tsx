@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { Animated, TransitionStyles } from "..";
 import { FadingSlideProps } from "./FadingSlide.types";
 import { SlideDirection } from "../Slide";

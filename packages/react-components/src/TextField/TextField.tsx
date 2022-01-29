@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import { TextFieldInput } from "./TextField.styles";
 import { IconButton } from "../IconButton";

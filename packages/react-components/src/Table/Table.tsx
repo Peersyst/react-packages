@@ -1,4 +1,3 @@
-import React from "react";
 import { TableFooter, TableRoot } from "./Table.styles";
 import { TableColumnsProps, TableProps } from "./Table.types";
 import { TableColumns } from "./TableColumns";
