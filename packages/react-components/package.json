@@ -66,5 +66,7 @@
     },
     "resolutions": {
         "styled-components": "^5"
-    }
+    },
+    "sideEffects": false,
+    "gitHead": "acfdf8de1d418283a3d81c113df68615ad4e3a91"
 }
