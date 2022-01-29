@@ -1,20 +1,22 @@
 import * as React from "react";
 import { Children, CSSProperties, ReactNode } from "react";
-import "./InfiniteCarousel.css";
 import { cx } from "../utils/cx";
-
-type Direction = "ltr" | "rtl" | "ttb" | "btt";
+import {
+    InfiniteCarouselBody,
+    InfiniteCarouselDirection,
+    InfiniteCarouselRoot,
+} from "./InfiniteCarousel.styles";
 
 export interface InfiniteCarouselProps {
     wrapperClassName?: string;
-    wrapperStyle?: any;
+    wrapperStyle?: CSSProperties;
     className?: string;
     style?: CSSProperties;
     speed?: number; // speed in px/s
     gap?: number; //column gap in px
     minElems?: number;
     children: ReactNode;
-    direction?: Direction;
+    direction?: InfiniteCarouselDirection;
 }
 
 interface InfiniteCarouselState {
@@ -22,13 +24,16 @@ interface InfiniteCarouselState {
     refresh: boolean;
 }
 
-export class InfiniteCarousel extends React.Component<InfiniteCarouselProps, InfiniteCarouselState> {
+export class InfiniteCarousel extends React.Component<
+    InfiniteCarouselProps,
+    InfiniteCarouselState
+> {
     state: InfiniteCarouselState = {
         initialized: true,
         refresh: false,
     };
 
-    children: any[] = [];
+    children: ReactNode[] = [];
     sliderContainerRef: HTMLDivElement | null = null;
     childRefs: (HTMLDivElement | null)[] = [];
 
@@ -40,7 +45,10 @@ export class InfiniteCarousel extends React.Component<InfiniteCarouselProps, Inf
                 this.children = this.children.concat(
                     Children.map(children, (e, i) => {
                         return j === 0 ? (
-                            <div key={i.toString() + j.toString()} ref={(ref) => this.childRefs.push(ref)}>
+                            <div
+                                key={i.toString() + j.toString()}
+                                ref={(ref) => this.childRefs.push(ref)}
+                            >
                                 {e}
                             </div>
                         ) : (
@@ -62,11 +70,12 @@ export class InfiniteCarousel extends React.Component<InfiniteCarouselProps, Inf
     }
 
     render(): JSX.Element {
-        const { className, style, wrapperStyle, wrapperClassName, speed, gap, direction } = this.props;
+        const { className, style, wrapperStyle, wrapperClassName, speed, gap, direction } =
+            this.props;
 
         return (
-            <div
-                className={cx("infinite-carousel-container", wrapperClassName)}
+            <InfiniteCarouselRoot
+                className={cx("InfiniteCarousel", wrapperClassName)}
                 style={wrapperStyle}
                 ref={(ref) => (this.sliderContainerRef = ref)}
             >
@@ -84,22 +93,22 @@ export class InfiniteCarousel extends React.Component<InfiniteCarouselProps, Inf
                         direction={direction}
                     />
                 )}
-            </div>
+            </InfiniteCarouselRoot>
         );
     }
 }
 
 interface InnerProps {
-    elements: any[];
+    elements: ReactNode[];
     containerRef: HTMLDivElement | null;
     refresh: boolean;
     className?: string;
-    style?: any;
+    style?: CSSProperties;
     speed?: number;
     childRefs: (HTMLDivElement | null)[];
     gap?: number;
     callback: () => void;
-    direction?: Direction;
+    direction?: InfiniteCarouselDirection;
 }
 
 interface InnerState {
@@ -132,7 +141,8 @@ class InnerCarousel extends React.Component<InnerProps, InnerState> {
     getElementSize(childRef: HTMLDivElement | null): number {
         if (childRef) {
             const { direction } = this.props;
-            if (direction === "ltr" || direction === "rtl") return childRef.getBoundingClientRect().width;
+            if (direction === "ltr" || direction === "rtl")
+                return childRef.getBoundingClientRect().width;
             else return childRef.getBoundingClientRect().height;
         }
         return 0;
@@ -204,15 +214,16 @@ class InnerCarousel extends React.Component<InnerProps, InnerState> {
     }
 
     render(): JSX.Element {
-        const { elements, refresh, className, style, gap, speed, direction } = this.props;
+        const { elements, refresh, className, style, gap, speed, direction = "ltr" } = this.props;
         const { scrollPos } = this.state;
 
         return (
             <>
                 {(refresh || !refresh) && (
-                    <div
+                    <InfiniteCarouselBody
                         ref={(ref) => (this.sliderRef = ref)}
-                        className={cx("infinite-carousel", className, direction)}
+                        className={cx("InfiniteCarouselBody", className)}
+                        direction={direction}
                         style={{
                             columnGap: (gap || 20).toString() + "px",
                             rowGap: (gap || 20).toString() + "px",
@@ -223,7 +234,8 @@ class InnerCarousel extends React.Component<InnerProps, InnerState> {
                         onMouseEnter={() => {
                             if (this.sliderRef) {
                                 this.remaining -= Date.now() - this.slideStart;
-                                this.pausePos -= ((Date.now() - this.slideStart) / 1000) * (speed || 50);
+                                this.pausePos -=
+                                    ((Date.now() - this.slideStart) / 1000) * (speed || 50);
                                 this.sliderRef.style.transform = this.getPausePos(this.pausePos);
                                 this.sliderRef.style.transition = "";
                                 clearInterval(this.slideInterval);
@@ -232,14 +244,19 @@ class InnerCarousel extends React.Component<InnerProps, InnerState> {
                         onMouseLeave={() => {
                             if (this.sliderRef) {
                                 this.sliderRef.style.transform = this.getScrollTransform(scrollPos);
-                                this.sliderRef.style.transition = `all ${(this.remaining / 1000).toString()}s linear`;
-                                this.slideInterval = setInterval(() => this.scroll(), this.remaining);
+                                this.sliderRef.style.transition = `all ${(
+                                    this.remaining / 1000
+                                ).toString()}s linear`;
+                                this.slideInterval = setInterval(
+                                    () => this.scroll(),
+                                    this.remaining,
+                                );
                                 this.slideStart = Date.now();
                             }
                         }}
                     >
                         {elements}
-                    </div>
+                    </InfiniteCarouselBody>
                 )}
             </>
         );
