@@ -1,32 +1,37 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {OnScreenObserver} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { OnScreenObserver } from "../../src";
 import themedContainer from "../styles/themedContainer";
 import Example from "./component/Example";
 
 <Meta
     title="Components/Utils/OnScreenObserver"
     component={OnScreenObserver}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # OnScreenObserver
 
-This component lets us react to an element being scrolled into the screen. Uses the *render props* pattern to pass its state to its **unique** child, that is to say, whether the element is on screen or not.
+This component lets us react to an element being scrolled into the screen. Uses the _render props_ pattern to pass its state to its **unique** child, that is to say, whether the element is on screen or not.
 
 ## Requirements
 
-- **Single child**: Only 1 child must be provided.
+-   **Single child**: Only 1 child must be provided.
 
 ## Usage
 
-````jsx
-<div style={{ height: "500px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+```jsx
+<div
+    style={{
+        height: "500px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+    }}
+>
     <Typography variant="h6">Scroll to animate</Typography>
     <OnScreenObserver>
         {(onScreen) => (
@@ -36,8 +41,8 @@ This component lets us react to an element being scrolled into the screen. Uses 
         )}
     </OnScreenObserver>
 </div>
-````
+```
 
 <Canvas>
-    <Example/>
+    <Example />
 </Canvas>

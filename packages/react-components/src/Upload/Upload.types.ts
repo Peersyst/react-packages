@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { PropsStyle } from "../utils/types";
+import { PropsStyle } from "@peersyst/react-types";
 
 export interface UploadProps {
     /**

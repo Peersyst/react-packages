@@ -1,17 +1,15 @@
-import {Switch, Row} from "../../src";
+import { Switch, Row } from "../../src";
 import themedContainer from "../styles/themedContainer";
-import {Canvas, Meta, Props} from "@storybook/addon-docs";
+import { Canvas, Meta, Props } from "@storybook/addon-docs";
 
 <Meta
     title="Components/Inputs/Switch"
     component={Switch}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Switch
@@ -32,15 +30,15 @@ Usage can be controlled or uncontrolled.
 
 ### Controlled usage
 
-````jsx
-    <Switch value={value} onChange={handleChange} />
-````
+```jsx
+<Switch value={value} onChange={handleChange} />
+```
 
 ### Uncontrolled usage
 
-````jsx
-    <Switch />
-````
+```jsx
+<Switch />
+```
 
 <Canvas>
     <Row justifyContent="center">

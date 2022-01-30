@@ -1,10 +1,9 @@
 import { useCallback } from "react";
 import { BackdropProps } from "./Backdrop.types";
-import { usePreventBodyScroll } from "../hooks";
 import { Animated, TransitionStyles } from "../Animated";
-import { useControlled } from "../hooks";
+import { useControlled, usePreventBodyScroll } from "@peersyst/react-hooks";
 import { BackdropRoot } from "./Backdrop.styles";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
 const BackdropAnimation: TransitionStyles = {
     exiting: {
@@ -15,7 +14,7 @@ const BackdropAnimation: TransitionStyles = {
     },
 };
 
-export function Backdrop({
+export default function Backdrop({
     preventScroll = true,
     closable = true,
     defaultOpen = true,
@@ -43,8 +42,19 @@ export function Backdrop({
     }, [closable, open, setOpen]);
 
     return (
-        <Animated animation={animation} animatedProperties="background-color" in={open} duration={transitionsDuration} onExited={onExited}>
-            <BackdropRoot transparent={transparent} onMouseDown={handleClose} className={cx("Backdrop", className)} style={style}>
+        <Animated
+            animation={animation}
+            animatedProperties="background-color"
+            in={open}
+            duration={transitionsDuration}
+            onExited={onExited}
+        >
+            <BackdropRoot
+                transparent={transparent}
+                onMouseDown={handleClose}
+                className={cx("Backdrop", className)}
+                style={style}
+            >
                 {children && (
                     <AnimatedComponent {...AnimatedComponentProps} in={open}>
                         {children}

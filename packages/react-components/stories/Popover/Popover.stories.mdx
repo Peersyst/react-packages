@@ -1,19 +1,18 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Popover} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Popover } from "../../src";
 import { Row } from "../../src";
 import Example from "./component/Example";
-import themedContainer from "../styles/themedContainer"; import ControlledPopover from "./component/ControlledPopover";
+import themedContainer from "../styles/themedContainer";
+import ControlledPopover from "./component/ControlledPopover";
 
 <Meta
     title="Components/Feedback/Popover"
     component={Popover}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Popover
@@ -21,7 +20,7 @@ import themedContainer from "../styles/themedContainer"; import ControlledPopove
 The popover is used to display some context on top of another.
 
 <Canvas>
-    <Row justifyContent="center" alignItems="center" style={{height: "100px"}}>
+    <Row justifyContent="center" alignItems="center" style={{ height: "100px" }}>
         <Example />
     </Row>
 </Canvas>
@@ -34,7 +33,7 @@ Usage can be controlled or uncontrolled.
 
 Popover state can be controlled with its visible prop and onShow and onHide handlers.
 
-````jsx
+```jsx
 <Popover
     showOn="click"
     visible={visible}
@@ -48,27 +47,27 @@ Popover state can be controlled with its visible prop and onShow and onHide hand
 <Button onClick={() => setVisible(!visible)}>
     {visible ? 'Hide popover' : 'Show popover'}
 </Button>
-````
+```
 
 <Canvas>
-        <ControlledPopover />
+    <ControlledPopover />
 </Canvas>
 
 ### Uncontrolled usage
 
 Forget about the popover's state and let it do all the work.
 
-````jsx
+```jsx
 <Popover showOn="click">
     <Popover.Popper>Hello</Popover.Popper>
     <Popover.Content>
         <Button>Show popover</Button>
     </Popover.Content>
 </Popover>
-````
+```
 
 <Canvas>
-    <Row justifyContent="center" alignItems="center" style={{height: "100px"}}>
+    <Row justifyContent="center" alignItems="center" style={{ height: "100px" }}>
         <Example />
     </Row>
 </Canvas>

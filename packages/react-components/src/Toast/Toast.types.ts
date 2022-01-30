@@ -1,6 +1,12 @@
 import { CSSProperties, ReactNode } from "react";
 
-export type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-right" | "bottom-center" | "bottom-left";
+export type ToastPosition =
+    | "top-left"
+    | "top-center"
+    | "top-right"
+    | "bottom-right"
+    | "bottom-center"
+    | "bottom-left";
 
 export type ToastType = "info" | "success" | "error" | "warning" | "loading";
 

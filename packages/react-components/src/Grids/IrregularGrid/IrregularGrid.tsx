@@ -2,9 +2,13 @@ import { Children, ReactNode } from "react";
 import BaseGrid from "../BaseGrid";
 import { Property } from "csstype";
 import { IrregularGridRoot } from "./IrregularGrid.styles";
-import { IrregularGridBreakpoint, IrregularGridProps, IrregularGridState } from "./IrregularGrid.types";
+import {
+    IrregularGridBreakpoint,
+    IrregularGridProps,
+    IrregularGridState,
+} from "./IrregularGrid.types";
 
-export class IrregularGrid extends BaseGrid<IrregularGridProps, IrregularGridState> {
+export default class IrregularGrid extends BaseGrid<IrregularGridProps, IrregularGridState> {
     state: IrregularGridState = {
         mounted: false,
         pattern: [],
@@ -22,11 +26,13 @@ export class IrregularGrid extends BaseGrid<IrregularGridProps, IrregularGridSta
     sortedBreakpoints: IrregularGridBreakpoint[] = [];
 
     componentDidMount(): void {
-        const { pattern, rowSize, colGap, rowGap, cols, alignItems, justifyItems, justifyContent } = this.props;
+        const { pattern, rowSize, colGap, rowGap, cols, alignItems, justifyItems, justifyContent } =
+            this.props;
 
         this.sortedBreakpoints =
-            this.props.breakpoints?.sort((firstEl: IrregularGridBreakpoint, secondEl: IrregularGridBreakpoint) =>
-                firstEl.maxWidth < secondEl.maxWidth ? -1 : 1,
+            this.props.breakpoints?.sort(
+                (firstEl: IrregularGridBreakpoint, secondEl: IrregularGridBreakpoint) =>
+                    firstEl.maxWidth < secondEl.maxWidth ? -1 : 1,
             ) || [];
         this.sortedBreakpoints.push({
             maxWidth: Infinity,
@@ -139,7 +145,16 @@ export class IrregularGrid extends BaseGrid<IrregularGridProps, IrregularGridSta
 
     render(): JSX.Element {
         const { className, style } = this.props;
-        const { pattern, rowSize, colGap, rowGap, cells, alignItems, justifyItems, justifyContent } = this.state;
+        const {
+            pattern,
+            rowSize,
+            colGap,
+            rowGap,
+            cells,
+            alignItems,
+            justifyItems,
+            justifyContent,
+        } = this.state;
 
         return (
             <IrregularGridRoot

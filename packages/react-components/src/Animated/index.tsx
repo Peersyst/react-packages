@@ -1,4 +1,4 @@
-export * from "./Animated";
+export { default as Animated } from "./Animated";
 export * from "./Animated.types";
 export * from "./Fade";
 export * from "./FadingScale";

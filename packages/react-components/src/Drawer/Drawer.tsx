@@ -1,10 +1,10 @@
 import { DrawerMenu } from "./Drawer.styles";
 import { DrawerProps } from "./Drawer.types";
-import { useControlled } from "../hooks";
+import { useControlled } from "@peersyst/react-hooks";
 import { Backdrop, ForwardedBackdropProps } from "../Backdrop";
 import { Animated } from "../Animated";
 import { getAnimationDirection } from "./utils/getAnimationDirection";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 import { MouseEvent } from "react";
 
 /**
@@ -12,7 +12,7 @@ import { MouseEvent } from "react";
  * - Option for drawer to stay on the side moving the screen (Like asana does)
  */
 
-export function Drawer({
+export default function Drawer({
     name,
     defaultOpen = true,
     open: propOpen,

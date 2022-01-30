@@ -21,7 +21,8 @@ export class NumberValidator extends BaseValidator {
                 this.message = "The number must be greater than " + options.greaterThan;
             }
             if (options.greaterEqualThan !== undefined) {
-                this.message = "The number must be greater or equal than " + options.greaterEqualThan;
+                this.message =
+                    "The number must be greater or equal than " + options.greaterEqualThan;
             }
             if (options.equalThan !== undefined) {
                 this.message = "The number must be equal than " + options.equalThan;

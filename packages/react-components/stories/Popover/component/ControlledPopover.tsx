@@ -12,7 +12,9 @@ const ControlledPopover = () => {
                     <Button>I own the popover</Button>
                 </Popover.Content>
             </Popover>
-            <Button onClick={() => setVisible(!visible)}>{visible ? "Hide popover" : "Show popover"}</Button>
+            <Button onClick={() => setVisible(!visible)}>
+                {visible ? "Hide popover" : "Show popover"}
+            </Button>
         </Row>
     );
 };

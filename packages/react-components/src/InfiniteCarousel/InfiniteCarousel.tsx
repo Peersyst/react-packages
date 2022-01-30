@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Children, CSSProperties, ReactNode } from "react";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 import {
     InfiniteCarouselBody,
     InfiniteCarouselDirection,
@@ -24,7 +24,7 @@ interface InfiniteCarouselState {
     refresh: boolean;
 }
 
-export class InfiniteCarousel extends React.Component<
+export default class InfiniteCarousel extends React.Component<
     InfiniteCarouselProps,
     InfiniteCarouselState
 > {

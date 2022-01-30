@@ -1,5 +1,5 @@
-import {Meta, Props} from "@storybook/addon-docs";
-import {ThemeProvider} from "../../src";
+import { Meta, Props } from "@storybook/addon-docs";
+import { ThemeProvider } from "../../src";
 
 <Meta title="Theming/Theming" />
 
@@ -25,17 +25,17 @@ The default loader can be changed with the loader property.
 
 Its value had to be a Component.
 
-````typescript
+```typescript
 const theme = createTheme({
     loader: CustomLoader,
-})
-````
+});
+```
 
 ### Icons
 
 Default icons can also be changed with icons property and their names. Values have to be Components as well.
 
-````typescript
+```typescript
 const theme = createTheme({
     icons: {
         info: CustomInfoIcon,
@@ -46,14 +46,14 @@ const theme = createTheme({
         show: CustomShowIcon,
         cross: CustomCrossIcon,
     },
-})
-````
+});
+```
 
 ### Typography
 
 Typography variants can be modified, removed or added.
 
-````typescript
+```typescript
 const theme = createTheme({
     typography: {
         // Modify existing variant
@@ -65,14 +65,15 @@ const theme = createTheme({
         // Add new variant
         title: {
             fontSize: "1.75rem",
-        }
-    }
-})
-````
+        },
+    },
+});
+```
+
 Some declaration merging is needed in order to update types.
 
-````typescript
-import "peersyst-react-components"
+```typescript
+import "peersyst-react-components";
 
 declare module "peersyst-react-components" {
     // Add title in theme type
@@ -89,19 +90,19 @@ declare module "peersyst-react-components" {
         title: true;
     }
 }
-````
+```
 
 ### Palette
 
 Palette are the colors to be used in the app. You can modify all existing colors and add as many new ones as you want.
 
-````typescript
+```typescript
 const theme = createTheme({
     palette: {
         /**
-        * mode can be light or dark.
-        * If not provided, defaults to light
-        */
+         * mode can be light or dark.
+         * If not provided, defaults to light
+         */
         mode: "light",
         // Modifying existing colors
         // Colors CANNOT be words like "white" or "black"
@@ -117,26 +118,26 @@ const theme = createTheme({
             success: "rgb(46, 125, 50)",
         },
         // Add a new color
-        secondary: "rgb(253, 10, 168)"
+        secondary: "rgb(253, 10, 168)",
     },
-})
-````
+});
+```
 
 To add a new color, types have to be extended by using declaration merging.
 
-````typescript
+```typescript
 declare module "peersyst-react-components" {
     export interface ThemePalette {
         secondary: string;
     }
 }
-````
+```
 
 ### Breakpoints
 
 Breakpoint values can also be modified or added.
 
-````typescript
+```typescript
 const theme = createTheme({
     breakpoints: {
         values: {
@@ -145,13 +146,14 @@ const theme = createTheme({
             // Add a new value
             tablet: 800,
         },
-    }
-})
-````
+    },
+});
+```
+
 Some declaration merging is needed in order to update types.
 
-````typescript
-import "peersyst-react-components"
+```typescript
+import "peersyst-react-components";
 
 declare module "peersyst-react-components" {
     // Extend BreakpointValues
@@ -159,28 +161,28 @@ declare module "peersyst-react-components" {
         tablet: number;
     }
 }
-````
+```
 
 ### Default Toast animation
 
-````typescript
+```typescript
 const theme = createTheme({
     toastAnimation: "fade",
-})
-````
+});
+```
 
 ### Default Toast position
 
-````typescript
+```typescript
 const theme = createTheme({
     toastPosition: "top-left",
-})
-````
+});
+```
 
 ### Global border radius
 
-````typescript
+```typescript
 const theme = createTheme({
     borderRadius: "5px",
-})
-````
+});
+```

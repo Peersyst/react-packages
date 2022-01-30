@@ -1,19 +1,18 @@
-import {Animated, Grid} from '../../src'
-import { Meta, Canvas} from '@storybook/addon-docs'
+import { Animated, Grid } from "../../src";
+import { Meta, Canvas } from "@storybook/addon-docs";
 import { AnimatedDisplay } from "./component/AnimatedDisplay";
 import { DisplayText } from "../styles/Text.styles";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Utils/Animated"
-      component={Animated}
-      parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-} />
+    component={Animated}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
 
 # Animated
 
@@ -21,12 +20,15 @@ A wrapper that lets you animate **any** component.<br/>
 This component is built on top of [react-transition-group](https://reactcommunity.org/react-transition-group/)'s [Transition](https://reactcommunity.org/react-transition-group/css-transition).
 
 You can either use one of the basic animations provided by default:
+
 ```tsx
 <Animated.Fade>
     <Content />
 </Animated.Fade>
-````
+```
+
 Or make your own animations, as spectacular as you want!
+
 ```tsx
 <Animated
     animation={
@@ -54,17 +56,42 @@ As seen in the introduction, components can be animated either with **default an
 <Animated.Fade>
     <DisplayText>🚀</DisplayText>
 </Animated.Fade>
-````
+```
+
 <Canvas>
-    <AnimatedDisplay Animation="Fade"><DisplayText>🚀</DisplayText></AnimatedDisplay>
+    <AnimatedDisplay Animation="Fade">
+        <DisplayText>🚀</DisplayText>
+    </AnimatedDisplay>
 </Canvas>
 
 ### Custom animations
 
 ```tsx
 <Animated
-    animation={
-        {
+    animation={{
+        entering: {
+            transform: "scale(1) rotate(-360deg) translateX(0) translateY(0)",
+        },
+        entered: {
+            transform: "scale(1) rotate(-360deg) translateX(0) translateY(0)",
+        },
+        exiting: {
+            transform: "scale(0) rotate(0) translateX(30vw) translateY(40vh)",
+        },
+        exited: {
+            transform: "scale(0) rotate(0) translateX(30vw) translateY(40vh)",
+        },
+    }}
+    animatedProperties="transform"
+    duration={1000}
+>
+    <DisplayText>🚀</DisplayText>
+</Animated>
+```
+
+<Canvas>
+    <AnimatedDisplay
+        animation={{
             entering: {
                 transform: "scale(1) rotate(-360deg) translateX(0) translateY(0)",
             },
@@ -76,33 +103,8 @@ As seen in the introduction, components can be animated either with **default an
             },
             exited: {
                 transform: "scale(0) rotate(0) translateX(30vw) translateY(40vh)",
-            }
-        }
-    }
-    animatedProperties="transform"
-    duration={1000}
->
-    <DisplayText>🚀</DisplayText>
-</Animated>
-````
-<Canvas>
-    <AnimatedDisplay
-        animation={
-            {
-                entering: {
-                    transform: "scale(1) rotate(-360deg) translateX(0) translateY(0)",
-                },
-                entered: {
-                    transform: "scale(1) rotate(-360deg) translateX(0) translateY(0)",
-                },
-                exiting: {
-                    transform: "scale(0) rotate(0) translateX(30vw) translateY(40vh)",
-                },
-                exited: {
-                    transform: "scale(0) rotate(0) translateX(30vw) translateY(40vh)",
-                }
-            }
-        }
+            },
+        }}
         animatedProperties="transform"
         duration={1000}
     >
@@ -112,9 +114,9 @@ As seen in the introduction, components can be animated either with **default an
 
 ## Child requirements
 
-- **Forward style:** Child must have a style prop. Animations are injected there.
-- **A ref:** Child must have a ref prop or forward a ref for some animations to work correctly.
-- **Singe child:** ONE child has to be provided, just one.
+-   **Forward style:** Child must have a style prop. Animations are injected there.
+-   **A ref:** Child must have a ref prop or forward a ref for some animations to work correctly.
+-   **Singe child:** ONE child has to be provided, just one.
 
 ## Default animations
 
@@ -123,11 +125,21 @@ Here's a list of the default animations provided:
 As seen previously, to use a default animation use `Animated.NameOfTheAnimation`. Also, some default animations have their own props a part from the ones inherited from `Animated`. You can check them on their API section.
 
 <Canvas>
-    <Grid cols={2} colGap={40} rowGap={40} breakpoints={[{maxWidth: 1100, cols: 1}]}>
-        <AnimatedDisplay Animation="Fade"><DisplayText>Fade</DisplayText></AnimatedDisplay>
-        <AnimatedDisplay Animation="Slide" direction="left"><DisplayText>Slide</DisplayText></AnimatedDisplay>
-        <AnimatedDisplay Animation="FadingSlide" direction="down"><DisplayText>FadingSlide</DisplayText></AnimatedDisplay>
-        <AnimatedDisplay Animation="Scale"><DisplayText>Scale</DisplayText></AnimatedDisplay>
-        <AnimatedDisplay Animation="FadingScale"><DisplayText>FadingScale</DisplayText></AnimatedDisplay>
+    <Grid cols={2} colGap={40} rowGap={40} breakpoints={[{ maxWidth: 1100, cols: 1 }]}>
+        <AnimatedDisplay Animation="Fade">
+            <DisplayText>Fade</DisplayText>
+        </AnimatedDisplay>
+        <AnimatedDisplay Animation="Slide" direction="left">
+            <DisplayText>Slide</DisplayText>
+        </AnimatedDisplay>
+        <AnimatedDisplay Animation="FadingSlide" direction="down">
+            <DisplayText>FadingSlide</DisplayText>
+        </AnimatedDisplay>
+        <AnimatedDisplay Animation="Scale">
+            <DisplayText>Scale</DisplayText>
+        </AnimatedDisplay>
+        <AnimatedDisplay Animation="FadingScale">
+            <DisplayText>FadingScale</DisplayText>
+        </AnimatedDisplay>
     </Grid>
 </Canvas>

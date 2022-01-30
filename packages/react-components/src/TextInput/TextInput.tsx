@@ -4,11 +4,15 @@ import { useTextInputValidation } from "./hooks/useTextInputValidation";
 import { useFormNotification } from "../Form";
 import { Children, HTMLInput, TextInputProps, TextInputStyles } from "./TextInput.types";
 import { Popover } from "../Popover";
-import { ErrorElementWrapper, InputErrors, TextInputRoot, ValidElementWrapper } from "./TextInput.styles";
-import { useControlled } from "../hooks";
-import { fsx } from "../utils/fsx";
+import {
+    ErrorElementWrapper,
+    InputErrors,
+    TextInputRoot,
+    ValidElementWrapper,
+} from "./TextInput.styles";
+import { useControlled } from "@peersyst/react-hooks";
+import { fsx, cx } from "@peersyst/react-utils";
 import { useTheme } from "../Theme";
-import { cx } from "../utils/cx";
 
 export default function TextInput<HTMLT extends HTMLInput>({
     defaultValue = "",
@@ -43,7 +47,12 @@ export default function TextInput<HTMLT extends HTMLInput>({
     const [focused, setFocused] = useState<boolean>(false);
     const [active, setActive] = useState<boolean>(false);
 
-    const { valid, errors } = useTextInputValidation(value, validators, customValidators, onInvalid);
+    const { valid, errors } = useTextInputValidation(
+        value,
+        validators,
+        customValidators,
+        onInvalid,
+    );
     useFormNotification(name, value, valid);
 
     const ref = createRef<HTMLT>();
@@ -123,7 +132,9 @@ export default function TextInput<HTMLT extends HTMLInput>({
                                 ))}
                             </InputErrors>
                         </Popover.Popper>
-                        <Popover.Content>{<ErrorElementWrapper>{errorElement}</ErrorElementWrapper>}</Popover.Content>
+                        <Popover.Content>
+                            {<ErrorElementWrapper>{errorElement}</ErrorElementWrapper>}
+                        </Popover.Content>
                     </Popover>
                 )}
             </Row>

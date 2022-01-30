@@ -17,6 +17,16 @@ const scale: TransitionStyles = {
     },
 };
 
-export const Scale = forwardRef(({ transformOrigin, style, ...animatedProps }: ScaleProps, ref) => (
-    <Animated animation={scale} animatedProperties="transform" style={{ transformOrigin, ...style }} {...animatedProps} ref={ref} />
+const Scale = forwardRef(({ transformOrigin, style, ...animatedProps }: ScaleProps, ref) => (
+    <Animated
+        animation={scale}
+        animatedProperties="transform"
+        style={{ transformOrigin, ...style }}
+        {...animatedProps}
+        ref={ref}
+    />
 ));
+
+Scale.displayName = "Scale";
+
+export default Scale;

@@ -1,9 +1,14 @@
 import { IconButtonRoot } from "./IconButton.styles";
 import { IconButtonProps } from "./IconButton.types";
-import { cx } from "../utils/cx";
-import { fsx } from "../utils/fsx";
+import { cx, fsx } from "@peersyst/react-utils";
 
-export function IconButton({ children, disabled, onClick, style, className }: IconButtonProps): JSX.Element {
+export default function IconButton({
+    children,
+    disabled,
+    onClick,
+    style,
+    className,
+}: IconButtonProps): JSX.Element {
     return (
         <IconButtonRoot
             disabled={disabled}

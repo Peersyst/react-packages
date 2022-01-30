@@ -1,21 +1,21 @@
-import { Button, Row, useBackdrop, Backdrop } from '../../../src';
+import { Button, Row, useBackdrop, Backdrop } from "../../../src";
 
 function ShowUncontrolledBackdrop(): JSX.Element {
-  const { showBackdrop } = useBackdrop();
+    const { showBackdrop } = useBackdrop();
 
-  return (
-    <Row justifyContent="center">
-      <Button
-        onClick={() =>
-          showBackdrop(Backdrop, {
-            name: 'backdrop',
-          })
-        }
-      >
-        Show Uncontrolled Backdrop
-      </Button>
-    </Row>
-  );
+    return (
+        <Row justifyContent="center">
+            <Button
+                onClick={() =>
+                    showBackdrop(Backdrop, {
+                        name: "backdrop",
+                    })
+                }
+            >
+                Show Uncontrolled Backdrop
+            </Button>
+        </Row>
+    );
 }
 
 export default ShowUncontrolledBackdrop;

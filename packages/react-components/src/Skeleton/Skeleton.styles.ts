@@ -44,12 +44,22 @@ export const SkeletonRoot = styled.span<SkeletonStyles>`
       theme.palette.mode === "light" || appearance === "light"
           ? css`
                 --skeleton-bg: rgba(0, 0, 0, 0.11);
-                --skeleton-wave: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
+                --skeleton-wave: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(0, 0, 0, 0.04),
+                    transparent
+                );
                 --skeleton-pulse: rgba(0, 0, 0, 0.12);
             `
           : css`
                 --skeleton-bg: rgba(255, 255, 255, 0.13);
-                --skeleton-wave: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+                --skeleton-wave: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.08),
+                    transparent
+                );
                 --skeleton-pulse: rgba(255, 255, 255, 0.14);
             `}
   }

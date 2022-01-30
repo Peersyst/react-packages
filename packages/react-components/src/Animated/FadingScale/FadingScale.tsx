@@ -21,7 +21,7 @@ const fadingScale: TransitionStyles = {
     },
 };
 
-export const FadingScale = forwardRef(({ transformOrigin, style, ...animatedProps }: ScaleProps, ref) => (
+const FadingScale = forwardRef(({ transformOrigin, style, ...animatedProps }: ScaleProps, ref) => (
     <Animated
         animation={fadingScale}
         animatedProperties="opacity, transform"
@@ -30,3 +30,7 @@ export const FadingScale = forwardRef(({ transformOrigin, style, ...animatedProp
         ref={ref}
     />
 ));
+
+FadingScale.displayName = "FadingScale";
+
+export default FadingScale;

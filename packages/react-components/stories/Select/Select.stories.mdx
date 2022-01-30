@@ -1,17 +1,15 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Select, SelectItem} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Select, SelectItem } from "../../src";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Inputs/Select"
     component={Select}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Select
@@ -35,7 +33,7 @@ Select is used to collect user information from a list of options.
 
 Selects have SelectItems as their options.
 
-````jsx
+```jsx
 <Select placeholder="Select a value" expandable>
     <SelectItem value={1}>Hamburger</SelectItem>
     <SelectItem value={2}>Fries</SelectItem>
@@ -44,7 +42,7 @@ Selects have SelectItems as their options.
     <SelectItem value={5}>Croissant</SelectItem>
     <SelectItem value={6}>Popcorn</SelectItem>
 </Select>
-````
+```
 
 <Canvas>
     <Select placeholder="Select a value" expandable>
@@ -61,7 +59,7 @@ Selects have SelectItems as their options.
 
 Multiple selection is also supported
 
-````jsx
+```jsx
 <Select placeholder="Select a value" expandable multiple>
     <SelectItem value={1}>Hamburger</SelectItem>
     <SelectItem value={2}>Fries</SelectItem>
@@ -70,7 +68,7 @@ Multiple selection is also supported
     <SelectItem value={5}>Croissant</SelectItem>
     <SelectItem value={6}>Popcorn</SelectItem>
 </Select>
-````
+```
 
 <Canvas>
     <Select placeholder="Select a value" expandable multiple>

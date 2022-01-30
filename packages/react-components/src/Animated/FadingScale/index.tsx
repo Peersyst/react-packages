@@ -1,1 +1,1 @@
-export * from "./FadingScale";
+export { default as FadingScale } from "./FadingScale";

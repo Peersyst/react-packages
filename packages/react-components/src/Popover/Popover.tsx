@@ -1,22 +1,23 @@
 import { createRef, ReactNode, useCallback, useState } from "react";
 import { PopoverProps } from "./Popover.types";
 import { PopoverContent, PopoverPaper, PopoverPopper, PopoverRoot } from "./Popover.styles";
-import { findSlot } from "../utils/find-slot";
+import { findSlot, cx } from "@peersyst/react-utils";
 import { ClickAwayListener } from "../ClickAwayListener";
-import { useControlled } from "../hooks";
+import { useControlled, usePreventBodyScroll } from "@peersyst/react-hooks";
 import { PaperProps } from "../Paper";
-import { usePreventBodyScroll } from "../hooks";
 import { usePopperOrigin } from "./hooks/usePopperOrigin";
 import { Animated } from "../Animated";
-import { cx } from "../utils/cx";
 
-export function Popover({
+export default function Popover({
     visible: visibleProp,
     onHide,
     onShow,
     showOn = "hover",
     position = "top-right",
-    animation: { AnimatedComponent, props: AnimatedComponentProps } = { AnimatedComponent: Animated.Fade, props: { duration: 200 } },
+    animation: { AnimatedComponent, props: AnimatedComponentProps } = {
+        AnimatedComponent: Animated.Fade,
+        props: { duration: 200 },
+    },
     children,
 }: PopoverProps): JSX.Element {
     const [visible, setVisible] = useControlled(false, visibleProp, visibleProp ? onHide : onShow);
@@ -57,7 +58,11 @@ export function Popover({
                     onMouseEnter={() => visible && handleMouseOver()}
                     onMouseLeave={() => visible && handleMouseLeave()}
                 >
-                    <AnimatedComponent {...AnimatedComponentProps} in={visible} onExited={() => setFullyVisible(false)}>
+                    <AnimatedComponent
+                        {...AnimatedComponentProps}
+                        in={visible}
+                        onExited={() => setFullyVisible(false)}
+                    >
                         {popper}
                     </AnimatedComponent>
                 </PopoverPopper>

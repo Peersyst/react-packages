@@ -1,17 +1,15 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Typography, Col} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Typography, Col } from "../../src";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Data Display/Typography"
     component={Typography}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Typography
@@ -41,17 +39,25 @@ Also, it is really easy to customize existing variants, remove them or add new o
 
 Just provide the variant you want and some style props you might want.
 
-````jsx
+```jsx
 <Col gap={10}>
-    <Typography variant="subtitle1" textTransform="uppercase">Typography component is cool</Typography>
-    <Typography variant="body1" light>Typography component is cool</Typography>
+    <Typography variant="subtitle1" textTransform="uppercase">
+        Typography component is cool
+    </Typography>
+    <Typography variant="body1" light>
+        Typography component is cool
+    </Typography>
 </Col>
-````
+```
 
 <Canvas>
     <Col gap={10}>
-        <Typography variant="subtitle1" textTransform="uppercase">Typography component is cool</Typography>
-        <Typography variant="body1" light>Typography component is cool</Typography>
+        <Typography variant="subtitle1" textTransform="uppercase">
+            Typography component is cool
+        </Typography>
+        <Typography variant="body1" light>
+            Typography component is cool
+        </Typography>
     </Col>
 </Canvas>
 
@@ -59,7 +65,7 @@ Just provide the variant you want and some style props you might want.
 
 Typography can be customized with your custom theme:
 
-````typescript
+```typescript
 const myCustomTheme = createTheme({
     typography: {
         // Modify existing variant
@@ -71,12 +77,13 @@ const myCustomTheme = createTheme({
         // Add new variant
         title: {
             fontSize: "1.75rem",
-        }
-    }
-})
-````
-````typescript
-import "peersyst-react-components"
+        },
+    },
+});
+```
+
+```typescript
+import "peersyst-react-components";
 
 declare module "peersyst-react-components" {
     // Add title in theme type
@@ -93,4 +100,4 @@ declare module "peersyst-react-components" {
         title: true;
     }
 }
-````
+```

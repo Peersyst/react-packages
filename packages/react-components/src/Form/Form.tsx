@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import { FormProvider } from "./FormContext";
 import { useFormSubmit } from "./hooks";
 import { FieldNotification, FieldState, FormProps } from "./Form.types";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export const Form = ({ style, className, children, onSubmit, onInvalid }: FormProps): JSX.Element => {
+const Form = ({ style, className, children, onSubmit, onInvalid }: FormProps): JSX.Element => {
     const [valid, setValid] = useState(true);
     const data = useRef<Record<string, FieldState>>({});
     const handleNotification = ({ name, ...state }: FieldNotification): void => {
@@ -30,3 +30,5 @@ export const Form = ({ style, className, children, onSubmit, onInvalid }: FormPr
         </FormProvider>
     );
 };
+
+export default Form;

@@ -1,13 +1,13 @@
 import { createRef } from "react";
 import { TabGroupContainer, TabGroupRoot } from "./TabGroup.styles";
 import { TabIndicator } from "./TabIndicator";
-import { TabGroupArrow } from "./TabGroupArrow/TabGroupArrow";
+import { TabGroupArrow } from "./TabGroupArrow";
 import { useTabGroupSize } from "./hook/useTabGroupSize";
 import { TabGroupProps } from "./TabGroup.types";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../assets/icons";
-import { cx } from "../../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function TabGroup({
+export default function TabGroup({
     renderIndicator = true,
     indicatorClassName,
     indicatorStyle,
@@ -25,7 +25,8 @@ export function TabGroup({
         const tabGroup = ref.current;
         if (tabGroup) {
             const width = tabGroup.getBoundingClientRect().width;
-            const pos = direction === "left" ? tabGroup.scrollLeft - width : tabGroup.scrollLeft + width;
+            const pos =
+                direction === "left" ? tabGroup.scrollLeft - width : tabGroup.scrollLeft + width;
             tabGroup.scrollLeft = pos;
             update(pos);
         }
@@ -38,7 +39,13 @@ export function TabGroup({
             </TabGroupArrow>
             <TabGroupContainer ref={ref} className="TabGroupContainer">
                 {children}
-                {renderIndicator && <TabIndicator tabGroupRef={ref} className={indicatorClassName} style={indicatorStyle} />}
+                {renderIndicator && (
+                    <TabIndicator
+                        tabGroupRef={ref}
+                        className={indicatorClassName}
+                        style={indicatorStyle}
+                    />
+                )}
             </TabGroupContainer>
             <TabGroupArrow direction="right" {...sizeInfo} onScroll={handleScroll}>
                 {rightArrowIcon}

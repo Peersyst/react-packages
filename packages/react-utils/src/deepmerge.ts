@@ -1,4 +1,4 @@
-export function isPlainObject(item: unknown): item is Record<keyof never, unknown> {
+export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
     return item !== null && typeof item === "object" && item?.constructor === Object;
 }
 
@@ -22,13 +22,13 @@ export default function deepmerge<T>(
 
             if (isPlainObject(source[key]) && key in target && isPlainObject(target[key])) {
                 // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
-                (output as Record<keyof never, unknown>)[key] = deepmerge(
+                (output as Record<keyof any, unknown>)[key] = deepmerge(
                     target[key],
                     source[key],
                     options,
                 );
             } else {
-                (output as Record<keyof never, unknown>)[key] = source[key];
+                (output as Record<keyof any, unknown>)[key] = source[key];
             }
         });
     }

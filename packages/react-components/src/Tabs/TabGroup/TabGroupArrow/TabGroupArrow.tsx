@@ -1,7 +1,7 @@
 import { TabGroupArrowProps } from "./TabGroupArrow.types";
 import { IconButton } from "../../../IconButton";
 
-export function TabGroupArrow({
+export default function TabGroupArrow({
     direction,
     onScroll,
     tabGroupWidth,
@@ -9,7 +9,10 @@ export function TabGroupArrow({
     tabGroupScrollWidth,
     children,
 }: TabGroupArrowProps): JSX.Element {
-    const disabled = direction === "left" ? tabGroupScrollLeft <= 0 : tabGroupScrollLeft + tabGroupWidth >= tabGroupScrollWidth;
+    const disabled =
+        direction === "left"
+            ? tabGroupScrollLeft <= 0
+            : tabGroupScrollLeft + tabGroupWidth >= tabGroupScrollWidth;
 
     return tabGroupWidth < tabGroupScrollWidth ? (
         <IconButton onClick={() => !disabled && onScroll(direction)} disabled={disabled}>

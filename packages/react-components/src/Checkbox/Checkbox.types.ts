@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { PropsStyle } from "../utils/types";
+import { PropsStyle } from "@peersyst/react-types";
 
 export interface CheckboxProps {
     /**
@@ -17,7 +17,7 @@ export interface CheckboxProps {
     /**
      * OnChange handler
      */
-    onChange?: (checked: boolean) => any;
+    onChange?: (checked: boolean) => unknown;
     /**
      * Validator that ensures Checkbox is checked
      */

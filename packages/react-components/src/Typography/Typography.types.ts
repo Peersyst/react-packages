@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { ThemeFonts, TypographyVariants, TypographyVariantsOverrides } from "../styles";
 import { Property } from "csstype";
 import { CSSObject } from "styled-components";
-import { OverridableStringUnion } from "../utils/types";
+import { OverridableStringUnion } from "@peersyst/react-types";
 
 export interface TypographyProps {
     /**

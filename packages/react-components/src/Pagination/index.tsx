@@ -1,4 +1,4 @@
 export * from "./PaginationItem";
-export * from "./Pagination";
+export { default as Pagination } from "./Pagination";
 export * from "./Pagination.styles";
 export * from "./Pagination.types";

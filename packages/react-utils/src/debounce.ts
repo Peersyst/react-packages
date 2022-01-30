@@ -1,14 +1,14 @@
-export interface Cancelable {
+export interface Clearable {
     clear(): void;
 }
 
-export default function debounce<T extends (...args: unknown[]) => unknown>(
+export default function debounce<T extends (...args: any[]) => any>(
     func: T,
     wait = 166,
-): Cancelable {
+): ((...args: any[]) => any) & Clearable {
     let timeout: NodeJS.Timeout;
 
-    function debounced(...args: unknown[]) {
+    function debounced(...args: any[]) {
         const later = () => {
             // eslint-disable-next-line prefer-spread
             func.apply(null, args);

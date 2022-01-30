@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { ModalProps } from "./Modal.types";
-import { useControlled } from "../hooks";
+import { useControlled } from "@peersyst/react-hooks";
 import { Backdrop, ForwardedBackdropProps } from "../Backdrop";
 import { ModalRoot } from "./Modal.styles";
 import { getAnimatedComponent } from "./utils/getAnimatedComponent";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function Modal({
+export default function Modal({
     name,
     closable = true,
     defaultOpen = true,
@@ -39,12 +39,20 @@ export function Modal({
         onExited,
         closable,
         preventScroll: true,
-        childrenAnimation: { AnimatedComponent, props: { ...AnimatedComponentProps, duration: transitionsDuration } },
+        childrenAnimation: {
+            AnimatedComponent,
+            props: { ...AnimatedComponentProps, duration: transitionsDuration },
+        },
     };
 
     return (
         <Backdrop {...BackdropProps} {...forwardedBackdropProps}>
-            <ModalRoot className={cx("Modal", className)} style={style} onMouseDown={(e) => e.stopPropagation()} elevation={elevation}>
+            <ModalRoot
+                className={cx("Modal", className)}
+                style={style}
+                onMouseDown={(e) => e.stopPropagation()}
+                elevation={elevation}
+            >
                 {children}
             </ModalRoot>
         </Backdrop>

@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import { InfiniteScrollProps } from "./InfiniteScroll.types";
 import { InfiniteScrollLoader } from "./InfiniteScroll.styles";
 import { OnScreenObserver } from "../OnScreenObserver";
-import { debounce } from "../utils/debounce";
+import { debounce } from "@peersyst/react-utils";
 
-export const InfiniteScroll = ({
+const InfiniteScroll = ({
     children,
     endElement,
     end: endProp,
@@ -17,7 +17,7 @@ export const InfiniteScroll = ({
 
     useEffect(() => {
         count && callback();
-    }, [count]);
+    }, [count, callback]);
 
     useEffect(() => {
         return incrementCount.clear();
@@ -45,3 +45,5 @@ export const InfiniteScroll = ({
         </>
     );
 };
+
+export default InfiniteScroll;

@@ -1,4 +1,10 @@
-import { CSSProperties, ForwardRefExoticComponent, JSXElementConstructor, ReactElement, RefAttributes } from "react";
+import {
+    CSSProperties,
+    ForwardRefExoticComponent,
+    JSXElementConstructor,
+    ReactElement,
+    RefAttributes,
+} from "react";
 import { TransitionStatus } from "react-transition-group";
 import { TransitionProps } from "react-transition-group/Transition";
 import { Property } from "csstype";
@@ -94,13 +100,17 @@ export type TransitionDuration = number | { enter: number; exit: number };
 
 export type TransitionDelay = number | { enter: number; exit: number };
 
-export type TransitionStyles = Partial<Record<Exclude<TransitionStatus, "unmounted">, CSSProperties | undefined>>;
+export type TransitionStyles = Partial<
+    Record<Exclude<TransitionStatus, "unmounted">, CSSProperties | undefined>
+>;
 
 export type TransitionTimingFunction =
     | Property.TransitionTimingFunction
     | { enter: Property.TransitionTimingFunction; exit: Property.TransitionTimingFunction };
 
-export type AnimatedComponent = ForwardRefExoticComponent<AnimatedProps & RefAttributes<unknown>> & {
+export type AnimatedComponent = ForwardRefExoticComponent<
+    AnimatedProps & RefAttributes<unknown>
+> & {
     Fade: typeof Fade;
     Slide: typeof Slide;
     FadingSlide: typeof FadingSlide;

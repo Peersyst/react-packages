@@ -4,10 +4,14 @@ import { SelectItemRoot } from "./SelectItem.styles";
 import { useSelected } from "../hooks/useSelected";
 import { handleSelection } from "../utils/handleSelection";
 import { SelectItemProps } from "./SelectItem.types";
-import { fsx } from "../../utils/fsx";
-import { cx } from "../../utils/cx";
+import { fsx, cx } from "@peersyst/react-utils";
 
-export function SelectItem({ children, value, className, style }: SelectItemProps): JSX.Element {
+export default function SelectItem({
+    children,
+    value,
+    className,
+    style,
+}: SelectItemProps): JSX.Element {
     const { setValue, setOpen, readonly, value: selected, multiple } = useContext(SelectContext);
     const isSelected = useSelected(value, selected, multiple);
 

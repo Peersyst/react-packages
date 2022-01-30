@@ -2,7 +2,14 @@ import { Animated, OnScreenObserver, Typography } from "../../../src";
 
 export default function Example(): JSX.Element {
     return (
-        <div style={{ height: "500px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div
+            style={{
+                height: "500px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+            }}
+        >
             <Typography variant="h6">Scroll to animate</Typography>
             <OnScreenObserver>
                 {(onScreen) => (

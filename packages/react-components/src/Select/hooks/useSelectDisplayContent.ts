@@ -1,5 +1,5 @@
 import { Children, ReactElement, ReactNode, useMemo } from "react";
-import { SelectItem } from "../SelectItem/SelectItem";
+import { SelectItem } from "../SelectItem";
 
 export function useSelectDisplayContent(
     value: unknown | unknown[],
@@ -13,6 +13,11 @@ export function useSelectDisplayContent(
                 (value as unknown[]).find((v) => v === (c as ReactElement).props?.value),
             );
             return selectedChildren.map((c) => (c as ReactElement).props?.children);
-        } else return (Children.toArray(children).find((c) => (c as ReactElement).props.value === value) as ReactElement).props.children;
-    }, [value, children]);
+        } else
+            return (
+                Children.toArray(children).find(
+                    (c) => (c as ReactElement).props.value === value,
+                ) as ReactElement
+            ).props.children;
+    }, [value, multiple, children]);
 }

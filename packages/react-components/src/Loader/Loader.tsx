@@ -1,7 +1,10 @@
 import { ComponentProps } from "react";
 import { LoaderIcon } from "../assets/icons";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function Loader({ className, ...rest }: ComponentProps<typeof LoaderIcon>): JSX.Element {
+export default function Loader({
+    className,
+    ...rest
+}: ComponentProps<typeof LoaderIcon>): JSX.Element {
     return <LoaderIcon className={cx("Loader", className)} {...rest} />;
 }

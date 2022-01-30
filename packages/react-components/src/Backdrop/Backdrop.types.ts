@@ -66,7 +66,17 @@ export interface BackdropStyles {
 
 export type ForwardedBackdropProps = Pick<
     BackdropProps,
-    "name" | "defaultOpen" | "open" | "onClose" | "onExited" | "closable" | "preventScroll" | "childrenAnimation"
+    | "name"
+    | "defaultOpen"
+    | "open"
+    | "onClose"
+    | "onExited"
+    | "closable"
+    | "preventScroll"
+    | "childrenAnimation"
 >;
 
-export type ExposedBackdropProps = Pick<BackdropProps, "className" | "style" | "animation" | "transitionsDuration" | "transparent">;
+export type ExposedBackdropProps = Pick<
+    BackdropProps,
+    "className" | "style" | "animation" | "transitionsDuration" | "transparent"
+>;

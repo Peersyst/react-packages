@@ -1,6 +1,6 @@
 import { CreateTheme, Theme } from "./styles.types";
 import { defaultTheme } from "./defaultTheme";
-import deepmerge from "../utils/deepmerge";
+import { deepmerge } from "@peersyst/react-utils";
 import { createBreakpoints } from "./createBreakpoints";
 
 export function createTheme({
@@ -22,7 +22,10 @@ export function createTheme({
         typography: deepmerge(defaultTheme.typography, typography),
         palette: deepmerge(defaultTheme.palette, palette),
         shadows: defaultTheme.shadows,
-        breakpoints: createBreakpoints({ ...defaultTheme.breakpoints.values, ...breakpoints?.values }),
+        breakpoints: createBreakpoints({
+            ...defaultTheme.breakpoints.values,
+            ...breakpoints?.values,
+        }),
         borderRadius: borderRadius || defaultTheme.borderRadius,
         toastAnimation: toastAnimation || defaultTheme.toastAnimation,
         toastPosition: toastPosition || defaultTheme.toastPosition,

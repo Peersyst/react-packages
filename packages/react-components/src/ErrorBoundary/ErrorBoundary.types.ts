@@ -4,7 +4,7 @@ export interface ErrorBoundaryProps {
     /**
      * onError handler
      */
-    onError?: (error: any, info: any) => unknown;
+    onError?: (error: unknown, info: unknown) => unknown;
     /**
      * Boundary content
      */

@@ -1,17 +1,15 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Grid} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Grid } from "../../src";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Layout/Grid"
     component={Grid}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Grid
@@ -22,19 +20,18 @@ A responsible and usable grid.
 
 Usage is pretty simple, just define the Grid's columns and its breakpoints.
 
-````jsx
+```jsx
 <Grid
     cols={3}
     rowGap={60}
     colGap={10}
-    breakpoints={
-        [
-            {maxWidth: 1200, cols: 2, rowGap: 20, colGap: 20},
-            {maxWidth: 900, cols: 1, rowGap: 30},
-            {maxWidth: 800, cols: 3, rowGap: 10, colGap: 10, justifyContent: "flex-start"}
-        ]
-    }>
-    {[...Array(10)].map((e, i) =>
+    breakpoints={[
+        { maxWidth: 1200, cols: 2, rowGap: 20, colGap: 20 },
+        { maxWidth: 900, cols: 1, rowGap: 30 },
+        { maxWidth: 800, cols: 3, rowGap: 10, colGap: 10, justifyContent: "flex-start" },
+    ]}
+>
+    {[...Array(10)].map((e, i) => (
         <div
             key={i.toString()}
             style={{
@@ -43,23 +40,22 @@ Usage is pretty simple, just define the Grid's columns and its breakpoints.
                 backgroundColor: `rgb(${(i + 2) * 10}, ${i * 24}, ${(i + 1) * 30})`,
             }}
         />
-    )}
+    ))}
 </Grid>
-````
+```
 
 <Canvas>
     <Grid
         cols={3}
         rowGap={60}
         colGap={10}
-        breakpoints={
-            [
-                {maxWidth: 1200, cols: 2, rowGap: 20, colGap: 20},
-                {maxWidth: 900, cols: 1, rowGap: 30},
-                {maxWidth: 800, cols: 3, rowGap: 10, colGap: 10, justifyContent: "flex-start"}
-            ]
-        }>
-        {[...Array(10)].map((e, i) =>
+        breakpoints={[
+            { maxWidth: 1200, cols: 2, rowGap: 20, colGap: 20 },
+            { maxWidth: 900, cols: 1, rowGap: 30 },
+            { maxWidth: 800, cols: 3, rowGap: 10, colGap: 10, justifyContent: "flex-start" },
+        ]}
+    >
+        {[...Array(10)].map((e, i) => (
             <div
                 key={i.toString()}
                 style={{
@@ -68,6 +64,6 @@ Usage is pretty simple, just define the Grid's columns and its breakpoints.
                     backgroundColor: `rgb(${(i + 2) * 10}, ${i * 24}, ${(i + 1) * 30})`,
                 }}
             />
-        )}
+        ))}
     </Grid>
 </Canvas>

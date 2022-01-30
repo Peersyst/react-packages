@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import { JSXElementConstructor } from "react";
 import { CSSObject } from "styled-components";
 import { Property } from "csstype";

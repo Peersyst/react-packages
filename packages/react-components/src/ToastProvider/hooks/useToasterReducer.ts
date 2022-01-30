@@ -1,4 +1,9 @@
-import { ShowToastAction, ToasterAction, ToasterActionType, ToasterState } from "../ToastProvider.types";
+import {
+    ShowToastAction,
+    ToasterAction,
+    ToasterActionType,
+    ToasterState,
+} from "../ToastProvider.types";
 import { Reducer, useReducer } from "react";
 
 const reducer = (state: ToasterState, action: ToasterAction): ToasterState => {
@@ -7,15 +12,19 @@ const reducer = (state: ToasterState, action: ToasterAction): ToasterState => {
             if (state.length) {
                 state[0].props = { ...state[0].props, open: false };
             }
-            const { message, props } = (action as ShowToastAction).payload;
             return state.length < 2
                 ? state.concat({
-                      message,
-                      props: { ...props, key: new Date().getMilliseconds() },
+                      message: (action as ShowToastAction).payload.message,
+                      props: {
+                          ...(action as ShowToastAction).payload.props,
+                          key: new Date().getMilliseconds(),
+                      },
                   })
                 : state;
         case ToasterActionType.HIDE_TOAST:
-            return state.map((t, i) => (i === 0 ? { message: t.message, props: { ...t.props, open: false } } : t));
+            return state.map((t, i) =>
+                i === 0 ? { message: t.message, props: { ...t.props, open: false } } : t,
+            );
         case ToasterActionType.REMOVE_TOAST:
             return state.slice(1);
     }

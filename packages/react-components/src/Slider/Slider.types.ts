@@ -1,4 +1,4 @@
-import { PropsStyle } from "../utils/types";
+import { PropsStyle } from "@peersyst/react-types";
 
 export interface SliderProps {
     /**

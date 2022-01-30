@@ -1,17 +1,15 @@
-import {Meta} from "@storybook/addon-docs";
-import {InfiniteScroll} from "../../src";
+import { Meta } from "@storybook/addon-docs";
+import { InfiniteScroll } from "../../src";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Utils/InfiniteScroll"
     component={InfiniteScroll}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # InfiniteScroll
@@ -22,8 +20,13 @@ An infinite scroll component, it handles calls that are made when end is reached
 
 Wrap the infinite content with this component and provide a callback and an end condition to stop making calls.
 
-````jsx
-<InfiniteScroll callback={handleInfiniteScroll} end={noMoreItemsCondition} loading={isLoading} loadingElement={<ALoadingElement />}>
+```jsx
+<InfiniteScroll
+    callback={handleInfiniteScroll}
+    end={noMoreItemsCondition}
+    loading={isLoading}
+    loadingElement={<ALoadingElement />}
+>
     <InfiniteContent />
 </InfiniteScroll>
-````
+```

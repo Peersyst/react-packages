@@ -1,10 +1,10 @@
 import { TableFooter, TableRoot } from "./Table.styles";
 import { TableColumnsProps, TableProps } from "./Table.types";
-import { TableColumns } from "./TableColumns";
-import { TableRows } from "./TableRows";
-import { cx } from "../utils/cx";
+import TableColumns from "./TableColumns";
+import TableRows from "./TableRows";
+import { cx } from "@peersyst/react-utils";
 
-export function Table<T extends object = {}>({
+export default function Table<T extends object = Record<string, never>>({
     rows,
     columns,
     footer,

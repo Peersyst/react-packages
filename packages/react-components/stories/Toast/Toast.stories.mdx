@@ -1,5 +1,5 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Toast, Row, ToastProvider} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Toast, Row, ToastProvider } from "../../src";
 import themedContainer from "../styles/themedContainer";
 import ShowUncontrolledToast from "./component/ShowUncontrolledToast";
 import Example from "./component/Example";
@@ -11,13 +11,11 @@ import ToastAnimation from "./component/ToastAnimation";
 <Meta
     title="Components/Feedback/Toast"
     component={Toast}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Toast
@@ -42,14 +40,14 @@ There are 2 types of usages:
 
 This is the typical usage, put the Toast on your jsx tree and toggle its open prop.
 
-````jsx
+```jsx
 <Button onClick={() => setOpen(true)}>Show Controlled Toast</Button>
   <Toast
     message="I'm controlled!"
     open={open}
     onClose={() => setOpen(false)}
   />
-````
+```
 
 <Canvas>
     <Row justifyContent="center">
@@ -77,17 +75,17 @@ Hides the active toast.
 
 #### Usage
 
-````jsx
+```jsx
 <ToastProvider>
-    <Button onClick={() => showToast("I'm uncontrolled!")}>
-      Show Uncontrolled toast
-    </Button>
+    <Button onClick={() => showToast("I'm uncontrolled!")}>Show Uncontrolled toast</Button>
 </ToastProvider>
-````
+```
 
 <Canvas>
     <ToastProvider>
-        <Row justifyContent="center"><ShowUncontrolledToast /></Row>
+        <Row justifyContent="center">
+            <ShowUncontrolledToast />
+        </Row>
     </ToastProvider>
 </Canvas>
 
@@ -95,95 +93,94 @@ To use this, a ToastProvider has to be placed at the root of your app.
 
 ### Toast position
 
-````jsx
+```jsx
 const toastPosition = [
-  'bottom-left',
-  'top-left',
-  'top-center',
-  'top-right',
-  'bottom-right',
-  'bottom-center',
+    "bottom-left",
+    "top-left",
+    "top-center",
+    "top-right",
+    "bottom-right",
+    "bottom-center",
 ];
 
-{toastPosition.map((pos, index) => (
-    <Button
-      key={index.toString()}
-      onClick={() =>
-        showToast('Hello from ' + pos, { position: pos })
-      }
-    >
-      {pos}
-    </Button>
-  ))}
-````
+{
+    toastPosition.map((pos, index) => (
+        <Button
+            key={index.toString()}
+            onClick={() => showToast("Hello from " + pos, { position: pos })}
+        >
+            {pos}
+        </Button>
+    ));
+}
+```
 
 <Canvas>
     <ToastProvider>
         <Row justifyContent="space-around" gap={20} breakPoint="mini" rowGap={20}>
-            <ToastPosition/>
+            <ToastPosition />
         </Row>
     </ToastProvider>
 </Canvas>
 
 ### Toast type
 
-````jsx
-const toastType = [undefined, 'info', 'success', 'warning', 'error', 'loading'];
+```jsx
+const toastType = [undefined, "info", "success", "warning", "error", "loading"];
 
-{toastType.map((type, index) => (
-    <Button
-      key={index.toString()}
-      onClick={() => {
-        showToast(
-          "I'm a" +
-            (type === 'info' || type === 'error' ? 'n ' : ' ') +
-            (type || 'normal') +
-            ' toast',
-          {
-            type,
-            action: type === 'loading' && (
-              <p onClick={() => hideToast()} style={{ cursor: 'pointer' }}>
-                Hide
-              </p>
-            ),
-          }
-        );
-      }}
-    >
-      {type || 'normal'}
-    </Button>
-    ))}
-````
+{
+    toastType.map((type, index) => (
+        <Button
+            key={index.toString()}
+            onClick={() => {
+                showToast(
+                    "I'm a" +
+                        (type === "info" || type === "error" ? "n " : " ") +
+                        (type || "normal") +
+                        " toast",
+                    {
+                        type,
+                        action: type === "loading" && (
+                            <p onClick={() => hideToast()} style={{ cursor: "pointer" }}>
+                                Hide
+                            </p>
+                        ),
+                    },
+                );
+            }}
+        >
+            {type || "normal"}
+        </Button>
+    ));
+}
+```
 
 <Canvas>
     <ToastProvider>
         <Row justifyContent="space-around" gap={20} breakPoint="mini" rowGap={20}>
-            <ToastType/>
+            <ToastType />
         </Row>
     </ToastProvider>
 </Canvas>
 
 ### Toast animation
 
-````jsx
-const toastAnimation = ['scale', 'fade', 'slide'];
+```jsx
+const toastAnimation = ["scale", "fade", "slide"];
 
-{toastAnimation.map((animation, i) => (
-    <Button
-      key={i.toString()}
-      onClick={() =>
-        showToast('Hello', { animation })
-      }
-    >
-      Show {animation} toast
-    </Button>
-))}
-````
+{
+    toastAnimation.map((animation, i) => (
+        <Button key={i.toString()} onClick={() => showToast("Hello", { animation })}>
+            Show {animation} toast
+        </Button>
+    ));
+}
+```
 
 <Canvas>
     <ToastProvider>
         <Row justifyContent="space-around" gap={20}>
-            <ToastAnimation/>
+            <ToastAnimation />
         </Row>
     </ToastProvider>
 </Canvas>

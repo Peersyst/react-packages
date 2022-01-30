@@ -22,12 +22,17 @@ export const DrawerMenu = styled(Paper)<{
         `};
 
     @media screen and (max-width: 650px) {
-        width: ${({ size: { width = "400px", mobileWidth } }) => (mobileWidth ? formatSize(mobileWidth) : formatSize(width))};
-        height: ${({ size: { height = "100%", mobileHeight } }) => (mobileHeight ? formatSize(mobileHeight) : formatSize(height))};
+        width: ${({ size: { width = "400px", mobileWidth } }) =>
+            mobileWidth ? formatSize(mobileWidth) : formatSize(width)};
+        height: ${({ size: { height = "100%", mobileHeight } }) =>
+            mobileHeight ? formatSize(mobileHeight) : formatSize(height)};
     }
 
     //Transitions
-    ${({ position, size: { width = "400px", height = "100%", mobileWidth = "100%", mobileHeight = "100%" } }) =>
+    ${({
+        position,
+        size: { width = "400px", height = "100%", mobileWidth = "100%", mobileHeight = "100%" },
+    }) =>
         css`
       &.drawer-enter,
       &.drawer-appear {
@@ -49,7 +54,9 @@ export const DrawerMenu = styled(Paper)<{
       @media (max-width: 650px) {
         &.drawer-enter,
         &.drawer-appear {
-          ${[position]}: ${"-" + (position === "top" ? formatSize(mobileHeight) : formatSize(mobileWidth))}
+          ${[position]}: ${
+            "-" + (position === "top" ? formatSize(mobileHeight) : formatSize(mobileWidth))
+        }
         }
         &.drawer-enter-active,
         &.drawer-appear-active {

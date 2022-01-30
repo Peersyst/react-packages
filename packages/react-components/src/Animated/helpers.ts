@@ -23,7 +23,11 @@ export function getTimingFunction(
     status: TransitionStatus,
 ): Property.TransitionTimingFunction | undefined {
     if (!timingFunction) return undefined;
-    if (typeof timingFunction === "object" && "enter" in timingFunction && "exit" in timingFunction) {
+    if (
+        typeof timingFunction === "object" &&
+        "enter" in timingFunction &&
+        "exit" in timingFunction
+    ) {
         if (status === "entering" || status === "entered") return timingFunction.enter;
         else return timingFunction.exit;
     } else return timingFunction;

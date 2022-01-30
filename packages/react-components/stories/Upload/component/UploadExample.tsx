@@ -19,7 +19,11 @@ const UploadExample = () => {
                     <Col
                         justifyContent="center"
                         alignItems="center"
-                        style={{ ...styles, border: `1px solid ${drag ? "red" : "white"}`, opacity: 0.5 }}
+                        style={{
+                            ...styles,
+                            border: `1px solid ${drag ? "red" : "white"}`,
+                            opacity: 0.5,
+                        }}
                     >
                         {!drag ? (
                             <>

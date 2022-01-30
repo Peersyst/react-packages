@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export const Toolbar = styled.div.attrs(({ className }) => ({ className: cx("Toolbar", className) }))`
+const Toolbar = styled.div.attrs(({ className }) => ({ className: cx("Toolbar", className) }))`
     position: relative;
     display: flex;
     -webkit-box-align: center;
@@ -16,3 +16,5 @@ export const Toolbar = styled.div.attrs(({ className }) => ({ className: cx("Too
         height: 56px;
     }
 `;
+
+export default Toolbar;

@@ -1,4 +1,4 @@
-/* eslint-disable no-console, @typescript-eslint/no-var-requires, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unused-vars */
 const path = require("path");
 const fse = require("fs-extra");
 const glob = require("fast-glob");

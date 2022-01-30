@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SwitchStyleProps } from "./Switch.types";
-import { emphasize } from "../utils/color";
+import { emphasize } from "@peersyst/react-utils";
 
 export const SwitchRoot = styled.span<SwitchStyleProps>`
     display: block;
@@ -22,7 +22,8 @@ export const SwitchTrack = styled.span<SwitchStyleProps>`
     width: 100%;
     height: 100%;
     padding: 4px;
-    background-color: ${({ theme, checked }) => (checked ? theme.palette.primary : emphasize(theme.palette.text, 0.5))};
+    background-color: ${({ theme, checked }) =>
+        checked ? theme.palette.primary : emphasize(theme.palette.text, 0.5)};
     transition: background-color 0.2s;
     border-radius: inherit;
     box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.25);

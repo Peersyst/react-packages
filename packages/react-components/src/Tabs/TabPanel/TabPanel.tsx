@@ -1,9 +1,14 @@
 import { TabsConsumer } from "../TabsContext";
 import { TabPanelRoot } from "./TabPanel.styles";
 import { TabPanelProps } from "./TabPanel.types";
-import { cx } from "../../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function TabPanel({ index, className, style, children }: TabPanelProps): JSX.Element {
+export default function TabPanel({
+    index,
+    className,
+    style,
+    children,
+}: TabPanelProps): JSX.Element {
     return (
         <TabsConsumer>
             {({ activeIndex }) => (

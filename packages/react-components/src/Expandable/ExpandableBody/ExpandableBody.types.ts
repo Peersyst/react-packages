@@ -4,7 +4,11 @@ import { ExpandableContent } from "./ExpandableContent";
 import { ExpandableFooter } from "./ExpandableFooter";
 
 export type ExpandableBodyChildren =
-    | [ReactElement<typeof ExpandableHeader>, ReactElement<typeof ExpandableContent>, ReactElement<typeof ExpandableFooter>]
+    | [
+          ReactElement<typeof ExpandableHeader>,
+          ReactElement<typeof ExpandableContent>,
+          ReactElement<typeof ExpandableFooter>,
+      ]
     | [ReactElement<typeof ExpandableHeader>, ReactElement<typeof ExpandableContent>]
     | [ReactElement<typeof ExpandableContent>, ReactElement<typeof ExpandableFooter>]
     | ReactElement<typeof ExpandableContent>;

@@ -1,10 +1,15 @@
 import { ComponentType } from "react";
 import { ModalContext, ModalContextType } from "./ModalContext";
 import { useModalReducer } from "./hooks/useModalReducer";
-import { CommonModalComponentProps, ModalActionType, ModalComponentProps, ModalProviderProps } from "./ModalProvider.types";
+import {
+    CommonModalComponentProps,
+    ModalActionType,
+    ModalComponentProps,
+    ModalProviderProps,
+} from "./ModalProvider.types";
 import { ModalManager } from "./ModalManager";
 
-export function ModalProvider({ children }: ModalProviderProps): JSX.Element {
+export default function ModalProvider({ children }: ModalProviderProps): JSX.Element {
     const [state, dispatch] = useModalReducer();
 
     const providerValue: ModalContextType = {

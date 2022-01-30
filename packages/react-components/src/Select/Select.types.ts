@@ -1,6 +1,6 @@
 import { ComponentType, CSSProperties, ReactElement, ReactNode } from "react";
 import { SelectItem } from "./SelectItem";
-import { PropsStyle } from "../utils/types";
+import { PropsStyle } from "@peersyst/react-types";
 
 export interface DropdownComponentProps {
     open?: boolean;

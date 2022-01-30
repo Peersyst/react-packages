@@ -57,7 +57,14 @@ export interface UsePaginationProps {
     siblingCount?: number;
 }
 
-export type PaginationItemType = "page" | "first" | "last" | "next" | "previous" | "start-ellipsis" | "end-ellipsis";
+export type PaginationItemType =
+    | "page"
+    | "first"
+    | "last"
+    | "next"
+    | "previous"
+    | "start-ellipsis"
+    | "end-ellipsis";
 
 export interface UsePaginationItem {
     onClick: React.ReactEventHandler;

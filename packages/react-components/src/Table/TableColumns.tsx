@@ -1,8 +1,8 @@
 import { TableColumnsProps } from "./Table.types";
 import { TableColumnHeader, TableColumns as TableColumnsRow, TableTitle } from "./Table.styles";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function TableColumns<T extends object>({
+export default function TableColumns<T extends object>({
     columns,
     colGap,
     className,

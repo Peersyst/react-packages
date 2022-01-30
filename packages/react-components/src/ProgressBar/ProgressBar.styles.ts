@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { darken } from "../utils/color";
+import { darken } from "@peersyst/react-utils";
 
 export const ProgressBarRoot = styled.span(
     ({ theme }) => css`

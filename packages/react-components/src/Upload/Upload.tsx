@@ -3,11 +3,9 @@ import { useFormNotification } from "../Form";
 import { checkFileTypes, getFileTypes, getValue, getValueFromInput } from "./helpers";
 import { UploadProps, UploadStyleProps } from "./Upload.types";
 import { UploadInput, UploadRoot } from "./Upload.styles";
-import { fsx } from "../utils/fsx";
-import { nullifyEvent } from "../utils/nullifyEvent";
-import { cx } from "../utils/cx";
+import { fsx, nullifyEvent, cx } from "@peersyst/react-utils";
 
-export function Upload({
+export default function Upload({
     name,
     fileTypes,
     multiple,
@@ -64,7 +62,13 @@ export function Upload({
 
     return (
         <UploadRoot
-            className={cx("Upload", className, readonly && "Readonly", disabled && "Disabled", drag && "Drag")}
+            className={cx(
+                "Upload",
+                className,
+                readonly && "Readonly",
+                disabled && "Disabled",
+                drag && "Drag",
+            )}
             style={fsx(style, styleProps)}
             onClick={readonly || disabled ? () => undefined : () => uploadRef?.current?.click()}
             onDragEnter={handleDragEnter}
@@ -75,7 +79,13 @@ export function Upload({
         >
             {typeof children === "function" ? children(drag) : children}
             {active && (
-                <UploadInput ref={uploadRef} type="file" accept={getFileTypes(fileTypes)} multiple={multiple} onChange={handleChange} />
+                <UploadInput
+                    ref={uploadRef}
+                    type="file"
+                    accept={getFileTypes(fileTypes)}
+                    multiple={multiple}
+                    onChange={handleChange}
+                />
             )}
         </UploadRoot>
     );

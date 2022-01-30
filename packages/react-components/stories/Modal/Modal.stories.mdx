@@ -1,6 +1,6 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Modal} from "../../src";
-import {ModalProvider} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Modal } from "../../src";
+import { ModalProvider } from "../../src";
 import ShowUncontrolledModal from "./component/ShowUncontrolledModal";
 import Example from "./component/Example";
 import ShowControlledModal from "./component/ShowControlledModal";
@@ -9,13 +9,11 @@ import themedContainer from "../styles/themedContainer";
 <Meta
     title="Components/Feedback/Modal"
     component={Modal}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Modal
@@ -38,12 +36,12 @@ There are 2 types of usages:
 
 This is the typical usage, put the Modal on your jsx tree and toggle its open prop.
 
-````jsx
+```jsx
 <Button onClick={() => setOpen(true)}>Show Controlled Modal</Button>
     <Modal open={open} onClose={() => setOpen(false)}>
     <Button onClick={() => setOpen(false)}>Close me</Button>
 </Modal>
-````
+```
 
 <Canvas>
     <ShowControlledModal />
@@ -71,22 +69,20 @@ Returns true if a Modal with the given name is open
 
 ##### Usage
 
-````jsx
+```jsx
 <ModalProvider>
     <Button
-    onClick={() => {
-      showModal(Modal, {
-        name: 'modal',
-        children: (
-          <Button onClick={() => hideModal('modal')}>Close me</Button>
-        ),
-      });
-    }}
+        onClick={() => {
+            showModal(Modal, {
+                name: "modal",
+                children: <Button onClick={() => hideModal("modal")}>Close me</Button>,
+            });
+        }}
     >
         Show Modal
     </Button>
 </ModalProvider>
-````
+```
 
 <Canvas>
     <ModalProvider>

@@ -1,17 +1,16 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Upload, Row} from "../../src";
-import themedContainer from "../styles/themedContainer"; import UploadExample from "./component/UploadExample";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Upload, Row } from "../../src";
+import themedContainer from "../styles/themedContainer";
+import UploadExample from "./component/UploadExample";
 
 <Meta
     title="Components/Inputs/Upload"
     component={Upload}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Upload
@@ -30,7 +29,7 @@ Upload is used as a wrapper for any component to toggle an upload on click or dr
 
 Just wrap an element with it and handle its onChange prop if you want to display the file.
 
-````jsx
+```jsx
 <Upload onChange={(file) => setFiles(file as File)} fileTypes="image">
     {(drag) =>
         file ? (
@@ -53,4 +52,4 @@ Just wrap an element with it and handle its onChange prop if you want to display
         )
     }
 </Upload>
-````
+```

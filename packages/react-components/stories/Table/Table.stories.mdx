@@ -1,17 +1,17 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Table} from "../../src";
-import themedContainer from "../styles/themedContainer"; import TableExample from "./component/TableExample"; import {Row} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Table } from "../../src";
+import themedContainer from "../styles/themedContainer";
+import TableExample from "./component/TableExample";
+import { Row } from "../../src";
 
 <Meta
     title="Components/Layout/Table"
     component={Table}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Table
@@ -30,7 +30,7 @@ In order to use this component with the power of typescript, provide the table d
 
 Then, just provide its columns and rows.
 
-````typescript
+```typescript
 intrface TableDef {
   id: number;
   name: string;
@@ -39,8 +39,9 @@ intrface TableDef {
   week: string;
   marketCap: string;
 }
-````
-````typescript
+```
+
+```typescript
 cont rows: TableDef[] = [
   {
     id: 1,
@@ -60,8 +61,9 @@ cont rows: TableDef[] = [
     marketCap: '$24,895,827,088',
   },
 ];
-````
-````typescript
+```
+
+```typescript
 cont columns: TableCol<TableDef>[] = [
   {
     field: 'id',
@@ -96,12 +98,13 @@ cont columns: TableCol<TableDef>[] = [
     alignment: 'right',
   },
 ];
-````
-````typescript jsx
+```
+
+```typescript jsx
 <Tale<TableDef>
-  rows={rows}
-  columns={columns}
-  footer="Footer content"
-  style={{ maxHeight: '400px' }}
+    rows={rows}
+    columns={columns}
+    footer="Footer content"
+    style={{ maxHeight: "400px" }}
 />
-````
+```

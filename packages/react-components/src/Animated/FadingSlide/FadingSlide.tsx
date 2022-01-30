@@ -31,6 +31,15 @@ const getFadingSlide = (direction: SlideDirection): TransitionStyles => {
     };
 };
 
-export const FadingSlide = forwardRef(({ direction, ...animatedProps }: FadingSlideProps, ref) => (
-    <Animated animation={getFadingSlide(direction)} animatedProperties="transform, opacity" {...animatedProps} ref={ref} />
+const FadingSlide = forwardRef(({ direction, ...animatedProps }: FadingSlideProps, ref) => (
+    <Animated
+        animation={getFadingSlide(direction)}
+        animatedProperties="transform, opacity"
+        {...animatedProps}
+        ref={ref}
+    />
 ));
+
+FadingSlide.displayName = "FadingSlide";
+
+export default FadingSlide;

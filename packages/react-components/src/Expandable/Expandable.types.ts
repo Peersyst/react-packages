@@ -1,8 +1,11 @@
 import { CSSProperties, ReactElement } from "react";
-import { ExpandableDisplay } from "./ExpandableDisplay/ExpandableDisplay";
-import { ExpandableBody } from "./ExpandableBody/ExpandableBody";
+import ExpandableDisplay from "./ExpandableDisplay/ExpandableDisplay";
+import ExpandableBody from "./ExpandableBody/ExpandableBody";
 
-export type ExpandableChildren = [ReactElement<typeof ExpandableDisplay>, ReactElement<typeof ExpandableBody>];
+export type ExpandableChildren = [
+    ReactElement<typeof ExpandableDisplay>,
+    ReactElement<typeof ExpandableBody>,
+];
 
 export interface DropdownProps {
     /**

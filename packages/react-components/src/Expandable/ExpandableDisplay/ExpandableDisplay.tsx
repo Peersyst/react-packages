@@ -2,10 +2,9 @@ import { useContext } from "react";
 import { ExpandableContext } from "../ExpandableContext";
 import { ExpandableDisplayRoot, ExpandableDropdown } from "./ExpandableDisplay.styles";
 import { ExpandableDisplayProps } from "./ExpandableDisplay.types";
-import { fsx } from "../../utils/fsx";
-import { cx } from "../../utils/cx";
+import { fsx, cx } from "@peersyst/react-utils";
 
-export function ExpandableDisplay({
+export default function ExpandableDisplay({
     reverse,
     className,
     style,

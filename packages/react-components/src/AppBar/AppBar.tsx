@@ -1,10 +1,10 @@
 import { AppBarContent, AppBarRoot } from "./AppBar.styles";
 import { AppBarProps } from "./AppBar.types";
-import { useScrollTrigger } from "../hooks";
+import { useScrollTrigger } from "@peersyst/react-hooks";
 import { Animated } from "../Animated";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function AppBar({
+export default function AppBar({
     position = "static",
     elevation: elevationProp = 8,
     onScrollElevation,
@@ -21,10 +21,16 @@ export function AppBar({
         disableHysteresis: true,
     });
 
-    const elevation = onScrollElevation !== undefined && elevationTrigger ? onScrollElevation : elevationProp;
+    const elevation =
+        onScrollElevation !== undefined && elevationTrigger ? onScrollElevation : elevationProp;
 
     return (
-        <Animated.Slide direction="down" duration={300} in={!hideOnScroll || !hideTrigger} appear={false}>
+        <Animated.Slide
+            direction="down"
+            duration={300}
+            in={!hideOnScroll || !hideTrigger}
+            appear={false}
+        >
             <AppBarRoot position={position} className={cx("AppBar", className)} style={style}>
                 <AppBarContent elevation={elevation} className="AppBarContent">
                     {children}

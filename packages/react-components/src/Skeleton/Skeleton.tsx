@@ -1,9 +1,9 @@
 import { SkeletonRoot } from "./Skeleton.styles";
 import { SkeletonProps } from "./Skeleton.types";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 import { useTheme } from "../Theme";
 
-export function Skeleton({
+export default function Skeleton({
     width,
     height,
     shape = "stadium",

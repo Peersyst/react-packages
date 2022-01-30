@@ -1,13 +1,19 @@
 import { SlideDirection } from "../Slide.types";
 import ownerWindow from "../../../utils/ownerWindow";
 
-export function getTranslateValue(direction: SlideDirection, node: HTMLElement, resolvedContainer?: HTMLElement | null) {
+export function getTranslateValue(
+    direction: SlideDirection,
+    node: HTMLElement,
+    resolvedContainer?: HTMLElement | null,
+) {
     const rect = node.getBoundingClientRect();
     const containerRect = resolvedContainer && resolvedContainer.getBoundingClientRect();
     const containerWindow = ownerWindow(node);
 
     const computedStyle = containerWindow.getComputedStyle(node);
-    const transform = computedStyle.getPropertyValue("-webkit-transform") || computedStyle.getPropertyValue("transform");
+    const transform =
+        computedStyle.getPropertyValue("-webkit-transform") ||
+        computedStyle.getPropertyValue("transform");
 
     let offsetX = 0;
     let offsetY = 0;

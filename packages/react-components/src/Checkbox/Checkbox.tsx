@@ -1,12 +1,11 @@
 import { useFormNotification } from "../Form";
 import { CheckboxRoot } from "./Checkbox.styles";
 import { CheckboxProps } from "./Checkbox.types";
-import { useControlled } from "../hooks";
-import { fsx } from "../utils/fsx";
+import { useControlled } from "@peersyst/react-hooks";
+import { fsx, cx } from "@peersyst/react-utils";
 import { CheckedBoxIcon, UncheckedBoxIcon } from "../assets/icons";
-import { cx } from "../utils/cx";
 
-export function Checkbox({
+export default function Checkbox({
     name,
     defaultChecked = false,
     value: propsValue,

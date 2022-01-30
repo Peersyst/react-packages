@@ -7,7 +7,10 @@ export function getValue(newFiles: FileList, multiple?: boolean): File | FileLis
     else return undefined;
 }
 
-export function getValueFromInput(uploadRef: RefObject<HTMLInputElement>, multiple?: boolean): File | FileList | undefined {
+export function getValueFromInput(
+    uploadRef: RefObject<HTMLInputElement>,
+    multiple?: boolean,
+): File | FileList | undefined {
     const newFiles = (uploadRef.current?.files || []) as FileList;
     return getValue(newFiles, multiple);
 }

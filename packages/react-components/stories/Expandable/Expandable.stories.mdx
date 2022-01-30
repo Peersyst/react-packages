@@ -1,5 +1,5 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Expandable} from "../../src/";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Expandable } from "../../src/";
 import ExpandableExample from "./component/ExpandableExample";
 import BodyExample from "./component/BodyExample";
 import themedContainer from "../styles/themedContainer";
@@ -7,13 +7,11 @@ import themedContainer from "../styles/themedContainer";
 <Meta
     title="Components/Surfaces/Expandable"
     component={Expandable}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Expandable
@@ -28,16 +26,12 @@ This element will always be visible and will toggle the expandable on click.
 
 #### Usage
 
-````jsx
-<Expandable.Display>
-    Display
-</Expandable.Display>
-````
+```jsx
+<Expandable.Display>Display</Expandable.Display>
+```
 
 <Canvas>
-    <Expandable.Display>
-        Display
-    </Expandable.Display>
+    <Expandable.Display>Display</Expandable.Display>
 </Canvas>
 
 ### Expandable.Body
@@ -48,13 +42,13 @@ This element also uses the slot pattern. It is formed by a mandatory Expandable.
 
 #### Usage
 
-````jsx
+```jsx
 <Expandable.Body>
     <Expandable.Header>Header</Expandable.Header>
     <Expandable.Content>Content</Expandable.Content>
     <Expandable.Footer>Footer</Expandable.Footer>
 </Expandable.Body>
-````
+```
 
 <Canvas>
     <BodyExample />
@@ -62,19 +56,16 @@ This element also uses the slot pattern. It is formed by a mandatory Expandable.
 
 ## Usage
 
-````jsx
+```jsx
 <Expandable>
-    <Expandable.Display
-    >
-        Display
-    </Expandable.Display>
+    <Expandable.Display>Display</Expandable.Display>
     <Expandable.Body>
         <Expandable.Header>Header</Expandable.Header>
         <Expandable.Content>Content</Expandable.Content>
         <Expandable.Footer>Footer</Expandable.Footer>
     </Expandable.Body>
 </Expandable>
-````
+```
 
 <Canvas>
     <ExpandableExample />

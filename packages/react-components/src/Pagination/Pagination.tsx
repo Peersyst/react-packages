@@ -1,12 +1,12 @@
 import { PaginationProps } from "./Pagination.types";
 import { PagesList, PaginationRoot } from "./Pagination.styles";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 import { PaginationItem } from "./PaginationItem";
 import usePagination from "./hooks/usePagination/usePagination";
 import { PaginationItemType } from "./hooks/usePagination/usePagination.types";
 import { ChevronLeftIcon, ChevronRightIcon, EndIcon, StartIcon } from "../assets/icons";
 
-export const Pagination = ({
+const Pagination = ({
     defaultPage = 1,
     page,
     onChange,
@@ -36,7 +36,8 @@ export const Pagination = ({
         siblingCount,
     });
 
-    const startIcon = typeof startIconProp === "boolean" ? startIconProp && <StartIcon /> : startIconProp;
+    const startIcon =
+        typeof startIconProp === "boolean" ? startIconProp && <StartIcon /> : startIconProp;
     const endIcon = typeof endIconProp === "boolean" ? endIconProp && <EndIcon /> : endIconProp;
 
     const renderItem = (type: PaginationItemType, page: number | null) => {
@@ -77,3 +78,5 @@ export const Pagination = ({
         </PaginationRoot>
     );
 };
+
+export default Pagination;

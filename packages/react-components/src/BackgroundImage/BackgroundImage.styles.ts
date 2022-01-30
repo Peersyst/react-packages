@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { BackgroundImageProps } from "./BackgroundImage.types";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
 export const BackgroundImageRoot = styled.div.attrs(({ className }) => ({
     className: cx("BackgroundImage", className),

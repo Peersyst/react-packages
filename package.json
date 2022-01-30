@@ -5,7 +5,8 @@
         "release:version": "lerna version --no-changelog --no-push --no-git-tag-version",
         "release:build": "lerna run --parallel build",
         "release:publish": "lerna publish from-package --dist-tag latest --contents build",
-        "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\""
+        "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\"",
+        "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx"
     },
     "devDependencies": {
         "@babel/cli": "^7.16.8",
@@ -23,6 +24,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
         "fast-glob": "^3.2.11",
         "fs-extra": "^10.0.0",
         "lerna": "^4.0.0",

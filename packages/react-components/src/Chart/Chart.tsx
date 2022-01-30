@@ -7,6 +7,6 @@ if (process.env.NODE_ENV === "test") {
     Highcharts.useSerialIds(true);
 }
 
-export function Chart(props: ChartProps): JSX.Element {
+export default function Chart(props: ChartProps): JSX.Element {
     return <HighchartsReact highcharts={Highcharts} {...props} />;
 }

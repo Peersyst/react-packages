@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 import { useToasterReducer } from "./hooks/useToasterReducer";
 import { ToastContext } from "./ToastContext";
 import { ToasterActionType } from "./ToastProvider.types";
-import { Toaster } from "./Toaster";
+import Toaster from "./Toaster";
 
 interface ToastProviderProps {
     children?: ReactNode;
 }
 
-export function ToastProvider({ children }: ToastProviderProps): JSX.Element {
+export default function ToastProvider({ children }: ToastProviderProps): JSX.Element {
     const [state, dispatch] = useToasterReducer();
 
     return (

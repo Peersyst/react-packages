@@ -2,7 +2,7 @@ import { Ref } from "react";
 import { ExtendedSvg } from "./SvgIcon.styles";
 import { SvgIconProps } from "./SvgIcon.types";
 
-export function SvgIcon({ className, style, children, ref, ...rest }: SvgIconProps) {
+export default function SvgIcon({ className, style, children, ref, ...rest }: SvgIconProps) {
     return (
         <ExtendedSvg
             xmlns="http://www.w3.org/2000/svg"

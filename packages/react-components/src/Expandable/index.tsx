@@ -1,4 +1,4 @@
-export * from "./Expandable";
+export { default as Expandable } from "./Expandable";
 export * from "./Expandable.styles";
 export * from "./Expandable.types";
 export * from "./ExpandableBody";

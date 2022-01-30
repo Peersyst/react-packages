@@ -1,8 +1,15 @@
 import { PaginationItemRoot } from "./PaginationItem.styles";
 import { PaginationItemProps } from "./PaginationItem.types";
-import { cx } from "../../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export const PaginationItem = ({ page, disabled = false, size = "md", className, selected, ...rest }: PaginationItemProps): JSX.Element => {
+const PaginationItem = ({
+    page,
+    disabled = false,
+    size = "md",
+    className,
+    selected,
+    ...rest
+}: PaginationItemProps): JSX.Element => {
     const isEllipsis = page === null;
 
     return (
@@ -24,3 +31,5 @@ export const PaginationItem = ({ page, disabled = false, size = "md", className,
         />
     );
 };
+
+export default PaginationItem;

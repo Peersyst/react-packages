@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { AnimatedComponentProps, TransitionStyles } from "../Animated.types";
-import { Animated } from "../Animated";
+import Animated from "../Animated";
 
 const fade: TransitionStyles = {
     entering: { opacity: 1 },
@@ -9,6 +9,9 @@ const fade: TransitionStyles = {
     exited: { opacity: 0 },
 };
 
-export const Fade = forwardRef((props: AnimatedComponentProps, ref) => (
+const Fade = forwardRef((props: AnimatedComponentProps, ref) => (
     <Animated animation={fade} animatedProperties="opacity" {...props} ref={ref} />
 ));
+Fade.displayName = "Fade";
+
+export default Fade;

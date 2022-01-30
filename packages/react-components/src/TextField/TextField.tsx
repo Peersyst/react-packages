@@ -4,9 +4,9 @@ import { TextFieldInput } from "./TextField.styles";
 import { IconButton } from "../IconButton";
 import { TextFieldProps } from "./TextField.types";
 import { useTheme } from "../Theme";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function TextField({
+export default function TextField({
     type,
     showPasswordElement: showPasswordElementProp,
     hidePasswordElement: hidePasswordElementProp,
@@ -36,9 +36,13 @@ export function TextField({
                         type={showPwd ? "text" : type || "text"}
                         spellCheck={!(type === "email" || type === "password") || spellCheck}
                     />
-                    {!!value && clearable && <IconButton onClick={() => setValue("")}>{clearElement}</IconButton>}
+                    {!!value && clearable && (
+                        <IconButton onClick={() => setValue("")}>{clearElement}</IconButton>
+                    )}
                     {type === "password" && (
-                        <IconButton onClick={() => setShowPwd(!showPwd)}>{showPwd ? showPasswordElement : hidePasswordElement}</IconButton>
+                        <IconButton onClick={() => setShowPwd(!showPwd)}>
+                            {showPwd ? showPasswordElement : hidePasswordElement}
+                        </IconButton>
                     )}
                 </>
             )}

@@ -5,7 +5,10 @@ interface WithTheme {
     theme: object;
 }
 
-export function withTheme<TProps>(WrappedComponent: ComponentType<TProps>): ComponentType<TProps & WithTheme> {
+export function withTheme<TProps>(
+    WrappedComponent: ComponentType<TProps>,
+): ComponentType<TProps & WithTheme> {
+    // eslint-disable-next-line react/display-name
     return (props: any): JSX.Element => {
         const { theme } = useTheme();
 

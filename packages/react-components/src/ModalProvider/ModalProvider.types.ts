@@ -56,4 +56,6 @@ export interface CommonModalComponentProps {
     onExited?: () => unknown;
 }
 
-export type ModalComponentProps<T extends CommonModalComponentProps> = Omit<T, "name"> & { name: string };
+export type ModalComponentProps<T extends CommonModalComponentProps> = Omit<T, "name"> & {
+    name: string;
+};

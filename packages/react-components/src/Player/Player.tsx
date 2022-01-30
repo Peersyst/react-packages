@@ -13,7 +13,7 @@ export type PlayerProps = ReactPlayerProps;
 /**
  * Player from <a href="https://github.com/CookPete/react-player" target="_blank" rel="noreferrer noopener">this repo</a>
  */
-export class Player extends Component<PlayerProps, State> {
+export default class Player extends Component<PlayerProps, State> {
     state: State = {
         ready: false,
         playing: false,
@@ -24,7 +24,11 @@ export class Player extends Component<PlayerProps, State> {
         const { playing, ready } = this.state;
 
         return (
-            <PlayerRoot className={className} style={style} onClick={() => this.setState({ playing: !playing })}>
+            <PlayerRoot
+                className={className}
+                style={style}
+                onClick={() => this.setState({ playing: !playing })}
+            >
                 <ReactPlayer
                     controls
                     {...rest}

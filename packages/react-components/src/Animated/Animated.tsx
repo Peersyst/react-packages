@@ -8,7 +8,7 @@ import { FadingSlide } from "./FadingSlide";
 import { Scale } from "./Scale";
 import { FadingScale } from "./FadingScale";
 
-export const Animated = forwardRef(function Animated(
+const Animated = forwardRef(function Animated(
     {
         appear = true,
         children,
@@ -60,7 +60,8 @@ export const Animated = forwardRef(function Animated(
                     style: {
                         ...children.props.style,
                         transition: "unset",
-                        visibility: hideOnExit && status === "exited" && !inProp ? "hidden" : undefined,
+                        visibility:
+                            hideOnExit && status === "exited" && !inProp ? "hidden" : undefined,
                         ...animation[status],
                         transitionTimingFunction: getTimingFunction(timingFunction, status),
                         transitionDuration: getDuration(duration, status) + "ms",
@@ -79,3 +80,5 @@ Animated.Slide = Slide;
 Animated.FadingSlide = FadingSlide;
 Animated.Scale = Scale;
 Animated.FadingScale = FadingScale;
+
+export default Animated;

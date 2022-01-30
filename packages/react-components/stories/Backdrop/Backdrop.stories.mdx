@@ -1,5 +1,5 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {ModalProvider, Backdrop} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { ModalProvider, Backdrop } from "../../src";
 import Example from "./component/Example";
 import ShowControlledBackdrop from "./component/ShowControlledBackdrop";
 import ShowUncontrolledBackdrop from "./component/ShowUncontrolledBackdrop";
@@ -8,13 +8,11 @@ import themedContainer from "../styles/themedContainer";
 <Meta
     title="Components/Feedback/Backdrop"
     component={Backdrop}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Backdrop
@@ -37,12 +35,12 @@ There are 2 types of usages:
 
 This is the typical usage, put the Backdrop on your jsx tree and toggle its open prop.
 
-````jsx
+```jsx
 <>
     <Button onClick={() => setOpen(true)}>Show Controlled Backdrop</Button>
     <Backdrop open={open} onClose={() => setOpen(false)} />
 </>
-````
+```
 
 <Canvas>
     <ShowControlledBackdrop />
@@ -70,19 +68,19 @@ Returns true if a Backdrop with the given name is open
 
 ##### Usage
 
-````jsx
+```jsx
 <ModalProvider>
     <Button
         onClick={() =>
-          showBackdrop(Backdrop, {
-            name: 'backdrop',
-          })
+            showBackdrop(Backdrop, {
+                name: "backdrop",
+            })
         }
-      >
+    >
         Show Uncontrolled Backdrop
     </Button>
 </ModalProvider>
-````
+```
 
 <Canvas>
     <ModalProvider>
@@ -91,4 +89,3 @@ Returns true if a Backdrop with the given name is open
 </Canvas>
 
 To use this, a ModalProvider has to be placed at the root of your app.
-

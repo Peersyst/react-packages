@@ -2,10 +2,9 @@ import { FormConsumer } from "../Form";
 import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { useTheme } from "../Theme";
-import { cx } from "../utils/cx";
-import { fsx } from "../utils/fsx";
+import { cx, fsx } from "@peersyst/react-utils";
 
-export const Button = function ({
+const Button = function ({
     className,
     disabled,
     children,
@@ -30,13 +29,22 @@ export const Button = function ({
                     fullWidth={fullWidth}
                     disabled={disabled || loading || (valid !== undefined && !valid)}
                     onClick={onClick}
-                    className={cx("Button", loading && "Loading", disabled && "Disabled", className)}
+                    className={cx(
+                        "Button",
+                        loading && "Loading",
+                        disabled && "Disabled",
+                        className,
+                    )}
                     style={fsx(style, { disabled, loading })}
                 >
                     <ButtonContent>{children}</ButtonContent>
-                    {loading && <ButtonLoader className="ButtonLoader">{loadingElement}</ButtonLoader>}
+                    {loading && (
+                        <ButtonLoader className="ButtonLoader">{loadingElement}</ButtonLoader>
+                    )}
                 </ButtonRoot>
             )}
         </FormConsumer>
     );
 };
+
+export default Button;

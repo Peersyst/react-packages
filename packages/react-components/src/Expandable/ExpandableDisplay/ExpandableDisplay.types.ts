@@ -1,5 +1,5 @@
 import { ComponentType, ReactNode } from "react";
-import { PropsStyle } from "../../utils/types";
+import { PropsStyle } from "@peersyst/react-types";
 
 export interface ExpandableDisplayStyleProps {
     open: boolean;

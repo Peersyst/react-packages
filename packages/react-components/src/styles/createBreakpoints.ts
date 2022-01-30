@@ -37,7 +37,10 @@ export const createBreakpoints = (values: DefaultThemeBreakpointValues): ThemeBr
             return down(keys[keyIndex] as Breakpoint);
         }
 
-        return between(key, keys[keys.indexOf(key) + 1] as Breakpoint).replace("@media", "@media not all and");
+        return between(key, keys[keys.indexOf(key) + 1] as Breakpoint).replace(
+            "@media",
+            "@media not all and",
+        );
     }
 
     return {

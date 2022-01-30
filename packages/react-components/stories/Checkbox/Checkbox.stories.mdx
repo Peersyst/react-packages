@@ -1,18 +1,16 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Checkbox, Row} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Checkbox, Row } from "../../src";
 import ControlledCheckbox from "./component/ControlledCheckbox";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Inputs/Checkbox"
     component={Checkbox}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Checkbox
@@ -23,33 +21,33 @@ A basic customizable checkbox.
 
 ### Default usage
 
-````jsx
-    <Checkbox />
-````
+```jsx
+<Checkbox />
+```
 
 <Canvas>
     <Row justifyContent="center">
-    <Checkbox />
+        <Checkbox />
     </Row>
 </Canvas>
 
 ### Custom usage
 
-````jsx
-    <Checkbox checkElement={<div style={{ color: "white" }} >✓</div>} position="end" />
-````
+```jsx
+<Checkbox checkElement={<div style={{ color: "white" }}>✓</div>} position="end" />
+```
 
 <Canvas>
     <Row justifyContent="center">
-    <Checkbox checkElement={<div style={{color: "white"}}>✓</div>} position="end" />
+        <Checkbox checkElement={<div style={{ color: "white" }}>✓</div>} position="end" />
     </Row>
 </Canvas>
 
 ### Controlled usage
 
-````jsx
-    <Checkbox value={value} onChange={handleChange} />
-````
+```jsx
+<Checkbox value={value} onChange={handleChange} />
+```
 
 <Canvas>
     <Row justifyContent="space-around">

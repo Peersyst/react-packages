@@ -1,12 +1,11 @@
 import { useFormNotification } from "../Form";
 import { RadioButtonRoot } from "./RadioButton.styles";
 import { RadioButtonProps } from "./RadioButton.types";
-import { useControlled } from "../hooks";
-import { fsx } from "../utils/fsx";
+import { useControlled } from "@peersyst/react-hooks";
+import { fsx, cx } from "@peersyst/react-utils";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../assets/icons";
-import { cx } from "../utils/cx";
 
-export function RadioButton({
+export default function RadioButton({
     name,
     value: propValue,
     onChange,

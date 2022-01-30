@@ -47,4 +47,6 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     style?: CSSProperties;
 }
 
-export type RowRootProps = Omit<NonNullable<RowProps>, "style" | "className" | "wrap"> & { shouldWrap?: boolean };
+export type RowRootProps = Omit<NonNullable<RowProps>, "style" | "className" | "wrap"> & {
+    shouldWrap?: boolean;
+};

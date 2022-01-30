@@ -1,5 +1,13 @@
 import { Loader } from "../Loader";
-import { CrossIcon, ErrorIcon, HideIcon, InfoIcon, ShowIcon, SuccessIcon, WarningIcon } from "../assets/icons";
+import {
+    CrossIcon,
+    ErrorIcon,
+    HideIcon,
+    InfoIcon,
+    ShowIcon,
+    SuccessIcon,
+    WarningIcon,
+} from "../assets/icons";
 import { Theme } from "./styles.types";
 import shadows from "./shadows";
 import { typography } from "./typography";

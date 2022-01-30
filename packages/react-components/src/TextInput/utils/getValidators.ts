@@ -4,6 +4,9 @@ import { FunctionalValidator } from "../TextInput.types";
 
 export type CustomValidators = (BaseValidator | FunctionalValidator)[] | undefined;
 
-export function getValidators(validators = "", customValidators: CustomValidators = []): BaseValidator[] {
+export function getValidators(
+    validators = "",
+    customValidators: CustomValidators = [],
+): BaseValidator[] {
     return parseValidators(validators).concat(customValidators);
 }

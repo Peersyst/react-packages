@@ -1,1 +1,1 @@
-export * from "./Fade";
+export { default as Fade } from "./Fade";

@@ -72,7 +72,6 @@ async function run(argv) {
     const command = ["yarn babel", ...babelArgs].join(" ");
 
     if (verbose) {
-        // eslint-disable-next-line no-console
         console.log(`running '${command}' with ${JSON.stringify(env)}`);
     }
 
@@ -82,7 +81,6 @@ async function run(argv) {
     }
 
     if (verbose) {
-        // eslint-disable-next-line no-console
         console.log(stdout);
     }
 }

@@ -1,9 +1,10 @@
-export { default as cs } from "./cx";
+export * from "./color";
+export { default as cx } from "./cx";
 export { default as debounce } from "./debounce";
 export { isPlainObject } from "./deepmerge";
 export { default as deepmerge } from "./deepmerge";
 export { default as findSlot } from "./find-slot";
-export { default as fsc } from "./fsx";
+export { default as fsx } from "./fsx";
 export { default as nullifyEvent } from "./nullifyEvent";
 export { default as ownerDocument } from "./ownerDocument";
 export { default as ownerWindow } from "./ownerWindow";

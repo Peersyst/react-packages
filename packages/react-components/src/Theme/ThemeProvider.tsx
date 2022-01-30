@@ -13,7 +13,12 @@ export const ThemeContext = createContext<ColorSchemeContextType>({
     setColorScheme: () => undefined,
 });
 
-export function ThemeProvider({ theme, lightTheme: light = lightTheme, darkTheme: dark = darkTheme, children }: ThemeProps): JSX.Element {
+export default function ThemeProvider({
+    theme,
+    lightTheme: light = lightTheme,
+    darkTheme: dark = darkTheme,
+    children,
+}: ThemeProps): JSX.Element {
     const storageScheme = localStorage.getItem("color-scheme") as ColorScheme | undefined;
     const [colorScheme, setColorScheme] = useState<ColorScheme>(storageScheme || systemColorScheme);
 
@@ -38,9 +43,13 @@ export function ThemeProvider({ theme, lightTheme: light = lightTheme, darkTheme
         document.body.style.backgroundColor = usedTheme.palette.background;
         document.body.style.color = usedTheme.palette.text;
         if (!storageScheme) {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handleColorSchemeChange);
+            window
+                .matchMedia("(prefers-color-scheme: dark)")
+                .addEventListener("change", handleColorSchemeChange);
             return () => {
-                window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", handleColorSchemeChange);
+                window
+                    .matchMedia("(prefers-color-scheme: dark)")
+                    .removeEventListener("change", handleColorSchemeChange);
             };
         }
     }, []);

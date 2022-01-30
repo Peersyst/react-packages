@@ -1,8 +1,12 @@
 import { ExpandableHeaderRoot } from "./ExpandableHeader.styles";
 import { ExpandableHeaderProps } from "../ExpandableBody.types";
-import { cx } from "../../../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function ExpandableHeader({ children, className, style }: ExpandableHeaderProps): JSX.Element {
+export default function ExpandableHeader({
+    children,
+    className,
+    style,
+}: ExpandableHeaderProps): JSX.Element {
     return (
         <ExpandableHeaderRoot className={cx("ExpandableHeader", className)} style={style}>
             {children}

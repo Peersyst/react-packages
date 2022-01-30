@@ -8,7 +8,10 @@ const ToastAnimation = () => {
     return (
         <>
             {toastAnimation.map((animation, i) => (
-                <Button key={i.toString()} onClick={() => showToast("Hello", { animation: animation as Animation })}>
+                <Button
+                    key={i.toString()}
+                    onClick={() => showToast("Hello", { animation: animation as Animation })}
+                >
                     Show {animation} toast
                 </Button>
             ))}

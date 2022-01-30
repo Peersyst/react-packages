@@ -1,5 +1,5 @@
 import { PaginationItemType, UsePaginationProps, UsePaginationResult } from "./usePagination.types";
-import { useControlled } from "../../../hooks";
+import { useControlled } from "@peersyst/react-hooks";
 
 export default function usePagination(props: UsePaginationProps): UsePaginationResult {
     const {
@@ -57,14 +57,16 @@ export default function usePagination(props: UsePaginationProps): UsePaginationR
         ...startPages,
 
         // Start ellipsis
-        // eslint-disable-next-line no-nested-ternary
-        ...(siblingsStart > boundaryCount + 2 ? ["start-ellipsis"] : boundaryCount + 1 < count - boundaryCount ? [boundaryCount + 1] : []),
+        ...(siblingsStart > boundaryCount + 2
+            ? ["start-ellipsis"]
+            : boundaryCount + 1 < count - boundaryCount
+            ? [boundaryCount + 1]
+            : []),
 
         // Sibling pages
         ...range(siblingsStart, siblingsEnd),
 
         // End ellipsis
-        // eslint-disable-next-line no-nested-ternary
         ...(siblingsEnd < count - boundaryCount - 1
             ? ["end-ellipsis"]
             : count - boundaryCount > boundaryCount
@@ -114,7 +116,9 @@ export default function usePagination(props: UsePaginationProps): UsePaginationR
                   page: buttonPage(item),
                   selected: false,
                   disabled:
-                      disabled || (item.indexOf("ellipsis") === -1 && (item === "next" || item === "last" ? page >= count : page <= 1)),
+                      disabled ||
+                      (item.indexOf("ellipsis") === -1 &&
+                          (item === "next" || item === "last" ? page >= count : page <= 1)),
               };
     });
 }

@@ -1,5 +1,5 @@
 import { ComponentType, useCallback, useState } from "react";
-import { useControlled } from "../hooks";
+import { useControlled } from "@peersyst/react-hooks";
 import { DisplayContent, SelectDisplay, SelectDropdown, SelectRoot } from "./Select.styles";
 import { SelectMenu } from "./SelectMenu";
 import { SelectProvider } from "./SelectContext";
@@ -8,11 +8,10 @@ import { useFormNotification } from "../Form";
 import { selectIsValid } from "./utils/selectIsValid";
 import { renderValueDefault } from "./utils/renderValueDefault";
 import { SelectProps } from "./Select.types";
-import { fsx } from "../utils/fsx";
+import { fsx, cx } from "@peersyst/react-utils";
 import { ClickAwayListener } from "../ClickAwayListener";
-import { cx } from "../utils/cx";
 
-export function Select({
+export default function Select({
     name,
     required,
     multiple = false,
@@ -32,7 +31,11 @@ export function Select({
     menuStyle,
     children,
 }: SelectProps): JSX.Element {
-    const [value, setValue] = useControlled<unknown | unknown[]>(defaultValue || (multiple ? [] : undefined), valueProp, onChange);
+    const [value, setValue] = useControlled<unknown | unknown[]>(
+        defaultValue || (multiple ? [] : undefined),
+        valueProp,
+        onChange,
+    );
     useFormNotification(name, value, selectIsValid(value, multiple, required));
 
     const [open, setOpen] = useState<boolean>(autoFocus);
@@ -41,7 +44,7 @@ export function Select({
 
     const handleClick = useCallback(() => {
         !disabled && setOpen(!open);
-    }, [open]);
+    }, [open, disabled]);
 
     const styleProps = { open, disabled };
 
@@ -53,14 +56,26 @@ export function Select({
                     open={open}
                     disabled={disabled}
                     readonly={readonly}
-                    className={cx(displayClassName, "SelectDisplay", open && "Open", disabled && "Disabled")}
+                    className={cx(
+                        displayClassName,
+                        "SelectDisplay",
+                        open && "Open",
+                        disabled && "Disabled",
+                    )}
                     style={fsx(displayStyle, styleProps)}
                 >
-                    <DisplayContent className="DisplayContent">{renderValue(displayContent) || placeholder}</DisplayContent>
+                    <DisplayContent className="DisplayContent">
+                        {renderValue(displayContent) || placeholder}
+                    </DisplayContent>
                     <DropdownComponent open={open} />
                 </SelectDisplay>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
-                    <SelectMenu open={open} expandable={expandable} className={menuClassName} style={menuStyle}>
+                    <SelectMenu
+                        open={open}
+                        expandable={expandable}
+                        className={menuClassName}
+                        style={menuStyle}
+                    >
                         {children}
                     </SelectMenu>
                 </SelectProvider>

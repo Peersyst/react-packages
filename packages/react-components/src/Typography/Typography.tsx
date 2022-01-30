@@ -1,14 +1,22 @@
 import { TypographyRoot } from "./Typography.styles";
 import { TypographyProps } from "./Typography.types";
 import { useTheme } from "../Theme";
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 
-export function Typography({ variant: variantKey, children, className, ...rest }: TypographyProps): JSX.Element {
+export default function Typography({
+    variant: variantKey,
+    children,
+    className,
+    ...rest
+}: TypographyProps): JSX.Element {
     const {
         theme: { typography },
     } = useTheme();
 
-    const { component, style } = variantKey === "inherit" ? { component: "div", style: {} } : typography[variantKey];
+    const { component, style } =
+        variantKey === "inherit"
+            ? { component: "div", style: {} }
+            : typography[variantKey as never];
 
     return (
         <TypographyRoot

@@ -2,7 +2,15 @@ import { ReactElement } from "react";
 import { Popover } from "./Popover";
 import { CustomAnimatedComponent } from "../Animated";
 
-export type PopperPosition = "top" | "right" | "bottom" | "left" | "top-right" | "top-left" | "bottom-right" | "bottom-left";
+export type PopperPosition =
+    | "top"
+    | "right"
+    | "bottom"
+    | "left"
+    | "top-right"
+    | "top-left"
+    | "bottom-right"
+    | "bottom-left";
 
 export type ShowOn = "click" | "hover";
 

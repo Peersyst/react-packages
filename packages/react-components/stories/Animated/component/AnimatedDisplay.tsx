@@ -10,6 +10,7 @@ export function AnimatedDisplay({ children, Animation, ...rest }: any): JSX.Elem
         setTimeout(() => setMounted(true), 0.1);
     };
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const AnimatedComponent = Animation ? Animated[Animation] : Animated;
 

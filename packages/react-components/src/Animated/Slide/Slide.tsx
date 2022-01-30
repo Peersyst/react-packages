@@ -1,14 +1,27 @@
 import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { SlideProps } from "./Slide.types";
-import { Animated } from "../Animated";
+import Animated from "../Animated";
 import { setTranslateValue } from "./utils/setTranslateValue";
-import { debounce } from "../../utils/debounce";
+import { debounce } from "@peersyst/react-utils";
 import { getDuration } from "../helpers";
 import { getExitedPosition } from "./utils/getExitedPosition";
-import useForkRef from "../../hooks/useForkRef";
+import { useForkRef } from "@peersyst/react-hooks";
 
-export const Slide = forwardRef(
-    ({ direction, container, onEnter, onEntering, onExited, onExit, in: inProp, duration = 500, ...animatedProps }: SlideProps, ref) => {
+const Slide = forwardRef(
+    (
+        {
+            direction,
+            container,
+            onEnter,
+            onEntering,
+            onExited,
+            onExit,
+            in: inProp,
+            duration = 500,
+            ...animatedProps
+        }: SlideProps,
+        ref,
+    ) => {
         const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
             node.style.transitionDuration = "0ms";
             setTranslateValue(direction, node, container);
@@ -86,3 +99,7 @@ export const Slide = forwardRef(
         );
     },
 );
+
+Slide.displayName = "Slide";
+
+export default Slide;

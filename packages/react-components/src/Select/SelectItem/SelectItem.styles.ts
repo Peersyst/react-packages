@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { alpha } from "../../utils/color";
+import { alpha } from "@peersyst/react-utils";
 import { SelectItemStyles } from "./SelectItem.types";
 
 export const SelectItemRoot = styled.li<SelectItemStyles>`
@@ -16,6 +16,7 @@ export const SelectItemRoot = styled.li<SelectItemStyles>`
     cursor: ${({ readonly }) => !readonly && "pointer"};
 
     &:hover {
-        background-color: ${({ theme, readonly }) => !readonly && alpha(theme.palette.primary, 0.2)};
+        background-color: ${({ theme, readonly }) =>
+            !readonly && alpha(theme.palette.primary, 0.2)};
     }
 `;

@@ -2,12 +2,11 @@ import { Children } from "react";
 import { useFormNotification } from "../Form";
 import { SwitchChildren, SwitchRoot, SwitchThumb, SwitchTrack } from "./Switch.styles";
 import { Row } from "..";
-import { useControlled } from "../hooks";
+import { useControlled } from "@peersyst/react-hooks";
 import { SwitchProps, SwitchStyleProps } from "./Switch.types";
-import { fsx } from "../utils/fsx";
-import { cx } from "../utils/cx";
+import { cx, fsx } from "@peersyst/react-utils";
 
-export function Switch({
+export default function Switch({
     name,
     defaultValue = false,
     value: valueProp,
@@ -39,19 +38,34 @@ export function Switch({
         >
             <SwitchChildren>
                 {Children.map(children, (child, index) => (
-                    <Row key={index.toString()} flex={1} justifyContent="center" alignItems="center">
+                    <Row
+                        key={index.toString()}
+                        flex={1}
+                        justifyContent="center"
+                        alignItems="center"
+                    >
                         {child}
                     </Row>
                 ))}
             </SwitchChildren>
             <SwitchTrack
                 {...styleProps}
-                className={cx(trackClassName, "SwitchTrack", value && "Checked", disabled && "Disabled")}
+                className={cx(
+                    trackClassName,
+                    "SwitchTrack",
+                    value && "Checked",
+                    disabled && "Disabled",
+                )}
                 style={fsx(trackStyle, styleProps)}
             >
                 <SwitchThumb
                     {...styleProps}
-                    className={cx(thumbClassName, "SwitchThumb", value && "Checked", disabled && "Disabled")}
+                    className={cx(
+                        thumbClassName,
+                        "SwitchThumb",
+                        value && "Checked",
+                        disabled && "Disabled",
+                    )}
                     style={fsx(thumbStyle, styleProps)}
                 />
             </SwitchTrack>

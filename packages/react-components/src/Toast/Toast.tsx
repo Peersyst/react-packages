@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { ToastAction, ToastContainer, ToastContent } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
-import { useControlled } from "../hooks";
+import { useControlled } from "@peersyst/react-hooks";
 import { getAnimation } from "./utils/getAnimation";
 import { Row, useTheme } from "..";
-import { getIcon } from "./utils/getIcon";
-import { cx } from "../utils/cx";
+import { useGetIcon } from "./hooks/useGetIcon";
+import { cx } from "@peersyst/react-utils";
 
-export function Toast({
+export default function Toast({
     message,
     type,
     action,
@@ -28,6 +28,8 @@ export function Toast({
 
     const [open, setOpen] = useControlled(true, propOpen, propOpen ? onClose : undefined);
 
+    const icon = useGetIcon(type);
+
     let hideTimeout: NodeJS.Timeout;
 
     useEffect(() => {
@@ -43,10 +45,20 @@ export function Toast({
 
     return (
         <ToastContainer position={position} className="ToastContainer">
-            <AnimatedComponent in={open} duration={200} onExited={onExited} {...AnimatedComponentProps}>
-                <ToastContent type={type} className={cx("Toast", className)} style={style} elevation={5}>
+            <AnimatedComponent
+                in={open}
+                duration={200}
+                onExited={onExited}
+                {...AnimatedComponentProps}
+            >
+                <ToastContent
+                    type={type}
+                    className={cx("Toast", className)}
+                    style={style}
+                    elevation={5}
+                >
                     <Row alignItems="center" gap={10}>
-                        {type && getIcon(type)}
+                        {icon}
                         {message}
                     </Row>
                     <ToastAction>{action}</ToastAction>

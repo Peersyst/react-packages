@@ -1,4 +1,4 @@
-import { cx } from "../utils/cx";
+import { cx } from "@peersyst/react-utils";
 import {
     LoadingProgressBarContainer,
     LoadingProgressBarTrack1,
@@ -15,16 +15,21 @@ const ProgressBarLoadingTrack = (): JSX.Element => (
     </>
 );
 
-export const ProgressBar = ({ value, className, style }: ProgressBarProps): JSX.Element => {
+const ProgressBar = ({ value, className, style }: ProgressBarProps): JSX.Element => {
     return (
         <ProgressBarRoot className={cx("ProgressBar", className)} style={style} role="progressbar">
             <LoadingProgressBarContainer className="ProgressBarTrack">
                 {value === undefined ? (
                     <ProgressBarLoadingTrack />
                 ) : (
-                    <ProgressBarTrack className="ProgressBarTrack" style={{ transform: `translateY(-50%) scaleX(${value}%)` }} />
+                    <ProgressBarTrack
+                        className="ProgressBarTrack"
+                        style={{ transform: `translateY(-50%) scaleX(${value}%)` }}
+                    />
                 )}
             </LoadingProgressBarContainer>
         </ProgressBarRoot>
     );
 };
+
+export default ProgressBar;

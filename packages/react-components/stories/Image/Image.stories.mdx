@@ -1,17 +1,15 @@
-import {Canvas, Meta} from "@storybook/addon-docs";
-import {Image,Row} from "../../src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Image, Row } from "../../src";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
     title="Components/Data Display/Image"
     component={Image}
-    parameters={
-        {
-            docs: {
-                container: themedContainer
-            },
-        }
-    }
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
 />
 
 # Image
@@ -25,13 +23,9 @@ Image is an enhanced `<img>` tag that provides an implicit skeleton.
         <Image
             src="https://www.prasm.io/wp-content/uploads/2021/04/Harmony.png"
             alt="harmony"
-            style={{width: "100px", height: "100px"}}
+            style={{ width: "100px", height: "100px" }}
         />
-        <Image
-            src=""
-            alt="harmony-not-loaded"
-            style={{width: "100px", height: "100px"}}
-        />
+        <Image src="" alt="harmony-not-loaded" style={{ width: "100px", height: "100px" }} />
     </Row>
 </Canvas>
 
@@ -39,10 +33,10 @@ Image is an enhanced `<img>` tag that provides an implicit skeleton.
 
 Usage is the same as a regular `img` element:
 
-````jsx
+```jsx
 <Image
     src="https://www.prasm.io/wp-content/uploads/2021/04/Harmony.png"
     alt="harmony"
-    style={{width: "100px", height: "100px"}}
+    style={{ width: "100px", height: "100px" }}
 />
-````
+```

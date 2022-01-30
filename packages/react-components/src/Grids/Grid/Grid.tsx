@@ -3,7 +3,7 @@ import { GridRoot } from "./Grid.styles";
 import { Property } from "csstype";
 import { GridBreakpoint, GridProps, GridState } from "./Grid.types";
 
-export class Grid extends BaseGrid<GridProps, GridState> {
+export default class Grid extends BaseGrid<GridProps, GridState> {
     state: GridState = {
         mounted: false,
         rowSize: undefined,
@@ -19,7 +19,8 @@ export class Grid extends BaseGrid<GridProps, GridState> {
     sortedBreakpoints: GridBreakpoint[] = [];
 
     componentDidMount(): void {
-        const { rowSize, colGap, rowGap, cols, alignItems, justifyItems, justifyContent } = this.props;
+        const { rowSize, colGap, rowGap, cols, alignItems, justifyItems, justifyContent } =
+            this.props;
 
         this.sortedBreakpoints =
             this.props.breakpoints?.sort((firstEl: GridBreakpoint, secondEl: GridBreakpoint) =>
@@ -87,7 +88,8 @@ export class Grid extends BaseGrid<GridProps, GridState> {
 
     render(): JSX.Element {
         const { className, style, children } = this.props;
-        const { rowSize, colGap, rowGap, columns, alignItems, justifyItems, justifyContent } = this.state;
+        const { rowSize, colGap, rowGap, columns, alignItems, justifyItems, justifyContent } =
+            this.state;
 
         return (
             <GridRoot

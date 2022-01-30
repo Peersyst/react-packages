@@ -2,10 +2,9 @@ import { createRef, useContext, useEffect } from "react";
 import { TabsContext } from "../TabsContext";
 import { TabRoot } from "./Tab.styles";
 import { TabProps, TabStyleProps } from "./Tab.types";
-import { fsx } from "../../utils/fsx";
-import { cx } from "../../utils/cx";
+import { fsx, cx } from "@peersyst/react-utils";
 
-export function Tab({ index, className, style, children }: TabProps): JSX.Element {
+export default function Tab({ index, className, style, children }: TabProps): JSX.Element {
     const ref = createRef<HTMLDivElement>();
     const { activeIndex, onTabChange, setActiveRef } = useContext(TabsContext);
 

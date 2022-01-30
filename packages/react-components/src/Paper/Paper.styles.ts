@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { PaperStyles } from "./Paper.types";
-import { alpha } from "../utils/color";
+import { alpha } from "@peersyst/react-utils";
 
 const getOverlayAlpha = (elevation: number): number => {
     let alphaValue;

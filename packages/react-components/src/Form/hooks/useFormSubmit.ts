@@ -7,7 +7,11 @@ interface UseFormSubmitResult {
     handleSubmit: (e?: FormEvent) => void;
 }
 
-export function useFormSubmit(data: Record<string, FieldState>, onSubmit: (data: any) => any, onInvalid?: () => any): UseFormSubmitResult {
+export function useFormSubmit(
+    data: Record<string, FieldState>,
+    onSubmit: (data: any) => any,
+    onInvalid?: () => any,
+): UseFormSubmitResult {
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = useCallback(
