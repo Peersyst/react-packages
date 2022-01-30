@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Typography } from "../Typography";
 import { TableCellStyleProps } from "./Table.types";
 import { Row } from "../Row";
-import { alpha } from "../utils/color";
+import { alpha } from "@peersyst/react-utils";
 
 export const TableRoot = styled.div`
     display: flex;

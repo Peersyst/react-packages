@@ -41,9 +41,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-hooks": "latest",
-        "@peersyst/react-types": "latest",
-        "@peersyst/react-utils": "latest",
+        "@peersyst/react-hooks": "^0.1.0",
+        "@peersyst/react-types": "^0.1.1",
+        "@peersyst/react-utils": "^0.1.0",
         "highcharts": "^9.3.2",
         "highcharts-react-official": "^3.1.0",
         "react-click-away-listener": "^2.0.5",

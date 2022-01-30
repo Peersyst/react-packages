@@ -1,5 +1,5 @@
 import { SlideDirection } from "../Slide.types";
-import ownerWindow from "../../../utils/ownerWindow";
+import { ownerWindow } from "@peersyst/react-utils";
 
 export function getTranslateValue(
     direction: SlideDirection,

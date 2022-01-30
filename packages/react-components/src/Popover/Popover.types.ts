@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Popover } from "./Popover";
+import Popover from "./Popover";
 import { CustomAnimatedComponent } from "../Animated";
 
 export type PopperPosition =

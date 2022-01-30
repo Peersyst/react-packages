@@ -15,7 +15,7 @@ export type PropsStyle<Props> = ((props: Props) => CSSProperties) | CSSPropertie
  */
 export type OverridableStringUnion<
     T extends string | number,
-    U = Record<string, never>,
+    U = Record<string, any>,
 > = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
 
 /**
@@ -34,4 +34,4 @@ type GenerateStringUnion<T> = Extract<
  * Remove properties `K` from `T`.
  * Distributive for union types.
  */
-export type DistributiveOmit<T, K extends keyof never> = T extends never ? Omit<T, K> : never;
+export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;

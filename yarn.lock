@@ -2280,27 +2280,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@peersyst/react-hooks@latest":
-  version "0.0.1"
-  resolved "http://0.0.0.0:4873/@peersyst%2freact-hooks/-/react-hooks-0.0.1.tgz#528b1ad7e91e0444bc21c7b54d1830dad8ce66d7"
-  integrity sha512-SmTQrSm4KHQlSdzVUEQRr+jhhcyOs/UDkHjKP+2IOPwaHF2iqZ9Wa20XDvjOW8an5MLuOaoc2w5IQegjMD1img==
-  dependencies:
-    "@babel/runtime" "^7.16.7"
-    "@peersyst/react-utils" "^0.0.1"
-
-"@peersyst/react-types@^0.0.1", "@peersyst/react-types@latest":
-  version "0.0.1"
-  resolved "http://0.0.0.0:4873/@peersyst%2freact-types/-/react-types-0.0.1.tgz#052441ad0d9e0e747cc912bf2584271ea4ac9ab0"
-  integrity sha512-gltkNE746GX0FSkKw6VJtVnd8RQgXJGRtGfsmA9tNs56IVm1M6lERK44a03k7cQiF70qsbCn1X6FX5z5XxhCQA==
-
-"@peersyst/react-utils@^0.0.1", "@peersyst/react-utils@latest":
-  version "0.0.1"
-  resolved "http://0.0.0.0:4873/@peersyst%2freact-utils/-/react-utils-0.0.1.tgz#3cae6eb6a7586a8a21c671a2f08d9187b4338e92"
-  integrity sha512-hkAZ2pU1lCY9DERsYKP7AcrpVZUnCW9dNkpULEvAgL3IoaU+7VSJh/cZF6KUXNrnAnKbuJRKLpERLedGth0o8w==
-  dependencies:
-    "@babel/runtime" "^7.16.7"
-    "@peersyst/react-types" "^0.0.1"
-
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.1":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.4.tgz#df0d0d855fc527db48aac93c218a0bf4ada41f99"
