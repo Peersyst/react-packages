@@ -8,7 +8,7 @@ import { PaperProps } from "../Paper";
 import { usePopperOrigin } from "./hooks/usePopperOrigin";
 import { Animated } from "../Animated";
 
-export default function Popover({
+function Popover({
     visible: visibleProp,
     onHide,
     onShow,
@@ -86,3 +86,5 @@ const Content = ({ children }: { children: ReactNode }) => <>{children}</>;
 
 Popover.Popper = Popper;
 Popover.Content = Content;
+
+export default Popover;

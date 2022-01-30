@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-types",
     "author": "Peersyst",
-    "version": "0.1.1",
+    "version": "0.1.2-alpha.0",
     "license": "MIT",
     "types": "./index.d.ts",
     "engines": {

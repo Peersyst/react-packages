@@ -11,7 +11,7 @@ import { findSlot, cx } from "@peersyst/react-utils";
 import { ExpandableRoot } from "./Expandable.styles";
 import { DropdownProps } from "./Expandable.types";
 
-export default function Expandable({ className, style, children }: DropdownProps): JSX.Element {
+function Expandable({ className, style, children }: DropdownProps): JSX.Element {
     const display = findSlot<typeof ExpandableDisplay>(children, ExpandableDisplay);
     const body = findSlot<typeof ExpandableBody>(children, ExpandableBody);
 
@@ -37,3 +37,5 @@ Expandable.Body = ExpandableBody;
 Expandable.Header = ExpandableHeader;
 Expandable.Content = ExpandableContent;
 Expandable.Footer = ExpandableFooter;
+
+export default Expandable;

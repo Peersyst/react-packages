@@ -2,6 +2,8 @@
     "name": "root",
     "private": true,
     "scripts": {
+        "start": "lerna run --parallel --scope \"@peersyst/react-components\" start",
+        "build-storybook": "lerna run --parallel --scope \"@peersyst/react-components\" build-storybook",
         "release:version": "lerna version --no-changelog --no-push --no-git-tag-version",
         "release:build": "lerna run --parallel build",
         "release:publish": "lerna publish from-package --dist-tag latest --contents build",

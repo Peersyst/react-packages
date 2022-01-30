@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components",
     "author": "Peersyst",
-    "version": "2.0.1-alpha.0",
+    "version": "2.0.2-alpha.0",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -17,7 +17,7 @@
         "build:copy-files": "node ../../scripts/copy-files.js",
         "release": "yarn build && npm publish build",
         "generate-icons": "node ../../scripts/iconGenerator.js ./src/assets/svgs/ ./src/assets/icons/ && prettier --write ./src/assets/icons/",
-        "storybook": "yarn generate-icons && start-storybook -p 6006",
+        "start": "yarn generate-icons && start-storybook -p 6006",
         "build-storybook": "build-storybook"
     },
     "peerDependencies": {
@@ -41,9 +41,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-hooks": "^0.1.0",
-        "@peersyst/react-types": "^0.1.1",
-        "@peersyst/react-utils": "^0.1.0",
+        "@peersyst/react-hooks": "^0.1.1-alpha.0",
+        "@peersyst/react-types": "^0.1.2-alpha.0",
+        "@peersyst/react-utils": "^0.1.1-alpha.0",
         "highcharts": "^9.3.2",
         "highcharts-react-official": "^3.1.0",
         "react-click-away-listener": "^2.0.5",
