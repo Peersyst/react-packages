@@ -1,5 +1,5 @@
 {
-    "name": "@peersyst/react-utils",
+    "name": "@peersyst/react-types",
     "author": "Peersyst",
     "version": "0.0.1",
     "license": "MIT",
@@ -8,7 +8,7 @@
         "node": ">=10"
     },
     "scripts": {
-        "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
+        "build": "mkdir -p build && cp index.d.ts build/ && yarn build:copy-files",
         "build:copy-files": "node ../../scripts/copy-files.js",
         "release": "yarn build && npm publish build"
     },
