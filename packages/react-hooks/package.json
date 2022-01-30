@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-hooks",
     "author": "Peersyst",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -35,5 +35,5 @@
         "react": "^17.0.0"
     },
     "sideEffects": false,
-    "gitHead": "cf34dfb908fcbfcea5e8661b1119b4012f7d2078"
+    "gitHead": "0f5fa4d8b97b14e7f8aae6219a2f8c7615eaa1a1"
 }
