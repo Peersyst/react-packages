@@ -23,5 +23,6 @@
     "devDependencies": {
         "@types/react": "^17.0.38"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "gitHead": "5a786a1476f1058c22817130a3fa41ee49912018"
 }
