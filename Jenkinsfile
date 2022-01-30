@@ -7,7 +7,7 @@ pipeline {
         stage('Install') {
             agent {
                 docker {
-                    image 'node:12'
+                    image 'node:16'
                     reuseNode true
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:12'
+                    image 'node:16'
                     reuseNode true
                 }
             }
@@ -46,7 +46,7 @@ pipeline {
         stage('Publish') {
             agent {
                 docker {
-                    image 'node:12'
+                    image 'node:16'
                     reuseNode true
                 }
             }

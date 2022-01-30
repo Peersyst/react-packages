@@ -1,5 +1,9 @@
 import { CSSProperties } from "react";
 
+/**
+ * Generates a type that passes some styling props to be evaluated and
+ * generate a style or a simple style ignoring passed props.
+ */
 export type PropsStyle<Props> = ((props: Props) => CSSProperties) | CSSProperties;
 
 /**
@@ -9,9 +13,10 @@ export type PropsStyle<Props> = ((props: Props) => CSSProperties) | CSSPropertie
  * If the property value was `true`, the property key will be added to the
  * string union.
  */
-export type OverridableStringUnion<T extends string | number, U = {}> = GenerateStringUnion<
-    Overwrite<Record<T, true>, U>
->;
+export type OverridableStringUnion<
+    T extends string | number,
+    U = Record<string, never>,
+> = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
@@ -29,4 +34,4 @@ type GenerateStringUnion<T> = Extract<
  * Remove properties `K` from `T`.
  * Distributive for union types.
  */
-export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
+export type DistributiveOmit<T, K extends keyof never> = T extends never ? Omit<T, K> : never;

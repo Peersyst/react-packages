@@ -1,0 +1,37 @@
+{
+    "name": "@peersyst/react-utils",
+    "author": "Peersyst",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "./src/index.ts",
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+        "build:legacy": "node ../../scripts/build legacy",
+        "build:modern": "node ../../scripts/build modern",
+        "build:node": "node ../../scripts/build node",
+        "build:stable": "node ../../scripts/build stable",
+        "build:types": "tsc --project .",
+        "build:copy-files": "node ../../scripts/copy-files.js",
+        "release": "yarn build && npm publish build"
+    },
+    "peerDependencies": {
+        "@types/react": "^17.0.38",
+        "react": "^17.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        }
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.16.7"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.38",
+        "react": "^17.0.0"
+    },
+    "sideEffects": false
+}

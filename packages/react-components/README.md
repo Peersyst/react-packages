@@ -1,4 +1,4 @@
-# PeersystUI
+# Peersyst React components
 
 React component library used at Peersyst to develop our projects with the best quality and accessibility in record time!
 
