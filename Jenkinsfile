@@ -8,6 +8,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:16'
+                    reuseNode true
                 }
             }
             steps {
@@ -20,6 +21,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:16'
+                    reuseNode true
                 }
             }
             steps {
@@ -45,6 +47,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:16'
+                    reuseNode true
                 }
             }
             when {
