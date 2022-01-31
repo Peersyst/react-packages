@@ -1,14 +1,15 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16'
-        }
-    }
+    agent any
     environment {
         HOME = '.'
     }
     stages {
         stage('Install') {
+            agent {
+                docker {
+                    image 'node:16'
+                }
+            }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
                     sh 'yarn'
@@ -16,6 +17,11 @@ pipeline {
             }
         }
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:16'
+                }
+            }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
                     sh 'yarn release:build'
@@ -36,6 +42,11 @@ pipeline {
             }
         }
         stage('Publish') {
+            agent {
+                docker {
+                    image 'node:16'
+                }
+            }
             when {
                 branch 'master'
             }
