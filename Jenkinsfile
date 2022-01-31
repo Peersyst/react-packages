@@ -1,16 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:16'
+        }
+    }
     environment {
         HOME = '.'
     }
     stages {
         stage('Install') {
-            agent {
-                docker {
-                    image 'node:16'
-                    reuseNode true
-                }
-            }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
                     sh 'yarn'
@@ -18,12 +16,6 @@ pipeline {
             }
         }
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:16'
-                    reuseNode true
-                }
-            }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
                     sh 'yarn release:build'
@@ -32,9 +24,9 @@ pipeline {
             }
         }
         stage('Deploy storybook') {
-            when {
-                branch 'main'
-            }
+           when {
+               branch 'master'
+           }
             steps {
                 sshagent(credentials : ['jenkins-ssh']) {
                     sh 'scp -rp ./packages/react-components/storybook-static ubuntu@dev.peersyst.com:/home/ubuntu'
@@ -44,14 +36,8 @@ pipeline {
             }
         }
         stage('Publish') {
-            agent {
-                docker {
-                    image 'node:16'
-                    reuseNode true
-                }
-            }
             when {
-                branch 'main'
+                branch 'master'
             }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
