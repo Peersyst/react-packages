@@ -15,7 +15,7 @@ export default function TableColumns<T extends object>({
         <TableColumnsRow
             role="row"
             aria-rowindex={1}
-            className={cx("TableColumns", rowClassName, className)}
+            className={cx("TableColumns", "TableRow", rowClassName, className)}
             style={{ ...rowStyle, ...style }}
         >
             {columns.map(({ title, width, alignment }, index) => (
@@ -24,7 +24,7 @@ export default function TableColumns<T extends object>({
                     width={width}
                     role="columnheader"
                     aria-colindex={index + 1}
-                    className={cx("TableColumnHeader", cellClassName)}
+                    className={cx("TableColumnHeader", "TableCell", cellClassName)}
                     style={cellStyle}
                 >
                     <TableTitle textAlign={alignment} singleLine className="TableTitle">

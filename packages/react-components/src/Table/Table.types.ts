@@ -20,6 +20,18 @@ export interface TableProps<T extends object> {
      */
     footer?: ReactNode;
     /**
+     * Table rows height
+     */
+    rowHeight?: string;
+    /**
+     * Table header height
+     */
+    headerHeight?: string;
+    /**
+     * Table footer height
+     */
+    footerHeight?: string;
+    /**
      * Table borders
      */
     borders?: TableBorders;
@@ -76,6 +88,9 @@ export interface TableCol<T> {
 
 export interface TableRootProps {
     borders: TableBorders;
+    rowHeight: string;
+    headerHeight: string;
+    footerHeight?: string;
 }
 
 export interface TableCellStyleProps {

@@ -27,8 +27,6 @@ export const TableText = styled(Typography).attrs({
 export const TableRow = styled(Row)`
     width: fit-content;
     box-sizing: border-box;
-    min-height: 52px;
-    max-height: 52px;
     border-bottom: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
 
     &:last-child {
@@ -41,8 +39,6 @@ export const TableColumns = styled(TableRow)`
     top: 0;
     z-index: 1;
     background-color: inherit;
-    min-height: 56px;
-    max-height: 56px;
 `;
 
 export const TableColumnHeader = styled(TableCell)``;
@@ -86,6 +82,9 @@ export const TableRoot = styled.div<TableRootProps>`
     border-collapse: collapse;
 
     ${TableRow} {
+        min-height: ${(props) => props.rowHeight};
+        min-height: ${(props) => props.rowHeight};
+
         border-bottom: ${(props) => !props.borders.horizontal && "none"};
     }
 
@@ -95,6 +94,14 @@ export const TableRoot = styled.div<TableRootProps>`
     }
 
     ${TableFooter} {
+        min-height: ${(props) => props.footerHeight};
+        min-height: ${(props) => props.footerHeight};
+
         border-top: ${(props) => !props.borders.horizontal && "none"};
+    }
+
+    ${TableColumns} {
+        min-height: ${(props) => props.headerHeight};
+        min-height: ${(props) => props.headerHeight};
     }
 `;
