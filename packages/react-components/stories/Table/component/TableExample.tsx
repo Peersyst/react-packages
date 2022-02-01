@@ -96,33 +96,33 @@ const columns: TableCol<TableDef>[] = [
     {
         field: "id",
         title: "ID",
-        width: 50,
+        width: "50px",
     },
     {
         field: "name",
         title: "Name",
-        width: 100,
+        width: "150px",
     },
     {
         field: "price",
         title: "Price",
-        width: 150,
+        width: "150px",
         alignment: "right",
     },
     {
         field: "day",
         title: "24h %",
-        width: 70,
+        width: "100px",
     },
     {
         field: "week",
         title: "7d %",
-        width: 70,
+        width: "100px",
     },
     {
         field: "marketCap",
         title: "Market Cap",
-        width: 150,
+        width: "150px",
         alignment: "right",
     },
 ];

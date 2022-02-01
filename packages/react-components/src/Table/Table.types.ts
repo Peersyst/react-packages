@@ -1,5 +1,11 @@
 import { CSSProperties, ReactNode } from "react";
 
+export interface TableBorders {
+    outline?: boolean;
+    horizontal?: boolean;
+    vertical?: boolean;
+}
+
 export interface TableProps<T extends object> {
     /**
      * Table rows
@@ -14,9 +20,9 @@ export interface TableProps<T extends object> {
      */
     footer?: ReactNode;
     /**
-     * Table column gap
+     * Table borders
      */
-    colGap?: number;
+    borders?: TableBorders;
     /**
      * Table className
      */
@@ -49,6 +55,14 @@ export interface TableProps<T extends object> {
      * Table row style
      */
     rowStyle?: CSSProperties;
+    /**
+     * Table cell className
+     */
+    cellClassName?: string;
+    /**
+     * Table cell style
+     */
+    cellStyle?: CSSProperties;
 }
 
 export type ColAlignment = "left" | "center" | "right";
@@ -56,12 +70,16 @@ export type ColAlignment = "left" | "center" | "right";
 export interface TableCol<T> {
     field: keyof T;
     title: string;
-    width: number;
+    width: string;
     alignment?: ColAlignment;
 }
 
+export interface TableRootProps {
+    borders: TableBorders;
+}
+
 export interface TableCellStyleProps {
-    width: number;
+    width: string;
 }
 
 export interface TableColumnsProps<T> {
@@ -69,10 +87,6 @@ export interface TableColumnsProps<T> {
      * Table columns
      */
     columns: TableCol<T>[];
-    /**
-     * Table column gap
-     */
-    colGap: number;
     /**
      * Table header className
      */
@@ -89,6 +103,14 @@ export interface TableColumnsProps<T> {
      * Table row style
      */
     rowStyle: CSSProperties | undefined;
+    /**
+     * Table cell className
+     */
+    cellClassName: string | undefined;
+    /**
+     * Table cell style
+     */
+    cellStyle: CSSProperties | undefined;
 }
 
 export interface TableRowsProps<T> {
@@ -101,10 +123,6 @@ export interface TableRowsProps<T> {
      */
     columns: TableCol<T>[];
     /**
-     * Table column gap
-     */
-    colGap: number;
-    /**
      * Table row className
      */
     rowClassName: string | undefined;
@@ -112,4 +130,12 @@ export interface TableRowsProps<T> {
      * Table row style
      */
     rowStyle: CSSProperties | undefined;
+    /**
+     * Table cell className
+     */
+    cellClassName: string | undefined;
+    /**
+     * Table cell style
+     */
+    cellStyle: CSSProperties | undefined;
 }

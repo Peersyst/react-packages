@@ -4,18 +4,17 @@ import { cx } from "@peersyst/react-utils";
 
 export default function TableColumns<T extends object>({
     columns,
-    colGap,
     className,
     style,
     rowClassName,
     rowStyle,
+    cellClassName,
+    cellStyle,
 }: TableColumnsProps<T>): JSX.Element {
     return (
         <TableColumnsRow
-            gap={colGap}
             role="row"
             aria-rowindex={1}
-            alignItems="center"
             className={cx("TableColumns", rowClassName, className)}
             style={{ ...rowStyle, ...style }}
         >
@@ -25,8 +24,8 @@ export default function TableColumns<T extends object>({
                     width={width}
                     role="columnheader"
                     aria-colindex={index + 1}
-                    className={cx("TableColumnHeader", rowClassName)}
-                    style={rowStyle}
+                    className={cx("TableColumnHeader", cellClassName)}
+                    style={cellStyle}
                 >
                     <TableTitle textAlign={alignment} singleLine className="TableTitle">
                         {title}

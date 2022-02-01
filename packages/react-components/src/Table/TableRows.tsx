@@ -5,15 +5,15 @@ import { cx } from "@peersyst/react-utils";
 export default function TableRows<T extends object>({
     rows,
     columns,
-    colGap,
     rowClassName,
     rowStyle,
+    cellClassName,
+    cellStyle,
 }: TableRowsProps<T>): JSX.Element {
     return (
         <TableBody>
             {rows.map((row, rowIndex) => (
                 <TableRow
-                    gap={colGap}
                     role="row"
                     key={rowIndex}
                     aria-rowindex={rowIndex + 2}
@@ -21,7 +21,13 @@ export default function TableRows<T extends object>({
                     style={rowStyle}
                 >
                     {columns.map(({ width, field, alignment }, columnIndex) => (
-                        <TableCell width={width} key={columnIndex} aria-colindex={columnIndex + 1}>
+                        <TableCell
+                            width={width}
+                            key={columnIndex}
+                            aria-colindex={columnIndex + 1}
+                            className={cx("TableCell", cellClassName)}
+                            style={cellStyle}
+                        >
                             <TableText singleLine textAlign={alignment}>
                                 {row[field]}
                             </TableText>
