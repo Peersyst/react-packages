@@ -129,12 +129,9 @@ const columns: TableCol<TableDef>[] = [
 
 const TableExample = () => {
     return (
-        <Table<TableDef>
-            rows={rows}
-            columns={columns}
-            footer="Footer content"
-            style={{ maxHeight: "400px" }}
-        />
+        <div style={{ height: "400px", width: "400px" }}>
+            <Table<TableDef> rows={rows} columns={columns} footer="Footer content" />
+        </div>
     );
 };
 

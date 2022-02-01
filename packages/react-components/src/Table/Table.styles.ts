@@ -25,9 +25,9 @@ export const TableText = styled(Typography).attrs({
 })``;
 
 export const TableRow = styled(Row)`
-    width: fit-content;
     box-sizing: border-box;
     border-bottom: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
+    width: max-content;
 
     &:last-child {
         border-bottom: none;
@@ -73,8 +73,8 @@ export const TableRoot = styled.div<TableRootProps>`
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    width: fit-content;
-    height: fit-content;
+    flex: 1;
+    height: 100%;
     background-color: ${(props) => props.theme.palette.background};
     border-radius: ${(props) => props.theme.borderRadius};
     border: ${(props) =>
