@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
 import { InfiniteScrollProps } from "./InfiniteScroll.types";
 import { InfiniteScrollLoader } from "./InfiniteScroll.styles";
 import { OnScreenObserver } from "../OnScreenObserver";
-import { debounce } from "@peersyst/react-utils";
 
 const InfiniteScroll = ({
     children,
@@ -13,21 +11,6 @@ const InfiniteScroll = ({
     callback,
     observerOffset = "200px",
 }: InfiniteScrollProps): JSX.Element => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        count && callback();
-    }, [count, callback]);
-
-    useEffect(() => {
-        return incrementCount.clear();
-    }, []);
-
-    const incrementCount = useCallback(
-        debounce(() => setCount((old) => old + 1), 250),
-        [],
-    );
-
     const end = !loading && endProp;
     return (
         <>
@@ -37,7 +20,7 @@ const InfiniteScroll = ({
             {!end && (
                 <OnScreenObserver offset={observerOffset}>
                     {(onScreen) => {
-                        onScreen && !loading && incrementCount();
+                        onScreen && !loading && callback();
                         return <div />;
                     }}
                 </OnScreenObserver>

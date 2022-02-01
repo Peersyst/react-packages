@@ -42,9 +42,11 @@ export default function Table<T extends object = Record<string, never>>({
         <TableRoot className={cx("Table", className)} style={style} borders={borders} role="table">
             <TableColumns {...columnsProps} />
             <TableRows {...rowsProps} />
-            <TableFooter className={cx("TableFooter", footerClassName)} style={footerStyle}>
-                {footer}
-            </TableFooter>
+            {footer && (
+                <TableFooter className={cx("TableFooter", footerClassName)} style={footerStyle}>
+                    {footer}
+                </TableFooter>
+            )}
         </TableRoot>
     );
 }
