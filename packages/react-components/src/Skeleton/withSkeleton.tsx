@@ -2,7 +2,8 @@ import { ComponentType } from "react";
 import Skeleton from "./Skeleton";
 import { WithLoading, WithSkeletonProps } from "./Skeleton.types";
 
-export function withSkeleton<TProps = Record<string, never>>(
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function withSkeleton<TProps = {}>(
     WrappedComponent: ComponentType<TProps>,
     skeletonProps?: WithSkeletonProps,
 ): ComponentType<WithLoading<TProps>> {
