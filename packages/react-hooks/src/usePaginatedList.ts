@@ -15,7 +15,7 @@ export default function <PageType, ReturnType>(
             setPagesLength(pages.length);
             return [...previousItems, ...newItems];
         });
-    }, [pages.length, getItems]);
+    }, [pages.length]);
 
     return items;
 }
