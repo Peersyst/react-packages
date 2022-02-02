@@ -8,7 +8,7 @@ export interface TableBorders {
 
 export type TableInfiniteProps =
     | {
-          loadMoreElement: ReactElement;
+          loadMoreElement: ReactNode;
       }
     | {
           callback: (...args: unknown[]) => unknown;
