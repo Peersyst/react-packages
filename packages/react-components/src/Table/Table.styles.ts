@@ -28,6 +28,7 @@ export const TableRow = styled(Row)`
     box-sizing: border-box;
     border-bottom: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
     width: max-content;
+    overflow-y: hidden;
 
     &:last-child {
         border-bottom: none;

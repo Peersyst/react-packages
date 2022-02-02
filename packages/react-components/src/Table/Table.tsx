@@ -82,7 +82,11 @@ export default function Table<T extends object = Record<string, never>>({
                 container={tableRef}
             >
                 <TableRows {...rowsProps} />
-                {loadMoreElement && <TableLoadMoreRow>{loadMoreElement}</TableLoadMoreRow>}
+                {loadMoreElement && (
+                    <TableLoadMoreRow className="TableRow TableLoadMoreRow">
+                        {loadMoreElement}
+                    </TableLoadMoreRow>
+                )}
             </InfiniteScroll>
             {footer && (
                 <TableFooter
