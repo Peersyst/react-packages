@@ -1,10 +1,22 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactElement, ReactNode } from "react";
 
 export interface TableBorders {
     outline?: boolean;
     horizontal?: boolean;
     vertical?: boolean;
 }
+
+export type TableInfiniteProps =
+    | {
+          loadMoreElement: ReactElement;
+      }
+    | {
+          callback: (...args: unknown[]) => unknown;
+          loading: boolean;
+          end: boolean;
+          observerOffset?: string;
+          loaderElement?: ReactElement;
+      };
 
 export interface TableProps<T extends object> {
     /**
@@ -35,6 +47,10 @@ export interface TableProps<T extends object> {
      * Table borders
      */
     borders?: TableBorders;
+    /**
+     * Infinite props
+     */
+    infiniteProps?: TableInfiniteProps;
     /**
      * Table className
      */

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { ThemeFonts, TypographyVariants, TypographyVariantsOverrides } from "../styles";
 import { Property } from "csstype";
 import { CSSObject } from "styled-components";
@@ -44,7 +44,7 @@ export interface TypographyProps {
     /**
      * Typography style
      */
-    style?: string;
+    style?: CSSProperties;
     /**
      * Text content
      */

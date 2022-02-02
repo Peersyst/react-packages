@@ -5,6 +5,7 @@ import { OnScreenObserverWrapper } from "./OnScreenObserver.styles";
 export default function OnScreenObserver({
     children,
     offset = "0",
+    container,
 }: OnScreenObserverProps): JSX.Element {
     const [onScreen, setOnScreen] = useState(false);
 
@@ -12,7 +13,7 @@ export default function OnScreenObserver({
 
     useEffect(() => {
         const observer = new IntersectionObserver(handleObserver, {
-            root: null,
+            root: container?.current,
             rootMargin: "0px",
             threshold: 0.01,
         });
@@ -21,11 +22,24 @@ export default function OnScreenObserver({
             observer.disconnect();
         };
     }, [ref, children]);
+
     const handleObserver = useCallback(
-        (entries: IntersectionObserverEntry[]) => {
-            const children = entries[0];
-            if (!onScreen && children.boundingClientRect.y < window.innerHeight) setOnScreen(true);
-            else if (onScreen && children.boundingClientRect.y >= window.innerHeight)
+        (entries: IntersectionObserverEntry[], { root }: IntersectionObserver) => {
+            const child = entries[0];
+            const { top, bottom } = root
+                ? (root as Element).getBoundingClientRect()
+                : { top: 0, bottom: window.innerHeight };
+
+            if (
+                !onScreen &&
+                child.boundingClientRect.y <= bottom &&
+                child.boundingClientRect.y >= top
+            )
+                setOnScreen(true);
+            else if (
+                (onScreen && child.boundingClientRect.y > bottom) ||
+                child.boundingClientRect.y < top
+            )
                 setOnScreen(false);
         },
         [onScreen, setOnScreen, children],

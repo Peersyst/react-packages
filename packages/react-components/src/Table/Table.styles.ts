@@ -53,6 +53,18 @@ export const TableBody = styled.div`
     flex: 1;
 `;
 
+export const TableLoadMoreRow = styled(TableRow)`
+    position: sticky;
+    left: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    border-top: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
+    border-bottom: 0;
+`;
+
 export const TableFooter = styled(TableRow)`
     position: sticky;
     bottom: 0;
@@ -103,5 +115,9 @@ export const TableRoot = styled.div<TableRootProps>`
     ${TableColumns} {
         min-height: ${(props) => props.headerHeight};
         min-height: ${(props) => props.headerHeight};
+    }
+
+    ${TableLoadMoreRow} {
+        border-top: ${(props) => !props.borders.horizontal && "none"};
     }
 `;

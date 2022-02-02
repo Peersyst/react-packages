@@ -9,7 +9,8 @@ const InfiniteScroll = ({
     loading,
     loaderElement,
     callback,
-    observerOffset = "200px",
+    observerOffset = "10vh",
+    container,
 }: InfiniteScrollProps): JSX.Element => {
     const end = !loading && endProp;
     return (
@@ -18,7 +19,7 @@ const InfiniteScroll = ({
             {!end && <InfiniteScrollLoader visible={loading}>{loaderElement}</InfiniteScrollLoader>}
             {end && endElement}
             {!end && (
-                <OnScreenObserver offset={observerOffset}>
+                <OnScreenObserver offset={observerOffset} container={container}>
                     {(onScreen) => {
                         onScreen && !loading && callback();
                         return <div />;

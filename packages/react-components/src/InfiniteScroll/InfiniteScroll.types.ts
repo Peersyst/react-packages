@@ -1,10 +1,14 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, RefObject } from "react";
 
 export interface InfiniteScrollProps {
     /**
      * Infinite scroll callback
      */
     callback: () => Promise<any> | any;
+    /**
+     * InfiniteScroll container element
+     */
+    container?: RefObject<HTMLElement | null>;
     /**
      * Observer offset
      */
