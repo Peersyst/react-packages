@@ -9,18 +9,24 @@ export const TextInputRoot = styled.div<TextInputStyles>`
     padding: 0 8px;
 
     border: solid 1px ${(p) => p.theme.palette.text};
-    &.Focused,
-    &.Active {
-        border-color: ${(p) => p.theme.palette.primary};
-    }
-    &.Invalid {
-        border-color: ${(p) => p.theme.palette.status.error};
-    }
-    &.Valid {
-        border-color: ${(p) => p.theme.palette.status.success};
-    }
-    &.Disabled {
-        border-color: ${(p) => p.theme.palette.disabled};
+
+    && {
+        &.Focused,
+        &.Active {
+            border-color: ${(p) => p.theme.palette.primary};
+        }
+
+        &.Invalid {
+            border-color: ${(p) => p.theme.palette.status.error};
+        }
+
+        &.Valid {
+            border-color: ${(p) => p.theme.palette.status.success};
+        }
+
+        &.Disabled {
+            border-color: ${(p) => p.theme.palette.disabled};
+        }
     }
     border-radius: ${(props) => props.theme.borderRadius};
     box-sizing: border-box;

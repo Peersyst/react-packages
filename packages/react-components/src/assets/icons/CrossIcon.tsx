@@ -1,6 +1,5 @@
-import React from "react";
 import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
-export function CrossIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
+export default function CrossIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
     return (
         <SvgIcon {...props} data-testid="CrossIcon">
             <g clipPath="url(#clip0_328_42)">

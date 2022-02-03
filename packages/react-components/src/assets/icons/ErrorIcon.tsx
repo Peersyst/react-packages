@@ -1,6 +1,5 @@
-import React from "react";
 import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
-export function ErrorIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
+export default function ErrorIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
     return (
         <SvgIcon {...props} data-testid="ErrorIcon">
             <path d="M12 14C11.7348 14 11.4804 13.8946 11.2929 13.7071C11.1054 13.5196 11 13.2652 11 13V7C11 6.73478 11.1054 6.48043 11.2929 6.29289C11.4804 6.10536 11.7348 6 12 6C12.2652 6 12.5196 6.10536 12.7071 6.29289C12.8946 6.48043 13 6.73478 13 7V13C13 13.2652 12.8946 13.5196 12.7071 13.7071C12.5196 13.8946 12.2652 14 12 14V14Z" />
