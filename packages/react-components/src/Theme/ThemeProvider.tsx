@@ -30,8 +30,9 @@ export default function ThemeProvider({
     };
 
     const handleColorSchemeChange = (event: MediaQueryListEvent) => {
-        document.body.style.backgroundColor = usedTheme.palette.background;
-        document.body.style.color = usedTheme.palette.text;
+        document.documentElement.style.backgroundColor = usedTheme.palette.background;
+        document.documentElement.style.color = usedTheme.palette.text;
+        document.documentElement.style.colorScheme = usedTheme.palette.mode;
         if (event.matches) {
             setColorScheme("dark");
         } else {
@@ -40,8 +41,9 @@ export default function ThemeProvider({
     };
 
     useEffect(() => {
-        document.body.style.backgroundColor = usedTheme.palette.background;
-        document.body.style.color = usedTheme.palette.text;
+        document.documentElement.style.backgroundColor = usedTheme.palette.background;
+        document.documentElement.style.color = usedTheme.palette.text;
+        document.documentElement.style.colorScheme = usedTheme.palette.mode;
         if (!storageScheme) {
             window
                 .matchMedia("(prefers-color-scheme: dark)")
