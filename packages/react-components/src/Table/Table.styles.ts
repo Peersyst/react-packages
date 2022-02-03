@@ -12,6 +12,7 @@ export const TableCell = styled.div<TableCellStyleProps>`
     padding: 0 16px;
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     border-left: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
 
@@ -28,7 +29,7 @@ export const TableRow = styled(Row)`
     box-sizing: border-box;
     border-bottom: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
     width: max-content;
-    overflow-y: hidden;
+    overflow: hidden;
 
     &:last-child {
         border-bottom: none;
@@ -85,7 +86,7 @@ export const TableFooter = styled(TableRow)`
 export const TableRoot = styled.div<TableRootProps>`
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
     flex: 1;
     height: 100%;
     background-color: ${(props) => props.theme.palette.background};
