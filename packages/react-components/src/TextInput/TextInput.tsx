@@ -86,6 +86,7 @@ export default function TextInput<HTMLT extends HTMLInput>({
                 className,
                 "TextInput",
                 !valid && "Invalid",
+                valid && showValid && "Valid",
                 focused && "Focused",
                 active && "Active",
                 disabled && "Disabled",

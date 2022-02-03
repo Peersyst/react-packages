@@ -1,15 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { TextInputStyles } from "./TextInput.types";
 import { Col } from "../Col";
-
-const borderColor = css<TextInputStyles>`
-    border-color: ${({ theme, invalid, showValid, focused, active, disabled }) => {
-        if (invalid) return theme.palette.status.error;
-        else if (showValid) return theme.palette.status.success;
-        else if ((focused || active) && !disabled) return theme.palette.primary;
-        else return undefined;
-    }};
-`;
 
 export const TextInputRoot = styled.div<TextInputStyles>`
     position: relative;
@@ -18,8 +9,18 @@ export const TextInputRoot = styled.div<TextInputStyles>`
     padding: 0 8px;
 
     border: solid 1px ${(p) => p.theme.palette.text};
-    && {
-        ${borderColor};
+    &.Focused,
+    &.Active {
+        border-color: ${(p) => p.theme.palette.primary};
+    }
+    &.Invalid {
+        border-color: ${(p) => p.theme.palette.status.error};
+    }
+    &.Valid {
+        border-color: ${(p) => p.theme.palette.status.success};
+    }
+    &.Disabled {
+        border-color: ${(p) => p.theme.palette.disabled};
     }
     border-radius: ${(props) => props.theme.borderRadius};
     box-sizing: border-box;
