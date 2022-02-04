@@ -33,9 +33,6 @@ export default function ThemeProvider({
     };
 
     const handleColorSchemeChange = (event: MediaQueryListEvent) => {
-        document.documentElement.style.backgroundColor = usedTheme.palette.background;
-        document.documentElement.style.color = usedTheme.palette.text;
-        document.documentElement.style.colorScheme = usedTheme.palette.mode;
         if (event.matches) {
             setColorScheme("dark");
         } else {
@@ -47,6 +44,10 @@ export default function ThemeProvider({
         document.documentElement.style.backgroundColor = usedTheme.palette.background;
         document.documentElement.style.color = usedTheme.palette.text;
         document.documentElement.style.colorScheme = usedTheme.palette.mode;
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [colorScheme]);
+
+    useEffect(() => {
         if (!storageScheme) {
             window
                 .matchMedia("(prefers-color-scheme: dark)")
@@ -57,6 +58,7 @@ export default function ThemeProvider({
                     .removeEventListener("change", handleColorSchemeChange);
             };
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
