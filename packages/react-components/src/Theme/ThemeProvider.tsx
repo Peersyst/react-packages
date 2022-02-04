@@ -13,19 +13,22 @@ export const ThemeContext = createContext<ColorSchemeContextType>({
     setColorScheme: () => undefined,
 });
 
+const colorSchemeKey =
+    (process.env.REACT_APP_NAME ? process.env.REACT_APP_NAME + "-" : "") + "color-scheme";
+
 export default function ThemeProvider({
     theme,
     lightTheme: light = lightTheme,
     darkTheme: dark = darkTheme,
     children,
 }: ThemeProps): JSX.Element {
-    const storageScheme = localStorage.getItem("color-scheme") as ColorScheme | undefined;
+    const storageScheme = localStorage.getItem(colorSchemeKey) as ColorScheme | undefined;
     const [colorScheme, setColorScheme] = useState<ColorScheme>(storageScheme || systemColorScheme);
 
     const usedTheme = theme || (colorScheme === "dark" ? dark : light) || defaultTheme;
 
     const changeColorScheme = (colorScheme: ColorScheme) => {
-        localStorage.setItem("color-scheme", colorScheme);
+        localStorage.setItem(colorSchemeKey, colorScheme);
         setColorScheme(colorScheme);
     };
 
