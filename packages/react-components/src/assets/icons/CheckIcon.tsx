@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
+import { SvgIcon, SvgIconProps } from "../../SvgIcon";
 export default function CheckIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
     return (
         <SvgIcon {...props} data-testid="CheckIcon">

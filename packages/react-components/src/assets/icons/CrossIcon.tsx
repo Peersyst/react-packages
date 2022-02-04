@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
+import { SvgIcon, SvgIconProps } from "../../SvgIcon";
 export default function CrossIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
     return (
         <SvgIcon {...props} data-testid="CrossIcon">
