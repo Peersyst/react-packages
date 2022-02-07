@@ -37,8 +37,8 @@ export default function OnScreenObserver({
             )
                 setOnScreen(true);
             else if (
-                (onScreen && child.boundingClientRect.y > bottom) ||
-                child.boundingClientRect.y < top
+                onScreen &&
+                (child.boundingClientRect.y > bottom || child.boundingClientRect.y < top)
             )
                 setOnScreen(false);
         },
