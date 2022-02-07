@@ -4,6 +4,7 @@ import { CSSObject } from "styled-components";
 import { Property } from "csstype";
 import { ToastAnimation, ToastPosition } from "../Toast";
 import { SkeletonAnimation } from "../Skeleton";
+import { TranslateFn } from "../TextInput/utils";
 
 export type PaletteMode = "light" | "dark";
 
@@ -133,7 +134,7 @@ export interface DefaultTheme {
     toastAnimation: ToastAnimation;
     toastPosition: ToastPosition;
     zIndex: ThemeZIndex;
-    translate: (w: string) => string;
+    translate: TranslateFn;
 }
 export interface Theme extends DefaultTheme {}
 
@@ -172,6 +173,6 @@ export interface CreateDefaultTheme {
     toastAnimation?: ToastAnimation;
     toastPosition?: ToastPosition;
     zIndex?: Partial<ThemeZIndex>;
-    translate?: (w: string) => string;
+    translate?: TranslateFn;
 }
 export interface CreateTheme extends CreateDefaultTheme {}

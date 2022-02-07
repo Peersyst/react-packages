@@ -1,7 +1,8 @@
 import { BaseValidator } from "./BaseValidator";
+import { TranslateFn } from "../Validators.types";
 
 export class EmailValidator extends BaseValidator {
-    constructor(message: string | undefined, translate: (w: string) => string) {
+    constructor(message: string | undefined, translate: TranslateFn) {
         super(message || translate("invalid_email"));
     }
 

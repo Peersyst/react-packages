@@ -4,6 +4,7 @@ import { NotNullValidator } from "./Validators/NotNullValidator";
 import { BaseValidator } from "./Validators/BaseValidator";
 import { PasswordValidator } from "./Validators/PasswordValidator";
 import { EqualValidator } from "./Validators/EqualValidator";
+import { TranslateFn } from "./Validators.types";
 
 /**
  * Converts raw text validators into an array of Validator
@@ -22,10 +23,7 @@ import { EqualValidator } from "./Validators/EqualValidator";
  * Translate function
  * @param translate
  */
-export const parseValidators = (
-    rawValidators: string,
-    translate: (w: string) => string,
-): BaseValidator[] => {
+export const parseValidators = (rawValidators: string, translate: TranslateFn): BaseValidator[] => {
     const validators = rawValidators.split("|");
     const parsedValidators: BaseValidator[] = [];
     for (const validator of validators) {

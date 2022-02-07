@@ -1,6 +1,6 @@
 export * from "./Animated";
 export * from "./AppBar";
-export { BaseValidator } from "./TextInput/utils/Validators/BaseValidator";
+export * from "./TextInput/utils";
 export * from "./Backdrop";
 export * from "./BackgroundImage";
 export * from "./Button";

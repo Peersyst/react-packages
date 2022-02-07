@@ -1,9 +1,10 @@
 import { BaseValidator } from "./BaseValidator";
+import { TranslateFn } from "../Validators.types";
 
 export class EqualValidator extends BaseValidator {
     constructor(
         message: string | undefined,
-        translate: (w: string) => string,
+        translate: TranslateFn,
         private readonly compare: string,
     ) {
         super(message || translate("invalid_equal"));

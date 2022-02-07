@@ -1,4 +1,5 @@
 import { BaseValidator } from "./BaseValidator";
+import { TranslateFn } from "../Validators.types";
 
 export interface NumberValidatorOptions {
     greaterThan?: number;
@@ -13,7 +14,7 @@ export class NumberValidator extends BaseValidator {
 
     constructor(
         message: string | undefined,
-        translate: (w: string) => string,
+        translate: TranslateFn,
         options: NumberValidatorOptions = {},
     ) {
         super(message || "invalid_number");
