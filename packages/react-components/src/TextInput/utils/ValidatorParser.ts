@@ -1,9 +1,9 @@
-import { NumberValidator } from "./NumberValidator";
-import { EmailValidator } from "./EmailValidator";
-import { NotNullValidator } from "./NotNullValidator";
-import { BaseValidator } from "./BaseValidator";
-import { PasswordValidator } from "./PasswordValidator";
-import { EqualValidator } from "./EqualValidator";
+import { NumberValidator } from "./Validators/NumberValidator";
+import { EmailValidator } from "./Validators/EmailValidator";
+import { NotNullValidator } from "./Validators/NotNullValidator";
+import { BaseValidator } from "./Validators/BaseValidator";
+import { PasswordValidator } from "./Validators/PasswordValidator";
+import { EqualValidator } from "./Validators/EqualValidator";
 
 /**
  * Converts raw text validators into an array of Validator
@@ -18,8 +18,14 @@ import { EqualValidator } from "./EqualValidator";
  * - lt + number (lt0)
  * - lte + number (lte0)
  * @param rawValidators
+ *
+ * Translate function
+ * @param translate
  */
-export const parseValidators = (rawValidators: string): BaseValidator[] => {
+export const parseValidators = (
+    rawValidators: string,
+    translate: (w: string) => string,
+): BaseValidator[] => {
     const validators = rawValidators.split("|");
     const parsedValidators: BaseValidator[] = [];
     for (const validator of validators) {
@@ -28,51 +34,53 @@ export const parseValidators = (rawValidators: string): BaseValidator[] => {
         const errorText: string | undefined = validatorElements[1];
         switch (true) {
             case validatorText === "number":
-                parsedValidators.push(new NumberValidator(errorText));
+                parsedValidators.push(new NumberValidator(errorText, translate));
                 break;
             case validatorText === "email":
-                parsedValidators.push(new EmailValidator(errorText));
+                parsedValidators.push(new EmailValidator(errorText, translate));
                 break;
             case validatorText === "not-null":
-                parsedValidators.push(new NotNullValidator(errorText));
+                parsedValidators.push(new NotNullValidator(errorText, translate));
                 break;
             case validatorText === "password":
-                parsedValidators.push(new PasswordValidator());
+                parsedValidators.push(new PasswordValidator(errorText, translate));
                 break;
             case /eq=.+/.test(validatorText):
-                parsedValidators.push(new EqualValidator(validatorText.replace("eq=", "")));
+                parsedValidators.push(
+                    new EqualValidator(errorText, translate, validatorText.replace("eq=", "")),
+                );
                 break;
             case /gt[0-9]+/.test(validatorText):
                 parsedValidators.push(
-                    new NumberValidator(errorText, {
+                    new NumberValidator(errorText, translate, {
                         greaterThan: Number(validatorText.replace("gt", "")),
                     }),
                 );
                 break;
             case /gte[0-9]+/.test(validatorText):
                 parsedValidators.push(
-                    new NumberValidator(errorText, {
+                    new NumberValidator(errorText, translate, {
                         greaterEqualThan: Number(validatorText.replace("gte", "")),
                     }),
                 );
                 break;
             case /eq[0-9]+/.test(validatorText):
                 parsedValidators.push(
-                    new NumberValidator(errorText, {
+                    new NumberValidator(errorText, translate, {
                         equalThan: Number(validatorText.replace("eq", "")),
                     }),
                 );
                 break;
             case /lt[0-9]+/.test(validatorText):
                 parsedValidators.push(
-                    new NumberValidator(errorText, {
+                    new NumberValidator(errorText, translate, {
                         lowerThan: Number(validatorText.replace("lt", "")),
                     }),
                 );
                 break;
             case /lte[0-9]+/.test(validatorText):
                 parsedValidators.push(
-                    new NumberValidator(errorText, {
+                    new NumberValidator(errorText, translate, {
                         lowerEqualThan: Number(validatorText.replace("lte", "")),
                     }),
                 );

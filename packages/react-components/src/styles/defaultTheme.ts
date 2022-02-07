@@ -56,4 +56,5 @@ export const defaultTheme: Theme = {
         selectMenu: 5,
         toast: 9999,
     },
+    translate: (w: string) => w,
 };

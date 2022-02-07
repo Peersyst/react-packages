@@ -1,8 +1,9 @@
 import { BaseValidator } from "./BaseValidator";
 
 export class PasswordValidator extends BaseValidator {
-    message =
-        "Password must contain 8 characters, a lowercase, an uppsercase and a special character";
+    constructor(message: string | undefined, translate: (w: string) => string) {
+        super(message || translate("invalid_password"));
+    }
 
     validate(value: string): boolean {
         const regex = /(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).*/g;

@@ -14,6 +14,7 @@ export function createTheme({
     toastPosition,
     zIndex,
     skeletonAnimations,
+    translate,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -31,6 +32,7 @@ export function createTheme({
         toastPosition: toastPosition || defaultTheme.toastPosition,
         zIndex: { ...defaultTheme.zIndex, ...zIndex },
         skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,
+        translate: translate || defaultTheme.translate,
         ...rest,
     };
 }

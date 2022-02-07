@@ -1,8 +1,8 @@
 import { BaseValidator } from "./BaseValidator";
 
 export class EmailValidator extends BaseValidator {
-    constructor(message?: string | undefined) {
-        super(message || "Email is not valid");
+    constructor(message: string | undefined, translate: (w: string) => string) {
+        super(message || translate("invalid_email"));
     }
 
     validate(value: string): boolean {

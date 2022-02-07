@@ -133,6 +133,7 @@ export interface DefaultTheme {
     toastAnimation: ToastAnimation;
     toastPosition: ToastPosition;
     zIndex: ThemeZIndex;
+    translate: (w: string) => string;
 }
 export interface Theme extends DefaultTheme {}
 
@@ -171,5 +172,6 @@ export interface CreateDefaultTheme {
     toastAnimation?: ToastAnimation;
     toastPosition?: ToastPosition;
     zIndex?: Partial<ThemeZIndex>;
+    translate?: (w: string) => string;
 }
 export interface CreateTheme extends CreateDefaultTheme {}

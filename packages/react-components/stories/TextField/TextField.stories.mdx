@@ -39,8 +39,8 @@ This component can be used in multiple ways, so here we'll see some examples and
             <TextField placeholder="Write something..." />
             <TextField placeholder="Write something..." prefix={<InfoIcon />} />
             <TextField placeholder="Write something..." suffix={<InfoIcon />} />
-            <TextField placeholder="Write something..." validators="not-null" />
-            <TextField placeholder="Write something..." showValid />
+            <TextField placeholder="Write something..." value="Validate number" validators="number" />
+            <TextField placeholder="Write something..." value="Show valid" showValid />
             <TextField placeholder="Write something..." type="password" />
             <TextField placeholder="Write something..." type="number" />
             <TextField placeholder="Write something..." clearable />
@@ -81,3 +81,48 @@ This component can be used in multiple ways, so here we'll see some examples and
     <TextField placeholder="Write something..." disabled defaultValue="I'm disabled" />
 </Grid>
 ```
+
+## Validators
+
+In order to validate inputs, we use Validators. Validator keys are passed as a string separating each Validator key with a "|".
+
+A custom message can be passed following the key with ":" + {your custom message}. For example, "not-null:input can't be null".
+
+Also, you can pass your own CustomValidators that extend the abstract class BaseValidator or implement the interface:
+
+````typescript
+interface FunctionalValidator {
+    validate: (value: string) => boolean;
+    message: string;
+}
+````
+
+### Validators list
+
+- not-null
+- number
+- email
+- password
+- eq= + string
+- gt + number (gt0)
+- gte + number (gte0)
+- eq + number (eq0)
+- lt + number (lt0)
+- lte + number (lte0)
+
+### Translations
+
+Validators return a message key when they are invalid. A translate function can be passed to the createTheme in order to translate those keys.
+
+#### Validator message keys
+
+- invalid_not_null
+- invalid_number
+- invalid_email
+- invalid_password
+- invalid_equal
+- invalid_number_gt (the string {n} will be replaced with the number the input has to be greater than)
+- invalid_number_gte (the string {n} will be replaced with the number the input has to be greater or equal than)
+- invalid_number_eq (the string {n} will be replaced with the number the input has to be equal than)
+- invalid_number_lt (the string {n} will be replaced with the number the input has to be lower than)
+- invalid_number_lte (the string {n} will be replaced with the number the input has to be lower or equal than)

@@ -1,4 +1,4 @@
-import { ChangeEvent, createRef, useState } from "react";
+import { ChangeEvent, createRef, useEffect, useState } from "react";
 import { Row } from "../Row";
 import { useTextInputValidation } from "./hooks/useTextInputValidation";
 import { useFormNotification } from "../Form";
@@ -39,10 +39,11 @@ export default function TextInput<HTMLT extends HTMLInput>({
     name,
     children,
     errorElement: errorElementProp,
-    showValid = false,
+    showValid: showValidProp = false,
     validElement: validElementProp,
 }: TextInputProps & Children<HTMLT>): JSX.Element {
     const [value, setValue] = useControlled(defaultValue, valueProp, onChange);
+    const [modified, setModified] = useState(false);
 
     const [focused, setFocused] = useState<boolean>(false);
     const [active, setActive] = useState<boolean>(false);
@@ -55,6 +56,10 @@ export default function TextInput<HTMLT extends HTMLInput>({
     );
     useFormNotification(name, value, valid);
 
+    useEffect(() => {
+        !modified && value !== "" && setModified(true);
+    }, [modified, value]);
+
     const ref = createRef<HTMLT>();
 
     const handleChange = (e: ChangeEvent<HTMLT>) => {
@@ -63,8 +68,10 @@ export default function TextInput<HTMLT extends HTMLInput>({
         onChange?.(newValue);
     };
 
+    const invalid = modified && !valid;
+    const showValid = modified && valid && showValidProp;
     const wrapperStyleProps: TextInputStyles = {
-        invalid: !valid,
+        invalid,
         showValid,
         focused,
         active,
@@ -85,8 +92,8 @@ export default function TextInput<HTMLT extends HTMLInput>({
             className={cx(
                 className,
                 "TextInput",
-                !valid && "Invalid",
-                valid && showValid && "Valid",
+                invalid && "Invalid",
+                showValid && "Valid",
                 focused && "Focused",
                 active && "Active",
                 disabled && "Disabled",
@@ -122,7 +129,7 @@ export default function TextInput<HTMLT extends HTMLInput>({
                     onSubmit,
                 })}
                 {suffix}
-                {valid ? (
+                {!invalid ? (
                     showValid && <ValidElementWrapper>{validElement}</ValidElementWrapper>
                 ) : (
                     <Popover>

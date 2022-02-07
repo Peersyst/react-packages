@@ -11,27 +11,45 @@ export interface NumberValidatorOptions {
 export class NumberValidator extends BaseValidator {
     private readonly options: NumberValidatorOptions = {};
 
-    constructor(message?: string | undefined, options: NumberValidatorOptions = {}) {
-        super(message || "Value must be a number");
+    constructor(
+        message: string | undefined,
+        translate: (w: string) => string,
+        options: NumberValidatorOptions = {},
+    ) {
+        super(message || "invalid_number");
 
         this.options = options;
 
         if (!message) {
             if (options.greaterThan !== undefined) {
-                this.message = "The number must be greater than " + options.greaterThan;
+                this.message = translate("invalid_number_gt").replace(
+                    "{n}",
+                    options.greaterThan.toString(),
+                );
             }
             if (options.greaterEqualThan !== undefined) {
-                this.message =
-                    "The number must be greater or equal than " + options.greaterEqualThan;
+                this.message = translate("invalid_number_gte").replace(
+                    "{n}",
+                    options.greaterEqualThan.toString(),
+                );
             }
             if (options.equalThan !== undefined) {
-                this.message = "The number must be equal than " + options.equalThan;
+                this.message = translate("invalid_number_eq").replace(
+                    "{n}",
+                    options.equalThan.toString(),
+                );
             }
             if (options.lowerThan !== undefined) {
-                this.message = "The number must be lower than " + options.lowerThan;
+                this.message = translate("invalid_number_lt").replace(
+                    "{n}",
+                    options.lowerThan.toString(),
+                );
             }
             if (options.lowerEqualThan !== undefined) {
-                this.message = "The number must be lower or equal than " + options.lowerEqualThan;
+                this.message = translate("invalid_number_lte").replace(
+                    "{n}",
+                    options.lowerEqualThan.toString(),
+                );
             }
         }
     }
