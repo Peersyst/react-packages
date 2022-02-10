@@ -1,5 +1,5 @@
 import { ChangeEvent, CSSProperties, ReactElement, ReactNode, RefObject } from "react";
-import { BaseValidator } from "./utils/Validators/BaseValidator";
+import { BaseValidator } from "./utils";
 
 export interface TextInputContextTypes<HTMLT> {
     ref: RefObject<HTMLT>;
