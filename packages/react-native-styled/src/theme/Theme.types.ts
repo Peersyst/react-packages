@@ -11,6 +11,6 @@ export interface ThemeProps {
     /**
      * Theme to be applied
      */
-    theme?: Theme;
+    theme: Theme;
     children?: ReactNode;
 }

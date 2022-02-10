@@ -3,7 +3,8 @@
     "compilerOptions": {
         "noEmit": false,
         "emitDeclarationOnly": true,
-        "declaration": true
+        "declaration": true,
+        "skipLibCheck": true
     },
     "include": [],
     "exclude": ["build"]
