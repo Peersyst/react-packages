@@ -39,6 +39,9 @@ export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K
 /**
  * Creates a type with common properties of A and B
  */
-type Common<A, B> = {
-    [P in keyof A & keyof B]: A[P] | B[P];
-};
+type Common<A, B> = Pick<
+    A,
+    {
+        [K in keyof A & keyof B]: A[K] extends B[K] ? (B[K] extends A[K] ? K : never) : never;
+    }[keyof A & keyof B]
+>;
