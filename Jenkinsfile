@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
-                    sh 'yarn'
+                    sh 'yarn --frozen-lockfile'
                 }
             }
         }
