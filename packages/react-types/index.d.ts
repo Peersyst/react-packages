@@ -35,3 +35,10 @@ type GenerateStringUnion<T> = Extract<
  * Distributive for union types.
  */
 export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
+
+/**
+ * Creates a type with common properties of A and B
+ */
+type Common<A, B> = {
+    [P in keyof A & keyof B]: A[P] | B[P];
+};

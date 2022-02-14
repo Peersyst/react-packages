@@ -17,7 +17,7 @@ export class NumberValidator extends BaseValidator {
         translate: TranslateFn,
         options: NumberValidatorOptions = {},
     ) {
-        super(message || "invalid_number");
+        super(message || translate("invalid_number"));
 
         this.options = options;
 
