@@ -55,7 +55,7 @@ pipeline {
             }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
-                    sh "yarn release:publish --skip-git --yes"
+                    sh "yarn release:publish --no-git-tag-version --no-push --yes"
                 }
             }
         }
