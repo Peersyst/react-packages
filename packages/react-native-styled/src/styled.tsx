@@ -1,12 +1,18 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { Theme, useTheme } from "@peersyst/react-native-styled";
 import { ComponentType } from "react";
 import { StyleSheet } from "react-native";
-import { Theme, useTheme } from "./theme";
+
+export type ExtendedSx<SX extends (args: any) => any, E> = (
+    p: Parameters<SX>[0] & E,
+) => ReturnType<SX>;
 
 export type StyledFunction<P extends { sx?: P["sx"]; style?: P["style"] }, E = {}> = P extends {
     sx?: P["sx"];
 }
-    ? P["sx"]
+    ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      ExtendedSx<P["sx"], E>
     : (p: { theme: Theme } & E) => P["style"];
 
 export default function styled<P extends { sx?: P["sx"]; style?: P["style"] }>(
