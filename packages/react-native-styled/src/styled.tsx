@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Theme, useTheme } from "@peersyst/react-native-styled";
-import { ComponentType } from "react";
-import { StyleSheet } from "react-native";
+import { ComponentType, useMemo } from "react";
+import { deepmerge } from "@peersyst/react-utils";
 
 export type ExtendedSx<SX extends (args: any) => any, E> = (
     p: Parameters<SX>[0] & E,
@@ -23,17 +23,23 @@ export default function styled<P extends { sx?: P["sx"]; style?: P["style"] }>(
         const StyledComponent = ({ sx: sxProp, style: styleProp, ...rest }: P & E): JSX.Element => {
             const theme = useTheme();
 
-            const style = sxProp
-                ? styleProp
-                : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  StyleSheet.flatten([styledSx?.({ theme, ...rest }), styleProp]);
+            const sxStyles = useMemo(
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                () => deepmerge(styledSx?.({ theme, ...rest }), styleProp),
+                [styleProp, theme, rest],
+            );
+            const style = sxProp ? styleProp : sxStyles;
 
-            const sx: P["sx"] = sxProp
-                ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  (args: Parameters<P["sx"]>) => StyleSheet.flatten([styledSx?.(args), sx?.(args)])
-                : undefined;
+            const sx: P["sx"] = useMemo(
+                () =>
+                    sxProp
+                        ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          (args: Parameters<P["sx"]>) => deepmerge(styledSx?.(args), sx?.(args))
+                        : undefined,
+                [sxProp],
+            );
 
             const finalProps = {
                 ...props,

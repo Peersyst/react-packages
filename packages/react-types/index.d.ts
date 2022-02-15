@@ -45,3 +45,8 @@ type Common<A, B> = Pick<
         [K in keyof A & keyof B]: A[K] extends B[K] ? (B[K] extends A[K] ? K : never) : never;
     }[keyof A & keyof B]
 >;
+
+/**
+ * Creates a type with the difference between A and B
+ */
+type Difference<A, B> = Omit<A, keyof B>;
