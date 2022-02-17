@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-types */
-import { Theme } from "./theme";
+import { Theme } from "@peersyst/react-native-styled";
 
 export type SX<TStyle> = (theme: Theme) => TStyle;
 
-export type StyledFunction<P extends { sx?: P["sx"]; style?: P["style"] }, E = {}> = P extends {
-    sx?: P["sx"];
-}
-    ? P["sx"]
-    : (p: { theme: Theme } & E) => P["style"];
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type StyledFunction<P extends { style?: P["style"] }, E = {}> = (
+    p: { theme: Theme } & E,
+) => P["style"];
