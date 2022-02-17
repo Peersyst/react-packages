@@ -24,31 +24,28 @@ export default function styled<P extends { sx?: P["sx"]; style?: P["style"] }>(
         const StyledComponent = ({ sx: sxProp, style: styleProp, ...rest }: P & E): JSX.Element => {
             const theme = useTheme();
 
-            const sxStyles = useMemo(
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                () => deepmerge(styledSx?.({ theme, ...rest }), StyleSheet.flatten(styleProp)),
-                [styleProp, theme, rest],
+            const style = useMemo(
+                () =>
+                    deepmerge(
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        deepmerge(styledSx?.({ theme, ...rest }), StyleSheet.flatten(styleProp)),
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        sxProp?.(theme),
+                    ),
+                [styleProp, theme, rest, sxProp],
             );
-            const style = sxProp ? styleProp : sxStyles;
-
-            const sx: P["sx"] = sxProp
-                ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  (args: Parameters<P["sx"]>) => deepmerge(styledSx?.(args), sx?.(args))
-                : undefined;
 
             const finalProps = {
                 ...props,
                 ...rest,
                 style,
-                sx,
             };
-            return (
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                <Component {...finalProps} />
-            );
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            return <Component {...finalProps} />;
         };
         StyledComponent.displayName = Component.displayName;
         return StyledComponent;
