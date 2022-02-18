@@ -7,6 +7,10 @@ export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
      */
     flex?: Property.Flex;
     /**
+     * Reverse direction
+     */
+    reverse?: boolean;
+    /**
      * Items alignment
      */
     alignItems?: Property.AlignItems;

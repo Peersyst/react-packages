@@ -3,7 +3,7 @@ import { RowRootProps } from "./Row.types";
 
 const breakpointStyles = css<RowRootProps>`
     ${({ theme, breakpoint }) => theme.breakpoints.down(breakpoint!.width)} {
-        flex-direction: column;
+        flex-direction: ${(props) => (props.breakpoint?.reverse ? "column-reverse" : "column")};
         row-gap: ${(props) => props.breakpoint?.gap + "px"};
         align-items: ${(props) => props.breakpoint?.alignItems || "flex-start"};
         justify-content: ${(props) => props.breakpoint?.justifyContent || "flex-start"};
@@ -13,8 +13,9 @@ const breakpointStyles = css<RowRootProps>`
 export const RowRoot = styled.div<RowRootProps>`
     display: flex;
 
-    ${({ flex, alignItems, justifyContent, gap, shouldWrap, breakpoint }) => css`
+    ${({ flex, alignItems, justifyContent, gap, shouldWrap, breakpoint, reverse }) => css`
         flex: ${flex};
+        flex-direction: ${reverse ? "row-reverse" : "row"};
         align-items: ${alignItems};
         justify-content: ${justifyContent};
         column-gap: ${gap ? gap + "px" : undefined};

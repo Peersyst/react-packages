@@ -10,6 +10,7 @@ export interface RowBreakpoint {
     gap?: number;
     alignItems?: Property.AlignItems;
     justifyContent?: Property.JustifyContent;
+    reverse?: boolean;
 }
 
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,6 +18,10 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
      * Flex factor
      */
     flex?: Property.Flex;
+    /**
+     * Reverse direction
+     */
+    reverse?: boolean;
     /**
      * Align items css property
      */
