@@ -6,14 +6,16 @@ export function formatAddress(
     length?: number,
 ): string {
     const addressLength = address.length;
-    if (!length || addressLength < length) return address;
+    if (!length) return address;
     else if (ellipsis === "middle") {
-        const firstHalf = length / 2;
-        const secondHalf = length - firstHalf;
+        if (addressLength - 2 <= length * 2) return address;
         return (
-            address.substring(0, firstHalf) +
+            address.substring(0, 2 + length) +
             "..." +
-            address.substring(addressLength - secondHalf, addressLength)
+            address.substring(addressLength - length, addressLength)
         );
-    } else return address.substring(0, length);
+    } else {
+        if (addressLength - 2 <= length) return address;
+        return address.substring(0, 2 + length) + "...";
+    }
 }
