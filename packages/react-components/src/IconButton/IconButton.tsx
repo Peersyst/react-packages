@@ -8,6 +8,7 @@ export default function IconButton({
     onClick,
     style,
     className,
+    ...rest
 }: IconButtonProps): JSX.Element {
     return (
         <IconButtonRoot
@@ -15,6 +16,7 @@ export default function IconButton({
             onClick={onClick}
             style={fsx(style, { disabled })}
             className={cx("IconButton", disabled && "Disabled", className)}
+            {...rest}
         >
             {children}
         </IconButtonRoot>

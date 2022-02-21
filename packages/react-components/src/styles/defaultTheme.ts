@@ -1,9 +1,12 @@
 import { Loader } from "../Loader";
 import {
+    CheckIcon,
+    CopyIcon,
     CrossIcon,
     ErrorIcon,
     HideIcon,
     InfoIcon,
+    InvalidIcon,
     ShowIcon,
     SuccessIcon,
     WarningIcon,
@@ -23,6 +26,10 @@ export const defaultTheme: Theme = {
         hide: HideIcon,
         show: ShowIcon,
         cross: CrossIcon,
+        invalid: InvalidIcon,
+        valid: SuccessIcon,
+        check: CheckIcon,
+        copy: CopyIcon,
     },
     typography,
     palette: {
@@ -55,6 +62,10 @@ export const defaultTheme: Theme = {
         modal: 100,
         selectMenu: 5,
         toast: 9999,
+    },
+    blockchainLinks: {
+        address: "https://explorer.harmony.one/address/",
+        tx: "https://explorer.harmony.one/tx/",
     },
     translate: (w: string) => w,
 };

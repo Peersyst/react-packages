@@ -1,6 +1,6 @@
-import { CSSProperties, MouseEvent, ReactElement } from "react";
+import { CSSProperties, MouseEvent, ReactElement, HTMLAttributes } from "react";
 
-export interface IconButtonProps {
+export interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
     /**
      * Button's icon
      */

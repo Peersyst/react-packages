@@ -189,6 +189,39 @@ const theme = createTheme({
 });
 ```
 
+### Blockchain links
+
+Blockchain links can be modified, removed or added:
+
+```typescript
+const myCustomTheme = createTheme({
+    blockchainLinks: {
+        // Modify existing link
+        address: "https://explorer.harmony.one/address/",
+        // Remove existing link
+        tx: undefined,
+        // Add new link
+        newLink: "https://explorer.harmony.one/newLink/",
+    },
+});
+```
+
+```typescript
+import "peersyst-react-components";
+
+declare module "peersyst-react-components" {
+    // Add newLink in theme type
+    export interface BlockchainLinks {
+        newLink: string;
+    }
+    // Modify BlockchainLinkTypes type
+    export interface BlockchainLinksTypesOverrides {
+        tx: false;
+        newLink: true;
+    }
+}
+```
+
 ### Translate
 
 Translate function used to translate validator messages.

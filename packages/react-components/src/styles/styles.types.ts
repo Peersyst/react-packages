@@ -16,6 +16,10 @@ export interface ThemeIcons {
     hide: JSXElementConstructor<any>;
     show: JSXElementConstructor<any>;
     cross: JSXElementConstructor<any>;
+    copy: JSXElementConstructor<any>;
+    invalid: JSXElementConstructor<any>;
+    valid: JSXElementConstructor<any>;
+    check: JSXElementConstructor<any>;
 }
 
 export interface TypographyVariant {
@@ -121,6 +125,14 @@ export interface DefaultThemeZIndex {
 }
 export interface ThemeZIndex extends DefaultThemeZIndex {}
 
+export type BlockchainLinksTypes = "address" | "tx";
+export interface BlockchainLinksTypesOverrides {}
+export interface DefaultBlockchainLinks {
+    address: string;
+    tx: string;
+}
+export interface BlockchainLinks extends DefaultBlockchainLinks {}
+
 export interface DefaultTheme {
     loader: JSXElementConstructor<any>;
     icons: ThemeIcons;
@@ -135,6 +147,7 @@ export interface DefaultTheme {
     toastPosition: ToastPosition;
     zIndex: ThemeZIndex;
     translate: TranslateFn;
+    blockchainLinks: BlockchainLinks;
 }
 export interface Theme extends DefaultTheme {}
 
@@ -173,6 +186,7 @@ export interface CreateDefaultTheme {
     toastAnimation?: ToastAnimation;
     toastPosition?: ToastPosition;
     zIndex?: Partial<ThemeZIndex>;
+    blockchainLinks?: Partial<BlockchainLinks>;
     translate?: TranslateFn;
 }
 export interface CreateTheme extends CreateDefaultTheme {}

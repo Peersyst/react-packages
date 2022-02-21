@@ -14,6 +14,7 @@ const Button = function ({
     fullWidth = false,
     onClick,
     style,
+    ...rest
 }: ButtonProps) {
     const {
         theme: { loader: DefaultLoader },
@@ -36,6 +37,7 @@ const Button = function ({
                         className,
                     )}
                     style={fsx(style, { disabled, loading })}
+                    {...rest}
                 >
                     <ButtonContent>{children}</ButtonContent>
                     {loading && (

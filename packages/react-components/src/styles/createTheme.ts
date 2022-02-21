@@ -15,6 +15,7 @@ export function createTheme({
     zIndex,
     skeletonAnimations,
     translate,
+    blockchainLinks,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -33,6 +34,7 @@ export function createTheme({
         zIndex: { ...defaultTheme.zIndex, ...zIndex },
         skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,
         translate: translate || defaultTheme.translate,
+        blockchainLinks: { ...defaultTheme.blockchainLinks, ...blockchainLinks },
         ...rest,
     };
 }
