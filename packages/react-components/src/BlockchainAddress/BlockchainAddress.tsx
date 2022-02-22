@@ -19,7 +19,7 @@ const BlockchainAddress = ({
     } = useTheme();
 
     return (
-        <Row alignItems="center" gap={10} className={cx("BlockchainAddress", className)}>
+        <Row alignItems="center" gap={5} className={cx("BlockchainAddress", className)}>
             <a href={blockchainLinks[type] + address} target="_blank" rel="noreferrer">
                 <Typography {...typographyProps}>
                     {formatAddress(address, ellipsis, length)}
