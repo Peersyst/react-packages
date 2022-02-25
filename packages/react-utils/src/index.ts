@@ -1,3 +1,4 @@
+export { default as classify } from "./classify";
 export * from "./color";
 export { default as cx } from "./cx";
 export { default as debounce } from "./debounce";
