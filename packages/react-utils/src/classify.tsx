@@ -1,9 +1,9 @@
-import { ComponentClass, FunctionComponent, Component } from "react";
+import { ComponentClass, ComponentType, Component as ReactComponent } from "react";
 
-export default function classify<P>(FunctionComponent: FunctionComponent<P>): ComponentClass<P> {
-    return class ClassComponent extends Component<P> {
+export default function classify<P>(Component: ComponentType<P>): ComponentClass<P> {
+    return class ClassComponent extends ReactComponent<P> {
         render(): JSX.Element {
-            return <FunctionComponent {...this.props} />;
+            return <Component {...this.props} />;
         }
     };
 }
