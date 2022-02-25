@@ -81,11 +81,11 @@ export default function TextInput<HTMLT extends HTMLInput>({
 
     const {
         theme: {
-            icons: { info: Info, success: Success },
+            icons: { invalid: Invalid, valid: Valid },
         },
     } = useTheme();
-    const errorElement = errorElementProp || <Info />;
-    const validElement = validElementProp || <Success />;
+    const errorElement = errorElementProp || <Invalid />;
+    const validElement = validElementProp || <Valid />;
 
     return (
         <TextInputRoot
