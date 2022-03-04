@@ -57,11 +57,13 @@ export default function Toast({
                     style={style}
                     elevation={5}
                 >
-                    <Row alignItems="center" gap={10}>
-                        {icon}
-                        {message}
+                    <Row flex={1} gap={10} wrap wrapGap={10} justifyContent="space-between">
+                        <Row alignItems="center" gap={10}>
+                            <Row flex={0.05}>{icon}</Row>
+                            <Row flex={0.95}>{message}</Row>
+                        </Row>
+                        <ToastAction>{action}</ToastAction>
                     </Row>
-                    <ToastAction>{action}</ToastAction>
                 </ToastContent>
             </AnimatedComponent>
         </ToastContainer>

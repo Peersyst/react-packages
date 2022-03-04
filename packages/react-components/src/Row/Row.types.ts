@@ -35,6 +35,10 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
      */
     gap?: number;
     /**
+     * Wrap row gap
+     */
+    wrapGap?: number;
+    /**
      * Row should wrap content
      */
     wrap?: boolean;

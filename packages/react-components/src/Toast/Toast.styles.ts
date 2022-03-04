@@ -51,6 +51,7 @@ export const ToastContent = styled(Paper)<ToastContentStylesProps>`
     flex-wrap: wrap;
 
     box-sizing: border-box;
+    width: fit-content;
     min-height: 56px;
     min-width: 300px;
     max-width: 360px;
