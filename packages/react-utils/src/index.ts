@@ -6,6 +6,7 @@ export { isPlainObject } from "./deepmerge";
 export { default as deepmerge } from "./deepmerge";
 export { default as findSlot } from "./find-slot";
 export { default as fsx } from "./fsx";
+export { default as minDigits } from "./minDigits";
 export { default as nullifyEvent } from "./nullifyEvent";
 export { default as ownerDocument } from "./ownerDocument";
 export { default as ownerWindow } from "./ownerWindow";
