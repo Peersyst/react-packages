@@ -2,7 +2,7 @@
 import { Theme, useTheme } from "@peersyst/react-native-styled";
 import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
-import { StyleSheet } from "react-native";
+import { ScaledSize, StyleSheet, useWindowDimensions } from "react-native";
 import { SX, StyledFunction } from "./types";
 
 export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style"] }>(
@@ -12,17 +12,19 @@ export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style
     const styledConstructor = function <E = {}>(styledSx?: StyledFunction<P, E>) {
         const StyledComponent = ({ sx: sxProp, style: styleProp, ...rest }: P & E): JSX.Element => {
             const theme = useTheme();
+            const dimensions = useWindowDimensions();
 
             const style = useMemo(
                 () =>
                     deepmerge(
                         deepmerge(
-                            styledSx?.({ theme, ...rest } as P & E & { theme: Theme }),
+                            styledSx?.({ theme, dimensions, ...rest } as P &
+                                E & { theme: Theme } & { dimensions: ScaledSize }),
                             StyleSheet.flatten(styleProp),
                         ),
                         sxProp?.(theme),
                     ),
-                [styleProp, theme, rest, sxProp],
+                [styleProp, theme, rest, sxProp, dimensions],
             );
 
             const finalProps = {
