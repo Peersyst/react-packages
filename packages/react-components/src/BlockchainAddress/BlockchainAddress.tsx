@@ -2,9 +2,8 @@ import { BlockchainAddressProps } from "./BlockchainAddress.types";
 import { Row } from "../Row";
 import { Typography } from "../Typography";
 import { CopyButton } from "../CopyButton";
-import { formatAddress } from "./util/formatAddress";
 import { useTheme } from "../Theme";
-import { cx } from "@peersyst/react-utils";
+import { cx, formatAddress } from "@peersyst/react-utils";
 
 const BlockchainAddress = ({
     address,

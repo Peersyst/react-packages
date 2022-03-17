@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ExpandableProvider } from "./ExpandableContext";
 import { ExpandableDisplay } from "./ExpandableDisplay";
 import {
@@ -10,12 +9,20 @@ import {
 import { findSlot, cx } from "@peersyst/react-utils";
 import { ExpandableRoot } from "./Expandable.styles";
 import { DropdownProps } from "./Expandable.types";
+import { useControlled } from "@peersyst/react-hooks";
 
-function Expandable({ className, style, children }: DropdownProps): JSX.Element {
+function Expandable({
+    open: openProp,
+    onOpen,
+    onClose,
+    className,
+    style,
+    children,
+}: DropdownProps): JSX.Element {
     const display = findSlot<typeof ExpandableDisplay>(children, ExpandableDisplay);
     const body = findSlot<typeof ExpandableBody>(children, ExpandableBody);
 
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useControlled(false, openProp, openProp ? onClose : onOpen);
 
     return (
         <ExpandableRoot className={cx("Expandable", className)} style={style}>

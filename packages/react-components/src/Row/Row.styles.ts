@@ -13,12 +13,13 @@ const breakpointStyles = css<RowRootProps>`
 export const RowRoot = styled.div<RowRootProps>`
     display: flex;
 
-    ${({ flex, alignItems, justifyContent, gap, shouldWrap, breakpoint, reverse }) => css`
+    ${({ flex, alignItems, justifyContent, gap, shouldWrap, breakpoint, reverse, wrapGap }) => css`
         flex: ${flex};
         flex-direction: ${reverse ? "row-reverse" : "row"};
         align-items: ${alignItems};
         justify-content: ${justifyContent};
         column-gap: ${gap ? gap + "px" : undefined};
+        row-gap: ${shouldWrap && wrapGap}px;
         flex-wrap: ${shouldWrap ? "wrap" : "nowrap"};
 
         ${breakpoint && breakpointStyles};

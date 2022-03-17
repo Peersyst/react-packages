@@ -1,6 +1,6 @@
-import { BlockchainAddressEllipsis } from "../BlockchainAddress.types";
+export type BlockchainAddressEllipsis = "middle" | "end";
 
-export function formatAddress(
+export default function formatAddress(
     address: string,
     ellipsis: BlockchainAddressEllipsis = "middle",
     length?: number,

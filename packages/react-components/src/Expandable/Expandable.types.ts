@@ -9,6 +9,18 @@ export type ExpandableChildren = [
 
 export interface DropdownProps {
     /**
+     * Open flag
+     */
+    open?: boolean;
+    /**
+     * onOpen handler
+     */
+    onOpen?: () => unknown;
+    /**
+     * onClose handler
+     */
+    onClose?: () => unknown;
+    /**
      * Expandable className
      */
     className?: string;
