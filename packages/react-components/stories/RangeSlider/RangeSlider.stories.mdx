@@ -1,0 +1,48 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { RangeSlider } from "../../src";
+import themedContainer from "../styles/themedContainer";
+import ControlledRangeSlider from "./component/ControlledRangeSlider";
+
+<Meta
+    title="Components/Inputs/RangeSlider"
+    component={RangeSlider}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Range Slider
+
+Sliders are used to obtain one value from a range.
+
+## Example
+
+<Canvas>
+    <RangeSlider min={0} max={100} />
+</Canvas>
+
+## Usage
+
+Its usage can be controlled or uncontrolled:
+
+### Uncontrolled usage
+
+```jsx
+<RangeSlider min={0} max={100} />
+```
+
+<Canvas>
+    <RangeSlider min={0} max={100} />
+</Canvas>
+
+### Controlled usage
+
+<Canvas>
+    <ControlledRangeSlider />
+</Canvas>
+
+## Styling
+
+Color styling is used via the Slider's color css attribute. If a higher level of customization is needed, there are className and style props for every component. However, to customize the thumb, you have to style the inner input's one (`input::-webkit-slider-thumb` and `input&::-moz-range-thumb`)

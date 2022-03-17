@@ -35,6 +35,7 @@ export * from "./Row";
 export * from "./Select";
 export * from "./Skeleton";
 export * from "./Slider";
+export * from "./RangeSlider";
 export * from "./styles";
 export * from "./SvgIcon";
 export * from "./Switch";
