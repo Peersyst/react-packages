@@ -11,7 +11,6 @@ export const PopoverRoot = styled.div`
 
 export const PopoverPopper = styled.div<PopperStyles>`
     position: absolute;
-    margin: ${({ origin }) => `${origin.vertical}px ${origin.horizontal}px`};
     ${({ position }) => getPopperPosition(position)};
     z-index: ${(p) => p.theme.zIndex.popover};
 `;

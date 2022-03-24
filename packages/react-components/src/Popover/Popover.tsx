@@ -52,8 +52,11 @@ function Popover({
         <ClickAwayListener onClickAway={() => showOn === "click" && visible && setVisible(false)}>
             <PopoverRoot>
                 <PopoverPopper
+                    style={{
+                        margin: `${origin.vertical}px ${origin.horizontal}px`,
+                        display: !visible ? "none" : undefined,
+                    }}
                     position={position}
-                    origin={origin}
                     ref={popperRef}
                     onMouseEnter={() => visible && handleMouseOver()}
                     onMouseLeave={() => visible && handleMouseLeave()}

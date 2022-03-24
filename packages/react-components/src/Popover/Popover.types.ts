@@ -47,7 +47,6 @@ export interface PopoverProps {
 
 export interface PopperStyles {
     position: PopperPosition;
-    origin: PopperOrigin;
 }
 
 export interface PopperOrigin {

@@ -1,9 +1,18 @@
-import { Popover, Button } from "../../../src";
+import { Popover, Button, Row, Col } from "../../../src";
 
 const Example = () => {
     return (
-        <Popover showOn="click">
-            <Popover.Popper style={{ padding: "6px" }}>Hello what&apos;s up</Popover.Popper>
+        <Popover showOn="hover" position="bottom">
+            <Popover.Popper style={{ padding: "6px" }}>
+                <Col gap={5} style={{ height: 100, width: 150 }}>
+                    <Row style={{ height: 30 }} justifyContent="center" alignItems="center">
+                        Option 1
+                    </Row>
+                    <Row style={{ height: 30 }} justifyContent="center" alignItems="center">
+                        Option 2
+                    </Row>
+                </Col>
+            </Popover.Popper>
             <Popover.Content>
                 <Button>Show popover</Button>
             </Popover.Content>
