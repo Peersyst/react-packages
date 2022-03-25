@@ -4,7 +4,7 @@ const Example = () => {
     return (
         <Popover showOn="hover" position="bottom">
             <Popover.Popper style={{ padding: "6px" }}>
-                <Col gap={5} style={{ height: 100, width: 150 }}>
+                <Col gap={5} style={{ width: 150 }}>
                     <Row style={{ height: 30 }} justifyContent="center" alignItems="center">
                         Option 1
                     </Row>
