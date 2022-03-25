@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-utils": "^1.0.0"
+        "@peersyst/react-utils": "^1.2.0"
     },
     "devDependencies": {
         "@types/react": "^17.0.38",
