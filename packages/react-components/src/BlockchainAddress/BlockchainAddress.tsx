@@ -12,6 +12,7 @@ const BlockchainAddress = ({
     type,
     length,
     className,
+    break: breakProp = false,
     ...typographyProps
 }: BlockchainAddressProps): JSX.Element => {
     const {
@@ -21,7 +22,7 @@ const BlockchainAddress = ({
     return (
         <Row alignItems="center" gap={5} className={cx("BlockchainAddress", className)}>
             <a href={blockchainLinks[type] + address} target="_blank" rel="noreferrer">
-                <BlockchainAddressText {...typographyProps}>
+                <BlockchainAddressText break={breakProp} {...typographyProps}>
                     {formatAddress(address, ellipsis, length)}
                 </BlockchainAddressText>
             </a>

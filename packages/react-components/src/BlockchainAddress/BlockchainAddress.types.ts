@@ -20,4 +20,12 @@ export interface BlockchainAddressProps extends Omit<TypographyProps, "singleLin
      * If ellipsis should be in the middle or end
      */
     ellipsis?: BlockchainAddressEllipsis;
+    /**
+     * If address should break
+     */
+    break?: boolean;
+}
+
+export interface BlockchainAddressTextProps {
+    break: boolean;
 }
