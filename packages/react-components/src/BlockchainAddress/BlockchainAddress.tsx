@@ -4,6 +4,7 @@ import { Typography } from "../Typography";
 import { CopyButton } from "../CopyButton";
 import { useTheme } from "../Theme";
 import { cx, formatAddress } from "@peersyst/react-utils";
+import { BlockchainAddressText } from "./BlockchainAddress.styles";
 
 const BlockchainAddress = ({
     address,
@@ -20,9 +21,9 @@ const BlockchainAddress = ({
     return (
         <Row alignItems="center" gap={5} className={cx("BlockchainAddress", className)}>
             <a href={blockchainLinks[type] + address} target="_blank" rel="noreferrer">
-                <Typography {...typographyProps}>
+                <BlockchainAddressText {...typographyProps}>
                     {formatAddress(address, ellipsis, length)}
-                </Typography>
+                </BlockchainAddressText>
             </a>
             <Typography {...typographyProps}>
                 <CopyButton text={address} />
