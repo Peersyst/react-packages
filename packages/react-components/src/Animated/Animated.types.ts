@@ -13,6 +13,7 @@ import { Slide } from "./Slide";
 import { FadingSlide } from "./FadingSlide";
 import { Scale } from "./Scale";
 import { FadingScale } from "./FadingScale";
+import { Collapse } from "./Collapse";
 
 export interface AnimatedComponentProps {
     /**
@@ -111,6 +112,7 @@ export type TransitionTimingFunction =
 export type AnimatedComponent = ForwardRefExoticComponent<
     AnimatedProps & RefAttributes<unknown>
 > & {
+    Collapse: typeof Collapse;
     Fade: typeof Fade;
     Slide: typeof Slide;
     FadingSlide: typeof FadingSlide;

@@ -1,20 +1,12 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const ExpandableBodyRoot = styled.div<{ open: boolean }>`
+export const ExpandableBodyRoot = styled.div`
+    position: relative;
     width: 100%;
-    max-height: 0;
 
     display: flex;
     flex-direction: column;
 
     overflow: hidden;
     box-sizing: border-box;
-
-    transition: max-height 0.5s;
-
-    ${({ open }) =>
-        open &&
-        css`
-            max-height: 200px;
-        `}
 `;

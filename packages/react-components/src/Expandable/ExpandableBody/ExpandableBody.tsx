@@ -5,6 +5,7 @@ import { ExpandableContent } from "./ExpandableContent";
 import { findSlot, cx } from "@peersyst/react-utils";
 import { ExpandableBodyRoot } from "./ExpandableBody.styles";
 import { ExpandableBodyProps } from "./ExpandableBody.types";
+import { Animated } from "../../Animated";
 
 export default function ExpandableBody({
     className,
@@ -18,15 +19,13 @@ export default function ExpandableBody({
     return (
         <ExpandableConsumer>
             {({ open }) => (
-                <ExpandableBodyRoot
-                    className={cx("ExpandableBody", className)}
-                    style={style}
-                    open={open}
-                >
-                    {header}
-                    {content}
-                    {footer}
-                </ExpandableBodyRoot>
+                <Animated.Collapse in={open}>
+                    <ExpandableBodyRoot className={cx("ExpandableBody", className)} style={style}>
+                        {header}
+                        {content}
+                        {footer}
+                    </ExpandableBodyRoot>
+                </Animated.Collapse>
             )}
         </ExpandableConsumer>
     );

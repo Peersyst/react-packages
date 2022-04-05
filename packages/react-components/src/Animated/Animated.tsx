@@ -7,6 +7,7 @@ import { Slide } from "./Slide";
 import { FadingSlide } from "./FadingSlide";
 import { Scale } from "./Scale";
 import { FadingScale } from "./FadingScale";
+import { Collapse } from "./Collapse";
 
 const Animated = forwardRef(function Animated(
     {
@@ -75,6 +76,7 @@ const Animated = forwardRef(function Animated(
     );
 }) as AnimatedComponent;
 
+Animated.Collapse = Collapse;
 Animated.Fade = Fade;
 Animated.Slide = Slide;
 Animated.FadingSlide = FadingSlide;
