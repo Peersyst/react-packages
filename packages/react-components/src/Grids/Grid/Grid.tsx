@@ -19,6 +19,24 @@ export default class Grid extends BaseGrid<GridProps, GridState> {
     sortedBreakpoints: GridBreakpoint[] = [];
 
     componentDidMount(): void {
+        this.sortBreakpoints();
+        this.setState({ mounted: true }, () => this.setPatterns());
+        window.addEventListener("resize", () => this.setPatterns());
+    }
+
+    componentWillUnmount() {
+        this.setState({ mounted: false });
+        window.removeEventListener("resize", () => this.setPatterns());
+    }
+
+    componentDidUpdate({ breakpoints: oldBreakpoints }: Readonly<GridProps>) {
+        if (oldBreakpoints !== this.props.breakpoints) {
+            this.sortBreakpoints();
+            this.setPatterns();
+        }
+    }
+
+    sortBreakpoints(): void {
         const { rowSize, colGap, rowGap, cols, alignItems, justifyItems, justifyContent } =
             this.props;
 
@@ -36,13 +54,6 @@ export default class Grid extends BaseGrid<GridProps, GridState> {
             justifyItems,
             justifyContent,
         });
-        this.setState({ mounted: true }, () => this.setPatterns());
-        window.addEventListener("resize", () => this.setPatterns());
-    }
-
-    componentWillUnmount() {
-        this.setState({ mounted: false });
-        window.removeEventListener("resize", () => this.setPatterns());
     }
 
     setPatterns(): void {
