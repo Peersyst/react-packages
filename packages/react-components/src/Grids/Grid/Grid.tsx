@@ -29,8 +29,21 @@ export default class Grid extends BaseGrid<GridProps, GridState> {
         window.removeEventListener("resize", () => this.setPatterns());
     }
 
-    componentDidUpdate({ breakpoints: oldBreakpoints }: Readonly<GridProps>) {
-        if (oldBreakpoints !== this.props.breakpoints) {
+    componentDidUpdate({
+        breakpoints: oldBreakpoints,
+        cols: oldCols,
+        colGap: oldColGap,
+        rowGap: oldRowGap,
+        rowSize: oldRowSize,
+    }: Readonly<GridProps>) {
+        const { breakpoints, colGap, cols, rowGap, rowSize } = this.props;
+        if (
+            oldBreakpoints !== breakpoints ||
+            oldCols !== cols ||
+            oldColGap !== colGap ||
+            oldRowGap !== rowGap ||
+            oldRowSize !== rowSize
+        ) {
             this.sortBreakpoints();
             this.setPatterns();
         }
