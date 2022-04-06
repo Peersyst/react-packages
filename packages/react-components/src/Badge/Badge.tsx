@@ -2,6 +2,7 @@ import { BadgeProps } from "./Badge.types";
 import { Children } from "react";
 import { BadgeItem, BadgeRoot } from "./Badge.styles";
 import { Animated, TransitionStyles } from "../Animated";
+import { cx } from "@peersyst/react-utils";
 
 const Badge = ({
     position,
@@ -11,7 +12,7 @@ const Badge = ({
     invisible = false,
     overlap = "rectangular",
     showZero = false,
-    style,
+    className,
     ...rest
 }: BadgeProps): JSX.Element => {
     const translate = `translate(${position?.horizontal === "left" ? "-50%" : "50%"}, ${
@@ -38,7 +39,7 @@ const Badge = ({
     const hasContent = !!content || (showZero && content === 0);
 
     return (
-        <BadgeRoot>
+        <BadgeRoot className="BadgeRoot">
             {Children.only(children)}
             <Animated
                 appear={false}
@@ -55,7 +56,7 @@ const Badge = ({
                     }}
                     overlap={overlap}
                     hasContent={hasContent}
-                    style={style}
+                    className={cx("Badge", className)}
                     {...rest}
                 >
                     {typeof content === "number" && content > max ? max + "+" : content}
