@@ -36,6 +36,8 @@ export const BadgeItem = styled.span<BadgeItemProps>(
         height: ${hasContent ? "20px" : "8px"};
         min-width: ${hasContent ? "20px" : "8px"};
         border-radius: 10px;
+        font-weight: 500;
+        font-size: 0.75rem;
         background-color: ${theme.palette.primary};
         color: ${getLuminance(theme.palette.primary) > 0.7 ? "black" : "white"};
     `,
