@@ -10,7 +10,7 @@ const ToggleButton = ({
     className,
     ...buttonProps
 }: ToggleButtonProps): JSX.Element => {
-    const [selected, setSelected] = useControlled<any>(defaultSelected, selectedProp, onChange);
+    const [selected, setSelected] = useControlled(defaultSelected, selectedProp, onChange);
 
     return (
         <ToggleButtonRoot
