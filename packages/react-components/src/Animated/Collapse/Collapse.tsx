@@ -88,8 +88,10 @@ const Collapse = forwardRef(
         };
 
         const recalculate = () => {
-            handleEntering(nodeRef.current!, false);
-            handleEntered(nodeRef.current!, false);
+            if (nodeRef.current) {
+                handleEntering(nodeRef.current, false);
+                handleEntered(nodeRef.current, false);
+            }
         };
 
         useEffect(() => {
