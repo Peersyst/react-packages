@@ -1,8 +1,7 @@
 import { CSSProperties, ReactNode } from "react";
-import { CSSTransitionProps } from "react-transition-group/CSSTransition";
 import { ExposedBackdropProps } from "../Backdrop";
 import { Elevation } from "../Paper";
-import { CustomAnimatedComponent } from "../Animated";
+import { CustomAnimatedComponent, TransitionDuration } from "../Animated";
 
 export type DrawerPosition = "left" | "right" | "top" | "bottom";
 
@@ -41,10 +40,8 @@ export interface DrawerProps {
      * Size of the drawer
      */
     size?: {
-        width?: number | string;
-        height?: number | string;
-        mobileWidth?: number | string;
-        mobileHeight?: number | string;
+        size?: number | string;
+        mobileSize?: number | string;
     };
     /**
      * Drawer elevation
@@ -65,7 +62,7 @@ export interface DrawerProps {
     /**
      * Custom transition's duration
      */
-    transitionsDuration?: CSSTransitionProps["timeout"];
+    transitionsDuration?: TransitionDuration;
     /**
      * Backdrop props
      */

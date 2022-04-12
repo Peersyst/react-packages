@@ -30,6 +30,7 @@ export default function Backdrop({
     transitionsDuration = 400,
     className,
     style,
+    renderBackdrop = true,
     children,
 }: BackdropProps): JSX.Element {
     const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
@@ -51,6 +52,7 @@ export default function Backdrop({
         >
             <BackdropRoot
                 transparent={transparent}
+                renderBackdrop={renderBackdrop}
                 onMouseDown={handleClose}
                 className={cx("Backdrop", className)}
                 style={style}

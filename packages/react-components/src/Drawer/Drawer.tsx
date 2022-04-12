@@ -28,10 +28,7 @@ export default function Drawer({
     transitionsDuration = 300,
     BackdropProps,
     size = {
-        width: "300px",
-        height: "100%",
-        mobileWidth: "100%",
-        mobileHeight: "100%",
+        size: "300px",
     },
 }: DrawerProps) {
     const [open, setOpen] = useControlled(
@@ -57,6 +54,7 @@ export default function Drawer({
     const backdropProps: ExposedBackdropProps = {
         ...BackdropProps,
         transparent: BackdropProps?.transparent ?? variant !== "temporary",
+        renderBackdrop: BackdropProps?.renderBackdrop ?? variant === "temporary",
     };
 
     return (

@@ -7,12 +7,8 @@ function DrawerTypes(): JSX.Element {
     const handleOpen = (position: DrawerProps["position"]) =>
         showDrawer(DisplayDrawer, {
             name: "drawer",
-            variant: "persistent",
             position,
-            style:
-                position === "left" || position === "right"
-                    ? { width: "300px", height: "100%" }
-                    : { width: "100%", height: "200px" },
+            size: { size: 300 },
         });
 
     return (

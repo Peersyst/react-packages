@@ -15,4 +15,6 @@ export const BackdropRoot = styled.div<BackdropStyles>`
     height: 100vh;
     background-color: ${({ theme, transparent }) =>
         transparent ? "transparent" : theme.palette.backdrop};
+
+    pointer-events: ${({ renderBackdrop }) => !renderBackdrop && "none"};
 `;

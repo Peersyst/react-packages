@@ -23,6 +23,7 @@ export * from "./Image";
 export * from "./InfiniteCarousel";
 export * from "./InfiniteScroll";
 export * from "./Loader";
+export * from "./MiniDrawer";
 export * from "./Modal";
 export * from "./ModalProvider";
 export * from "./OnScreenObserver";

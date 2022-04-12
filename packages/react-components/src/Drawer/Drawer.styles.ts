@@ -9,32 +9,29 @@ function formatSize(v: number | string): string {
 export const DrawerMenu = styled(Paper)<{
     size: NonNullable<DrawerProps["size"]>;
     position: NonNullable<DrawerProps["position"]>;
-}>`
-    box-sizing: border-box;
-    width: ${({ size: { width = "400px" } }) => formatSize(width)};
-    height: ${({ size: { height = "100%" } }) => formatSize(height)};
-    background-color: ${({ theme }) => theme.palette.background};
-    overflow: auto;
+}>(({ size: { size = "300px", mobileSize: mobileSizeProp }, position }) => {
+    const mobileSize = mobileSizeProp ?? size;
+    const width = position === "left" || position === "right" ? size : "100%";
+    const mobileWidth = position === "left" || position === "right" ? mobileSize : "100%";
+    const height = position === "top" || position === "bottom" ? size : "100%";
+    const mobileHeight = position === "top" || position === "bottom" ? mobileSize : "100%";
 
-    position: fixed;
-    ${({ position }) =>
-        css`
-            ${[position]}: 0;
-        `};
+    return css`
+        box-sizing: border-box;
+        width: ${formatSize(width)};
+        height: ${formatSize(height)};
+        background-color: ${({ theme }) => theme.palette.background};
+        overflow: auto;
 
-    @media screen and (max-width: 650px) {
-        width: ${({ size: { width = "400px", mobileWidth } }) =>
-            mobileWidth ? formatSize(mobileWidth) : formatSize(width)};
-        height: ${({ size: { height = "100%", mobileHeight } }) =>
-            mobileHeight ? formatSize(mobileHeight) : formatSize(height)};
-    }
+        position: fixed;
+        ${[position]}: 0;
 
-    //Transitions
-    ${({
-        position,
-        size: { width = "400px", height = "100%", mobileWidth = "100%", mobileHeight = "100%" },
-    }) =>
-        css`
+        @media screen and (max-width: 650px) {
+            width: ${formatSize(mobileWidth)};
+            height: ${formatSize(mobileHeight)};
+        }
+
+        //Transitions
       &.drawer-enter,
       &.drawer-appear {
         ${[position]}: ${"-" + (position === "top" ? formatSize(height) : formatSize(width))};
@@ -56,8 +53,8 @@ export const DrawerMenu = styled(Paper)<{
         &.drawer-enter,
         &.drawer-appear {
           ${[position]}: ${
-            "-" + (position === "top" ? formatSize(mobileHeight) : formatSize(mobileWidth))
-        }
+        "-" + (position === "top" ? formatSize(mobileHeight) : formatSize(mobileWidth))
+    }
         }
         &.drawer-enter-active,
         &.drawer-appear-active {
@@ -69,16 +66,16 @@ export const DrawerMenu = styled(Paper)<{
         }
         &.drawer-exit-active {
           ${[position]}: ${
-            "-" +
-            (position === "top"
-                ? mobileHeight
-                    ? formatSize(mobileHeight)
-                    : formatSize(height)
-                : mobileWidth
-                ? formatSize(mobileWidth)
-                : formatSize(width))
-        }
+        "-" +
+        (position === "top"
+            ? mobileHeight
+                ? formatSize(mobileHeight)
+                : formatSize(height)
+            : mobileWidth
+            ? formatSize(mobileWidth)
+            : formatSize(width))
+    }
         }
       }
-    `}
-`;
+    `;
+});

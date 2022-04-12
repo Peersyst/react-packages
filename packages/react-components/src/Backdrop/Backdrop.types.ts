@@ -55,6 +55,10 @@ export interface BackdropProps {
      */
     transitionsDuration?: TransitionDuration;
     /**
+     * Whether or not to render the backdrop
+     */
+    renderBackdrop?: boolean;
+    /**
      * Backdrop content
      */
     children?: ReactElement;
@@ -62,6 +66,7 @@ export interface BackdropProps {
 
 export interface BackdropStyles {
     transparent: boolean;
+    renderBackdrop: boolean;
 }
 
 export type ForwardedBackdropProps = Pick<
@@ -78,5 +83,5 @@ export type ForwardedBackdropProps = Pick<
 
 export type ExposedBackdropProps = Pick<
     BackdropProps,
-    "className" | "style" | "animation" | "transitionsDuration" | "transparent"
+    "className" | "style" | "animation" | "transitionsDuration" | "transparent" | "renderBackdrop"
 >;
