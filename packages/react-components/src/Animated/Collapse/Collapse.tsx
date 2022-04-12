@@ -88,19 +88,26 @@ const Collapse = forwardRef(
         };
 
         const recalculate = () => {
-            if (nodeRef.current) {
-                handleEntering(nodeRef.current, false);
-                handleEntered(nodeRef.current, false);
+            if (inProp && nodeRef.current) {
+                if (wrapperRef.current && isHorizontal) {
+                    // Set absolute position to get the size of collapsed content
+                    wrapperRef.current.style.position = "absolute";
+                }
+                const wrapperSize = getWrapperSize();
+                if (wrapperRef.current && isHorizontal) {
+                    // After the size is read reset the position back to default
+                    wrapperRef.current.style.position = "";
+                }
+                nodeRef.current.style[size] = `${wrapperSize}px`;
             }
         };
 
         useEffect(() => {
             window.addEventListener("resize", recalculate);
-            recalculate();
             return () => {
                 window.removeEventListener("resize", recalculate);
             };
-        }, []);
+        }, [inProp]);
 
         return (
             <Animated
