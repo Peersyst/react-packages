@@ -31,11 +31,12 @@ export const MiniDrawerRoot = styled(Drawer).attrs({ variant: "permanent" })<Min
                 height: ${formatSize(mobileHeight)};
             }
 
+            overflow-x: ${isHorizontal && "hidden"};
+            overflow-y: ${!isHorizontal && "hidden"};
+
             &.Collapsed {
                 width: ${isHorizontal && formatSize(collapsedSize)};
                 height: ${!isHorizontal && formatSize(collapsedSize)};
-                overflow-x: ${isHorizontal && "hidden"};
-                overflow-y: ${!isHorizontal && "hidden"};
             }
         `;
     },
