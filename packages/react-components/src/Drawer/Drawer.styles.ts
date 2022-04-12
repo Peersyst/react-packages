@@ -14,6 +14,7 @@ export const DrawerMenu = styled(Paper)<{
     width: ${({ size: { width = "400px" } }) => formatSize(width)};
     height: ${({ size: { height = "100%" } }) => formatSize(height)};
     background-color: ${({ theme }) => theme.palette.background};
+    overflow: auto;
 
     position: fixed;
     ${({ position }) =>

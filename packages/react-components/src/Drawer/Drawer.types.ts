@@ -6,11 +6,17 @@ import { CustomAnimatedComponent } from "../Animated";
 
 export type DrawerPosition = "left" | "right" | "top" | "bottom";
 
+export type DrawerVariant = "permanent" | "persistent" | "temporary";
+
 export interface DrawerProps {
     /**
      * Drawer name
      */
     name?: string;
+    /**
+     * Drawer variant
+     */
+    variant?: DrawerVariant;
     /**
      * Drawer is open on mount
      */
@@ -44,10 +50,6 @@ export interface DrawerProps {
      * Drawer elevation
      */
     elevation?: Elevation;
-    /**
-     * Prevent scroll when drawer is open
-     */
-    preventScroll?: boolean;
     /**
      * Drawer className
      */

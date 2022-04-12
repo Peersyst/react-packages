@@ -8,6 +8,7 @@ export const ModalRoot = styled(Paper)`
     box-sizing: border-box;
     background-color: ${({ theme }) => theme.palette.background};
     border-radius: ${(props) => props.theme.borderRadius};
+    overflow: auto;
 
     position: relative;
     isolation: isolate;
