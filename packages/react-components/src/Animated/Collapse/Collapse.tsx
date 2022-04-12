@@ -1,4 +1,4 @@
-import { forwardRef, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import Animated from "../Animated";
 import { CollapseProps } from "./Collapse.types";
 import { useForkRef } from "@peersyst/react-hooks";
@@ -64,8 +64,6 @@ const Collapse = forwardRef(
         };
 
         const handleEntered = (node: HTMLElement, isAppearing: boolean) => {
-            //node.style[size] = "auto";
-
             if (onEntered) {
                 onEntered(node, isAppearing);
             }
@@ -88,6 +86,19 @@ const Collapse = forwardRef(
                 onExiting(node);
             }
         };
+
+        const recalculate = () => {
+            handleEntering(nodeRef.current!, false);
+            handleEntered(nodeRef.current!, false);
+        };
+
+        useEffect(() => {
+            window.addEventListener("resize", recalculate);
+            recalculate();
+            return () => {
+                window.removeEventListener("resize", recalculate);
+            };
+        }, []);
 
         return (
             <Animated
