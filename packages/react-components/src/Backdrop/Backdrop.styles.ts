@@ -17,4 +17,8 @@ export const BackdropRoot = styled.div<BackdropStyles>`
         transparent ? "transparent" : theme.palette.backdrop};
 
     pointer-events: ${({ renderBackdrop }) => !renderBackdrop && "none"};
+
+    * {
+        pointer-events: auto;
+    }
 `;
