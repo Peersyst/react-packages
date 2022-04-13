@@ -24,6 +24,10 @@ export interface BlockchainAddressProps extends Omit<TypographyProps, "singleLin
      * If address should break
      */
     break?: boolean;
+    /**
+     * Gap between the address and copy button
+     */
+    gap?: number;
 }
 
 export interface BlockchainAddressTextProps {

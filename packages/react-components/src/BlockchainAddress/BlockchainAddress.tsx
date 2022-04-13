@@ -1,6 +1,5 @@
 import { BlockchainAddressProps } from "./BlockchainAddress.types";
 import { Row } from "../Row";
-import { Typography } from "../Typography";
 import { CopyButton } from "../CopyButton";
 import { useTheme } from "../Theme";
 import { cx, formatAddress } from "@peersyst/react-utils";
@@ -12,23 +11,32 @@ const BlockchainAddress = ({
     type,
     length,
     className,
+    style,
     break: breakProp = false,
+    variant,
+    gap = 5,
     ...typographyProps
 }: BlockchainAddressProps): JSX.Element => {
     const {
-        theme: { blockchainLinks },
+        theme: { blockchainLinks, typography },
     } = useTheme();
 
     return (
-        <Row alignItems="center" gap={5} className={cx("BlockchainAddress", className)}>
+        <Row
+            alignItems="center"
+            gap={gap}
+            className={cx("BlockchainAddress", className)}
+            style={style}
+        >
             <a href={blockchainLinks[type] + address} target="_blank" rel="noreferrer">
-                <BlockchainAddressText break={breakProp} {...typographyProps}>
+                <BlockchainAddressText variant={variant} break={breakProp} {...typographyProps}>
                     {formatAddress(address, ellipsis, length)}
                 </BlockchainAddressText>
             </a>
-            <Typography {...typographyProps}>
-                <CopyButton text={address} />
-            </Typography>
+            <CopyButton
+                text={address}
+                style={variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }}
+            />
         </Row>
     );
 };
