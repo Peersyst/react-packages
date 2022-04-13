@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Typography } from "../Typography";
 import { TableCellStyleProps, TableRootProps } from "./Table.types";
 import { Row } from "../Row";
@@ -30,6 +30,15 @@ export const TableRow = styled(Row)`
     border-bottom: 1px solid ${(props) => alpha(props.theme.palette.text, 0.4)};
     width: max-content;
     overflow: hidden;
+
+    ${(p) =>
+        p.onClick &&
+        css`
+            cursor: pointer;
+            &:hover {
+                background-color: ${alpha(p.theme.palette.primary, 0.4)};
+            }
+        `}
 
     &:last-child {
         border-bottom: none;

@@ -28,6 +28,10 @@ export interface TableProps<T extends object> {
      */
     columns: TableCol<T>[];
     /**
+     * onRowClick handler
+     */
+    onRowClick?: (index: number) => unknown;
+    /**
      * Table footer content
      */
     footer?: ReactNode;
@@ -153,6 +157,10 @@ export interface TableRowsProps<T> {
      * Table columns
      */
     columns: TableCol<T>[];
+    /**
+     * onRowClick handler
+     */
+    onRowClick?: (index: number) => unknown;
     /**
      * Table row className
      */

@@ -9,6 +9,7 @@ export default function TableRows<T extends object>({
     rowStyle,
     cellClassName,
     cellStyle,
+    onRowClick,
 }: TableRowsProps<T>): JSX.Element {
     return (
         <TableBody>
@@ -19,6 +20,7 @@ export default function TableRows<T extends object>({
                     aria-rowindex={rowIndex + 2}
                     className={cx("TableRow", rowClassName)}
                     style={rowStyle}
+                    onClick={onRowClick && (() => onRowClick(rowIndex))}
                 >
                     {columns.map(({ width, field, alignment }, columnIndex) => (
                         <TableCell

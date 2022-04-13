@@ -24,13 +24,14 @@ export default function Table<T extends object = Record<string, never>>({
     headerHeight = "56px",
     footerHeight,
     infiniteProps,
+    onRowClick,
     borders: bordersProp = {
         outline: true,
         horizontal: true,
         vertical: true,
     },
 }: TableProps<T>): JSX.Element {
-    const rowProps = { rowClassName, rowStyle, cellClassName, cellStyle };
+    const rowProps = { rowClassName, rowStyle, cellClassName, cellStyle, onRowClick };
     const columnsProps: TableColumnsProps<T> = {
         ...rowProps,
         columns,
