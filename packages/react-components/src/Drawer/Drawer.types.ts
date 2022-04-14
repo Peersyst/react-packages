@@ -64,6 +64,14 @@ export interface DrawerProps {
      */
     transitionsDuration?: TransitionDuration;
     /**
+     * Render at ModalProvider
+     */
+    renderAtRoot?: boolean;
+    /**
+     * If backdrop should be rendered
+     */
+    renderBackdrop?: boolean;
+    /**
      * Backdrop props
      */
     BackdropProps?: ExposedBackdropProps;

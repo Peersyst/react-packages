@@ -20,6 +20,9 @@ export default function Modal({
     BackdropProps,
     className,
     style,
+    renderBackdrop,
+    renderAtRoot,
+    preventScroll = true,
 }: ModalProps): JSX.Element {
     const [open, setOpen] = useControlled(defaultOpen, propOpen, propOpen ? onClose : undefined);
 
@@ -38,11 +41,13 @@ export default function Modal({
         onClose: handleClose,
         onExited,
         closable,
-        preventScroll: true,
+        preventScroll: preventScroll,
         childrenAnimation: {
             AnimatedComponent,
             props: { ...AnimatedComponentProps, duration: transitionsDuration },
         },
+        renderAtRoot,
+        renderBackdrop,
     };
 
     return (

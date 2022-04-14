@@ -59,6 +59,10 @@ export interface BackdropProps {
      */
     renderBackdrop?: boolean;
     /**
+     * Render at ModalProvider
+     */
+    renderAtRoot?: boolean;
+    /**
      * Backdrop content
      */
     children?: ReactElement;
@@ -79,9 +83,11 @@ export type ForwardedBackdropProps = Pick<
     | "closable"
     | "preventScroll"
     | "childrenAnimation"
+    | "renderAtRoot"
+    | "renderBackdrop"
 >;
 
 export type ExposedBackdropProps = Pick<
     BackdropProps,
-    "className" | "style" | "animation" | "transitionsDuration" | "transparent" | "renderBackdrop"
+    "className" | "style" | "animation" | "transitionsDuration" | "transparent"
 >;

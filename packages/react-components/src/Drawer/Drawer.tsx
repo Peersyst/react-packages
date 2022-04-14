@@ -30,6 +30,8 @@ export default function Drawer({
     size = {
         size: "300px",
     },
+    renderBackdrop,
+    renderAtRoot,
 }: DrawerProps) {
     const [open, setOpen] = useControlled(
         defaultOpen,
@@ -49,12 +51,13 @@ export default function Drawer({
             AnimatedComponent: Animated.Slide,
             props: { duration: transitionsDuration, direction: getAnimationDirection(position) },
         },
+        renderBackdrop: renderBackdrop ?? variant === "temporary",
+        renderAtRoot,
     };
 
     const backdropProps: ExposedBackdropProps = {
         ...BackdropProps,
         transparent: BackdropProps?.transparent ?? variant !== "temporary",
-        renderBackdrop: BackdropProps?.renderBackdrop ?? variant === "temporary",
     };
 
     return (

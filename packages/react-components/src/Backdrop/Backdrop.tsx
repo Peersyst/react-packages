@@ -4,6 +4,7 @@ import { Animated, TransitionStyles } from "../Animated";
 import { useControlled, usePreventBodyScroll } from "@peersyst/react-hooks";
 import { BackdropRoot } from "./Backdrop.styles";
 import { cx } from "@peersyst/react-utils";
+import { createPortal } from "react-dom";
 
 const BackdropAnimation: TransitionStyles = {
     exiting: {
@@ -31,6 +32,7 @@ export default function Backdrop({
     className,
     style,
     renderBackdrop = true,
+    renderAtRoot = false,
     children,
 }: BackdropProps): JSX.Element {
     const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
@@ -42,7 +44,7 @@ export default function Backdrop({
         }
     }, [closable, open, setOpen]);
 
-    return (
+    const backdrop = (
         <Animated
             animation={animation}
             animatedProperties="background-color"
@@ -65,4 +67,12 @@ export default function Backdrop({
             </BackdropRoot>
         </Animated>
     );
+
+    if (renderAtRoot) {
+        const modalRoot = document.getElementById("modal-root");
+
+        if (modalRoot) return createPortal(backdrop, modalRoot);
+    }
+
+    return backdrop;
 }
