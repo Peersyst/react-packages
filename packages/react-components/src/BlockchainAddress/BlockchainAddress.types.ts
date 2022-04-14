@@ -15,7 +15,7 @@ export interface BlockchainAddressProps extends Omit<TypographyProps, "singleLin
     /**
      * Address' length in characters
      */
-    length?: number | "auto";
+    length?: number | "auto" | "complete";
     /**
      * If ellipsis should be in the middle or end
      */

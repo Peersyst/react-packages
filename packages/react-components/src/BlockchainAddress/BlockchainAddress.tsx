@@ -52,7 +52,15 @@ const BlockchainAddress = ({
                 ref={addressRef}
             >
                 <BlockchainAddressText variant={variant} break={breakProp} {...typographyProps}>
-                    {formatAddress(address, ellipsis, isAutoLength ? autoLength : length)}
+                    {formatAddress(
+                        address,
+                        ellipsis,
+                        isAutoLength
+                            ? autoLength
+                            : typeof length === "number"
+                            ? length
+                            : address.length,
+                    )}
                 </BlockchainAddressText>
             </a>
             <CopyButton
