@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
 
 export default function (
     active: boolean,
@@ -10,10 +10,10 @@ export default function (
 ): number {
     const [autoLength, setAutoLength] = useState(address.length);
 
-    useEffect(() => {
-        const setAddressLength = () => {
-            if (rowRef.current && addressRef.current) {
-                const rowWidth = rowRef.current.clientWidth;
+    const setAddressLength = useCallback(
+        (rowE: Element) => {
+            if (addressRef.current) {
+                const rowWidth = rowE.clientWidth;
                 const addressWidth = addressRef.current.clientWidth;
 
                 if (rowWidth !== addressWidth) {
@@ -26,15 +26,29 @@ export default function (
                     });
                 }
             }
-        };
+        },
+        [address, gap, addressRef, copyButtonRef],
+    );
 
-        window.addEventListener("resize", setAddressLength);
+    const observer = useMemo(
+        () =>
+            new ResizeObserver(([rowObs]) => {
+                setAddressLength(rowObs.target);
+            }),
+        [setAddressLength],
+    );
 
-        setAddressLength();
+    useEffect(() => {
+        const currentRowRef = rowRef.current;
+        if (active && currentRowRef) observer.observe(currentRowRef);
         return () => {
-            window.removeEventListener("resize", setAddressLength);
+            if (active && currentRowRef) observer.unobserve(currentRowRef);
         };
-    }, [address, gap, addressRef, rowRef, copyButtonRef]);
+    }, [observer, rowRef, active]);
+
+    useEffect(() => {
+        if (active && rowRef.current) setAddressLength(rowRef.current);
+    }, [address, gap, addressRef, rowRef, copyButtonRef, setAddressLength, active]);
 
     return autoLength;
 }
