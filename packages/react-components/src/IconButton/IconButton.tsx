@@ -1,24 +1,27 @@
 import { IconButtonRoot } from "./IconButton.styles";
 import { IconButtonProps } from "./IconButton.types";
-import { cx, fsx } from "@peersyst/react-utils";
+import { cx, fsx, setRef } from "@peersyst/react-utils";
+import { forwardRef } from "react";
 
-export default function IconButton({
-    children,
-    disabled,
-    onClick,
-    style,
-    className,
-    ...rest
-}: IconButtonProps): JSX.Element {
-    return (
-        <IconButtonRoot
-            disabled={disabled}
-            onClick={onClick}
-            style={fsx(style, { disabled })}
-            className={cx("IconButton", disabled && "Disabled", className)}
-            {...rest}
-        >
-            {children}
-        </IconButtonRoot>
-    );
-}
+const IconButton = forwardRef(
+    (
+        { children, disabled, onClick, style, className, ...rest }: IconButtonProps,
+        ref,
+    ): JSX.Element => {
+        return (
+            <IconButtonRoot
+                disabled={disabled}
+                onClick={onClick}
+                style={fsx(style, { disabled })}
+                className={cx("IconButton", disabled && "Disabled", className)}
+                ref={(r) => setRef(ref, r)}
+                {...rest}
+            >
+                {children}
+            </IconButtonRoot>
+        );
+    },
+);
+IconButton.displayName = "IconButton";
+
+export default IconButton;

@@ -15,7 +15,7 @@ export interface BlockchainAddressProps extends Omit<TypographyProps, "singleLin
     /**
      * Address' length in characters
      */
-    length?: number;
+    length?: number | "auto";
     /**
      * If ellipsis should be in the middle or end
      */
@@ -28,6 +28,10 @@ export interface BlockchainAddressProps extends Omit<TypographyProps, "singleLin
      * Gap between the address and copy button
      */
     gap?: number;
+}
+
+export interface BlockchainAddressRootProps {
+    autoLength: boolean;
 }
 
 export interface BlockchainAddressTextProps {
