@@ -32,8 +32,7 @@ function generateComponent(name, data) {
         .map((tag) => tag.slice(1))
         .sort();
 
-    return `import React from "react";
-import { SvgIcon, SvgIconProps } from "module/common/component/base/display/SvgIcon";
+    return `import { SvgIcon, SvgIconProps } from "../../display/SvgIcon";
 import { ${svgTags.join(", ")} } from "react-native-svg";
 
 export function ${name}Icon (props: Omit<SvgIconProps, "children">): JSX.Element {

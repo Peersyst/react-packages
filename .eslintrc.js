@@ -24,6 +24,10 @@ module.exports = {
     plugins: ["react", "@typescript-eslint", "prettier"],
     rules: {
         "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/ban-types": 0,
+        "react-hooks/exhaustive-deps": 0,
+        "@typescript-eslint/ban-ts-comment": 0,
     },
     settings: {},
 };
