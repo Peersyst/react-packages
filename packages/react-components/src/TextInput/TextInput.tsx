@@ -52,9 +52,20 @@ export default function TextInput<HTMLT extends HTMLInput>({
         value,
         validators,
         customValidators,
-        onInvalid,
+        modified ? onInvalid : undefined,
     );
     useFormNotification(name, value, valid);
+
+    const invalid = modified && !valid;
+    const showValid = modified && valid && showValidProp;
+    const wrapperStyleProps: TextInputStyles = {
+        invalid,
+        showValid,
+        focused,
+        active,
+        disabled,
+        readonly,
+    };
 
     useEffect(() => {
         !modified && value !== "" && setModified(true);
@@ -66,17 +77,6 @@ export default function TextInput<HTMLT extends HTMLInput>({
         const newValue = e.currentTarget.value;
         setValue(newValue);
         onChange?.(newValue);
-    };
-
-    const invalid = modified && !valid;
-    const showValid = modified && valid && showValidProp;
-    const wrapperStyleProps: TextInputStyles = {
-        invalid,
-        showValid,
-        focused,
-        active,
-        disabled,
-        readonly,
     };
 
     const {
