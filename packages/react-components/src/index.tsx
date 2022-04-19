@@ -1,6 +1,5 @@
 export * from "./Animated";
 export * from "./AppBar";
-export * from "./TextInput/utils";
 export * from "./Backdrop";
 export * from "./BackgroundImage";
 export * from "./Badge";

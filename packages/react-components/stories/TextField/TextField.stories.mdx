@@ -39,7 +39,7 @@ This component can be used in multiple ways, so here we'll see some examples and
             <TextField placeholder="Write something..." />
             <TextField placeholder="Write something..." prefix={<InfoIcon />} />
             <TextField placeholder="Write something..." suffix={<InfoIcon />} />
-            <TextField placeholder="Write something..." value="Validate number" validators="number" />
+            <TextField placeholder="Write something..." value="Validate number" validators={{number: true}} />
             <TextField placeholder="Write something..." value="Show valid" showValid />
             <TextField placeholder="Write something..." type="password" />
             <TextField placeholder="Write something..." type="number" />
@@ -71,7 +71,7 @@ This component can be used in multiple ways, so here we'll see some examples and
     <TextField placeholder="Write something..." />
     <TextField placeholder="Write something..." prefix={<InfoIcon />} />
     <TextField placeholder="Write something..." suffix={<InfoIcon />} />
-    <TextField placeholder="Write something..." validators="not-null" />
+    <TextField placeholder="Write something..." validators={{required: true}} />
     <TextField placeholder="Write something..." showValid />
     <TextField placeholder="Write something..." type="password" />
     <TextField placeholder="Write something..." type="number" />

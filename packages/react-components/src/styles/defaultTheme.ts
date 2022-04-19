@@ -68,4 +68,5 @@ export const defaultTheme: Theme = {
         tx: "https://explorer.harmony.one/tx/",
     },
     translate: (w: string) => w,
+    validators: {},
 };

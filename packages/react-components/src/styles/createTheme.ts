@@ -16,6 +16,7 @@ export function createTheme({
     skeletonAnimations,
     translate,
     blockchainLinks,
+    validators,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -35,6 +36,7 @@ export function createTheme({
         skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,
         translate: translate || defaultTheme.translate,
         blockchainLinks: { ...defaultTheme.blockchainLinks, ...blockchainLinks },
+        validators: validators || {},
         ...rest,
     };
 }

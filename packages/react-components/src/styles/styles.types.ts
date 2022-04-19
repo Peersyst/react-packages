@@ -4,7 +4,7 @@ import { CSSObject } from "styled-components";
 import { Property } from "csstype";
 import { ToastAnimation, ToastPosition } from "../Toast";
 import { SkeletonAnimation } from "../Skeleton";
-import { TranslateFn } from "../TextInput/utils";
+import { ValidatorKey, ValidatorFactory } from "../TextInput/Validators";
 
 export type PaletteMode = "light" | "dark";
 
@@ -133,6 +133,14 @@ export interface DefaultBlockchainLinks {
 }
 export interface BlockchainLinks extends DefaultBlockchainLinks {}
 
+export interface ExtraValidators {}
+
+export type TranslateKeys = ValidatorKey;
+export type TranslateFn<T extends TranslateKeys = TranslateKeys> = (
+    w: T,
+    opts?: Record<string, string>,
+) => string;
+
 export interface DefaultTheme {
     loader: JSXElementConstructor<any>;
     icons: ThemeIcons;
@@ -147,6 +155,7 @@ export interface DefaultTheme {
     toastPosition: ToastPosition;
     zIndex: ThemeZIndex;
     translate: TranslateFn;
+    validators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>;
     blockchainLinks: BlockchainLinks;
 }
 export interface Theme extends DefaultTheme {}
@@ -188,5 +197,6 @@ export interface CreateDefaultTheme {
     zIndex?: Partial<ThemeZIndex>;
     blockchainLinks?: Partial<BlockchainLinks>;
     translate?: TranslateFn;
+    validators?: Record<keyof ExtraValidators, ValidatorFactory>;
 }
 export interface CreateTheme extends CreateDefaultTheme {}
