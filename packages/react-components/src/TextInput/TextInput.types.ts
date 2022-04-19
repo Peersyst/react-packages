@@ -119,7 +119,7 @@ export interface TextInputProps {
     /**
      * Element shown when input is invalid
      */
-    errorElement?: ReactElement;
+    errorElement?: ReactElement | boolean;
     /**
      * Show when input is valid
      */

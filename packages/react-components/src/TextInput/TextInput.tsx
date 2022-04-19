@@ -84,7 +84,7 @@ export default function TextInput<HTMLT extends HTMLInput>({
             icons: { invalid: Invalid, valid: Valid },
         },
     } = useTheme();
-    const errorElement = errorElementProp || <Invalid />;
+    const errorElement = errorElementProp === true ? <Invalid /> : errorElementProp ?? <Invalid />;
     const validElement = validElementProp || <Valid />;
 
     return (
@@ -132,18 +132,22 @@ export default function TextInput<HTMLT extends HTMLInput>({
                 {!invalid ? (
                     showValid && <ValidElementWrapper>{validElement}</ValidElementWrapper>
                 ) : (
-                    <Popover>
-                        <Popover.Popper>
-                            <InputErrors>
-                                {errors.map((e, i) => (
-                                    <p key={i.toString()}>{e}</p>
-                                ))}
-                            </InputErrors>
-                        </Popover.Popper>
-                        <Popover.Content>
-                            {<ErrorElementWrapper>{errorElement}</ErrorElementWrapper>}
-                        </Popover.Content>
-                    </Popover>
+                    <>
+                        {errorElement && (
+                            <Popover>
+                                <Popover.Popper>
+                                    <InputErrors>
+                                        {errors.map((e, i) => (
+                                            <p key={i.toString()}>{e}</p>
+                                        ))}
+                                    </InputErrors>
+                                </Popover.Popper>
+                                <Popover.Content>
+                                    {<ErrorElementWrapper>{errorElement}</ErrorElementWrapper>}
+                                </Popover.Content>
+                            </Popover>
+                        )}
+                    </>
                 )}
             </Row>
         </TextInputRoot>

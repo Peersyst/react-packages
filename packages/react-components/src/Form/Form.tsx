@@ -24,7 +24,11 @@ const Form = ({ style, className, children, onSubmit, onInvalid }: FormProps): J
                 submitted,
             }}
         >
-            <form style={style} className={cx("Form", className)} onSubmit={handleSubmit}>
+            <form
+                style={style}
+                className={cx("Form", className)}
+                onSubmit={valid ? handleSubmit : undefined}
+            >
                 {children}
             </form>
         </FormProvider>
