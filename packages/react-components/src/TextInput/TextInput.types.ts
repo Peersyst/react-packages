@@ -1,6 +1,6 @@
 import { ChangeEvent, CSSProperties, ReactElement, ReactNode, RefObject } from "react";
 import { BaseValidator, Validators } from "./Validators";
-import { ExtraValidators } from "@peersyst/react-native-components";
+import { ExtraValidators } from "../styles";
 
 export interface TextInputContextTypes<HTMLT> {
     ref: RefObject<HTMLT>;
