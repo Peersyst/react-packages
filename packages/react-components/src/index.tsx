@@ -51,3 +51,4 @@ export * from "./ToggleButton";
 export * from "./Toolbar";
 export * from "./Typography";
 export * from "./Upload";
+export * from "./TextInput/Validators";
