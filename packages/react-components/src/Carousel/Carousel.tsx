@@ -1,10 +1,9 @@
-import { CarouselArrowsWrapper, CarouselRoot, CarouselWrapper } from "./Carousel.styles";
+import { CarouselArrow, CarouselRoot, CarouselWrapper } from "./Carousel.styles";
 import { CarouselProps } from "./Carousel.types";
 import { Children, cloneElement, forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import { cx, setRef } from "@peersyst/react-utils";
 import { useForkRef } from "@peersyst/react-hooks";
 import { ChevronLeftIcon, ChevronRightIcon } from "../assets/icons";
-import { IconButton } from "../IconButton";
 
 const Carousel = forwardRef(
     (
@@ -36,6 +35,13 @@ const Carousel = forwardRef(
                 }),
             [scrollX],
         );
+
+        useEffect(() => {
+            if (carouselRef.current) {
+                carouselRef.current.onwheel = (e) => e.preventDefault();
+                carouselRef.current.ontouchmove = (e) => e.preventDefault();
+            }
+        }, [carouselRef]);
 
         useEffect(() => {
             const currentCarouselRef = carouselRef.current;
@@ -102,7 +108,7 @@ const Carousel = forwardRef(
         };
         return (
             <CarouselWrapper className={cx("Carousel", className)} style={style}>
-                <CarouselRoot ref={handleCarouselRef} gap={gap}>
+                <CarouselRoot ref={handleCarouselRef} gap={gap} className="CarouselItems">
                     {Children.map(children, (child, childIndex) =>
                         cloneElement(child, {
                             ...child.props,
@@ -112,14 +118,28 @@ const Carousel = forwardRef(
                     )}
                 </CarouselRoot>
                 {renderArrows && (
-                    <CarouselArrowsWrapper>
-                        <IconButton onClick={() => handleSlide("left")} disabled={!canScrollLeft}>
-                            {leftArrow}
-                        </IconButton>
-                        <IconButton onClick={() => handleSlide("right")} disabled={!canScrollRight}>
-                            {rightArrow}
-                        </IconButton>
-                    </CarouselArrowsWrapper>
+                    <>
+                        {canScrollLeft && (
+                            <CarouselArrow
+                                className="CarouselArrow CarouselLeftArrow"
+                                direction="left"
+                                onClick={() => handleSlide("left")}
+                                disabled={!canScrollLeft}
+                            >
+                                {leftArrow}
+                            </CarouselArrow>
+                        )}
+                        {canScrollRight && (
+                            <CarouselArrow
+                                className="CarouselArrow CarouselRightArrow"
+                                direction="right"
+                                onClick={() => handleSlide("right")}
+                                disabled={!canScrollRight}
+                            >
+                                {rightArrow}
+                            </CarouselArrow>
+                        )}
+                    </>
                 )}
             </CarouselWrapper>
         );

@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Row } from "../Row";
+import { IconButton } from "../IconButton";
+import { CarouselArrowButtonProps } from "./Carousel.types";
 
 export const CarouselWrapper = styled.div`
     --arrows-inset: clamp(10px, 3vw, 20px);
@@ -27,19 +29,12 @@ export const CarouselRoot = styled(Row)`
     }
 `;
 
-export const CarouselArrowsWrapper = styled.div`
-    box-sizing: border-box;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 var(--arrows-inset);
-`;
+export const CarouselArrow = styled(IconButton)<CarouselArrowButtonProps>(
+    ({ direction }) => css`
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: ${direction === "left" && "var(--arrows-inset)"};
+        right: ${direction === "right" && "var(--arrows-inset)"};
+    `,
+);
