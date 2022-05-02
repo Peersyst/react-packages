@@ -38,8 +38,9 @@ const Carousel = forwardRef(
 
         useEffect(() => {
             if (carouselRef.current) {
-                carouselRef.current.onwheel = (e) => e.preventDefault();
-                carouselRef.current.ontouchmove = (e) => e.preventDefault();
+                carouselRef.current.onwheel = (e) => {
+                    if (e.deltaX !== 0) e.preventDefault();
+                };
             }
         }, [carouselRef]);
 

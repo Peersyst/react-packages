@@ -16,6 +16,7 @@ export const CarouselRoot = styled(Row)`
     width: 100%;
     max-width: 100vw;
 
+    touch-action: pan-y;
     overflow-x: scroll;
     scroll-behavior: smooth;
     &::-webkit-scrollbar {
