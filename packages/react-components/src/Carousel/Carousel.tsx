@@ -46,8 +46,10 @@ const Carousel = forwardRef(
         useEffect(() => {
             const currentCarouselRef = carouselRef.current;
             if (currentCarouselRef) carouselResizeObserver.observe(currentCarouselRef);
+            window.addEventListener("resize", canScrollRefresh);
             return () => {
                 carouselResizeObserver.disconnect();
+                window.removeEventListener("resize", canScrollRefresh);
             };
         }, [scrollX]);
 
