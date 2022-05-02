@@ -7,7 +7,7 @@ export type RowBreakpointWidth = Breakpoint | number;
 
 export interface RowBreakpoint {
     width: RowBreakpointWidth;
-    gap?: number;
+    gap?: number | string;
     alignItems?: Property.AlignItems;
     justifyContent?: Property.JustifyContent;
     reverse?: boolean;
@@ -33,11 +33,11 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Column gap
      */
-    gap?: number;
+    gap?: number | string;
     /**
      * Wrap row gap
      */
-    wrapGap?: number;
+    wrapGap?: number | string;
     /**
      * Row should wrap content
      */

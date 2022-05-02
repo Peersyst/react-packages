@@ -1,9 +1,9 @@
-import { Meta } from "@storybook/addon-docs";
+import {Canvas, Meta} from "@storybook/addon-docs";
 import { Carousel } from "../../src";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
-    title="Components/Utils/Carousel"
+    title="Components/Display/Carousel"
     component={Carousel}
     parameters={{
         docs: {
@@ -14,6 +14,28 @@ import themedContainer from "../styles/themedContainer";
 
 # Carousel
 
-Carousel from <a href="https://github.com/YIZHUANG/react-multi-carousel" target="_blank" rel="noreferrer noopener">react-multi-carousel</a>.
+Carousel component used to display sliding content.
 
-For more details check the <a href="https://github.com/YIZHUANG/react-multi-carousel" target="_blank" rel="noreferrer noopener">official documentation</a>.
+<Canvas>
+    <Carousel autoplay>
+        <div style={{width: "500px", height: "100px", backgroundColor: "blue"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "red"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "green"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "yellow"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "pink"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "cyan"}} />
+    </Carousel>
+</Canvas>
+
+## Usage
+
+````jsx
+<Carousel autoplay>
+    <div style={{width: "500px", height: "100px", backgroundColor: "blue"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "red"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "green"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "yellow"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "pink"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "cyan"}} />
+</Carousel>
+````

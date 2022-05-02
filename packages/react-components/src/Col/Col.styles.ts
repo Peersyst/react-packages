@@ -8,6 +8,6 @@ export const ColRoot = styled.div<ColProps>`
         flex: ${flex};
         align-items: ${alignItems};
         justify-content: ${justifyContent};
-        row-gap: ${gap ? gap + "px" : undefined};
+        row-gap: ${gap !== undefined && (typeof gap === "number" ? gap + "px" : gap)};
     `}
 `;

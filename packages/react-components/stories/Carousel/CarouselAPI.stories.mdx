@@ -1,11 +1,17 @@
+import {Meta, Props} from "@storybook/addon-docs";
 import { Carousel } from "../../src";
-import { Meta, Props } from "@storybook/addon-docs";
-import CarouselWithProps from "./component/CarouselWithProps";
+import themedContainer from "../styles/themedContainer";
 
-<Meta title="API/Utils/Carousel" component={Carousel} />
+<Meta
+    title="API/Display/Carousel"
+    component={Carousel}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
 
-# Carousel API
+# Carousel
 
-For more details check the <a href="https://github.com/YIZHUANG/react-multi-carousel" target="_blank" rel="noreferrer noopener">official documentation</a>.
-
-<Props of={CarouselWithProps} />
+<Props component={Carousel} />

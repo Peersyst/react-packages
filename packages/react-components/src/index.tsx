@@ -21,6 +21,7 @@ export * from "./IconButton";
 export * from "./Image";
 export * from "./InfiniteCarousel";
 export * from "./InfiniteScroll";
+export * from "./LegacyCarousel";
 export * from "./Loader";
 export * from "./MiniDrawer";
 export * from "./Modal";

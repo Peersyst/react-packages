@@ -21,5 +21,5 @@ export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Gap between elements
      */
-    gap?: number;
+    gap?: number | string;
 }
