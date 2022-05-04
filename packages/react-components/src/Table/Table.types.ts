@@ -95,6 +95,10 @@ export interface TableProps<T extends object> {
      * Table cell style
      */
     cellStyle?: CSSProperties;
+    /**
+     * Empty table component
+     */
+    emptyElement?: ReactElement;
 }
 
 export type ColAlignment = "left" | "center" | "right";
@@ -177,4 +181,8 @@ export interface TableRowsProps<T> {
      * Table cell style
      */
     cellStyle: CSSProperties | undefined;
+    /**
+     * Empty table component
+     */
+    emptyElement?: ReactElement;
 }
