@@ -47,7 +47,6 @@ export default function Select({
     }, [open, disabled]);
 
     const styleProps = { open, disabled };
-
     return (
         <ClickAwayListener onClickAway={() => setOpen(false)}>
             <SelectRoot className="Select">

@@ -6,11 +6,10 @@ interface SelectMenuStyles {
 }
 
 export const SelectMenuRoot = styled(Paper)<SelectMenuStyles>(({ theme, expandable }) => {
-    console.log(expandable);
     return css`
         margin-block: 0;
         z-index: ${theme.zIndex.selectMenu};
-        position: ${expandable ? "relative" : "absolute"};
+        position: ${expandable ? "unset" : "absolute"};
         top: 100%;
         width: 100%;
         max-height: 220px;
