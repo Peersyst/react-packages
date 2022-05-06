@@ -15,10 +15,10 @@ export default function (
             if (addressRef.current) {
                 const rowWidth = rowE.clientWidth;
                 const addressWidth = addressRef.current.clientWidth;
+                const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
 
-                if (rowWidth !== addressWidth) {
+                if (rowWidth !== addressWidth + gap + copyButtonWidth) {
                     setAutoLength((oldAutoLength) => {
-                        const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
                         const computedWidth = Math.floor(
                             (oldAutoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
                         );
