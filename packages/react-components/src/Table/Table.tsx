@@ -30,6 +30,7 @@ export default function Table<T extends object = Record<string, never>>({
         horizontal: true,
         vertical: true,
     },
+    emptyElement,
 }: TableProps<T>): JSX.Element {
     const rowProps = { rowClassName, rowStyle, cellClassName, cellStyle, onRowClick };
     const columnsProps: TableColumnsProps<T> = {
@@ -38,7 +39,7 @@ export default function Table<T extends object = Record<string, never>>({
         className: headerClassName,
         style: headerStyle,
     };
-    const rowsProps = { ...rowProps, rows, columns };
+    const rowsProps = { ...rowProps, rows, columns, emptyElement };
     const borders: TableBorders = {
         outline: bordersProp?.outline ?? true,
         horizontal: bordersProp?.horizontal ?? true,
