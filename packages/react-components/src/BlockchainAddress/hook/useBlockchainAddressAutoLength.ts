@@ -9,10 +9,12 @@ export default function (
     copyButtonRef: RefObject<HTMLButtonElement>,
 ): number {
     const [autoLength, setAutoLength] = useState(address.length);
+    const [resized, setResized] = useState(false);
 
     const setAddressLength = useCallback(
         (rowE: Element) => {
-            if (addressRef.current) {
+            if (resized) setResized(false);
+            else if (addressRef.current) {
                 const rowWidth = rowE.clientWidth;
                 const addressWidth = addressRef.current.clientWidth;
                 const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
@@ -24,10 +26,11 @@ export default function (
                         );
                         return Math.max(Math.min(computedWidth, address.length), 1);
                     });
+                    setResized(true);
                 }
             }
         },
-        [address, gap, addressRef, copyButtonRef],
+        [address, gap, addressRef, copyButtonRef, resized],
     );
 
     const observer = useMemo(
