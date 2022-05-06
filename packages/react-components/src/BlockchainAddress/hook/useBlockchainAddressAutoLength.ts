@@ -19,7 +19,7 @@ export default function (
 
                 const totalWidth = addressWidth + gap + copyButtonWidth;
 
-                if (rowWidth > totalWidth * 1.05 || rowWidth < totalWidth * 0.95) {
+                if (rowWidth > totalWidth * 1.01 || rowWidth < totalWidth * 0.99) {
                     setAutoLength((oldAutoLength) => {
                         const computedWidth = Math.floor(
                             (oldAutoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
