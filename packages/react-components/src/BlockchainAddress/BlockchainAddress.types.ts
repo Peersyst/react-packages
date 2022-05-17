@@ -1,7 +1,7 @@
-import { TypographyProps } from "../Typography";
 import { OverridableStringUnion } from "@peersyst/react-types";
-import { BlockchainLinksTypes, BlockchainLinksTypesOverrides } from "../styles";
 import { BlockchainAddressEllipsis } from "@peersyst/react-utils";
+import { TypographyProps } from "../Typography";
+import { BlockchainLinksTypes, BlockchainLinksTypesOverrides } from "../styles";
 
 export interface BlockchainAddressProps extends Omit<TypographyProps, "singleLine" | "children"> {
     /**

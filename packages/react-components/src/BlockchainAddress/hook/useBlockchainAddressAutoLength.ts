@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
 
 export default function (
     active: boolean,
@@ -10,52 +10,43 @@ export default function (
 ): number {
     const [autoLength, setAutoLength] = useState(address.length);
 
-    const resized = useRef(false);
-
     const setAddressLength = useCallback(
         (rowE: Element) => {
             if (addressRef.current) {
                 const rowWidth = rowE.clientWidth;
-                const addressWidth = addressRef.current.clientWidth;
+                const addressWidth = addressRef.current?.clientWidth || 0;
                 const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
 
-                const totalWidth = addressWidth + gap + copyButtonWidth;
+                const computedWidth = Math.floor(
+                    (autoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
+                );
+                const newLength = Math.max(Math.min(computedWidth, address.length), 1);
 
-                if (!resized.current && (rowWidth > totalWidth || rowWidth < totalWidth)) {
-                    setAutoLength((oldAutoLength) => {
-                        const computedWidth = Math.floor(
-                            (oldAutoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
-                        );
-                        return Math.max(Math.min(computedWidth, address.length), 1);
-                    });
-                    resized.current = true;
-                } else {
-                    resized.current = false;
+                if (newLength > autoLength + 1 || newLength < autoLength) {
+                    setAutoLength(newLength);
                 }
             }
         },
-        [address, gap, addressRef, copyButtonRef],
+        [address, gap, addressRef, copyButtonRef, autoLength],
     );
 
-    const observer = useMemo(
-        () =>
-            new ResizeObserver(([rowObs]) => {
-                setAddressLength(rowObs.target);
-            }),
-        [setAddressLength],
-    );
+    const observer = useMemo(() => {
+        return new ResizeObserver(([rowObs]) => {
+            setAddressLength(rowObs.target);
+        });
+    }, [setAddressLength]);
 
     useEffect(() => {
         const currentRowRef = rowRef.current;
         if (active && currentRowRef) observer.observe(currentRowRef);
         return () => {
-            if (active && currentRowRef) observer.unobserve(currentRowRef);
+            if (active && currentRowRef) observer.disconnect();
         };
-    }, [observer, rowRef, active]);
+    }, [rowRef, active]);
 
     useEffect(() => {
         if (active && rowRef.current) setAddressLength(rowRef.current);
-    }, [address, gap, addressRef, rowRef, copyButtonRef, setAddressLength, active]);
+    }, [rowRef, setAddressLength, active]);
 
     return autoLength;
 }

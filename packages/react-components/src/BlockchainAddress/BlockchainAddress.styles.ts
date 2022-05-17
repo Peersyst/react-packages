@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Typography } from "../Typography";
-import { Row } from "../Row";
 import { BlockchainAddressRootProps, BlockchainAddressTextProps } from "./BlockchainAddress.types";
+import { Row } from "../Row";
+import { Typography } from "../Typography";
 
 export const BlockchainAddressRoot = styled(Row).attrs({
     alignItems: "center",

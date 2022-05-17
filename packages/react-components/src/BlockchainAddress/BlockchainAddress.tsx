@@ -1,10 +1,10 @@
 import { BlockchainAddressProps } from "./BlockchainAddress.types";
-import { CopyButton } from "../CopyButton";
-import { useTheme } from "../Theme";
 import { cx, formatAddress } from "@peersyst/react-utils";
 import { BlockchainAddressRoot, BlockchainAddressText } from "./BlockchainAddress.styles";
 import { createRef } from "react";
 import useBlockchainAddressAutoLength from "./hook/useBlockchainAddressAutoLength";
+import { CopyButton } from "../CopyButton";
+import { useTheme } from "../Theme";
 
 const BlockchainAddress = ({
     address,
