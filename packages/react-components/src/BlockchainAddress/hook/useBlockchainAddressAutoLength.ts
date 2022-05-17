@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export default function (
     active: boolean,
@@ -10,7 +10,7 @@ export default function (
 ): number {
     const [autoLength, setAutoLength] = useState(address.length);
 
-    let resized = false;
+    const resized = useRef(false);
 
     const setAddressLength = useCallback(
         (rowE: Element) => {
@@ -21,16 +21,16 @@ export default function (
 
                 const totalWidth = addressWidth + gap + copyButtonWidth;
 
-                if (!resized && (rowWidth > totalWidth || rowWidth < totalWidth)) {
+                if (!resized.current && (rowWidth > totalWidth || rowWidth < totalWidth)) {
                     setAutoLength((oldAutoLength) => {
                         const computedWidth = Math.floor(
                             (oldAutoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
                         );
                         return Math.max(Math.min(computedWidth, address.length), 1);
                     });
-                    resized = true;
+                    resized.current = true;
                 } else {
-                    resized = false;
+                    resized.current = false;
                 }
             }
         },
