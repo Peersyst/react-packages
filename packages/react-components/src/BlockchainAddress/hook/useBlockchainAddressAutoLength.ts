@@ -10,6 +10,8 @@ export default function (
 ): number {
     const [autoLength, setAutoLength] = useState(address.length);
 
+    let resized = false;
+
     const setAddressLength = useCallback(
         (rowE: Element) => {
             if (addressRef.current) {
@@ -19,13 +21,16 @@ export default function (
 
                 const totalWidth = addressWidth + gap + copyButtonWidth;
 
-                if (rowWidth > totalWidth * 1.01 || rowWidth < totalWidth * 0.99) {
+                if (!resized && (rowWidth > totalWidth || rowWidth < totalWidth)) {
                     setAutoLength((oldAutoLength) => {
                         const computedWidth = Math.floor(
                             (oldAutoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
                         );
                         return Math.max(Math.min(computedWidth, address.length), 1);
                     });
+                    resized = true;
+                } else {
+                    resized = false;
                 }
             }
         },
