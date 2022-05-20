@@ -9,10 +9,6 @@ export type DrawerVariant = "permanent" | "persistent" | "temporary";
 
 export interface DrawerProps {
     /**
-     * Drawer name
-     */
-    name?: string;
-    /**
      * Drawer variant
      */
     variant?: DrawerVariant;

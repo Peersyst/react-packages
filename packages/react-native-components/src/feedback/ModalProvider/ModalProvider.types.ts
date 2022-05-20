@@ -27,7 +27,7 @@ export interface ShowModalAction {
 
 export interface HideModalAction {
     type: ModalActionType.SHOW_MODAL;
-    payload: string;
+    payload?: string | ModalWithId;
 }
 
 export interface RemoveModalAction {

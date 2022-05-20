@@ -28,6 +28,7 @@ module.exports = {
         "@typescript-eslint/ban-types": 0,
         "react-hooks/exhaustive-deps": 0,
         "@typescript-eslint/ban-ts-comment": 0,
+        "no-case-declarations": 0,
     },
     settings: {},
 };

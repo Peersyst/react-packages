@@ -6,9 +6,12 @@ export interface ModalProviderProps {
 
 export type ModalState = Modal[];
 
+export type ModalWithId<T extends CommonModalComponentProps = CommonModalComponentProps> =
+    ComponentType<T> & { id: string };
+
 export interface Modal<T extends CommonModalComponentProps = CommonModalComponentProps> {
-    Modal: ComponentType<ModalComponentProps<T>>;
-    props: ModalComponentProps<T>;
+    Modal: ModalWithId<T>;
+    props: T;
 }
 
 export enum ModalActionType {
@@ -24,7 +27,7 @@ export interface ShowModalAction {
 
 export interface HideModalAction {
     type: ModalActionType.SHOW_MODAL;
-    payload: string;
+    payload?: string | ModalWithId;
 }
 
 export interface RemoveModalAction {
@@ -39,10 +42,6 @@ export type ModalAction = {
 
 export interface CommonModalComponentProps {
     /**
-     * Component name
-     */
-    name?: string;
-    /**
      * Component is open
      */
     open?: boolean;
@@ -55,7 +54,3 @@ export interface CommonModalComponentProps {
      */
     onExited?: () => unknown;
 }
-
-export type ModalComponentProps<T extends CommonModalComponentProps> = Omit<T, "name"> & {
-    name: string;
-};

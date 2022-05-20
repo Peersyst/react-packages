@@ -7,10 +7,6 @@ export type ModalAnimation = "fade" | "from-bottom" | CustomAnimatedComponent;
 
 export interface ModalProps {
     /**
-     * Modal name
-     */
-    name?: string;
-    /**
      * Modal is open on mount
      */
     defaultOpen?: boolean;
