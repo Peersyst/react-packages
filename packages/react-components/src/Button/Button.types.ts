@@ -1,6 +1,6 @@
-import { CSSProperties, HTMLAttributes, MouseEvent, ReactElement, ReactNode } from "react";
+import { ButtonHTMLAttributes, CSSProperties, MouseEvent, ReactElement, ReactNode } from "react";
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * Disables the button
      */

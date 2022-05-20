@@ -14,6 +14,7 @@ const Button = function ({
     fullWidth = false,
     onClick,
     style,
+    type = "button",
     ...rest
 }: ButtonProps) {
     const {
@@ -37,6 +38,7 @@ const Button = function ({
                         className,
                     )}
                     style={fsx(style, { disabled, loading })}
+                    type={type}
                     {...rest}
                 >
                     <ButtonContent>{children}</ButtonContent>

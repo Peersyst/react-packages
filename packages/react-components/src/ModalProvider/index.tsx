@@ -5,5 +5,5 @@ export type {
     ModalProviderProps,
 } from "./ModalProvider.types";
 export * from "./ModalContext";
-export * from "./ModalManager";
+export * from "./ModalManager/ModalManager";
 export * from "./hooks";

@@ -27,6 +27,7 @@ const PaginationItem = ({
             )}
             isEllipsis={isEllipsis}
             as={isEllipsis ? "div" : "button"}
+            type="button"
             {...rest}
         />
     );

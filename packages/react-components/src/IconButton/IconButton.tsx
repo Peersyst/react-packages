@@ -5,7 +5,15 @@ import { forwardRef } from "react";
 
 const IconButton = forwardRef(
     (
-        { children, disabled, onClick, style, className, ...rest }: IconButtonProps,
+        {
+            children,
+            disabled,
+            onClick,
+            style,
+            className,
+            type = "button",
+            ...rest
+        }: IconButtonProps,
         ref,
     ): JSX.Element => {
         return (
@@ -14,6 +22,7 @@ const IconButton = forwardRef(
                 onClick={onClick}
                 style={fsx(style, { disabled })}
                 className={cx("IconButton", disabled && "Disabled", className)}
+                type={type}
                 ref={(r) => setRef(ref, r)}
                 {...rest}
             >

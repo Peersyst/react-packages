@@ -7,7 +7,7 @@ import {
     ModalComponentProps,
     ModalProviderProps,
 } from "./ModalProvider.types";
-import { ModalManager } from "./ModalManager";
+import { ModalManager } from "./ModalManager/ModalManager";
 
 export default function ModalProvider({ children }: ModalProviderProps): JSX.Element {
     const [state, dispatch] = useModalReducer();
