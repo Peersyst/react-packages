@@ -37,7 +37,7 @@ export interface RemoveModalAction {
 
 export type ModalAction = {
     type: ModalActionType;
-    payload: Modal | string;
+    payload: Modal | ModalWithId | string;
 };
 
 export interface CommonModalComponentProps {
