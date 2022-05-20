@@ -1,12 +1,6 @@
-import { ComponentType } from "react";
 import { ModalContext, ModalContextType } from "./ModalContext";
 import { useModalReducer } from "./hooks/useModalReducer";
-import {
-    CommonModalComponentProps,
-    ModalActionType,
-    ModalComponentProps,
-    ModalProviderProps,
-} from "./ModalProvider.types";
+import { ModalActionType, ModalProviderProps, ModalWithId } from "./ModalProvider.types";
 import { ModalManager } from "./ModalManager/ModalManager";
 
 export default function ModalProvider({ children }: ModalProviderProps): JSX.Element {
@@ -17,13 +11,13 @@ export default function ModalProvider({ children }: ModalProviderProps): JSX.Ele
             dispatch({
                 type: ModalActionType.SHOW_MODAL,
                 payload: {
-                    Modal: Modal as ComponentType<ModalComponentProps<CommonModalComponentProps>>,
-                    props,
+                    Modal: Modal as ModalWithId,
+                    props: props || {},
                 },
             }),
-        hideModal: (name) => dispatch({ type: ModalActionType.HIDE_MODAL, payload: name }),
-        removeModal: (name) => dispatch({ type: ModalActionType.REMOVE_MODAL, payload: name }),
-        isModalActive: (name) => state.some((Modal) => Modal.props.name === name),
+        hideModal: (id) => dispatch({ type: ModalActionType.HIDE_MODAL, payload: id }),
+        removeModal: (id) => dispatch({ type: ModalActionType.REMOVE_MODAL, payload: id }),
+        isModalActive: (id) => state.some(({ Modal }) => Modal.id === id),
         modals: state,
     };
 

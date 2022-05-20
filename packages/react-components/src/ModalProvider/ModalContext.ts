@@ -1,11 +1,8 @@
-import { ComponentType, createContext } from "react";
-import { CommonModalComponentProps, ModalComponentProps, ModalState } from "./ModalProvider.types";
+import { createContext } from "react";
+import { ModalWithId, ModalState } from "./ModalProvider.types";
 
 export interface ModalContextType {
-    showModal: <T extends CommonModalComponentProps = CommonModalComponentProps>(
-        Modal: ComponentType<T>,
-        props: ModalComponentProps<T>,
-    ) => void;
+    showModal: <T>(Modal: ModalWithId<T>, props?: T) => void;
     hideModal: (name: string) => void;
     removeModal: (name: string) => void;
     isModalActive: (name: string) => boolean;

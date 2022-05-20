@@ -11,7 +11,7 @@ export function useModalState(): ReactNode[] {
                 key={i.toString()}
                 onExited={() => {
                     onExited?.();
-                    removeModal(rest.name as string);
+                    removeModal(Modal.id);
                 }}
             />
         );

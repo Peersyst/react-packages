@@ -3,10 +3,6 @@ import { CustomAnimatedComponent, TransitionDuration, TransitionStyles } from ".
 
 export interface BackdropProps {
     /**
-     * Backdrop name
-     */
-    name?: string;
-    /**
      * Backdrop is open
      */
     open?: boolean;
@@ -75,7 +71,6 @@ export interface BackdropStyles {
 
 export type ForwardedBackdropProps = Pick<
     BackdropProps,
-    | "name"
     | "defaultOpen"
     | "open"
     | "onClose"
