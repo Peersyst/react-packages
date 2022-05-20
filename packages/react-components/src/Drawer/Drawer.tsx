@@ -13,7 +13,6 @@ import { MouseEvent } from "react";
  */
 
 export default function Drawer({
-    name,
     variant = "temporary",
     defaultOpen = true,
     open: propOpen,
@@ -40,7 +39,6 @@ export default function Drawer({
     );
 
     const forwardedBackdropProps: ForwardedBackdropProps = {
-        name,
         defaultOpen,
         open,
         onClose: variant === "temporary" ? () => setOpen(false) : undefined,

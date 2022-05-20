@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Deploy storybook') {
            when {
-               branch 'master'
+               branch 'main'
            }
             steps {
                 sshagent(credentials : ['jenkins-ssh']) {
@@ -51,7 +51,7 @@ pipeline {
                 }
             }
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {

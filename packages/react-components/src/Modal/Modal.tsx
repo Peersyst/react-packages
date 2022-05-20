@@ -7,7 +7,6 @@ import { getAnimatedComponent } from "./utils/getAnimatedComponent";
 import { cx } from "@peersyst/react-utils";
 
 export default function Modal({
-    name,
     closable = true,
     defaultOpen = true,
     open: propOpen,
@@ -35,7 +34,6 @@ export default function Modal({
     const { AnimatedComponent, props: AnimatedComponentProps } = getAnimatedComponent(animation);
 
     const forwardedBackdropProps: ForwardedBackdropProps = {
-        name,
         defaultOpen,
         open,
         onClose: handleClose,
