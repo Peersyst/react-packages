@@ -1,5 +1,9 @@
 # Versions
 
+## 0.0.3
+
+ModalProvider patch fixing useModal types
+
 ## 0.0.2
 
 [Backdrop] hideBackdrop from useBackdrop hook accepts a Backdrop, an id or nothing. If nothing is provided, **the last opened Backdrop based component will be closed**.

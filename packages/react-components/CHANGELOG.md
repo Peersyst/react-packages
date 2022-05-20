@@ -1,5 +1,9 @@
 # Versions
 
+## 2.16.1
+
+ModalProvider patch fixing useModal types
+
 ## 2.16.0
 
 ---
