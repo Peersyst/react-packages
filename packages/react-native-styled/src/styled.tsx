@@ -4,7 +4,9 @@ import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
 import { ScaledSize, StyleSheet, useWindowDimensions } from "react-native";
 import { SX, StyledFunction } from "./types";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 
+// T extends Partial<Omit<P, "sx" | "style">>
 export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style"] }>(
     Component: ComponentType<P>,
     props?: Partial<Omit<P, "sx" | "style">>,
@@ -13,18 +15,22 @@ export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style
         const StyledComponent = ({ sx: sxProp, style: styleProp, ...rest }: P & E): JSX.Element => {
             const theme = useTheme();
             const dimensions = useWindowDimensions();
+            const safeAreaInsets = useSafeAreaInsets();
 
             const style = useMemo(
                 () =>
                     deepmerge(
                         deepmerge(
-                            styledSx?.({ theme, dimensions, ...rest } as P &
-                                E & { theme: Theme } & { dimensions: ScaledSize }),
+                            styledSx?.({ theme, dimensions, safeAreaInsets, ...rest } as P &
+                                E & { theme: Theme } & {
+                                    dimensions: ScaledSize;
+                                    safeAreaInsets: EdgeInsets;
+                                }),
                             StyleSheet.flatten(styleProp),
                         ),
                         sxProp?.(theme),
                     ),
-                [styleProp, theme, rest, sxProp, dimensions],
+                [styleProp, theme, rest, sxProp, dimensions, safeAreaInsets],
             );
 
             const finalProps = {
