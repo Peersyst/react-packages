@@ -1,13 +1,17 @@
 import { IconButtonRoot } from "./IconButton.styles";
 import { IconButtonProps } from "./IconButton.types";
 import { cx, fsx, setRef } from "@peersyst/react-utils";
-import { forwardRef } from "react";
+import { forwardRef, useContext } from "react";
+import { useTheme } from "../Theme";
+import { FormContext } from "@peersyst/react-components-core";
 
 const IconButton = forwardRef(
     (
         {
             children,
-            disabled,
+            loading,
+            loadingElement: loadingElementProp,
+            disabled: disabledProp = false,
             onClick,
             style,
             className,
@@ -16,9 +20,17 @@ const IconButton = forwardRef(
         }: IconButtonProps,
         ref,
     ): JSX.Element => {
+        const {
+            theme: { loader: DefaultLoader },
+        } = useTheme();
+        const loadingElement = loadingElementProp || <DefaultLoader />;
+
+        const { valid } = useContext(FormContext);
+        const disabled = disabledProp || loading || (type === "submit" && valid === false);
+
         return (
             <IconButtonRoot
-                disabled={disabled}
+                disabled={disabled || loading}
                 onClick={onClick}
                 style={fsx(style, { disabled })}
                 className={cx("IconButton", disabled && "Disabled", className)}
@@ -26,7 +38,7 @@ const IconButton = forwardRef(
                 ref={(r) => setRef(ref, r)}
                 {...rest}
             >
-                {children}
+                {loading ? loadingElement : children}
             </IconButtonRoot>
         );
     },

@@ -6,6 +6,14 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
      */
     children: ReactElement;
     /**
+     * Prop to display a loading spinner.
+     */
+    loading?: boolean;
+    /**
+     * Content for the button's loading state
+     */
+    loadingElement?: ReactElement;
+    /**
      * Disables the button
      */
     disabled?: boolean;

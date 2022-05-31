@@ -1,8 +1,14 @@
 # Versions
 
+## 2.12.2
+
+[Button] Fixed Button being disabled when inside a form and type !== "submit"
+[IconButton] Fixed Button being disabled when inside a form and type !== "submit"
+[IconButton] Added loading and loadingElement props
+
 ## 2.16.1
 
-ModalProvider patch fixing useModal types
+[ModalProvider] patch fixing useModal types
 
 ## 2.16.0
 
