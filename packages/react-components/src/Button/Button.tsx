@@ -1,12 +1,13 @@
-import { FormConsumer } from "../Form";
 import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { useTheme } from "../Theme";
 import { cx, fsx } from "@peersyst/react-utils";
+import { FormContext } from "@peersyst/react-components-core";
+import { useContext } from "react";
 
 const Button = function ({
     className,
-    disabled,
+    disabled: disabledProp,
     children,
     loading,
     loadingElement: loadingElementProp,
@@ -22,32 +23,24 @@ const Button = function ({
     } = useTheme();
     const loadingElement = loadingElementProp || <DefaultLoader />;
 
+    const { valid } = useContext(FormContext);
+    const disabled = disabledProp || loading || (type === "submit" && valid === false);
+
     return (
-        <FormConsumer>
-            {({ valid }) => (
-                <ButtonRoot
-                    isLoading={loading}
-                    size={size}
-                    fullWidth={fullWidth}
-                    disabled={disabled || loading || (valid !== undefined && !valid)}
-                    onClick={onClick}
-                    className={cx(
-                        "Button",
-                        loading && "Loading",
-                        disabled && "Disabled",
-                        className,
-                    )}
-                    style={fsx(style, { disabled, loading })}
-                    type={type}
-                    {...rest}
-                >
-                    <ButtonContent>{children}</ButtonContent>
-                    {loading && (
-                        <ButtonLoader className="ButtonLoader">{loadingElement}</ButtonLoader>
-                    )}
-                </ButtonRoot>
-            )}
-        </FormConsumer>
+        <ButtonRoot
+            isLoading={loading}
+            size={size}
+            fullWidth={fullWidth}
+            disabled={disabled}
+            onClick={onClick}
+            className={cx("Button", loading && "Loading", disabled && "Disabled", className)}
+            style={fsx(style, { disabled, loading })}
+            type={type}
+            {...rest}
+        >
+            <ButtonContent>{children}</ButtonContent>
+            {loading && <ButtonLoader className="ButtonLoader">{loadingElement}</ButtonLoader>}
+        </ButtonRoot>
     );
 };
 
