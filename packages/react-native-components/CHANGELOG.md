@@ -1,5 +1,9 @@
 # Versions
 
+## 0.0.5
+
+[createModal] Rename `closeModal` to `close`
+
 ## 0.0.4
 
 [createModal] Now uses a higher order component that grants the `id` of the modal that is being created and a `closeModal` function to be able to close it from inside
