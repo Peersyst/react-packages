@@ -33,6 +33,10 @@ export interface PopoverProps {
      */
     arrow?: boolean;
     /**
+     * Displaces the popper along the reference element.
+     */
+    skidding?: number;
+    /**
      * Popper animation
      */
     animation?: CustomAnimatedComponent;

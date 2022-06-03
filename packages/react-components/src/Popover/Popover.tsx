@@ -32,6 +32,7 @@ function Popover({
     showOn = "hover",
     position = "bottom",
     arrow,
+    skidding = 0,
     animation: { AnimatedComponent, props: AnimatedComponentProps } = {
         AnimatedComponent: Animated.Fade,
         props: { duration: 200 },
@@ -59,7 +60,7 @@ function Popover({
                     {
                         name: "offset",
                         options: {
-                            offset: [0, arrow ? 10 : 0],
+                            offset: [skidding, arrow ? 10 : 0],
                         },
                     },
                 ],

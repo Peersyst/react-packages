@@ -1,5 +1,9 @@
 # Versions
 
+## 2.17.3
+
+[Popover] Add `skidding` props
+
 ## 2.17.2
 
 [createModal] Rename `closeModal` to `close`
