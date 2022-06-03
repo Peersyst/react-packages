@@ -1,5 +1,9 @@
 # Versions
 
+## 2.17.1
+
+[createModal] Now uses a higher order component that grants the `id` of the modal that is being created and a `closeModal` function to be able to close it from inside
+
 ## 2.17.0
 
 ---
