@@ -2,7 +2,7 @@ import { Popover, Button, Row, Col } from "../../../src";
 
 const Example = () => {
     return (
-        <Popover showOn="hover" position="bottom">
+        <Popover showOn="hover" position="top" arrow>
             <Popover.Popper style={{ padding: "6px" }}>
                 <Col gap={5} style={{ width: 150 }}>
                     <Row style={{ height: 30 }} justifyContent="center" alignItems="center">

@@ -12,14 +12,14 @@ const Paper = forwardRef(
             children,
             ...rest
         }: PaperProps & HTMLAttributes<HTMLDivElement>,
-        ref: Ref<HTMLDivElement>,
+        ref,
     ) => (
         <PaperRoot
             elevation={elevation}
             square={square}
             className={className}
             style={style}
-            ref={ref}
+            ref={ref as Ref<HTMLDivElement>}
             {...rest}
         >
             {children}
