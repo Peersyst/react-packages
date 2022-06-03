@@ -1,23 +1,43 @@
-import { createRef, ReactNode, useCallback, useState } from "react";
+import {
+    cloneElement,
+    PropsWithChildren,
+    ReactElement,
+    ReactNode,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
 import { PopoverProps } from "./Popover.types";
-import { PopoverContent, PopoverPaper, PopoverPopper, PopoverRoot } from "./Popover.styles";
-import { findSlot, cx } from "@peersyst/react-utils";
+import {
+    PopoverContent,
+    PopoverPaper,
+    PopoverPopper,
+    PopoverRoot,
+    PopoverSnitch,
+    PopperArrow,
+} from "./Popover.styles";
+import { findSlot, cx, debounce } from "@peersyst/react-utils";
 import { ClickAwayListener } from "../ClickAwayListener";
 import { useControlled } from "@peersyst/react-hooks";
-import { PaperProps } from "../Paper";
-import { usePopperOrigin } from "./hooks/usePopperOrigin";
 import { Animated } from "../Animated";
+import { createPopper } from "@popperjs/core";
+import { createPortal } from "react-dom";
+import { PaperProps } from "../Paper";
 
 function Popover({
     visible: visibleProp,
     onHide,
     onShow,
     showOn = "hover",
-    position = "top-right",
+    position = "bottom",
+    arrow,
     animation: { AnimatedComponent, props: AnimatedComponentProps } = {
         AnimatedComponent: Animated.Fade,
         props: { duration: 200 },
     },
+    container: containerProp,
+    disablePortal = false,
     children,
 }: PopoverProps): JSX.Element {
     const [visible, setVisible] = useControlled(false, visibleProp, visibleProp ? onHide : onShow);
@@ -26,48 +46,117 @@ function Popover({
     const popper = findSlot(children, Popper);
     const content = findSlot(children, Content);
 
-    const handleClick = useCallback(() => {
+    const [popperRef, setPopperRef] = useState<HTMLDivElement | null>(null);
+    const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+    const handlePopperRef = useRef(debounce(setPopperRef, 350)).current;
+    const handleContentRef = useRef(debounce(setContentRef, 350)).current;
+
+    const popperInstance = useMemo(() => {
+        if (popperRef && contentRef)
+            return createPopper(contentRef, popperRef, {
+                placement: position,
+                modifiers: [
+                    {
+                        name: "offset",
+                        options: {
+                            offset: [0, arrow ? 10 : 0],
+                        },
+                    },
+                ],
+            });
+    }, [popperRef, contentRef]);
+
+    useEffect(() => {
+        if (popperInstance) {
+            if (visible) {
+                // Enable the event listeners
+                popperInstance.setOptions((options) => ({
+                    ...options,
+                    modifiers: [
+                        ...(options.modifiers || []),
+                        { name: "eventListeners", enabled: true },
+                    ],
+                }));
+                // Update position
+                popperInstance.update();
+            } else {
+                // Disable the event listeners
+                popperInstance.setOptions((options) => ({
+                    ...options,
+                    modifiers: [
+                        ...(options.modifiers || []),
+                        { name: "eventListeners", enabled: false },
+                    ],
+                }));
+            }
+        }
+    }, [visible]);
+
+    useEffect(() => {
+        if (visibleProp) setFullyVisible(true);
+    }, [visibleProp]);
+
+    const handleClick = () => {
         if (showOn === "click") {
             setVisible(true);
             setFullyVisible(true);
         }
-    }, [showOn, setVisible, setFullyVisible]);
+    };
 
-    const handleMouseOver = useCallback(() => {
+    const handleMouseOver = () => {
         if (showOn === "hover") {
             setVisible(true);
             setFullyVisible(true);
         }
-    }, [showOn, setVisible, setFullyVisible]);
+    };
 
-    const handleMouseLeave = useCallback(() => {
-        showOn === "hover" && setVisible(false);
-    }, [showOn, setVisible]);
+    const handleMouseLeave = () => {
+        if (showOn === "hover") {
+            setVisible(false);
+        }
+    };
 
-    const popperRef = createRef<HTMLDivElement>();
-    const origin = usePopperOrigin(fullyVisible, position, popperRef);
+    const popperElement = (
+        <PopoverPopper
+            style={{
+                display: !fullyVisible ? "none" : undefined,
+            }}
+            ref={handlePopperRef}
+            onMouseEnter={() => visible && handleMouseOver()}
+            onMouseLeave={() => visible && handleMouseLeave()}
+        >
+            <AnimatedComponent
+                {...AnimatedComponentProps}
+                in={visible}
+                onExited={() => setFullyVisible(false)}
+            >
+                {cloneElement(
+                    popper as ReactElement<PaperProps>,
+                    {
+                        ...popper.props,
+                        children: (
+                            <>
+                                {(popper.props as PaperProps).children}
+                                {arrow && (
+                                    <PopperArrow
+                                        elevation={(popper.props as PaperProps).elevation}
+                                        data-popper-arrow
+                                    />
+                                )}
+                            </>
+                        ),
+                    } as PropsWithChildren<any>,
+                )}
+            </AnimatedComponent>
+        </PopoverPopper>
+    );
+
+    const container = containerProp || document.body;
 
     return (
         <ClickAwayListener onClickAway={() => showOn === "click" && visible && setVisible(false)}>
             <PopoverRoot>
-                <PopoverPopper
-                    style={{
-                        margin: `${origin.vertical}px ${origin.horizontal}px`,
-                        display: !visible ? "none" : undefined,
-                    }}
-                    position={position}
-                    ref={popperRef}
-                    onMouseEnter={() => visible && handleMouseOver()}
-                    onMouseLeave={() => visible && handleMouseLeave()}
-                >
-                    <AnimatedComponent
-                        {...AnimatedComponentProps}
-                        in={visible}
-                        onExited={() => setFullyVisible(false)}
-                    >
-                        {popper}
-                    </AnimatedComponent>
-                </PopoverPopper>
+                {disablePortal ? popperElement : createPortal(popperElement, container)}
                 <PopoverContent
                     onClick={handleClick}
                     onMouseEnter={handleMouseOver}
@@ -75,6 +164,7 @@ function Popover({
                     className="PopoverContent"
                 >
                     {content}
+                    <PopoverSnitch ref={handleContentRef} />
                 </PopoverContent>
             </PopoverRoot>
         </ClickAwayListener>

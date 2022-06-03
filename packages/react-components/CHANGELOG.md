@@ -1,6 +1,17 @@
 # Versions
 
-## 2.12.2
+## 2.17.0
+
+---
+
+#### BREAKING CHANGES
+Popover `position` prop has changed on order to match Popper.js'.
+
+---
+
+[Popover] Improved Popover built on top of Popper.js
+
+## 2.16.2
 
 [Button] Fixed Button being disabled when inside a form and type !== "submit"
 [IconButton] Fixed Button being disabled when inside a form and type !== "submit"

@@ -3,7 +3,7 @@ import { IconButtonProps } from "./IconButton.types";
 import { cx, fsx, setRef } from "@peersyst/react-utils";
 import { forwardRef, useContext } from "react";
 import { useTheme } from "../Theme";
-import { FormContext } from "@peersyst/react-components-core";
+import { FormContext } from "../Form";
 
 const IconButton = forwardRef(
     (

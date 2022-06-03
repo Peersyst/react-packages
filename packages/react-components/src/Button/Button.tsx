@@ -2,7 +2,7 @@ import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { useTheme } from "../Theme";
 import { cx, fsx } from "@peersyst/react-utils";
-import { FormContext } from "@peersyst/react-components-core";
+import { FormContext } from "../Form";
 import { useContext } from "react";
 
 const Button = function ({
