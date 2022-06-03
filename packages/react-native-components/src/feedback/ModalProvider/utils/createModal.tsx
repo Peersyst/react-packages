@@ -3,15 +3,15 @@ import { useModal } from "../hooks";
 import { CommonModalComponentProps, ModalWithId } from "../ModalProvider.types";
 
 export default function createModal<P extends CommonModalComponentProps>(
-    Component: ComponentType<P & { id: string; closeModal: () => void }>,
+    Component: ComponentType<P & { id: string; close: () => void }>,
 ): ModalWithId<P> {
     const id = new Date().getTime().toString();
     const HigherOrderModal = (props: P): JSX.Element => {
         const { hideModal } = useModal();
-        const closeModal = () => hideModal(id);
+        const close = () => hideModal(id);
 
         // @ts-ignore
-        return <Component id={id} closeModal={closeModal} {...props} />;
+        return <Component id={id} close={close} {...props} />;
     };
     const Modal: ComponentType<P> & { id: string } = HigherOrderModal as ModalWithId<P>;
     Modal.id = id;
