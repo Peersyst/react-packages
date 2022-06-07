@@ -1,5 +1,9 @@
 # Versions
 
+## 0.0.6
+
+Dependencies update
+
 ## 0.0.5
 
 [createModal] Rename `closeModal` to `close`

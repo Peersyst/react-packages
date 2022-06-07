@@ -1,5 +1,9 @@
 # Versions
 
+## 2.17.4
+
+Dependencies update
+
 ## 2.17.3
 
 [Popover] Add `skidding` props
