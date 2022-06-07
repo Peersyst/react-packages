@@ -1,3 +1,5 @@
 # Versions
 
-## 0.0.1
+## 1.4.0
+
+[createSlot] Util that creates a Slot Component

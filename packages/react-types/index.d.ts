@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, FC } from "react";
 
 /**
  * Generates a type that passes some styling props to be evaluated and
@@ -39,7 +39,7 @@ export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K
 /**
  * Creates a type with common properties of A and B
  */
-type Common<A, B> = Pick<
+export type Common<A, B> = Pick<
     A,
     {
         [K in keyof A & keyof B]: A[K] extends B[K] ? (B[K] extends A[K] ? K : never) : never;
@@ -49,4 +49,9 @@ type Common<A, B> = Pick<
 /**
  * Creates a type with the difference between A and B
  */
-type Difference<A, B> = Omit<A, keyof B>;
+export type Difference<A, B> = Omit<A, keyof B>;
+
+/**
+ * Slot Component type
+ */
+export type Slot<P = any, S extends string = string> = FC<P> & { slot: S };
