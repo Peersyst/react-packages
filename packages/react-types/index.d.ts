@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties } from "react";
 
 /**
  * Generates a type that passes some styling props to be evaluated and
@@ -50,8 +50,3 @@ export type Common<A, B> = Pick<
  * Creates a type with the difference between A and B
  */
 export type Difference<A, B> = Omit<A, keyof B>;
-
-/**
- * Slot Component type
- */
-export type Slot<P = any, S extends string = string> = FC<P> & { slot: S };
