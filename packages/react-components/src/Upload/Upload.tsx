@@ -2,7 +2,7 @@ import { createRef, useState, DragEvent } from "react";
 import { useFormNotification } from "../Form";
 import { checkFileTypes, getFileTypes, getValue, getValueFromInput } from "./helpers";
 import { UploadProps, UploadStyleProps } from "./Upload.types";
-import { UploadInput, UploadRoot } from "./Upload.styles";
+import { UploadRoot } from "./Upload.styles";
 import { fsx, nullifyEvent, cx } from "@peersyst/react-utils";
 
 export default function Upload({
@@ -61,6 +61,14 @@ export default function Upload({
         drag,
     };
 
+    const directoryProps = directory
+        ? {
+              directory: "",
+              webkitdirectory: "",
+              mozdirectory: "",
+          }
+        : {};
+
     return (
         <UploadRoot
             className={cx(
@@ -80,15 +88,13 @@ export default function Upload({
         >
             {typeof children === "function" ? children(drag) : children}
             {active && (
-                <UploadInput
+                <input
                     ref={uploadRef}
                     type="file"
                     accept={getFileTypes(fileTypes)}
                     multiple={multiple}
                     onChange={handleChange}
-                    directory={directory}
-                    webkitdirectory={directory}
-                    mozdirectory={directory}
+                    {...directoryProps}
                 />
             )}
         </UploadRoot>
