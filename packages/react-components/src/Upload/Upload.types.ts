@@ -50,6 +50,6 @@ export interface UploadStyleProps {
     drag: boolean;
 }
 
-export type FileType = "image" | "video";
+export type FileType = "image" | "video" | "directory";
 
 export type FileTypes = "all" | FileType | string | (FileType | string)[];

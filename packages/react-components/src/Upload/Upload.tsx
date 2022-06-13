@@ -21,6 +21,7 @@ export default function Upload({
     const [files, setFiles] = useState<File | FileList | undefined>(undefined);
     useFormNotification(name, files, !required || (required && !!files));
     const active = !disabled && !readonly;
+    const directory = fileTypes === "directory";
     const uploadRef = createRef<HTMLInputElement>();
 
     const handleChange = () => {
@@ -85,6 +86,9 @@ export default function Upload({
                     accept={getFileTypes(fileTypes)}
                     multiple={multiple}
                     onChange={handleChange}
+                    directory={directory}
+                    webkitdirectory={directory}
+                    mozdirectory={directory}
                 />
             )}
         </UploadRoot>

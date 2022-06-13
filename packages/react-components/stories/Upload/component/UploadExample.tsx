@@ -11,7 +11,7 @@ const UploadExample = () => {
     const [file, setFiles] = useState<File | undefined>(undefined);
 
     return (
-        <Upload onChange={(file) => setFiles(file as File)} fileTypes="image">
+        <Upload onChange={(file) => setFiles(file as File)} fileTypes="directory" multiple>
             {(drag) =>
                 file ? (
                     <Image src={URL.createObjectURL(file)} alt="uploaded-file" style={styles} />

@@ -18,6 +18,7 @@ export function getValueFromInput(
 export function getFileType(fileType: FileType | string): string | undefined {
     switch (fileType) {
         case "all":
+        case "directory":
             return undefined;
         case "image":
             return "image/*";
