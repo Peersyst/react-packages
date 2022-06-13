@@ -1,5 +1,9 @@
 # Versions
 
+## 2.17.5
+
+[Upload] Add fileType "directory"
+
 ## 2.17.4
 
 Dependencies update
