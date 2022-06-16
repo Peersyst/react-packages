@@ -35,7 +35,7 @@ export function getFileTypes(fileTypes?: FileTypes): string | undefined {
 }
 
 export function checkFileTypes(fileList: DataTransferItemList, fileTypes?: FileTypes): boolean {
-    const types = fileTypes && getFileTypes(fileTypes)?.split(", ");
+    const types = fileTypes && getFileTypes(fileTypes)?.split(",");
     if (!types || types.includes("all")) return true;
 
     for (let i = 0; i < fileList.length; i++) {

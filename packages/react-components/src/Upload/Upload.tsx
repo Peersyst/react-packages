@@ -49,7 +49,7 @@ export default function Upload({
         nullifyEvent(e);
         if (drag) {
             setDrag(false);
-            const files = getValue(e.dataTransfer.files);
+            const files = getValue(e.dataTransfer.files, multiple);
             setFiles(files);
             onChange?.(files);
         }
