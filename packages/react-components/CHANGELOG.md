@@ -1,6 +1,6 @@
 # Versions
 
-## 2.17.6
+## 2.17.7
 
 [Upload] Fix fileTypes
 
