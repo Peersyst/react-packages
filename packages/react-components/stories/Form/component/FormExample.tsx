@@ -42,8 +42,8 @@ const FormExample = () => {
             style={{ width: "250px" }}
         >
             <Col gap={20} alignItems="center">
-                <TextField name="textField" validators="not-null" />
-                <TextArea name="textArea" validators="not-null" />
+                <TextField name="textField" validators={{ required: true }} />
+                <TextArea name="textArea" validators={{ required: true }} />
                 <Row gap={10} style={{ width: "100%" }} alignItems="center">
                     <Checkbox name="checkbox" required />
                     Check me
@@ -67,7 +67,9 @@ const FormExample = () => {
                     onHide={() => setShowPopover(false)}
                 >
                     <Popover.Content>
-                        <Button style={{ width: "250px" }}>Submit</Button>
+                        <Button style={{ width: "250px" }} type="submit">
+                            Submit
+                        </Button>
                     </Popover.Content>
                     <Popover.Popper>{formatFormResult(formResult)}</Popover.Popper>
                 </Popover>
