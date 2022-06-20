@@ -1,2 +1,2 @@
 export * from "./useFormSubmit";
-export * from "./useFormNotification";
+export { default as useFormNotification } from "./useFormNotification";
