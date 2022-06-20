@@ -29,6 +29,7 @@ export type FormProps = {
 };
 
 export interface FieldNotification {
+    removed?: boolean;
     valid?: boolean;
     name: string;
     value: any;

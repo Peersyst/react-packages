@@ -1,5 +1,9 @@
 # Versions
 
+## 2.17.8
+
+[Form] Remove fields on unmount or name change from data
+
 ## 2.17.7
 
 [Upload] Fix fileTypes
