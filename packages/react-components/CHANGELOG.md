@@ -1,6 +1,11 @@
 # Versions
 
-## 2.17.8
+## 2.17.10
+
+[Table] Add popover option in TableCol
+[Popover] Add PopoverRoot styling
+
+## 2.17.(8|9)
 
 [Form] Remove fields on unmount or name change from data
 

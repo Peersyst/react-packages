@@ -124,6 +124,7 @@ const columns: TableCol<TableDef>[] = [
         title: "Market Cap",
         width: "150px",
         alignment: "right",
+        popover: true,
     },
 ];
 

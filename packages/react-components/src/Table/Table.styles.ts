@@ -3,6 +3,7 @@ import { Typography } from "../Typography";
 import { TableCellStyleProps, TableRootProps } from "./Table.types";
 import { Row } from "../Row";
 import { alpha } from "@peersyst/react-utils";
+import { PopoverRoot } from "../Popover";
 
 export const TableCell = styled.div<TableCellStyleProps>`
     width: ${(props) => props.width};
@@ -18,6 +19,10 @@ export const TableCell = styled.div<TableCellStyleProps>`
 
     &:first-child {
         border-left: none;
+    }
+
+    ${PopoverRoot} {
+        width: 100%;
     }
 `;
 
@@ -131,4 +136,8 @@ export const TableRoot = styled.div<TableRootProps>`
     ${TableLoadMoreRow} {
         border-top: ${(props) => !props.borders.horizontal && "none"};
     }
+`;
+
+export const PopoverPopperWrapper = styled.div`
+    padding: 0.5rem;
 `;

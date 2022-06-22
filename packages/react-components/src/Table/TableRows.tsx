@@ -1,6 +1,7 @@
 import { TableRowsProps } from "./Table.types";
-import { TableBody, TableCell, TableRow, TableText } from "./Table.styles";
+import { PopoverPopperWrapper, TableBody, TableCell, TableRow, TableText } from "./Table.styles";
 import { cx } from "@peersyst/react-utils";
+import { Popover } from "../Popover";
 
 export default function TableRows<T extends object>({
     rows,
@@ -25,19 +26,37 @@ export default function TableRows<T extends object>({
                           style={rowStyle}
                           onClick={onRowClick && (() => onRowClick(rowIndex))}
                       >
-                          {columns.map(({ width, field, alignment }, columnIndex) => (
-                              <TableCell
-                                  width={width}
-                                  key={columnIndex}
-                                  aria-colindex={columnIndex + 1}
-                                  className={cx("TableCell", cellClassName)}
-                                  style={cellStyle}
-                              >
-                                  <TableText singleLine textAlign={alignment}>
-                                      {row[field]}
-                                  </TableText>
-                              </TableCell>
-                          ))}
+                          {columns.map(
+                              ({ width, field, alignment, popover = false }, columnIndex) => {
+                                  const content = (
+                                      <TableText singleLine textAlign={alignment}>
+                                          {row[field]}
+                                      </TableText>
+                                  );
+                                  return (
+                                      <TableCell
+                                          width={width}
+                                          key={columnIndex}
+                                          aria-colindex={columnIndex + 1}
+                                          className={cx("TableCell", cellClassName)}
+                                          style={cellStyle}
+                                      >
+                                          {popover ? (
+                                              <Popover arrow position="top">
+                                                  <Popover.Content>{content}</Popover.Content>
+                                                  <Popover.Popper>
+                                                      <PopoverPopperWrapper>
+                                                          {content}
+                                                      </PopoverPopperWrapper>
+                                                  </Popover.Popper>
+                                              </Popover>
+                                          ) : (
+                                              content
+                                          )}
+                                      </TableCell>
+                                  );
+                              },
+                          )}
                       </TableRow>
                   ))}
         </TableBody>

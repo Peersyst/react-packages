@@ -39,6 +39,8 @@ function Popover({
     },
     container: containerProp,
     disablePortal = false,
+    className,
+    style,
     children,
 }: PopoverProps): JSX.Element {
     const [visible, setVisible] = useControlled(false, visibleProp, visibleProp ? onHide : onShow);
@@ -156,7 +158,7 @@ function Popover({
 
     return (
         <ClickAwayListener onClickAway={() => showOn === "click" && visible && setVisible(false)}>
-            <PopoverRoot>
+            <PopoverRoot className={cx("PopoverRoot", className)} style={style}>
                 {disablePortal ? popperElement : createPortal(popperElement, container)}
                 <PopoverContent
                     onClick={handleClick}

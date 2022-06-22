@@ -108,6 +108,7 @@ export interface TableCol<T> {
     title: string;
     width: string;
     alignment?: ColAlignment;
+    popover?: boolean;
 }
 
 export interface TableRootProps {

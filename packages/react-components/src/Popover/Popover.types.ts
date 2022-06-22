@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 import Popover from "./Popover";
 import { CustomAnimatedComponent } from "../Animated";
 import { Placement } from "@popperjs/core";
@@ -49,6 +49,14 @@ export interface PopoverProps {
      * Render popper with a portal to the container or under the DOM hierarchy of the parent component.
      */
     disablePortal?: boolean;
+    /**
+     * Popover root className
+     */
+    className?: string;
+    /**
+     * Popover root style
+     */
+    style?: CSSProperties;
     /**
      * Popover elements
      */
