@@ -1,5 +1,9 @@
 # Versions
 
+## 2.17.11
+
+[Table] Fix popover layout
+
 ## 2.17.10
 
 [Table] Add popover option in TableCol

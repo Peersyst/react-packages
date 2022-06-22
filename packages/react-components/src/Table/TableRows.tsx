@@ -27,35 +27,34 @@ export default function TableRows<T extends object>({
                           onClick={onRowClick && (() => onRowClick(rowIndex))}
                       >
                           {columns.map(
-                              ({ width, field, alignment, popover = false }, columnIndex) => {
-                                  const content = (
-                                      <TableText singleLine textAlign={alignment}>
-                                          {row[field]}
-                                      </TableText>
-                                  );
-                                  return (
-                                      <TableCell
-                                          width={width}
-                                          key={columnIndex}
-                                          aria-colindex={columnIndex + 1}
-                                          className={cx("TableCell", cellClassName)}
-                                          style={cellStyle}
-                                      >
-                                          {popover ? (
-                                              <Popover arrow position="top">
-                                                  <Popover.Content>{content}</Popover.Content>
-                                                  <Popover.Popper>
-                                                      <PopoverPopperWrapper>
-                                                          {content}
-                                                      </PopoverPopperWrapper>
-                                                  </Popover.Popper>
-                                              </Popover>
-                                          ) : (
-                                              content
-                                          )}
-                                      </TableCell>
-                                  );
-                              },
+                              ({ width, field, alignment, popover = false }, columnIndex) => (
+                                  <TableCell
+                                      width={width}
+                                      key={columnIndex}
+                                      aria-colindex={columnIndex + 1}
+                                      className={cx("TableCell", cellClassName)}
+                                      style={cellStyle}
+                                  >
+                                      {popover ? (
+                                          <Popover arrow position="top">
+                                              <Popover.Content>
+                                                  <TableText singleLine textAlign={alignment}>
+                                                      {row[field]}
+                                                  </TableText>
+                                              </Popover.Content>
+                                              <Popover.Popper>
+                                                  <PopoverPopperWrapper>
+                                                      <TableText>{row[field]}</TableText>
+                                                  </PopoverPopperWrapper>
+                                              </Popover.Popper>
+                                          </Popover>
+                                      ) : (
+                                          <TableText singleLine textAlign={alignment}>
+                                              {row[field]}
+                                          </TableText>
+                                      )}
+                                  </TableCell>
+                              ),
                           )}
                       </TableRow>
                   ))}

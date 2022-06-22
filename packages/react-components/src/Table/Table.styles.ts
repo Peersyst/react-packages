@@ -28,7 +28,9 @@ export const TableCell = styled.div<TableCellStyleProps>`
 
 export const TableText = styled(Typography).attrs({
     variant: "inherit",
-})``;
+})`
+    word-break: break-word;
+`;
 
 export const TableRow = styled(Row)`
     box-sizing: border-box;
@@ -139,5 +141,6 @@ export const TableRoot = styled.div<TableRootProps>`
 `;
 
 export const PopoverPopperWrapper = styled.div`
+    max-width: 300px;
     padding: 0.5rem;
 `;
