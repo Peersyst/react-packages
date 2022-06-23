@@ -4,6 +4,7 @@ export * from "./Backdrop";
 export * from "./BackgroundImage";
 export * from "./Badge";
 export * from "./BlockchainAddress";
+export * from "./Hash";
 export * from "./Button";
 export * from "./Carousel";
 export * from "./Chart";
