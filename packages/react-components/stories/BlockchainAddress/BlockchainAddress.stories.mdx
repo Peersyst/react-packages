@@ -1,6 +1,7 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
-import {BlockchainAddress, Row} from "../../src";
+import { BlockchainAddress, Row } from "../../src";
 import themedContainer from "../styles/themedContainer";
+import LinkTo from "@storybook/addon-links/react";
 
 <Meta
     title="Components/Utils/BlockchainAddress"
@@ -16,17 +17,64 @@ import themedContainer from "../styles/themedContainer";
 
 Component used to display Blockchain addresses.
 
+Check also <LinkTo kind="components-utils-hash--page#the-component">Hash</LinkTo>.
+
 <Canvas>
     <Row justifyContent="center">
-        <BlockchainAddress length={3} address="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" type="address" variant="body1" />
+        <BlockchainAddress
+            length={3}
+            address="0x191447fAB0c5736380774CE5197e9Ccda7e835A2"
+            type="address"
+            variant="body1"
+        />
     </Row>
 </Canvas>
 
 ## Usage
 
-````jsx
-<BlockchainAddress address="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" type="address" variant="body1" />
-````
+-   Display an address by setting the type="address" and send the user to the explorer directly without any effort. You can configure the explorer in the theme (see below to learn how).
+
+```jsx
+<BlockchainAddress
+    length={10}
+    address="0x191447fAB0c5736380774CE5197e9Ccda7e835A2"
+    type="address"
+    variant="body1"
+/>
+```
+
+<Canvas>
+    <Row justifyContent="center">
+        <BlockchainAddress
+            length={10}
+            address="0x191447fAB0c5736380774CE5197e9Ccda7e835A2"
+            type="address"
+            variant="body1"
+        />
+    </Row>
+</Canvas>
+
+-   It also works for transactions, just set the type="tx":
+
+```jsx
+<BlockchainAddress
+    length={10}
+    address="0x4094093279683a4b852c7c471d10c5c785025a125d4b5ad6d3b8c3c038988952"
+    type="tx"
+    variant="body1"
+/>
+```
+
+<Canvas>
+    <Row justifyContent="center">
+        <BlockchainAddress
+            length={10}
+            address="0x4094093279683a4b852c7c471d10c5c785025a125d4b5ad6d3b8c3c038988952"
+            type="tx"
+            variant="body1"
+        />
+    </Row>
+</Canvas>
 
 ## Theming
 
