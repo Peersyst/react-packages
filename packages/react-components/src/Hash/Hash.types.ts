@@ -35,3 +35,7 @@ export interface HashRootProps {
 export interface HashTextProps {
     break: boolean;
 }
+
+export interface HashLinkProps {
+    url: HashProps["url"];
+}

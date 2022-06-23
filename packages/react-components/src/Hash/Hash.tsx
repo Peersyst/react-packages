@@ -4,7 +4,7 @@ import { createRef } from "react";
 import useHashAutoLength from "./hook/useHashAutoLength";
 import { CopyButton } from "../CopyButton";
 import { useTheme } from "../Theme";
-import { HashRoot, HashText } from "./Hash.styles";
+import { HashRoot, HashText, HashLink } from "./Hash.styles";
 
 const Hash = ({
     hash,
@@ -38,7 +38,7 @@ const Hash = ({
             style={style}
             ref={rowRef}
         >
-            <a href={url} target="_blank" rel="noreferrer" ref={hashRef}>
+            <HashLink href={url} target="_blank" rel="noreferrer" ref={hashRef} url={url}>
                 <HashText variant={variant} break={breakProp} {...typographyProps}>
                     {formatAddress(
                         hash,
@@ -50,7 +50,7 @@ const Hash = ({
                             : hash.length,
                     )}
                 </HashText>
-            </a>
+            </HashLink>
             <CopyButton
                 text={hash}
                 style={variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }}
