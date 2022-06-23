@@ -14,6 +14,7 @@ const Hash = ({
     style,
     break: breakProp = false,
     variant,
+    url,
     gap = 5,
     ...typographyProps
 }: HashProps): JSX.Element => {
@@ -33,17 +34,23 @@ const Hash = ({
         <HashRoot
             autoLength={isAutoLength}
             gap={gap}
-            className={cx("BlockchainAddress", className)}
+            className={cx("Hash", className)}
             style={style}
             ref={rowRef}
         >
-            <HashText variant={variant} break={breakProp} {...typographyProps}>
-                {formatAddress(
-                    hash,
-                    ellipsis,
-                    isAutoLength ? autoLength : typeof length === "number" ? length : hash.length,
-                )}
-            </HashText>
+            <a href={url} target="_blank" rel="noreferrer" ref={hashRef}>
+                <HashText variant={variant} break={breakProp} {...typographyProps}>
+                    {formatAddress(
+                        hash,
+                        ellipsis,
+                        isAutoLength
+                            ? autoLength
+                            : typeof length === "number"
+                            ? length
+                            : hash.length,
+                    )}
+                </HashText>
+            </a>
             <CopyButton
                 text={hash}
                 style={variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }}

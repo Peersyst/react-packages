@@ -22,6 +22,10 @@ export interface HashProps extends Omit<TypographyProps, "singleLine" | "childre
      * Gap between the address and copy button
      */
     gap?: number;
+    /**
+     * Set the url if you want the hash to be clickable
+     */
+    url?: string;
 }
 
 export interface HashRootProps {
