@@ -1,4 +1,9 @@
+
 # Versions
+
+## 2.17.12
+
+[Typography] Light className
 
 ## 2.17.11
 
