@@ -7,6 +7,7 @@ export default function Typography({
     variant: variantKey,
     children,
     className,
+    light,
     ...rest
 }: TypographyProps): JSX.Element {
     const {
@@ -23,7 +24,7 @@ export default function Typography({
             as={component as any}
             {...rest}
             variantStyles={style}
-            className={cx("Typography", "Typography-" + variantKey, className)}
+            className={cx("Typography", "Typography-" + variantKey, light && "Light", className)}
         >
             {children}
         </TypographyRoot>

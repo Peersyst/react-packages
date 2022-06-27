@@ -15,7 +15,6 @@ export const TypographyRoot = styled.div<TypographyStyleProps>`
     text-align: ${(props) => props.textAlign};
     font-style: ${(props) => props.fontStyle};
     font-weight: ${(props) => props.fontWeight};
-    opacity: ${(props) => props.light && 0.7};
     font-family: ${(props) => props.font && props.theme.fonts?.[props.font as keyof ThemeFonts]};
     ${(props) =>
         props.singleLine &&
@@ -25,4 +24,8 @@ export const TypographyRoot = styled.div<TypographyStyleProps>`
             text-overflow: ellipsis;
             overflow-x: hidden;
         `};
+
+    &.Light {
+        opacity: 0.7;
+    }
 `;
