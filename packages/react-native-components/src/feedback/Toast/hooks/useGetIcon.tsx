@@ -1,6 +1,6 @@
 import { useTheme } from "@peersyst/react-native-styled";
 import { ReactElement } from "react";
-import { ToastType } from "../Toast.types";
+import { ToastType } from "@peersyst/react-components-core";
 import { ActivityIndicator } from "react-native";
 
 export function useGetIcon(type: ToastType | undefined): ReactElement | undefined {

@@ -1,20 +1,8 @@
 import { ReactNode } from "react";
+import { CoreFormProps } from "@peersyst/react-components-core";
 import { StyleProp, ViewStyle } from "react-native";
 
-export interface FieldState {
-    valid?: boolean;
-    value: any;
-}
-
-export type FormProps = {
-    /**
-     * onSubmit handler
-     */
-    onSubmit: (data: any) => any;
-    /**
-     * onInvalid handler
-     */
-    onInvalid?: () => any;
+export interface FormProps extends CoreFormProps {
     /**
      * Form style
      */
@@ -23,17 +11,4 @@ export type FormProps = {
      * Form children
      */
     children: ReactNode;
-};
-
-export interface FieldNotification {
-    valid?: boolean;
-    name: string;
-    value: any;
-}
-
-export interface FormContextInterface {
-    notifyForm: (notification: FieldNotification) => void;
-    valid: boolean;
-    submitted: boolean;
-    handleSubmit: () => any;
 }

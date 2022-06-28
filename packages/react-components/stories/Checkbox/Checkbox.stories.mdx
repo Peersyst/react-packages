@@ -34,12 +34,48 @@ A basic customizable checkbox.
 ### Custom usage
 
 ```jsx
-<Checkbox checkElement={<div style={{ color: "white" }}>✓</div>} position="end" />
+<Checkbox
+    checkedIcon={
+        <div style={{
+            color: "white",
+            width: "1.25rem",
+            height: "1.25rem",
+            border: "1px white solid",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+        }}>✓</div>}
+    icon={<div style={{width: "1.25rem", height: "1.25rem", border: "1px white solid"}} />}
+/>
 ```
 
 <Canvas>
     <Row justifyContent="center">
-        <Checkbox checkElement={<div style={{ color: "white" }}>✓</div>} position="end" />
+        <Checkbox
+            checkedIcon={
+                <div style={{
+                    color: "white",
+                    width: "1.25rem",
+                    height: "1.25rem",
+                    border: "1px white solid",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}>✓</div>}
+            icon={<div style={{width: "1.25rem", height: "1.25rem", border: "1px white solid"}} />}
+        />
+    </Row>
+</Canvas>
+
+### FormControl usage
+
+```jsx
+<Checkbox label="I'm a label" hint="I'm a hint" required LabelProps={{ placement: "right" }} hideError={false} />
+```
+
+<Canvas>
+    <Row justifyContent="center">
+        <Checkbox label="I'm a label" hint="I'm a hint" required LabelProps={{ placement: "right" }} hideError={false} />
     </Row>
 </Canvas>
 

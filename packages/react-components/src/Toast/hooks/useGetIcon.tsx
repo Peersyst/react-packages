@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { ToastType } from "../Toast.types";
+import { ToastType } from "@peersyst/react-components-core";
 import { useTheme } from "../../Theme";
 
 export function useGetIcon(type: ToastType | undefined): ReactElement | undefined {

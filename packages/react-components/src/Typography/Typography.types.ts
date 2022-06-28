@@ -1,5 +1,9 @@
 import { CSSProperties, ReactNode } from "react";
-import { ThemeFonts, TypographyVariants, TypographyVariantsOverrides } from "../styles";
+import {
+    ThemeFonts,
+    TypographyVariants,
+    TypographyVariantsOverrides,
+} from "@peersyst/react-components-core";
 import { Property } from "csstype";
 import { CSSObject } from "styled-components";
 import { OverridableStringUnion } from "@peersyst/react-types";

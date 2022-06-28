@@ -1,39 +1,39 @@
-import { useFormNotification } from "../Form";
 import { CheckboxRoot } from "./Checkbox.styles";
-import { CheckboxProps } from "./Checkbox.types";
-import { useControlled } from "@peersyst/react-hooks";
-import { fsx, cx } from "@peersyst/react-utils";
+import { cx } from "@peersyst/react-utils";
 import { CheckedBoxIcon, UncheckedBoxIcon } from "../assets/icons";
+import { FormControl } from "../FormControl";
+import { Label } from "../Label";
+import { CheckboxProps } from "./Checkbox.types";
 
 export default function Checkbox({
-    name,
-    defaultChecked = false,
-    value: propsValue,
-    onChange,
+    defaultValue = false,
     icon = <UncheckedBoxIcon />,
     checkedIcon = <CheckedBoxIcon />,
-    className,
-    style,
-    required,
     disabled = false,
+    LabelProps = {},
+    hideError = true,
+    Label: LabelProp = Label,
+    ...rest
 }: CheckboxProps) {
-    const [value, setValue] = useControlled(defaultChecked, propsValue, onChange);
-    useFormNotification(name, value, !required || (required && value));
-
-    const styleProps = { checked: value, disabled };
-
     return (
-        <CheckboxRoot
-            className={cx("Checkbox", className, value && "Checked", disabled && "Disabled")}
-            style={fsx(style, styleProps)}
-            onClick={() => !disabled && setValue(!value)}
+        <FormControl<boolean>
+            Label={[LabelProp, { placement: "right", ...LabelProps }]}
+            defaultValue={defaultValue}
             disabled={disabled}
-            checked={value}
-            role="checkbox"
-            aria-checked={value}
-            tabIndex={0}
+            hideError={hideError}
+            {...rest}
         >
-            {value ? checkedIcon : icon}
-        </CheckboxRoot>
+            {(value, setValue) => (
+                <CheckboxRoot
+                    className={cx("Checkbox", value && "Checked", disabled && "Disabled")}
+                    onClick={() => setValue(!value)}
+                    role="checkbox"
+                    aria-checked={value}
+                    tabIndex={0}
+                >
+                    {value ? checkedIcon : icon}
+                </CheckboxRoot>
+            )}
+        </FormControl>
     );
 }

@@ -1,6 +1,7 @@
-import { ToastAnimation, ToastPosition } from "../Toast.types";
+import { ToastPosition } from "../Toast.types";
 import { Animated, AnimatedComponentProps, CustomAnimatedComponent } from "../../Animated";
 import { SlideProps } from "../../Animated";
+import { ToastAnimation } from "@peersyst/react-components-core";
 
 export function getAnimation(
     animation: ToastAnimation,

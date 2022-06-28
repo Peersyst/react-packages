@@ -9,6 +9,7 @@ export default function ExpandableDisplay({
     className,
     style,
     children,
+    // @ts-ignore
     ExpandComponent = ExpandableDropdown,
 }: ExpandableDisplayProps): JSX.Element {
     const { toggle, open } = useContext(ExpandableContext);

@@ -4,15 +4,12 @@ import {
     ModalAction,
     ModalActionType,
     ModalState,
-    ModalWithId,
     RemoveModalAction,
     ShowModalAction,
 } from "../ModalProvider.types";
 
-const modalIsActive = (state: ModalState, modal: string | ModalWithId) =>
-    state.some(({ Modal }) =>
-        typeof modal === "string" ? Modal.id === modal : Modal.id === modal.id,
-    );
+const modalIsActive = (state: ModalState, name: string) =>
+    state.some(({ Modal }) => Modal.id === name);
 
 const reducer = (state: ModalState, action: ModalAction): ModalState => {
     switch (action.type) {
@@ -21,11 +18,9 @@ const reducer = (state: ModalState, action: ModalAction): ModalState => {
                 ? state
                 : (state = [(action as ShowModalAction).payload]);
         case ModalActionType.HIDE_MODAL:
-            const payload = (action as HideModalAction).payload;
-            if (!payload) return state.slice(0, -1);
-            const id = typeof payload === "string" ? payload : payload.id;
             return state.map((modalState) => {
-                if (modalState.Modal.id === id) modalState.props.open = false;
+                if (modalState.Modal.id === (action as HideModalAction).payload)
+                    modalState.props.open = false;
                 return modalState;
             });
         case ModalActionType.REMOVE_MODAL:

@@ -1,8 +1,8 @@
 import { Children, useContext } from "react";
 import { SelectItemsView, SelectMenuRoot } from "./SelectMenu.styles";
 import { SelectMenuProps } from "./SelectMenu.types";
-import { SelectContext } from "../SelectContext";
 import { List } from "../../../display/List";
+import { SelectContext } from "@peersyst/react-components-core";
 
 export default function SelectMenu({
     open,

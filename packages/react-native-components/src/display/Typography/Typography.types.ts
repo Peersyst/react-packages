@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
-import { ThemeFonts, TypographyVariants, TypographyVariantsOverrides } from "../../style";
+import {
+    ThemeFonts,
+    TypographyVariants,
+    TypographyVariantsOverrides,
+} from "@peersyst/react-components-core";
 import { OverridableStringUnion } from "@peersyst/react-types";
 import { TextProps, TextStyle } from "react-native";
 

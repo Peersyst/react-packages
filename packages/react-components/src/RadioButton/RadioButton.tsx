@@ -1,39 +1,39 @@
-import { useFormNotification } from "../Form";
 import { RadioButtonRoot } from "./RadioButton.styles";
 import { RadioButtonProps } from "./RadioButton.types";
-import { useControlled } from "@peersyst/react-hooks";
-import { fsx, cx } from "@peersyst/react-utils";
+import { cx } from "@peersyst/react-utils";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../assets/icons";
+import { Label } from "../Label";
+import { FormControl } from "../FormControl";
 
 export default function RadioButton({
-    name,
-    value: propValue,
-    onChange,
-    className,
-    style,
-    defaultChecked = false,
-    required,
-    disabled = false,
+    defaultValue = false,
     icon = <RadioUncheckedIcon />,
     checkedIcon = <RadioCheckedIcon />,
+    disabled = false,
+    LabelProps = {},
+    hideError = true,
+    Label: LabelProp = Label,
+    ...rest
 }: RadioButtonProps) {
-    const [value, setValue] = useControlled(defaultChecked, propValue, onChange);
-    useFormNotification(name, value, !required || (required && value));
-
-    const styleProps = { checked: value, disabled };
-
     return (
-        <RadioButtonRoot
-            className={cx(className, "RadioButton", value && "Checked", disabled && "Disabled")}
-            style={fsx(style, styleProps)}
-            onClick={() => !disabled && setValue(!value)}
-            role="radio"
-            aria-checked={value}
-            tabIndex={0}
+        <FormControl<boolean>
+            Label={[LabelProp, { placement: "right", ...LabelProps }]}
+            defaultValue={defaultValue}
             disabled={disabled}
-            checked={value}
+            hideError={hideError}
+            {...rest}
         >
-            {value ? checkedIcon : icon}
-        </RadioButtonRoot>
+            {(value, setValue) => (
+                <RadioButtonRoot
+                    className={cx("RadioButton", value && "Checked", disabled && "Disabled")}
+                    onClick={() => setValue(!value)}
+                    role="radio"
+                    aria-checked={value}
+                    tabIndex={0}
+                >
+                    {value ? checkedIcon : icon}
+                </RadioButtonRoot>
+            )}
+        </FormControl>
     );
 }

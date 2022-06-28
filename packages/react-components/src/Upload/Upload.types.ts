@@ -1,11 +1,15 @@
 import { ReactElement } from "react";
-import { PropsStyle } from "@peersyst/react-types";
+import { FormControlledComponentProps } from "../FormControl";
+import { CoreFormControlledComponentProps } from "@peersyst/react-components-core";
 
-export interface UploadProps {
-    /**
-     * Upload name in form
-     */
-    name?: string;
+export type FileType = "image" | "video" | "directory";
+
+export type FileTypes = "all" | FileType | string | (FileType | string)[];
+
+export interface UploadProps
+    extends FormControlledComponentProps<
+        CoreFormControlledComponentProps<File | FileList | undefined>
+    > {
     /**
      * File types
      */
@@ -14,30 +18,6 @@ export interface UploadProps {
      * Multiple files can be selected
      */
     multiple?: boolean;
-    /**
-     * Upload is readonly
-     */
-    readonly?: boolean;
-    /**
-     * Upload is disabled
-     */
-    disabled?: boolean;
-    /**
-     * Upload is required
-     */
-    required?: boolean;
-    /**
-     * onChange handler
-     */
-    onChange?: (files: File | FileList | undefined) => void;
-    /**
-     * Upload className
-     */
-    className?: string;
-    /**
-     * Upload style
-     */
-    style?: PropsStyle<UploadStyleProps>;
     /**
      * Upload element
      */
@@ -49,7 +29,3 @@ export interface UploadStyleProps {
     disabled: boolean;
     drag: boolean;
 }
-
-export type FileType = "image" | "video" | "directory";
-
-export type FileTypes = "all" | FileType | string | (FileType | string)[];

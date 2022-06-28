@@ -49,13 +49,11 @@ export default function scale<P extends { style?: any }>(
             unmountOnExit,
         });
 
-        return mounted ? (
+        if (mounted)
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            <AnimatedComponent style={{ ...style, transform: [{ scale: scaleAnim }] }} {...rest} />
-        ) : (
-            <></>
-        );
+            return <AnimatedComponent style={{ ...style, opacity: fadeAnim }} {...rest} />;
+        else return <></>;
     };
 
     return Scale;

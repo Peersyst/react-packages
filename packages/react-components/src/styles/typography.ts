@@ -1,6 +1,7 @@
-import { DefaultThemeTypography } from "./styles.types";
+import { ThemeTypography } from "@peersyst/react-components-core";
+import { TypographyVariant } from "./theme.types";
 
-export const typography: DefaultThemeTypography = {
+export const typography: ThemeTypography<TypographyVariant> = {
     h1: {
         component: "h1",
         style: {

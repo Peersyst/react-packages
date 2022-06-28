@@ -1,14 +1,15 @@
 import { ButtonRoot, ButtonLoader, ButtonContent } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native";
-import { useContext, useState } from "react";
-import { ElementStyler } from "../../util/ElementStyler";
+import { useContext, useMemo, useState } from "react";
+import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
-import { FormContext } from "../Form";
+import { FormContext } from "@peersyst/react-components-core";
 
 const Button = ({
     onPress: onPressProp,
     children,
+    type = "button",
     loading = false,
     loadingElement,
     size = "md",
@@ -23,8 +24,11 @@ const Button = ({
     const [pressed, setPressed] = useState(false);
 
     const { handleSubmit, valid } = useContext(FormContext);
-    const onPress = onPressProp || handleSubmit;
-    const disabled = disabledProp || !valid;
+    const onPress = useMemo(() => {
+        if (type === "submit") return handleSubmit;
+        else return onPressProp;
+    }, [type, handleSubmit]);
+    const disabled = disabledProp || loading || (type === "submit" && valid === false);
 
     const { textStyle, rootStyle } = useButtonStyles(style, variant, size, disabled, pressed);
     const pressable = !disabled && !loading;
@@ -40,7 +44,7 @@ const Button = ({
                 {loading && (
                     <ButtonLoader>
                         {loadingElement ? (
-                            <ElementStyler style={textStyle}>{loadingElement}</ElementStyler>
+                            <Icon style={textStyle}>{loadingElement}</Icon>
                         ) : (
                             <ActivityIndicator
                                 size={
@@ -57,9 +61,9 @@ const Button = ({
                     isLoading={loading}
                     style={{ justifyContent: rootStyle["justifyContent"] || "center" }}
                 >
-                    {leftIcon && <ElementStyler style={textStyle}>{leftIcon}</ElementStyler>}
+                    {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
                     <Text style={textStyle}>{children}</Text>
-                    {rightIcon && <ElementStyler style={textStyle}>{rightIcon}</ElementStyler>}
+                    {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}
                 </ButtonContent>
             </ButtonRoot>
         </TouchableWithoutFeedback>

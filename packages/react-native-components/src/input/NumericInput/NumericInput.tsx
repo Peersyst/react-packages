@@ -4,6 +4,9 @@ import { NumericInputProps } from "./NumericInput.types";
 import { useControlled } from "@peersyst/react-hooks";
 import formatValue, { decimalRegExp, digitRegExp } from "./utils/formatValue";
 
+// Should be in config
+const MAX_NUMBER_OF_DECIMALS = 4;
+
 const NumericInput = ({
     value: valueProp,
     defaultValue,
@@ -13,6 +16,7 @@ const NumericInput = ({
     const [value, setValue] = useControlled(defaultValue || "", valueProp, onChangeText);
 
     const handleChange = (newValue: string): void => {
+        //Check if the decimal separator is correct
         if (
             newValue.endsWith(Localization.digitGroupingSeparator) ||
             isNaN(Number(newValue.replace(digitRegExp, "").replace(decimalRegExp, ".")))
@@ -22,6 +26,7 @@ const NumericInput = ({
             setValue?.("");
         } else {
             const [int, dec] = newValue.split(Localization.decimalSeparator);
+            if (dec && dec.length > Number(MAX_NUMBER_OF_DECIMALS)) return;
             const rawInt = int.replace(digitRegExp, "");
             const rawValue =
                 rawInt +

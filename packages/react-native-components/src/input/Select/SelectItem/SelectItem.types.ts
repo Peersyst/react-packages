@@ -1,19 +1,11 @@
 import { ViewStyle, TextStyle } from "react-native";
-import { ReactNode } from "react";
+import { CoreSelectItemProps, SelectItemChildrenContext } from "@peersyst/react-components-core";
 
-export interface SelectItemProps {
-    /**
-     * Item value
-     */
-    value: unknown;
+export interface SelectItemProps<T> extends CoreSelectItemProps<T> {
     /**
      * Item style
      */
     style?: SelectItemStyles;
-    /**
-     * Item content
-     */
-    children: ReactNode;
 }
 
 export type SelectItemStyles = ViewStyle &
@@ -21,3 +13,7 @@ export type SelectItemStyles = ViewStyle &
         selected?: ViewStyle & TextStyle;
         readonly?: ViewStyle & TextStyle;
     };
+
+export type InnerSelectItemProps<T> = Pick<SelectItemProps<T>, "children"> &
+    Required<Pick<SelectItemProps<T>, "style">> &
+    Pick<SelectItemChildrenContext<T>, "isSelected" | "setSelected" | "readonly">;

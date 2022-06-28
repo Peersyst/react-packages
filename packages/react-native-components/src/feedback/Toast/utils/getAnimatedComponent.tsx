@@ -1,4 +1,5 @@
-import { ToastAnimation, ToastContainerStylesProps } from "../Toast.types";
+import { ToastContainerStylesProps } from "../Toast.types";
+import { ToastAnimation } from "@peersyst/react-components-core";
 import { ComponentType } from "react";
 import { Animated, AnimatedProps } from "../../../util/Animated";
 import { SlideProps } from "../../../util/Animated/Slide";
@@ -8,7 +9,6 @@ const FadingToast = Animated.createAnimatedComponent.fade(ToastContainer);
 const ScalingToast = Animated.createAnimatedComponent.scale(ToastContainer);
 const SlidingToast = Animated.createAnimatedComponent.slide(ToastContainer);
 const FadingSlideToast = Animated.createAnimatedComponent.fadingSlide(ToastContainer);
-const FadingScaleToast = Animated.createAnimatedComponent.fadingScale(ToastContainer);
 
 export default function getAnimatedComponent(
     animation: ToastAnimation,
@@ -22,7 +22,5 @@ export default function getAnimatedComponent(
             return SlidingToast;
         case "fadingSlide":
             return FadingSlideToast;
-        case "fadingScale":
-            return FadingScaleToast;
     }
 }

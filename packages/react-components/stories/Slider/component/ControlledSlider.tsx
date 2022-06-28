@@ -11,10 +11,10 @@ const ControlledSlider = () => {
             gap={20}
             breakpoint={{ width: "mini" }}
         >
-            <Slider min={0} max={100} value={value} onChange={setValue} />
+            <Slider min={0} max={100} value={value} onChange={setValue} style={{ flex: 1 }} />
             <TextField
                 type="number"
-                validators="gte0|lte100"
+                validators={{ gte: 0, lte: 100 }}
                 value={value.toString()}
                 onChange={(v) => setValue(Number(v))}
                 style={{ width: "100px" }}

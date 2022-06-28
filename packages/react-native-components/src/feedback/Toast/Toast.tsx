@@ -5,14 +5,14 @@ import { useControlled } from "@peersyst/react-hooks";
 import { useGetIcon } from "./hooks/useGetIcon";
 import { useTheme } from "@peersyst/react-native-styled";
 import { Row } from "../../layout/Row";
+import { AnimatedProps } from "../../util/Animated";
+import { Col } from "../../layout/Col";
+import { Icon } from "../../display/Icon";
 import { Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useToastStyles from "./hooks/useToastStyles";
 import getAnimatedComponent from "./utils/getAnimatedComponent";
-import { AnimatedProps } from "../../util/Animated";
 import { SlideProps } from "../../util/Animated/Slide";
-import { ElementStyler } from "../../util/ElementStyler";
-import { Col } from "../../layout/Col";
 
 export default function Toast({
     message,
@@ -37,7 +37,7 @@ export default function Toast({
     const icon = useGetIcon(type);
 
     useEffect(() => {
-        if (open && (!type || type !== "loading")) {
+        if (open && duration !== Infinity && (!type || type !== "loading")) {
             const hideTimeout = setTimeout(() => setOpen(false), duration);
             return () => {
                 clearTimeout(hideTimeout);
@@ -64,7 +64,7 @@ export default function Toast({
                     <Row flex={1} alignItems="center" gap={10}>
                         {icon && (
                             <Row>
-                                <ElementStyler style={textStyle}>{icon}</ElementStyler>
+                                <Icon style={textStyle}>{icon}</Icon>
                             </Row>
                         )}
                         <Row flex={1}>

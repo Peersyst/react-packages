@@ -1,53 +1,52 @@
-import { Children, cloneElement, ReactElement, useCallback } from "react";
-import { useControlled } from "@peersyst/react-hooks";
-import { useSelectDisplayContent } from "./hooks/useSelectDisplayContent";
-import { useFormNotification } from "../Form";
-import { selectIsValid } from "./utils/selectIsValid";
-import { renderValue as renderDefaultValue } from "./utils/renderValue";
-import { SelectProps } from "./Select.types";
+import { Children, cloneElement, ReactElement } from "react";
+import {
+    SelectProvider,
+    renderSelectValue,
+    selectIsValid,
+    useSelectDisplayContent,
+} from "@peersyst/react-components-core";
+import { InnerSelectProps, SelectProps, SelectStyle } from "./Select.types";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
 import useSelectStyles from "./hooks/useSelectStyles";
-import { SelectProvider } from "./SelectContext";
 import { SelectMenu } from "./SelectMenu";
-import { ChevronDownIcon } from "../../assets/icons";
-import { ElementStyler } from "../../util/ElementStyler";
+import { Icon } from "../../display/Icon";
 import { Row } from "../../layout/Row";
+import { ChevronDownIcon } from "../../assets/icons";
+import { FormControl } from "../FormControl";
+import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
+import { SelectItemProps } from "./SelectItem";
+import { useControlled } from "@peersyst/react-hooks";
 
-export default function Select<T = undefined>({
-    name,
-    required,
-    multiple = false,
-    defaultValue,
-    value: valueProp,
-    onChange,
-    open: openProp,
-    onClose,
-    onOpen,
-    placeholder,
-    icon = <ChevronDownIcon />,
-    autoFocus = false,
-    disabled = false,
-    readonly = false,
-    style: styleProp,
+function InnerSelect<T>({
+    autoFocus,
+    disabled,
+    readonly,
     renderValue,
+    placeholder,
+    value,
+    setValue,
+    multiple,
+    children,
+    style: styleProp,
+    display,
     header,
     footer,
-    children,
-    display,
-}: SelectProps<T>): JSX.Element {
-    const [value, setValue] = useControlled<T | T[] | undefined>(
-        defaultValue || (multiple ? [] : undefined),
-        valueProp,
-        onChange as (value: T | T[] | undefined) => unknown,
-    );
-    useFormNotification(name, value, selectIsValid(value, multiple, required));
+    icon,
+    open: openProp,
+    onOpen,
+    onClose,
+}: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useControlled(autoFocus, openProp, openProp ? onClose : onOpen);
 
-    const displayContent = useSelectDisplayContent(value, multiple, children);
-
-    const handlePress = useCallback(() => {
+    const handlePress = () => {
         !disabled && setOpen(!open);
-    }, [open, disabled]);
+    };
+
+    const displayContent = useSelectDisplayContent<T, SelectItemProps<T>>(
+        value,
+        multiple,
+        children,
+    );
 
     const {
         style,
@@ -60,7 +59,7 @@ export default function Select<T = undefined>({
         renderValue(displayContent)
     ) : (
         <Text style={displayTextStyle} numberOfLines={1}>
-            {renderDefaultValue(displayContent)}
+            {renderSelectValue(displayContent)}
         </Text>
     );
 
@@ -84,14 +83,12 @@ export default function Select<T = undefined>({
                                     </Text>
                                 )}
                             </View>
-                            <ElementStyler style={{ ...displayTextStyle, fontSize: 14 }}>
-                                {icon}
-                            </ElementStyler>
+                            <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
                         </Row>
                     )}
                 </View>
             </TouchableWithoutFeedback>
-            <SelectProvider value={{ value, setValue, setOpen, multiple, readonly } as any}>
+            <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                 <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>
                     {Children.map(children, (child) => {
                         const { style: childStyle, ...rest } = child!.props || {};
@@ -103,5 +100,63 @@ export default function Select<T = undefined>({
                 </SelectMenu>
             </SelectProvider>
         </View>
+    );
+}
+
+export default function Select<T = any>({
+    required,
+    multiple = false,
+    defaultValue,
+    open,
+    onClose,
+    onOpen,
+    placeholder,
+    icon = <ChevronDownIcon />,
+    autoFocus = false,
+    disabled = false,
+    readonly = false,
+    renderValue,
+    header,
+    footer,
+    children,
+    display,
+    LabelProps = {},
+    Label = FormControlLabel,
+    ...rest
+}: SelectProps<T>): JSX.Element {
+    return (
+        <FormControl<T | T[], FormControlLabelStyle, SelectStyle>
+            Label={[Label, LabelProps]}
+            // @ts-ignore
+            defaultValue={defaultValue}
+            disabled={disabled}
+            readonly={readonly}
+            required={required}
+            validation={(val) => [selectIsValid(val, multiple, required), undefined]}
+            {...rest}
+        >
+            {(value, setValue, _, style) => (
+                <InnerSelect<T>
+                    value={value}
+                    setValue={setValue}
+                    autoFocus={autoFocus}
+                    disabled={disabled}
+                    readonly={readonly}
+                    renderValue={renderValue}
+                    placeholder={placeholder}
+                    multiple={multiple}
+                    open={open}
+                    onOpen={onOpen}
+                    onClose={onClose}
+                    icon={icon}
+                    header={header}
+                    footer={footer}
+                    display={display}
+                    style={style}
+                >
+                    {children}
+                </InnerSelect>
+            )}
+        </FormControl>
     );
 }

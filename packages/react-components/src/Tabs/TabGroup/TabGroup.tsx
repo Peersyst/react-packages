@@ -4,8 +4,8 @@ import { TabIndicator } from "./TabIndicator";
 import { TabGroupArrow } from "./TabGroupArrow";
 import { useTabGroupSize } from "./hook/useTabGroupSize";
 import { TabGroupProps } from "./TabGroup.types";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../assets/icons";
 import { cx } from "@peersyst/react-utils";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../assets/icons";
 
 export default function TabGroup({
     renderIndicator = true,

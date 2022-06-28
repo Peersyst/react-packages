@@ -1,6 +1,9 @@
 import { ReactElement, ReactNode } from "react";
 import { TextStyle, ViewStyle } from "react-native";
 import { SelectItemProps, SelectItemStyles } from "./SelectItem";
+import { FormControlledComponentProps } from "../FormControl";
+import { CoreSelectProps, SelectContextType } from "@peersyst/react-components-core";
+import { LabelProps } from "../../display/Label";
 
 export interface DisplayStylesProps {
     open: boolean;
@@ -20,35 +23,10 @@ export type SelectStyle = Omit<ViewStyle, "display"> & {
     item?: SelectItemStyles;
 };
 
-export interface SelectProps<T = unknown> {
-    /**
-     * Name of Select in the form
-     */
-    name?: string;
-    /**
-     * An option must be selected
-     */
-    required?: boolean;
-    /**
-     * Make the selection multiple
-     */
-    multiple?: boolean;
-    /**
-     * Default value
-     */
-    defaultValue?: T | T[];
-    /**
-     * Select value
-     */
-    value?: T | T[];
-    /**
-     * OnChange handler
-     */
-    onChange?: (value: T | T[]) => unknown;
-    /**
-     * Placeholder
-     */
-    placeholder?: string;
+export type SelectProps<T> = FormControlledComponentProps<
+    CoreSelectProps<T, SelectItemProps<T>, LabelProps>,
+    SelectStyle
+> & {
     /**
      * SelectDisplay icon
      */
@@ -66,22 +44,6 @@ export interface SelectProps<T = unknown> {
      */
     onClose?: () => void;
     /**
-     * If SelectMenu should open on mount
-     */
-    autoFocus?: boolean;
-    /**
-     * Disabled
-     */
-    disabled?: boolean;
-    /**
-     * Readonly
-     */
-    readonly?: boolean;
-    /**
-     * Customize how display renders selected options
-     */
-    renderValue?: (val: ReactNode | ReactNode[]) => ReactNode;
-    /**
      * Header element
      */
     header?: ReactNode;
@@ -90,15 +52,24 @@ export interface SelectProps<T = unknown> {
      */
     footer?: ReactNode;
     /**
-     * Select style
-     */
-    style?: SelectStyle;
-    /**
-     * Select options
-     */
-    children?: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[];
-    /**
      * Custom display element
      */
     display?: ReactElement;
-}
+};
+
+export type InnerSelectProps<T> = Pick<
+    SelectProps<T>,
+    | "renderValue"
+    | "placeholder"
+    | "children"
+    | "header"
+    | "footer"
+    | "display"
+    | "open"
+    | "onOpen"
+    | "onClose"
+> &
+    Required<Pick<SelectProps<T>, "autoFocus" | "disabled" | "readonly" | "icon">> &
+    Omit<SelectContextType<T>, "setOpen"> & {
+        style?: SelectStyle;
+    };
