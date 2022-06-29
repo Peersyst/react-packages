@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.2
+
+Bump react-utils to 1.4.4
+
 ## 1.2.1
 
 Dependencies update

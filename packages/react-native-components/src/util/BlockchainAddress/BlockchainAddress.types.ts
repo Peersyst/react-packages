@@ -1,5 +1,5 @@
 import { OverridableStringUnion } from "@peersyst/react-types";
-import { BlockchainAddressEllipsis } from "@peersyst/react-utils";
+import { HashEllipsis } from "@peersyst/react-utils";
 import { TypographyProps } from "../../display/Typography";
 import {
     BlockchainLinksTypes,
@@ -23,5 +23,5 @@ export interface BlockchainAddressProps
     /**
      * If ellipsis should be in the middle or end
      */
-    ellipsis?: BlockchainAddressEllipsis;
+    ellipsis?: HashEllipsis;
 }

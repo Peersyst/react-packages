@@ -1,5 +1,5 @@
 import { BlockchainAddressProps } from "./BlockchainAddress.types";
-import { formatAddress } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { Row } from "../../layout/Row";
 import { Typography } from "../../display/Typography";
 import { useTheme } from "@peersyst/react-native-styled";
@@ -35,7 +35,7 @@ const BlockchainAddress = ({
                     variant={variant}
                     {...typographyProps}
                 >
-                    {formatAddress(address, ellipsis, length)}
+                    {formatHash(address, ellipsis, length)}
                 </Typography>
             </TouchableOpacity>
             <CopyButton

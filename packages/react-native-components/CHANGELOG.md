@@ -1,5 +1,9 @@
 # Versions
 
+## 0.0.7
+
+Update BlockchainAddress to use react-utils 1.4.4
+
 ## 0.0.6
 
 Dependencies update

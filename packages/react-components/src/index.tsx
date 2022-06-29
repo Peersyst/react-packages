@@ -21,6 +21,7 @@ export * from "./FormControlError";
 export * from "./FormControlHint";
 export * from "./FormControlLabel";
 export * from "./Grids";
+export * from "./Hash";
 export * from "./IconButton";
 export * from "./Image";
 export * from "./InfiniteCarousel";
