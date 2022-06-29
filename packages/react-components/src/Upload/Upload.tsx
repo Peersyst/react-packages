@@ -1,34 +1,26 @@
 import { createRef, useState, DragEvent } from "react";
-import { useFormNotification } from "../Form";
 import { checkFileTypes, getFileTypes, getValue, getValueFromInput } from "./helpers";
 import { UploadProps, UploadStyleProps } from "./Upload.types";
 import { UploadRoot } from "./Upload.styles";
-import { fsx, nullifyEvent, cx } from "@peersyst/react-utils";
+import { nullifyEvent, cx } from "@peersyst/react-utils";
+import { FormControl } from "../FormControl";
+import { FormControlLabel } from "../FormControlLabel";
 
 export default function Upload({
-    name,
+    defaultValue,
     fileTypes,
     multiple,
-    className,
-    style,
     children,
-    onChange,
     readonly = false,
     disabled = false,
-    required = false,
+    LabelProps = {},
+    Label = FormControlLabel,
+    ...rest
 }: UploadProps): JSX.Element {
     const [drag, setDrag] = useState(false);
-    const [files, setFiles] = useState<File | FileList | undefined>(undefined);
-    useFormNotification(name, files, !required || (required && !!files));
     const active = !disabled && !readonly;
     const directory = fileTypes === "directory";
     const uploadRef = createRef<HTMLInputElement>();
-
-    const handleChange = () => {
-        const newFiles = getValueFromInput(uploadRef, multiple);
-        setFiles(newFiles);
-        onChange?.(newFiles);
-    };
 
     const handleDragEnter = (e: DragEvent) => {
         nullifyEvent(e);
@@ -45,22 +37,6 @@ export default function Upload({
         setDrag(false);
     };
 
-    const handleDrop = (e: DragEvent) => {
-        nullifyEvent(e);
-        if (drag) {
-            setDrag(false);
-            const files = getValue(e.dataTransfer.files, multiple);
-            setFiles(files);
-            onChange?.(files);
-        }
-    };
-
-    const styleProps: UploadStyleProps = {
-        readonly,
-        disabled,
-        drag,
-    };
-
     const directoryProps = directory
         ? {
               directory: "",
@@ -70,33 +46,67 @@ export default function Upload({
         : {};
 
     return (
-        <UploadRoot
-            className={cx(
-                "Upload",
-                className,
-                readonly && "Readonly",
-                disabled && "Disabled",
-                drag && "Drag",
-            )}
-            style={fsx(style, styleProps)}
-            onClick={readonly || disabled ? () => undefined : () => uploadRef?.current?.click()}
-            onDragEnter={handleDragEnter}
-            onDragLeave={handleDragLeave}
-            onDragOver={nullifyEvent}
-            onDrop={handleDrop}
-            {...styleProps}
+        <FormControl<File | FileList | undefined>
+            Label={[Label, LabelProps]}
+            defaultValue={defaultValue}
+            readonly={readonly}
+            disabled={disabled}
+            {...rest}
         >
-            {typeof children === "function" ? children(drag) : children}
-            {active && (
-                <input
-                    ref={uploadRef}
-                    type="file"
-                    accept={getFileTypes(fileTypes)}
-                    multiple={multiple}
-                    onChange={handleChange}
-                    {...directoryProps}
-                />
-            )}
-        </UploadRoot>
+            {(value, setValue) => {
+                const handleChange = () => {
+                    const newFiles = getValueFromInput(uploadRef, multiple);
+                    setValue(newFiles);
+                };
+
+                const handleDrop = (e: DragEvent) => {
+                    nullifyEvent(e);
+                    if (drag) {
+                        setDrag(false);
+                        const files = getValue(e.dataTransfer.files, multiple);
+                        setValue(files);
+                    }
+                };
+
+                const styleProps: UploadStyleProps = {
+                    readonly,
+                    disabled,
+                    drag,
+                };
+
+                return (
+                    <UploadRoot
+                        className={cx(
+                            "Upload",
+                            readonly && "Readonly",
+                            disabled && "Disabled",
+                            drag && "Drag",
+                        )}
+                        onClick={
+                            readonly || disabled
+                                ? () => undefined
+                                : () => uploadRef?.current?.click()
+                        }
+                        onDragEnter={handleDragEnter}
+                        onDragLeave={handleDragLeave}
+                        onDragOver={nullifyEvent}
+                        onDrop={handleDrop}
+                        {...styleProps}
+                    >
+                        {typeof children === "function" ? children(drag) : children}
+                        {active && (
+                            <input
+                                ref={uploadRef}
+                                type="file"
+                                accept={getFileTypes(fileTypes)}
+                                multiple={multiple}
+                                onChange={handleChange}
+                                {...directoryProps}
+                            />
+                        )}
+                    </UploadRoot>
+                );
+            }}
+        </FormControl>
     );
 }

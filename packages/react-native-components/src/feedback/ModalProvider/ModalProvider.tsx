@@ -15,12 +15,9 @@ export default function ModalProvider({ children }: ModalProviderProps): JSX.Ele
                     props: props || {},
                 },
             }),
-        hideModal: (modal) => dispatch({ type: ModalActionType.HIDE_MODAL, payload: modal }),
+        hideModal: (id) => dispatch({ type: ModalActionType.HIDE_MODAL, payload: id }),
         removeModal: (id) => dispatch({ type: ModalActionType.REMOVE_MODAL, payload: id }),
-        isModalActive: (modal) =>
-            state.some(({ Modal }) =>
-                typeof modal === "string" ? Modal.id === modal : Modal.id === modal.id,
-            ),
+        isModalActive: (id) => state.some(({ Modal }) => Modal.id === id),
         modals: state,
     };
 

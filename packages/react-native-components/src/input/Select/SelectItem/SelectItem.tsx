@@ -1,28 +1,21 @@
-import { useCallback, useContext } from "react";
-import { SelectContext } from "../SelectContext";
 import { SelectItemRoot, SelectItemText } from "./SelectItem.styles";
-import { useSelected } from "../hooks/useSelected";
-import { handleSelection } from "../utils/handleSelection";
-import { SelectItemProps } from "./SelectItem.types";
+import { InnerSelectItemProps, SelectItemProps } from "./SelectItem.types";
 import useSelectItemStyle from "./hooks/useSelectIemStyles";
 import { TouchableWithoutFeedback } from "react-native";
 import { getLuminance } from "@peersyst/react-utils";
+import { SelectItem as CoreSelectItem } from "@peersyst/react-components-core";
 
-export default function SelectItem({ children, value, style = {} }: SelectItemProps): JSX.Element {
-    const { setValue, setOpen, readonly, value: selected, multiple } = useContext(SelectContext);
-    const isSelected = useSelected(value, selected, multiple);
-
+function InnerSelectItem<T>({
+    isSelected,
+    setSelected,
+    readonly,
+    children,
+    style,
+}: InnerSelectItemProps<T>): JSX.Element {
     const [textStyle, rootStyle] = useSelectItemStyle(style, isSelected, readonly);
 
-    const handlePress = useCallback(() => {
-        if (!readonly) {
-            setValue(handleSelection(value, selected, multiple, isSelected));
-            !multiple && setOpen(false);
-        }
-    }, [value, selected, multiple, readonly, isSelected, setValue, setOpen]);
-
     return (
-        <TouchableWithoutFeedback onPress={handlePress}>
+        <TouchableWithoutFeedback onPress={setSelected}>
             <SelectItemRoot style={rootStyle}>
                 {typeof children === "string" ? (
                     <SelectItemText
@@ -46,5 +39,26 @@ export default function SelectItem({ children, value, style = {} }: SelectItemPr
                 )}
             </SelectItemRoot>
         </TouchableWithoutFeedback>
+    );
+}
+
+export default function SelectItem<T = any>({
+    children,
+    value,
+    style = {},
+}: SelectItemProps<T>): JSX.Element {
+    return (
+        <CoreSelectItem value={value}>
+            {({ isSelected, setSelected, readonly }) => (
+                <InnerSelectItem
+                    isSelected={isSelected}
+                    setSelected={setSelected}
+                    readonly={readonly}
+                    style={style}
+                >
+                    {children}
+                </InnerSelectItem>
+            )}
+        </CoreSelectItem>
     );
 }

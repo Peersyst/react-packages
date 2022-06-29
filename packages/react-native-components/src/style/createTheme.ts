@@ -2,10 +2,12 @@ import { Theme } from "./theme.types";
 import { CreateTheme } from "./createTheme.types";
 import { defaultTheme } from "./defaultTheme";
 import { deepmerge } from "@peersyst/react-utils";
+import { createCoreTheme } from "@peersyst/react-components-core";
 
 export function createTheme({
     icons,
     typography,
+    fonts,
     palette,
     borderRadius,
     toastAnimation,
@@ -19,19 +21,21 @@ export function createTheme({
     ...rest
 }: CreateTheme): Theme {
     return {
-        icons: { ...defaultTheme.icons, ...icons },
-        typography: deepmerge(defaultTheme.typography, typography),
-        palette: deepmerge(defaultTheme.palette, palette),
+        ...createCoreTheme({
+            icons: { ...defaultTheme.icons, ...icons },
+            typography: deepmerge(defaultTheme.typography, typography),
+            fonts,
+            palette,
+            borderRadius: borderRadius ?? defaultTheme.borderRadius,
+            toolbarHeight: toolbarHeight ?? defaultTheme.toolbarHeight,
+            toastAnimation,
+            toastPosition: toastPosition || defaultTheme.toastPosition,
+            zIndex,
+            translate,
+            validators,
+            blockchainLinks,
+        }),
         shadows: defaultTheme.shadows,
-        borderRadius: borderRadius || defaultTheme.borderRadius,
-        toastAnimation: toastAnimation || defaultTheme.toastAnimation,
-        toastPosition: toastPosition || defaultTheme.toastPosition,
-        zIndex: { ...defaultTheme.zIndex, ...zIndex },
-        /*skeletonAnimations: skeletonAnimations || defaultTheme.skeletonAnimations,*/
-        translate: translate || defaultTheme.translate,
-        toolbarHeight: toolbarHeight || defaultTheme.toolbarHeight,
-        validators: validators || {},
-        blockchainLinks: { ...defaultTheme.blockchainLinks, ...blockchainLinks },
         ...rest,
     };
 }

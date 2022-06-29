@@ -1,6 +1,7 @@
-import { ChangeEvent, CSSProperties, ReactElement, ReactNode, RefObject } from "react";
-import { BaseValidator, Validators } from "./Validators";
-import { ExtraValidators } from "../styles";
+import { ChangeEvent, ReactNode, RefObject } from "react";
+import { CoreTextInputProps } from "@peersyst/react-components-core";
+import { FormControlledComponentProps } from "../FormControl";
+import { LabelProps } from "../Label";
 
 export interface TextInputContextTypes<HTMLT> {
     ref: RefObject<HTMLT>;
@@ -21,62 +22,8 @@ export interface TextInputContextTypes<HTMLT> {
     onSubmit?: () => any;
 }
 
-export interface FunctionalValidator {
-    validate: (value: string) => boolean;
-    message: string;
-}
-
-export interface TextInputProps {
-    /**
-     * Name of the Input
-     */
-    name?: string;
-    /**
-     * Default value
-     */
-    defaultValue?: string;
-    /**
-     * Controlled value
-     */
-    value?: string;
-    /**
-     * onChange handler
-     * @param value
-     */
-    onChange?: (value: string) => any;
-    /**
-     * Input's placeholder
-     */
-    placeholder?: string;
-    /**
-     * Input's validators
-     */
-    validators?: Validators & Partial<ExtraValidators>;
-    /**
-     * Custom validator
-     */
-    customValidators?: (BaseValidator | FunctionalValidator)[];
-    /**
-     * Input className
-     */
-    className?: string;
-    /**
-     * Input style
-     */
-    style?: CSSProperties;
-    /**
-     * onInvalid handler
-     * @param message
-     */
-    onInvalid?: (message: string[]) => void;
-    /**
-     * Input disabled flag
-     */
-    disabled?: boolean;
-    /**
-     * Input readonly flag
-     */
-    readonly?: boolean;
+export interface TextInputProps
+    extends FormControlledComponentProps<CoreTextInputProps<LabelProps>> {
     /**
      * Input's prefix
      */
@@ -117,18 +64,6 @@ export interface TextInputProps {
      * onSubmit handler
      */
     onSubmit?: () => void;
-    /**
-     * Element shown when input is invalid
-     */
-    errorElement?: ReactElement | boolean;
-    /**
-     * Show when input is valid
-     */
-    showValid?: boolean;
-    /**
-     * Element shown when showValid is true and input is valid
-     */
-    validElement?: ReactElement;
 }
 
 export interface Children<HTMLT> {
@@ -143,7 +78,7 @@ export interface HTMLInput {
 
 export interface TextInputStyles {
     invalid: boolean;
-    showValid: boolean;
+    valid: boolean;
     focused: boolean;
     active: boolean;
     disabled: boolean;

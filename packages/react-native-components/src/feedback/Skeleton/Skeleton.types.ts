@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
+import { PaletteMode } from "@peersyst/react-components-core";
 import { ViewStyle } from "react-native";
-import { PaletteMode } from "../../style/";
 
 /**
  * Circular -> with borderRadius

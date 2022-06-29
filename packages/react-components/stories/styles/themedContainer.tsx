@@ -4,7 +4,7 @@
 import { DocsContainer } from "@storybook/addon-docs";
 import { ThemeProvider } from "../../src";
 import { Container } from "./Container.styles";
-import { darkTheme } from "../../src/styles/darkTheme";
+import { darkTheme } from "../../src";
 
 const themedContainer = ({ children, context }) => (
     <DocsContainer context={context}>

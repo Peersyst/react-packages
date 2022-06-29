@@ -1,0 +1,53 @@
+{
+    "name": "@peersyst/react-components-core",
+    "author": "Peersyst",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "./src/index.tsx",
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+        "build:legacy": "node ../../scripts/build legacy",
+        "build:modern": "node ../../scripts/build modern",
+        "build:node": "node ../../scripts/build node",
+        "build:stable": "node ../../scripts/build stable",
+        "build:types": "tsc --project .",
+        "build:copy-files": "node ../../scripts/copy-files.js",
+        "release": "yarn build && npm publish build",
+        "start": "yarn generate-icons && start-storybook -p 6006",
+        "build-storybook": "build-storybook"
+    },
+    "peerDependencies": {
+        "@types/react": "^17.0.38",
+        "@types/react-dom": "^17.0.9",
+        "react": "^17.0.0",
+        "react-dom": "^17.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "@types/react-dom": {
+            "optional": true
+        },
+        "@types/styled-components": {
+            "optional": true
+        }
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.16.7",
+        "@peersyst/react-hooks": "^1.1.5",
+        "@peersyst/react-types": "^1.2.0",
+        "@peersyst/react-utils": "^1.3.2"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.38",
+        "@types/react-dom": "^17.0.9",
+        "react": "^17.0.0",
+        "react-dom": "^17.0.0"
+    },
+    "sideEffects": false,
+    "gitHead": "134adf3d64505a050b8909ee2b3468f1a758a72d"
+}

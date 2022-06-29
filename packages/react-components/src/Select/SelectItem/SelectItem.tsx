@@ -1,38 +1,31 @@
-import { useCallback, useContext } from "react";
-import { SelectContext } from "../SelectContext";
 import { SelectItemRoot } from "./SelectItem.styles";
-import { useSelected } from "../hooks/useSelected";
-import { handleSelection } from "../utils/handleSelection";
 import { SelectItemProps } from "./SelectItem.types";
 import { fsx, cx } from "@peersyst/react-utils";
+import { SelectItem as CoreSelectItem } from "@peersyst/react-components-core";
 
-export default function SelectItem({
+export default function SelectItem<T = any>({
     children,
     value,
     className,
     style,
-}: SelectItemProps): JSX.Element {
-    const { setValue, setOpen, readonly, value: selected, multiple } = useContext(SelectContext);
-    const isSelected = useSelected(value, selected, multiple);
-
-    const handleClick = useCallback(() => {
-        if (!readonly) {
-            setValue(handleSelection(value, selected, multiple, isSelected));
-            !multiple && setOpen(false);
-        }
-    }, [value, selected, multiple, readonly, isSelected, setValue, setOpen]);
-
-    const styleProps = { selected: isSelected };
-
+}: SelectItemProps<T>): JSX.Element {
     return (
-        <SelectItemRoot
-            onClick={handleClick}
-            selected={isSelected}
-            readonly={readonly}
-            className={cx(className, "SelectItem", isSelected && "Selected")}
-            style={fsx(style, styleProps)}
-        >
-            {children}
-        </SelectItemRoot>
+        <CoreSelectItem value={value}>
+            {({ isSelected, setSelected, readonly }) => {
+                const styleProps = { selected: isSelected };
+
+                return (
+                    <SelectItemRoot
+                        onClick={setSelected}
+                        selected={isSelected}
+                        readonly={readonly}
+                        className={cx(className, "SelectItem", isSelected && "Selected")}
+                        style={fsx(style, styleProps)}
+                    >
+                        {children}
+                    </SelectItemRoot>
+                );
+            }}
+        </CoreSelectItem>
     );
 }

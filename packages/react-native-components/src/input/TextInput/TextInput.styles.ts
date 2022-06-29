@@ -1,6 +1,6 @@
 import { TextInput } from "react-native";
 import { Row } from "../../layout/Row";
-import { ElementStyler } from "../../util/ElementStyler";
+import { Icon } from "../../display/Icon";
 import { InputProps } from "./TextInput.types";
 import styled, { styledWithAs } from "@peersyst/react-native-styled";
 
@@ -21,9 +21,5 @@ export const TextInputRoot = styled(Row, { alignItems: "center", gap: 10 })(({ t
     paddingHorizontal: 15,
 }));
 
-export const InvalidIcon = styled(ElementStyler)(({ theme }) => ({
-    color: theme.palette.status.error,
-}));
-export const ValidIcon = styled(ElementStyler)(({ theme }) => ({
-    color: theme.palette.status.success,
-}));
+export const InvalidIcon = styled(Icon)(({ theme }) => ({ color: theme.palette.status.error }));
+export const ValidIcon = styled(Icon)(({ theme }) => ({ color: theme.palette.status.success }));

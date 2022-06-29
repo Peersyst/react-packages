@@ -1,4 +1,4 @@
-import { Breakpoint, DefaultThemeBreakpointValues, ThemeBreakpoints } from "./styles.types";
+import { Breakpoint, DefaultThemeBreakpointValues, ThemeBreakpoints } from "./theme.types";
 
 export const createBreakpoints = (values: DefaultThemeBreakpointValues): ThemeBreakpoints => {
     const keys = Object.keys(values);

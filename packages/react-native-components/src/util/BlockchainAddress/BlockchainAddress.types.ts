@@ -1,7 +1,10 @@
 import { OverridableStringUnion } from "@peersyst/react-types";
 import { HashEllipsis } from "@peersyst/react-utils";
 import { TypographyProps } from "../../display/Typography";
-import { BlockchainLinksTypes, BlockchainLinksTypesOverrides } from "../../style";
+import {
+    BlockchainLinksTypes,
+    BlockchainLinksTypesOverrides,
+} from "@peersyst/react-components-core";
 
 export interface BlockchainAddressProps
     extends Omit<TypographyProps, "numberOfLines" | "children"> {

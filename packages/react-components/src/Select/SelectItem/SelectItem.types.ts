@@ -1,15 +1,7 @@
-import { ReactNode } from "react";
-import { PropsStyle } from "@peersyst/react-types";
+import { CoreSelectItemProps } from "@peersyst/react-components-core";
+import { CSSProperties } from "react";
 
-export interface SelectItemStylesProps {
-    selected: boolean;
-}
-
-export interface SelectItemProps {
-    /**
-     * Item value
-     */
-    value: unknown;
+export interface SelectItemProps<T> extends CoreSelectItemProps<T> {
     /**
      * Item className
      */
@@ -17,11 +9,7 @@ export interface SelectItemProps {
     /**
      * Item style
      */
-    style?: PropsStyle<SelectItemStylesProps>;
-    /**
-     * Item content
-     */
-    children: ReactNode;
+    style?: CSSProperties;
 }
 
 export interface SelectItemStyles {

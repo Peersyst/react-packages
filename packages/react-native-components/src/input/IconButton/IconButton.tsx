@@ -1,19 +1,30 @@
 import { IconButtonProps } from "./IconButton.types";
-import { useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { IconButtonRoot } from "./IconButton.styles";
-import { ElementStyler } from "../../util/ElementStyler";
+import { Icon } from "../../display/Icon";
 import useIconButtonStyles from "./hook/useIconButtonStyles";
-import { TouchableWithoutFeedback } from "react-native";
+import { ActivityIndicator, TouchableWithoutFeedback } from "react-native";
+import { FormContext } from "@peersyst/react-components-core";
 
 const IconButton = ({
-    onPress,
-    disabled = false,
+    onPress: onPressProp,
+    type,
+    loading = false,
+    disabled: disabledProp = false,
     style = {},
     children,
 }: IconButtonProps): JSX.Element => {
     const [pressed, setPressed] = useState(false);
 
-    const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabled);
+    const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabledProp);
+
+    const { handleSubmit, valid } = useContext(FormContext);
+    const onPress = useMemo(() => {
+        if (type === "submit") return handleSubmit;
+        else return onPressProp;
+    }, [type, handleSubmit]);
+
+    const disabled = disabledProp || loading || (type === "submit" && valid === false);
 
     return (
         <TouchableWithoutFeedback
@@ -23,7 +34,11 @@ const IconButton = ({
             onPressOut={() => !disabled && setPressed(false)}
         >
             <IconButtonRoot style={rootStyle}>
-                <ElementStyler style={textStyle}>{children}</ElementStyler>
+                {loading ? (
+                    <ActivityIndicator color={textStyle.color} />
+                ) : (
+                    <Icon style={textStyle}>{children}</Icon>
+                )}
             </IconButtonRoot>
         </TouchableWithoutFeedback>
     );

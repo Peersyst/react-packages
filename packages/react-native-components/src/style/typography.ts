@@ -1,6 +1,7 @@
-import { DefaultThemeTypography } from "./theme.types";
+import { ThemeTypography } from "@peersyst/react-components-core";
+import { TextStyle } from "react-native";
 
-export const typography: DefaultThemeTypography = {
+export const typography: ThemeTypography<TextStyle> = {
     h1: {
         fontSize: 60,
         lineHeight: 25,

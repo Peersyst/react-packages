@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { TypographyStyleProps } from "./Typography.types";
-import { ThemeFonts } from "../styles";
+import { ThemeFonts } from "@peersyst/react-components-core";
 
 export const TypographyRoot = styled.div<TypographyStyleProps>`
     display: block;

@@ -27,7 +27,7 @@ export interface ShowModalAction {
 
 export interface HideModalAction {
     type: ModalActionType.SHOW_MODAL;
-    payload?: string | ModalWithId;
+    payload: string;
 }
 
 export interface RemoveModalAction {
@@ -37,7 +37,7 @@ export interface RemoveModalAction {
 
 export type ModalAction = {
     type: ModalActionType;
-    payload: Modal | ModalWithId | string;
+    payload: Modal | string;
 };
 
 export interface CommonModalComponentProps {

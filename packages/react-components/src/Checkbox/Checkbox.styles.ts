@@ -1,19 +1,25 @@
 import styled, { css } from "styled-components";
-import { CheckboxStyleProps } from "./Checkbox.types";
 
-const checkboxColor = css<CheckboxStyleProps>`
-    color: ${({ disabled, checked, theme }) => {
-        if (disabled) return theme.palette.disabled;
-        else if (checked) return theme.palette.primary;
-        else return theme.palette.text;
-    }};
-`;
+const checkboxColor = css(({ theme }) => ({
+    color: theme.palette.text,
+    ["&.Disabled"]: {
+        color: theme.palette.disabled,
+    },
+    ["&.Checked"]: {
+        color: theme.palette.primary,
+    },
+}));
 
-export const CheckboxRoot = styled.span<CheckboxStyleProps>`
+export const CheckboxRoot = styled.span`
+    align-self: center;
     box-sizing: border-box;
     position: relative;
     display: flex;
-    cursor: ${({ disabled }) => !disabled && "pointer"};
+    cursor: pointer;
     ${checkboxColor};
     font-size: 1.2rem;
+
+    &.Disabled {
+        cursor: initial;
+    }
 `;

@@ -1,6 +1,9 @@
+import {
+    BlockchainLinksTypes,
+    BlockchainLinksTypesOverrides,
+} from "@peersyst/react-components-core";
 import { OverridableStringUnion } from "@peersyst/react-types";
-import { BlockchainLinksTypes, BlockchainLinksTypesOverrides } from "../styles";
-import { HashProps } from "src/Hash";
+import { HashProps } from "../Hash";
 
 export type BlockchainAddressProps = Omit<HashProps, "url" | "hash"> & {
     /**

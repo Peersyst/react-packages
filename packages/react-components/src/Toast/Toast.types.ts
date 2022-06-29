@@ -1,4 +1,5 @@
-import { CSSProperties, ReactNode } from "react";
+import { CoreToastProps, ToastType } from "@peersyst/react-components-core";
+import { CSSProperties } from "react";
 
 export type ToastPosition =
     | "top-left"
@@ -8,47 +9,7 @@ export type ToastPosition =
     | "bottom-center"
     | "bottom-left";
 
-export type ToastType = "info" | "success" | "error" | "warning" | "loading";
-
-export type ToastAnimation = "fade" | "scale" | "slide" | "fadingSlide";
-
-export interface ToastProps {
-    /**
-     * Toast message
-     */
-    message: string;
-    /**
-     * Toast type
-     */
-    type?: ToastType;
-    /**
-     * Toast actions
-     */
-    action?: ReactNode;
-    /**
-     * Toast position
-     */
-    position?: ToastPosition;
-    /**
-     * Toast is open
-     */
-    open?: boolean;
-    /**
-     * onClose handler
-     */
-    onClose?: () => unknown;
-    /**
-     * onExited handler
-     */
-    onExited?: () => unknown;
-    /**
-     * Toast animation
-     */
-    animation?: ToastAnimation;
-    /**
-     * Toast duration, infinity for type = loading
-     */
-    duration?: number;
+export interface ToastProps extends CoreToastProps<ToastPosition> {
     /**
      * Toast className
      */

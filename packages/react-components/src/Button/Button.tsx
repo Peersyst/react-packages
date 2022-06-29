@@ -2,8 +2,8 @@ import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { useTheme } from "../Theme";
 import { cx, fsx } from "@peersyst/react-utils";
-import { FormContext } from "../Form";
 import { useContext } from "react";
+import { FormContext } from "@peersyst/react-components-core";
 
 const Button = function ({
     className,

@@ -32,6 +32,9 @@ export interface ButtonContainerProps {
     isLoading: boolean;
 }
 
+//Reset coming soon
+export type ButtonType = "button" | "submit" | "reset";
+
 /**
  * Buttons props omit title in order to make button generic
  */
@@ -40,6 +43,10 @@ export interface ButtonProps extends Omit<NativeButtonProps, "title" | "color" |
      * onPress handler
      */
     onPress?: NativeButtonProps["onPress"];
+    /**
+     * Button type
+     */
+    type?: ButtonType;
     /**
      * Prop to display a loading spinner.
      */

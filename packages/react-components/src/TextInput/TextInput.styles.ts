@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { TextInputStyles } from "./TextInput.types";
-import { Col } from "../Col";
 
 export const TextInputRoot = styled.div<TextInputStyles>`
     position: relative;
@@ -46,15 +45,10 @@ export const TextInputRoot = styled.div<TextInputStyles>`
 
 export const ErrorElementWrapper = styled.div`
     display: contents;
-    color: ${({ theme }) => theme.palette.status.error};
+    color: ${({ theme }) => theme.palette.status.error} !important;
 `;
 
 export const ValidElementWrapper = styled.div`
     display: contents;
-    color: ${({ theme }) => theme.palette.status.success};
-`;
-
-export const InputErrors = styled(Col)`
-    row-gap: 5px;
-    padding: 8px;
+    color: ${({ theme }) => theme.palette.status.success} !important;
 `;

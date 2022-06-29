@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
-import { LoaderIcon } from "../assets/icons";
 import { cx } from "@peersyst/react-utils";
+import { LoaderIcon } from "../assets/icons";
 
 export default function Loader({
     className,

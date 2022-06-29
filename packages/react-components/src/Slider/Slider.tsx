@@ -1,64 +1,60 @@
 import { ChangeEvent } from "react";
-import { useFormNotification } from "../Form";
-import { SliderProps, SliderStyles } from "./Slider.types";
-import { useControlled } from "@peersyst/react-hooks";
+import { SliderProps } from "./Slider.types";
 import { SliderInput, SliderRail, SliderRoot, SliderTrack } from "./Slider.styles";
-import { fsx, cx } from "@peersyst/react-utils";
+import { cx } from "@peersyst/react-utils";
+import { FormControl } from "../FormControl";
+import { FormControlLabel } from "../FormControlLabel";
+import { SliderStyles } from "@peersyst/react-components-core";
 
 export default function Slider({
-    defaultValue = 0,
     min,
     max,
+    defaultValue = min,
     step = 1,
-    name,
-    value: valueProp,
-    onChange,
     disabled = false,
-    className,
-    style,
-    railClassName,
-    railStyle,
-    trackClassName,
-    trackStyle,
+    LabelProps = {},
+    Label = FormControlLabel,
+    ...rest
 }: SliderProps): JSX.Element {
-    const [value, setValue] = useControlled(defaultValue, valueProp, onChange);
-    useFormNotification(name, value);
-
-    const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-        const numberValue = Number(target.value);
-        setValue(Number(numberValue));
-    };
-
     const styleProps: SliderStyles = {
         disabled,
     };
 
-    const percentage = value > max ? "100%" : (value / max) * 100 + "%";
-
     return (
-        <SliderRoot
-            {...styleProps}
-            className={cx(className, "Slider", disabled && "Disabled")}
-            style={fsx(style, styleProps)}
+        <FormControl<number>
+            Label={[Label, LabelProps]}
+            defaultValue={defaultValue}
+            disabled={disabled}
+            {...rest}
         >
-            <SliderRail
-                className={cx(railClassName, "SliderRail", disabled && "Disabled")}
-                style={fsx(railStyle, styleProps)}
-            />
-            <SliderTrack
-                style={{ width: percentage, ...fsx(trackStyle, styleProps) }}
-                className={cx(trackClassName, "SliderTrack", disabled && "Disabled")}
-            />
-            <SliderInput
-                type="range"
-                min={min}
-                max={max}
-                step={step}
-                value={value}
-                onChange={handleChange}
-                disabled={disabled}
-                className={cx("SliderInput", disabled && "Disabled")}
-            />
-        </SliderRoot>
+            {(value, setValue) => {
+                const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+                    const numberValue = Number(target.value);
+                    setValue(Number(numberValue));
+                };
+
+                const percentage = value > max ? "100%" : (value / max) * 100 + "%";
+
+                return (
+                    <SliderRoot {...styleProps} className={cx("Slider", disabled && "Disabled")}>
+                        <SliderRail className={cx("SliderRail", disabled && "Disabled")} />
+                        <SliderTrack
+                            style={{ width: percentage }}
+                            className={cx("SliderTrack", disabled && "Disabled")}
+                        />
+                        <SliderInput
+                            type="range"
+                            min={min}
+                            max={max}
+                            step={step}
+                            value={value}
+                            onChange={handleChange}
+                            disabled={disabled}
+                            className={cx("SliderInput", disabled && "Disabled")}
+                        />
+                    </SliderRoot>
+                );
+            }}
+        </FormControl>
     );
 }

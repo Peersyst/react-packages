@@ -1,7 +1,8 @@
+import { ToastStyle } from "../Toast.types";
+import { ToastType } from "@peersyst/react-components-core";
 import { TextStyle, ViewStyle } from "react-native";
 import { useTheme } from "@peersyst/react-native-styled";
 import { getLuminance } from "@peersyst/react-utils";
-import { ToastStyle, ToastType } from "../Toast.types";
 import { extractTextStyles } from "@peersyst/react-native-utils";
 
 export default function useToastStyles(

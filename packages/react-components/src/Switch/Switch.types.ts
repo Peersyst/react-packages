@@ -1,60 +1,8 @@
-import { ReactElement } from "react";
-import { PropsStyle } from "@peersyst/react-types";
+import { FormControlledComponentProps } from "../FormControl";
+import { CoreSwitchProps } from "@peersyst/react-components-core";
+import { LabelProps } from "../Label";
 
-export interface SwitchProps {
-    /**
-     * Switch name in the form
-     */
-    name?: string;
-    /**
-     * Default value
-     */
-    defaultValue?: boolean;
-    /**
-     * Controlled value
-     */
-    value?: boolean;
-    /**
-     * onChange handler
-     */
-    onChange?: (toggled: boolean) => any;
-    /**
-     * Required flag
-     */
-    required?: boolean;
-    /**
-     * Disabled flag
-     */
-    disabled?: boolean;
-    /**
-     * Switch className
-     */
-    className?: string;
-    /**
-     * Switch style
-     */
-    style?: PropsStyle<SwitchStyleProps>;
-    /**
-     * Track className
-     */
-    trackClassName?: string;
-    /**
-     * Track style
-     */
-    trackStyle?: PropsStyle<SwitchStyleProps>;
-    /**
-     * Thumb className
-     */
-    thumbClassName?: string;
-    /**
-     * Thumb style
-     */
-    thumbStyle?: PropsStyle<SwitchStyleProps>;
-    /**
-     * Switch elements
-     */
-    children?: [ReactElement, ReactElement];
-}
+export type SwitchProps = FormControlledComponentProps<CoreSwitchProps<LabelProps>>;
 
 export interface SwitchStyleProps {
     checked: boolean;

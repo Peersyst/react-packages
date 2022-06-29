@@ -9,14 +9,14 @@ export interface UseDefaultSelectItemStyles {
 const useDefaultSelectItemStyles = (): UseDefaultSelectItemStyles => {
     const theme = useTheme();
 
-    const defaultSelectedStyle: TextStyle = {
+    const defaultSelectedStyle = {
         backgroundColor: alpha(theme.palette.primary, 0.4),
         fontWeight: "bold",
     };
 
     return {
         defaultSelectedStyle,
-    };
+    } as UseDefaultSelectItemStyles;
 };
 
 export default useDefaultSelectItemStyles;

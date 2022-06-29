@@ -1,52 +1,44 @@
-import { ComponentType, useCallback, useState } from "react";
-import { useControlled } from "@peersyst/react-hooks";
+import { ComponentType, useState } from "react";
 import { DisplayContent, SelectDisplay, SelectDropdown, SelectRoot } from "./Select.styles";
 import { SelectMenu } from "./SelectMenu";
-import { SelectProvider } from "./SelectContext";
-import { useSelectDisplayContent } from "./hooks/useSelectDisplayContent";
-import { useFormNotification } from "../Form";
-import { selectIsValid } from "./utils/selectIsValid";
-import { renderValueDefault } from "./utils/renderValueDefault";
-import { SelectProps } from "./Select.types";
-import { fsx, cx } from "@peersyst/react-utils";
+import {
+    SelectProvider,
+    renderSelectValue,
+    selectIsValid,
+    useSelectDisplayContent,
+} from "@peersyst/react-components-core";
+import { InnerSelectProps, SelectProps } from "./Select.types";
+import { cx } from "@peersyst/react-utils";
 import { ClickAwayListener } from "../ClickAwayListener";
+import { SelectItemProps } from "./SelectItem";
+import { FormControl } from "../FormControl";
+import { FormControlLabel } from "../FormControlLabel";
 
-export default function Select({
-    name,
-    required,
-    multiple = false,
-    defaultValue,
-    value: valueProp,
-    onChange,
+function InnerSelect<T>({
+    autoFocus,
+    disabled,
+    readonly,
+    renderValue,
     placeholder,
-    DropdownComponent = SelectDropdown as ComponentType,
-    renderValue = renderValueDefault,
-    autoFocus = false,
-    disabled = false,
-    readonly = false,
-    expandable = false,
-    displayClassName,
-    displayStyle,
-    menuClassName,
-    menuStyle,
+    value,
+    setValue,
+    multiple,
+    expandable,
+    DropdownComponent,
     children,
-}: SelectProps): JSX.Element {
-    const [value, setValue] = useControlled<unknown | unknown[]>(
-        defaultValue || (multiple ? [] : undefined),
-        valueProp,
-        onChange,
-    );
-    useFormNotification(name, value, selectIsValid(value, multiple, required));
-
+}: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useState<boolean>(autoFocus);
 
-    const displayContent = useSelectDisplayContent(value, multiple, children);
-
-    const handleClick = useCallback(() => {
+    const handleClick = () => {
         !disabled && setOpen(!open);
-    }, [open, disabled]);
+    };
 
-    const styleProps = { open, disabled };
+    const displayContent = useSelectDisplayContent<T, SelectItemProps<T>>(
+        value,
+        multiple,
+        children,
+    );
+
     return (
         <ClickAwayListener onClickAway={() => setOpen(false)}>
             <SelectRoot className="Select">
@@ -55,13 +47,7 @@ export default function Select({
                     open={open}
                     disabled={disabled}
                     readonly={readonly}
-                    className={cx(
-                        displayClassName,
-                        "SelectDisplay",
-                        open && "Open",
-                        disabled && "Disabled",
-                    )}
-                    style={fsx(displayStyle, styleProps)}
+                    className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
                 >
                     <DisplayContent className="DisplayContent">
                         {renderValue(displayContent) || placeholder}
@@ -69,16 +55,58 @@ export default function Select({
                     <DropdownComponent open={open} />
                 </SelectDisplay>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
-                    <SelectMenu
-                        open={open}
-                        expandable={expandable}
-                        className={menuClassName}
-                        style={menuStyle}
-                    >
+                    <SelectMenu open={open} expandable={expandable}>
                         {children}
                     </SelectMenu>
                 </SelectProvider>
             </SelectRoot>
         </ClickAwayListener>
+    );
+}
+
+export default function Select<T = any>({
+    required,
+    multiple = false,
+    defaultValue,
+    placeholder,
+    DropdownComponent = SelectDropdown as ComponentType,
+    renderValue = renderSelectValue,
+    autoFocus = false,
+    disabled = false,
+    readonly = false,
+    expandable = false,
+    children,
+    LabelProps = {},
+    Label = FormControlLabel,
+    ...rest
+}: SelectProps<T>): JSX.Element {
+    return (
+        <FormControl<T | T[]>
+            Label={[Label, LabelProps]}
+            // @ts-ignore
+            defaultValue={defaultValue}
+            disabled={disabled}
+            readonly={readonly}
+            required={required}
+            validation={(val) => [selectIsValid(val, multiple, required), undefined]}
+            {...rest}
+        >
+            {(value, setValue) => (
+                <InnerSelect<T>
+                    value={value}
+                    setValue={setValue}
+                    autoFocus={autoFocus}
+                    disabled={disabled}
+                    readonly={readonly}
+                    renderValue={renderValue}
+                    placeholder={placeholder}
+                    expandable={expandable}
+                    DropdownComponent={DropdownComponent}
+                    multiple={multiple}
+                >
+                    {children}
+                </InnerSelect>
+            )}
+        </FormControl>
     );
 }

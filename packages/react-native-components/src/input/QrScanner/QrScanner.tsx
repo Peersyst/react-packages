@@ -1,11 +1,11 @@
 import { QrScannerProps } from "./QrScanner.types";
 import { useEffect, useState } from "react";
 import { BackButton, IdleQrScanner, QrScannerRoot } from "./QrScanner.styles";
+import { Backdrop } from "../../feedback/Backdrop";
 import { createModal } from "../../feedback/ModalProvider";
 import { StyleSheet } from "react-native";
-import { CrossIcon } from "../../assets/icons";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { Backdrop } from "../../feedback/Backdrop";
+import { CrossIcon } from "../../assets/icons";
 
 const QrScanner = createModal(({ back, onScan, ...backdropProps }: QrScannerProps): JSX.Element => {
     const [hasPermission, setHasPermission] = useState<boolean>();

@@ -1,20 +1,25 @@
 import styled, { css } from "styled-components";
-import { RadioButtonStyleProps } from "./RadioButton.types";
 
-const radioColor = css<RadioButtonStyleProps>`
-    color: ${({ disabled, checked, theme }) => {
-        if (disabled) return theme.palette.disabled;
-        else if (checked) return theme.palette.primary;
-        else return theme.palette.text;
-    }};
-`;
+const radioColor = css(({ theme }) => ({
+    color: theme.palette.text,
+    ["&.Disabled"]: {
+        color: theme.palette.disabled,
+    },
+    ["&.Checked"]: {
+        color: theme.palette.primary,
+    },
+}));
 
-export const RadioButtonRoot = styled.span<RadioButtonStyleProps>`
+export const RadioButtonRoot = styled.span`
     box-sizing: border-box;
     position: relative;
     display: flex;
-    cursor: ${({ disabled }) => !disabled && "pointer"};
+    cursor: pointer;
     ${radioColor};
     overflow: hidden;
     font-size: 1.2rem;
+
+    &.Disabled {
+        cursor: initial;
+    }
 `;

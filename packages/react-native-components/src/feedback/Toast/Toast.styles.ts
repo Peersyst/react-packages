@@ -2,7 +2,7 @@ import { ToastContainerStylesProps, ToastContentStylesProps, ToastPosition } fro
 import { View } from "react-native";
 import styled from "@peersyst/react-native-styled";
 import { Paper } from "../../surface/Paper";
-import { ElementStyler } from "../../util/ElementStyler";
+import { Icon } from "../../display/Icon";
 
 function getPosition(position: ToastPosition): {
     bottom: number | undefined;
@@ -57,6 +57,6 @@ export const ToastContent = styled(Paper)<ToastContentStylesProps>(
     },
 );
 
-export const ToastAction = styled(ElementStyler)(() => ({
+export const ToastAction = styled(Icon)(() => ({
     alignSelf: "flex-end",
 }));

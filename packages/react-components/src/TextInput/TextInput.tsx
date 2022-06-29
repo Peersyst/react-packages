@@ -1,27 +1,17 @@
-import { ChangeEvent, createRef, useEffect, useState } from "react";
+import { ChangeEvent, createRef, useState } from "react";
 import { Row } from "../Row";
 import { useTextInputValidation } from "./hooks/useTextInputValidation";
-import { useFormNotification } from "../Form";
 import { Children, HTMLInput, TextInputProps, TextInputStyles } from "./TextInput.types";
-import { Popover } from "../Popover";
-import {
-    ErrorElementWrapper,
-    InputErrors,
-    TextInputRoot,
-    ValidElementWrapper,
-} from "./TextInput.styles";
-import { useControlled } from "@peersyst/react-hooks";
-import { fsx, cx } from "@peersyst/react-utils";
+import { ErrorElementWrapper, TextInputRoot, ValidElementWrapper } from "./TextInput.styles";
+import { cx } from "@peersyst/react-utils";
 import { useTheme } from "../Theme";
+import { FormControl } from "../FormControl";
+import { FormControlLabel } from "../FormControlLabel";
 
 export default function TextInput<HTMLT extends HTMLInput>({
     defaultValue = "",
-    value: valueProp,
-    onChange,
     disabled = false,
     readonly = false,
-    className,
-    style,
     placeholder,
     prefix,
     suffix,
@@ -35,50 +25,16 @@ export default function TextInput<HTMLT extends HTMLInput>({
     onSubmit,
     validators,
     customValidators,
-    onInvalid,
-    name,
     children,
     errorElement: errorElementProp,
-    showValid: showValidProp = false,
     validElement: validElementProp,
+    LabelProps = {},
+    Label = FormControlLabel,
+    ...rest
 }: TextInputProps & Children<HTMLT>): JSX.Element {
-    const [value, setValue] = useControlled(defaultValue, valueProp, onChange);
-    const [modified, setModified] = useState(false);
-
     const [focused, setFocused] = useState<boolean>(false);
     const [active, setActive] = useState<boolean>(false);
-
-    const { valid, errors } = useTextInputValidation(
-        value,
-        validators,
-        customValidators,
-        modified ? onInvalid : undefined,
-    );
-    useFormNotification(name, value, valid);
-
-    const invalid = modified && !valid;
-    const showValid = modified && valid && showValidProp;
-    const wrapperStyleProps: TextInputStyles = {
-        invalid,
-        showValid,
-        focused,
-        active,
-        disabled,
-        readonly,
-    };
-
-    useEffect(() => {
-        !modified && value !== "" && setModified(true);
-    }, [modified, value]);
-
-    const ref = createRef<HTMLT>();
-
-    const handleChange = (e: ChangeEvent<HTMLT>) => {
-        const newValue = e.currentTarget.value;
-        setValue(newValue);
-        onChange?.(newValue);
-    };
-
+    const validation = useTextInputValidation(validators, customValidators);
     const {
         theme: {
             icons: { invalid: Invalid, valid: Valid },
@@ -87,69 +43,80 @@ export default function TextInput<HTMLT extends HTMLInput>({
     const errorElement = errorElementProp === true ? <Invalid /> : errorElementProp ?? <Invalid />;
     const validElement = validElementProp || <Valid />;
 
+    const ref = createRef<HTMLT>();
+
     return (
-        <TextInputRoot
-            className={cx(
-                className,
-                "TextInput",
-                invalid && "Invalid",
-                showValid && "Valid",
-                focused && "Focused",
-                active && "Active",
-                disabled && "Disabled",
-                readonly && "Readonly",
-            )}
-            style={fsx(style, wrapperStyleProps)}
-            onMouseDown={() => setActive(true)}
-            onMouseUp={() => setActive(false)}
-            onClick={() => ref.current?.focus()}
-            {...wrapperStyleProps}
+        <FormControl<string>
+            Label={[Label, LabelProps]}
+            defaultValue={defaultValue}
+            disabled={disabled}
+            readonly={readonly}
+            validation={validation}
+            {...rest}
         >
-            <Row alignItems="center" gap={8} flex={1}>
-                {prefix}
-                {children({
-                    ref,
-                    value,
-                    setValue,
-                    placeholder,
-                    onChange: handleChange,
+            {(value, setValue, { invalid, valid }) => {
+                const handleChange = (e: ChangeEvent<HTMLT>) => {
+                    const newValue = e.currentTarget.value;
+                    setValue(newValue);
+                };
+
+                const wrapperStyleProps: TextInputStyles = {
+                    invalid,
+                    valid,
+                    focused,
+                    active,
                     disabled,
-                    onFocus: () => {
-                        setFocused(true);
-                        if (selectOnFocus) ref.current?.select();
-                    },
-                    onBlur: () => setFocused(false),
-                    readOnly: readonly,
-                    autoFocus,
-                    autoComplete: autoComplete ? "on" : "off",
-                    autoCorrect: autoCorrect ? "on" : "off",
-                    autoCapitalize: autoCapitalize ? "on" : "off",
-                    spellCheck,
-                    maxLength,
-                    onSubmit,
-                })}
-                {suffix}
-                {!invalid ? (
-                    showValid && <ValidElementWrapper>{validElement}</ValidElementWrapper>
-                ) : (
-                    <>
-                        {errorElement && (
-                            <Popover>
-                                <Popover.Popper>
-                                    <InputErrors>
-                                        {errors.map((e, i) => (
-                                            <p key={i.toString()}>{e}</p>
-                                        ))}
-                                    </InputErrors>
-                                </Popover.Popper>
-                                <Popover.Content>
-                                    {<ErrorElementWrapper>{errorElement}</ErrorElementWrapper>}
-                                </Popover.Content>
-                            </Popover>
+                    readonly,
+                };
+
+                return (
+                    <TextInputRoot
+                        className={cx(
+                            "TextInput",
+                            focused && "Focused",
+                            active && "Active",
+                            invalid && "Invalid",
+                            valid && "Valid",
+                            disabled && "Disabled",
+                            readonly && "Readonly",
                         )}
-                    </>
-                )}
-            </Row>
-        </TextInputRoot>
+                        onMouseDown={() => setActive(true)}
+                        onMouseUp={() => setActive(false)}
+                        onClick={() => ref.current?.focus()}
+                        {...wrapperStyleProps}
+                    >
+                        <Row alignItems="center" gap={8} flex={1}>
+                            {prefix}
+                            {children({
+                                ref,
+                                value,
+                                setValue,
+                                placeholder,
+                                onChange: handleChange,
+                                disabled,
+                                onFocus: () => {
+                                    setFocused(true);
+                                    if (selectOnFocus) ref.current?.select();
+                                },
+                                onBlur: () => setFocused(false),
+                                readOnly: readonly,
+                                autoFocus,
+                                autoComplete: autoComplete ? "on" : "off",
+                                autoCorrect: autoCorrect ? "on" : "off",
+                                autoCapitalize: autoCapitalize ? "on" : "off",
+                                spellCheck,
+                                maxLength,
+                                onSubmit,
+                            })}
+                            {suffix}
+                            {valid && <ValidElementWrapper>{validElement}</ValidElementWrapper>}
+                            {invalid && errorElement && (
+                                <ErrorElementWrapper>{errorElement}</ErrorElementWrapper>
+                            )}
+                        </Row>
+                    </TextInputRoot>
+                );
+            }}
+        </FormControl>
     );
 }

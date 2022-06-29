@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { SliderStyles } from "./Slider.types";
+import { SliderStyles } from "@peersyst/react-components-core";
 
 const sliderColor = css<SliderStyles>`
     color: ${({ disabled, theme }) => (disabled ? theme.palette.disabled : theme.palette.primary)};

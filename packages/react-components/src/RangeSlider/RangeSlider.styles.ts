@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { RangeSliderStyles } from "./RangeSlider.types";
+import { RangeSliderStyles } from "@peersyst/react-components-core";
 
 const sliderColor = css<RangeSliderStyles>`
     color: ${({ disabled, theme }) => (disabled ? theme.palette.disabled : theme.palette.primary)};

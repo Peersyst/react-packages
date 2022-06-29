@@ -23,7 +23,7 @@ export interface HashProps extends Omit<TypographyProps, "singleLine" | "childre
      */
     gap?: number;
     /**
-     * Set the url if you want the hash to be clickable
+     * Url of the link attached to the hash
      */
     url?: string;
 }
