@@ -1,6 +1,14 @@
 
 # Versions
 
+## 2.17.13
+
+[Divider] Divider color can now be set with the color css attribute.
+
+[Hash] Added a base Hash component that displays hashes the same way BlockchainAddress component did
+
+[BlockchainAddress] This component is now built on top of Hash
+
 ## 2.17.12
 
 [Typography] Light className
@@ -12,6 +20,7 @@
 ## 2.17.10
 
 [Table] Add popover option in TableCol
+
 [Popover] Add PopoverRoot styling
 
 ## 2.17.(8|9)
@@ -56,7 +65,9 @@ Popover `position` prop has changed on order to match Popper.js'.
 ## 2.16.2
 
 [Button] Fixed Button being disabled when inside a form and type !== "submit"
+
 [IconButton] Fixed Button being disabled when inside a form and type !== "submit"
+
 [IconButton] Added loading and loadingElement props
 
 ## 2.16.1
