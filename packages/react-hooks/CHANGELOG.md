@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.3
+
+Use react-components-core
+
 ## 1.2.2
 
 Bump react-utils to 1.4.4

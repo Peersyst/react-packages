@@ -1,5 +1,13 @@
 # Versions
 
+## 0.0.8
+
+- All inputs components now use FormControl as its core and have a common behaviour
+- Extracted common theme code to react-components core
+- Extracted common input code to react-components-core
+
+[FormControl] Add FormControl
+
 ## 0.0.7
 
 Update BlockchainAddress to use react-utils 1.4.4

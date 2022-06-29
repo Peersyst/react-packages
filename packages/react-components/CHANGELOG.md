@@ -1,6 +1,14 @@
 
 # Versions
 
+## 2.18.0
+
+- All inputs components now use FormControl as its core and have a common behaviour
+- Extracted common theme code to react-components core
+- Extracted common input code to react-components-core
+
+[FormControl] Add FormControl
+
 ## 2.17.13
 
 [Divider] Divider color can now be set with the color css attribute.

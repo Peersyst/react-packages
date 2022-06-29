@@ -1,5 +1,9 @@
 # Versions
 
+## 1.4.5
+
+Use react-components-core
+
 ## 1.4.4
 
 [formatAddress -> formatHash] renamed formatAddress to formatHash
