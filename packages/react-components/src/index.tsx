@@ -17,6 +17,7 @@ export * from "./ErrorBoundary";
 export * from "./Expandable";
 export * from "./Form";
 export * from "./Grids";
+export * from "./Hash";
 export * from "./IconButton";
 export * from "./Image";
 export * from "./InfiniteCarousel";

@@ -2,32 +2,32 @@ import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
 
 export default function (
     active: boolean,
-    address: string,
+    hash: string,
     gap: number,
     rowRef: RefObject<HTMLDivElement>,
-    addressRef: RefObject<HTMLAnchorElement>,
+    hashRef: RefObject<HTMLAnchorElement>,
     copyButtonRef: RefObject<HTMLButtonElement>,
 ): number {
-    const [autoLength, setAutoLength] = useState(address.length);
+    const [autoLength, setAutoLength] = useState(hash.length);
 
     const setAddressLength = useCallback(
         (rowE: Element) => {
-            if (addressRef.current) {
+            if (hashRef.current) {
                 const rowWidth = rowE.clientWidth;
-                const addressWidth = addressRef.current?.clientWidth || 0;
+                const addressWidth = hashRef.current?.clientWidth || 0;
                 const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
 
                 const computedWidth = Math.floor(
                     (autoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
                 );
-                const newLength = Math.max(Math.min(computedWidth, address.length), 1);
+                const newLength = Math.max(Math.min(computedWidth, hash.length), 1);
 
                 if (newLength > autoLength + 1 || newLength < autoLength) {
                     setAutoLength(newLength);
                 }
             }
         },
-        [address, gap, addressRef, copyButtonRef, autoLength],
+        [hash, gap, hashRef, copyButtonRef, autoLength],
     );
 
     const observer = useMemo(() => {
