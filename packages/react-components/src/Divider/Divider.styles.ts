@@ -8,9 +8,9 @@ export const DividerRoot = styled.div<{
     width: NonNullable<DividerProps["width"]>;
     color?: Property.Color;
 }>`
-    ${({ height, width, color, theme }) => css`
+    ${({ height, width, color}) => css`
         height: ${height};
-        background-color: ${color || theme.palette.text};
+        background-color: ${color || "currentColor"};
 
         width: ${() => {
             switch (width) {
