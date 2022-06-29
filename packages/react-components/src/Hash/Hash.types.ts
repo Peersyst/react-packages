@@ -1,4 +1,4 @@
-import { BlockchainAddressEllipsis } from "@peersyst/react-utils";
+import { HashEllipsis } from "@peersyst/react-utils";
 import { TypographyProps } from "../Typography";
 
 export interface HashProps extends Omit<TypographyProps, "singleLine" | "children"> {
@@ -13,7 +13,7 @@ export interface HashProps extends Omit<TypographyProps, "singleLine" | "childre
     /**
      * If ellipsis should be in the middle or end
      */
-    ellipsis?: BlockchainAddressEllipsis;
+    ellipsis?: HashEllipsis;
     /**
      * If address should break
      */

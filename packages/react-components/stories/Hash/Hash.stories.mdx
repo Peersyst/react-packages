@@ -15,19 +15,17 @@ import themedContainer from "../styles/themedContainer";
 
 # Hash
 
-Check also <LinkTo kind="components-utils-blockchainaddress--page">Blockchain Address</LinkTo>
-
 Component used to display a <LinkTo kind="components-utils-hash--page#the-component">Hash</LinkTo>.
 
 -   Use length to set how many characters to display.
 -   Set the break prop to true to make the hash break and not to scribble in smaller windows.
--   You can set an url.
+-   Set an url.
 
 ## Usage
 
 #### The component
 
-Component that auto resize itself in order to display the hash correctly. Resize the screen to see the how it works...
+This component by default, shortens itself with an ellipsis in order to fit in its space.
 
 ```jsx
 <Hash hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
@@ -41,7 +39,7 @@ Component that auto resize itself in order to display the hash correctly. Resize
 
 #### The break prop
 
-Resize again the screen ;)
+This prop breaks the hash instead of adding an ellipsis.
 
 ```jsx
 <Hash hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" break />
@@ -59,7 +57,7 @@ Check how the length props works
 
 ```jsx
 
- <Hash length={1} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+<Hash length={1} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
 
 <Hash length={2} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
 
@@ -81,11 +79,9 @@ Check how the length props works
     </Col>
 </Canvas>
 
-#### Set and url
+#### Set an url
 
-You can also add an url for sending the user to some website (f.e. an explorer)
-
-Check also <LinkTo kind="components-utils-blockchainaddress--page">Blockchain Address</LinkTo>
+You can also add an url for sending the user to some website (f.e. a blockchain explorer)
 
 ```jsx
 <Hash

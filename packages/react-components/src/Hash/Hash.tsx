@@ -1,5 +1,5 @@
 import { HashProps } from "./Hash.types";
-import { cx, formatAddress } from "@peersyst/react-utils";
+import { cx, formatHash } from "@peersyst/react-utils";
 import { createRef } from "react";
 import useHashAutoLength from "./hook/useHashAutoLength";
 import { CopyButton } from "../CopyButton";
@@ -40,7 +40,7 @@ const Hash = ({
         >
             <HashLink href={url} target="_blank" rel="noreferrer" ref={hashRef} url={url}>
                 <HashText variant={variant} break={breakProp} {...typographyProps}>
-                    {formatAddress(
+                    {formatHash(
                         hash,
                         ellipsis,
                         isAutoLength
