@@ -36,8 +36,13 @@ function FormControl<T = any>({
             setError(translate("invalid_required"));
         } else if (validation) {
             const [validationResult, validationError] = validation(value);
-            setInvalid(!validationResult);
-            setError(validationError);
+            if (!validationResult) {
+                setInvalid(true);
+                setError(validationError);
+            } else {
+                setInvalid(false);
+                setError(undefined);
+            }
         } else {
             setInvalid(false);
             setError(undefined);
