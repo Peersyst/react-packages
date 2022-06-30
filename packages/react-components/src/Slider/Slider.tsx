@@ -33,7 +33,7 @@ export default function Slider({
                     setValue(Number(numberValue));
                 };
 
-                const percentage = value > max ? "100%" : (value / max) * 100 + "%";
+                const percentage = value > max ? "100%" : ((value - min) / (max - min)) * 100 + "%";
 
                 return (
                     <SliderRoot {...styleProps} className={cx("Slider", disabled && "Disabled")}>

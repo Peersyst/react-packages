@@ -1,6 +1,10 @@
 
 # Versions
 
+## 2.18.1
+
+[Slider] Rail width fix
+
 ## 2.18.0
 
 - All inputs components now use FormControl as its core and have a common behaviour
