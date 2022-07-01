@@ -1,18 +1,19 @@
 import { TypographyRoot } from "./Typography.styles";
 import { TypographyProps } from "./Typography.types";
-import { useTheme } from "../Theme";
+import { useTheme } from "../theme";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Typography({
-    variant: variantKey,
-    children,
-    className,
-    light,
-    ...rest
-}: TypographyProps): JSX.Element {
+export default function Typography(props: TypographyProps): JSX.Element {
     const {
-        theme: { typography },
-    } = useTheme();
+        variant: variantKey,
+        children,
+        className,
+        light,
+        ...rest
+    } = useMergeDefaultProps("Typography", props);
+
+    const { typography } = useTheme();
 
     const { component, style } =
         variantKey === "inherit"

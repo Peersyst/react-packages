@@ -1,17 +1,20 @@
 import { InfiniteScrollProps } from "./InfiniteScroll.types";
 import { InfiniteScrollLoader } from "./InfiniteScroll.styles";
 import { OnScreenObserver } from "../OnScreenObserver";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const InfiniteScroll = ({
-    children,
-    endElement,
-    end: endProp,
-    loading,
-    loaderElement,
-    callback,
-    observerOffset = "10vh",
-    container,
-}: InfiniteScrollProps): JSX.Element => {
+const InfiniteScroll = (props: InfiniteScrollProps): JSX.Element => {
+    const {
+        children,
+        endElement,
+        end: endProp,
+        loading,
+        loaderElement,
+        callback,
+        observerOffset = "10vh",
+        container,
+    } = useMergeDefaultProps("InfiniteScroll", props);
+
     const end = !loading && endProp;
     return (
         <>

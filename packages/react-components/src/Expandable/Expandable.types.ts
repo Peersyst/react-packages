@@ -1,13 +1,20 @@
-import { CSSProperties, ReactElement } from "react";
+import { ComponentType, CSSProperties, ReactElement } from "react";
 import ExpandableDisplay from "./ExpandableDisplay/ExpandableDisplay";
 import ExpandableBody from "./ExpandableBody/ExpandableBody";
+import { ExpandableDisplayProps } from "./ExpandableDisplay";
+import {
+    ExpandableBodyProps,
+    ExpandableContentProps,
+    ExpandableFooterProps,
+    ExpandableHeaderProps,
+} from "./ExpandableBody";
 
 export type ExpandableChildren = [
     ReactElement<typeof ExpandableDisplay>,
     ReactElement<typeof ExpandableBody>,
 ];
 
-export interface DropdownProps {
+export interface ExpandableProps {
     /**
      * Open flag
      */
@@ -33,3 +40,11 @@ export interface DropdownProps {
      */
     children: ExpandableChildren;
 }
+
+export type ExpandableComponent = ComponentType<ExpandableProps> & {
+    Display: ComponentType<ExpandableDisplayProps>;
+    Body: ComponentType<ExpandableBodyProps>;
+    Header: ComponentType<ExpandableHeaderProps>;
+    Content: ComponentType<ExpandableContentProps>;
+    Footer: ComponentType<ExpandableFooterProps>;
+};

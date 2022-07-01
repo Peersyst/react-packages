@@ -1,7 +1,6 @@
 import { Validator, Validators, ValidatorFactory } from "./Validators.types";
-import { TranslateFn, ExtraValidators } from "../Theme";
+import { TranslateFn, ExtraValidators } from "../config";
 import { BaseValidator } from "./BaseValidator";
-import { NotNullValidator } from "./NotNullValidator";
 import { NumberValidator } from "./NumberValidator";
 import { EmailValidator } from "./EmailValidator";
 import { PasswordValidator } from "./PasswordValidator";
@@ -20,8 +19,6 @@ export const parseValidator = (
     const [value, message] = Array.isArray(param) ? param : [param, undefined];
 
     switch (validator) {
-        case "not_null":
-            return new NotNullValidator(message, translate);
         case "number":
             return new NumberValidator(message, translate);
         case "email":

@@ -3,16 +3,17 @@ import * as Localization from "expo-localization";
 import { NumericInputProps } from "./NumericInput.types";
 import { useControlled } from "@peersyst/react-hooks";
 import formatValue, { decimalRegExp, digitRegExp } from "./utils/formatValue";
+import { useComponentConfig, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-// Should be in config
-const MAX_NUMBER_OF_DECIMALS = 4;
+const NumericInput = (props: NumericInputProps): JSX.Element => {
+    const {
+        value: valueProp,
+        defaultValue,
+        onChangeText,
+        ...rest
+    } = useMergeDefaultProps("NumericInput", props);
+    const maxDecimals = useComponentConfig("NumericInput").maxDecimals;
 
-const NumericInput = ({
-    value: valueProp,
-    defaultValue,
-    onChangeText,
-    ...rest
-}: NumericInputProps): JSX.Element => {
     const [value, setValue] = useControlled(defaultValue || "", valueProp, onChangeText);
 
     const handleChange = (newValue: string): void => {
@@ -26,7 +27,7 @@ const NumericInput = ({
             setValue?.("");
         } else {
             const [int, dec] = newValue.split(Localization.decimalSeparator);
-            if (dec && dec.length > Number(MAX_NUMBER_OF_DECIMALS)) return;
+            if (dec && dec.length > maxDecimals) return;
             const rawInt = int.replace(digitRegExp, "");
             const rawValue =
                 rawInt +

@@ -1,29 +1,27 @@
 import { SkeletonRoot } from "./Skeleton.styles";
 import { SkeletonProps } from "./Skeleton.types";
 import { cx } from "@peersyst/react-utils";
-import { useTheme } from "../Theme";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Skeleton({
-    width,
-    height,
-    shape = "stadium",
-    animation,
-    loading = true,
-    appearance,
-    className,
-    style,
-    children,
-}: SkeletonProps): JSX.Element {
+export default function Skeleton(props: SkeletonProps): JSX.Element {
     const {
-        theme: { skeletonAnimations },
-    } = useTheme();
+        width,
+        height,
+        shape = "stadium",
+        animation = "wave",
+        loading = true,
+        appearance,
+        className,
+        style,
+        children,
+    } = useMergeDefaultProps("Skeleton", props);
 
     return (
         <SkeletonRoot
             width={width}
             height={height}
             shape={shape}
-            animation={animation || skeletonAnimations}
+            animation={animation}
             isLoading={loading}
             appearance={appearance}
             className={cx("Skeleton", className)}

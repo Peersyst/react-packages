@@ -3,153 +3,149 @@ import Animated from "../Animated";
 import { CollapseProps } from "./Collapse.types";
 import { useForkRef } from "@peersyst/react-hooks";
 import { CollapseRoot, CollapseWrapper, CollapseWrapperInner } from "./Collapse.styles";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Collapse = forwardRef(
-    (
-        {
-            in: inProp,
-            orientation = "vertical",
-            collapsedSize: collapsedSizeProp = "0px",
-            onEnter,
-            onEntering,
-            onEntered,
-            onExit,
-            onExiting,
-            onExited,
-            children,
-            duration = 300,
-            ...animatedProps
-        }: CollapseProps,
-        ref,
-    ) => {
-        const collapsedSize =
-            typeof collapsedSizeProp === "number" ? `${collapsedSizeProp}px` : collapsedSizeProp;
-        const isHorizontal = orientation === "horizontal";
-        const size = isHorizontal ? "width" : "height";
+const Collapse = forwardRef((props: CollapseProps, ref) => {
+    const {
+        in: inProp,
+        orientation = "vertical",
+        collapsedSize: collapsedSizeProp = "0px",
+        onEnter,
+        onEntering,
+        onEntered,
+        onExit,
+        onExiting,
+        onExited,
+        children,
+        duration = 300,
+        ...animatedProps
+    } = useMergeDefaultProps("AnimatedCollapse", props);
 
-        const wrapperRef = useRef<HTMLDivElement>(null);
-        const nodeRef = useRef<HTMLDivElement>(null);
-        const handleRef = useForkRef(ref, nodeRef);
+    const collapsedSize =
+        typeof collapsedSizeProp === "number" ? `${collapsedSizeProp}px` : collapsedSizeProp;
+    const isHorizontal = orientation === "horizontal";
+    const size = isHorizontal ? "width" : "height";
 
-        const getWrapperSize = () =>
-            wrapperRef.current
-                ? wrapperRef.current[isHorizontal ? "clientWidth" : "clientHeight"]
-                : 0;
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const nodeRef = useRef<HTMLDivElement>(null);
+    const handleRef = useForkRef(ref, nodeRef);
 
-        const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
+    const getWrapperSize = () =>
+        wrapperRef.current ? wrapperRef.current[isHorizontal ? "clientWidth" : "clientHeight"] : 0;
+
+    const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
+        if (wrapperRef.current && isHorizontal) {
+            // Set absolute position to get the size of collapsed content
+            wrapperRef.current.style.position = "absolute";
+        }
+        node.style[size] = collapsedSize;
+
+        if (onEnter) {
+            onEnter(node, isAppearing);
+        }
+    };
+
+    const handleEntering = (node: HTMLElement, isAppearing: boolean) => {
+        const wrapperSize = getWrapperSize();
+
+        if (wrapperRef.current && isHorizontal) {
+            // After the size is read reset the position back to default
+            wrapperRef.current.style.position = "";
+        }
+
+        node.style[size] = `${wrapperSize}px`;
+
+        if (onEntering) {
+            onEntering(node, isAppearing);
+        }
+    };
+
+    const handleEntered = (node: HTMLElement, isAppearing: boolean) => {
+        if (onEntered) {
+            onEntered(node, isAppearing);
+        }
+    };
+
+    const handleExit = (node: HTMLElement) => {
+        node.style[size] = `${getWrapperSize()}px`;
+
+        if (onExit) {
+            onExit(node);
+        }
+    };
+
+    const handleExited = onExited;
+
+    const handleExiting = (node: HTMLElement) => {
+        node.style[size] = collapsedSize;
+
+        if (onExiting) {
+            onExiting(node);
+        }
+    };
+
+    const recalculate = () => {
+        if (inProp && nodeRef.current) {
             if (wrapperRef.current && isHorizontal) {
                 // Set absolute position to get the size of collapsed content
                 wrapperRef.current.style.position = "absolute";
             }
-            node.style[size] = collapsedSize;
-
-            if (onEnter) {
-                onEnter(node, isAppearing);
-            }
-        };
-
-        const handleEntering = (node: HTMLElement, isAppearing: boolean) => {
             const wrapperSize = getWrapperSize();
-
             if (wrapperRef.current && isHorizontal) {
                 // After the size is read reset the position back to default
                 wrapperRef.current.style.position = "";
             }
+            nodeRef.current.style[size] = `${wrapperSize}px`;
+        }
+    };
 
-            node.style[size] = `${wrapperSize}px`;
-
-            if (onEntering) {
-                onEntering(node, isAppearing);
-            }
+    useEffect(() => {
+        window.addEventListener("resize", recalculate);
+        return () => {
+            window.removeEventListener("resize", recalculate);
         };
+    }, [inProp]);
 
-        const handleEntered = (node: HTMLElement, isAppearing: boolean) => {
-            if (onEntered) {
-                onEntered(node, isAppearing);
-            }
-        };
-
-        const handleExit = (node: HTMLElement) => {
-            node.style[size] = `${getWrapperSize()}px`;
-
-            if (onExit) {
-                onExit(node);
-            }
-        };
-
-        const handleExited = onExited;
-
-        const handleExiting = (node: HTMLElement) => {
-            node.style[size] = collapsedSize;
-
-            if (onExiting) {
-                onExiting(node);
-            }
-        };
-
-        const recalculate = () => {
-            if (inProp && nodeRef.current) {
-                if (wrapperRef.current && isHorizontal) {
-                    // Set absolute position to get the size of collapsed content
-                    wrapperRef.current.style.position = "absolute";
-                }
-                const wrapperSize = getWrapperSize();
-                if (wrapperRef.current && isHorizontal) {
-                    // After the size is read reset the position back to default
-                    wrapperRef.current.style.position = "";
-                }
-                nodeRef.current.style[size] = `${wrapperSize}px`;
-            }
-        };
-
-        useEffect(() => {
-            window.addEventListener("resize", recalculate);
-            return () => {
-                window.removeEventListener("resize", recalculate);
-            };
-        }, [inProp]);
-
-        return (
-            <Animated
-                in={inProp}
-                animation={{
-                    entered: {
-                        overflow: "visible",
-                    },
-                    exited:
-                        !inProp && collapsedSize === "0px"
-                            ? {
-                                  visibility: "hidden",
-                              }
-                            : {},
+    return (
+        <Animated
+            in={inProp}
+            animation={{
+                entered: {
+                    overflow: "visible",
+                },
+                exited:
+                    !inProp && collapsedSize === "0px"
+                        ? {
+                              visibility: "hidden",
+                          }
+                        : {},
+            }}
+            animatedProperties={isHorizontal ? "width" : "height"}
+            duration={duration}
+            onEnter={handleEnter}
+            onEntering={handleEntering}
+            onEntered={handleEntered}
+            onExit={handleExit}
+            onExiting={handleExiting}
+            onExited={handleExited}
+            {...animatedProps}
+            ref={handleRef}
+        >
+            <CollapseRoot
+                style={{
+                    [isHorizontal ? "minWidth" : "minHeight"]: collapsedSize,
                 }}
-                animatedProperties={isHorizontal ? "width" : "height"}
-                duration={duration}
-                onEnter={handleEnter}
-                onEntering={handleEntering}
-                onEntered={handleEntered}
-                onExit={handleExit}
-                onExiting={handleExiting}
-                onExited={handleExited}
-                {...animatedProps}
-                ref={handleRef}
+                orientation={orientation}
             >
-                <CollapseRoot
-                    style={{
-                        [isHorizontal ? "minWidth" : "minHeight"]: collapsedSize,
-                    }}
-                    orientation={orientation}
-                >
-                    <CollapseWrapper orientation={orientation} ref={wrapperRef}>
-                        <CollapseWrapperInner orientation={orientation}>
-                            {children}
-                        </CollapseWrapperInner>
-                    </CollapseWrapper>
-                </CollapseRoot>
-            </Animated>
-        );
-    },
-);
+                <CollapseWrapper orientation={orientation} ref={wrapperRef}>
+                    <CollapseWrapperInner orientation={orientation}>
+                        {children}
+                    </CollapseWrapperInner>
+                </CollapseWrapper>
+            </CollapseRoot>
+        </Animated>
+    );
+});
 Collapse.displayName = "Collapse";
 
 export default Collapse;

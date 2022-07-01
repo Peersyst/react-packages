@@ -6,7 +6,7 @@ import {
     SkeletonRootProps,
     SkeletonShape,
 } from "./Skeleton.types";
-import { Theme } from "../../style";
+import { Theme } from "@peersyst/react-components-core";
 
 const getSkeletonBorderRadius = (shape: SkeletonShape, { borderRadius }: Theme): number => {
     if (shape === "rectangular") return 0;

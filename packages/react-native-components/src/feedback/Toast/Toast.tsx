@@ -3,7 +3,6 @@ import { ToastAction, ToastContent } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { useGetIcon } from "./hooks/useGetIcon";
-import { useTheme } from "@peersyst/react-native-styled";
 import { Row } from "../../layout/Row";
 import { AnimatedProps } from "../../util/Animated";
 import { Col } from "../../layout/Col";
@@ -13,22 +12,22 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useToastStyles from "./hooks/useToastStyles";
 import getAnimatedComponent from "./utils/getAnimatedComponent";
 import { SlideProps } from "../../util/Animated/Slide";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Toast({
-    message,
-    type,
-    action,
-    position: positionProp,
-    open: propOpen,
-    onClose,
-    onExited,
-    animation: animationProp,
-    duration = 4000,
-    style,
-}: ToastProps): JSX.Element {
-    const { toastAnimation, toastPosition } = useTheme();
-    const animation = animationProp || toastAnimation;
-    const position = positionProp || toastPosition;
+export default function Toast(props: ToastProps): JSX.Element {
+    const {
+        message,
+        type,
+        action,
+        position = "top",
+        open: propOpen,
+        onClose,
+        onExited,
+        animation = "fadingSlide",
+        duration = 4000,
+        style,
+    } = useMergeDefaultProps("Toast", props);
+
     const safeAreaInsets = useSafeAreaInsets();
 
     const [open, setOpen] = useControlled(true, propOpen, propOpen ? onClose : undefined);

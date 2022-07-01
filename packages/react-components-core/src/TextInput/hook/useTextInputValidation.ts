@@ -1,13 +1,13 @@
 import { useMemo } from "react";
-import { ExtraValidators, TranslateFn } from "../../Theme";
-import { CustomValidators, ValidatorFactory, validatorParser, Validators } from "../../Validators";
+import { CustomValidators, validatorParser, Validators } from "../../Validators";
+import { useAllConfig } from "../../config";
 
 export function useTextInputValidation(
-    translate: TranslateFn,
-    extraValidators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>,
     rawValidators?: Validators,
     customValidators?: CustomValidators,
 ): (value: string) => [boolean, string | undefined] {
+    const { translate, validators: extraValidators } = useAllConfig();
+
     const validators = useMemo(
         () =>
             validatorParser(rawValidators || {}, extraValidators, translate).concat(

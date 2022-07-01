@@ -1,3 +1,5 @@
+export * from "./config";
+export * from "./theme";
 export * from "./display/Divider";
 export * from "./display/SvgIcon";
 export * from "./display/Icon";
@@ -7,7 +9,6 @@ export * from "./display/List";
 export * from "./display/ScrollView";
 export * from "./display/Typography";
 export * from "./feedback/Backdrop";
-export * from "./feedback/ControlledSuspense";
 export * from "./feedback/Dialog";
 export * from "./feedback/Modal";
 export * from "./feedback/ModalProvider";
@@ -35,4 +36,3 @@ export * from "./surface/Paper";
 export * from "./util/Animated";
 export * from "./util/BlockchainAddress";
 export * from "./util/CopyButton";
-export * from "./style";

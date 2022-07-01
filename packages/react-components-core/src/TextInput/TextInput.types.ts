@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import { BaseValidator, FunctionalValidator, Validators } from "../Validators";
-import { ExtraValidators } from "../Theme";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
+import { ExtraValidators } from "../config";
 
 export interface CoreTextInputProps<LP extends CoreLabelProps = CoreLabelProps>
     extends CoreFormControlledComponentProps<string, LP> {

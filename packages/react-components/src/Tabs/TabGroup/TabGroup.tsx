@@ -6,17 +6,20 @@ import { useTabGroupSize } from "./hook/useTabGroupSize";
 import { TabGroupProps } from "./TabGroup.types";
 import { cx } from "@peersyst/react-utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../assets/icons";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function TabGroup({
-    renderIndicator = true,
-    indicatorClassName,
-    indicatorStyle,
-    leftArrowIcon = <ChevronLeftIcon />,
-    rightArrowIcon = <ChevronRightIcon />,
-    children,
-    className,
-    style,
-}: TabGroupProps) {
+export default function TabGroup(props: TabGroupProps) {
+    const {
+        renderIndicator = true,
+        indicatorClassName,
+        indicatorStyle,
+        leftArrowIcon = <ChevronLeftIcon />,
+        rightArrowIcon = <ChevronRightIcon />,
+        children,
+        className,
+        style,
+    } = useMergeDefaultProps("TabGroup", props);
+
     const ref = createRef<HTMLDivElement>();
 
     const { update, ...sizeInfo } = useTabGroupSize(ref);

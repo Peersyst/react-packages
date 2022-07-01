@@ -2,8 +2,11 @@ import { StatusBarProps } from "./StatusBar.types";
 import { useTheme } from "@peersyst/react-native-styled";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { StatusBar as NativeStatusBar } from "react-native";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const StatusBar = ({ appearance: appearanceProp, ...rest }: StatusBarProps): JSX.Element => {
+const StatusBar = (props: StatusBarProps): JSX.Element => {
+    const { appearance: appearanceProp, ...rest } = useMergeDefaultProps("StatusBar", props);
+
     const {
         palette: { mode },
     } = useTheme();

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { cx } from "@peersyst/react-utils";
+import { createComponent } from "@peersyst/react-components-core";
 
 const Toolbar = styled.div.attrs(({ className }) => ({ className: cx("Toolbar", className) }))`
     position: relative;
@@ -17,4 +18,4 @@ const Toolbar = styled.div.attrs(({ className }) => ({ className: cx("Toolbar", 
     }
 `;
 
-export default Toolbar;
+export default createComponent("Toolbar", Toolbar);

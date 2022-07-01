@@ -3,20 +3,23 @@ import { Property } from "csstype";
 import { LabelChildren, LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
 import { cx } from "@peersyst/react-utils";
 import { useMediaQuery } from "@peersyst/react-hooks";
-import { useTheme } from "../Theme";
+import { useTheme } from "../theme";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Label = ({
-    label,
-    placement: placementProp = "top",
-    alignment: alignmentProp = "start",
-    gap: gapProp = 10,
-    children,
-    className,
-    style,
-    breakpoint,
-    variant,
-}: LabelProps): JSX.Element => {
-    const { theme } = useTheme();
+const Label = (props: LabelProps): JSX.Element => {
+    const {
+        label,
+        placement: placementProp = "top",
+        alignment: alignmentProp = "start",
+        gap: gapProp = 10,
+        children,
+        className,
+        style,
+        breakpoint,
+        variant,
+    } = useMergeDefaultProps("Label", props);
+
+    const theme = useTheme();
     const breakpointIsActive = useMediaQuery(
         breakpoint ? theme.breakpoints.down(breakpoint.width).replace("@media ", "") : "",
     );

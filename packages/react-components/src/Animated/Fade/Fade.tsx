@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { AnimatedComponentProps, TransitionStyles } from "../Animated.types";
 import Animated from "../Animated";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const fade: TransitionStyles = {
     entering: { opacity: 1 },
@@ -9,9 +10,11 @@ const fade: TransitionStyles = {
     exited: { opacity: 0 },
 };
 
-const Fade = forwardRef((props: AnimatedComponentProps, ref) => (
-    <Animated animation={fade} animatedProperties="opacity" {...props} ref={ref} />
-));
+const Fade = forwardRef((props: AnimatedComponentProps, ref) => {
+    const mergedProps = useMergeDefaultProps("AnimatedFade", props);
+
+    return <Animated animation={fade} animatedProperties="opacity" {...mergedProps} ref={ref} />;
+});
 Fade.displayName = "Fade";
 
 export default Fade;

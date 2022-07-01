@@ -1,15 +1,18 @@
 import { DividerRoot, DividerWithChildren } from "./Divider.styles";
 import { DividerProps } from "./Divider.types";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Divider({
-    size = "1px",
-    width = "full-width",
-    className,
-    style,
-    color,
-    children,
-}: DividerProps): JSX.Element {
+export default function Divider(props: DividerProps): JSX.Element {
+    const {
+        size = "1px",
+        width = "full-width",
+        className,
+        style,
+        color,
+        children,
+    } = useMergeDefaultProps("Divider", props);
+
     return (
         <>
             {children ? (

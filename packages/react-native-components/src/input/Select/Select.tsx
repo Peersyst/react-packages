@@ -4,6 +4,7 @@ import {
     renderSelectValue,
     selectIsValid,
     useSelectDisplayContent,
+    useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { InnerSelectProps, SelectProps, SelectStyle } from "./Select.types";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
@@ -103,27 +104,29 @@ function InnerSelect<T>({
     );
 }
 
-export default function Select<T = any>({
-    required,
-    multiple = false,
-    defaultValue,
-    open,
-    onClose,
-    onOpen,
-    placeholder,
-    icon = <ChevronDownIcon />,
-    autoFocus = false,
-    disabled = false,
-    readonly = false,
-    renderValue,
-    header,
-    footer,
-    children,
-    display,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: SelectProps<T>): JSX.Element {
+export default function Select<T = any>(props: SelectProps<T>): JSX.Element {
+    const {
+        required,
+        multiple = false,
+        defaultValue,
+        open,
+        onClose,
+        onOpen,
+        placeholder,
+        icon = <ChevronDownIcon />,
+        autoFocus = false,
+        disabled = false,
+        readonly = false,
+        renderValue,
+        header,
+        footer,
+        children,
+        display,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("Select", props);
+
     return (
         <FormControl<T | T[], FormControlLabelStyle, SelectStyle>
             Label={[Label, LabelProps]}

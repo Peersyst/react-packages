@@ -5,36 +5,39 @@ import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "@peersyst/react-native-modal";
 import { Platform, View } from "react-native";
 import { Toaster, useToast } from "../ToastProvider";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Backdrop({
-    closable = true,
-    defaultOpen = true,
-    open: propsOpen,
-    onClose,
-    onExited,
-    onOpen,
-    onEntered,
-    renderBackdrop,
-    closeOnBackdropTap = true,
-    swipeable = true,
-    swipeDirection = "down",
-    swipeThreshold = 100,
-    children,
-    animationIn,
-    animationInTiming,
-    animationOut,
-    animationOutTiming,
-    backdropColor,
-    backdropOpacity,
-    backdropTransitionInTiming,
-    backdropTransitionOutTiming,
-    onSwipeStart,
-    onSwipeMove,
-    onSwipeCancel,
-    panResponderThreshold,
-    propagateSwipe = true,
-    style,
-}: BackdropProps): JSX.Element {
+export default function Backdrop(props: BackdropProps): JSX.Element {
+    const {
+        closable = true,
+        defaultOpen = true,
+        open: propsOpen,
+        onClose,
+        onExited,
+        onOpen,
+        onEntered,
+        renderBackdrop,
+        closeOnBackdropTap = true,
+        swipeable = true,
+        swipeDirection = "down",
+        swipeThreshold = 100,
+        children,
+        animationIn,
+        animationInTiming,
+        animationOut,
+        animationOutTiming,
+        backdropColor,
+        backdropOpacity,
+        backdropTransitionInTiming,
+        backdropTransitionOutTiming,
+        onSwipeStart,
+        onSwipeMove,
+        onSwipeCancel,
+        panResponderThreshold,
+        propagateSwipe = true,
+        style,
+    } = useMergeDefaultProps("Backdrop", props);
+
     const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
     const [entered, setEntered] = useState(false);
     const { toastActive, hideToast } = useToast();

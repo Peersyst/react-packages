@@ -2,13 +2,16 @@ import { useState } from "react";
 import { Pressable } from "react-native";
 import { TouchableText } from "./PressableText.styles";
 import { PressableTextProps } from "./PressableText.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const PressableText = ({
-    children,
-    onPress,
-    disabled = false,
-    ...res
-}: PressableTextProps): JSX.Element => {
+const PressableText = (props: PressableTextProps): JSX.Element => {
+    const {
+        children,
+        onPress,
+        disabled = false,
+        ...res
+    } = useMergeDefaultProps("PressableText", props);
+
     const [pressed, setPressed] = useState<boolean>(false);
     return (
         <Pressable

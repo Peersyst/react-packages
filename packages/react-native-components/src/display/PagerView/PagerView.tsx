@@ -4,8 +4,9 @@ import { Children, useEffect, useMemo, useState } from "react";
 import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
 import { DottedPagination } from "../../navigation/DottedPagination";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
+export interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
     page?: number;
     height: ViewStyle["height"];
     gap?: ColProps["gap"];
@@ -21,27 +22,29 @@ interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
     };
 }
 
-const PagerView = ({
-    children,
-    showPageIndicator,
-    style,
-    onPageSelected,
-    page,
-    initialPage = 0,
-    height,
-    pageMargin,
-    gap = 10,
-    pagePadding: {
-        all: padding,
-        top: paddingTop,
-        left: paddingLeft,
-        bottom: paddingBottom,
-        right: paddingRight,
-        horizontal: paddingHorizontal,
-        vertical: paddingVertical,
-    } = {},
-    ...rest
-}: PagerViewProps): JSX.Element => {
+const PagerView = (props: PagerViewProps): JSX.Element => {
+    const {
+        children,
+        showPageIndicator,
+        style,
+        onPageSelected,
+        page,
+        initialPage = 0,
+        height,
+        pageMargin,
+        gap = 10,
+        pagePadding: {
+            all: padding = undefined,
+            top: paddingTop = undefined,
+            left: paddingLeft = undefined,
+            bottom: paddingBottom = undefined,
+            right: paddingRight = undefined,
+            horizontal: paddingHorizontal = undefined,
+            vertical: paddingVertical = undefined,
+        } = {},
+        ...rest
+    } = useMergeDefaultProps("PagerView", props);
+
     const [currentPage, setCurrentPage] = useState(page ?? initialPage);
     const [rerender, setRerender] = useState(false);
     const childrenLength = useMemo(() => Children.count(children), [children]);

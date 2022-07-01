@@ -4,18 +4,21 @@ import { SliderInput, SliderRail, SliderRoot, SliderTrack } from "./Slider.style
 import { cx } from "@peersyst/react-utils";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
-import { SliderStyles } from "@peersyst/react-components-core";
+import { SliderStyles, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Slider({
-    min,
-    max,
-    defaultValue = min,
-    step = 1,
-    disabled = false,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: SliderProps): JSX.Element {
+export default function Slider(props: SliderProps): JSX.Element {
+    const {
+        min,
+        max,
+        defaultValue: defaultValueProp,
+        step = 1,
+        disabled = false,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("Slider", props);
+    const defaultValue = defaultValueProp ?? min;
+
     const styleProps: SliderStyles = {
         disabled,
     };

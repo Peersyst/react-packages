@@ -1,13 +1,12 @@
 import styled, { css, keyframes } from "styled-components";
 import { SkeletonProps } from "./Skeleton.types";
-import { ColorScheme } from "../Theme";
 
 interface SkeletonStyles {
     height: string | undefined;
     width: string | undefined;
     shape: NonNullable<SkeletonProps["shape"]>;
     animation: NonNullable<SkeletonProps["animation"]>;
-    appearance?: ColorScheme;
+    appearance?: "light" | "dark";
     isLoading: boolean;
 }
 

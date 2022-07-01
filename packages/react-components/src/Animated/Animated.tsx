@@ -8,9 +8,10 @@ import { FadingSlide } from "./FadingSlide";
 import { Scale } from "./Scale";
 import { FadingScale } from "./FadingScale";
 import { Collapse } from "./Collapse";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Animated = forwardRef(function Animated(
-    {
+const Animated = forwardRef(function Animated(props: AnimatedProps, ref) {
+    const {
         appear = true,
         children,
         in: inProp = true,
@@ -30,9 +31,8 @@ const Animated = forwardRef(function Animated(
         onExited,
         addEndListener,
         style,
-    }: AnimatedProps,
-    ref,
-) {
+    } = useMergeDefaultProps("Animated", props);
+
     const handleOnEnter = (node: HTMLElement, isAppearing: boolean) => {
         // Make sure exited and entering don't happen at the same time when mountOnEnter = true
         reflow(node);

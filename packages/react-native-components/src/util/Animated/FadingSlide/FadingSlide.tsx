@@ -4,6 +4,7 @@ import { classify } from "@peersyst/react-utils";
 import useAnimatedTiming from "../hooks/useAnimatedTiming";
 import { SlideConfig, SlideProps } from "../Slide";
 import getExitedPosition from "./utils/getExitedPosition";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function fadingSlide<P extends { style?: any }>(
     Component: ComponentType<P>,
@@ -22,21 +23,23 @@ export default function fadingSlide<P extends { style?: any }>(
 ): ComponentType<P & SlideProps> {
     const AnimatedComponent = Animated.createAnimatedComponent(classify(Component));
 
-    const FadingSlide = ({
-        duration = configDuration,
-        delay = configDelay,
-        easing = configEasing,
-        unmountOnExit = configUnmountOnExit,
-        in: inProp,
-        appear = configAppear,
-        onEnter = configOnEnter,
-        onEntered = configOnEntered,
-        onExit = configOnExit,
-        onExited = configOnExited,
-        style: { opacity = 1, ...style } = {},
-        direction = configDirection,
-        ...rest
-    }: P & SlideProps): JSX.Element => {
+    const FadingSlide = (props: P & SlideProps): JSX.Element => {
+        const {
+            duration = configDuration,
+            delay = configDelay,
+            easing = configEasing,
+            unmountOnExit = configUnmountOnExit,
+            in: inProp,
+            appear = configAppear,
+            onEnter = configOnEnter,
+            onEntered = configOnEntered,
+            onExit = configOnExit,
+            onExited = configOnExited,
+            style: { opacity = 1, ...style } = {},
+            direction = configDirection,
+            ...rest
+        } = useMergeDefaultProps("AnimatedFadingSlide", props);
+
         const [startPos, endPos] = appear ? [0, opacity] : [opacity, 0];
         const fadeAnim = useRef(new Animated.Value(inProp ? startPos : endPos)).current;
         const exitPos = getExitedPosition(direction || "left");

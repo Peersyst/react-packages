@@ -1,0 +1,12 @@
+import { Config } from "@peersyst/react-components-core";
+import { darkTheme, defaultTheme, lightTheme } from "../theme";
+import componentsConfig from "./components.config";
+
+const defaultConfig: Omit<Config, "projectName"> = {
+    themes: { default: defaultTheme, light: lightTheme, dark: darkTheme },
+    translate: (w: string) => w,
+    validators: {},
+    components: componentsConfig,
+};
+
+export default defaultConfig;

@@ -3,7 +3,10 @@ import { InnerSelectItemProps, SelectItemProps } from "./SelectItem.types";
 import useSelectItemStyle from "./hooks/useSelectIemStyles";
 import { TouchableWithoutFeedback } from "react-native";
 import { getLuminance } from "@peersyst/react-utils";
-import { SelectItem as CoreSelectItem } from "@peersyst/react-components-core";
+import {
+    SelectItem as CoreSelectItem,
+    useMergeDefaultProps,
+} from "@peersyst/react-components-core";
 
 function InnerSelectItem<T>({
     isSelected,
@@ -42,11 +45,9 @@ function InnerSelectItem<T>({
     );
 }
 
-export default function SelectItem<T = any>({
-    children,
-    value,
-    style = {},
-}: SelectItemProps<T>): JSX.Element {
+export default function SelectItem<T = any>(props: SelectItemProps<T>): JSX.Element {
+    const { children, value, style = {} } = useMergeDefaultProps("SelectItem", props);
+
     return (
         <CoreSelectItem value={value}>
             {({ isSelected, setSelected, readonly }) => (

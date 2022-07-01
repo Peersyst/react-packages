@@ -7,6 +7,7 @@ import {
     ProgressBarTrack,
 } from "./ProgressBar.styles";
 import { ProgressBarProps } from "./ProgressBar.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const ProgressBarLoadingTrack = (): JSX.Element => (
     <>
@@ -15,7 +16,9 @@ const ProgressBarLoadingTrack = (): JSX.Element => (
     </>
 );
 
-const ProgressBar = ({ value, className, style }: ProgressBarProps): JSX.Element => {
+const ProgressBar = (props: ProgressBarProps): JSX.Element => {
+    const { value, className, style } = useMergeDefaultProps("ProgressBar", props);
+
     return (
         <ProgressBarRoot className={cx("ProgressBar", className)} style={style} role="progressbar">
             <LoadingProgressBarContainer className="ProgressBarTrack">

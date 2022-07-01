@@ -1,5 +1,5 @@
 import { BaseValidator } from "./BaseValidator";
-import { TranslateFn } from "../Theme";
+import { TranslateFn } from "../config";
 
 export class EmailValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn) {

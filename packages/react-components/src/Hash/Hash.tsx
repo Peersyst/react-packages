@@ -3,24 +3,25 @@ import { cx, formatHash } from "@peersyst/react-utils";
 import { createRef } from "react";
 import useHashAutoLength from "./hook/useHashAutoLength";
 import { CopyButton } from "../CopyButton";
-import { useTheme } from "../Theme";
+import { useTheme } from "../theme";
 import { HashRoot, HashText, HashLink } from "./Hash.styles";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Hash = ({
-    hash,
-    ellipsis,
-    length = "auto",
-    className,
-    style,
-    break: breakProp = false,
-    variant,
-    url,
-    gap = 5,
-    ...typographyProps
-}: HashProps): JSX.Element => {
+const Hash = (props: HashProps): JSX.Element => {
     const {
-        theme: { typography },
-    } = useTheme();
+        hash,
+        ellipsis,
+        length = "auto",
+        className,
+        style,
+        break: breakProp = false,
+        variant,
+        url,
+        gap = 5,
+        ...typographyProps
+    } = useMergeDefaultProps("Hash", props);
+
+    const { typography } = useTheme();
 
     const isAutoLength = length === "auto";
 

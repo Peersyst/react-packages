@@ -3,18 +3,21 @@ import { Children } from "react";
 import { BadgeItem, BadgeRoot } from "./Badge.styles";
 import { Animated, TransitionStyles } from "../Animated";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Badge = ({
-    position,
-    content,
-    children,
-    max = 99,
-    invisible = false,
-    overlap = "rectangular",
-    showZero = false,
-    className,
-    ...rest
-}: BadgeProps): JSX.Element => {
+const Badge = (props: BadgeProps): JSX.Element => {
+    const {
+        position,
+        content,
+        children,
+        max = 99,
+        invisible = false,
+        overlap = "rectangular",
+        showZero = false,
+        className,
+        ...rest
+    } = useMergeDefaultProps("Badge", props);
+
     const translate = `translate(${position?.horizontal === "left" ? "-50%" : "50%"}, ${
         position?.vertical === "bottom" ? "50%" : "-50%"
     })`;

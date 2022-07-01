@@ -7,6 +7,7 @@ import {
     TouchableWithoutFeedback,
 } from "react-native";
 import { useState } from "react";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export interface ScrollViewProps
     extends Omit<BaseScrollViewProps, "refreshControl" | "refreshing"> {
@@ -15,13 +16,15 @@ export interface ScrollViewProps
     onRefresh?: () => Promise<any>;
 }
 
-const ScrollView = ({
-    onRefresh,
-    loading = false,
-    refreshControlProps,
-    children,
-    ...rest
-}: ScrollViewProps): JSX.Element => {
+const ScrollView = (props: ScrollViewProps): JSX.Element => {
+    const {
+        onRefresh,
+        loading = false,
+        refreshControlProps,
+        children,
+        ...rest
+    } = useMergeDefaultProps("ScrollView", props);
+
     const [refreshing, setRefreshing] = useState(false);
 
     const handleRefresh = async () => {

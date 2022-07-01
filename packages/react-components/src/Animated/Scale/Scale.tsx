@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
-import { Animated, TransitionStyles } from "..";
 import { ScaleProps } from "./Scale.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import Animated from "../Animated";
+import { TransitionStyles } from "../Animated.types";
 
 const scale: TransitionStyles = {
     entering: {
@@ -17,15 +19,22 @@ const scale: TransitionStyles = {
     },
 };
 
-const Scale = forwardRef(({ transformOrigin, style, ...animatedProps }: ScaleProps, ref) => (
-    <Animated
-        animation={scale}
-        animatedProperties="transform"
-        style={{ transformOrigin, ...style }}
-        {...animatedProps}
-        ref={ref}
-    />
-));
+const Scale = forwardRef((props: ScaleProps, ref) => {
+    const { transformOrigin, style, ...animatedProps } = useMergeDefaultProps(
+        "AnimatedScale",
+        props,
+    );
+
+    return (
+        <Animated
+            animation={scale}
+            animatedProperties="transform"
+            style={{ transformOrigin, ...style }}
+            {...animatedProps}
+            ref={ref}
+        />
+    );
+});
 
 Scale.displayName = "Scale";
 

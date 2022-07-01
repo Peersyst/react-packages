@@ -5,30 +5,35 @@ import { FormControlRoot } from "./FormControl.styles";
 import {
     FormControlContext,
     FormControl as CoreFormControl,
+    useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { FormControlHint } from "../FormControlHint";
 import { FormControlError } from "../FormControlError";
 import getFormControlledComponentStyles from "./util/getFormControlledComponentStyles";
 import { ViewStyle } from "react-native";
 
-function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>({
-    // @ts-ignore
-    defaultStyle = {},
-    style: {
-        label: labelStyle,
-        hint: hintStyle,
-        error: errorStyle,
+function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>(
+    props: FormControlProps<T, LabelStyleType, ComponentStyle>,
+): JSX.Element {
+    const {
         // @ts-ignore
-        component: componentStyle = {},
-        ...rootStyle
-    } = {},
-    stylesMergeStrategy = getFormControlledComponentStyles,
-    label,
-    hint,
-    Label = FormControlLabel,
-    children,
-    ...coreProps
-}: FormControlProps<T, LabelStyleType, ComponentStyle>): JSX.Element {
+        defaultStyle = {},
+        style: {
+            label: labelStyle = {},
+            hint: hintStyle = {},
+            error: errorStyle = {},
+            // @ts-ignore
+            component: componentStyle = {},
+            ...rootStyle
+        } = {},
+        stylesMergeStrategy = getFormControlledComponentStyles,
+        label,
+        hint,
+        Label = FormControlLabel,
+        children,
+        ...coreProps
+    } = useMergeDefaultProps("FormControl", props);
+
     const [LabelComponent, { style: LabelPropsStyle = {}, ...LabelProps }] = Array.isArray(Label)
         ? Label
         : [Label, {}];
@@ -42,6 +47,7 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
                             value,
                             setValue,
                             context,
+                            // @ts-ignore
                             stylesMergeStrategy(defaultStyle, componentStyle, context),
                             setFocused,
                         );

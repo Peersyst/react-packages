@@ -1,20 +1,23 @@
 import { Children } from "react";
 import { SwitchChildren, SwitchRoot, SwitchThumb, SwitchTrack } from "./Switch.styles";
-import { Row } from "..";
 import { SwitchProps, SwitchStyleProps } from "./Switch.types";
 import { cx } from "@peersyst/react-utils";
 import { FormControl } from "../FormControl";
 import { Label } from "../Label";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { Row } from "../Row";
 
-export default function Switch({
-    defaultValue = false,
-    disabled = false,
-    children,
-    LabelProps = {},
-    hideError = true,
-    Label: LabelProp = Label,
-    ...rest
-}: SwitchProps): JSX.Element {
+export default function Switch(props: SwitchProps): JSX.Element {
+    const {
+        defaultValue = false,
+        disabled = false,
+        children,
+        LabelProps = {},
+        hideError = true,
+        Label: LabelProp = Label,
+        ...rest
+    } = useMergeDefaultProps("Switch", props);
+
     return (
         <FormControl<boolean>
             Label={[LabelProp, { placement: "left", ...LabelProps }]}

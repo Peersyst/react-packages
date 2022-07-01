@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { ActivityIndicator, ActivityIndicatorProps } from "react-native";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export interface ControlledSuspenseProps {
     isLoading: boolean;
@@ -9,13 +10,10 @@ export interface ControlledSuspenseProps {
     fallback?: ReactElement;
 }
 
-const Suspense = ({
-    isLoading,
-    children,
-    fallback,
-    activityIndicatorColor,
-    activityIndicatorSize,
-}: ControlledSuspenseProps) => {
+const Suspense = (props: ControlledSuspenseProps) => {
+    const { isLoading, children, fallback, activityIndicatorColor, activityIndicatorSize } =
+        useMergeDefaultProps("Suspense", props);
+
     const loaderComponent = fallback || (
         <ActivityIndicator
             testID="actIndicator"

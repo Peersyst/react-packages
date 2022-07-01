@@ -6,8 +6,11 @@ import { createModal } from "../../feedback/ModalProvider";
 import { StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { CrossIcon } from "../../assets/icons";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const QrScanner = createModal(({ back, onScan, ...backdropProps }: QrScannerProps): JSX.Element => {
+const QrScanner = createModal((props: QrScannerProps): JSX.Element => {
+    const { back, onScan, ...backdropProps } = useMergeDefaultProps("QrScanner", props);
+
     const [hasPermission, setHasPermission] = useState<boolean>();
 
     useEffect(() => {

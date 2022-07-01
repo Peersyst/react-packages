@@ -1,44 +1,46 @@
 import { ChangeEvent, createRef, useState } from "react";
 import { Row } from "../Row";
-import { useTextInputValidation } from "./hooks/useTextInputValidation";
 import { Children, HTMLInput, TextInputProps, TextInputStyles } from "./TextInput.types";
 import { ErrorElementWrapper, TextInputRoot, ValidElementWrapper } from "./TextInput.styles";
 import { cx } from "@peersyst/react-utils";
-import { useTheme } from "../Theme";
+import { useTheme } from "../theme";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
+import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 
-export default function TextInput<HTMLT extends HTMLInput>({
-    defaultValue = "",
-    disabled = false,
-    readonly = false,
-    placeholder,
-    prefix,
-    suffix,
-    selectOnFocus,
-    autoFocus,
-    autoCapitalize,
-    autoComplete,
-    autoCorrect,
-    spellCheck,
-    maxLength,
-    onSubmit,
-    validators,
-    customValidators,
-    children,
-    errorElement: errorElementProp,
-    validElement: validElementProp,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: TextInputProps & Children<HTMLT>): JSX.Element {
+export default function TextInput<HTMLT extends HTMLInput>(
+    props: TextInputProps & Children<HTMLT>,
+): JSX.Element {
+    const {
+        defaultValue = "",
+        disabled = false,
+        readonly = false,
+        placeholder,
+        prefix,
+        suffix,
+        selectOnFocus,
+        autoFocus,
+        autoCapitalize,
+        autoComplete,
+        autoCorrect,
+        spellCheck,
+        maxLength,
+        onSubmit,
+        validators,
+        customValidators,
+        children,
+        errorElement: errorElementProp,
+        validElement: validElementProp,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("TextInput", props);
+
     const [focused, setFocused] = useState<boolean>(false);
     const [active, setActive] = useState<boolean>(false);
     const validation = useTextInputValidation(validators, customValidators);
     const {
-        theme: {
-            icons: { invalid: Invalid, valid: Valid },
-        },
+        icons: { invalid: Invalid, valid: Valid },
     } = useTheme();
     const errorElement = errorElementProp === true ? <Invalid /> : errorElementProp ?? <Invalid />;
     const validElement = validElementProp || <Valid />;

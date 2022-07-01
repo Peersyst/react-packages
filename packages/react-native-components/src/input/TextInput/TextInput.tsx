@@ -2,7 +2,6 @@ import { TextInputProps, TextInputStyle } from "./TextInput.types";
 import { Input, InvalidIcon, TextInputRoot, ValidIcon } from "./TextInput.styles";
 import { NativeSyntheticEvent, TextInputFocusEventData, TextStyle } from "react-native";
 import { useState } from "react";
-import { useTextInputValidation } from "./hooks/useTextInputValidation";
 import { useTheme } from "@peersyst/react-native-styled";
 import { Icon } from "../../display/Icon";
 import { IconButton } from "../IconButton";
@@ -10,38 +9,41 @@ import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
 import { FormControl } from "../FormControl";
 import useTextInputDefaultStyles from "./hooks/useTextInputDefaultStyles";
 import textInputStylesMergeStrategy from "./util/textInputStylesMergeStrategy";
+import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 
-const TextInput = ({
-    name,
-    defaultValue = "",
-    value: valueProp,
-    onChange,
-    validators,
-    customValidators,
-    disabled = false,
-    readonly = false,
-    required,
-    prefix,
-    suffix,
-    errorElement: errorElementProp,
-    validElement: validElementProp,
-    showTextElement: showTextElementProp,
-    hideTextElement: hideTextElementProp,
-    clearable = false,
-    clearElement: clearElementProp,
-    style: styleProp = {},
-    onFocus,
-    onBlur,
-    secureTextEntry = false,
-    input,
-    hideError,
-    showValid,
-    label,
-    hint,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: TextInputProps): JSX.Element => {
+const TextInput = (props: TextInputProps): JSX.Element => {
+    const {
+        name,
+        defaultValue = "",
+        value: valueProp,
+        onChange,
+        validators,
+        customValidators,
+        disabled = false,
+        readonly = false,
+        required,
+        prefix,
+        suffix,
+        errorElement: errorElementProp,
+        validElement: validElementProp,
+        showTextElement: showTextElementProp,
+        hideTextElement: hideTextElementProp,
+        clearable = false,
+        clearElement: clearElementProp,
+        style: styleProp = {},
+        onFocus,
+        onBlur,
+        secureTextEntry = false,
+        input,
+        hideError,
+        showValid,
+        label,
+        hint,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("TextInput", props);
+
     const [showText, setShowText] = useState(secureTextEntry);
     const validation = useTextInputValidation(validators, customValidators);
     const editable = !disabled && !readonly;

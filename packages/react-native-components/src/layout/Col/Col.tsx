@@ -2,16 +2,19 @@ import { Children, Fragment } from "react";
 import { View } from "react-native";
 import { ColRoot } from "./Col.styles";
 import { ColProps } from "./Col.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Col = ({
-    children: childrenProp,
-    gap,
-    justifyContent,
-    alignItems,
-    style,
-    flex,
-    ...rest
-}: ColProps): JSX.Element => {
+const Col = (props: ColProps): JSX.Element => {
+    const {
+        children: childrenProp,
+        gap,
+        justifyContent,
+        alignItems,
+        style,
+        flex,
+        ...rest
+    } = useMergeDefaultProps("Col", props);
+
     const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 

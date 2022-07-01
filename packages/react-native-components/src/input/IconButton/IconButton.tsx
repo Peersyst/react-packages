@@ -4,16 +4,18 @@ import { IconButtonRoot } from "./IconButton.styles";
 import { Icon } from "../../display/Icon";
 import useIconButtonStyles from "./hook/useIconButtonStyles";
 import { ActivityIndicator, TouchableWithoutFeedback } from "react-native";
-import { FormContext } from "@peersyst/react-components-core";
+import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const IconButton = ({
-    onPress: onPressProp,
-    type,
-    loading = false,
-    disabled: disabledProp = false,
-    style = {},
-    children,
-}: IconButtonProps): JSX.Element => {
+const IconButton = (props: IconButtonProps): JSX.Element => {
+    const {
+        onPress: onPressProp,
+        type,
+        loading = false,
+        disabled: disabledProp = false,
+        style = {},
+        children,
+    } = useMergeDefaultProps("IconButton", props);
+
     const [pressed, setPressed] = useState(false);
 
     const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabledProp);

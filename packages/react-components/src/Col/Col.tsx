@@ -1,6 +1,9 @@
 import { ColRoot } from "./Col.styles";
 import { ColProps } from "./Col.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function Col(props: ColProps): JSX.Element {
-    return <ColRoot {...props} />;
+    const mergedProps = useMergeDefaultProps("Col", props);
+
+    return <ColRoot {...mergedProps} />;
 }

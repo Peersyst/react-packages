@@ -3,12 +3,15 @@ import { TabsContext } from "../TabsContext";
 import { TabRoot } from "./Tab.styles";
 import { TabProps } from "./Tab.types";
 import { LayoutChangeEvent, LayoutRectangle, TouchableWithoutFeedback } from "react-native";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Tab({
-    index,
-    style: { active: activeStyle, ...style } = {},
-    children,
-}: TabProps): JSX.Element {
+export default function Tab(props: TabProps): JSX.Element {
+    const {
+        index,
+        style: { active: activeStyle = {}, ...style } = {},
+        children,
+    } = useMergeDefaultProps("Tab", props);
+
     const [layout, setLayout] = useState<LayoutRectangle>();
     const { activeIndex, onTabChange, setActiveLayout } = useContext(TabsContext);
 

@@ -6,32 +6,30 @@ import { Animated } from "../Animated";
 import { getAnimationDirection } from "./utils/getAnimationDirection";
 import { cx } from "@peersyst/react-utils";
 import { MouseEvent } from "react";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-/**
- * TODO:
- * - Option for drawer to stay on the side moving the screen (Like asana does)
- */
+export default function Drawer(props: DrawerProps) {
+    const {
+        variant = "temporary",
+        defaultOpen = true,
+        open: propOpen,
+        onClose,
+        onExited,
+        elevation = 16,
+        className,
+        style,
+        children,
+        position = "left",
+        animation,
+        transitionsDuration = 300,
+        BackdropProps,
+        size = {
+            size: "300px",
+        },
+        renderBackdrop,
+        renderAtRoot,
+    } = useMergeDefaultProps("Drawer", props);
 
-export default function Drawer({
-    variant = "temporary",
-    defaultOpen = true,
-    open: propOpen,
-    onClose,
-    onExited,
-    elevation = 16,
-    className,
-    style,
-    children,
-    position = "left",
-    animation,
-    transitionsDuration = 300,
-    BackdropProps,
-    size = {
-        size: "300px",
-    },
-    renderBackdrop,
-    renderAtRoot,
-}: DrawerProps) {
     const [open, setOpen] = useControlled(
         defaultOpen,
         variant === "permanent" ? true : propOpen,
@@ -47,7 +45,10 @@ export default function Drawer({
         preventScroll: variant === "temporary",
         childrenAnimation: animation || {
             AnimatedComponent: Animated.Slide,
-            props: { duration: transitionsDuration, direction: getAnimationDirection(position) },
+            props: {
+                duration: transitionsDuration,
+                direction: getAnimationDirection(position),
+            },
         },
         renderBackdrop: renderBackdrop ?? variant === "temporary",
         renderAtRoot,

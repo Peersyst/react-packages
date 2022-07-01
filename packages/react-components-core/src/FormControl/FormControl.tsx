@@ -3,7 +3,7 @@ import { useFormControlled } from "./hook";
 import { useEffect, useState } from "react";
 import { useFormNotification } from "../Form";
 import FormControlContext from "./FormControlContext";
-import { useTheme } from "@peersyst/react-components";
+import useTranslate from "../config/hook/useTranslate";
 
 function FormControl<T = any>({
     name,
@@ -18,9 +18,7 @@ function FormControl<T = any>({
     showValid = false,
     children,
 }: FormControlProps<T>): JSX.Element {
-    const {
-        theme: { translate },
-    } = useTheme();
+    const translate = useTranslate();
     const {
         state: [value, setValue],
         modified,

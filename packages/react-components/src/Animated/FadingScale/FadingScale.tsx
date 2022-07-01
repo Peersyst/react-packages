@@ -1,6 +1,8 @@
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { forwardRef } from "react";
-import { Animated, TransitionStyles } from "..";
 import { ScaleProps } from "../Scale";
+import { TransitionStyles } from "../Animated.types";
+import Animated from "../Animated";
 
 const fadingScale: TransitionStyles = {
     entering: {
@@ -21,15 +23,22 @@ const fadingScale: TransitionStyles = {
     },
 };
 
-const FadingScale = forwardRef(({ transformOrigin, style, ...animatedProps }: ScaleProps, ref) => (
-    <Animated
-        animation={fadingScale}
-        animatedProperties="opacity, transform"
-        style={{ transformOrigin, ...style }}
-        {...animatedProps}
-        ref={ref}
-    />
-));
+const FadingScale = forwardRef(function FadingScale(props: ScaleProps, ref) {
+    const { transformOrigin, style, ...animatedProps } = useMergeDefaultProps(
+        "AnimatedFadingScale",
+        props,
+    );
+
+    return (
+        <Animated
+            animation={fadingScale}
+            animatedProperties="opacity, transform"
+            style={{ transformOrigin, ...style }}
+            {...animatedProps}
+            ref={ref}
+        />
+    );
+});
 
 FadingScale.displayName = "FadingScale";
 

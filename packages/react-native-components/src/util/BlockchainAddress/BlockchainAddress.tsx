@@ -6,17 +6,19 @@ import { useTheme } from "@peersyst/react-native-styled";
 import { CopyButton } from "../CopyButton";
 import { Linking, TouchableOpacity } from "react-native";
 import { extractTextStyles } from "@peersyst/react-native-utils";
+import {
+    useComponentConfig,
+    useMergeDefaultProps,
+    useTranslate,
+} from "@peersyst/react-components-core";
 
-const BlockchainAddress = ({
-    address,
-    ellipsis,
-    type,
-    length,
-    style,
-    variant,
-    ...typographyProps
-}: BlockchainAddressProps): JSX.Element => {
-    const { blockchainLinks, translate, typography } = useTheme();
+const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
+    const { address, ellipsis, type, length, style, variant, ...typographyProps } =
+        useMergeDefaultProps("BlockchainAddress", props);
+
+    const { typography } = useTheme();
+    const translate = useTranslate();
+    const { blockchainLinks } = useComponentConfig("BlockchainAddress");
 
     const [textStyle, rootStyle] = extractTextStyles(style);
     const { fontSize: typographyVariantSize, ...typographyVariantStyles } = typography[variant];

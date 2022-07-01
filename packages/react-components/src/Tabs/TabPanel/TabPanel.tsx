@@ -2,13 +2,11 @@ import { TabsConsumer } from "../TabsContext";
 import { TabPanelRoot } from "./TabPanel.styles";
 import { TabPanelProps } from "./TabPanel.types";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function TabPanel({
-    index,
-    className,
-    style,
-    children,
-}: TabPanelProps): JSX.Element {
+export default function TabPanel(props: TabPanelProps): JSX.Element {
+    const { index, className, style, children } = useMergeDefaultProps("TabPanel", props);
+
     return (
         <TabsConsumer>
             {({ activeIndex }) => (

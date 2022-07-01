@@ -2,15 +2,11 @@ import { Children, useContext } from "react";
 import { SelectItemsView, SelectMenuRoot } from "./SelectMenu.styles";
 import { SelectMenuProps } from "./SelectMenu.types";
 import { List } from "../../../display/List";
-import { SelectContext } from "@peersyst/react-components-core";
+import { SelectContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function SelectMenu({
-    open,
-    style,
-    header,
-    footer,
-    children,
-}: SelectMenuProps): JSX.Element {
+export default function SelectMenu(props: SelectMenuProps): JSX.Element {
+    const { open, style, header, footer, children } = useMergeDefaultProps("SelectMenu", props);
+
     const { setOpen } = useContext(SelectContext);
 
     return (

@@ -1,3 +1,5 @@
+export * from "./config";
+export * from "./theme";
 export * from "./Checkbox";
 export * from "./Form";
 export * from "./FormControl";
@@ -10,6 +12,5 @@ export * from "./Select";
 export * from "./Slider";
 export * from "./Switch";
 export * from "./TextInput";
-export * from "./Theme";
 export * from "./Toast";
 export * from "./Validators";

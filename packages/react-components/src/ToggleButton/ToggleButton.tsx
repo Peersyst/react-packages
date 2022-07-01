@@ -2,14 +2,17 @@ import { ToggleButtonRoot } from "./ToggleButton.styles";
 import { ToggleButtonProps } from "./ToggleButton.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const ToggleButton = ({
-    defaultSelected = false,
-    selected: selectedProp,
-    onChange,
-    className,
-    ...buttonProps
-}: ToggleButtonProps): JSX.Element => {
+const ToggleButton = (props: ToggleButtonProps): JSX.Element => {
+    const {
+        defaultSelected = false,
+        selected: selectedProp,
+        onChange,
+        className,
+        ...buttonProps
+    } = useMergeDefaultProps("ToggleButton", props);
+
     const [selected, setSelected] = useControlled(defaultSelected, selectedProp, onChange);
 
     return (

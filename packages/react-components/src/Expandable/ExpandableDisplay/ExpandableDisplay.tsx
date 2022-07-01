@@ -3,15 +3,18 @@ import { ExpandableContext } from "../ExpandableContext";
 import { ExpandableDisplayRoot, ExpandableDropdown } from "./ExpandableDisplay.styles";
 import { ExpandableDisplayProps } from "./ExpandableDisplay.types";
 import { fsx, cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function ExpandableDisplay({
-    reverse,
-    className,
-    style,
-    children,
-    // @ts-ignore
-    ExpandComponent = ExpandableDropdown,
-}: ExpandableDisplayProps): JSX.Element {
+export default function ExpandableDisplay(props: ExpandableDisplayProps): JSX.Element {
+    const {
+        reverse,
+        className,
+        style,
+        children,
+        // @ts-ignore
+        ExpandComponent = ExpandableDropdown,
+    } = useMergeDefaultProps("ExpandableDisplay", props);
+
     const { toggle, open } = useContext(ExpandableContext);
 
     const styleProps = { open };

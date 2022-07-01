@@ -5,24 +5,27 @@ import { Backdrop, ForwardedBackdropProps } from "../Backdrop";
 import { ModalRoot } from "./Modal.styles";
 import { getAnimatedComponent } from "./utils/getAnimatedComponent";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Modal({
-    closable = true,
-    defaultOpen = true,
-    open: propOpen,
-    children,
-    onClose,
-    onExited,
-    transitionsDuration = 300,
-    animation = "fade",
-    elevation = 16,
-    BackdropProps,
-    className,
-    style,
-    renderBackdrop,
-    renderAtRoot,
-    preventScroll = true,
-}: ModalProps): JSX.Element {
+export default function Modal(props: ModalProps): JSX.Element {
+    const {
+        closable = true,
+        defaultOpen = true,
+        open: propOpen,
+        children,
+        onClose,
+        onExited,
+        transitionsDuration = 300,
+        animation = "fade",
+        elevation = 16,
+        BackdropProps,
+        className,
+        style,
+        renderBackdrop,
+        renderAtRoot,
+        preventScroll = true,
+    } = useMergeDefaultProps("Modal", props);
+
     const [open, setOpen] = useControlled(defaultOpen, propOpen, propOpen ? onClose : undefined);
 
     const handleClose = useCallback(() => {

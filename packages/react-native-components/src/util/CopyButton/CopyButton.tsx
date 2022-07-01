@@ -3,8 +3,11 @@ import { CopyButtonProps } from "./CopyButton.types";
 import { useToast } from "../../feedback/ToastProvider";
 import { IconButton } from "../../input/IconButton";
 import { CopyIcon } from "../../assets/icons";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const CopyButton = ({ text, style, message, ...rest }: CopyButtonProps): JSX.Element => {
+const CopyButton = (props: CopyButtonProps): JSX.Element => {
+    const { text, style, message, ...rest } = useMergeDefaultProps("CopyButton", props);
+
     const { showToast } = useToast();
 
     const copyToClipboard = () => {

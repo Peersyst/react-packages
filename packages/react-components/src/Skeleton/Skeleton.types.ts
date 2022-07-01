@@ -1,5 +1,4 @@
 import { CSSProperties, ReactNode } from "react";
-import { ColorScheme } from "../Theme";
 
 export type SkeletonShape = "circular" | "rectangular" | "stadium";
 export type SkeletonAnimation = "wave" | "pulse" | false;
@@ -28,7 +27,7 @@ export interface SkeletonProps {
     /**
      * Skeleton appearance
      */
-    appearance?: ColorScheme;
+    appearance?: "light" | "dark";
     /**
      * Skeleton className
      */

@@ -1,17 +1,15 @@
 import { BlockchainAddressProps } from "./BlockchainAddress.types";
-import { useTheme } from "../Theme";
 import { Hash } from "../Hash";
 import { cx } from "@peersyst/react-utils";
+import { useComponentConfig, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const BlockchainAddress = ({
-    address,
-    type,
-    className,
-    ...hashProps
-}: BlockchainAddressProps): JSX.Element => {
-    const {
-        theme: { blockchainLinks },
-    } = useTheme();
+const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
+    const { address, type, className, ...hashProps } = useMergeDefaultProps(
+        "BlockchainAddress",
+        props,
+    );
+
+    const { blockchainLinks } = useComponentConfig("BlockchainAddress");
 
     return (
         <Hash

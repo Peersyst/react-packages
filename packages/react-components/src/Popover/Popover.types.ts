@@ -1,7 +1,7 @@
-import { CSSProperties, ReactElement } from "react";
-import Popover from "./Popover";
+import { ComponentType, CSSProperties, ReactElement, ReactNode } from "react";
 import { CustomAnimatedComponent } from "../Animated";
 import { Placement } from "@popperjs/core";
+import { PaperProps } from "../Paper";
 
 export type PopperPosition = Placement;
 
@@ -60,5 +60,10 @@ export interface PopoverProps {
     /**
      * Popover elements
      */
-    children: [ReactElement<typeof Popover.Popper>, ReactElement<typeof Popover.Content>];
+    children: [ReactElement<PaperProps>, ReactElement];
 }
+
+export type PopoverComponent = ComponentType<PopoverProps> & {
+    Popper: ComponentType<PaperProps>;
+    Content: ComponentType<{ children: ReactNode }>;
+};

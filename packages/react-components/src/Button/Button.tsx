@@ -1,26 +1,26 @@
 import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
-import { useTheme } from "../Theme";
+import { useTheme } from "../theme";
 import { cx, fsx } from "@peersyst/react-utils";
 import { useContext } from "react";
-import { FormContext } from "@peersyst/react-components-core";
+import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Button = function ({
-    className,
-    disabled: disabledProp,
-    children,
-    loading,
-    loadingElement: loadingElementProp,
-    size = "md",
-    fullWidth = false,
-    onClick,
-    style,
-    type = "button",
-    ...rest
-}: ButtonProps) {
+const Button = (props: ButtonProps): JSX.Element => {
     const {
-        theme: { loader: DefaultLoader },
-    } = useTheme();
+        className,
+        disabled: disabledProp,
+        children,
+        loading,
+        loadingElement: loadingElementProp,
+        size = "sm",
+        fullWidth = false,
+        onClick,
+        style,
+        type = "button",
+        ...rest
+    } = useMergeDefaultProps("Button", props);
+
+    const { loader: DefaultLoader } = useTheme();
     const loadingElement = loadingElementProp || <DefaultLoader />;
 
     const { valid } = useContext(FormContext);

@@ -8,7 +8,7 @@ import {
     useRef,
     useState,
 } from "react";
-import { PopoverProps } from "./Popover.types";
+import { PopoverComponent, PopoverProps } from "./Popover.types";
 import {
     PopoverContent,
     PopoverPaper,
@@ -24,25 +24,28 @@ import { Animated } from "../Animated";
 import { createPopper } from "@popperjs/core";
 import { createPortal } from "react-dom";
 import { PaperProps } from "../Paper";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-function Popover({
-    visible: visibleProp,
-    onHide,
-    onShow,
-    showOn = "hover",
-    position = "bottom",
-    arrow,
-    skidding = 0,
-    animation: { AnimatedComponent, props: AnimatedComponentProps } = {
-        AnimatedComponent: Animated.Fade,
-        props: { duration: 200 },
-    },
-    container: containerProp,
-    disablePortal = false,
-    className,
-    style,
-    children,
-}: PopoverProps): JSX.Element {
+const Popover = ((props: PopoverProps): JSX.Element => {
+    const {
+        visible: visibleProp,
+        onHide,
+        onShow,
+        showOn = "hover",
+        position = "bottom",
+        arrow,
+        skidding = 0,
+        animation: { AnimatedComponent, props: AnimatedComponentProps } = {
+            AnimatedComponent: Animated.Fade,
+            props: { duration: 200 },
+        },
+        container: containerProp,
+        disablePortal = false,
+        className,
+        style,
+        children,
+    } = useMergeDefaultProps("Popover", props);
+
     const [visible, setVisible] = useControlled(false, visibleProp, visibleProp ? onHide : onShow);
     const [fullyVisible, setFullyVisible] = useState(visible);
 
@@ -172,7 +175,7 @@ function Popover({
             </PopoverRoot>
         </ClickAwayListener>
     );
-}
+}) as PopoverComponent;
 
 const Popper = ({ elevation = 8, className, ...rest }: PaperProps) => (
     <PopoverPaper elevation={elevation} className={cx("PopoverPopper", className)} {...rest} />

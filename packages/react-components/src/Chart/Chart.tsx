@@ -1,6 +1,7 @@
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { ChartProps } from "./Chart.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 if (process.env.NODE_ENV === "test") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -8,5 +9,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 export default function Chart(props: ChartProps): JSX.Element {
-    return <HighchartsReact highcharts={Highcharts} {...props} />;
+    const mergedProps = useMergeDefaultProps("Chart", props);
+
+    return <HighchartsReact highcharts={Highcharts} {...mergedProps} />;
 }

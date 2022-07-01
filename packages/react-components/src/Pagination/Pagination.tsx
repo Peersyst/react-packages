@@ -5,23 +5,26 @@ import { PaginationItem } from "./PaginationItem";
 import usePagination from "./hooks/usePagination/usePagination";
 import { PaginationItemType } from "./hooks/usePagination/usePagination.types";
 import { ChevronLeftIcon, ChevronRightIcon, EndIcon, StartIcon } from "../assets/icons";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Pagination = ({
-    defaultPage = 1,
-    page,
-    onChange,
-    count,
-    siblingCount,
-    boundaryCount = 1,
-    disabled,
-    previousIcon = <ChevronLeftIcon />,
-    nextIcon = <ChevronRightIcon />,
-    startIcon: startIconProp = false,
-    endIcon: endIconProp = false,
-    size = "md",
-    className,
-    style,
-}: PaginationProps): JSX.Element => {
+const Pagination = (props: PaginationProps): JSX.Element => {
+    const {
+        defaultPage = 1,
+        page,
+        onChange,
+        count,
+        siblingCount,
+        boundaryCount = 1,
+        disabled,
+        previousIcon = <ChevronLeftIcon />,
+        nextIcon = <ChevronRightIcon />,
+        startIcon: startIconProp = false,
+        endIcon: endIconProp = false,
+        size = "md",
+        className,
+        style,
+    } = useMergeDefaultProps("Pagination", props);
+
     const items = usePagination({
         boundaryCount,
         count,

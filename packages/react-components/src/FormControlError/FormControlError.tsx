@@ -1,8 +1,11 @@
 import { FormControlErrorProps } from "./FormControlError.types";
 import { FormControlErrorRoot } from "./FormControlError.styles";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const FormControlError = ({ error, className, style }: FormControlErrorProps): JSX.Element => {
+const FormControlError = (props: FormControlErrorProps): JSX.Element => {
+    const { error, className, style } = useMergeDefaultProps("FormControlError", props);
+
     return (
         <FormControlErrorRoot
             hint={error}

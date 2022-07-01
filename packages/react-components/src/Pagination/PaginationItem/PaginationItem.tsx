@@ -1,15 +1,18 @@
 import { PaginationItemRoot } from "./PaginationItem.styles";
 import { PaginationItemProps } from "./PaginationItem.types";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const PaginationItem = ({
-    page,
-    disabled = false,
-    size = "md",
-    className,
-    selected,
-    ...rest
-}: PaginationItemProps): JSX.Element => {
+const PaginationItem = (props: PaginationItemProps): JSX.Element => {
+    const {
+        page,
+        disabled = false,
+        size = "md",
+        className,
+        selected,
+        ...rest
+    } = useMergeDefaultProps("PaginationItem", props);
+
     const isEllipsis = page === null;
 
     return (

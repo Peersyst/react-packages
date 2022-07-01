@@ -5,18 +5,21 @@ import { UploadRoot } from "./Upload.styles";
 import { nullifyEvent, cx } from "@peersyst/react-utils";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Upload({
-    defaultValue,
-    fileTypes,
-    multiple,
-    children,
-    readonly = false,
-    disabled = false,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: UploadProps): JSX.Element {
+export default function Upload(props: UploadProps): JSX.Element {
+    const {
+        defaultValue,
+        fileTypes,
+        multiple,
+        children,
+        readonly = false,
+        disabled = false,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("Upload", props);
+
     const [drag, setDrag] = useState(false);
     const active = !disabled && !readonly;
     const directory = fileTypes === "directory";

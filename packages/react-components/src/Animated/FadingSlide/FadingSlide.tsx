@@ -1,7 +1,9 @@
 import { forwardRef } from "react";
-import { Animated, TransitionStyles } from "..";
 import { FadingSlideProps } from "./FadingSlide.types";
 import { SlideDirection } from "../Slide";
+import { TransitionStyles } from "../Animated.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import Animated from "../Animated";
 
 const getFadingSlide = (direction: SlideDirection): TransitionStyles => {
     let translate;
@@ -31,14 +33,18 @@ const getFadingSlide = (direction: SlideDirection): TransitionStyles => {
     };
 };
 
-const FadingSlide = forwardRef(({ direction, ...animatedProps }: FadingSlideProps, ref) => (
-    <Animated
-        animation={getFadingSlide(direction)}
-        animatedProperties="transform, opacity"
-        {...animatedProps}
-        ref={ref}
-    />
-));
+const FadingSlide = forwardRef((props: FadingSlideProps, ref) => {
+    const { direction, ...animatedProps } = useMergeDefaultProps("AnimatedFadingSlide", props);
+
+    return (
+        <Animated
+            animation={getFadingSlide(direction)}
+            animatedProperties="transform, opacity"
+            {...animatedProps}
+            ref={ref}
+        />
+    );
+});
 
 FadingSlide.displayName = "FadingSlide";
 

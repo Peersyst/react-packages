@@ -4,18 +4,21 @@ import { useControlled } from "@peersyst/react-hooks";
 import { Backdrop } from "../Backdrop";
 import { CloseButton, ModalRoot } from "./Modal.styles";
 import { useTheme } from "@peersyst/react-native-styled";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Modal({
-    closable = true,
-    showCloseButton = false,
-    defaultOpen = true,
-    open: propOpen,
-    children,
-    onClose,
-    elevation = 16,
-    style,
-    ...rest
-}: ModalProps): JSX.Element {
+export default function Modal(props: ModalProps): JSX.Element {
+    const {
+        closable = true,
+        showCloseButton = false,
+        defaultOpen = true,
+        open: propOpen,
+        children,
+        onClose,
+        elevation = 16,
+        style,
+        ...rest
+    } = useMergeDefaultProps("Modal", props);
+
     const [open, setOpen] = useControlled(defaultOpen, propOpen, propOpen ? onClose : undefined);
     const {
         icons: { cross: CrossIcon },

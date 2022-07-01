@@ -5,33 +5,38 @@ import TableRows from "./TableRows";
 import { cx } from "@peersyst/react-utils";
 import { createRef, ReactElement } from "react";
 import { InfiniteScroll } from "../InfiniteScroll";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Table<T extends object = Record<string, never>>({
-    rows,
-    columns,
-    footer,
-    className,
-    style,
-    headerClassName,
-    headerStyle,
-    footerClassName,
-    footerStyle,
-    rowClassName,
-    rowStyle,
-    cellStyle,
-    cellClassName,
-    rowHeight = "52px",
-    headerHeight = "56px",
-    footerHeight,
-    infiniteProps,
-    onRowClick,
-    borders: bordersProp = {
-        outline: true,
-        horizontal: true,
-        vertical: true,
-    },
-    emptyElement,
-}: TableProps<T>): JSX.Element {
+export default function Table<T extends object = Record<string, never>>(
+    props: TableProps<T>,
+): JSX.Element {
+    const {
+        rows,
+        columns,
+        footer,
+        className,
+        style,
+        headerClassName,
+        headerStyle,
+        footerClassName,
+        footerStyle,
+        rowClassName,
+        rowStyle,
+        cellStyle,
+        cellClassName,
+        rowHeight = "52px",
+        headerHeight = "56px",
+        footerHeight,
+        infiniteProps,
+        onRowClick,
+        borders: bordersProp = {
+            outline: true,
+            horizontal: true,
+            vertical: true,
+        },
+        emptyElement,
+    } = useMergeDefaultProps("Table", props);
+
     const rowProps = { rowClassName, rowStyle, cellClassName, cellStyle, onRowClick };
     const columnsProps: TableColumnsProps<T> = {
         ...rowProps,

@@ -1,5 +1,5 @@
 import { BaseValidator } from "./BaseValidator";
-import { TranslateFn } from "../Theme";
+import { TranslateFn } from "../config";
 
 export class EndsWithValidator extends BaseValidator {
     end: string;

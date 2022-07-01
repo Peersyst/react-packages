@@ -1,14 +1,14 @@
 import { SelectItemRoot } from "./SelectItem.styles";
 import { SelectItemProps } from "./SelectItem.types";
 import { fsx, cx } from "@peersyst/react-utils";
-import { SelectItem as CoreSelectItem } from "@peersyst/react-components-core";
+import {
+    SelectItem as CoreSelectItem,
+    useMergeDefaultProps,
+} from "@peersyst/react-components-core";
 
-export default function SelectItem<T = any>({
-    children,
-    value,
-    className,
-    style,
-}: SelectItemProps<T>): JSX.Element {
+export default function SelectItem<T = any>(props: SelectItemProps<T>): JSX.Element {
+    const { children, value, className, style } = useMergeDefaultProps("SelectItem", props);
+
     return (
         <CoreSelectItem value={value}>
             {({ isSelected, setSelected, readonly }) => {

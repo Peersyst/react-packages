@@ -6,8 +6,11 @@ import {
 } from "react-native";
 import { useState } from "react";
 import Skeleton from "../../feedback/Skeleton/Skeleton";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Image = ({ onLoad, ...rest }: ImageProps): JSX.Element => {
+const Image = (props: ImageProps): JSX.Element => {
+    const { onLoad, ...rest } = useMergeDefaultProps("Image", props);
+
     const [loading, setLoading] = useState(true);
 
     const handleLoad = (event: NativeSyntheticEvent<ImageLoadEventData>) => {

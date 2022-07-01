@@ -1,11 +1,13 @@
 import { cloneElement } from "react";
 import { ElementStylerProps } from "./ElementStyler.types";
 import { StyleProp, StyleSheet } from "react-native";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-function ElementStyler<TProps extends { style?: StyleProp<any> }>({
-    children: child,
-    style: iconStyle,
-}: ElementStylerProps<TProps>): JSX.Element {
+function ElementStyler<TProps extends { style?: StyleProp<any> }>(
+    props: ElementStylerProps<TProps>,
+): JSX.Element {
+    const { children: child, style: iconStyle } = useMergeDefaultProps("ElementStyler", props);
+
     const { style, ...rest } = child.props;
 
     return cloneElement(child, {

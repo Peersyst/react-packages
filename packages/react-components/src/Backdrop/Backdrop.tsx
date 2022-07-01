@@ -5,6 +5,7 @@ import { useControlled, usePreventBodyScroll } from "@peersyst/react-hooks";
 import { BackdropRoot } from "./Backdrop.styles";
 import { cx } from "@peersyst/react-utils";
 import { createPortal } from "react-dom";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const BackdropAnimation: TransitionStyles = {
     exiting: {
@@ -15,26 +16,28 @@ const BackdropAnimation: TransitionStyles = {
     },
 };
 
-export default function Backdrop({
-    preventScroll = true,
-    closable = true,
-    defaultOpen = true,
-    open: propsOpen,
-    onClose,
-    onExited,
-    animation = BackdropAnimation,
-    childrenAnimation: { AnimatedComponent, props: AnimatedComponentProps } = {
-        AnimatedComponent: Animated.Fade,
-        props: { duration: 300 },
-    },
-    transparent = false,
-    transitionsDuration = 400,
-    className,
-    style,
-    renderBackdrop = true,
-    renderAtRoot = false,
-    children,
-}: BackdropProps): JSX.Element {
+export default function Backdrop(props: BackdropProps): JSX.Element {
+    const {
+        preventScroll = true,
+        closable = true,
+        defaultOpen = true,
+        open: propsOpen,
+        onClose,
+        onExited,
+        animation = BackdropAnimation,
+        childrenAnimation: { AnimatedComponent, props: AnimatedComponentProps } = {
+            AnimatedComponent: Animated.Fade,
+            props: { duration: 300 },
+        },
+        transparent = false,
+        transitionsDuration = 400,
+        className,
+        style,
+        renderBackdrop = true,
+        renderAtRoot = false,
+        children,
+    } = useMergeDefaultProps("Backdrop", props);
+
     const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
     usePreventBodyScroll(open && preventScroll);
 

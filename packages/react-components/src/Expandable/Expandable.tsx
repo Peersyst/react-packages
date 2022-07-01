@@ -8,17 +8,20 @@ import {
 } from "./ExpandableBody";
 import { findSlot, cx } from "@peersyst/react-utils";
 import { ExpandableRoot } from "./Expandable.styles";
-import { DropdownProps } from "./Expandable.types";
+import { ExpandableComponent, ExpandableProps } from "./Expandable.types";
 import { useControlled } from "@peersyst/react-hooks";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-function Expandable({
-    open: openProp,
-    onOpen,
-    onClose,
-    className,
-    style,
-    children,
-}: DropdownProps): JSX.Element {
+const Expandable = ((props: ExpandableProps): JSX.Element => {
+    const {
+        open: openProp,
+        onOpen,
+        onClose,
+        className,
+        style,
+        children,
+    } = useMergeDefaultProps("Expandable", props);
+
     const display = findSlot<typeof ExpandableDisplay>(children, ExpandableDisplay);
     const body = findSlot<typeof ExpandableBody>(children, ExpandableBody);
 
@@ -37,7 +40,7 @@ function Expandable({
             </ExpandableProvider>
         </ExpandableRoot>
     );
-}
+}) as ExpandableComponent;
 
 Expandable.Display = ExpandableDisplay;
 Expandable.Body = ExpandableBody;

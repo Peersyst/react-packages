@@ -1,6 +1,6 @@
 import { CoreLabelProps } from "@peersyst/react-components-core";
 import { CSSProperties } from "react";
-import { Breakpoint } from "../styles";
+import { Breakpoint } from "../theme";
 
 export interface LabelBreakpoint extends Pick<CoreLabelProps, "placement" | "alignment" | "gap"> {
     width: Breakpoint | number;

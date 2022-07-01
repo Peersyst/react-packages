@@ -6,6 +6,7 @@ import {
     renderSelectValue,
     selectIsValid,
     useSelectDisplayContent,
+    useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { InnerSelectProps, SelectProps } from "./Select.types";
 import { cx } from "@peersyst/react-utils";
@@ -64,22 +65,24 @@ function InnerSelect<T>({
     );
 }
 
-export default function Select<T = any>({
-    required,
-    multiple = false,
-    defaultValue,
-    placeholder,
-    DropdownComponent = SelectDropdown as ComponentType,
-    renderValue = renderSelectValue,
-    autoFocus = false,
-    disabled = false,
-    readonly = false,
-    expandable = false,
-    children,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: SelectProps<T>): JSX.Element {
+export default function Select<T = any>(props: SelectProps<T>): JSX.Element {
+    const {
+        required,
+        multiple = false,
+        defaultValue,
+        placeholder,
+        DropdownComponent = SelectDropdown as ComponentType,
+        renderValue = renderSelectValue,
+        autoFocus = false,
+        disabled = false,
+        readonly = false,
+        expandable = false,
+        children,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("Select", props);
+
     return (
         <FormControl<T | T[]>
             Label={[Label, LabelProps]}

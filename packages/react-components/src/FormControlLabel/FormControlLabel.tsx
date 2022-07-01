@@ -1,9 +1,11 @@
 import { LabelProps } from "../Label";
-import { useFormControl } from "@peersyst/react-components-core";
+import { useFormControl, useMergeDefaultProps } from "@peersyst/react-components-core";
 import { cx } from "@peersyst/react-utils";
 import { FormControlLabelRoot } from "./FormControlLabel.styles";
 
-const FormControlLabel = ({ className, ...labelProps }: LabelProps): JSX.Element => {
+const FormControlLabel = (props: LabelProps): JSX.Element => {
+    const { className, ...labelProps } = useMergeDefaultProps("FormControlLabel", props);
+
     const { required, invalid, disabled, readonly, focused, valid } = useFormControl();
 
     return (

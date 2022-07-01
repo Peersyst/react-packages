@@ -4,23 +4,25 @@ import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native"
 import { useContext, useMemo, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
-import { FormContext } from "@peersyst/react-components-core";
+import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Button = ({
-    onPress: onPressProp,
-    children,
-    type = "button",
-    loading = false,
-    loadingElement,
-    size = "md",
-    rightIcon,
-    leftIcon,
-    fullWidth = false,
-    disabled: disabledProp = false,
-    variant = "contained",
-    style = {},
-    ...rest
-}: ButtonProps): JSX.Element => {
+const Button = (props: ButtonProps): JSX.Element => {
+    const {
+        onPress: onPressProp,
+        children,
+        type = "button",
+        loading = false,
+        loadingElement,
+        size = "md",
+        rightIcon,
+        leftIcon,
+        fullWidth = false,
+        disabled: disabledProp = false,
+        variant = "contained",
+        style = {},
+        ...rest
+    } = useMergeDefaultProps("Button", props);
+
     const [pressed, setPressed] = useState(false);
 
     const { handleSubmit, valid } = useContext(FormContext);

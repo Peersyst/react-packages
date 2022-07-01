@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { OverridableStringUnion } from "@peersyst/react-types";
-import { TypographyVariants, TypographyVariantsOverrides } from "../Theme";
+import { TypographyVariants, TypographyVariantsOverrides } from "../theme";
 
 export type LabelPlacement = "top" | "left" | "right" | "bottom";
 

@@ -9,18 +9,25 @@ import {
 import { cx } from "@peersyst/react-utils";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
-import { RangeSliderStyles, RangeSliderValueType } from "@peersyst/react-components-core";
+import {
+    RangeSliderStyles,
+    RangeSliderValueType,
+    useMergeDefaultProps,
+} from "@peersyst/react-components-core";
 
-export default function RangeSlider({
-    min,
-    max,
-    defaultValue = { min, max },
-    step = 1,
-    disabled = false,
-    LabelProps = {},
-    Label = FormControlLabel,
-    ...rest
-}: RangeSliderProps): JSX.Element {
+export default function RangeSlider(props: RangeSliderProps): JSX.Element {
+    const {
+        min,
+        max,
+        defaultValue: defaultValueProp,
+        step = 1,
+        disabled = false,
+        LabelProps = {},
+        Label = FormControlLabel,
+        ...rest
+    } = useMergeDefaultProps("RangeSlider", props);
+    const defaultValue = defaultValueProp ?? { min, max };
+
     const styleProps: RangeSliderStyles = {
         disabled,
     };

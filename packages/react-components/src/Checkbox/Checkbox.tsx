@@ -4,17 +4,20 @@ import { CheckedBoxIcon, UncheckedBoxIcon } from "../assets/icons";
 import { FormControl } from "../FormControl";
 import { Label } from "../Label";
 import { CheckboxProps } from "./Checkbox.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Checkbox({
-    defaultValue = false,
-    icon = <UncheckedBoxIcon />,
-    checkedIcon = <CheckedBoxIcon />,
-    disabled = false,
-    LabelProps = {},
-    hideError = true,
-    Label: LabelProp = Label,
-    ...rest
-}: CheckboxProps) {
+export default function Checkbox(props: CheckboxProps) {
+    const {
+        defaultValue = false,
+        icon = <UncheckedBoxIcon />,
+        checkedIcon = <CheckedBoxIcon />,
+        disabled = false,
+        LabelProps = {},
+        hideError = true,
+        Label: LabelProp = Label,
+        ...rest
+    } = useMergeDefaultProps("Checkbox", props);
+
     return (
         <FormControl<boolean>
             Label={[LabelProp, { placement: "right", ...LabelProps }]}

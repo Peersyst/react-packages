@@ -4,6 +4,7 @@ import { classify } from "@peersyst/react-utils";
 import useAnimatedTiming from "../hooks/useAnimatedTiming";
 import { SlideProps } from "../Slide";
 import { AnimatedProps, AnimatedConfig } from "../Animated.types";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function fadingScale<P extends { style?: any }>(
     Component: ComponentType<P>,
@@ -21,20 +22,22 @@ export default function fadingScale<P extends { style?: any }>(
 ): ComponentType<P & AnimatedProps> {
     const AnimatedComponent = Animated.createAnimatedComponent(classify(Component));
 
-    const FadingScale = ({
-        duration = configDuration,
-        delay = configDelay,
-        easing = configEasing,
-        unmountOnExit = configUnmountOnExit,
-        in: inProp,
-        appear = configAppear,
-        onEnter = configOnEnter,
-        onEntered = configOnEntered,
-        onExit = configOnExit,
-        onExited = configOnExited,
-        style: { opacity = 1, ...style } = {},
-        ...rest
-    }: P & SlideProps): JSX.Element => {
+    const FadingScale = (props: P & SlideProps): JSX.Element => {
+        const {
+            duration = configDuration,
+            delay = configDelay,
+            easing = configEasing,
+            unmountOnExit = configUnmountOnExit,
+            in: inProp,
+            appear = configAppear,
+            onEnter = configOnEnter,
+            onEntered = configOnEntered,
+            onExit = configOnExit,
+            onExited = configOnExited,
+            style: { opacity = 1, ...style } = {},
+            ...rest
+        } = useMergeDefaultProps("AnimatedFadingScale", props);
+
         const [startPos, endPos] = appear ? [0, opacity] : [opacity, 0];
         const fadingScaleAnim = useRef(new Animated.Value(inProp ? startPos : endPos)).current;
 

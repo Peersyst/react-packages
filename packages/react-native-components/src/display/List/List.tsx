@@ -7,6 +7,7 @@ import {
     ScrollView,
 } from "react-native";
 import { useState } from "react";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export interface ListProps extends Omit<FlatListProps<any>, "refreshControl" | "refreshing"> {
     refreshControlProps?: RefreshControlPropsIOS & RefreshControlPropsAndroid;
@@ -20,12 +21,14 @@ export interface ListProps extends Omit<FlatListProps<any>, "refreshControl" | "
  * More info here https://nyxo.app/fixing-virtualizedlists-should-never-be-nested-inside-plain-scrollviews
  */
 
-const List = ({
-    onRefresh,
-    loading = false,
-    refreshControlProps,
-    ...rest
-}: ListProps): JSX.Element => {
+const List = (props: ListProps): JSX.Element => {
+    const {
+        onRefresh,
+        loading = false,
+        refreshControlProps,
+        ...rest
+    } = useMergeDefaultProps("List", props);
+
     const [refreshing, setRefreshing] = useState(false);
 
     const handleRefresh = async () => {

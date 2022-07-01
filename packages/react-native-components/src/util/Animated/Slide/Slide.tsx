@@ -4,6 +4,7 @@ import { SlideConfig, SlideProps } from "./Slide.types";
 import { classify } from "@peersyst/react-utils";
 import getExitedPosition from "./utils/getExitedPosition";
 import useAnimatedTiming from "../hooks/useAnimatedTiming";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function slide<
     P extends { style?: any; onLayout?: ((event: LayoutChangeEvent) => void) | undefined },
@@ -19,21 +20,23 @@ export default function slide<
 ): ComponentType<P & SlideProps> {
     const AnimatedComponent = Animated.createAnimatedComponent(classify(Component));
 
-    const Slide = ({
-        duration = configDuration,
-        delay = configDelay,
-        easing = configEasing,
-        in: inProp,
-        appear = configAppear,
-        direction = directionConfig,
-        style: { opacity = 1, ...style } = {},
-        unmountOnExit = false,
-        onEnter,
-        onEntered,
-        onExit,
-        onExited,
-        ...rest
-    }: P & SlideProps): JSX.Element => {
+    const Slide = (props: P & SlideProps): JSX.Element => {
+        const {
+            duration = configDuration,
+            delay = configDelay,
+            easing = configEasing,
+            in: inProp,
+            appear = configAppear,
+            direction = directionConfig,
+            style: { opacity = 1, ...style } = {},
+            unmountOnExit = false,
+            onEnter,
+            onEntered,
+            onExit,
+            onExited,
+            ...rest
+        } = useMergeDefaultProps("AnimatedSlide", props);
+
         const [layout, setLayout] = useState<LayoutRectangle>();
         const handleLayout = ({
             nativeEvent: { layout: eventLayout },

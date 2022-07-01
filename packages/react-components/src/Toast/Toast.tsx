@@ -3,28 +3,25 @@ import { ToastAction, ToastContainer, ToastContent } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { getAnimation } from "./utils/getAnimation";
-import { Row, useTheme } from "..";
 import { useGetIcon } from "./hooks/useGetIcon";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { Row } from "../Row";
 
-export default function Toast({
-    message,
-    type,
-    action,
-    position: positionProp,
-    open: propOpen,
-    onClose,
-    onExited,
-    animation: animationProp,
-    duration = 4000,
-    className,
-    style,
-}: ToastProps): JSX.Element {
+export default function Toast(props: ToastProps): JSX.Element {
     const {
-        theme: { toastAnimation, toastPosition },
-    } = useTheme();
-    const animation = animationProp || toastAnimation;
-    const position = positionProp || toastPosition;
+        message,
+        type,
+        action,
+        position = "top-right",
+        open: propOpen,
+        onClose,
+        onExited,
+        animation = "fadingSlide",
+        duration = 4000,
+        className,
+        style,
+    } = useMergeDefaultProps("Toast", props);
 
     const [open, setOpen] = useControlled(true, propOpen, propOpen ? onClose : undefined);
 

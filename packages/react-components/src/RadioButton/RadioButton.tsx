@@ -4,17 +4,20 @@ import { cx } from "@peersyst/react-utils";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../assets/icons";
 import { Label } from "../Label";
 import { FormControl } from "../FormControl";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function RadioButton({
-    defaultValue = false,
-    icon = <RadioUncheckedIcon />,
-    checkedIcon = <RadioCheckedIcon />,
-    disabled = false,
-    LabelProps = {},
-    hideError = true,
-    Label: LabelProp = Label,
-    ...rest
-}: RadioButtonProps) {
+export default function RadioButton(props: RadioButtonProps) {
+    const {
+        defaultValue = false,
+        icon = <RadioUncheckedIcon />,
+        checkedIcon = <RadioCheckedIcon />,
+        disabled = false,
+        LabelProps = {},
+        hideError = true,
+        Label: LabelProp = Label,
+        ...rest
+    } = useMergeDefaultProps("RadioButton", props);
+
     return (
         <FormControl<boolean>
             Label={[LabelProp, { placement: "right", ...LabelProps }]}

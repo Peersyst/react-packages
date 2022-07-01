@@ -50,3 +50,41 @@ export type Common<A, B> = Pick<
  * Creates a type with the difference between A and B
  */
 export type Difference<A, B> = Omit<A, keyof B>;
+
+/**
+ * Makes all properties, included nested ones, partial
+ */
+type RecursivePartial<T> = {
+    [P in keyof T]?: T[P] extends (infer U)[]
+        ? RecursivePartial<U>[]
+        : T[P] extends object
+        ? RecursivePartial<T[P]>
+        : T[P];
+};
+
+/**
+ * Makes all properties, included nested ones, partial. Except those of type K
+ */
+type RecursivePartialExcept<T, K extends keyof T> = RecursivePartial<T> & Pick<T, K>;
+
+/**
+ * Makes properties of type K required
+ */
+type Demand<T, K extends keyof T> = T & { [P in K]-?: T[P] };
+
+/**
+ * Makes properties of type K optional
+ */
+type Loosen<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
+/**
+ * Gets all keys with type undefined of T
+ */
+type UndefinedKeys<T> = {
+    [K in keyof T]: T[K] extends undefined ? K : never;
+}[keyof T];
+
+/**
+ * Removes properties of type undefined from T
+ */
+type Defined<T> = Omit<T, UndefinedKeys<T>>;

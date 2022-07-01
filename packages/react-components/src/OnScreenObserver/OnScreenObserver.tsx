@@ -1,12 +1,11 @@
 import { createRef, useCallback, useEffect, useState } from "react";
 import { OnScreenObserverProps } from "./OnScreenObserver.types";
 import { OnScreenObserverWrapper } from "./OnScreenObserver.styles";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function OnScreenObserver({
-    children,
-    offset = "0",
-    container,
-}: OnScreenObserverProps): JSX.Element {
+export default function OnScreenObserver(props: OnScreenObserverProps): JSX.Element {
+    const { children, offset = "0", container } = useMergeDefaultProps("OnScreenObserver", props);
+
     const [onScreen, setOnScreen] = useState(false);
 
     const ref = createRef<HTMLDivElement>();

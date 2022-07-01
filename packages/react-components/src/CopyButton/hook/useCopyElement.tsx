@@ -1,4 +1,4 @@
-import { useTheme } from "../../Theme";
+import { useTheme } from "../../theme";
 
 export default function useCopyElement(
     loading: boolean,
@@ -6,10 +6,8 @@ export default function useCopyElement(
     hovered: boolean,
 ): JSX.Element {
     const {
-        theme: {
-            icons: { copy: Copy, check: Check },
-            loader: Loader,
-        },
+        icons: { copy: Copy, check: Check },
+        loader: Loader,
     } = useTheme();
 
     if (loading) return <Loader />;

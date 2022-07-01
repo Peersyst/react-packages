@@ -2,6 +2,7 @@ import { FormControlProps } from "./FormControl.types";
 import {
     FormControl as CoreFormControl,
     FormControlContext,
+    useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { FormControlError } from "../FormControlError";
 import { FormControlHint } from "../FormControlHint";
@@ -9,15 +10,17 @@ import { FormControlLabel } from "../FormControlLabel";
 import { cx } from "@peersyst/react-utils";
 import { FormControlRoot } from "./FormControl.styles";
 
-function FormControl<T = any>({
-    className,
-    style,
-    label,
-    hint,
-    Label = FormControlLabel,
-    children,
-    ...coreProps
-}: FormControlProps<T>): JSX.Element {
+function FormControl<T = any>(props: FormControlProps<T>): JSX.Element {
+    const {
+        className,
+        style,
+        label,
+        hint,
+        Label = FormControlLabel,
+        children,
+        ...coreProps
+    } = useMergeDefaultProps("FormControl", props);
+
     const [LabelComponent, LabelProps] = Array.isArray(Label) ? Label : [Label, {}];
 
     return (

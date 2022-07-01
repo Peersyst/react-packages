@@ -2,17 +2,20 @@ import { Children, Fragment } from "react";
 import { RowRoot } from "./Row.styles";
 import { RowProps } from "./Row.types";
 import { View } from "react-native";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Row = ({
-    children: childrenProp,
-    gap,
-    justifyContent,
-    alignItems,
-    style,
-    flex,
-    wrap = false,
-    ...rest
-}: RowProps): JSX.Element => {
+const Row = (props: RowProps): JSX.Element => {
+    const {
+        children: childrenProp,
+        gap,
+        justifyContent,
+        alignItems,
+        style,
+        flex,
+        wrap = false,
+        ...rest
+    } = useMergeDefaultProps("Row", props);
+
     const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 

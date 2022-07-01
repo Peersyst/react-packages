@@ -3,24 +3,25 @@ import TextInput from "../TextInput/TextInput";
 import { TextFieldInput } from "./TextField.styles";
 import { IconButton } from "../IconButton";
 import { TextFieldProps } from "./TextField.types";
-import { useTheme } from "../Theme";
+import { useTheme } from "../theme";
 import { cx } from "@peersyst/react-utils";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function TextField({
-    type,
-    showPasswordElement: showPasswordElementProp,
-    hidePasswordElement: hidePasswordElementProp,
-    clearElement: clearElementProp,
-    clearable,
-    className,
-    ...textInputProps
-}: TextFieldProps): JSX.Element {
+export default function TextField(props: TextFieldProps): JSX.Element {
+    const {
+        type,
+        showPasswordElement: showPasswordElementProp,
+        hidePasswordElement: hidePasswordElementProp,
+        clearElement: clearElementProp,
+        clearable,
+        className,
+        ...textInputProps
+    } = useMergeDefaultProps("TextField", props);
+
     const [showPwd, setShowPwd] = useState(false);
 
     const {
-        theme: {
-            icons: { show: Show, hide: Hide, cross: Cross },
-        },
+        icons: { show: Show, hide: Hide, cross: Cross },
     } = useTheme();
     const showPasswordElement = showPasswordElementProp || <Show />;
     const hidePasswordElement = hidePasswordElementProp || <Hide />;
