@@ -3,6 +3,7 @@ import { ValidatorFactory } from "../Validators";
 import { Theme } from "../theme";
 
 export interface CoreConfigTypes {}
+export interface ConfigTypes extends CoreConfigTypes {}
 
 export type BlockchainLinksTypes = "address" | "tx";
 export interface BlockchainLinksTypesOverrides {}
@@ -14,7 +15,9 @@ export interface BlockchainLinks extends DefaultBlockchainLinks {}
 
 export interface ExtraValidators {}
 
-export type TranslateFn = (w: string, opts?: Record<string, string>) => string;
+export type TranslateFn = ConfigTypes extends { TranslateFn: infer T }
+    ? T
+    : (w: string, opts?: Record<string, string>) => string;
 
 export interface CoreComponentConfig<P> {
     defaultProps: Partial<P>;

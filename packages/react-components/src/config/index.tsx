@@ -13,14 +13,19 @@ export {
     useValidators,
 } from "@peersyst/react-components-core";
 export type {
+    BlockchainLinksTypes,
+    BlockchainLinksTypesOverrides,
+    BlockchainLinks,
     ExtraValidators,
     TranslateFn,
     ComponentConfig,
     ComponentsConfig,
     Themes,
     Config,
-    CoreConfigTypes,
     CreateConfig,
+    CoreConfigTypes,
+    ConfigTypes,
     ConfigContext,
     ConfigConsumer,
 } from "@peersyst/react-components-core";
+import "./config";

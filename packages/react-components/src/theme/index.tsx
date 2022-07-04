@@ -11,4 +11,17 @@ export * from "./ThemeProvider";
 export * from "./withThemeClassName";
 export * from "./withTheme";
 export { useTheme, ThemeContext, ThemeConsumer } from "@peersyst/react-components-core";
-export type { ThemeContextType, Theme } from "@peersyst/react-components-core";
+export type {
+    ThemeContextType,
+    Theme,
+    CreateTheme,
+    ThemePalette,
+    ThemeFonts,
+    ThemeZIndex,
+    TypographyVariants,
+    TypographyVariantsOverrides,
+    ThemeTypography,
+    ThemeIcons,
+    PaletteMode,
+} from "@peersyst/react-components-core";
+import "./theme";
