@@ -19,14 +19,17 @@ export default function useFormSubmit(
             if (!submitted) {
                 setSubmitted(true);
             }
-            setImmediate(() => {
+            const setData = () => {
                 const valid = Object.values(data).every((v) => v.valid);
                 if (valid) {
                     const values: Record<string, any> = {};
                     Object.entries(data).forEach((v) => (values[v[0]] = v[1].value));
                     onSubmit(values);
                 } else onInvalid?.();
-            });
+            };
+            if (setImmediate) setImmediate(setData);
+            else if (process.nextTick) process.nextTick(setData);
+            else setData();
         },
         [data, submitted, onSubmit, onInvalid],
     );
