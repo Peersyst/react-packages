@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { Typography } from "../Typography";
+import { FormControlHint } from "../FormControlHint";
 
-export const FormControlErrorRoot = styled(Typography).attrs({ variant: "caption" })(
+export const FormControlErrorRoot = styled(FormControlHint).attrs({ light: false })(
     ({ theme }) => ({
-        marginLeft: "5px",
         color: theme.palette.status.error,
     }),
 );
