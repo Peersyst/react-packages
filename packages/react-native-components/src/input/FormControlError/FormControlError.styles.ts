@@ -1,6 +1,7 @@
 import styled from "@peersyst/react-native-styled";
-import { FormControlHint } from "../FormControlHint";
+import { Typography } from "../../display/Typography";
 
-export const FormControlErrorRoot = styled(FormControlHint)(({ theme }) => ({
+export const FormControlHintRoot = styled(Typography)(({ theme }) => ({
+    marginLeft: 5,
     color: theme.palette.status.error,
 }));

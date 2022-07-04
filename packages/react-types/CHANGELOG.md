@@ -1,12 +1,12 @@
 # Versions
 
-## 1.2.4
+## 1.3.4
 
 [LoosenDeeply]
 [RecursivePartial -> DeepPartial]
 [RecursivePartialExcept -> DeepPartialExcept]
 
-## 1.2.3
+## 1.3.2
 
 [RecursivePartial]
 [RecursivePartialExcept]

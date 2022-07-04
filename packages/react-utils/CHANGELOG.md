@@ -1,5 +1,13 @@
 # Versions
 
+## 1.4.7
+
+Dependencies update
+
+## 1.4.6
+
+Dependencies update
+
 ## 1.4.5
 
 Use react-components-core
