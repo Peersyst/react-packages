@@ -1,5 +1,12 @@
 # Versions
 
+## 0.0.9
+
+### BREAKING
+Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
+
+[config] Config refactor
+
 ## 0.0.8
 
 - All inputs components now use FormControl as its core and have a common behaviour

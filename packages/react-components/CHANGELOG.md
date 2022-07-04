@@ -1,6 +1,13 @@
 
 # Versions
 
+## 2.19.0
+
+### BREAKING
+Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
+
+[config] Config refactor
+
 ## 2.18.1
 
 [Slider] Rail width fix
