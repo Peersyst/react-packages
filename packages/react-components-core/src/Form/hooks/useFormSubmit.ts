@@ -27,9 +27,15 @@ export default function useFormSubmit(
                     onSubmit(values);
                 } else onInvalid?.();
             };
-            if (setImmediate) setImmediate(setData);
-            else if (process.nextTick) process.nextTick(setData);
-            else setData();
+            try {
+                setImmediate(setData);
+            } catch (e) {
+                try {
+                    process.nextTick(setData);
+                } catch (e) {
+                    setData();
+                }
+            }
         },
         [data, submitted, onSubmit, onInvalid],
     );
