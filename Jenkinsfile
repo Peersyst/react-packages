@@ -37,7 +37,7 @@ pipeline {
            }
             steps {
                 sshagent(credentials : ['jenkins-ssh']) {
-                    sh 'scp -rp ./packages/genesys/docs//storybook-static ubuntu@dev.peersyst.com:/home/ubuntu'
+                    sh 'scp -rp ./packages/genesys/docs/storybook-static ubuntu@dev.peersyst.com:/home/ubuntu'
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@dev.peersyst.com sudo rm -rf /var/www/react-components *//*'
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@dev.peersyst.com sudo mv /home/ubuntu/storybook-static *//* /var/www/react-components/'
                 }
