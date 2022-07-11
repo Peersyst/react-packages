@@ -5,7 +5,7 @@
         "start": "lerna run --parallel --scope \"@peersyst/react-components\" start",
         "genesys:build:docs": "lerna run --parallel --scope \"docs\" build",
         "release:version": "lerna version --no-changelog --no-push --no-git-tag-version",
-        "release:build": "lerna run --parallel build",
+        "release:build": "lerna run --parallel --ignore \"docs\" build",
         "release:publish": "lerna publish from-package --dist-tag latest --contents build",
         "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\"",
         "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx"
@@ -36,6 +36,7 @@
     },
     "workspaces": [
         "packages/*",
-        "packages/genesys/packages/*"
+        "packages/genesys/packages/*",
+        "packages/genesys/docs"
     ]
 }
