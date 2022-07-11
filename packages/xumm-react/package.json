@@ -1,0 +1,28 @@
+{
+    "name": "xumm-react",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc && node ../scripts/copy-files.js",
+        "publish": "tsc && npm publish build",
+        "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx"
+    },
+    "keywords": [],
+    "author": "AgustinMJ",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/react": "^17.0.38",
+        "react": "^17.0.0",
+        "typescript": "^4.5.5"
+    },
+    "peerDependencies": {
+        "@types/react": "^16.0.0 || ^17.0.0 || ^18.0.0",
+        "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        }
+    }
+}

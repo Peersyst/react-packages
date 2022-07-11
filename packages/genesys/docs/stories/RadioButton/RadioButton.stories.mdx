@@ -1,0 +1,56 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { RadioButton, Row } from "@peersyst/react-components";
+import ControlledRadioButton from "./component/ControlledRadioButton";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Inputs/RadioButton"
+    component={RadioButton}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# RadioButton
+
+A basic customizable radio button.
+
+## Usage
+
+### Uncontrolled usage
+
+```jsx
+<RadioButton />
+```
+
+<Canvas>
+    <Row justifyContent="center">
+        <RadioButton />
+    </Row>
+</Canvas>
+
+### Controlled usage
+
+```jsx
+<RadioButton value={value} onChange={handleChange} />
+```
+
+<Canvas>
+    <Row justifyContent="space-around">
+        <ControlledRadioButton />
+    </Row>
+</Canvas>
+
+### FormControl usage
+
+```jsx
+<RadioButton label="I'm a label" hint="I'm a hint" required LabelProps={{ placement: "right" }} hideError={false} />
+```
+
+<Canvas>
+    <Row justifyContent="center">
+        <RadioButton label="I'm a label" hint="I'm a hint" required LabelProps={{ placement: "right" }} hideError={false} />
+    </Row>
+</Canvas>

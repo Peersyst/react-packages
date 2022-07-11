@@ -1,0 +1,129 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Tab, TabGroup, TabPanel, Tabs, Row } from "@peersyst/react-components";
+import { DisplayText } from "../styles/Text.styles";
+import "./styles/Tabs.stories.styles.ts";
+import { activeTab, Arrow, tabGroup, tabsIndicator } from "./styles/Tabs.stories.styles";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Navigation/Tabs"
+    component={Tabs}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Tabs
+
+Tabs component with slots.
+
+Tabs are formed by a TabGroup and TabPanels. TabGroup contains a group of Tabs.
+
+## Example
+
+<Canvas>
+    <Tabs className="with-icon">
+        <TabGroup indicatorStyle={tabsIndicator} arrowComponent={Arrow} style={tabGroup}>
+            <Tab index={0} style={({ active }) => (active ? activeTab : undefined)}>
+                Rocket
+            </Tab>
+            <Tab index={1} style={({ active }) => (active ? activeTab : undefined)}>
+                Avocado
+            </Tab>
+            <Tab index={2} style={({ active }) => (active ? activeTab : undefined)}>
+                Penguin
+            </Tab>
+            <Tab index={3} style={({ active }) => (active ? activeTab : undefined)}>
+                Rainbow
+            </Tab>
+            <Tab index={4} style={({ active }) => (active ? activeTab : undefined)}>
+                Donut
+            </Tab>
+        </TabGroup>
+        <TabPanel index={0}>
+            <Row justifyContent="center">
+                <DisplayText>🚀</DisplayText>
+            </Row>
+        </TabPanel>
+        <TabPanel index={1}>
+            <Row justifyContent="center">
+                <DisplayText>🥑</DisplayText>
+            </Row>
+        </TabPanel>
+        <TabPanel index={2}>
+            <Row justifyContent="center">
+                <DisplayText>🐧</DisplayText>
+            </Row>
+        </TabPanel>
+        <TabPanel index={3}>
+            <Row justifyContent="center">
+                <DisplayText>🌈</DisplayText>
+            </Row>
+        </TabPanel>
+        <TabPanel index={4}>
+            <Row justifyContent="center">
+                <DisplayText>🍩</DisplayText>
+            </Row>
+        </TabPanel>
+    </Tabs>
+</Canvas>
+
+## Usage
+
+### Uncontrolled usage
+
+```jsx
+<Tabs>
+    <TabGroup indicatorStyle={tabsIndicator} arrowComponent={Arrow}>
+        <Tab index={0}>Rocket</Tab>
+        <Tab index={1}>Avocado</Tab>
+        <Tab index={2}>Penguin</Tab>
+    </TabGroup>
+    <TabPanel index={0}>
+        <Row justifyContent="center">
+            <DisplayText>🚀</DisplayText>
+        </Row>
+    </TabPanel>
+    <TabPanel index={1}>
+        <Row justifyContent="center">
+            <DisplayText>🥑</DisplayText>
+        </Row>
+    </TabPanel>
+    <TabPanel index={2}>
+        <Row justifyContent="center">
+            <DisplayText>🐧</DisplayText>
+        </Row>
+    </TabPanel>
+    ...
+</Tabs>
+```
+
+### Controlled usage
+
+```jsx
+<Tabs index={value} onIndexChange={handleChange}>
+    <TabGroup indicatorStyle={tabsIndicator} arrowComponent={Arrow}>
+        <Tab index={0}>Rocket</Tab>
+        <Tab index={1}>Avocado</Tab>
+        <Tab index={2}>Penguin</Tab>
+    </TabGroup>
+    <TabPanel index={0}>
+        <Row justifyContent="center">
+            <DisplayText>🚀</DisplayText>
+        </Row>
+    </TabPanel>
+    <TabPanel index={1}>
+        <Row justifyContent="center">
+            <DisplayText>🥑</DisplayText>
+        </Row>
+    </TabPanel>
+    <TabPanel index={2}>
+        <Row justifyContent="center">
+            <DisplayText>🐧</DisplayText>
+        </Row>
+    </TabPanel>
+    ...
+</Tabs>
+```

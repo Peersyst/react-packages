@@ -1,0 +1,100 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Col, Skeleton, Row } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+import LoadingSkeleton from "./component/LoadingSkeleton";
+
+<Meta
+    title="Components/Feedback/Skeleton"
+    component={Skeleton}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Skeleton
+
+A placeholder to show while some data is loading.
+
+<Canvas>
+    <Col alignItems="center" gap={20}>
+        <Skeleton width="250px" height="200px" shape="stadium" />
+        <Skeleton width="250px" height="20px" shape="rectangular" />
+        <Skeleton width="60px" height="60px" shape="circular" />
+    </Col>
+</Canvas>
+
+## Usage
+
+### Shape
+
+The skeleton can be stadium shaped, rectangular or circular:
+
+```jsx
+<Skeleton width="100px" height="100px" shape="stadium" />
+<Skeleton width="100px" height="100px" shape="rectangular" />
+<Skeleton width="100px" height="100px" shape="circular" />
+```
+
+<Canvas>
+    <Row alignItems="center" gap={20} justifyContent="center">
+        <Skeleton width="100px" height="100px" shape="stadium" />
+        <Skeleton width="100px" height="100px" shape="rectangular" />
+        <Skeleton width="100px" height="100px" shape="circular" />
+    </Row>
+</Canvas>
+
+### Animation
+
+There is a wave and pulse animation
+
+```jsx
+<Skeleton width="100px" height="100px" animation="wave" />
+<Skeleton width="100px" height="100px" animation="pulse" />
+```
+
+<Canvas>
+    <Row alignItems="center" gap={20} justifyContent="center">
+        <Skeleton width="100px" height="100px" animation="wave" />
+        <Skeleton width="100px" height="100px" animation="pulse" />
+    </Row>
+</Canvas>
+
+### Infer size
+
+Skeleton can also be used as a wrapper for any component and infer its size.
+
+It will show its depending on the loading prop.
+
+```jsx
+<Skeleton loading={loading}>
+  <p>I've loaded successfully!</p>
+</Skeleton>
+<Skeleton loading={loading}>
+  <div
+    style={{
+      width: '100px',
+      height: '100px',
+      backgroundColor: 'lightgray',
+    }}
+  />
+</Skeleton>
+```
+
+<Canvas>
+    <LoadingSkeleton />
+</Canvas>
+
+### withSkeleton
+
+A utility that wraps your component with a skeleton and adds a loading prop. This way you can create components with an implicit skeleton.
+
+```typescript jsx
+const ComponentWithoutSkeleton = () => <>...</>;
+export const ComponentWithSkeleton = withSkeleton(ComponentWithoutSkeleton);
+```
+
+```jsx
+<ComponentWithSkeleton loading={loading} />
+```

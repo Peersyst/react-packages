@@ -35,6 +35,7 @@
         "yargs": "^17.3.1"
     },
     "workspaces": [
-        "packages/*"
+        "packages/*",
+        "packages/genesys/packages/*"
     ]
 }

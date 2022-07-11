@@ -1,0 +1,64 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Form, Row } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+import FormExample from "./component/FormExample";
+
+<Meta
+    title="Components/Inputs/Form"
+    component={Form}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Form
+
+Forms are used to collect information from all kinds of inputs.
+
+## Usage
+
+To use it, just wrap the inputs with it and give them a name.
+
+<Canvas>
+    <Row justifyContent="center">
+        <FormExample />
+    </Row>
+</Canvas>
+
+```jsx
+<Form onSubmit={setFormResult} onInvalid={() => setFormResult({})} style={{ width: "250px" }}>
+    <Col gap={20} alignItems="center">
+        <TextField name="textField" validators="not-null" />
+        <TextArea name="textArea" validators="not-null" />
+        <Row gap={10} style={{ width: "100%" }} alignItems="center">
+            <Checkbox name="checkbox" required />
+            Check me
+        </Row>
+        <Row gap={10} style={{ width: "100%" }} alignItems="center">
+            <RadioButton name="radioButton" required />
+            Check me
+        </Row>
+        <Select name="select" required placeholder="Select a blockchain">
+            <SelectItem value="harmony">Harmony</SelectItem>
+            <SelectItem value="ethereum">Ethereum</SelectItem>
+            <SelectItem value="ripple">Ripple</SelectItem>
+        </Select>
+        <Slider name="slider" min={0} max={100} />
+        <Switch name="switch" required />
+        <Popover
+            position="right"
+            showOn="click"
+            visible={showPopover}
+            onShow={() => formResult != {} && setShowPopover(true)}
+            onHide={() => setShowPopover(false)}
+        >
+            <Popover.Content>
+                <Button style={{ width: "250px" }}>Submit</Button>
+            </Popover.Content>
+            <Popover.Popper>{formatFormResult(formResult)}</Popover.Popper>
+        </Popover>
+    </Col>
+</Form>
+```

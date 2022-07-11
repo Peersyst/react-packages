@@ -1,0 +1,41 @@
+import {Canvas, Meta} from "@storybook/addon-docs";
+import { Carousel } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Display/Carousel"
+    component={Carousel}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Carousel
+
+Carousel component used to display sliding content.
+
+<Canvas>
+    <Carousel autoplay>
+        <div style={{width: "500px", height: "100px", backgroundColor: "blue"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "red"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "green"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "yellow"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "pink"}} />
+        <div style={{width: "500px", height: "100px", backgroundColor: "cyan"}} />
+    </Carousel>
+</Canvas>
+
+## Usage
+
+````jsx
+<Carousel autoplay>
+    <div style={{width: "500px", height: "100px", backgroundColor: "blue"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "red"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "green"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "yellow"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "pink"}} />
+    <div style={{width: "500px", height: "100px", backgroundColor: "cyan"}} />
+</Carousel>
+````

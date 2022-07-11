@@ -1,0 +1,103 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Typography, Col } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Data Display/Typography"
+    component={Typography}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Typography
+
+Typography is used to maintain a set of text variants in a centralized way. With this approach, readability is improved and the code is closer to the designs.
+
+Also, it is really easy to customize existing variants, remove them or add new ones, as we'll se later on.
+
+<Canvas>
+    <Col gap={10}>
+        <Typography variant="h1">Heading 1</Typography>
+        <Typography variant="h2">Heading 2</Typography>
+        <Typography variant="h3">Heading 3</Typography>
+        <Typography variant="h4">Heading 4</Typography>
+        <Typography variant="h5">Heading 5</Typography>
+        <Typography variant="h6">Heading 6</Typography>
+        <Typography variant="subtitle1">Subtitle 1</Typography>
+        <Typography variant="subtitle2">Subtitle 2</Typography>
+        <Typography variant="body1">Body 1</Typography>
+        <Typography variant="body2">Body 2</Typography>
+        <Typography variant="button">Button text</Typography>
+        <Typography variant="caption">Caption</Typography>
+    </Col>
+</Canvas>
+
+## Usage
+
+Just provide the variant you want and some style props you might want.
+
+```jsx
+<Col gap={10}>
+    <Typography variant="subtitle1" textTransform="uppercase">
+        Typography component is cool
+    </Typography>
+    <Typography variant="body1" light>
+        Typography component is cool
+    </Typography>
+</Col>
+```
+
+<Canvas>
+    <Col gap={10}>
+        <Typography variant="subtitle1" textTransform="uppercase">
+            Typography component is cool
+        </Typography>
+        <Typography variant="body1" light>
+            Typography component is cool
+        </Typography>
+    </Col>
+</Canvas>
+
+## Theming
+
+Typography can be customized with your custom theme:
+
+```typescript
+const myCustomTheme = createTheme({
+    typography: {
+        // Modify existing variant
+        h1: {
+            textDecoration: "underline",
+        },
+        // Remove existing variant
+        subtitle2: undefined,
+        // Add new variant
+        title: {
+            fontSize: "1.75rem",
+        },
+    },
+});
+```
+
+```typescript
+import "peersyst-react-components";
+
+declare module "peersyst-react-components" {
+    // Add title in theme type
+    export interface ThemeTypography {
+        title: TypographyVariant;
+    }
+    // Add title in create the type
+    export interface CreateThemeTypography {
+        title: TypographyVariant;
+    }
+    // Modify typography variants type
+    export interface TypographyVariantsOverrides {
+        subtitle2: false;
+        title: true;
+    }
+}
+```

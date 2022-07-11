@@ -1,0 +1,39 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Row } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Layout/Row"
+    component={Row}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Row
+
+A flexible div that displays its content as a row and accepts a breakpoint.
+
+<Canvas>
+    <Row
+        justifyContent="center"
+        gap={20}
+        breakpoint={{ width: 800, gap: 20, alignItems: "center" }}
+    >
+        <div style={{ width: "100px", height: "100px", backgroundColor: "blue" }} />
+        <div style={{ width: "100px", height: "100px", backgroundColor: "red" }} />
+        <div style={{ width: "100px", height: "100px", backgroundColor: "green" }} />
+    </Row>
+</Canvas>
+
+## Usage
+
+```jsx
+<Row justifyContent="center" gap={20} breakpoint={{ width: 800, gap: 20, alignItems: "center" }}>
+    <div style={{ width: "100px", height: "100px", backgroundColor: "blue" }} />
+    <div style={{ width: "100px", height: "100px", backgroundColor: "red" }} />
+    <div style={{ width: "100px", height: "100px", backgroundColor: "green" }} />
+</Row>
+```

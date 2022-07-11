@@ -1,0 +1,102 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import LinkTo from "@storybook/addon-links/react";
+import { Hash, Col } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Utils/Hash"
+    component={Hash}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Hash
+
+Component used to display a <LinkTo kind="components-utils-hash--page#the-component">Hash</LinkTo>.
+
+-   Use length to set how many characters to display.
+-   Set the break prop to true to make the hash break and not to scribble in smaller windows.
+-   Set an url.
+
+## Usage
+
+#### The component
+
+This component by default, shortens itself with an ellipsis in order to fit in its space.
+
+```jsx
+<Hash hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+```
+
+<Canvas>
+    <Col gap="1rem" alignItems="center">
+        <Hash hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+    </Col>
+</Canvas>
+
+#### The break prop
+
+This prop breaks the hash instead of adding an ellipsis.
+
+```jsx
+<Hash hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" break />
+```
+
+<Canvas>
+    <Col gap="1rem" alignItems="center">
+        <Hash hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" break />
+    </Col>
+</Canvas>
+
+#### The length prop
+
+Check how the length props works
+
+```jsx
+
+<Hash length={1} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+
+<Hash length={2} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+
+<Hash length={3} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+
+<Hash length={4} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+
+<Hash length={10} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+
+```
+
+<Canvas>
+    <Col gap="1rem">
+        <Hash length={1} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+        <Hash length={2} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+        <Hash length={3} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+        <Hash length={4} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+        <Hash length={10} hash="0x191447fAB0c5736380774CE5197e9Ccda7e835A2" variant="body1" />
+    </Col>
+</Canvas>
+
+#### Set an url
+
+You can also add an url for sending the user to some website (f.e. a blockchain explorer)
+
+```jsx
+<Hash
+    hash="bc1q35ymugl42k9xlytfg8p7s75cu24me4pz9cu5av"
+    variant="body1"
+    url="https://blockstream.info/address/bc1q35ymugl42k9xlytfg8p7s75cu24me4pz9cu5av"
+/>
+```
+
+<Canvas>
+    <Col gap="1rem" alignItems="center">
+        <Hash
+            hash="bc1q35ymugl42k9xlytfg8p7s75cu24me4pz9cu5av"
+            variant="body1"
+            url="https://blockstream.info/address/bc1q35ymugl42k9xlytfg8p7s75cu24me4pz9cu5av"
+        />
+    </Col>
+</Canvas>

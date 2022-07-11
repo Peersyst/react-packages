@@ -1,0 +1,35 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Col } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Layout/Col"
+    component={Col}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Col
+
+A flexible div that displays its content as a column.
+
+## Usage
+
+```jsx
+<Col style={{ width: "100%", height: "300px" }} gap={20} alignItems="center">
+    <div style={{ width: "100px", height: "100%", backgroundColor: "red" }} />
+    <div style={{ width: "100px", height: "100%", backgroundColor: "blue" }} />
+    <div style={{ width: "100px", height: "100%", backgroundColor: "green" }} />
+</Col>
+```
+
+<Canvas>
+    <Col style={{ width: "100%", height: "300px" }} gap={20} alignItems="center">
+        <div style={{ width: "100px", height: "100%", backgroundColor: "red" }} />
+        <div style={{ width: "100px", height: "100%", backgroundColor: "blue" }} />
+        <div style={{ width: "100px", height: "100%", backgroundColor: "green" }} />
+    </Col>
+</Canvas>

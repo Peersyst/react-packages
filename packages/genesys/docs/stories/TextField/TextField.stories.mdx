@@ -1,0 +1,117 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { TextField, Row, Grid } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+import { InfoIcon } from "@peersyst/react-components/src/assets/icons";
+
+<Meta
+    title="Components/Inputs/TextField"
+    component={TextField}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# TextField
+
+Text fields are used to retrieve single line inputs from the user, this component aims to have every basic utility a text input can have.
+
+## Usage
+
+This component can be used in multiple ways, so here we'll see some examples and their code:
+
+<Canvas>
+    <Row
+        className="with-icon"
+        style={{ padding: "40px", overflow: "visible" }}
+        alignItems="center"
+        justifyContent="center"
+    >
+        <Grid
+            cols={3}
+            style={{ width: "100%", overflow: "visible" }}
+            justifyItems="stretch"
+            alignItems="start"
+            breakpoints={[
+                { maxWidth: 900, cols: 2 },
+                { maxWidth: 600, cols: 1 },
+            ]}
+        >
+            <TextField placeholder="Write something..." />
+            <TextField placeholder="Write something..." prefix={<InfoIcon />} />
+            <TextField placeholder="Write something..." suffix={<InfoIcon />} />
+            <TextField label="Error label" placeholder="Write something..." value="Validate number" validators={{number: true}} />
+            <TextField label="Success label" placeholder="Write something..." value="Show valid" showValid />
+            <TextField label="Normal label" placeholder="Write something..." type="password" />
+            <TextField placeholder="Write something..." type="number" />
+            <TextField placeholder="Write something..." clearable />
+            <TextField
+                placeholder="Write something..."
+                value="I'm controlled"
+                onChange={() => undefined}
+            />
+            <TextField
+                placeholder="Write something..."
+                readonly
+                defaultValue="I can only be read"
+            />
+            <TextField placeholder="Write something..." disabled defaultValue="I'm disabled" />
+        </Grid>
+    </Row>
+</Canvas>
+
+```jsx
+<Grid
+    cols={3}
+    style={{ width: "100%", overflow: "visible" }}
+    breakpoints={[
+        { maxWidth: 900, cols: 2 },
+        { maxWidth: 600, cols: 1 },
+    ]}
+>
+    <TextField placeholder="Write something..." />
+    <TextField placeholder="Write something..." prefix={<InfoIcon />} />
+    <TextField placeholder="Write something..." suffix={<InfoIcon />} />
+    <TextField placeholder="Write something..." validators={{number: true}} />
+    <TextField placeholder="Write something..." showValid />
+    <TextField placeholder="Write something..." type="password" />
+    <TextField placeholder="Write something..." type="number" />
+    <TextField placeholder="Write something..." clearable />
+    <TextField placeholder="Write something..." value="I'm controlled" onChange={() => undefined} />
+    <TextField placeholder="Write something..." readonly defaultValue="I can only be read" />
+    <TextField placeholder="Write something..." disabled defaultValue="I'm disabled" />
+</Grid>
+```
+
+## Validators
+
+In order to validate inputs, we use Validators. Validator keys are passed as a string separating each Validator key with a "|".
+
+A custom message can be passed following the key with ":" + {your custom message}. For example, "not-null:input can't be null".
+
+Also, you can pass your own CustomValidators that extend the abstract class BaseValidator or implement the interface:
+
+````typescript
+interface FunctionalValidator {
+    validate: (value: string) => boolean;
+    message: string;
+}
+````
+
+### Validators list
+
+- not-null
+- number
+- email
+- password
+- eq= + string
+- gt + number (gt0)
+- gte + number (gte0)
+- eq + number (eq0)
+- lt + number (lt0)
+- lte + number (lte0)
+
+### Translations
+
+Validators return a message key when they are invalid. A translate function can be passed to the createTheme in order to translate those keys.

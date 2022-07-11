@@ -1,0 +1,41 @@
+{
+    "name": "@peersyst/react-components",
+    "author": "Peersyst",
+    "version": "2.19.4",
+    "license": "MIT",
+    "main": "./src/index.tsx",
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "start": "yarn start-storybook -p 6006",
+        "build": "build-storybook"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.16.7",
+        "@peersyst/react-components": "^2.19.4",
+        "@peersyst/react-components-core": "^0.0.7",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "styled-components": "^5.3.5"
+    },
+    "devDependencies": {
+        "@storybook/addon-docs": "^6.4.9",
+        "@storybook/addon-essentials": "^6.4.9",
+        "@storybook/addon-info": "^5.3.21",
+        "@storybook/addon-links": "^6.4.9",
+        "@storybook/addon-notes": "^5.3.21",
+        "@storybook/addon-viewport": "^6.4.9",
+        "@storybook/addons": "^6.4.9",
+        "@storybook/react": "^6.4.9",
+        "@storybook/theming": "^6.4.9",
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "@types/styled-components": "^5.1.20"
+    },
+    "resolutions": {
+        "styled-components": "^5"
+    },
+    "sideEffects": false,
+    "gitHead": "134adf3d64505a050b8909ee2b3468f1a758a72d"
+}

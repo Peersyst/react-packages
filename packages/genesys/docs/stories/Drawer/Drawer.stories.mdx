@@ -1,0 +1,105 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Drawer, ModalProvider, Row } from "@peersyst/react-components";
+import ShowControlledDrawer from "./component/ShowControlledDrawer";
+import ShowUncontrolledDrawer from "./component/ShowUncontrolledDrawer";
+import DrawerTypes from "./component/DrawerTypes";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Navigation/Drawer"
+    component={Drawer}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# Drawer
+
+A drawer component, used to display data on one side of the screen.
+
+<Canvas>
+    <ModalProvider>
+        <DrawerTypes />
+    </ModalProvider>
+</Canvas>
+
+## Usage
+
+There are 2 types of usages:
+
+### Controlled usage
+
+This is the typical usage, put the Drawer on your jsx tree and toggle its open prop.
+
+```jsx
+<>
+    <Button onClick={() => setOpen(true)}>Show Controlled Drawer</Button>
+    <Drawer open={open} onClose={() => setOpen(false)}>
+        <Col gap={20} style={{ padding: "20px" }}>
+            <h3>Item 1</h3>
+            <h3>Item 2</h3>
+            <h3>Item 3</h3>
+        </Col>
+    </Drawer>
+</>
+```
+
+<Canvas>
+    <Row justifyContent="center">
+        <ShowControlledDrawer />
+    </Row>
+</Canvas>
+
+### ModalProvider usage
+
+This is a cooler usage using the ModalProvider. You can use the functions from the useDrawer hook to interact with the Drawer. This hook uses the useModal hook, but this way readability is improved.
+
+#### useDrawer hook
+
+This hook is used to interact with Drawers in your app, injecting them into the ModalManager.
+
+##### showDrawer
+
+Shows a drawer. This function receives a Drawer component and its props. Note that a name must be provided in order to identify the Drawer in the ModalManager.
+
+##### hideDrawer
+
+Hides the Drawer with the name provided.
+
+##### isDrawerActive
+
+Returns true if a Drawer with the given name is open
+
+##### Usage
+
+```typescript jsx
+const DisplayDrawer = (props: Omit<DrawerProps, "children">) => (
+    <Drawer>
+        <Col gap={20} style={{ padding: "20px" }}>
+            <h3>Item 1</h3>
+            <h3>Item 2</h3>
+            <h3>Item 3</h3>
+        </Col>
+    </Drawer>
+);
+```
+
+```jsx
+<ModalProvider>
+    <Button onClick={() => showDrawer(DisplayDrawer, { name: "drawer" })}>
+        Show Uncontrolled Drawer
+    </Button>
+</ModalProvider>
+```
+
+<Canvas>
+    <ModalProvider>
+        <Row justifyContent="center">
+            <ShowUncontrolledDrawer />
+        </Row>
+    </ModalProvider>
+</Canvas>
+
+To use this, a ModalProvider has to be placed at the root of your app.
