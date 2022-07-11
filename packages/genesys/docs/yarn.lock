@@ -1451,10 +1451,10 @@
     "@peersyst/react-types" "^1.3.3"
     "@peersyst/react-utils" "^1.4.7"
 
-"@peersyst/react-components@^2.19.5":
-  version "2.19.5"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-components/-/react-components-2.19.5.tgz#aaf07802c420f91fab15115caeecf5ed5f99330f"
-  integrity sha512-FMsZrhaa2FZ3pPe9EEPjb5/y+n5R6g6MuERif2Jbcq3f7uXJa85Aor9sKiVZ4hhp9lzkB5fP9u+bPTrOCvscYA==
+"@peersyst/react-components@^2.19.6":
+  version "2.19.6"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-components/-/react-components-2.19.6.tgz#dd6364280ce569dcc5acdba1017e0701ce6d0dd5"
+  integrity sha512-xKPiR8Q017B3B6+Qsge76Pm6IWcs1/xNMN1U8Jm81uRAxJvPSybhqGt2Zd6k25CEwj63FgUGa+gw4eMtmD47EA==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@peersyst/react-components-core" "^0.0.8"
