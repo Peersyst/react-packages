@@ -1,17 +1,11 @@
-import { Button, Row, useBackdrop, Backdrop } from "@peersyst/react-components";
+import { Button, Row, useBackdrop, Backdrop, createBackdrop } from "@peersyst/react-components";
 
 function ShowUncontrolledBackdrop(): JSX.Element {
     const { showBackdrop } = useBackdrop();
 
     return (
         <Row justifyContent="center">
-            <Button
-                onClick={() =>
-                    showBackdrop(Backdrop, {
-                        name: "backdrop",
-                    })
-                }
-            >
+            <Button onClick={() => showBackdrop(createBackdrop(Backdrop))}>
                 Show Uncontrolled Backdrop
             </Button>
         </Row>

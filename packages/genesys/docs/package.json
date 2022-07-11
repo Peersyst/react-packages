@@ -1,8 +1,7 @@
 {
-    "name": "@peersyst/react-components",
+    "name": "docs",
     "author": "Peersyst",
-    "version": "2.19.4",
-    "license": "MIT",
+    "version": "0.0.1",
     "main": "./src/index.tsx",
     "engines": {
         "node": ">=10"
@@ -13,8 +12,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components": "^2.19.4",
-        "@peersyst/react-components-core": "^0.0.7",
+        "@peersyst/react-components": "^2.19.5",
+        "@peersyst/react-components-core": "^0.0.8",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "styled-components": "^5.3.5"
@@ -31,11 +30,10 @@
         "@storybook/theming": "^6.4.9",
         "@types/react": "^17.0.0",
         "@types/react-dom": "^17.0.0",
-        "@types/styled-components": "^5.1.20"
+        "@types/styled-components": "^5.1.18"
     },
     "resolutions": {
-        "styled-components": "^5"
-    },
-    "sideEffects": false,
-    "gitHead": "134adf3d64505a050b8909ee2b3468f1a758a72d"
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0"
+    }
 }

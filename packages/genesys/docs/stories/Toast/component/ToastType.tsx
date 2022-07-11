@@ -1,5 +1,4 @@
-import { Button, useToast } from "@peersyst/react-components";
-import { ToastType as Type } from "@peersyst/react-components/Toast/Toast.types";
+import { Button, useToast, ToastType as Type } from "@peersyst/react-components";
 
 const toastType = [undefined, "info", "success", "warning", "error", "loading"];
 
@@ -19,11 +18,15 @@ const ToastType = () => {
                                 " toast",
                             {
                                 type: type as Type,
-                                action: type === "loading" && (
-                                    <p onClick={() => hideToast()} style={{ cursor: "pointer" }}>
-                                        Hide
-                                    </p>
-                                ),
+                                action:
+                                    type === "loading" ? (
+                                        <p
+                                            onClick={() => hideToast()}
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            Hide
+                                        </p>
+                                    ) : undefined,
                             },
                         );
                     }}

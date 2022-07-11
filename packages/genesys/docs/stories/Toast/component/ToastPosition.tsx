@@ -1,5 +1,4 @@
-import { Button, useToast } from "@peersyst/react-components";
-import { ToastPosition as Position } from "@peersyst/react-components/Toast/Toast.types";
+import { Button, useToast, ToastPosition as Position } from "@peersyst/react-components";
 
 const toastPosition = [
     "bottom-left",

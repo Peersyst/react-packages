@@ -1,11 +1,11 @@
-import { Button, useDrawer } from "@peersyst/react-components";
+import { Button, createDrawer, useDrawer } from "@peersyst/react-components";
 import DisplayDrawer from "./DisplayDrawer";
 
 function ShowControlledDrawer(): JSX.Element {
     const { showDrawer } = useDrawer();
 
     return (
-        <Button onClick={() => showDrawer(DisplayDrawer, { name: "drawer" })}>
+        <Button onClick={() => showDrawer(createDrawer(DisplayDrawer))}>
             Show Uncontrolled Drawer
         </Button>
     );

@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import ClickAwayListener from "react-click-away-listener";
+import { ClickAwayListener } from "@peersyst/react-components";
 
 declare type MouseEvents = "click" | "mousedown" | "mouseup";
 declare type TouchEvents = "touchstart" | "touchend";
-declare type Events = MouseEvent | TouchEvent;
+declare type Events = FocusEvent | MouseEvent | TouchEvent;
 
 export interface ClickAwayListenerProps {
     /**

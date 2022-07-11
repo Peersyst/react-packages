@@ -1,12 +1,11 @@
-import { Button, Row, useDrawer, DrawerProps } from "@peersyst/react-components";
+import { Button, Row, useDrawer, DrawerProps, createDrawer } from "@peersyst/react-components";
 import DisplayDrawer from "./DisplayDrawer";
 
 function DrawerTypes(): JSX.Element {
     const { showDrawer } = useDrawer();
 
     const handleOpen = (position: DrawerProps["position"]) =>
-        showDrawer(DisplayDrawer, {
-            name: "drawer",
+        showDrawer(createDrawer(DisplayDrawer), {
             position,
             size: { size: 300 },
         });

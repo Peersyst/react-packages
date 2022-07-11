@@ -1,5 +1,4 @@
-import { BackgroundImage } from "@peersyst/react-components";
-import { BackgroundImageProps } from "@peersyst/react-components/BackgroundImage/BackgroundImage.types";
+import { BackgroundImage, BackgroundImageProps } from "@peersyst/react-components";
 
 export default function BackgroundImageWithProps(props: BackgroundImageProps): JSX.Element {
     return <BackgroundImage {...props} />;
