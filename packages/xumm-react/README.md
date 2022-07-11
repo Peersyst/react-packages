@@ -1,10 +1,43 @@
 # XUMM Hooks
 
-React package that aims to unplug XUMM logic from your React App. This is achieved with a XummProvider with some config and a set of easy to use hooks explained below.
+React package that aims to unplug XUMM logic from your React App. This is achieved using a XummProvider with some config and a set of easy to use hooks explained below.
+
+## Usage
+
+````tsx
+// Providers.tsx
+import { FC } from "react";
+import { XummProvider } from "xumm-react";
+
+const Providers: FC = ({children}) => (
+    <XummProvider config={yourXummConfig}>
+        {children}
+    </XummProvider>
+)
+````
+
+````tsx
+// SignInPage.tsx
+import { Button } from "@peersyst/react-components"
+import { useSignIn } from "xumm-react";
+
+const SignInPage = () => {
+    const { signIn, signInData: { xummPayload } = {} } = useSignIn();
+    const qr = xummPayload?.refs?.qr_png;
+    
+    return qr ? (
+        <img src={qr} css={{ width: 200, height: 200 }} alt="xumm-qr" />
+    ) : (
+        <Button onClick={signIn} loading={isLoading}>
+            {"Sign in"}
+        </Button>
+    );
+}
+````
 
 ### XummProvider
 
-This provider nourishes hooks with the required config to work correctly. This config is the following:
+This provider nourishes hooks with the required config in order to work correctly. This config is the following:
 
 - url: base XUMM url of your backend
 - getToken: method to get the bearer token from your storage or state
@@ -18,7 +51,7 @@ This provider nourishes hooks with the required config to work correctly. This c
 
 ### Common return values
 
-Before hooks are explained it is good to know that all hooks return:
+Before hooks are explained it is important to know that all hooks return:
 - A function to trigger the action 
 - isLoading, isSuccess, isError flags
 - The error if any
@@ -57,7 +90,7 @@ This hook returns:
 
 ### useVerifySignIn
 
-Hook to verify if a user is signed in correctly or its token had expired
+Hook to verify if a user is signed in correctly or its token has expired
 
 This hook returns:
 - The verifySignIn function to start the process
@@ -65,4 +98,4 @@ This hook returns:
 
 ### useXumm
 
-This hook provides you with the XummContext of your app. It is used internally by all hooks.
+This hook provides the XummContext of your app. It is used internally by all hooks.

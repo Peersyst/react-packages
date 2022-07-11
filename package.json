@@ -36,7 +36,6 @@
     },
     "workspaces": [
         "packages/*",
-        "packages/genesys/packages/*",
-        "packages/genesys/docs"
+        "packages/genesys/packages/*"
     ]
 }
