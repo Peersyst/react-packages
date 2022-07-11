@@ -2,12 +2,11 @@ import { BaseValidator } from "./BaseValidator";
 import { TranslateFn } from "../config";
 
 export class EqualValidator extends BaseValidator {
-    constructor(
-        message: string | undefined,
-        translate: TranslateFn,
-        private readonly compare: string,
-    ) {
+    private readonly compare: string;
+
+    constructor(message: string | undefined, translate: TranslateFn, compare: string) {
         super(message || translate("invalid_equal"));
+        this.compare = compare;
     }
 
     validate(value: string): boolean {
