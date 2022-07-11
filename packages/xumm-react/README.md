@@ -1,6 +1,6 @@
 # XUMM Hooks
 
-React package that aims to unplug XUMM logic from our React APP. This is achieved with a XummProvider with some config and a set of easy to use hooks explained below.
+React package that aims to unplug XUMM logic from your React App. This is achieved with a XummProvider with some config and a set of easy to use hooks explained below.
 
 ### XummProvider
 

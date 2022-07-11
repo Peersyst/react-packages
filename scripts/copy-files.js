@@ -50,7 +50,7 @@ async function run() {
         await createPackageFile();
 
         await Promise.all(
-            ["./README.md", "./CHANGELOG.md", "../../LICENSE"].map((file) =>
+            ["./README.md", "./CHANGELOG.md", path.resolve(__dirname, "../LICENSE")].map((file) =>
                 includeFileInBuild(file),
             ),
         );
