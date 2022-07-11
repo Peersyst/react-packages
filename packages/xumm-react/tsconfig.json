@@ -1,14 +1,9 @@
 {
+    "extends": "../../tsconfig.build.json",
     "compilerOptions": {
-        "target": "es5",
-        "lib": ["ES2015", "dom"],
-        "module": "commonjs",
-        "declaration": true,
-        "outDir": "./build/lib",
-        "strict": true,
-        "jsx": "react-jsx",
-        "skipLibCheck": true
+        "declarationDir": "./build/@types",
+        "rootDir": "./src",
+        "baseUrl": "./"
     },
-    "include": ["./src"],
-    "exclude": ["**/.*/", "**/build", "**/node_modules"]
+    "include": ["./src/**/*.ts*"]
 }

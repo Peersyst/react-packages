@@ -1,10 +1,16 @@
 {
     "name": "xumm-react",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "React package that aims to unplug XUMM logic from your React App",
     "main": "index.js",
     "scripts": {
-        "build": "rm -rf ./build && tsc && node ../../scripts/copy-files.js",
+        "build": "rm -rf ./build && yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+        "build:legacy": "node ../../scripts/build legacy",
+        "build:modern": "node ../../scripts/build modern",
+        "build:node": "node ../../scripts/build node",
+        "build:stable": "node ../../scripts/build stable",
+        "build:types": "tsc --project .",
+        "build:copy-files": "node ../../scripts/copy-files.js",
         "publish": "tsc && npm publish build",
         "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx"
     },
