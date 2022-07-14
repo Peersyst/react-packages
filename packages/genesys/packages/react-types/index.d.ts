@@ -65,7 +65,7 @@ type DeepPartial<T> = {
 /**
  * Makes all properties, included nested ones, partial. Except those of type K
  */
-type DeepPartialExcept<T, K extends keyof T> = RecursivePartial<T> & Pick<T, K>;
+type DeepPartialExcept<T, K extends keyof T> = DeepPartial<T> & Pick<T, K>;
 
 /**
  * Makes properties of type K required
