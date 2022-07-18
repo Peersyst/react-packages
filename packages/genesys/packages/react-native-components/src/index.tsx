@@ -1,4 +1,5 @@
 export * from "./config";
+export * from "./assets/icons";
 export * from "./theme";
 export * from "./display/Divider";
 export * from "./display/SvgIcon";
@@ -26,6 +27,7 @@ export * from "./input/NumericInput";
 export * from "./input/PressableText";
 export * from "./input/QrScanner";
 export * from "./input/Select";
+// @ts-ignore Also export an InvalidIcon but export from icons takes precedence
 export * from "./input/TextInput";
 export * from "./layout/Col";
 export * from "./layout/Row";

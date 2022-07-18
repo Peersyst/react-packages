@@ -20,7 +20,7 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
     /**
      * OnClick handler
      */
-    onClick?: (e?: MouseEvent<HTMLButtonElement>) => any;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => any;
     /**
      * Button's className
      */

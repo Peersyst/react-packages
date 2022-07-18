@@ -118,6 +118,14 @@ const componentsConfig: ComponentsConfig = {
             Label: Label,
         },
     },
+    Chip: {
+        defaultProps: {
+            disabled: false,
+            size: "md",
+            variant: "filled",
+            rounded: false,
+        },
+    },
     Col: {
         defaultProps: {},
     },

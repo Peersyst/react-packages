@@ -1,6 +1,7 @@
 export * from "./config";
 export * from "./theme";
 export * from "./Checkbox";
+export * from "./Chip";
 export * from "./Form";
 export * from "./FormControl";
 export * from "./FormControlError";

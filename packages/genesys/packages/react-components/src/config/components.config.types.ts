@@ -57,6 +57,7 @@ import { ToggleButtonProps } from "../ToggleButton";
 import { TypographyProps } from "../Typography";
 import { UploadProps } from "../Upload";
 import { BlockchainAddressProps } from "../BlockchainAddress";
+import { ChipProps } from "../Chip";
 
 /**
  * No config for:
@@ -88,6 +89,7 @@ export interface ButtonConfig extends ComponentConfig<ButtonProps> {}
 export interface CarouselConfig extends ComponentConfig<CarouselProps> {}
 export interface ChartConfig extends ComponentConfig<ChartProps> {}
 export interface CheckboxConfig extends ComponentConfig<CheckboxProps> {}
+export interface ChipConfig extends ComponentConfig<ChipProps> {}
 export interface ColConfig extends ComponentConfig<ColProps> {}
 export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface DividerConfig extends ComponentConfig<DividerProps> {}
@@ -152,6 +154,7 @@ export interface ComponentsConfig {
     Carousel: CarouselConfig;
     Chart: ChartConfig;
     Checkbox: CheckboxConfig;
+    Chip: ChipConfig;
     Col: ColConfig;
     CopyButton: CopyButtonConfig;
     Divider: DividerConfig;
