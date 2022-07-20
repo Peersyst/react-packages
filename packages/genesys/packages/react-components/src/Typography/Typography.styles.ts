@@ -3,6 +3,7 @@ import { TypographyStyleProps } from "./Typography.types";
 import { ThemeFonts } from "@peersyst/react-components-core";
 
 export const TypographyRoot = styled.div<TypographyStyleProps>`
+    overflow: hidden;
     display: block;
     margin: 0;
     margin-block-start: 0;

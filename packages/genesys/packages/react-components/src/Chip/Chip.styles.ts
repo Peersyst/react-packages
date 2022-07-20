@@ -11,6 +11,10 @@ export const chipGapSizes: Record<ChipSize, string> = {
 
 export const ChipRoot = styled(Row).attrs({ alignItems: "center" })(
     ({ theme }) => css`
+        box-sizing: border-box;
+        white-space: nowrap;
+        vertical-align: middle;
+
         color: ${theme.palette.text};
         font-size: 0.8125rem;
 
@@ -90,4 +94,7 @@ export const ChipRoot = styled(Row).attrs({ alignItems: "center" })(
 
 export const ChipLabel = styled.span`
     font-size: 0.8125rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `;
