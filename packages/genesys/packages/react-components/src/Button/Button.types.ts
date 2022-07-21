@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, CSSProperties, MouseEvent, ReactElement, ReactNode } from "react";
+import { OverridableStringUnion } from "@peersyst/react-types";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -45,4 +46,6 @@ export interface ButtonStyles {
     fullWidth: boolean;
 }
 
-export type ButtonSize = "sm" | "md" | "lg";
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ButtonSizeOverrides {}
+export type ButtonSize = OverridableStringUnion<"sm" | "md" | "lg", ButtonSizeOverrides>;

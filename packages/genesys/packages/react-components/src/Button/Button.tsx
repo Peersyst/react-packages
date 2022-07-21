@@ -33,7 +33,13 @@ const Button = (props: ButtonProps): JSX.Element => {
             fullWidth={fullWidth}
             disabled={disabled}
             onClick={onClick}
-            className={cx("Button", loading && "Loading", disabled && "Disabled", className)}
+            className={cx(
+                "Button",
+                loading && "Loading",
+                disabled && "Disabled",
+                size[0].toUpperCase() + size.slice(1),
+                className,
+            )}
             style={fsx(style, { disabled, loading })}
             type={type}
             {...rest}
