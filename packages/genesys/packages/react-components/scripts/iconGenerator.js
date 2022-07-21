@@ -53,7 +53,7 @@ function generateExport(name) {
  */
 function addSvgs(folder, removeFill) {
     const replaceRegExp = removeFill
-        ? /<svg.+>|<\/svg>|<\?.*>|fill="[^"]*"/gi
+        ? /<svg.+>|<\/svg>|<\?.*>|fill="[^"]*"|stroke="[^"]*"/gi
         : /<svg.+>|<\/svg>|<\?.*>/gi;
     const filenames = fs.readdirSync(folder);
     for (const filename of filenames) {

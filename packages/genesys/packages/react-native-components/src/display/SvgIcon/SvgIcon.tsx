@@ -24,7 +24,7 @@ const SvgIcon = ({
     return (
         <Svg
             viewBox="0 0 24 24"
-            /*xmlns="http://www.w3.org/2000/svg"*/ fill={color || colorProp}
+            fill={color || colorProp}
             width={size}
             height={size}
             accessibilityRole="image"
