@@ -87,7 +87,7 @@ export const SkeletonRoot = styled.span<SkeletonStyles>`
     }
     
     > * {
-    opacity: 0;
+    opacity: 0 !important;
     }
             
     &:before {
