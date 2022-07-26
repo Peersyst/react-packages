@@ -1,5 +1,7 @@
 import { Row, Button, Modal, useModal, createModal } from "@peersyst/react-components";
 
+const ExampleModal = createModal(Modal);
+
 function Example(): JSX.Element {
     const { showModal, hideModal } = useModal();
 
@@ -7,10 +9,10 @@ function Example(): JSX.Element {
         <Row justifyContent="space-evenly">
             <Button
                 onClick={() =>
-                    showModal(createModal(Modal), {
+                    showModal(ExampleModal, {
                         animation: "fade",
                         children: (
-                            <Button onClick={() => hideModal("fading-modal")}>Close me!</Button>
+                            <Button onClick={() => hideModal(ExampleModal.id)}>Close me!</Button>
                         ),
                     })
                 }
@@ -19,10 +21,10 @@ function Example(): JSX.Element {
             </Button>
             <Button
                 onClick={() =>
-                    showModal(createModal(Modal), {
+                    showModal(ExampleModal, {
                         animation: "from-bottom",
                         children: (
-                            <Button onClick={() => hideModal("bottom-modal")}>Close me!</Button>
+                            <Button onClick={() => hideModal(ExampleModal.id)}>Close me!</Button>
                         ),
                     })
                 }

@@ -57,8 +57,8 @@ function generateExport(name) {
  */
 function addSvgs(folder, removeFill) {
     const replaceRegExp = removeFill
-        ? /<svg.+>|<\/svg>|<\?.*>|fill="[^"]*"|stroke="[^"]*"/gi
-        : /<svg.+>|<\/svg>|<\?.*>/gi;
+        ? /<svg.+>|<\/svg>|<\?.*>|style="[^"]*"|fill="[^"]*"|stroke="[^"]*"/gi
+        : /<svg.+>|<\/svg>|<\?.*>|style="[^"]*"/gi;
     const filenames = fs.readdirSync(folder);
     for (const filename of filenames) {
         const stat = fs.lstatSync(folder + filename);

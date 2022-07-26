@@ -70,6 +70,9 @@ export const ButtonRoot = styled.button<ButtonStyles>`
     &:disabled {
         filter: contrast(0.2);
         pointer-events: none;
+        * {
+            pointer-events: none;
+        }
     }
 
     ${({ isLoading }) =>
