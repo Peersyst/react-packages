@@ -20,6 +20,8 @@ export const ChipRoot = styled(Row).attrs({ alignItems: "center" })(
 
         border-radius: ${theme.borderRadius};
 
+        width: fit-content;
+
         &.Sm {
             font-size: 0.75rem;
             height: 1.5rem;

@@ -46,6 +46,5 @@ export interface ButtonStyles {
     fullWidth: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ButtonSizeOverrides {}
 export type ButtonSize = OverridableStringUnion<"sm" | "md" | "lg", ButtonSizeOverrides>;

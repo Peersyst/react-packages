@@ -1,8 +1,11 @@
 import { ReactNode } from "react";
+import { OverridableStringUnion } from "@peersyst/react-types";
 
-export type ChipVariant = "filled" | "outlined";
+export interface ChipVariantOverrides {}
+export type ChipVariant = OverridableStringUnion<"filled" | "outlined", ChipVariantOverrides>;
 
-export type ChipSize = "sm" | "md" | "lg";
+export interface ChipSizeOverrides {}
+export type ChipSize = OverridableStringUnion<"sm" | "md" | "lg", ChipSizeOverrides>;
 
 export interface CoreChipProps {
     /**
