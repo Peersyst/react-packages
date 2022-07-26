@@ -22,13 +22,17 @@ const svgs = [];
  * Generates icon component's code
  * @param name Icon name
  * @param data Icon's svg code
+ * @param removeFill remove fill boolean
  * @returns {string} Icon component's code
  */
-function generateComponent(name, data) {
-    return `import { SvgIcon, SvgIconProps } from "../../SvgIcon"
-export default function ${name}Icon (props: Omit<SvgIconProps, "children">): JSX.Element {
+function generateComponent(name, data, removeFill) {
+    return `import { SvgIcon, SvgIconProps } from "../../SvgIcon";
+import { cx } from "@peersyst/react-utils";
+export default function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, "children">): JSX.Element {
     return (
-        <SvgIcon {...props} data-testid="${name}Icon">
+        <SvgIcon {...rest} data-testid="${name}Icon" className={cx(${
+        removeFill ? undefined : '"Filled"'
+    }, className)}>
             ${data}
         </SvgIcon>
     )
@@ -70,6 +74,7 @@ function addSvgs(folder, removeFill) {
                 data: data
                     .replace(replaceRegExp, "")
                     .replace(/-(?=[^"]+=)./g, (x) => x[1].toUpperCase()),
+                removeFill: removeFill,
             });
         }
     }
@@ -96,8 +101,11 @@ fs.readdir(outputFolder, (error, filenames) => {
     }
 
     // Create a component for each svg
-    svgs.forEach(({ filename, data }) => {
-        fs.writeFileSync(outputFolder + filename + "Icon.tsx", generateComponent(filename, data));
+    svgs.forEach(({ filename, data, removeFill }) => {
+        fs.writeFileSync(
+            outputFolder + filename + "Icon.tsx",
+            generateComponent(filename, data, removeFill),
+        );
         console.log(filename + "Icon.tsx created");
     });
 
