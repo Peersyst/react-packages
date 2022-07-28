@@ -19,6 +19,14 @@ export const SliderRoot = styled.span<SliderStyles>`
     box-sizing: content-box;
     border-radius: 12px;
     cursor: pointer;
+
+    &.Disabled {
+        cursor: default;
+        pointer-events: none;
+        * {
+            pointer-events: none;
+        }
+    }
 `;
 
 export const SliderRail = styled.span`

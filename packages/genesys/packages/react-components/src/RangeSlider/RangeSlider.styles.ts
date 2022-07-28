@@ -18,6 +18,14 @@ export const RangeSliderRoot = styled.div<RangeSliderStyles>`
     box-sizing: content-box;
     border-radius: 12px;
     cursor: pointer;
+
+    &.Disabled {
+        cursor: default;
+        pointer-events: none;
+        * {
+            pointer-events: none;
+        }
+    }
 `;
 
 export const RangeSliderRail = styled.span`
@@ -59,7 +67,7 @@ const thumbStyles = css<RangeSliderStyles>`
 `;
 
 export const RangeSliderInput = styled.input<RangeSliderStyles>`
-    cursor: ${({ disabled }) => !disabled && "pointer"};
+    cursor: pointer;
     position: absolute;
     border: 0;
     height: 100%;

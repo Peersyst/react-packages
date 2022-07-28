@@ -16,23 +16,37 @@ export const displayBorder = css<SelectDisplayStyles>`
         }};
 `;
 
-export const SelectDisplay = styled.div<SelectDisplayStyles>`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
+export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, disabled }) => {
+    const disabledStyles = disabled
+        ? css`
+              cursor: default;
+              color: ${theme.palette.disabled};
+              pointer-events: none;
+              * {
+                  pointer-events: none;
+              }
+          `
+        : undefined;
 
-    min-height: 36px;
+    return css`
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
 
-    box-sizing: border-box;
-    padding: 0 10px;
+        cursor: pointer;
 
-    border-radius: ${(props) => props.theme.borderRadius};
-    ${displayBorder};
+        min-height: 36px;
 
-    cursor: ${({ disabled }) => !disabled && "pointer"};
-    color: ${({ disabled, theme }) => disabled && theme.palette.disabled};
-`;
+        box-sizing: border-box;
+        padding: 0 10px;
+
+        border-radius: ${(props) => props.theme.borderRadius};
+        ${displayBorder};
+
+        ${disabledStyles}
+    `;
+});
 
 export const DisplayContent = styled.div`
     overflow: hidden;

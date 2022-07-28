@@ -25,6 +25,11 @@ export const TextInputRoot = styled.div<TextInputStyles>`
 
         &.Disabled {
             border-color: ${(p) => p.theme.palette.disabled};
+            cursor: default;
+            pointer-events: none;
+            * {
+                pointer-events: none;
+            }
         }
     }
     border-radius: ${(props) => props.theme.borderRadius};

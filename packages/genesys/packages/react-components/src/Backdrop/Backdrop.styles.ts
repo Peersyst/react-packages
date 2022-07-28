@@ -1,5 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BackdropStyles } from "./Backdrop.types";
+
+const notRenderBackdropStyles = css`
+    pointer-events: none;
+
+    * {
+        pointer-events: auto;
+    }
+`;
 
 export const BackdropRoot = styled.div<BackdropStyles>`
     position: fixed;
@@ -16,9 +24,5 @@ export const BackdropRoot = styled.div<BackdropStyles>`
     background-color: ${({ theme, transparent }) =>
         transparent ? "transparent" : theme.palette.backdrop};
 
-    pointer-events: ${({ renderBackdrop }) => !renderBackdrop && "none"};
-
-    * {
-        pointer-events: auto;
-    }
+    ${({ renderBackdrop }) => !renderBackdrop && notRenderBackdropStyles};
 `;

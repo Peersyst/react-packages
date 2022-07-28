@@ -20,6 +20,10 @@ export const RadioButtonRoot = styled.span`
     font-size: 1.2rem;
 
     &.Disabled {
-        cursor: initial;
+        cursor: default;
+        pointer-events: none;
+        * {
+            pointer-events: none;
+        }
     }
 `;

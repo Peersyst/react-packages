@@ -10,9 +10,17 @@ export const SwitchRoot = styled.span<SwitchStyleProps>`
     width: 60px;
     height: 32px;
     border-radius: 36px;
-    cursor: ${({ disabled }) => !disabled && "pointer"};
+    cursor: pointer;
     transition: 0.4s;
-    opacity: ${({ disabled }) => disabled && 0.6};
+
+    &.Disabled {
+        opacity: 0.6;
+        cursor: default;
+        pointer-events: none;
+        * {
+            pointer-events: none;
+        }
+    }
 `;
 
 export const SwitchTrack = styled.span<SwitchStyleProps>`
