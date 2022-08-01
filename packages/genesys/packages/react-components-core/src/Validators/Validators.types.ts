@@ -1,4 +1,9 @@
 import { BaseValidator } from "./BaseValidator";
+import { TranslateFn } from "../config";
+
+export interface IValidator {
+    new (message: string | undefined, translate: TranslateFn, value?: any): BaseValidator;
+}
 
 export type Validator<TVal = true> = TVal | [TVal, string];
 
@@ -18,19 +23,11 @@ export interface Validators {
 }
 
 export interface FunctionalValidator {
-    validate: (value: string) => boolean;
+    validate: (value: any) => boolean;
     message: string;
 }
 
 export type CustomValidators = (BaseValidator | FunctionalValidator)[] | undefined;
-
-export type ValidatorFactory<TVal = true> = ({
-    value,
-    message,
-}: {
-    value?: TVal;
-    message?: string;
-}) => BaseValidator;
 
 export type ValidatorKey =
     | "invalid_required"

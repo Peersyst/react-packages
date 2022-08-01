@@ -1,4 +1,4 @@
-import { Validator, Validators, ValidatorFactory } from "./Validators.types";
+import { IValidator, Validator, Validators } from "./Validators.types";
 import { TranslateFn, ExtraValidators } from "../config";
 import { BaseValidator } from "./BaseValidator";
 import { NumberValidator } from "./NumberValidator";
@@ -13,7 +13,7 @@ import { EndsWithValidator } from "./EndsWithValidator";
 export const parseValidator = (
     validator: keyof Validators & keyof ExtraValidators,
     param: Validator<unknown>,
-    extraValidators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>,
+    extraValidators: Record<keyof ExtraValidators, IValidator>,
     translate: TranslateFn,
 ): BaseValidator => {
     const [value, message] = Array.isArray(param) ? param : [param, undefined];
@@ -44,13 +44,13 @@ export const parseValidator = (
         case "endsWith":
             return new EndsWithValidator(value, message, translate);
         default:
-            return (extraValidators[validator] as ValidatorFactory)({ value, message });
+            return new (extraValidators[validator] as IValidator)(message, translate, value);
     }
 };
 
 export default function (
     validators: Validators & Partial<ExtraValidators>,
-    extraValidators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>,
+    extraValidators: Record<keyof ExtraValidators, IValidator>,
     translate: TranslateFn,
 ): BaseValidator[] {
     return Object.entries(validators).map(([key, param]) =>

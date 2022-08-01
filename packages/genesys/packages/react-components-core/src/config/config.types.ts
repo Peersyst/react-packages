@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { ValidatorFactory } from "../Validators";
+import { IValidator } from "../Validators";
 import { Theme } from "../theme";
 
 export interface CoreConfigTypes {}
@@ -38,7 +38,7 @@ export interface BaseCoreConfig {
     projectName: string;
     themes: Themes;
     translate: TranslateFn;
-    validators: Record<keyof ExtraValidators, ValidatorFactory<unknown>>;
+    validators: Record<keyof ExtraValidators, IValidator>;
     components: ComponentsConfig;
 }
 export interface CoreConfig extends BaseCoreConfig {}
