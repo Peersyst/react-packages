@@ -12,6 +12,7 @@ export const ExtendedSvg = styled.svg`
 
             &[stroke]:not([stroke="none"]) {
                 stroke: currentColor;
+                fill: none;
             }
         }
     }

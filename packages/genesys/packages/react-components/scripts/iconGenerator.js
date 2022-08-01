@@ -56,9 +56,7 @@ function generateExport(name) {
  * @param removeFill Boolean indicating whether to remove the fill property or not.
  */
 function addSvgs(folder, removeFill) {
-    const replaceRegExp = removeFill
-        ? /<svg.+>|<\/svg>|<\?.*>|style="[^"]*"|fill="[^"]*"|stroke="[^"]*"/gi
-        : /<svg.+>|<\/svg>|<\?.*>|style="[^"]*"/gi;
+    const replaceRegExp = /<svg.+>|<\/svg>|<\?.*>|style="[^"]*"/gi;
     const filenames = fs.readdirSync(folder);
     for (const filename of filenames) {
         const stat = fs.lstatSync(folder + filename);
