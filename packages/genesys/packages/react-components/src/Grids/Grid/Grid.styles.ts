@@ -19,7 +19,7 @@ export const GridRoot = styled.div<GridStyles>`
     grid-auto-flow: row dense;
 
     max-width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
 
     ${({ columns, rowSize, colGap, rowGap, alignItems, justifyItems, justifyContent }) => css`
         grid-template-columns: repeat(${columns}, 1fr);

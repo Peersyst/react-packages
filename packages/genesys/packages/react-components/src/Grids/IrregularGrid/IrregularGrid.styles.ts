@@ -16,7 +16,7 @@ export const IrregularGridRoot = styled.div<IrregularGridStyles>`
     grid-auto-flow: row dense;
 
     max-width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
 
     ${({ cells, rowSize, colGap, rowGap, alignItems, justifyItems, justifyContent }) => css`
         grid-template-columns: repeat(${cells}, 1fr);
