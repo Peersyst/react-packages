@@ -43,6 +43,10 @@ export interface FormControlProps<T = any> {
      */
     showValid?: boolean;
     /**
+     * On invalid handler
+     */
+    onValidated?: (valid: boolean, error?: string) => void;
+    /**
      * The lower FormControl implementation
      */
     children: (

@@ -16,6 +16,7 @@ function FormControl<T = any>({
     readonly = false,
     hideError = false,
     showValid = false,
+    onValidated,
     children,
 }: FormControlProps<T>): JSX.Element {
     const translate = useTranslate();
@@ -29,22 +30,27 @@ function FormControl<T = any>({
     useFormNotification(name, value, !invalid);
 
     useEffect(() => {
+        let isValueInvalid: boolean;
+        let errorMsg: string | undefined;
         if (required && !value) {
-            setInvalid(true);
-            setError(translate("invalid_required"));
+            isValueInvalid = true;
+            errorMsg = translate("invalid_required");
         } else if (validation) {
             const [validationResult, validationError] = validation(value);
             if (!validationResult) {
-                setInvalid(true);
-                setError(validationError);
+                isValueInvalid = true;
+                errorMsg = validationError;
             } else {
-                setInvalid(false);
-                setError(undefined);
+                isValueInvalid = false;
+                errorMsg = undefined;
             }
         } else {
-            setInvalid(false);
-            setError(undefined);
+            isValueInvalid = false;
+            errorMsg = undefined;
         }
+        setInvalid(isValueInvalid);
+        setError(errorMsg);
+        if (modified) onValidated?.(isValueInvalid, errorMsg);
     }, [value, required, validation, modified]);
 
     const isInvalid = !hideError && modified && invalid;

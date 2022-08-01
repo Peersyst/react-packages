@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const ExtendedSvg = styled.svg`
     &:not(.Filled) {
-        path,
-        rect {
+        * {
             fill: none;
             stroke: none;
 
