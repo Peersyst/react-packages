@@ -16,7 +16,8 @@ export const coreTheme: Omit<BaseCoreTheme, "typography" | "borderRadius" | "ico
         },
     },
     zIndex: {
-        header: 10,
+        header: 1,
+        appBar: 2,
         popover: 10,
         modal: 100,
         selectMenu: 5,

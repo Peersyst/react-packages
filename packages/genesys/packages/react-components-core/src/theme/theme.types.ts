@@ -57,6 +57,7 @@ export interface ThemePalette extends DefaultThemePalette {}
 
 export interface DefaultThemeZIndex {
     header: number;
+    appBar: number;
     popover: number;
     modal: number;
     selectMenu: number;
