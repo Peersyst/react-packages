@@ -38,5 +38,6 @@
         "packages/*",
         "packages/genesys/packages/*",
         "packages/genesys/docs"
-    ]
+    ],
+    "dependencies": {}
 }
