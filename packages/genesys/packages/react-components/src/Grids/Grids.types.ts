@@ -4,8 +4,8 @@ import { CSSProperties, ReactNode } from "react";
 export interface BaseBreakpoint {
     maxWidth: number;
     rowSize?: number | string;
-    colGap?: number;
-    rowGap?: number;
+    colGap?: number | string;
+    rowGap?: number | string;
     alignItems?: Property.AlignItems;
     justifyItems?: Property.JustifyItems;
     justifyContent?: Property.JustifyItems;
@@ -19,11 +19,11 @@ export interface BaseGridProps<T extends BaseBreakpoint = any> {
     /**
      * Column  gap
      */
-    colGap?: number;
+    colGap?: number | string;
     /**
      * Row gap
      */
-    rowGap?: number;
+    rowGap?: number | string;
     /**
      * Grid className
      */
@@ -54,11 +54,11 @@ export interface BaseGridProps<T extends BaseBreakpoint = any> {
     children?: ReactNode;
 }
 
-export interface BaseGridState {
-    mounted: boolean;
+export interface GridState {
+    columns: number;
     rowSize: number | string | undefined;
-    colGap: number | undefined;
-    rowGap: number | undefined;
+    colGap: number | string | undefined;
+    rowGap: number | string | undefined;
     activeBreakpoint: number | undefined;
     alignItems: Property.AlignItems | undefined;
     justifyItems: Property.JustifyItems | undefined;

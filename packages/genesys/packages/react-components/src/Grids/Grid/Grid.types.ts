@@ -1,4 +1,4 @@
-import { BaseBreakpoint, BaseGridProps, BaseGridState } from "../Grids.types";
+import { BaseBreakpoint, BaseGridProps } from "../Grids.types";
 
 export interface GridBreakpoint extends BaseBreakpoint {
     /**
@@ -9,8 +9,4 @@ export interface GridBreakpoint extends BaseBreakpoint {
 
 export interface GridProps extends BaseGridProps<GridBreakpoint> {
     cols: number;
-}
-
-export interface GridState extends BaseGridState {
-    columns: number;
 }

@@ -1,4 +1,4 @@
-import { BaseBreakpoint, BaseGridProps, BaseGridState } from "../Grids.types";
+import { BaseBreakpoint, BaseGridProps } from "../Grids.types";
 
 export type Pattern = (number | [number, number])[];
 
@@ -16,10 +16,4 @@ export interface IrregularGridProps extends BaseGridProps<IrregularGridBreakpoin
      * Number of columns
      */
     cols: number;
-}
-
-export interface IrregularGridState extends BaseGridState {
-    pattern: Pattern;
-    columns: number;
-    cells: number;
 }

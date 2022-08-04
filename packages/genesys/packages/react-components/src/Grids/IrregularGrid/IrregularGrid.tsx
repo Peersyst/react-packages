@@ -1,128 +1,105 @@
-import { Children, ReactNode } from "react";
-import BaseGrid from "../BaseGrid";
+import { Children, ReactNode, useCallback, useEffect, useState } from "react";
 import { Property } from "csstype";
 import { IrregularGridRoot } from "./IrregularGrid.styles";
-import {
-    IrregularGridBreakpoint,
-    IrregularGridProps,
-    IrregularGridState,
-} from "./IrregularGrid.types";
+import { IrregularGridProps, Pattern } from "./IrregularGrid.types";
+import { useGridResize, useGridState, useSortedBreakpoints } from "../hook";
+import { getColFlex, getColGap, getRowFlex, getRowGap, getRowSize } from "../util";
 
-export default class IrregularGrid extends BaseGrid<IrregularGridProps, IrregularGridState> {
-    state: IrregularGridState = {
-        mounted: false,
-        pattern: [],
-        rowSize: undefined,
-        colGap: undefined,
-        rowGap: undefined,
-        activeBreakpoint: undefined,
-        columns: 0,
-        cells: 0,
-        alignItems: undefined,
-        justifyItems: undefined,
-        justifyContent: undefined,
-    };
+const IrregularGrid = (props: IrregularGridProps): JSX.Element => {
+    const [gridState, setGridState] = useGridState();
+    const [pattern, setPattern] = useState<Pattern>([]);
+    const [cells, setCells] = useState(0);
 
-    sortedBreakpoints: IrregularGridBreakpoint[] = [];
+    const sortedBreakpoints = useSortedBreakpoints(props.breakpoints || [], {
+        pattern: props.pattern,
+        rowSize: props.rowSize,
+        colGap: props.colGap,
+        rowGap: props.rowGap,
+        cols: props.cols,
+        alignItems: props.alignItems,
+        justifyItems: props.justifyItems,
+        justifyContent: props.justifyContent,
+    });
 
-    componentDidMount(): void {
-        const { pattern, rowSize, colGap, rowGap, cols, alignItems, justifyItems, justifyContent } =
-            this.props;
-
-        this.sortedBreakpoints =
-            this.props.breakpoints?.sort(
-                (firstEl: IrregularGridBreakpoint, secondEl: IrregularGridBreakpoint) =>
-                    firstEl.maxWidth < secondEl.maxWidth ? -1 : 1,
-            ) || [];
-        this.sortedBreakpoints.push({
-            maxWidth: Infinity,
-            pattern,
-            rowSize,
-            colGap,
-            rowGap,
-            cols,
-            alignItems,
-            justifyItems,
-            justifyContent,
-        });
-        this.setState({ mounted: true }, () => this.setPatterns());
-        window.addEventListener("resize", () => this.setPatterns());
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("resize", () => this.setPatterns());
-        this.setState({ mounted: false });
-    }
-
-    setCells(): void {
-        const cells = [...Array(this.state.columns)].reduce(
-            (p: number, _c: number, i: number) => p + this.getColFlex(this.state.pattern[i]),
+    useEffect(() => {
+        const cells = [...Array(gridState.columns)].reduce(
+            (p: number, _c: number, i: number) => p + getColFlex(pattern[i]),
             0,
         );
-        this.setState({ cells });
-    }
+        setCells(cells);
+    }, [pattern]);
 
-    setPatterns(): void {
-        if (this.state.mounted) {
-            const width = window.innerWidth;
-            let columns = this.props.cols;
-            let pattern = this.props.pattern;
-            let rowSize: number | string | undefined = this.props.rowSize;
-            let colGap: number | undefined = this.props.colGap;
-            let rowGap: number | undefined = this.props.rowGap;
-            let alignItems: Property.AlignItems | undefined = this.props.alignItems;
-            let justifyItems: Property.JustifyItems | undefined = this.props.justifyItems;
-            let justifyContent: Property.AlignItems | undefined = this.props.justifyContent;
-            let activeBreakpoint;
+    const setPatterns = useCallback((): void => {
+        const width = window.innerWidth;
+        let columns = props.cols;
+        let pattern = props.pattern;
+        let rowSize: number | string | undefined = props.rowSize;
+        let colGap: number | string | undefined = props.colGap;
+        let rowGap: number | string | undefined = props.rowGap;
+        let alignItems: Property.AlignItems | undefined = props.alignItems;
+        let justifyItems: Property.JustifyItems | undefined = props.justifyItems;
+        let justifyContent: Property.AlignItems | undefined = props.justifyContent;
+        let activeBreakpoint;
 
-            for (const breakpoint of this.sortedBreakpoints) {
-                if (width < breakpoint.maxWidth) {
-                    columns = breakpoint.cols;
-                    pattern = breakpoint.pattern;
-                    rowSize = this.getRowSize(breakpoint);
-                    colGap = this.getColGap(breakpoint);
-                    rowGap = this.getRowGap(breakpoint);
-                    if (breakpoint.alignItems) alignItems = breakpoint.alignItems;
-                    if (breakpoint.justifyItems) justifyItems = breakpoint.justifyItems;
-                    if (breakpoint.justifyContent) justifyContent = breakpoint.justifyContent;
-                    activeBreakpoint = breakpoint.maxWidth;
-                    break;
-                }
-            }
-
-            if (activeBreakpoint !== this.state.activeBreakpoint && this.state.mounted) {
-                this.setState(
-                    {
-                        activeBreakpoint,
-                        pattern,
-                        rowGap,
-                        rowSize,
-                        colGap,
-                        columns,
-                        alignItems,
-                        justifyItems,
-                        justifyContent,
-                    },
-                    () => this.setCells(),
+        for (const breakpoint of sortedBreakpoints) {
+            if (width < breakpoint.maxWidth) {
+                columns = breakpoint.cols;
+                pattern = breakpoint.pattern;
+                rowSize = getRowSize(
+                    breakpoint,
+                    gridState.activeBreakpoint,
+                    gridState.rowSize,
+                    props.rowSize,
                 );
+                colGap = getColGap(
+                    breakpoint,
+                    gridState.activeBreakpoint,
+                    gridState.colGap,
+                    props.colGap,
+                );
+                rowGap = getRowGap(
+                    breakpoint,
+                    gridState.activeBreakpoint,
+                    gridState.rowGap,
+                    props.rowGap,
+                );
+                if (breakpoint.alignItems) alignItems = breakpoint.alignItems;
+                if (breakpoint.justifyItems) justifyItems = breakpoint.justifyItems;
+                if (breakpoint.justifyContent) justifyContent = breakpoint.justifyContent;
+                activeBreakpoint = breakpoint.maxWidth;
+                break;
             }
         }
-    }
 
-    getColFlex(v: number | number[]): number {
-        return typeof v === "number" ? v : v[0];
-    }
+        if (activeBreakpoint !== gridState.activeBreakpoint) {
+            setGridState({
+                activeBreakpoint,
+                rowGap,
+                rowSize,
+                colGap,
+                columns,
+                alignItems,
+                justifyItems,
+                justifyContent,
+            });
+            setPattern(pattern);
+        }
+    }, [
+        sortedBreakpoints,
+        props.cols,
+        props.rowSize,
+        props.colGap,
+        props.rowGap,
+        props.alignItems,
+        props.justifyItems,
+        props.justifyContent,
+        props.pattern,
+    ]);
+    useGridResize(setPatterns);
 
-    getRowFlex(v: number | number[]): number {
-        return typeof v === "number" ? 1 : v[1] || 1;
-    }
-
-    renderElements(): ReactNode {
-        const { children } = this.props;
-        const { pattern } = this.state;
-
+    const renderElements = (): ReactNode => {
         const length = pattern.length;
-        return Children.map(children, (child: ReactNode, index: number) => {
+        return Children.map(props.children, (child: ReactNode, index: number) => {
             const element = pattern[index % length];
 
             return (
@@ -130,8 +107,8 @@ export default class IrregularGrid extends BaseGrid<IrregularGridProps, Irregula
                     {child && (
                         <div
                             style={{
-                                gridColumnEnd: "span " + this.getColFlex(element),
-                                gridRowEnd: "span " + this.getRowFlex(element),
+                                gridColumnEnd: "span " + getColFlex(element),
+                                gridRowEnd: "span " + getRowFlex(element),
                             }}
                             key={index.toString()}
                         >
@@ -141,36 +118,24 @@ export default class IrregularGrid extends BaseGrid<IrregularGridProps, Irregula
                 </>
             );
         });
-    }
+    };
 
-    render(): JSX.Element {
-        const { className, style } = this.props;
-        const {
-            pattern,
-            rowSize,
-            colGap,
-            rowGap,
-            cells,
-            alignItems,
-            justifyItems,
-            justifyContent,
-        } = this.state;
+    return (
+        <IrregularGridRoot
+            cells={cells}
+            rowSize={gridState.rowSize}
+            colGap={gridState.colGap}
+            rowGap={gridState.rowGap}
+            alignItems={gridState.alignItems}
+            justifyItems={gridState.justifyItems}
+            justifyContent={gridState.justifyContent}
+            className={props.className}
+            style={props.style}
+            role="grid"
+        >
+            {pattern.length > 0 && renderElements()}
+        </IrregularGridRoot>
+    );
+};
 
-        return (
-            <IrregularGridRoot
-                cells={cells}
-                rowSize={rowSize}
-                colGap={colGap}
-                rowGap={rowGap}
-                alignItems={alignItems}
-                justifyItems={justifyItems}
-                justifyContent={justifyContent}
-                className={className}
-                style={style}
-                role="grid"
-            >
-                {pattern.length > 0 && this.renderElements()}
-            </IrregularGridRoot>
-        );
-    }
-}
+export default IrregularGrid;
