@@ -32,7 +32,10 @@ function FormControl<T = any>({
     useEffect(() => {
         let isValueInvalid: boolean;
         let errorMsg: string | undefined;
-        if (required && !value) {
+        if (
+            required &&
+            (value === undefined || (value as any) === false || (value as any) === "")
+        ) {
             isValueInvalid = true;
             errorMsg = translate("invalid_required");
         } else if (validation) {
