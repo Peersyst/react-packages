@@ -39,5 +39,6 @@
         "packages/genesys/packages/*",
         "packages/genesys/docs"
     ],
-    "dependencies": {}
+    "dependencies": {},
+    "version": "0.0.0"
 }
