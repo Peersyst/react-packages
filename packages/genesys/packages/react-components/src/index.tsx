@@ -28,7 +28,6 @@ export * from "./Hash";
 export * from "./IconButton";
 export * from "./assets/icons";
 export * from "./Image";
-export * from "./InfiniteCarousel";
 export * from "./InfiniteScroll";
 export * from "./Label";
 export * from "./Loader";

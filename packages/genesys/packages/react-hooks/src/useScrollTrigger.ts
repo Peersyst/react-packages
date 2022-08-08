@@ -14,7 +14,7 @@ function defaultTrigger(store: MutableRefObject<number | undefined>, options: Tr
     const { disableHysteresis = false, threshold = 100, target } = options;
     const previous = store.current;
 
-    if (target) {
+    if (target && typeof window !== "undefined") {
         // Get vertical scroll
         store.current =
             (target as Window).scrollY !== undefined
@@ -31,14 +31,13 @@ function defaultTrigger(store: MutableRefObject<number | undefined>, options: Tr
     return (store.current ?? 0) > threshold;
 }
 
-const defaultTarget = window;
-
 export default function useScrollTrigger(options: UseScrollTriggerOptions = {}) {
-    const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
+    const { getTrigger = defaultTrigger, target: optionsTarget, ...other } = options;
     const store = useRef<number>();
     const [trigger, setTrigger] = useState(() => getTrigger(store, other));
 
     useEffect(() => {
+        const target = optionsTarget || window;
         const handleScroll = () => {
             setTrigger(getTrigger(store, { target, ...other }));
         };
@@ -48,7 +47,7 @@ export default function useScrollTrigger(options: UseScrollTriggerOptions = {}) 
         return () => {
             target?.removeEventListener("scroll", handleScroll);
         };
-    }, [target, getTrigger, JSON.stringify(other)]);
+    }, [optionsTarget, getTrigger, JSON.stringify(other)]);
 
     return trigger;
 }
