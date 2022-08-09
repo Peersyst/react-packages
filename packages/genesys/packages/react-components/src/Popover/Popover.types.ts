@@ -64,6 +64,10 @@ export interface PopoverProps {
 }
 
 export type PopoverComponent = ComponentType<PopoverProps> & {
-    Popper: ComponentType<PaperProps>;
+    Popper: ComponentType<PopperProps>;
     Content: ComponentType<{ children: ReactNode }>;
 };
+
+export interface PopperProps extends Omit<PaperProps, "style"> {
+    style?: CSSProperties & { arrow?: CSSProperties & { "--popper-arrow-size": string } };
+}

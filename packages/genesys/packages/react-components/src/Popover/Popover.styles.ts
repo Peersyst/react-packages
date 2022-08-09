@@ -41,19 +41,19 @@ export const PopoverPopper = styled.div`
     }
 
     &[data-popper-placement^="bottom"] > ${PopoverPaper} ${PopperArrow} {
-        top: -6px;
+        top: -6.25px;
         border-bottom: 0;
         border-right: 0;
     }
 
     &[data-popper-placement^="left"] > ${PopoverPaper} ${PopperArrow} {
-        right: -4px;
+        right: -4.25px;
         border-bottom: 0;
         border-left: 0;
     }
 
     &[data-popper-placement^="right"] > ${PopoverPaper} ${PopperArrow} {
-        left: -6px;
+        left: -6.25px;
         border-top: 0;
         border-right: 0;
     }

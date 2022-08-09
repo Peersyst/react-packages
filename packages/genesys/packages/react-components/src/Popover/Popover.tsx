@@ -8,7 +8,7 @@ import {
     useRef,
     useState,
 } from "react";
-import { PopoverComponent, PopoverProps } from "./Popover.types";
+import { PopoverComponent, PopoverProps, PopperProps } from "./Popover.types";
 import {
     PopoverContent,
     PopoverPaper,
@@ -122,6 +122,9 @@ const Popover = ((props: PopoverProps): JSX.Element => {
         }
     };
 
+    const { style: { arrow: arrowStyle, ...popperStyle } = {}, ...popperProps } =
+        popper.props as PopperProps;
+
     const popperElement = (
         <PopoverPopper
             style={{
@@ -139,13 +142,15 @@ const Popover = ((props: PopoverProps): JSX.Element => {
                 {cloneElement(
                     popper as ReactElement<PaperProps>,
                     {
-                        ...popper.props,
+                        ...popperProps,
+                        style: popperStyle,
                         children: (
                             <>
                                 {(popper.props as PaperProps).children}
                                 {arrow && (
                                     <PopperArrow
                                         className="PopperArrow"
+                                        style={arrowStyle}
                                         elevation={(popper.props as PaperProps).elevation}
                                         data-popper-arrow
                                     />
@@ -178,7 +183,7 @@ const Popover = ((props: PopoverProps): JSX.Element => {
     );
 }) as PopoverComponent;
 
-const Popper = ({ elevation = 8, className, ...rest }: PaperProps) => (
+const Popper = ({ elevation = 8, className, ...rest }: PopperProps) => (
     <PopoverPaper elevation={elevation} className={cx("PopoverPopper", className)} {...rest} />
 );
 const Content = ({ children }: { children: ReactNode }) => <>{children}</>;
