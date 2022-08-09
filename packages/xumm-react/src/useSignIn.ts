@@ -13,6 +13,9 @@ export interface UseSignInResult extends Omit<UseFetchResult<any>, "data" | "fet
     signInData?: SignInResponse;
     verifySignInData?: VerifySignInResponse;
     signIn: () => Promise<SignInResponse | undefined>;
+    signInLoading: boolean;
+    transactionRequestStatusLoading: boolean;
+    verifySignInLoading: boolean;
 }
 
 export interface UseSignInOptions extends Omit<UseFetchOptions<SignInResponse>, "onSuccess"> {
@@ -80,6 +83,9 @@ export default function ({
         signInData,
         verifySignInData,
         isLoading,
+        signInLoading,
+        transactionRequestStatusLoading,
+        verifySignInLoading,
         isError: !isLoading && (signInError || transactionRequestStatusError || verifySignInError),
         isSuccess,
     };
