@@ -11,9 +11,13 @@ export interface ImageProps {
      */
     alt: string;
     /**
+     * External loading
+     */
+    loading?: boolean;
+    /**
      * Skeleton props
      */
-    SkeletonProps?: Omit<SkeletonProps, "children">;
+    SkeletonProps?: Omit<SkeletonProps, "children" | "loading">;
     /**
      * Image className
      */

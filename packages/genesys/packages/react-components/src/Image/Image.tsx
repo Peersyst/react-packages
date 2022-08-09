@@ -6,12 +6,24 @@ import { cx } from "@peersyst/react-utils";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function Image(props: ImageProps): JSX.Element {
-    const { src, alt, className, style, SkeletonProps } = useMergeDefaultProps("Image", props);
+    const {
+        src,
+        alt,
+        className,
+        style,
+        SkeletonProps,
+        loading = false,
+    } = useMergeDefaultProps("Image", props);
 
     const [loaded, setLoaded] = useState(false);
 
     return (
-        <Skeleton loading={!loaded} className={className} style={style} {...SkeletonProps}>
+        <Skeleton
+            loading={!loaded || loading}
+            className={className}
+            style={style}
+            {...SkeletonProps}
+        >
             <StyledImg
                 src={src}
                 alt={alt}
