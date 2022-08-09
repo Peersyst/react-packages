@@ -145,6 +145,7 @@ const Popover = ((props: PopoverProps): JSX.Element => {
                                 {(popper.props as PaperProps).children}
                                 {arrow && (
                                     <PopperArrow
+                                        className="PopperArrow"
                                         elevation={(popper.props as PaperProps).elevation}
                                         data-popper-arrow
                                     />

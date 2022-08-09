@@ -14,6 +14,7 @@ export const PopperArrow = styled(Paper)`
     width: var(--popper-arrow-size);
     height: var(--popper-arrow-size);
     background: inherit;
+    border: inherit;
     visibility: hidden;
 
     &:before {
@@ -22,6 +23,7 @@ export const PopperArrow = styled(Paper)`
         width: var(--popper-arrow-size);
         height: var(--popper-arrow-size);
         background: inherit;
+        border: inherit;
         visibility: visible;
         transform: rotate(45deg);
     }
@@ -34,18 +36,26 @@ export const PopoverPopper = styled.div`
 
     &[data-popper-placement^="top"] > ${PopoverPaper} ${PopperArrow} {
         bottom: -4px;
+        border-top: 0;
+        border-left: 0;
     }
 
     &[data-popper-placement^="bottom"] > ${PopoverPaper} ${PopperArrow} {
-        top: -4px;
+        top: -6px;
+        border-bottom: 0;
+        border-right: 0;
     }
 
     &[data-popper-placement^="left"] > ${PopoverPaper} ${PopperArrow} {
         right: -4px;
+        border-bottom: 0;
+        border-left: 0;
     }
 
     &[data-popper-placement^="right"] > ${PopoverPaper} ${PopperArrow} {
-        left: -4px;
+        left: -6px;
+        border-top: 0;
+        border-right: 0;
     }
 `;
 
