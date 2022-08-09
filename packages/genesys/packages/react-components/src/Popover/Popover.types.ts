@@ -69,5 +69,5 @@ export type PopoverComponent = ComponentType<PopoverProps> & {
 };
 
 export interface PopperProps extends Omit<PaperProps, "style"> {
-    style?: CSSProperties & { arrow?: CSSProperties & { "--popper-arrow-size": string } };
+    style?: CSSProperties & { arrow?: CSSProperties & { "--popper-arrow-size"?: string } };
 }

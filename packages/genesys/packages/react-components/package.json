@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components",
     "author": "Peersyst",
-    "version": "2.20.21",
+    "version": "2.20.22",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
