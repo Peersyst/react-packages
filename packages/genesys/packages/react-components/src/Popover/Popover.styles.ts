@@ -30,9 +30,7 @@ export const PopperArrow = styled(Paper)`
     }
 `;
 
-export const PopoverPaper = styled(Paper)`
-    border: 1px solid green;
-`;
+export const PopoverPaper = styled(Paper)``;
 
 export const PopoverPopper = styled.div`
     z-index: ${(p) => p.theme.zIndex.popover};
