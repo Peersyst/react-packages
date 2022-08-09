@@ -8,7 +8,7 @@ export const PopoverRoot = styled.div`
 `;
 
 export const PopperArrow = styled(Paper)`
-    --popper-arrow-size: 10px;
+    --popper-arrow-size: 8px;
 
     position: absolute;
     width: var(--popper-arrow-size);
@@ -26,34 +26,37 @@ export const PopperArrow = styled(Paper)`
         border: inherit;
         visibility: visible;
         transform: rotate(45deg);
+        box-sizing: border-box;
     }
 `;
 
-export const PopoverPaper = styled(Paper)``;
+export const PopoverPaper = styled(Paper)`
+    border: 1px solid green;
+`;
 
 export const PopoverPopper = styled.div`
     z-index: ${(p) => p.theme.zIndex.popover};
 
     &[data-popper-placement^="top"] > ${PopoverPaper} ${PopperArrow} {
-        bottom: -4px;
+        bottom: calc(var(--popper-arrow-size) * -0.4);
         border-top: 0;
         border-left: 0;
     }
 
     &[data-popper-placement^="bottom"] > ${PopoverPaper} ${PopperArrow} {
-        top: -6.25px;
+        top: calc(var(--popper-arrow-size) * -0.6);
         border-bottom: 0;
         border-right: 0;
     }
 
     &[data-popper-placement^="left"] > ${PopoverPaper} ${PopperArrow} {
-        right: -4.25px;
+        right: calc(var(--popper-arrow-size) * -0.4);
         border-bottom: 0;
         border-left: 0;
     }
 
     &[data-popper-placement^="right"] > ${PopoverPaper} ${PopperArrow} {
-        left: -6.25px;
+        left: calc(var(--popper-arrow-size) * -0.6);
         border-top: 0;
         border-right: 0;
     }
