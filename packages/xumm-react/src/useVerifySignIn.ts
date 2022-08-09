@@ -14,11 +14,13 @@ export interface UseVerifySignInResult extends Omit<UseFetchResult<any>, "data" 
 export interface UseVerifySignInOptions
     extends Omit<UseFetchOptions<VerifySignInResponse>, "retry"> {
     retry?: boolean | number;
+    onSignInVerified?: (res: VerifySignInResponse) => void;
 }
 
 export default function ({
     retry = false,
     retryDelay = 2500,
+    onSignInVerified,
     ...restOptions
 }: UseVerifySignInOptions = {}): UseVerifySignInResult {
     const { setToken } = useXumm();
@@ -30,7 +32,10 @@ export default function ({
 
     const verifySignIn = async (): Promise<VerifySignInResponse | undefined> => {
         const res = await fetchData();
-        if (res?.access_token) setToken(res.access_token);
+        if (res?.access_token) {
+            setToken(res.access_token);
+            onSignInVerified?.(res);
+        }
         return res;
     };
 
