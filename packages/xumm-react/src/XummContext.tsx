@@ -12,6 +12,7 @@ export interface XummContextType {
     setToken: (token: string) => any;
     removeToken: () => any;
     onError?: (e: FetchError) => void;
+    maxRetries: number;
 }
 
 export const XummContext = createContext<XummContextType>({} as any);
@@ -23,6 +24,7 @@ export interface XummProviderConfig {
     removeToken: XummContextType["removeToken"];
     onError?: XummContextType["onError"];
     paths?: Partial<XummContextType["paths"]>;
+    maxRetries?: Partial<XummContextType["maxRetries"]>;
 }
 
 export interface XummProviderProps {
@@ -42,6 +44,7 @@ export const XummProvider = ({
             verifySignIn = "auth/verify-sign-in",
         } = {},
         onError,
+        maxRetries = 3,
     },
     children,
 }: XummProviderProps) => {
@@ -60,6 +63,7 @@ export const XummProvider = ({
                 getToken,
                 setToken,
                 removeToken,
+                maxRetries,
             }}
         >
             {children}

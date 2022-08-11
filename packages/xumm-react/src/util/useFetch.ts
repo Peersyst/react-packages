@@ -45,7 +45,14 @@ export default function <T = any>(
     path: keyof XummContextType["paths"],
     { retryDelay = 5000, retry = false, onSuccess, onError }: UseFetchOptions<T> = {},
 ): UseFetchResult<T> {
-    const { url: baseUrl, paths, onError: contextOnError, getToken, removeToken } = useXumm();
+    const {
+        url: baseUrl,
+        paths,
+        onError: contextOnError,
+        getToken,
+        removeToken,
+        maxRetries,
+    } = useXumm();
 
     const [{ isLoading, isSuccess, isError, error, data }, setFetchStatus] = useState<
         FetchStatus<T>
@@ -96,14 +103,17 @@ export default function <T = any>(
                     } else setTimeout(tryFetch, retryDelay);
                 } catch (e) {
                     const fetchError = e as FetchError;
+
+                    if (fetchError.status === 401) removeToken();
+
                     // Resolve with error or retry
                     if (
                         !retry ||
                         (typeof retry === "number"
                             ? retries++ > retry
-                            : !retry(++retries, undefined, fetchError))
+                            : !retry(++retries, undefined, fetchError)) ||
+                        retries > maxRetries
                     ) {
-                        if (fetchError.status === 401) removeToken();
                         setFetchStatus({
                             isLoading: false,
                             isError: true,
