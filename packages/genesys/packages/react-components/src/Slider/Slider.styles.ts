@@ -19,7 +19,7 @@ const sliderClasses = {
 };
 
 export const SliderRoot = styled.span<SliderRootProps>(
-    ({ theme, ownerState: { orientation, size }, marked }) => ({
+    ({ theme, ownerState: { orientation, size, valueLabelDisplay }, marked }) => ({
         borderRadius: 12,
         boxSizing: "content-box",
         display: "inline-block",
@@ -42,6 +42,9 @@ export const SliderRoot = styled.span<SliderRootProps>(
             }),
             ...(marked && {
                 marginBottom: 20,
+            }),
+            ...(valueLabelDisplay === "on" && {
+                marginTop: 24,
             }),
         }),
         ...(orientation === "vertical" && {
