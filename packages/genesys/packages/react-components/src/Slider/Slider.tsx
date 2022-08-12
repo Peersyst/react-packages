@@ -29,9 +29,9 @@ const extendUtilityClasses = (ownerState: SliderOwnerState) => {
 const Slider = forwardRef(function Slider(props: SliderProps, ref) {
     const {
         name,
-        min,
-        max,
-        defaultValue = 0,
+        min = 0,
+        max = 100,
+        defaultValue,
         disabled = false,
         LabelProps = {},
         Label = FormControlLabel,
@@ -61,7 +61,7 @@ const Slider = forwardRef(function Slider(props: SliderProps, ref) {
     return (
         <FormControl<number | number[]>
             Label={[Label, LabelProps]}
-            defaultValue={defaultValue}
+            defaultValue={defaultValue || min}
             disabled={disabled}
             name={name}
             {...rest}

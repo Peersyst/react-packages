@@ -9,11 +9,11 @@ export interface CoreSliderProps<LP extends CoreLabelProps = CoreLabelProps>
     /**
      * Min value
      */
-    min: number;
+    min?: number;
     /**
      * Max value
      */
-    max: number;
+    max?: number;
     /**
      * Slider step
      */

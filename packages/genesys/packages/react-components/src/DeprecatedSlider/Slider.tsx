@@ -8,8 +8,8 @@ import { SliderStyles, useMergeDefaultProps } from "@peersyst/react-components-c
 
 export default function Slider(props: SliderProps): JSX.Element {
     const {
-        min,
-        max,
+        min = 0,
+        max = 100,
         defaultValue: defaultValueProp,
         step = 1,
         disabled = false,
