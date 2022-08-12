@@ -15,7 +15,7 @@ import SliderValueLabelUnstyled from "./SliderUnstyled/SliderValueLabelUnstyled"
 
 const sliderClasses = {
     ...sliderUnstyledClasses,
-    ...generateUtilityClasses("Slider", ["sm", "thumbSm"]),
+    ...generateUtilityClasses("Slider", ["sm"]),
 };
 
 export const SliderRoot = styled.span<SliderRootProps>(

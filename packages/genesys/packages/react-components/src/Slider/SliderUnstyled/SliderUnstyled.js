@@ -281,7 +281,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                                 style={{
                                     ...style,
                                     pointerEvents:
-                                        disableSwap && active !== index ? "none" : undefined,
+                                        disableSwap && active !== -1 && active !== index
+                                            ? "none"
+                                            : undefined,
                                     ...thumbProps.style,
                                 }}
                             >
