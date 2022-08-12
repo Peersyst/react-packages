@@ -45,7 +45,6 @@ export * from "./Row";
 export * from "./Select";
 export * from "./Skeleton";
 export * from "./Slider";
-export * from "./RangeSlider";
 export * from "./SvgIcon";
 export * from "./Switch";
 export * from "./Table";
@@ -58,3 +57,6 @@ export * from "./ToggleButton";
 export * from "./Toolbar";
 export * from "./Typography";
 export * from "./Upload";
+
+export * from "./DeprecatedSlider";
+export * from "./DepcrecatedRangeSlider";

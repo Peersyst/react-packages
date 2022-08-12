@@ -56,7 +56,7 @@ function generateExport(name) {
  * @param removeFill Boolean indicating whether to remove the fill property or not.
  */
 function addSvgs(folder, removeFill) {
-    const replaceRegExp = /<svg.+>|<\/svg>|<\?.*>|style="[^"]*"/gi;
+    const replaceRegExp = /<svg.+>|<\/svg>|<\?.*>/gi;
     const filenames = fs.readdirSync(folder);
     for (const filename of filenames) {
         const stat = fs.lstatSync(folder + filename);
@@ -71,7 +71,21 @@ function addSvgs(folder, removeFill) {
                 // Remove svg tags and maybe fill. Then, replace all kebab-case svg properties for camelCase React properties
                 data: data
                     .replace(replaceRegExp, "")
-                    .replace(/-(?=[^"]+=)./g, (x) => x[1].toUpperCase()),
+                    .replace(/-(?=[^"]+=)./g, (x) => x[1].toUpperCase())
+                    .replace(
+                        /style="[^"]*"/g,
+                        (x) =>
+                            `style={{${x
+                                .split('"')[1]
+                                .split(";")
+                                .map((s) => {
+                                    const [property, value] = s.split(":");
+                                    return `${property.replace(/-./g, (x) =>
+                                        x[1].toUpperCase(),
+                                    )}: "${value}"`;
+                                })
+                                .join(",")}}}`,
+                    ),
                 removeFill: removeFill,
             });
         }

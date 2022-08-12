@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Slider, TextField } from "@peersyst/react-components";
 
 const ControlledSlider = () => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState<number | number[]>(0);
 
     return (
         <Row

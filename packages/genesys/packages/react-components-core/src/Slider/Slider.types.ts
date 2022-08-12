@@ -3,7 +3,7 @@ import { CoreLabelProps } from "../Label";
 
 export interface CoreSliderProps<LP extends CoreLabelProps = CoreLabelProps>
     extends Omit<
-        CoreFormControlledComponentProps<number, LP>,
+        CoreFormControlledComponentProps<number | number[], LP>,
         "required" | "hideError" | "showValid"
     > {
     /**

@@ -1,63 +1,135 @@
-import { ChangeEvent } from "react";
-import { SliderProps } from "./Slider.types";
-import { SliderInput, SliderRail, SliderRoot, SliderTrack } from "./Slider.styles";
-import { cx } from "@peersyst/react-utils";
-import { FormControl } from "../FormControl";
+import { forwardRef } from "react";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { SliderUnstyled } from "./SliderUnstyled";
+import {
+    SliderMark,
+    SliderMarkLabel,
+    SliderRail,
+    SliderRoot,
+    SliderThumb,
+    SliderTrack,
+    SliderValueLabel,
+} from "./Slider.styles";
+import { SliderOwnerState, SliderProps } from "./Slider.types";
+import clsx from "clsx";
+import { capitalize } from "@peersyst/react-utils";
 import { FormControlLabel } from "../FormControlLabel";
-import { SliderStyles, useMergeDefaultProps } from "@peersyst/react-components-core";
+import { FormControl } from "../FormControl";
 
-export default function Slider(props: SliderProps): JSX.Element {
+const extendUtilityClasses = (ownerState: SliderOwnerState) => {
+    const { size, classes = {} } = ownerState;
+
+    return {
+        ...classes,
+        root: clsx(classes.root, capitalize(size)),
+        thumb: clsx(classes.thumb, capitalize(size)),
+    };
+};
+
+const Slider = forwardRef(function Slider(props: SliderProps, ref) {
     const {
+        name,
         min,
         max,
-        defaultValue: defaultValueProp,
-        step = 1,
+        defaultValue = 0,
         disabled = false,
         LabelProps = {},
         Label = FormControlLabel,
+        size = "md",
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledBy,
+        "aria-valuetext": ariaValueText,
+        disableSwap = true,
+        getAriaLabel,
+        getAriaValueText,
+        isRtl = false,
+        marks,
+        orientation,
+        scale,
+        step,
+        tabIndex,
+        track,
+        valueLabelDisplay,
+        valueLabelFormat,
         ...rest
     } = useMergeDefaultProps("Slider", props);
-    const defaultValue = defaultValueProp ?? min;
 
-    const styleProps: SliderStyles = {
-        disabled,
-    };
+    const ownerState = { ...props, size };
+
+    const classes = extendUtilityClasses(ownerState as SliderOwnerState);
 
     return (
-        <FormControl<number>
+        <FormControl<number | number[]>
             Label={[Label, LabelProps]}
             defaultValue={defaultValue}
             disabled={disabled}
+            name={name}
             {...rest}
         >
             {(value, setValue) => {
-                const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-                    const numberValue = Number(target.value);
-                    setValue(Number(numberValue));
+                const handleChange = (
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    _event: Event,
+                    val: number | number[],
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    _activeThumb: number,
+                ) => {
+                    setValue(val);
                 };
 
-                const percentage = value > max ? "100%" : ((value - min) / (max - min)) * 100 + "%";
-
                 return (
-                    <SliderRoot {...styleProps} className={cx("Slider", disabled && "Disabled")}>
-                        <SliderRail className={cx("SliderRail", disabled && "Disabled")} />
-                        <SliderTrack
-                            style={{ width: percentage }}
-                            className={cx("SliderTrack", disabled && "Disabled")}
-                        />
-                        <SliderInput
-                            type="range"
-                            min={min}
-                            max={max}
-                            step={step}
-                            value={value}
-                            onChange={handleChange}
-                            disabled={disabled}
-                            className={cx("SliderInput", disabled && "Disabled")}
-                        />
-                    </SliderRoot>
+                    <SliderUnstyled
+                        value={value}
+                        onChange={handleChange}
+                        disabled={disabled}
+                        min={min}
+                        max={max}
+                        aria-label={ariaLabel}
+                        aria-labelledby={ariaLabelledBy}
+                        aria-valuetext={ariaValueText}
+                        disableSwap={disableSwap}
+                        getAriaLabel={getAriaLabel}
+                        getAriaValueText={getAriaValueText}
+                        isRtl={isRtl}
+                        marks={marks}
+                        name={name}
+                        orientation={orientation}
+                        scale={scale}
+                        step={step}
+                        tabIndex={tabIndex}
+                        track={track}
+                        valueLabelDisplay={valueLabelDisplay}
+                        valueLabelFormat={valueLabelFormat}
+                        components={{
+                            Root: SliderRoot,
+                            Rail: SliderRail,
+                            Track: SliderTrack,
+                            Thumb: SliderThumb,
+                            ValueLabel: SliderValueLabel,
+                            Mark: SliderMark,
+                            MarkLabel: SliderMarkLabel,
+                        }}
+                        componentsProps={{
+                            root: {
+                                ...{ ownerState: { size } },
+                            },
+                            thumb: {
+                                ...{ ownerState: { size } },
+                            },
+                            track: {
+                                ...{ ownerState: { size } },
+                            },
+                            valueLabel: {
+                                ...{ ownerState: { size } },
+                            },
+                        }}
+                        classes={classes}
+                        ref={ref as any}
+                    />
                 );
             }}
         </FormControl>
     );
-}
+});
+
+export default Slider;

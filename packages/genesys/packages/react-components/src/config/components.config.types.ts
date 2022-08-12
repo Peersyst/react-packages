@@ -41,7 +41,7 @@ import { PaperProps } from "../Paper";
 import { PopoverProps } from "../Popover";
 import { ProgressBarProps } from "../ProgressBar";
 import { RadioButtonProps } from "../RadioButton";
-import { RangeSliderProps } from "../RangeSlider";
+import { RangeSliderProps } from "../DepcrecatedRangeSlider";
 import { RowProps } from "../Row";
 import { SelectItemProps, SelectMenuProps, SelectProps } from "../Select";
 import { SkeletonProps } from "../Skeleton";
