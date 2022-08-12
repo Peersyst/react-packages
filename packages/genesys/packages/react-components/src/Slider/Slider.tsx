@@ -39,7 +39,7 @@ const Slider = forwardRef(function Slider(props: SliderProps, ref) {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-valuetext": ariaValueText,
-        disableSwap = true,
+        disableSwap = false,
         getAriaLabel,
         getAriaValueText,
         isRtl = false,
