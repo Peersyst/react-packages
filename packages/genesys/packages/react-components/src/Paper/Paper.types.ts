@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, HTMLAttributes, ReactNode } from "react";
 
 export type Elevation =
     | 0
@@ -27,7 +27,7 @@ export type Elevation =
     | 23
     | 24;
 
-export interface PaperProps {
+export interface PaperProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * Paper elevation
      */

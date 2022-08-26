@@ -13,7 +13,7 @@ export const SelectMenuRoot = styled(Paper)<SelectMenuStyles>(({ theme, expandab
         top: 100%;
         width: 100%;
         max-height: 220px;
-        overflow-y: scroll;
+        overflow-y: auto;
         padding: 10px 0;
     `;
 });

@@ -1,9 +1,9 @@
-import { forwardRef, HTMLAttributes, Ref } from "react";
+import { forwardRef, Ref } from "react";
 import { PaperRoot } from "./Paper.styles";
 import { PaperProps } from "./Paper.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Paper = forwardRef((props: PaperProps & HTMLAttributes<HTMLDivElement>, ref) => {
+const Paper = forwardRef((props: PaperProps, ref) => {
     const {
         elevation = 1,
         square = false,
