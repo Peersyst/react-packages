@@ -12,7 +12,11 @@ const ThemeProvider: FC = ({ children }) => {
     const projectName = useConfig("projectName");
     const storageKey = projectName + "-theme";
     const [systemColorScheme, setSystemColorScheme] = useState(getColorScheme());
-    const storageTheme = useRef(localStorage.getItem(storageKey) as keyof Themes | null).current;
+    const storageTheme = useRef(
+        typeof window !== "undefined"
+            ? (localStorage.getItem(storageKey) as keyof Themes | null)
+            : null,
+    ).current;
     const setStorageTheme = (theme: keyof Themes) => localStorage.setItem(storageKey, theme);
 
     const handleColorSchemeChange = (event: MediaQueryListEvent) => {
