@@ -58,6 +58,7 @@ import { TypographyProps } from "../Typography";
 import { UploadProps } from "../Upload";
 import { BlockchainAddressProps } from "../BlockchainAddress";
 import { ChipProps } from "../Chip";
+import { AlertProps } from "../Alert";
 
 /**
  * No config for:
@@ -72,6 +73,7 @@ import { ChipProps } from "../Chip";
  * - Grid (Needs Function Component refactor)
  * - IrregularGrid (Needs Function Component refactor)
  */
+export interface AlertConfig extends ComponentConfig<AlertProps> {}
 export interface AnimatedConfig extends ComponentConfig<AnimatedProps> {}
 export interface AnimatedCollapseConfig extends ComponentConfig<CollapseProps> {}
 export interface AnimatedFadeConfig extends ComponentConfig<AnimatedComponentProps> {}
@@ -138,6 +140,7 @@ export interface TypographyConfig extends ComponentConfig<TypographyProps> {}
 export interface UploadConfig extends ComponentConfig<UploadProps> {}
 
 export interface ComponentsConfig {
+    Alert: AlertConfig;
     Animated: AnimatedConfig;
     AnimatedCollapse: AnimatedCollapseConfig;
     AnimatedFade: AnimatedFadeConfig;

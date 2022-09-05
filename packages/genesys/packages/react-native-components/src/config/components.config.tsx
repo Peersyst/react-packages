@@ -3,6 +3,7 @@ import { ChevronDownIcon } from "../assets/icons";
 import { FormControlLabel } from "../input/FormControlLabel";
 
 const componentsConfig: ComponentsConfig = {
+    Alert: { defaultProps: {} },
     Divider: {
         defaultProps: {
             size: 1,

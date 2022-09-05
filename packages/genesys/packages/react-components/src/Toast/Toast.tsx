@@ -1,20 +1,17 @@
-import { useEffect } from "react";
-import { ToastAction, ToastContainer, ToastContent } from "./Toast.styles";
+import { ToastContainer } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
-import { useControlled } from "@peersyst/react-hooks";
 import { getAnimation } from "./utils/getAnimation";
-import { useGetIcon } from "./hooks/useGetIcon";
-import { cx } from "@peersyst/react-utils";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { Row } from "../Row";
+import { useMergeDefaultProps, Toast as CoreToast } from "@peersyst/react-components-core";
+import { Alert } from "../Alert";
 
 export default function Toast(props: ToastProps): JSX.Element {
     const {
         message,
+        icon,
         type,
         action,
         position = "top-right",
-        open: propOpen,
+        open: openProp,
         onClose,
         onExited,
         animation = "fadingSlide",
@@ -23,46 +20,29 @@ export default function Toast(props: ToastProps): JSX.Element {
         style,
     } = useMergeDefaultProps("Toast", props);
 
-    const [open, setOpen] = useControlled(true, propOpen, propOpen ? onClose : undefined);
-
-    const icon = useGetIcon(type);
-
-    let hideTimeout: NodeJS.Timeout;
-
-    useEffect(() => {
-        if (open && (!type || type !== "loading")) {
-            hideTimeout = setTimeout(() => setOpen(false), duration);
-            return () => {
-                clearTimeout(hideTimeout);
-            };
-        }
-    }, [open]);
-
     const { AnimatedComponent, props: AnimatedComponentProps } = getAnimation(animation, position);
 
     return (
-        <ToastContainer position={position} className="ToastContainer">
-            <AnimatedComponent
-                in={open}
-                duration={200}
-                onExited={onExited}
-                {...AnimatedComponentProps}
-            >
-                <ToastContent
-                    type={type}
-                    className={cx("Toast", className)}
-                    style={style}
-                    elevation={5}
-                >
-                    <Row flex={1} gap={10} wrap wrapGap={10} justifyContent="space-between">
-                        <Row alignItems="center" gap={10}>
-                            <Row flex={0.05}>{icon}</Row>
-                            <Row flex={0.95}>{message}</Row>
-                        </Row>
-                        <ToastAction>{action}</ToastAction>
-                    </Row>
-                </ToastContent>
-            </AnimatedComponent>
-        </ToastContainer>
+        <CoreToast open={openProp} onClose={onClose} type={type} duration={duration}>
+            {(open) => (
+                <ToastContainer position={position} className="ToastContainer">
+                    <AnimatedComponent
+                        in={open}
+                        duration={200}
+                        onExited={onExited}
+                        {...AnimatedComponentProps}
+                    >
+                        <Alert
+                            type={type}
+                            message={message}
+                            icon={icon}
+                            action={action}
+                            className={className}
+                            style={style}
+                        />
+                    </AnimatedComponent>
+                </ToastContainer>
+            )}
+        </CoreToast>
     );
 }

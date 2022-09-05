@@ -1,22 +1,13 @@
-import { ReactElement } from "react";
+import { AlertType, CoreAlertProps } from "../Alert";
 
-export type ToastType = "info" | "success" | "error" | "warning" | "loading";
+export type ToastType = AlertType;
 
 export type ToastAnimation = "fade" | "scale" | "slide" | "fadingSlide";
 
-export interface CoreToastProps<ToastPosition> {
-    /**
-     * Toast message
-     */
-    message: string;
-    /**
-     * Toast type
-     */
-    type?: ToastType;
-    /**
-     * Toast actions
-     */
-    action?: ReactElement;
+export type CoreToastProps<
+    ToastPosition,
+    AlertProps extends CoreAlertProps = CoreAlertProps,
+> = AlertProps & {
     /**
      * Toast position
      */
@@ -41,4 +32,11 @@ export interface CoreToastProps<ToastPosition> {
      * Toast duration, infinity for type = loading
      */
     duration?: number;
-}
+};
+
+export type ToastProps = Pick<CoreToastProps<any>, "type" | "duration" | "open" | "onClose"> & {
+    /**
+     * Toast renderer
+     */
+    children: (open: boolean, setOpen: (open: boolean) => void) => JSX.Element;
+};

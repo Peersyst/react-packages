@@ -9,6 +9,7 @@ export * from "./display/Label";
 export * from "./display/List";
 export * from "./display/ScrollView";
 export * from "./display/Typography";
+export * from "./feedback/Alert";
 export * from "./feedback/Backdrop";
 export * from "./feedback/Dialog";
 export * from "./feedback/Modal";
@@ -27,7 +28,6 @@ export * from "./input/NumericInput";
 export * from "./input/PressableText";
 export * from "./input/QrScanner";
 export * from "./input/Select";
-// @ts-ignore Also export an InvalidIcon but export from icons takes precedence
 export * from "./input/TextInput";
 export * from "./layout/Col";
 export * from "./layout/Row";

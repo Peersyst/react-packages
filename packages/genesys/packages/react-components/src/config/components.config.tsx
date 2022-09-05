@@ -12,6 +12,7 @@ import { Label } from "../Label";
 import { FormControlLabel } from "../FormControlLabel";
 
 const componentsConfig: ComponentsConfig = {
+    Alert: { defaultProps: {} },
     Animated: {
         defaultProps: {
             appear: true,

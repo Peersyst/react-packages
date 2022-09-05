@@ -1,13 +1,13 @@
-import { ToastStyle } from "../Toast.types";
-import { ToastType } from "@peersyst/react-components-core";
+import { AlertType } from "@peersyst/react-components-core";
 import { TextStyle, ViewStyle } from "react-native";
 import { useTheme } from "@peersyst/react-native-styled";
 import { getLuminance } from "@peersyst/react-utils";
 import { extractTextStyles } from "@peersyst/react-native-utils";
+import { AlertStyle } from "../Alert.types";
 
-export default function useToastStyles(
-    style: ToastStyle,
-    type?: ToastType,
+export default function useAlertStyles(
+    style: AlertStyle,
+    type?: AlertType,
 ): { container: ViewStyle; text: TextStyle } {
     const { palette } = useTheme();
     const statusColor = type && type !== "loading" ? palette.status[type] : palette.background;

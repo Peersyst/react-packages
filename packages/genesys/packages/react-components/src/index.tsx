@@ -1,5 +1,6 @@
 export * from "./config";
 export * from "./theme";
+export * from "./Alert";
 export * from "./Animated";
 export * from "./AppBar";
 export * from "./Backdrop";

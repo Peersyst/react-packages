@@ -1,5 +1,5 @@
-import { CoreToastProps, ToastType } from "@peersyst/react-components-core";
-import { CSSProperties } from "react";
+import { CoreToastProps } from "@peersyst/react-components-core";
+import { AlertProps } from "../Alert";
 
 export type ToastPosition =
     | "top-left"
@@ -9,21 +9,8 @@ export type ToastPosition =
     | "bottom-center"
     | "bottom-left";
 
-export interface ToastProps extends CoreToastProps<ToastPosition> {
-    /**
-     * Toast className
-     */
-    className?: string;
-    /**
-     * Toast style
-     */
-    style?: CSSProperties;
-}
+export type ToastProps = CoreToastProps<ToastPosition, AlertProps>;
 
 export interface ToastContainerStylesProps {
     position: ToastPosition;
-}
-
-export interface ToastContentStylesProps {
-    type?: ToastType;
 }

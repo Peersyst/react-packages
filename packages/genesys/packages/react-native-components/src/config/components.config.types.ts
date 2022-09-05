@@ -41,6 +41,7 @@ import { SlideProps } from "../util/Animated/Slide";
 import { CopyButtonProps } from "../util/CopyButton/CopyButton.types";
 import { ElementStylerProps } from "../util/ElementStyler";
 import { BlockchainAddressProps } from "../util/BlockchainAddress";
+import { AlertProps } from "../feedback/Alert";
 
 /**
  * ExtendedToolbarConfig
@@ -56,6 +57,7 @@ export type ExtendedNumericInputConfig = ComponentConfig<NumericInputProps> & {
     maxDecimals: number;
 };
 
+export interface AlertConfig extends ComponentConfig<AlertProps> {}
 export interface DividerConfig extends ComponentConfig<DividerProps> {}
 export interface IconConfig extends ComponentConfig<IconProps> {}
 export interface ImageConfig extends ComponentConfig<ImageProps> {}
@@ -108,6 +110,7 @@ export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface ElementStylerConfig extends ComponentConfig<ElementStylerProps> {}
 
 export interface ComponentsConfig {
+    Alert: AlertConfig;
     Divider: DividerConfig;
     Icon: IconConfig;
     Image: ImageConfig;

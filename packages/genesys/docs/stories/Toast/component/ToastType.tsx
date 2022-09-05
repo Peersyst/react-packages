@@ -1,4 +1,4 @@
-import { Button, useToast, ToastType as Type } from "@peersyst/react-components";
+import { Button, useToast, AlertType as Type } from "@peersyst/react-components";
 
 const toastType = [undefined, "info", "success", "warning", "error", "loading"];
 

@@ -1,9 +1,8 @@
-import { useTheme } from "@peersyst/react-native-styled";
 import { ReactElement } from "react";
-import { ToastType } from "@peersyst/react-components-core";
+import { AlertType, useTheme } from "@peersyst/react-components-core";
 import { ActivityIndicator } from "react-native";
 
-export function useGetIcon(type: ToastType | undefined): ReactElement | undefined {
+export default function useGetAlertIcon(type: AlertType | undefined): ReactElement | undefined {
     const {
         icons: { info: Info, warning: Warning, error: Error, success: Success },
     } = useTheme();
