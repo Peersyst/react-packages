@@ -17,6 +17,8 @@ function FormControl<T = any>({
     hideError = false,
     showValid = false,
     onValidated,
+    onFocus,
+    onBlur,
     children,
 }: FormControlProps<T>): JSX.Element {
     const translate = useTranslate();
@@ -56,6 +58,12 @@ function FormControl<T = any>({
         if (modified) onValidated?.(isValueInvalid, errorMsg);
     }, [value, required, validation, modified]);
 
+    const handleFocus = (f: boolean) => {
+        if (f) onFocus?.();
+        else onBlur?.();
+        setFocused(f);
+    };
+
     const isInvalid = !hideError && modified && invalid;
     const isValid = showValid && !isInvalid && modified;
 
@@ -75,7 +83,7 @@ function FormControl<T = any>({
                 (val) => {
                     if (!disabled && !readonly) setValue(val);
                 },
-                setFocused,
+                handleFocus,
                 !modified || hideError ? undefined : error,
             )}
         </FormControlContext.Provider>

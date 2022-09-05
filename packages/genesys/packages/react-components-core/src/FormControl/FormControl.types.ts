@@ -47,6 +47,14 @@ export interface FormControlProps<T = any> {
      */
     onValidated?: (valid: boolean, error?: string) => void;
     /**
+     * On focus handler
+     */
+    onFocus?: () => void;
+    /**
+     * On blur handler
+     */
+    onBlur?: () => void;
+    /**
      * The lower FormControl implementation
      */
     children: (
