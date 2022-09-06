@@ -13,10 +13,8 @@ export const AlertRoot = styled(Paper)<AlertRootProps>(({ theme, type }) => {
         flex-wrap: wrap;
 
         box-sizing: border-box;
-        width: fit-content;
+        width: auto;
         min-height: 56px;
-        min-width: 300px;
-        max-width: 360px;
         padding: 14px;
         border-radius: ${theme.borderRadius};
         background-color: ${backgroundColor};
