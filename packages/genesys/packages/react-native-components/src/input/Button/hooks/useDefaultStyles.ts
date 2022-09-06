@@ -15,7 +15,7 @@ export default function (): UseDefaultStylesResult {
     const defaultStyles: ButtonStyleWithVariant = {
         backgroundColor: "transparent",
         color: theme.palette.primary,
-        contained: {
+        filled: {
             backgroundColor: theme.palette.primary,
             color: theme.palette.text,
         },
@@ -31,7 +31,7 @@ export default function (): UseDefaultStylesResult {
 
     const defaultDisabledStyles: ButtonStyleWithVariant = {
         color: theme.palette.disabled,
-        contained: {
+        filled: {
             backgroundColor: theme.palette.disabled,
             color: emphasize(theme.palette.disabled, 0.5),
         },
@@ -42,7 +42,7 @@ export default function (): UseDefaultStylesResult {
 
     const defaultPressedStyles: ButtonStyleWithVariant = {
         backgroundColor: alpha(theme.palette.primary, 0.2),
-        contained: {
+        filled: {
             backgroundColor: darken(theme.palette.primary, 0.1),
         },
         text: {

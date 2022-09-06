@@ -91,6 +91,7 @@ const componentsConfig: ComponentsConfig = {
     },
     Button: {
         defaultProps: {
+            variant: "filled",
             size: "md",
             fullWidth: false,
             type: "button",

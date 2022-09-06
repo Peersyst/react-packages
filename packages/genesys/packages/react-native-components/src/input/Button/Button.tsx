@@ -18,7 +18,7 @@ const Button = (props: ButtonProps): JSX.Element => {
         leftIcon,
         fullWidth = false,
         disabled: disabledProp = false,
-        variant = "contained",
+        variant = "filled",
         style = {},
         ...rest
     } = useMergeDefaultProps("Button", props);

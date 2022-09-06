@@ -90,7 +90,7 @@ const componentsConfig: ComponentsConfig = {
             size: "md",
             fullWidth: false,
             disabled: false,
-            variant: "contained",
+            variant: "filled",
         },
     },
     Form: {

@@ -1,8 +1,9 @@
 import { TextStyle, ViewStyle } from "react-native";
 import useDefaultStyles from "./useDefaultStyles";
 import { extractTextStyles } from "@peersyst/react-native-utils";
-import { ButtonSize, ButtonStyle, ButtonStyles, ButtonVariant } from "../Button.types";
+import { ButtonStyle, ButtonStyles } from "../Button.types";
 import { useMemo } from "react";
+import { ButtonSize, ButtonVariant } from "@peersyst/react-components-core";
 
 export interface UseButtonStylesResult {
     textStyle: TextStyle;
@@ -20,13 +21,13 @@ export default function useButtonStyles(
         useDefaultStyles();
     const {
         disabled: {
-            contained: containedDisabledStyles,
+            filled: filledDisabledStyles,
             text: textDisabledStyles,
             outlined: outlinedDisabledText,
             ...disabledStyles
         } = {},
         pressed: {
-            contained: containedPressedStyles,
+            filled: filledPressedStyles,
             text: textPressedStyles,
             outlined: outlinedPressedText,
             ...pressedStyles
@@ -45,7 +46,7 @@ export default function useButtonStyles(
 
     const [variantDisabledTextStyles, variantDisabledRootStyles] = useMemo(() => {
         const disabledVariantStyles = {
-            contained: containedDisabledStyles,
+            filled: filledDisabledStyles,
             text: textDisabledStyles,
             outlined: outlinedDisabledText,
         };
@@ -54,7 +55,7 @@ export default function useButtonStyles(
             ...disabledVariantStyles[variant],
         });
     }, [
-        containedDisabledStyles,
+        filledDisabledStyles,
         defaultDisabledStyles,
         outlinedDisabledText,
         textDisabledStyles,
@@ -68,7 +69,7 @@ export default function useButtonStyles(
 
     const [variantPressedTextStyles, variantPressedRootStyles] = useMemo(() => {
         const pressedVariantStyles = {
-            contained: containedPressedStyles,
+            filled: filledPressedStyles,
             text: textPressedStyles,
             outlined: outlinedPressedText,
         };
@@ -77,7 +78,7 @@ export default function useButtonStyles(
             ...pressedVariantStyles[variant],
         });
     }, [
-        containedPressedStyles,
+        filledPressedStyles,
         defaultPressedStyles,
         outlinedPressedText,
         textPressedStyles,

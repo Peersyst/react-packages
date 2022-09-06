@@ -1,7 +1,7 @@
 import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { useTheme } from "../theme";
-import { cx, fsx } from "@peersyst/react-utils";
+import { capitalize, cx, fsx } from "@peersyst/react-utils";
 import { useContext } from "react";
 import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
@@ -12,6 +12,7 @@ const Button = (props: ButtonProps): JSX.Element => {
         children,
         loading,
         loadingElement: loadingElementProp,
+        variant = "filled",
         size = "sm",
         fullWidth = false,
         onClick,
@@ -29,6 +30,7 @@ const Button = (props: ButtonProps): JSX.Element => {
     return (
         <ButtonRoot
             isLoading={loading}
+            variant={variant}
             size={size}
             fullWidth={fullWidth}
             disabled={disabled}
@@ -37,7 +39,8 @@ const Button = (props: ButtonProps): JSX.Element => {
                 "Button",
                 loading && "Loading",
                 disabled && "Disabled",
-                size[0].toUpperCase() + size.slice(1),
+                capitalize(size),
+                capitalize(variant),
                 className,
             )}
             style={fsx(style, { disabled, loading })}
