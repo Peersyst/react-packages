@@ -4,7 +4,7 @@ import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "@peersyst/react-native-modal";
 import { Platform, View } from "react-native";
-import { Toaster, useToast } from "../ToastProvider";
+import { useToast } from "../ToastProvider";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
@@ -107,7 +107,8 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
                         left: 0,
                     }}
                 >
-                    <Toaster />
+                    {/*TODO: Fix modals ans toasts*/}
+                    {/*<Toaster />*/}
                 </View>
             )}
         </Modal>
