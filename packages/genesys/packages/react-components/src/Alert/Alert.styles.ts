@@ -23,11 +23,6 @@ export const AlertRoot = styled(Paper)<AlertRootProps>(({ theme, type }) => {
         svg {
             font-size: 18px;
         }
-
-        @media screen and (max-width: 400px) {
-            min-width: calc(100vw - 48px);
-            max-width: calc(100vw - 48px);
-        }
     `;
 });
 

@@ -49,4 +49,9 @@ export const ToastAlert = styled(Alert)`
     width: fit-content;
     min-width: 300px;
     max-width: 360px;
+
+    @media screen and (max-width: 400px) {
+        min-width: calc(100vw - 48px);
+        max-width: calc(100vw - 48px);
+    }
 `;
