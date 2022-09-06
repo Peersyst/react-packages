@@ -1,8 +1,9 @@
 import { ReactElement } from "react";
+import { CorePaperProps } from "../Paper";
 
 export type AlertType = "info" | "success" | "error" | "warning" | "loading";
 
-export interface CoreAlertProps {
+export interface CoreAlertProps extends Omit<CorePaperProps, "children"> {
     /**
      * Alert message
      */

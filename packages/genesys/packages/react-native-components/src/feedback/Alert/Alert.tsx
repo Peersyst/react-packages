@@ -6,21 +6,26 @@ import { Icon } from "../../display/Icon";
 import { Text } from "react-native";
 import { Col } from "../../layout/Col";
 import useAlertStyles from "./hook/useAlertStyles";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Alert = ({
-    icon: iconProp = true,
-    message,
-    type,
-    action,
-    style,
-}: AlertProps): JSX.Element => {
+const Alert = (props: AlertProps): JSX.Element => {
+    const {
+        icon: iconProp = true,
+        message,
+        type,
+        action,
+        style,
+        elevation = 0,
+        square,
+    } = useMergeDefaultProps("Alert", props);
+
     const defaultIcon = useGetAlertIcon(type);
     const icon = iconProp === true ? defaultIcon : iconProp;
 
     const { text: textStyle, container: containerStyle } = useAlertStyles(style || {}, type);
 
     return (
-        <AlertRoot type={type} style={containerStyle}>
+        <AlertRoot type={type} style={containerStyle} elevation={elevation} square={square}>
             <Col flex={1} style={{ padding: 14 }}>
                 <Row flex={1} alignItems="center" gap={10}>
                     {icon && (

@@ -17,6 +17,8 @@ export default function Toast(props: ToastProps): JSX.Element {
         duration = 4000,
         className,
         style,
+        elevation,
+        square,
     } = useMergeDefaultProps("Toast", props);
 
     const { AnimatedComponent, props: AnimatedComponentProps } = getAnimation(animation, position);
@@ -38,6 +40,8 @@ export default function Toast(props: ToastProps): JSX.Element {
                             action={action}
                             className={className}
                             style={style}
+                            elevation={elevation}
+                            square={square}
                         />
                     </AnimatedComponent>
                 </ToastContainer>

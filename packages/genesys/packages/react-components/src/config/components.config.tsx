@@ -12,7 +12,11 @@ import { Label } from "../Label";
 import { FormControlLabel } from "../FormControlLabel";
 
 const componentsConfig: ComponentsConfig = {
-    Alert: { defaultProps: {} },
+    Alert: {
+        defaultProps: {
+            elevation: 0,
+        },
+    },
     Animated: {
         defaultProps: {
             appear: true,
@@ -368,6 +372,7 @@ const componentsConfig: ComponentsConfig = {
             position: "top-right",
             animation: "fadingSlide",
             duration: 4000,
+            elevation: 1,
         },
     },
     ToggleButton: {

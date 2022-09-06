@@ -19,6 +19,8 @@ export default function Toast(props: ToastProps): JSX.Element {
         animation = "fadingSlide",
         duration = 4000,
         style,
+        elevation = 1,
+        square,
     } = useMergeDefaultProps("Toast", props);
 
     const safeAreaInsets = useSafeAreaInsets();
@@ -50,6 +52,8 @@ export default function Toast(props: ToastProps): JSX.Element {
                             type={type}
                             action={action}
                             style={style}
+                            elevation={elevation}
+                            square={square}
                         />
                     </AnimatedComponent>
                 );

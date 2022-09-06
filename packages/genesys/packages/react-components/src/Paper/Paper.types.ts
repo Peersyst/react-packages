@@ -1,54 +1,17 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
+import { CorePaperProps, Elevation } from "@peersyst/react-components-core";
 
-export type Elevation =
-    | 0
-    | 1
-    | 2
-    | 3
-    | 4
-    | 5
-    | 6
-    | 7
-    | 8
-    | 9
-    | 10
-    | 11
-    | 12
-    | 13
-    | 14
-    | 15
-    | 16
-    | 17
-    | 18
-    | 19
-    | 20
-    | 21
-    | 22
-    | 23
-    | 24;
-
-export interface PaperProps extends HTMLAttributes<HTMLDivElement> {
-    /**
-     * Paper elevation
-     */
-    elevation?: Elevation;
-    /**
-     * Paper has squared corners
-     */
-    square?: boolean;
-    /**
-     * Paper className
-     */
-    className?: string;
-    /**
-     * Paper styles
-     */
-    style?: CSSProperties;
-    /**
-     * Paper content
-     */
-    children?: ReactNode;
-}
+export type PaperProps = HTMLAttributes<HTMLDivElement> &
+    CorePaperProps & {
+        /**
+         * Paper className
+         */
+        className?: string;
+        /**
+         * Paper styles
+         */
+        style?: CSSProperties;
+    };
 
 export interface PaperStyles {
     elevation: Elevation;

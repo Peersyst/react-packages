@@ -3,7 +3,11 @@ import { ChevronDownIcon } from "../assets/icons";
 import { FormControlLabel } from "../input/FormControlLabel";
 
 const componentsConfig: ComponentsConfig = {
-    Alert: { defaultProps: {} },
+    Alert: {
+        defaultProps: {
+            elevation: 1,
+        },
+    },
     Divider: {
         defaultProps: {
             size: 1,
@@ -81,6 +85,7 @@ const componentsConfig: ComponentsConfig = {
             position: "top",
             animation: "fadingSlide",
             duration: 4000,
+            elevation: 1,
         },
     },
     Button: {
