@@ -1,7 +1,6 @@
 import { GridRoot } from "./Grid.styles";
 import { Property } from "csstype";
 import { GridProps } from "./Grid.types";
-import { useCallback } from "react";
 import { useGridResize, useGridState, useSortedBreakpoints } from "../hook";
 import { getColGap, getRowGap, getRowSize } from "../util";
 
@@ -18,7 +17,7 @@ const Grid = (props: GridProps): JSX.Element => {
         justifyContent: props.justifyContent,
     });
 
-    const setPatterns = useCallback((): void => {
+    const setPatterns = (reset?: boolean): void => {
         const width = window.innerWidth;
         let columns = props.cols;
         let rowSize: number | string | undefined = props.rowSize;
@@ -58,7 +57,7 @@ const Grid = (props: GridProps): JSX.Element => {
             }
         }
 
-        if (activeBreakpoint !== gridState.activeBreakpoint) {
+        if (reset || activeBreakpoint !== gridState.activeBreakpoint) {
             setGridState({
                 activeBreakpoint,
                 rowGap,
@@ -70,17 +69,9 @@ const Grid = (props: GridProps): JSX.Element => {
                 justifyContent,
             });
         }
-    }, [
-        sortedBreakpoints,
-        props.cols,
-        props.rowSize,
-        props.colGap,
-        props.rowGap,
-        props.alignItems,
-        props.justifyItems,
-        props.justifyContent,
-    ]);
-    useGridResize(setPatterns);
+    };
+
+    useGridResize(setPatterns, sortedBreakpoints, gridState);
 
     return (
         <GridRoot

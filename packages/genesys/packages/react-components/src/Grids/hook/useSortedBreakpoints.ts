@@ -5,6 +5,7 @@ export default function <B extends BaseBreakpoint = BaseBreakpoint>(
     maxBreakpoint: Omit<B, "maxWidth">,
 ): B[] {
     const [sortedBreakpoints, setSortedBreakpoints] = useState<B[]>([]);
+
     useEffect(() => {
         setSortedBreakpoints([
             // @ts-ignore
@@ -17,6 +18,6 @@ export default function <B extends BaseBreakpoint = BaseBreakpoint>(
                 ...maxBreakpoint,
             },
         ]);
-    }, [JSON.stringify(breakpoints), JSON.stringify(maxBreakpoint)]);
+    }, [breakpoints, ...Object.values(maxBreakpoint)]);
     return sortedBreakpoints;
 }

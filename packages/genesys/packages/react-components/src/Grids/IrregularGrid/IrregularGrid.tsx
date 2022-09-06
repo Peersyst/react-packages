@@ -1,4 +1,4 @@
-import { Children, ReactNode, useCallback, useEffect, useState } from "react";
+import { Children, ReactNode, useEffect, useState } from "react";
 import { Property } from "csstype";
 import { IrregularGridRoot } from "./IrregularGrid.styles";
 import { IrregularGridProps, Pattern } from "./IrregularGrid.types";
@@ -29,7 +29,7 @@ const IrregularGrid = (props: IrregularGridProps): JSX.Element => {
         setCells(cells);
     }, [pattern]);
 
-    const setPatterns = useCallback((): void => {
+    const setPatterns = (reset?: boolean): void => {
         const width = window.innerWidth;
         let columns = props.cols;
         let pattern = props.pattern;
@@ -71,7 +71,7 @@ const IrregularGrid = (props: IrregularGridProps): JSX.Element => {
             }
         }
 
-        if (activeBreakpoint !== gridState.activeBreakpoint) {
+        if (reset || activeBreakpoint !== gridState.activeBreakpoint) {
             setGridState({
                 activeBreakpoint,
                 rowGap,
@@ -84,18 +84,9 @@ const IrregularGrid = (props: IrregularGridProps): JSX.Element => {
             });
             setPattern(pattern);
         }
-    }, [
-        sortedBreakpoints,
-        props.cols,
-        props.rowSize,
-        props.colGap,
-        props.rowGap,
-        props.alignItems,
-        props.justifyItems,
-        props.justifyContent,
-        props.pattern,
-    ]);
-    useGridResize(setPatterns);
+    };
+
+    useGridResize(setPatterns, sortedBreakpoints, gridState);
 
     const renderElements = (): ReactNode => {
         const length = pattern.length;

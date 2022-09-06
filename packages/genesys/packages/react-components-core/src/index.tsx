@@ -15,4 +15,5 @@ export * from "./Slider";
 export * from "./Switch";
 export * from "./TextInput";
 export * from "./Toast";
+export * from "./ToastProvider";
 export * from "./Validators";

@@ -1,7 +1,7 @@
-import { ToastProps } from "../Toast";
+import { CoreToastProps } from "../Toast";
 
-export type ToasterToastProps = Omit<ToastProps, "message"> & { key?: number };
-export type ShowToastProps = Omit<ToastProps, "message" | "open">;
+export type ToasterToastProps = Omit<CoreToastProps<any>, "message"> & { key?: number };
+export type ShowToastProps = Omit<CoreToastProps<any>, "message" | "open">;
 
 export interface ToastContextType {
     showToast: (message: string, props?: ShowToastProps) => unknown;

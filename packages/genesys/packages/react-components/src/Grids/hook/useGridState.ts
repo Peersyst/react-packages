@@ -6,7 +6,7 @@ export default function (): [GridState, Dispatch<SetStateAction<GridState>>] {
         rowSize: undefined,
         colGap: undefined,
         rowGap: undefined,
-        activeBreakpoint: undefined,
+        activeBreakpoint: Infinity,
         columns: 0,
         alignItems: undefined,
         justifyItems: undefined,
