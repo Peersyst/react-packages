@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { ToastContainerStylesProps, ToastPosition } from "./Toast.types";
+import { Alert } from "../Alert";
 
 function getPosition(position: ToastPosition) {
     switch (position) {
@@ -42,4 +43,10 @@ export const ToastContainer = styled.div<ToastContainerStylesProps>`
     position: fixed;
     ${({ position }) => getPosition(position)};
     z-index: ${(p) => p.theme.zIndex.toast};
+`;
+
+export const ToastAlert = styled(Alert)`
+    width: fit-content;
+    min-width: 300px;
+    max-width: 360px;
 `;

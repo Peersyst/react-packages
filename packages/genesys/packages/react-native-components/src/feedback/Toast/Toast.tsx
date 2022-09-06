@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import getAnimatedComponent from "./utils/getAnimatedComponent";
 import { SlideProps } from "../../util/Animated/Slide";
 import { useMergeDefaultProps, Toast as CoreToast } from "@peersyst/react-components-core";
-import { Alert } from "../Alert";
+import { ToastAlert } from "./Toast.styles";
 
 export default function Toast(props: ToastProps): JSX.Element {
     const {
@@ -44,7 +44,7 @@ export default function Toast(props: ToastProps): JSX.Element {
                         position={position}
                         safeAreaInsets={safeAreaInsets}
                     >
-                        <Alert
+                        <ToastAlert
                             message={message}
                             icon={icon}
                             type={type}

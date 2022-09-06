@@ -1,6 +1,7 @@
 import { ToastContainerStylesProps, ToastPosition } from "./Toast.types";
 import { View } from "react-native";
 import styled from "@peersyst/react-native-styled";
+import { Alert } from "../Alert";
 
 function getPosition(position: ToastPosition): {
     bottom: number | undefined;
@@ -39,3 +40,7 @@ export const ToastContainer = styled(View)<ToastContainerStylesProps>(
         };
     },
 );
+
+export const ToastAlert = styled(Alert)(({ dimensions: { width } }) => ({
+    width: width - 48,
+}));

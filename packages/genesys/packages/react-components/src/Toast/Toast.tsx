@@ -1,8 +1,7 @@
-import { ToastContainer } from "./Toast.styles";
+import { ToastAlert, ToastContainer } from "./Toast.styles";
 import { ToastProps } from "./Toast.types";
 import { getAnimation } from "./utils/getAnimation";
 import { useMergeDefaultProps, Toast as CoreToast } from "@peersyst/react-components-core";
-import { Alert } from "../Alert";
 
 export default function Toast(props: ToastProps): JSX.Element {
     const {
@@ -32,7 +31,7 @@ export default function Toast(props: ToastProps): JSX.Element {
                         onExited={onExited}
                         {...AnimatedComponentProps}
                     >
-                        <Alert
+                        <ToastAlert
                             type={type}
                             message={message}
                             icon={icon}
