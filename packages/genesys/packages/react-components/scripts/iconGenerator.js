@@ -32,7 +32,7 @@ export default function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, 
     return (
         <SvgIcon {...rest} data-testid="${name}Icon" className={cx(${
         removeFill ? undefined : '"Filled"'
-    }, "Icon", "${name[0] + name.slice(1) + "Icon" }", className)}>
+    }, "Icon", "${name + "Icon" }", className)}>
             ${data}
         </SvgIcon>
     )
