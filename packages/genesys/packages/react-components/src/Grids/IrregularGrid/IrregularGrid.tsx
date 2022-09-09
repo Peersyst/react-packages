@@ -10,7 +10,7 @@ const IrregularGrid = (props: IrregularGridProps): JSX.Element => {
     const [pattern, setPattern] = useState<Pattern>([]);
     const [cells, setCells] = useState(0);
 
-    const sortedBreakpoints = useSortedBreakpoints(props.breakpoints || [], {
+    const sortedBreakpoints = useSortedBreakpoints(props.breakpoints, {
         pattern: props.pattern,
         rowSize: props.rowSize,
         colGap: props.colGap,

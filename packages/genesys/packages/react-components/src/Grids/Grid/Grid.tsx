@@ -7,7 +7,7 @@ import { getColGap, getRowGap, getRowSize } from "../util";
 const Grid = (props: GridProps): JSX.Element => {
     const [gridState, setGridState] = useGridState();
 
-    const sortedBreakpoints = useSortedBreakpoints(props.breakpoints || [], {
+    const sortedBreakpoints = useSortedBreakpoints(props.breakpoints, {
         rowSize: props.rowSize,
         colGap: props.colGap,
         rowGap: props.rowGap,
