@@ -1,7 +1,7 @@
 import { ViewProps, ViewStyle } from "react-native";
 import { CorePaperProps, Elevation } from "@peersyst/react-components-core";
 
-export type PaperProps = ViewProps &
+export type PaperProps = Omit<ViewProps, "style"> &
     CorePaperProps & {
         /**
          * Paper styles

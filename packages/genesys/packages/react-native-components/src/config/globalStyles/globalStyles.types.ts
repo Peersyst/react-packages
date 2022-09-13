@@ -13,10 +13,11 @@ export interface CreateGlobalStylesParams {
 export type CreateGlobalStyles = (params: CreateGlobalStylesParams) => GlobalStyles;
 
 export interface BaseGlobalStyles {
-    Label?: LabelStyle;
     FormControlLabel?: FormControlLabelStyle;
     FormControlHint?: TextStyle;
     FormControlError?: TextStyle;
     FormControl?: ViewStyle;
+    Label?: LabelStyle;
+    Paper?: ViewStyle;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}
