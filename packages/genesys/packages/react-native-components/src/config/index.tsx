@@ -13,6 +13,7 @@ export {
     useValidators,
 } from "@peersyst/react-components-core";
 export type {
+    BaseValidator,
     BlockchainLinksTypes,
     BlockchainLinksTypesOverrides,
     BlockchainLinks,
