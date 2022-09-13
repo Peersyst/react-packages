@@ -3,5 +3,4 @@ import { Col } from "../../layout/Col";
 
 export const FormControlRoot = styled(Col)(() => ({
     alignSelf: "stretch",
-    flex: 1,
 }));
