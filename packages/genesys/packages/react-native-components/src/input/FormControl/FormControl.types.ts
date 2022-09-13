@@ -36,6 +36,10 @@ export interface FormControlProps<
     ) => ComponentStyleType;
 }
 
-export type FormControlledComponentProps<CoreProps, ComponentStyleType = ViewStyle> = CoreProps & {
-    style?: FormControlStateStyle<ComponentStyleType>;
+export type FormControlledComponentProps<
+    CoreProps,
+    ComponentStyleType = ViewStyle,
+    LabelStyleType = LabelStyle,
+> = CoreProps & {
+    style?: FormControlStyle<LabelStyleType, ComponentStyleType>;
 };
