@@ -12,6 +12,15 @@ export default function <S>(
         ...restDefaultStyle
     }: FormControlStateStyle<S>,
     {
+        required: requiredGlobalStyle,
+        invalid: invalidGlobalStyle,
+        disabled: disabledGlobalStyle,
+        readonly: readonlyGlobalStyle,
+        focused: focusedGlobalStyle,
+        valid: validGlobalStyle,
+        ...defaultGlobalStyle
+    }: FormControlStateStyle<S>,
+    {
         required: requiredStyle,
         invalid: invalidStyle,
         disabled: disabledStyle,
@@ -22,13 +31,23 @@ export default function <S>(
     }: FormControlStateStyle<S>,
     { required, invalid, disabled, readonly, focused, valid }: FormControlContextType,
 ): S {
-    const defaultStyles = { ...restDefaultStyle, ...defaultStyle };
-    const requiredStyles = required ? { ...requiredDefaultStyle, ...requiredStyle } : {};
-    const invalidStyles = invalid ? { ...invalidDefaultStyle, ...invalidStyle } : {};
-    const disabledStyles = disabled ? { ...disabledDefaultStyle, ...disabledStyle } : {};
-    const readonlyStyles = readonly ? { ...readonlyDefaultStyle, ...readonlyStyle } : {};
-    const focusedStyles = focused ? { ...focusedDefaultStyle, ...focusedStyle } : {};
-    const validStyles = valid ? { ...validDefaultStyle, ...validStyle } : {};
+    const defaultStyles = { ...restDefaultStyle, ...defaultGlobalStyle, ...defaultStyle };
+    const requiredStyles = required
+        ? { ...requiredDefaultStyle, ...requiredGlobalStyle, ...requiredStyle }
+        : {};
+    const invalidStyles = invalid
+        ? { ...invalidDefaultStyle, ...invalidGlobalStyle, ...invalidStyle }
+        : {};
+    const disabledStyles = disabled
+        ? { ...disabledDefaultStyle, ...disabledGlobalStyle, ...disabledStyle }
+        : {};
+    const readonlyStyles = readonly
+        ? { ...readonlyDefaultStyle, ...readonlyGlobalStyle, ...readonlyStyle }
+        : {};
+    const focusedStyles = focused
+        ? { ...focusedDefaultStyle, ...focusedGlobalStyle, ...focusedStyle }
+        : {};
+    const validStyles = valid ? { ...validDefaultStyle, ...validGlobalStyle, ...validStyle } : {};
 
     return {
         ...defaultStyles,

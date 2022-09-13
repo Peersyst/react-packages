@@ -11,6 +11,7 @@ import { FormControlHint } from "../FormControlHint";
 import { FormControlError } from "../FormControlError";
 import getFormControlledComponentStyles from "./util/getFormControlledComponentStyles";
 import { ViewStyle } from "react-native";
+import { useGlobalStyles } from "../../config";
 
 function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>(
     props: FormControlProps<T, LabelStyleType, ComponentStyle>,
@@ -24,7 +25,7 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
             error: errorStyle = {},
             // @ts-ignore
             component: componentStyle = {},
-            ...rootStyle
+            ...rootStyleProp
         } = {},
         stylesMergeStrategy = getFormControlledComponentStyles,
         label,
@@ -33,6 +34,9 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
         children,
         ...coreProps
     } = useMergeDefaultProps("FormControl", props);
+
+    const globalRootStyle = useGlobalStyles("FormControl");
+    const rootStyle = { ...globalRootStyle, ...rootStyleProp };
 
     const [LabelComponent, { style: LabelPropsStyle = {}, ...LabelProps }] = Array.isArray(Label)
         ? Label

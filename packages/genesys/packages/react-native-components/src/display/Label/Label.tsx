@@ -3,6 +3,7 @@ import { FlexStyle } from "react-native";
 import { LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
 import { Fragment } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useGlobalStyles } from "../../config";
 
 const Label = (props: LabelProps): JSX.Element => {
     const {
@@ -11,9 +12,14 @@ const Label = (props: LabelProps): JSX.Element => {
         alignment = "start",
         gap = 10,
         children,
-        style: { label: labelStyle = {}, ...rootStyle } = {},
+        style: { label: labelStyleProp = {}, ...rootStyleProp } = {},
         variant,
     } = useMergeDefaultProps("Label", props);
+
+    const { label: labelGlobalStyles, ...rootGlobalStyles } = useGlobalStyles("Label");
+
+    const rootStyle = { ...rootGlobalStyles, ...rootStyleProp };
+    const labelStyle = { ...labelGlobalStyles, ...labelStyleProp };
 
     const direction: FlexStyle["flexDirection"] = (() => {
         if (placement === "top") return "column";

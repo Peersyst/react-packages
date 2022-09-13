@@ -7,6 +7,7 @@ const defaultConfig: Omit<Config, "projectName"> = {
     translate: (w: string) => w,
     validators: {},
     components: componentsConfig,
+    globalStyles: () => ({}),
 };
 
 export default defaultConfig;

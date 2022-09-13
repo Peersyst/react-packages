@@ -1,3 +1,5 @@
+export * from "./globalStyles";
+export * from "./hook";
 export * from "./components.config.types";
 export { default as createConfig } from "./createConfig";
 export { default as defaultConfig } from "./defaultConfig";
