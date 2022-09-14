@@ -13,6 +13,7 @@ export default function (
         required: { input: defaultRequiredInputStyle, ...defaultRequiredStyle } = {},
         ...defaultStyle
     }: FormControlStateStyle<TextInputStyle>,
+    _globalStyles: FormControlStateStyle<TextInputStyle>,
     {
         invalid: { input: invalidInputStyles, ...invalidStyles } = {},
         valid: { input: validInputStyles, ...validStyles } = {},

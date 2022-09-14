@@ -17,8 +17,8 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
     props: FormControlProps<T, LabelStyleType, ComponentStyle>,
 ): JSX.Element {
     const {
-        // @ts-ignore
         defaultStyle = {},
+        globalStyle = {},
         style: {
             label: labelStyle = {},
             hint: hintStyle = {},
@@ -52,7 +52,7 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
                             setValue,
                             context,
                             // @ts-ignore
-                            stylesMergeStrategy(defaultStyle, componentStyle, context),
+                            stylesMergeStrategy(defaultStyle, globalStyle, componentStyle, context),
                             setFocused,
                         );
                         return (
