@@ -53,9 +53,14 @@ export default function scale<P extends { style?: any }>(
         });
 
         if (mounted)
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            return <AnimatedComponent style={{ ...style, opacity: fadeAnim }} {...rest} />;
+            return (
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                <AnimatedComponent
+                    style={{ ...style, transform: [{ scale: scaleAnim }] }}
+                    {...rest}
+                />
+            );
         else return <></>;
     };
 
