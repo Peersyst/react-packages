@@ -23,8 +23,8 @@ export type SelectStyle = Omit<ViewStyle, "display"> & {
     item?: SelectItemStyles;
 };
 
-export type SelectProps<T> = FormControlledComponentProps<
-    CoreSelectProps<T, SelectItemProps<T>, LabelProps>,
+export type SelectProps<T, Multiple extends boolean = false> = FormControlledComponentProps<
+    CoreSelectProps<T, SelectItemProps<T>, LabelProps, Multiple>,
     SelectStyle
 > & {
     /**

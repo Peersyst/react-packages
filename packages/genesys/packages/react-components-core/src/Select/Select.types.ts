@@ -2,7 +2,16 @@ import { ReactElement, ReactNode } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
 
-export interface CoreBaseSelectProps<SelectItemProps> {
+export interface CoreSelectProps<
+    T,
+    SelectItemProps,
+    LP extends CoreLabelProps,
+    Multiple extends boolean = false,
+> extends CoreFormControlledComponentProps<Multiple extends true ? T[] : T, LP> {
+    /**
+     * Make the selection multiple
+     */
+    multiple?: Multiple;
     /**
      * Placeholder
      */
@@ -20,29 +29,6 @@ export interface CoreBaseSelectProps<SelectItemProps> {
      */
     children?: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[];
 }
-
-export interface CoreUniqueSelectProps<T, LP extends CoreLabelProps>
-    extends CoreFormControlledComponentProps<T, LP> {
-    /**
-     * Make the selection multiple
-     */
-    multiple?: false;
-}
-
-export interface CoreMultipleSelectProps<T, LP extends CoreLabelProps>
-    extends CoreFormControlledComponentProps<T[], LP> {
-    /**
-     * Make the selection multiple
-     */
-    multiple: true;
-}
-
-export type CoreSelectProps<
-    T,
-    SelectItemProps,
-    LP extends CoreLabelProps = CoreLabelProps,
-> = CoreBaseSelectProps<SelectItemProps> &
-    (CoreUniqueSelectProps<T, LP> | CoreMultipleSelectProps<T, LP>);
 
 export interface SelectItemChildrenContext<T> {
     isSelected: boolean;

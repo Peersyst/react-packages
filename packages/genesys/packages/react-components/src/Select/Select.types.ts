@@ -12,8 +12,8 @@ export interface DisplayStylesProps {
     open: boolean;
     disabled: boolean;
 }
-export type SelectProps<T> = FormControlledComponentProps<
-    CoreSelectProps<T, SelectItemProps<T>, LabelProps>
+export type SelectProps<T, Multiple extends boolean = false> = FormControlledComponentProps<
+    CoreSelectProps<T, SelectItemProps<T>, LabelProps, Multiple>
 > & {
     /**
      * Make dropdown expandable instead of absolutely positioned

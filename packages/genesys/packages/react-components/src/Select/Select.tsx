@@ -65,7 +65,9 @@ function InnerSelect<T>({
     );
 }
 
-export default function Select<T = any>(props: SelectProps<T>): JSX.Element {
+export default function Select<T = any, Multiple extends boolean = false>(
+    props: SelectProps<T, Multiple>,
+): JSX.Element {
     const {
         required,
         multiple = false,
