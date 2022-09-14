@@ -1,5 +1,5 @@
 import { IconButtonProps } from "./IconButton.types";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { IconButtonRoot } from "./IconButton.styles";
 import { Icon } from "../../display/Icon";
 import useIconButtonStyles from "./hook/useIconButtonStyles";
@@ -21,10 +21,7 @@ const IconButton = (props: IconButtonProps): JSX.Element => {
     const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabledProp);
 
     const { handleSubmit, valid } = useContext(FormContext);
-    const onPress = useMemo(() => {
-        if (type === "submit") return handleSubmit;
-        else return onPressProp;
-    }, [type, handleSubmit]);
+    const onPress = type === "submit" ? handleSubmit : onPressProp;
 
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
 

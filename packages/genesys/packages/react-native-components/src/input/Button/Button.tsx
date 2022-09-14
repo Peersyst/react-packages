@@ -1,7 +1,7 @@
 import { ButtonRoot, ButtonLoader, ButtonContent } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
 import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -26,10 +26,8 @@ const Button = (props: ButtonProps): JSX.Element => {
     const [pressed, setPressed] = useState(false);
 
     const { handleSubmit, valid } = useContext(FormContext);
-    const onPress = useMemo(() => {
-        if (type === "submit") return handleSubmit;
-        else return onPressProp;
-    }, [type, handleSubmit]);
+    const onPress = type === "submit" ? handleSubmit : onPressProp;
+
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
 
     const { textStyle, rootStyle } = useButtonStyles(style, variant, size, disabled, pressed);
