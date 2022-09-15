@@ -1,26 +1,39 @@
 import { Children, ReactElement, ReactNode, useMemo } from "react";
-import { CoreSelectItemProps } from "../Select.types";
+import { CoreSelectItemProps, SelectOption } from "../Select.types";
+import isSelectOption from "../utils/isSelectOption";
 
 export function useSelectDisplayContent<
     T,
     SIP extends CoreSelectItemProps<T> = CoreSelectItemProps<T>,
 >(
-    value: unknown | unknown[],
+    value: T | T[],
     multiple: boolean,
-    children: ReactElement<SIP> | ReactElement<SIP>[] | undefined,
+    options: SelectOption<T>[] | ReactElement<SIP> | ReactElement<SIP>[] | undefined,
 ): ReactNode | ReactNode[] {
     return useMemo(() => {
-        if (value === undefined || !children) return;
+        if (value === undefined || !options) return;
+
+        if (Array.isArray(options) && isSelectOption(options[0])) {
+            if (multiple) {
+                const selectedOptions = (options as SelectOption<T>[]).filter((o) =>
+                    (value as T[]).find((v) => v === o.value),
+                );
+                return selectedOptions.map((so) => so.label);
+            } else {
+                return (options as SelectOption<T>[]).find((o) => value === o.value)?.label;
+            }
+        }
+
         if (multiple) {
-            const selectedChildren = Children.toArray(children).filter((c) =>
-                (value as unknown[]).find((v) => v === (c as ReactElement).props?.value),
+            const selectedChildren = Children.toArray(options).filter((c) =>
+                (value as T[]).find((v) => v === (c as ReactElement).props?.value),
             );
             return selectedChildren.map((c) => (c as ReactElement).props?.children);
         } else
             return (
-                Children.toArray(children).find(
+                Children.toArray(options).find(
                     (c) => (c as ReactElement).props.value === value,
                 ) as ReactElement
             )?.props?.children;
-    }, [value, multiple, children]);
+    }, [value, multiple, options]);
 }

@@ -38,7 +38,7 @@ function InnerSelect<T>({
     const displayContent = useSelectDisplayContent<T, SelectItemProps<T>>(
         value,
         multiple,
-        children,
+        children || options,
     );
 
     return (
@@ -88,6 +88,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         children,
         LabelProps = {},
         Label = FormControlLabel,
+        options,
         ...rest
     } = useMergeDefaultProps("Select", props);
 
@@ -114,6 +115,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     expandable={expandable}
                     DropdownComponent={DropdownComponent}
                     multiple={multiple}
+                    options={options}
                 >
                     {children}
                 </InnerSelect>

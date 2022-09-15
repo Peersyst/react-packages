@@ -47,7 +47,7 @@ function InnerSelect<T>({
     const displayContent = useSelectDisplayContent<T, SelectItemProps<T>>(
         value,
         multiple,
-        children,
+        children || options,
     );
 
     const {
@@ -133,6 +133,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         display,
         LabelProps = {},
         Label = FormControlLabel,
+        options,
         ...rest
     } = useMergeDefaultProps("Select", props);
 
@@ -165,6 +166,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     footer={footer}
                     display={display}
                     style={style}
+                    options={options}
                 >
                     {children}
                 </InnerSelect>
