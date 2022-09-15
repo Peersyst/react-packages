@@ -163,12 +163,15 @@ const Popover = ((props: PopoverProps): JSX.Element => {
         </PopoverPopper>
     );
 
-    const container = containerProp || document.body;
+    // Check ssr
+    const container = containerProp || (typeof window !== "undefined" ? document.body : undefined);
 
     return (
         <ClickAwayListener onClickAway={() => showOn === "click" && visible && setVisible(false)}>
             <PopoverRoot className={cx("PopoverRoot", className)} style={style}>
-                {disablePortal ? popperElement : createPortal(popperElement, container)}
+                {disablePortal
+                    ? popperElement
+                    : container && createPortal(popperElement, container)}
                 <PopoverContent
                     onClick={handleClick}
                     onMouseEnter={handleMouseOver}

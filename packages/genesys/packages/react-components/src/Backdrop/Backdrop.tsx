@@ -71,7 +71,8 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         </Animated>
     );
 
-    if (renderAtRoot) {
+    // Check ssr
+    if (typeof window !== "undefined" && renderAtRoot) {
         const modalRoot = document.getElementById("modal-root");
 
         if (modalRoot) return createPortal(backdrop, modalRoot);
