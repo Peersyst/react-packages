@@ -15,7 +15,7 @@ import { Row } from "../../layout/Row";
 import { ChevronDownIcon } from "../../assets/icons";
 import { FormControl } from "../FormControl";
 import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
-import { SelectItemProps } from "./SelectItem";
+import { SelectItem, SelectItemProps } from "./SelectItem";
 import { useControlled } from "@peersyst/react-hooks";
 
 function InnerSelect<T>({
@@ -27,6 +27,7 @@ function InnerSelect<T>({
     value,
     setValue,
     multiple,
+    options = [],
     children,
     style: styleProp,
     display,
@@ -91,13 +92,19 @@ function InnerSelect<T>({
             </TouchableWithoutFeedback>
             <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                 <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>
-                    {Children.map(children, (child) => {
-                        const { style: childStyle, ...rest } = child!.props || {};
-                        return cloneElement(child!, {
-                            ...rest,
-                            style: { ...itemStyle, ...childStyle },
-                        }) as ReactElement;
-                    })}
+                    {children
+                        ? Children.map(children, (child) => {
+                              const { style: childStyle, ...rest } = child!.props || {};
+                              return cloneElement(child!, {
+                                  ...rest,
+                                  style: { ...itemStyle, ...childStyle },
+                              }) as ReactElement;
+                          })
+                        : options.map((option, index) => (
+                              <SelectItem key={index} value={option.value} style={itemStyle}>
+                                  {option.label}
+                              </SelectItem>
+                          ))}
                 </SelectMenu>
             </SelectProvider>
         </View>

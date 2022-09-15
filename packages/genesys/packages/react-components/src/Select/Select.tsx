@@ -11,7 +11,7 @@ import {
 import { InnerSelectProps, SelectProps } from "./Select.types";
 import { cx } from "@peersyst/react-utils";
 import { ClickAwayListener } from "../ClickAwayListener";
-import { SelectItemProps } from "./SelectItem";
+import { SelectItem, SelectItemProps } from "./SelectItem";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
 
@@ -26,6 +26,7 @@ function InnerSelect<T>({
     multiple,
     expandable,
     DropdownComponent,
+    options = [],
     children,
 }: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useState<boolean>(autoFocus);
@@ -57,7 +58,12 @@ function InnerSelect<T>({
                 </SelectDisplay>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                     <SelectMenu open={open} expandable={expandable}>
-                        {children}
+                        {children ||
+                            options.map((option, index) => (
+                                <SelectItem key={index} value={option.value}>
+                                    {option.label}
+                                </SelectItem>
+                            ))}
                     </SelectMenu>
                 </SelectProvider>
             </SelectRoot>

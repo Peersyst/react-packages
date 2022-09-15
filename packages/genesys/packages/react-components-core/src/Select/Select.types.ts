@@ -2,6 +2,11 @@ import { ReactElement, ReactNode } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
 
+export interface SelectOption<T> {
+    label: string;
+    value: T;
+}
+
 export interface CoreSelectProps<
     T,
     SelectItemProps,
@@ -25,7 +30,11 @@ export interface CoreSelectProps<
      */
     renderValue?: (val: ReactNode | ReactNode[]) => ReactNode;
     /**
-     * Select options
+     * Select options with default SelectItem
+     */
+    options?: SelectOption<T>[];
+    /**
+     * Select options with custom SelectItem
      */
     children?: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[];
 }

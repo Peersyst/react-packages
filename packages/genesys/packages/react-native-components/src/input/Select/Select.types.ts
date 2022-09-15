@@ -61,6 +61,7 @@ export type InnerSelectProps<T> = Pick<
     SelectProps<T>,
     | "renderValue"
     | "placeholder"
+    | "options"
     | "children"
     | "header"
     | "footer"
