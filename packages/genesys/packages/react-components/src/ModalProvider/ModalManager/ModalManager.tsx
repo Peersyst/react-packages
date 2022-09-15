@@ -1,8 +1,10 @@
-import { useModalState } from "../hooks/useModalState";
 import { ModalManagerRoot } from "./ModalManager.styles";
+import { ReactNode } from "react";
 
-export function ModalManager(): JSX.Element {
-    const modals = useModalState();
+export interface ModalManagerProps {
+    children: ReactNode;
+}
 
-    return <ModalManagerRoot id="modal-root">{modals}</ModalManagerRoot>;
+export function ModalManager({ children }: ModalManagerProps): JSX.Element {
+    return <ModalManagerRoot id="modal-root">{children}</ModalManagerRoot>;
 }

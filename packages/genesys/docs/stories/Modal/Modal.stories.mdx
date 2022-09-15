@@ -73,9 +73,8 @@ Returns true if a Modal with the given name is open
 <ModalProvider>
     <Button
         onClick={() => {
-            showModal(Modal, {
-                name: "modal",
-                children: <Button onClick={() => hideModal("modal")}>Close me</Button>,
+            showModal(ControlledModal, {
+                children: <Button onClick={() => hideModal(ControlledModal.id)}>Close me</Button>,
             });
         }}
     >

@@ -1,5 +1,7 @@
 import { Button, createModal, Modal, Row, useModal } from "@peersyst/react-components";
 
+const ControlledModal = createModal(Modal);
+
 function ShowUncontrolledModal(): JSX.Element {
     const { showModal, hideModal } = useModal();
 
@@ -7,8 +9,10 @@ function ShowUncontrolledModal(): JSX.Element {
         <Row justifyContent="space-around">
             <Button
                 onClick={() => {
-                    showModal(createModal(Modal), {
-                        children: <Button onClick={() => hideModal("modal")}>Close me</Button>,
+                    showModal(ControlledModal, {
+                        children: (
+                            <Button onClick={() => hideModal(ControlledModal.id)}>Close me</Button>
+                        ),
                     });
                 }}
             >

@@ -9,6 +9,7 @@ export * from "./FormControl";
 export * from "./FormControlError";
 export * from "./FormControlHint";
 export * from "./Label";
+export * from "./ModalProvider";
 export * from "./Paper";
 export * from "./RadioButton";
 export * from "./RangeSlider";

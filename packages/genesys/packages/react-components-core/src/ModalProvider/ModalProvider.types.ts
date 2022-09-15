@@ -1,6 +1,7 @@
-import { ComponentType, ReactNode } from "react";
+import { ComponentType, ReactElement, ReactNode } from "react";
 
 export interface ModalProviderProps {
+    modalRenderer: (modals: ReactNode[]) => ReactElement;
     children?: ReactNode;
 }
 
@@ -27,7 +28,7 @@ export interface ShowModalAction {
 
 export interface HideModalAction {
     type: ModalActionType.SHOW_MODAL;
-    payload: string;
+    payload?: string | ModalWithId;
 }
 
 export interface RemoveModalAction {
@@ -37,7 +38,7 @@ export interface RemoveModalAction {
 
 export type ModalAction = {
     type: ModalActionType;
-    payload: Modal | string;
+    payload: Modal | ModalWithId | string;
 };
 
 export interface CommonModalComponentProps {

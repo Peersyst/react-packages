@@ -1,8 +1,11 @@
 export { default as ModalProvider } from "./ModalProvider";
-export type { CommonModalComponentProps, ModalProviderProps } from "./ModalProvider.types";
-export * from "./ModalContext";
+export * from "./ModalProvider";
 export * from "./ModalManager/ModalManager";
-export * from "./hooks";
-export { default as createModal } from "./utils/createModal";
-export { default as createBackdrop } from "./utils/createModal";
-export { default as createDrawer } from "./utils/createModal";
+export {
+    createModal,
+    createBackdrop,
+    createDrawer,
+    useModal,
+    ModalContext,
+} from "@peersyst/react-components-core";
+export type { CommonModalComponentProps, ModalContextType } from "@peersyst/react-components-core";

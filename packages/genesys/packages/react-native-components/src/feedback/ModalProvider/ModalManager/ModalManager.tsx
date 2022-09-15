@@ -1,11 +1,13 @@
-import { useModalState } from "../hooks/useModalState";
 import { TouchableWithoutFeedback } from "react-native";
+import { Children, ReactNode } from "react";
 
-export function ModalManager(): JSX.Element {
-    const stateModals = useModalState();
+export interface ModalManagerProps {
+    children: ReactNode;
+}
 
-    const modals = stateModals.map((m, index) => (
-        <TouchableWithoutFeedback key={index.toString()}>{m}</TouchableWithoutFeedback>
+export function ModalManager({ children }: ModalManagerProps): JSX.Element {
+    const modals = Children.toArray(children).map((modal, index) => (
+        <TouchableWithoutFeedback key={index.toString()}>{modal}</TouchableWithoutFeedback>
     ));
     return <>{modals}</>;
 }
