@@ -38,7 +38,7 @@ const Label = (props: LabelProps): JSX.Element => {
     ];
 
     return (
-        <RootComponent gap={gap} alignment={alignment} style={rootStyle}>
+        <RootComponent gap={gap} alignment={alignment} style={{ width: "100%", ...rootStyle }}>
             {direction.includes("reverse") ? content.reverse() : content}
         </RootComponent>
     );

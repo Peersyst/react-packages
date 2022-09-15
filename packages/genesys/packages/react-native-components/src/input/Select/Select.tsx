@@ -65,7 +65,7 @@ function InnerSelect<T>({
     );
 
     return (
-        <View style={style}>
+        <View style={{ width: "100%", ...style }}>
             <TouchableWithoutFeedback onPress={handlePress}>
                 <View onStartShouldSetResponderCapture={() => true}>
                     {display || (
