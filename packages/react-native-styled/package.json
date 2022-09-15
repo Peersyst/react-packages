@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-styled",
     "author": "Peersyst",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -40,6 +40,9 @@
         "@types/react-native": "~0.66.15",
         "react": "^17.0.0",
         "react-native": "0.67.2"
+    },
+    "publishConfig": {
+        "access": "public"
     },
     "sideEffects": false
 }
