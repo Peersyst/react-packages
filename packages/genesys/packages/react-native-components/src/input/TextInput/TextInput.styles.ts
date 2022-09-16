@@ -14,7 +14,6 @@ export const Input = styledWithAs(TextInput)<InputProps>(
 );
 
 export const TextInputRoot = styled(Row, { alignItems: "center", gap: 10 })(({ theme }) => ({
-    width: "100%",
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: theme.palette.text,
