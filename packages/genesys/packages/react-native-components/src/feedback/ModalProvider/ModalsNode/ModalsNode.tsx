@@ -1,9 +1,8 @@
 import { findNodeHandle, View } from "react-native";
-import { Children, LegacyRef, ReactNode, useRef } from "react";
+import { Children, forwardRef, ReactNode, useRef } from "react";
 import { ModalsNodeProvider } from "./ModalsNodeContext";
 
 export interface ModalsNodePortalProps {
-    ref: LegacyRef<View>;
     children?: ReactNode;
 }
 
@@ -11,7 +10,10 @@ export interface ModalsNodeProps {
     children: ReactNode;
 }
 
-export function ModalsNodePortal({ ref, children }: ModalsNodePortalProps): JSX.Element {
+export const ModalsNodePortal = forwardRef<View, ModalsNodePortalProps>(function ModalsNodePortal(
+    { children },
+    ref,
+): JSX.Element {
     const sortedChildren = Children.toArray(children).reverse();
 
     return (
@@ -19,7 +21,7 @@ export function ModalsNodePortal({ ref, children }: ModalsNodePortalProps): JSX.
             {sortedChildren}
         </View>
     );
-}
+});
 
 export function ModalsNode({ children }: ModalsNodeProps): JSX.Element {
     const modalsNodeRef = useRef<number | null>();
