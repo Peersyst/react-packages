@@ -1,11 +1,13 @@
-import { useCallback, useState } from "react";
-import { BackdropProps } from "./Backdrop.types";
+import { useCallback } from "react";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "@peersyst/react-native-modal";
-import { Platform, View } from "react-native";
-import { useToast } from "../ToastProvider";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { BackdropProps } from "@peersyst/react-native-components";
+// Import createPortal from RN depths
+// @ts-ignore
+import { createPortal } from "react-native/Libraries/Renderer/shims/ReactNative";
+import { useModalManagerRef } from "../ModalProvider/ModalManager";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -39,9 +41,6 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     } = useMergeDefaultProps("Backdrop", props);
 
     const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
-    const [entered, setEntered] = useState(false);
-    const { toastActive, hideToast } = useToast();
-    const [toastWasActive, setToastWasActive] = useState(toastActive);
 
     const handleClose = useCallback(() => {
         if (closable && open) {
@@ -49,35 +48,23 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         }
     }, [closable, open, setOpen]);
 
-    const handleEntered = () => {
-        setEntered(true);
-        if (toastWasActive) {
-            setToastWasActive(false);
-        }
-        onEntered?.();
-    };
-
-    const handleOpen = () => {
-        if (toastWasActive) {
-            hideToast();
-        }
-        onOpen?.();
-    };
-
     const { palette } = useTheme();
 
-    return (
+    const modalManagerRef = useModalManagerRef();
+
+    return createPortal(
         <Modal
+            coverScreen={false}
             isVisible={open}
             onModalWillHide={handleClose}
             onModalHide={onExited}
             onBackdropPress={closeOnBackdropTap ? handleClose : undefined}
             onBackButtonPress={handleClose}
-            swipeDirection={toastActive && !toastWasActive ? undefined : swipeDirection}
+            swipeDirection={swipeDirection}
             swipeThreshold={swipeable && closable ? swipeThreshold : 9999}
             onSwipeComplete={() => swipeable && handleClose()}
-            onModalWillShow={handleOpen}
-            onModalShow={handleEntered}
+            onModalWillShow={onOpen}
+            onModalShow={onEntered}
             useNativeDriverForBackdrop
             hasBackdrop={renderBackdrop}
             backdropColor={backdropColor ?? palette.backdrop}
@@ -94,23 +81,10 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             panResponderThreshold={panResponderThreshold}
             propagateSwipe={propagateSwipe}
             style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
-            onResponderStart={() => toastActive && hideToast()}
             statusBarTranslucent
         >
             {typeof children === "function" ? children(open, setOpen) : children}
-            {entered && !toastWasActive && toastActive && open && (
-                <View
-                    style={{
-                        marginTop: Platform.OS === "android" ? -24 : 0,
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                    }}
-                >
-                    {/*TODO: Fix modals ans toasts*/}
-                    {/*<Toaster />*/}
-                </View>
-            )}
-        </Modal>
+        </Modal>,
+        modalManagerRef.current,
     );
 }
