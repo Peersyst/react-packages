@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "@peersyst/react-native-modal";
@@ -7,7 +7,7 @@ import { BackdropProps } from "@peersyst/react-native-components";
 // Import createPortal from RN depths
 // @ts-ignore
 import { createPortal } from "react-native/Libraries/Renderer/shims/ReactNative";
-import { useModalsNoderRef } from "../ModalProvider/ModalsNode";
+import { useModalsNodeContext } from "../ModalProvider/ModalsNode";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -50,7 +50,21 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
 
     const { palette } = useTheme();
 
-    const modalsNodeRef = useModalsNoderRef();
+    const { modalsNodeRef, setCount } = useModalsNodeContext();
+
+    // Keep consistent layout in ModalNodes
+    const [modalZ, setModalZ] = useState<number>();
+
+    useEffect(() => {
+        setCount((count) => {
+            const z = count + 1;
+            setModalZ(z);
+            return z;
+        });
+        return () => {
+            setCount((count) => count - 1);
+        };
+    }, []);
 
     return createPortal(
         <Modal
@@ -80,7 +94,16 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             onSwipeCancel={onSwipeCancel}
             panResponderThreshold={panResponderThreshold}
             propagateSwipe={propagateSwipe}
-            style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
+            style={[
+                {
+                    margin: 0,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    zIndex: modalZ,
+                    elevation: modalZ,
+                },
+                style,
+            ]}
             statusBarTranslucent
         >
             {typeof children === "function" ? children(open, setOpen) : children}

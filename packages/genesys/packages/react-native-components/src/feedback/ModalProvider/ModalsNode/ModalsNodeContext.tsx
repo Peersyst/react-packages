@@ -1,14 +1,14 @@
-import { createContext, MutableRefObject, useContext } from "react";
+import { createContext, Dispatch, MutableRefObject, SetStateAction, useContext } from "react";
 
 export interface ModalManagerContextType {
-    modalManagerRef: MutableRefObject<number | null | undefined>;
+    modalsNodeRef: MutableRefObject<number | null | undefined>;
+    count: number;
+    setCount: Dispatch<SetStateAction<number>>;
 }
 
-export const ModalsNodeContext = createContext<MutableRefObject<number | null | undefined>>(
-    undefined as any,
-);
+export const ModalsNodeContext = createContext<ModalManagerContextType>(undefined as any);
 
 export const ModalsNodeProvider = ModalsNodeContext.Provider;
 export const ModalsNodeConsumer = ModalsNodeContext.Consumer;
 
-export const useModalsNoderRef = () => useContext(ModalsNodeContext);
+export const useModalsNodeContext = () => useContext(ModalsNodeContext);
