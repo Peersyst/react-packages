@@ -56,14 +56,17 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     const [modalZ, setModalZ] = useState<number>();
 
     useEffect(() => {
-        const z = count + 1;
-        setCount(z);
-        setModalZ(z);
-    }, []);
+        if (open && modalZ === undefined) {
+            const z = count + 1;
+            setCount(z);
+            setModalZ(z);
+        }
+    }, [open, modalZ, count]);
 
     return createPortal(
         <Modal
             coverScreen={false}
+            zIndex={modalZ}
             isVisible={open}
             onModalWillHide={handleClose}
             onModalHide={onExited}
@@ -94,8 +97,6 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
                     margin: 0,
                     justifyContent: "center",
                     alignItems: "center",
-                    zIndex: modalZ,
-                    elevation: modalZ,
                 },
                 style,
             ]}

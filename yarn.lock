@@ -3636,10 +3636,10 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@peersyst/react-native-modal@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.1.tgz#42e49a88cb6f710f851315c24907a012db34175d"
-  integrity sha512-uSgjC/hftCgYzQx7NlSV04LZr0M972cHOMTQ4wouYfhvIyqHVBQkF6d9MvT56/MG4nTU94P/VONzKWopsESapw==
+"@peersyst/react-native-modal@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@peersyst/react-native-modal/-/react-native-modal-1.0.2.tgz#92b3a051b7eb2408263eb6ba6f85da07b6b53f56"
+  integrity sha512-w50O6uGCsvF3Yo3Qr83KKcgSYg/r0f1KjQO/O8H8kFEnbHL9M41yt44uojIUQ+83yMOKzMDWKyW5QS558NcMAw==
   dependencies:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
