@@ -8,8 +8,11 @@ interface ModalProviderProps {
 
 export default function ModalProvider({ children }: ModalProviderProps): JSX.Element {
     return (
-        <CoreModalProvider modalRenderer={(modals) => <ModalManager>{modals}</ModalManager>}>
-            {children}
+        <CoreModalProvider>
+            {{
+                ModalManager: (modals) => <ModalManager>{modals}</ModalManager>,
+                children,
+            }}
         </CoreModalProvider>
     );
 }

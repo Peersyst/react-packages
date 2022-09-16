@@ -7,7 +7,7 @@ import { BackdropProps } from "@peersyst/react-native-components";
 // Import createPortal from RN depths
 // @ts-ignore
 import { createPortal } from "react-native/Libraries/Renderer/shims/ReactNative";
-import { useModalManagerRef } from "../ModalProvider/ModalManager";
+import { useModalsNoderRef } from "../ModalProvider/ModalsNode";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -50,7 +50,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
 
     const { palette } = useTheme();
 
-    const modalManagerRef = useModalManagerRef();
+    const modalsNodeRef = useModalsNoderRef();
 
     return createPortal(
         <Modal
@@ -85,6 +85,6 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         >
             {typeof children === "function" ? children(open, setOpen) : children}
         </Modal>,
-        modalManagerRef.current,
+        modalsNodeRef.current,
     );
 }
