@@ -1,5 +1,6 @@
 import { findNodeHandle, TouchableWithoutFeedback, View } from "react-native";
 import { Children, ReactNode, useRef } from "react";
+import { ModalManagerProvider } from "./ModalManagerContext";
 
 export interface ModalManagerProps {
     children: ReactNode;
@@ -18,8 +19,13 @@ export function ModalManager({ children }: ModalManagerProps): JSX.Element {
     ));
 
     return (
-        <View style={{ flex: 1 }} ref={handleModalManagerRef}>
-            {modals}
-        </View>
+        <ModalManagerProvider value={{ modalManagerRef }}>
+            <View
+                style={{ position: "absolute", width: "100%", height: "100%" }}
+                ref={handleModalManagerRef}
+            >
+                {modals}
+            </View>
+        </ModalManagerProvider>
     );
 }
