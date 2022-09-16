@@ -50,20 +50,15 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
 
     const { palette } = useTheme();
 
-    const { modalsNodeRef, setCount } = useModalsNodeContext();
+    const { modalsNodeRef, setCount, count } = useModalsNodeContext();
 
     // Keep consistent layout in ModalNodes
     const [modalZ, setModalZ] = useState<number>();
 
     useEffect(() => {
-        setCount((count) => {
-            const z = count + 1;
-            setModalZ(z);
-            return z;
-        });
-        return () => {
-            setCount((count) => count - 1);
-        };
+        const z = count + 1;
+        setCount(z);
+        setModalZ(z);
     }, []);
 
     return createPortal(
