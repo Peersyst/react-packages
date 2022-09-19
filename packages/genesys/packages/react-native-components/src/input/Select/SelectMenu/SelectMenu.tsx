@@ -3,6 +3,7 @@ import { SelectItemsView, SelectMenuRoot } from "./SelectMenu.styles";
 import { SelectMenuProps } from "./SelectMenu.types";
 import { List } from "../../../display/List";
 import { SelectContext, useMergeDefaultProps } from "@peersyst/react-components-core";
+import { Keyboard } from "react-native";
 
 export default function SelectMenu(props: SelectMenuProps): JSX.Element {
     const { open, style, header, footer, children } = useMergeDefaultProps("SelectMenu", props);
@@ -10,7 +11,12 @@ export default function SelectMenu(props: SelectMenuProps): JSX.Element {
     const { setOpen } = useContext(SelectContext);
 
     return (
-        <SelectMenuRoot open={open} style={style} onClose={() => setOpen(false)}>
+        <SelectMenuRoot
+            open={open}
+            style={style}
+            onClose={() => setOpen(false)}
+            onOpen={() => Keyboard.dismiss()}
+        >
             {header}
             <SelectItemsView itemCount={Children.count(children)}>
                 <List

@@ -14,6 +14,10 @@ export const IconButtonRoot = styled.button<IconButtonStyle>`
         opacity: 0.8;
     }
 
+    &:active {
+        opacity: 0.6;
+    }
+
     &:disabled {
         cursor: default;
         opacity: 0.6;

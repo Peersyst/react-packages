@@ -37,6 +37,7 @@ export const ToastContainer = styled(View)<ToastContainerStylesProps>(
             bottom: bottom ? bottom + bottomInset : undefined,
             top: top ? top + topInset : undefined,
             zIndex: theme.zIndex.toast,
+            elevation: theme.zIndex.toast,
         };
     },
 );
