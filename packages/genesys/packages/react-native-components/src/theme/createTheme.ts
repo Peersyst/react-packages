@@ -9,6 +9,7 @@ export function createTheme({
     palette,
     borderRadius,
     zIndex,
+    fontWeightMappings,
     ...rest
 }: CreateTheme): Theme {
     return {
@@ -21,6 +22,7 @@ export function createTheme({
             zIndex,
         }),
         shadows: defaultTheme.shadows,
+        fontWeightMappings: fontWeightMappings || defaultTheme.fontWeightMappings,
         ...rest,
     };
 }

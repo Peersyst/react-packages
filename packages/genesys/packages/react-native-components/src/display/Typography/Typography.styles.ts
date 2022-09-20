@@ -3,17 +3,36 @@ import { Text } from "react-native";
 import { TypographyStyleProps } from "./Typography.types";
 
 export const TypographyRoot = styled(Text)<TypographyStyleProps>(
-    ({ textTransform, textAlign, fontStyle, fontWeight, light, font, variantStyles, theme }) => ({
-        ...variantStyles,
-        color: theme.palette.text,
-        textTransform,
-        textAlign,
-        fontStyle,
-        fontWeight,
-        opacity: light ? 0.7 : 1,
-        fontFamily:
-            (font && theme.fonts?.[font]) ||
-            (fontWeight && theme.fontWeightMappings[fontWeight]) ||
-            variantStyles.fontFamily,
-    }),
+    ({ textTransform, textAlign, fontStyle, fontWeight, light, font, variantStyles, theme }) => {
+        function getFont() {
+            if (font) {
+                const returnFont = theme.fonts?.[font];
+                if (returnFont) return returnFont;
+                else
+                    console.error(
+                        `[Genesys]: Trying to load ${font} font failed. Please, make sure fonts are defined at the createTheme function.`,
+                    );
+            }
+            if (fontWeight) {
+                const returnFont = theme.fontWeightMappings[fontWeight];
+                if (returnFont) return returnFont;
+                else
+                    console.error(
+                        `[Genesys]: Trying to load font for weight ${fontWeight} failed. Please, make sure fontWeightMappings is defined at the createTheme function.`,
+                    );
+            }
+            return variantStyles.fontFamily;
+        }
+
+        return {
+            ...variantStyles,
+            color: theme.palette.text,
+            textTransform,
+            textAlign,
+            fontStyle,
+            fontWeight,
+            opacity: light ? 0.7 : 1,
+            fontFamily: getFont(),
+        };
+    },
 );
