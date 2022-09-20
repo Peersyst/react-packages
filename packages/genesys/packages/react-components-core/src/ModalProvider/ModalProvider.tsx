@@ -16,6 +16,14 @@ export default function ModalProvider({ children }: ModalProviderProps): JSX.Ele
             }),
         hideModal: (modal) => dispatch({ type: ModalActionType.HIDE_MODAL, payload: modal }),
         removeModal: (id) => dispatch({ type: ModalActionType.REMOVE_MODAL, payload: id }),
+        overrideModal: (Modal, props) =>
+            dispatch({
+                type: ModalActionType.OVERRIDE_MODAL,
+                payload: {
+                    Modal: Modal as ModalWithId,
+                    props: props || {},
+                },
+            }),
         isModalActive: (modal) =>
             state.some(({ Modal }) =>
                 typeof modal === "string" ? Modal.id === modal : Modal.id === modal.id,

@@ -18,6 +18,7 @@ export enum ModalActionType {
     SHOW_MODAL,
     HIDE_MODAL,
     REMOVE_MODAL,
+    OVERRIDE_MODAL,
 }
 
 export interface ShowModalAction {
@@ -33,6 +34,11 @@ export interface HideModalAction {
 export interface RemoveModalAction {
     type: ModalActionType.REMOVE_MODAL;
     payload: string;
+}
+
+export interface OverrideModalAction {
+    type: ModalActionType.OVERRIDE_MODAL;
+    payload: Modal;
 }
 
 export type ModalAction = {

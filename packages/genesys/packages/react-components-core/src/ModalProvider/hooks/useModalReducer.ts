@@ -5,6 +5,7 @@ import {
     ModalActionType,
     ModalState,
     ModalWithId,
+    OverrideModalAction,
     RemoveModalAction,
     ShowModalAction,
 } from "../ModalProvider.types";
@@ -30,6 +31,8 @@ const reducer = (state: ModalState, action: ModalAction): ModalState => {
             });
         case ModalActionType.REMOVE_MODAL:
             return state.filter(({ Modal }) => Modal.id !== (action as RemoveModalAction).payload);
+        case ModalActionType.OVERRIDE_MODAL:
+            return [(action as OverrideModalAction).payload];
         default:
             return state;
     }
