@@ -1,12 +1,8 @@
 import { ModalContext, ModalContextType } from "./ModalContext";
 import { useModalReducer } from "./hooks/useModalReducer";
 import { ModalActionType, ModalProviderProps, ModalWithId } from "./ModalProvider.types";
-import { ModalManager } from "./ModalManager";
-import { Fragment } from "react";
 
-export default function ModalProvider({
-    children: { ModalManager: modalRenderer, children, Wrapper = Fragment },
-}: ModalProviderProps): JSX.Element {
+export default function ModalProvider({ children }: ModalProviderProps): JSX.Element {
     const [state, dispatch] = useModalReducer();
 
     const providerValue: ModalContextType = {
@@ -27,12 +23,5 @@ export default function ModalProvider({
         modals: state,
     };
 
-    return (
-        <ModalContext.Provider value={providerValue}>
-            <Wrapper>
-                <ModalManager>{modalRenderer}</ModalManager>
-                {children}
-            </Wrapper>
-        </ModalContext.Provider>
-    );
+    return <ModalContext.Provider value={providerValue}>{children}</ModalContext.Provider>;
 }

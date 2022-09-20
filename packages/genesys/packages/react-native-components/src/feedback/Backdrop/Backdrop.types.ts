@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { ModalProps } from "@peersyst/react-native-modal";
+import { ModalProps } from "react-native-modal";
 
 export interface BackdropProps {
     /**

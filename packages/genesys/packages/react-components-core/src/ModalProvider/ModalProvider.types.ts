@@ -1,11 +1,7 @@
-import { ComponentType, ReactElement, ReactNode } from "react";
+import { ComponentType, ReactNode } from "react";
 
 export interface ModalProviderProps {
-    children: {
-        ModalManager: (modals: ReactNode[]) => ReactElement;
-        children?: ReactNode;
-        Wrapper?: ComponentType<{ children: ReactNode }>;
-    };
+    children: ReactNode;
 }
 
 export type ModalState = Modal[];

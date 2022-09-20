@@ -1,21 +1,13 @@
-import { ComponentType, ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import { useToasterReducer } from "./hooks/useToasterReducer";
 import { ToastContext } from "./ToastContext";
 import { ToasterActionType } from "./ToastProvider.types";
-import { CoreToastProps } from "../Toast";
-import Toaster from "./Toaster";
 
-interface ToastProviderProps<ToastProps> {
-    Toast: ComponentType<ToastProps>;
-    toasterRenderer: (toast: ReactNode) => ReactElement;
+interface ToastProviderProps {
     children?: ReactNode;
 }
 
-export default function ToastProvider<P extends CoreToastProps<any> = CoreToastProps<any>>({
-    Toast,
-    toasterRenderer,
-    children,
-}: ToastProviderProps<P>): JSX.Element {
+export default function ToastProvider({ children }: ToastProviderProps): JSX.Element {
     const [state, dispatch] = useToasterReducer();
 
     return (
@@ -31,7 +23,6 @@ export default function ToastProvider<P extends CoreToastProps<any> = CoreToastP
                 toasts: state,
             }}
         >
-            <Toaster Toast={Toast}>{toasterRenderer}</Toaster>
             {children}
         </ToastContext.Provider>
     );
