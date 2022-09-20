@@ -4,21 +4,13 @@ import { TypographyRoot } from "./Typography.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const Typography = (props: TypographyProps): JSX.Element => {
-    const { variant, children, fontWeight, style, ...rest } = useMergeDefaultProps(
-        "Typography",
-        props,
-    );
+    const { variant, children, fontWeight, ...rest } = useMergeDefaultProps("Typography", props);
 
     const { typography } = useTheme();
     const variantStyle = typography[variant];
 
     return (
-        <TypographyRoot
-            variantStyles={variantStyle}
-            fontWeight={fontWeight ?? style?.fontWeight}
-            style={style}
-            {...rest}
-        >
+        <TypographyRoot variantStyles={variantStyle} fontWeight={fontWeight} {...rest}>
             {children}
         </TypographyRoot>
     );

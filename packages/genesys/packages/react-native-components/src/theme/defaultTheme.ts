@@ -32,5 +32,4 @@ export const defaultTheme: Theme = {
     typography,
     shadows,
     borderRadius: 5,
-    fontWeightMappings: {},
 };

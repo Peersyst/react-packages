@@ -17,11 +17,9 @@ declare module "@peersyst/react-components-core" {
 
     export interface CoreTheme {
         shadows: Shadow[];
-        fontWeightMappings: Record<string, string>;
     }
 
     export interface CoreCreateTheme {
         shadows?: Shadow[];
-        fontWeightMappings?: Record<string, string>;
     }
 }

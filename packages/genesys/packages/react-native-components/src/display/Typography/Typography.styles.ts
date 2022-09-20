@@ -13,14 +13,6 @@ export const TypographyRoot = styled(Text)<TypographyStyleProps>(
                         `[Genesys]: Trying to load ${font} font failed. Please, make sure fonts are defined at the createTheme function.`,
                     );
             }
-            if (fontWeight) {
-                const returnFont = theme.fontWeightMappings[fontWeight];
-                if (returnFont) return returnFont;
-                else
-                    console.error(
-                        `[Genesys]: Trying to load font for weight ${fontWeight} failed. Please, make sure fontWeightMappings is defined at the createTheme function.`,
-                    );
-            }
             return variantStyles.fontFamily;
         }
 
