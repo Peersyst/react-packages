@@ -11,6 +11,9 @@ export const TypographyRoot = styled(Text)<TypographyStyleProps>(
         fontStyle,
         fontWeight,
         opacity: light ? 0.7 : 1,
-        fontFamily: (font && theme.fonts?.[font]) || variantStyles.fontFamily,
+        fontFamily:
+            (font && theme.fonts?.[font]) ||
+            (fontWeight && theme.fontWeightMappings[fontWeight]) ||
+            variantStyles.fontFamily,
     }),
 );
