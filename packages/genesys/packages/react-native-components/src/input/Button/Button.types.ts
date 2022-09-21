@@ -1,14 +1,10 @@
 import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-native";
 import { ReactElement } from "react";
 import { SX } from "@peersyst/react-native-styled";
-import { CoreButtonProps } from "@peersyst/react-components-core";
+import { ButtonVariant, CoreButtonProps } from "@peersyst/react-components-core";
 
 export type ButtonStyle = ViewStyle & TextStyle;
-export interface ButtonVariantStyle {
-    filled?: ButtonStyle;
-    text?: ButtonStyle;
-    outlined?: ButtonStyle;
-}
+export type ButtonVariantStyle = Partial<Record<ButtonVariant, ButtonStyle>>;
 export type ButtonStyleWithVariant = ButtonStyle & ButtonVariantStyle;
 
 export interface ButtonSizeStyle {
