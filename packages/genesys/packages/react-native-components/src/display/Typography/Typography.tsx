@@ -13,9 +13,9 @@ const Typography = (props: TypographyProps): JSX.Element => {
     } = useMergeDefaultProps("Typography", props);
     const { typography } = useTheme();
     const variantStyle = typography[variant];
-    const { light: lightGlobalStyle, ...defaultStyleProp } = useGlobalStyles("Typography");
+    const { light: lightGlobalStyle, ...typographyGlobalStyle } = useGlobalStyles("Typography");
 
-    const defaultStyle = { ...styleProp, ...defaultStyleProp };
+    const defaultStyle = { ...typographyGlobalStyle, ...styleProp };
     const lightStyle = { ...lightGlobalStyle, ...lightStyleProp };
 
     return (
