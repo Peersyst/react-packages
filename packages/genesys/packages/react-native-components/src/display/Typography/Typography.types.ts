@@ -7,6 +7,10 @@ import {
 import { OverridableStringUnion } from "@peersyst/react-types";
 import { TextProps, TextStyle } from "react-native";
 
+export type TypographyStyle = TextStyle & {
+    light?: TextStyle;
+};
+
 export interface TypographyProps extends TextProps {
     /**
      * Typography variant
@@ -43,7 +47,7 @@ export interface TypographyProps extends TextProps {
     /**
      * Typography style
      */
-    style?: TextStyle;
+    style?: TypographyStyle;
     /**
      * Text content
      */
@@ -57,5 +61,6 @@ export interface TypographyStyleProps {
     textAlign?: TextStyle["textAlign"];
     fontWeight?: TextStyle["fontWeight"];
     light?: boolean;
+    lightStyle: TextStyle;
     variantStyles: TextStyle;
 }
