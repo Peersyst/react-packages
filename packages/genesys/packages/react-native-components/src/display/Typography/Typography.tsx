@@ -15,12 +15,12 @@ const Typography = (props: TypographyProps): JSX.Element => {
     const variantStyle = typography[variant];
     const { light: lightGlobalStyle, ...typographyGlobalStyle } = useGlobalStyles("Typography");
 
-    const defaultStyle = { ...typographyGlobalStyle, ...styleProp };
+    const style = { ...typographyGlobalStyle, ...styleProp };
     const lightStyle = { ...lightGlobalStyle, ...lightStyleProp };
 
     return (
         <TypographyRoot
-            style={defaultStyle}
+            style={style}
             lightStyle={lightStyle}
             variantStyles={variantStyle}
             {...rest}
