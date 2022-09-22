@@ -20,6 +20,7 @@ const componentsConfig: ComponentsConfig = {
     Image: {
         defaultProps: {},
     },
+
     Label: {
         defaultProps: {
             placement: "top",
@@ -44,7 +45,13 @@ const componentsConfig: ComponentsConfig = {
         },
     },
     Typography: {
-        defaultProps: {},
+        defaultProps: {
+            style: {
+                light: {
+                    opacity: 0.7,
+                },
+            },
+        },
     },
     Backdrop: {
         defaultProps: {
