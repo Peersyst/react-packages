@@ -21,5 +21,6 @@ export interface BaseGlobalStyles {
     Label?: LabelStyle;
     Paper?: ViewStyle;
     Typography?: TypographyStyle;
+    Divider?: ViewStyle;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}
