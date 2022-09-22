@@ -7,7 +7,17 @@ const typographyLightStyle: TextStyle = {
 };
 
 export const TypographyRoot = styled(Text)<TypographyStyleProps>(
-    ({ light, font, variantStyles, lightStyle, theme, ...rest }) => {
+    ({
+        light,
+        font,
+        variantStyles,
+        lightStyle,
+        theme,
+        textTransform,
+        textAlign,
+        fontStyle,
+        fontWeight,
+    }) => {
         function getFont() {
             if (font) {
                 const returnFont = theme.fonts?.[font];
@@ -23,7 +33,10 @@ export const TypographyRoot = styled(Text)<TypographyStyleProps>(
             ...variantStyles,
             color: theme.palette.text,
             fontFamily: getFont(),
-            ...rest,
+            textTransform,
+            textAlign,
+            fontStyle,
+            fontWeight,
             ...(light ? { ...typographyLightStyle, ...lightStyle } : {}),
         };
     },
