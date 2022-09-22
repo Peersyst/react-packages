@@ -20,18 +20,8 @@ export default function useButtonStyles(
     const { defaultStyles, defaultDisabledStyles, defaultPressedStyles, defaultSizeStyles } =
         useDefaultStyles();
     const {
-        disabled: {
-            filled: filledDisabledStyles,
-            text: textDisabledStyles,
-            outlined: outlinedDisabledText,
-            ...disabledStyles
-        } = {},
-        pressed: {
-            filled: filledPressedStyles,
-            text: textPressedStyles,
-            outlined: outlinedPressedText,
-            ...pressedStyles
-        } = {},
+        disabled: { variant: variantDisabledStyles, ...disabledStyles } = {},
+        pressed: { variant: variantPressedStyles, ...pressedStyles } = {},
         ...styles
     } = style;
 
@@ -45,22 +35,11 @@ export default function useButtonStyles(
     );
 
     const [variantDisabledTextStyles, variantDisabledRootStyles] = useMemo(() => {
-        const disabledVariantStyles = {
-            filled: filledDisabledStyles,
-            text: textDisabledStyles,
-            outlined: outlinedDisabledText,
-        };
         return extractTextStyles({
-            ...defaultDisabledStyles[variant],
-            ...disabledVariantStyles[variant],
+            ...defaultDisabledStyles.variant?.[variant],
+            ...variantDisabledStyles?.[variant],
         });
-    }, [
-        filledDisabledStyles,
-        defaultDisabledStyles,
-        outlinedDisabledText,
-        textDisabledStyles,
-        variant,
-    ]);
+    }, [variantDisabledStyles, defaultDisabledStyles, variant]);
 
     const [pressedTextStyles, pressedRootStyles] = useMemo(
         () => extractTextStyles({ ...defaultPressedStyles, ...pressedStyles }),
@@ -68,25 +47,18 @@ export default function useButtonStyles(
     );
 
     const [variantPressedTextStyles, variantPressedRootStyles] = useMemo(() => {
-        const pressedVariantStyles = {
-            filled: filledPressedStyles,
-            text: textPressedStyles,
-            outlined: outlinedPressedText,
-        };
         return extractTextStyles({
-            ...defaultPressedStyles[variant],
-            ...pressedVariantStyles[variant],
+            ...defaultPressedStyles.variant?.[variant],
+            ...variantPressedStyles?.[variant],
         });
-    }, [
-        filledPressedStyles,
-        defaultPressedStyles,
-        outlinedPressedText,
-        textPressedStyles,
-        variant,
-    ]);
+    }, [variantPressedStyles, defaultPressedStyles, variant]);
 
     const [variantTextStyles, variantRootStyles] = useMemo(
-        () => extractTextStyles({ ...defaultStyles[variant], ...styles[variant] }),
+        () =>
+            extractTextStyles({
+                ...defaultStyles.variant?.[variant],
+                ...styles.variant?.[variant],
+            }),
         [defaultStyles, styles, variant],
     );
 

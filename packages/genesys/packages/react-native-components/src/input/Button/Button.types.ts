@@ -5,7 +5,7 @@ import { ButtonVariant, CoreButtonProps } from "@peersyst/react-components-core"
 
 export type ButtonStyle = ViewStyle & TextStyle;
 export type ButtonVariantStyle = Partial<Record<ButtonVariant, ButtonStyle>>;
-export type ButtonStyleWithVariant = ButtonStyle & ButtonVariantStyle;
+export type ButtonStyleWithVariant = ButtonStyle & { variant?: ButtonVariantStyle };
 
 export interface ButtonSizeStyle {
     sm?: ButtonStyle;

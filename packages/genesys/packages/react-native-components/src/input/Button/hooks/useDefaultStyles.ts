@@ -15,39 +15,45 @@ export default function (): UseDefaultStylesResult {
     const defaultStyles: ButtonStyleWithVariant = {
         backgroundColor: "transparent",
         color: theme.palette.primary,
-        filled: {
-            backgroundColor: theme.palette.primary,
-            color: theme.palette.text,
-        },
-        outlined: {
-            borderStyle: "solid",
-            borderWidth: 2,
-            borderColor: theme.palette.primary,
-        },
-        text: {
-            borderColor: "transparent",
+        variant: {
+            filled: {
+                backgroundColor: theme.palette.primary,
+                color: theme.palette.text,
+            },
+            outlined: {
+                borderStyle: "solid",
+                borderWidth: 2,
+                borderColor: theme.palette.primary,
+            },
+            text: {
+                borderColor: "transparent",
+            },
         },
     };
 
     const defaultDisabledStyles: ButtonStyleWithVariant = {
         color: theme.palette.disabled,
-        filled: {
-            backgroundColor: theme.palette.disabled,
-            color: emphasize(theme.palette.disabled, 0.5),
-        },
-        outlined: {
-            borderColor: theme.palette.disabled,
+        variant: {
+            filled: {
+                backgroundColor: theme.palette.disabled,
+                color: emphasize(theme.palette.disabled, 0.5),
+            },
+            outlined: {
+                borderColor: theme.palette.disabled,
+            },
         },
     };
 
     const defaultPressedStyles: ButtonStyleWithVariant = {
         backgroundColor: alpha(theme.palette.primary, 0.2),
-        filled: {
-            backgroundColor: darken(theme.palette.primary, 0.1),
-        },
-        text: {
-            backgroundColor: "transparent",
-            textDecorationLine: "underline",
+        variant: {
+            filled: {
+                backgroundColor: darken(theme.palette.primary, 0.1),
+            },
+            text: {
+                backgroundColor: "transparent",
+                textDecorationLine: "underline",
+            },
         },
     };
 
