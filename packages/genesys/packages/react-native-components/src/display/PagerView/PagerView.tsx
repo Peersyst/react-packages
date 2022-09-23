@@ -1,7 +1,7 @@
 import BasePagerView, { PagerViewProps as BasePagerViewProps } from "react-native-pager-view";
 import { Col, ColProps } from "../../layout/Col";
 import { Children, useEffect, useMemo, useState } from "react";
-import { LayoutChangeEvent, NativeSyntheticEvent, View, ViewStyle } from "react-native";
+import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
 import { DottedPagination, DottedPaginationStyle } from "../../navigation/DottedPagination";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -36,7 +36,7 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
         onPageSelected,
         page,
         initialPage = 0,
-        height: heightProp,
+        height,
         pageMargin,
         gap = 10,
         pagePadding: {
@@ -77,17 +77,11 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
         onPageSelected?.(e.nativeEvent.position);
     };
 
-    const [heightState, setHeightState] = useState<number>();
-
-    const handleLayout = (e: LayoutChangeEvent) => {
-        setHeightState(e.nativeEvent.layout.height);
-    };
-
     return (
-        <Col style={[globalStyle, style, { height: heightProp }]} gap={gap}>
+        <Col style={[globalStyle, style, { height }]} gap={gap}>
             {!rerender && (
                 <BasePagerView
-                    style={heightProp !== undefined ? { flex: 1 } : { height: heightState }}
+                    style={{ flex: 1 }}
                     pageMargin={pageMargin}
                     initialPage={currentPage}
                     onPageSelected={handlePageSelected}
@@ -96,7 +90,6 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
                     {Children.map(children, (child, key) => (
                         <View
                             style={{
-                                position: "absolute",
                                 alignItems: "center",
                                 justifyContent: "center",
                                 padding,
@@ -109,7 +102,6 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
                             }}
                             collapsable
                             key={key}
-                            onLayout={handleLayout}
                         >
                             {child}
                         </View>
