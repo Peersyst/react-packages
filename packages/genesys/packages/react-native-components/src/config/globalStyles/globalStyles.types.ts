@@ -23,5 +23,6 @@ export interface BaseGlobalStyles {
     PagerView?: PagerViewStyle;
     Paper?: ViewStyle;
     Typography?: TypographyStyle;
+    Divider?: ViewStyle;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}

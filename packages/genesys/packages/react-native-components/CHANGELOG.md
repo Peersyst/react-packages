@@ -1,17 +1,22 @@
 # Versions
 
+## 1.2.24
+
+-   Add GlobalStyles to Divider
+
 ## 0.0.9
 
 ### BREAKING
+
 Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
 
 [config] Config refactor
 
 ## 0.0.8
 
-- All inputs components now use FormControl as its core and have a common behaviour
-- Extracted common theme code to react-components core
-- Extracted common input code to react-components-core
+-   All inputs components now use FormControl as its core and have a common behaviour
+-   Extracted common theme code to react-components core
+-   Extracted common input code to react-components-core
 
 [FormControl] Add FormControl
 
@@ -43,4 +48,4 @@ ModalProvider patch fixing useModal types
 
 [Drawer] hideDrawer from useDrawer hook accepts a Drawer, an id or nothing. If nothing is provided, **the last opened Backdrop based component will be closed**.
 
-* hide(Backdrop|Modal|Drawer) without an argument, will close the last components of its type in a future update. For now, **the last opened Backdrop based component will be closed when used without an argument**.
+-   hide(Backdrop|Modal|Drawer) without an argument, will close the last components of its type in a future update. For now, **the last opened Backdrop based component will be closed when used without an argument**.
