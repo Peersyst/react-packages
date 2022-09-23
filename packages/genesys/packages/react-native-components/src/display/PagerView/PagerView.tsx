@@ -13,7 +13,7 @@ export type PagerViewStyle = ViewStyle & {
 
 export interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected" | "style"> {
     page?: number;
-    height: ViewStyle["height"];
+    height?: ViewStyle["height"];
     gap?: ColProps["gap"];
     onPageSelected?: (page: number) => void;
     pagePadding?: {
@@ -83,13 +83,11 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
         setHeightState(e.nativeEvent.layout.height);
     };
 
-    const height = heightProp ?? heightState;
-
     return (
-        <Col style={[globalStyle, style, { height }]} gap={gap}>
+        <Col style={[globalStyle, style, { height: heightProp }]} gap={gap}>
             {!rerender && (
                 <BasePagerView
-                    style={{ flex: 1 }}
+                    style={heightProp !== undefined ? { flex: 1 } : { height: heightState }}
                     pageMargin={pageMargin}
                     initialPage={currentPage}
                     onPageSelected={handlePageSelected}
