@@ -5,6 +5,7 @@ import { TypographyStyle } from "src/display/Typography";
 import { LabelStyle } from "../../display/Label";
 import { FormControlLabelStyle } from "../../input/FormControlLabel";
 import { PagerViewStyle } from "../../display/PagerView";
+import { DottedPaginationStyle } from "../../navigation/DottedPagination";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -15,6 +16,7 @@ export interface CreateGlobalStylesParams {
 export type CreateGlobalStyles = (params: CreateGlobalStylesParams) => GlobalStyles;
 
 export interface BaseGlobalStyles {
+    DottedPagination?: DottedPaginationStyle;
     FormControlLabel?: FormControlLabelStyle;
     FormControlHint?: TextStyle;
     FormControlError?: TextStyle;
