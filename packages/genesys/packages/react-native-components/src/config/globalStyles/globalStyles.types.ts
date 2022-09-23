@@ -4,6 +4,7 @@ import { EdgeInsets } from "react-native-safe-area-context";
 import { TypographyStyle } from "src/display/Typography";
 import { LabelStyle } from "../../display/Label";
 import { FormControlLabelStyle } from "../../input/FormControlLabel";
+import { PagerViewStyle } from "../../display/PagerView";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -19,6 +20,7 @@ export interface BaseGlobalStyles {
     FormControlError?: TextStyle;
     FormControl?: ViewStyle;
     Label?: LabelStyle;
+    PagerView?: PagerViewStyle;
     Paper?: ViewStyle;
     Typography?: TypographyStyle;
 }

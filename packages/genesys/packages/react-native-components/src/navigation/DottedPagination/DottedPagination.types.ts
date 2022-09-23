@@ -1,7 +1,9 @@
 import { ViewStyle } from "react-native";
 
+export type DottedPaginationStyle = ViewStyle & { active?: ViewStyle };
+
 export interface DottedPaginationProps {
-    style?: ViewStyle & { active?: ViewStyle };
+    style?: DottedPaginationStyle;
     pages: number;
     currentPage: number;
 }

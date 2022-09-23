@@ -1,12 +1,17 @@
 import BasePagerView, { PagerViewProps as BasePagerViewProps } from "react-native-pager-view";
 import { Col, ColProps } from "../../layout/Col";
 import { Children, useEffect, useMemo, useState } from "react";
-import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
+import { LayoutChangeEvent, NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
-import { DottedPagination } from "../../navigation/DottedPagination";
+import { DottedPagination, DottedPaginationStyle } from "../../navigation/DottedPagination";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useGlobalStyles } from "../../config";
 
-export interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected"> {
+export type PagerViewStyle = ViewStyle & {
+    pagination?: DottedPaginationStyle;
+};
+
+export interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected" | "style"> {
     page?: number;
     height: ViewStyle["height"];
     gap?: ColProps["gap"];
@@ -20,17 +25,18 @@ export interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected
         vertical?: ViewStyle["paddingTop"];
         horizontal?: ViewStyle["paddingTop"];
     };
+    style?: PagerViewStyle;
 }
 
 const PagerView = (props: PagerViewProps): JSX.Element => {
     const {
         children,
         showPageIndicator,
-        style,
+        style: { pagination: paginationStyle = {}, ...style } = {},
         onPageSelected,
         page,
         initialPage = 0,
-        height,
+        height: heightProp,
         pageMargin,
         gap = 10,
         pagePadding: {
@@ -44,6 +50,8 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
         } = {},
         ...rest
     } = useMergeDefaultProps("PagerView", props);
+
+    const { pagination: globalPaginationStyle, ...globalStyle } = useGlobalStyles("PagerView");
 
     const [currentPage, setCurrentPage] = useState(page ?? initialPage);
     const [rerender, setRerender] = useState(false);
@@ -69,8 +77,16 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
         onPageSelected?.(e.nativeEvent.position);
     };
 
+    const [heightState, setHeightState] = useState<number>();
+
+    const handleLayout = (e: LayoutChangeEvent) => {
+        setHeightState(e.nativeEvent.layout.height);
+    };
+
+    const height = heightProp ?? heightState;
+
     return (
-        <Col style={[style, { height }]} gap={gap}>
+        <Col style={[globalStyle, style, { height }]} gap={gap}>
             {!rerender && (
                 <BasePagerView
                     style={{ flex: 1 }}
@@ -82,6 +98,7 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
                     {Children.map(children, (child, key) => (
                         <View
                             style={{
+                                position: "absolute",
                                 alignItems: "center",
                                 justifyContent: "center",
                                 padding,
@@ -94,6 +111,7 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
                             }}
                             collapsable
                             key={key}
+                            onLayout={handleLayout}
                         >
                             {child}
                         </View>
@@ -101,7 +119,11 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
                 </BasePagerView>
             )}
             {showPageIndicator && (
-                <DottedPagination pages={Children.count(children)} currentPage={currentPage + 1} />
+                <DottedPagination
+                    pages={Children.count(children)}
+                    currentPage={currentPage + 1}
+                    style={{ ...globalPaginationStyle, ...paginationStyle }}
+                />
             )}
         </Col>
     );
