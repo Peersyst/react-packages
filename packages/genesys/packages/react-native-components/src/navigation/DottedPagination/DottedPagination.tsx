@@ -7,17 +7,17 @@ const DottedPagination = (props: DottedPaginationProps) => {
     const {
         pages,
         currentPage,
-        style: { active: activeStyle = {}, ...style } = {},
+        style: { dot: { active: activeStyle = {}, ...dotStyle } = {}, gap = 5, ...style } = {},
     } = useMergeDefaultProps("DottedPagination", props);
 
     return (
-        <Row justifyContent="center" gap={5}>
+        <Row justifyContent="center" gap={gap} style={style}>
             {[...Array(pages)].map((_, i) => {
                 const isActive = currentPage === i + 1;
                 return (
                     <PaginationDot
                         active={isActive}
-                        style={[style, activeStyle && activeStyle]}
+                        style={[dotStyle, isActive && activeStyle]}
                         key={i}
                     />
                 );
