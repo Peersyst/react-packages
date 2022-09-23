@@ -1,9 +1,14 @@
-
 # Versions
+
+## 2.22.7
+
+[Carousel] Remove console log + docu
+[Col] Forward the ref to the root of the col
 
 ## 2.19.0
 
 ### BREAKING
+
 Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
 
 [config] Config refactor
@@ -14,9 +19,9 @@ Theme is now a part of config and ConfigProvider must be provided instead of jus
 
 ## 2.18.0
 
-- All inputs components now use FormControl as its core and have a common behaviour
-- Extracted common theme code to react-components core
-- Extracted common input code to react-components-core
+-   All inputs components now use FormControl as its core and have a common behaviour
+-   Extracted common theme code to react-components core
+-   Extracted common input code to react-components-core
 
 [FormControl] Add FormControl
 
@@ -75,6 +80,7 @@ Dependencies update
 ---
 
 #### BREAKING CHANGES
+
 Popover `position` prop has changed on order to match Popper.js'.
 
 ---
@@ -98,6 +104,7 @@ Popover `position` prop has changed on order to match Popper.js'.
 ---
 
 #### BREAKING CHANGES
+
 Backdrops, Modals and Drawers no longer use names in order to be used with their corresponding hooks. This is now handled internally by create(Backdrop|Modal|Drawer) helper function. That is to say, to create a Backdrop based component, its corresponding creator function should be used.
 
 ---
@@ -120,7 +127,7 @@ Backdrops, Modals and Drawers no longer use names in order to be used with their
 
 [Drawer] hideDrawer from useDrawer hook accepts a Drawer, an id or nothing. If nothing is provided, **the last opened Backdrop based component will be closed**.
 
-* hide(Backdrop|Modal|Drawer) without an argument, will close the last components of its type in a future update. For now, **the last opened Backdrop based component will be closed when used without an argument**.
+-   hide(Backdrop|Modal|Drawer) without an argument, will close the last components of its type in a future update. For now, **the last opened Backdrop based component will be closed when used without an argument**.
 
 ## 2.15.16
 
@@ -134,5 +141,4 @@ Backdrops, Modals and Drawers no longer use names in order to be used with their
 
 [PaginationItem] Buttons are now of type "button" in order to prevent unwanted form triggers.
 
-[ModalProvider] modal-root now has "position: absolute; z-index: theme.zIndex.modal + 1". Modals from modal-root appear on top of modals rendered deeper in the dom tree. 
-
+[ModalProvider] modal-root now has "position: absolute; z-index: theme.zIndex.modal + 1". Modals from modal-root appear on top of modals rendered deeper in the dom tree.
