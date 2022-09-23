@@ -36,7 +36,6 @@ const Carousel = forwardRef((props: CarouselProps, ref): JSX.Element => {
     );
 
     useEffect(() => {
-        console.log(carouselRef);
         if (carouselRef.current) {
             carouselRef.current.onwheel = (e) => {
                 if (e.deltaX !== 0) e.preventDefault();
