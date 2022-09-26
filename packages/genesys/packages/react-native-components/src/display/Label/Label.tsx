@@ -1,7 +1,7 @@
 import { LabelProps } from "./Label.types";
 import { FlexStyle } from "react-native";
 import { LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
-import { Fragment } from "react";
+import { Fragment, isValidElement } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { useGlobalStyles } from "../../config";
 
@@ -31,9 +31,13 @@ const Label = (props: LabelProps): JSX.Element => {
     const RootComponent = direction.includes("row") ? LabelRowRoot : LabelColRoot;
 
     const content = [
-        <LabelText key="label" alignment={alignment} style={labelStyle} variant={variant}>
-            {label}
-        </LabelText>,
+        isValidElement(label) ? (
+            <LabelText key="label" alignment={alignment} style={labelStyle} variant={variant}>
+                {label}
+            </LabelText>
+        ) : (
+            <Fragment key={"label"}>{label}</Fragment>
+        ),
         <Fragment key="children">{children}</Fragment>,
     ];
 

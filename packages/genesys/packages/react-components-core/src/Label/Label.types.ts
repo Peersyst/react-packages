@@ -8,7 +8,7 @@ export type LabelPlacement = "top" | "left" | "right" | "bottom";
 export type LabelAlignment = "start" | "end" | "center" | "space-between";
 
 export interface CoreLabelProps {
-    label: string;
+    label: ReactNode;
     variant?: OverridableStringUnion<TypographyVariants, TypographyVariantsOverrides>;
     placement?: LabelPlacement;
     alignment?: LabelAlignment;
