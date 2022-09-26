@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode } from "react";
+import { ComponentType, ReactChild, ReactNode } from "react";
 import { CoreLabelProps } from "../Label";
 
 export interface FormControlProps<T = any> {
@@ -72,7 +72,7 @@ export type ChildrenParameters<T> = [
 ];
 
 export interface CoreFormControlProps<
-    LP extends { label: string } = any,
+    LP extends { label: ReactChild } = any,
     T = any,
     ExtraChildrenParameters extends [...args: any] = [],
 > extends Omit<FormControlProps<T>, "children"> {
@@ -83,7 +83,7 @@ export interface CoreFormControlProps<
     /**
      * Label content
      */
-    label?: string;
+    label?: ReactChild;
     /**
      * Hint content
      */
