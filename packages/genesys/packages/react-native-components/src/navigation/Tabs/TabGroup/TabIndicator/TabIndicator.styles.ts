@@ -1,13 +1,13 @@
 import styled from "@peersyst/react-native-styled";
-import { TabIndicatorStyles } from "./TabIndicator.types";
-import { View } from "react-native";
+import { Animated, View } from "react-native";
 
-export const TabIndicatorRoot = styled(View)<TabIndicatorStyles>(({ theme, position, width }) => ({
+export const TabIndicatorRoot = styled(Animated.View)(() => ({
     position: "absolute",
-    left: position,
     bottom: 0,
     zIndex: 2,
     height: 2,
-    width,
+}));
+
+export const Indicator = styled(View)(({ theme }) => ({
     backgroundColor: theme.palette.primary,
 }));
