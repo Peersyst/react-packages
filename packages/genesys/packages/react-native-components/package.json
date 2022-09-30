@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "1.2.29",
+    "version": "1.2.30",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -43,6 +43,7 @@
         "@peersyst/react-types": "^1.4.0",
         "@peersyst/react-utils": "^1.6.0",
         "@react-native-async-storage/async-storage": "^1.17.7",
+        "@react-native-community/hooks": "^2.8.1",
         "expo-barcode-scanner": "^11.2.1",
         "expo-camera": "~12.1.2",
         "expo-clipboard": "~2.1.0",
@@ -52,7 +53,7 @@
         "react-native-gesture-handler": "~2.1.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
         "react-native-modal": "^13.0.1",
-        "react-native-pager-view": "^5.4.15",
+        "react-native-pager-view": "^5.4.9",
         "react-native-qrcode-svg": "^6.1.2",
         "react-native-safe-area-context": "3.3.2",
         "react-native-svg": "^12.1.1"
