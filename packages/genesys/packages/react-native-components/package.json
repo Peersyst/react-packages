@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "1.2.33",
+    "version": "1.2.34",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -53,7 +53,7 @@
         "react-native-gesture-handler": "~2.1.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
         "react-native-modal": "^13.0.1",
-        "react-native-pager-view": "^5.4.9",
+        "react-native-pager-view": "^5.4.15",
         "react-native-qrcode-svg": "^6.1.2",
         "react-native-safe-area-context": "3.3.2",
         "react-native-svg": "^12.1.1"
