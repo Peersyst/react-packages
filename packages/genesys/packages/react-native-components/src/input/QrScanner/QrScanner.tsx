@@ -33,13 +33,6 @@ const QrScanner = (props: QrScannerProps): JSX.Element => {
                 if (hasPermission === false) open && setOpen(false);
                 return hasPermission ? (
                     <QrScannerRoot style={style}>
-                        <BackButton
-                            style={{ color: "white", fontSize: 30 }}
-                            onPress={() => setOpen(false)}
-                        >
-                            {back || <CrossIcon />}
-                        </BackButton>
-                        <ChildrenWrapper>{children}</ChildrenWrapper>
                         <BarCodeScanner
                             onBarCodeScanned={(data) => {
                                 onScan(data);
@@ -47,6 +40,13 @@ const QrScanner = (props: QrScannerProps): JSX.Element => {
                             }}
                             style={StyleSheet.absoluteFillObject}
                         />
+                        <ChildrenWrapper>{children}</ChildrenWrapper>
+                        <BackButton
+                            style={{ color: "white", fontSize: 30 }}
+                            onPress={() => setOpen(false)}
+                        >
+                            {back || <CrossIcon />}
+                        </BackButton>
                     </QrScannerRoot>
                 ) : (
                     <IdleQrScanner />

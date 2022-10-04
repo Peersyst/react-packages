@@ -16,8 +16,8 @@ export const QrScannerRoot = styled(View)(() => ({
 
 export const BackButton = styled(IconButton)(({ safeAreaInsets }) => ({
     position: "absolute",
-    left: 20,
-    top: 30 + safeAreaInsets.top,
+    left: 10,
+    top: 10 + safeAreaInsets.top,
 }));
 
 export const ChildrenWrapper = styled(View)(() => ({
