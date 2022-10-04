@@ -1,7 +1,6 @@
 import styled from "@peersyst/react-native-styled";
 import { View } from "react-native";
 import { IconButton } from "../IconButton";
-import Constants from "expo-constants";
 
 export const IdleQrScanner = styled(View)(() => ({
     width: "100%",
@@ -15,9 +14,16 @@ export const QrScannerRoot = styled(View)(() => ({
     backgroundColor: "#000",
 }));
 
-export const BackButton = styled(IconButton)(() => ({
+export const BackButton = styled(IconButton)(({ safeAreaInsets }) => ({
     position: "absolute",
     left: 20,
-    top: 30 + Constants.statusBarHeight,
-    zIndex: 1,
+    top: 30 + safeAreaInsets.top,
+}));
+
+export const ChildrenWrapper = styled(View)(() => ({
+    position: "absolute",
+    left: 0,
+    top: 0,
+    height: "100%",
+    width: "100%",
 }));
