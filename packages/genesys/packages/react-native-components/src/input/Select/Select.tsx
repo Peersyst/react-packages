@@ -75,7 +75,7 @@ function InnerSelect<T>({
                             alignItems="center"
                             justifyContent="space-between"
                         >
-                            <View style={{ maxWidth: "92%" }}>
+                            <View style={{ maxWidth: "92%", flex: 1 }}>
                                 {renderedValue || (
                                     <Text
                                         style={[displayTextStyle, { color: placeholderColor }]}
