@@ -48,7 +48,7 @@ const componentsConfig: ComponentsConfig = {
     },
     Backdrop: {
         defaultProps: {
-            closable: false,
+            closable: true,
             defaultOpen: true,
             closeOnBackdropTap: true,
             swipeable: true,

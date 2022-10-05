@@ -1,8 +1,12 @@
 # Versions
 
+## 1.2.40
+
+-   Improve QrScanner
+
 ## 1.2.39
 
--   Fix select display not ocupying full width
+-   Fix select display not occupying full width
 
 ## 1.2.24
 

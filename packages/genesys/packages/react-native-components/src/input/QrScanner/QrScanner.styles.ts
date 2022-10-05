@@ -3,27 +3,28 @@ import { View } from "react-native";
 import { IconButton } from "../IconButton";
 
 export const IdleQrScanner = styled(View)(() => ({
-    width: "100%",
-    height: "100%",
+    width: "120%",
+    height: "120%",
     backgroundColor: "black",
 }));
 
 export const QrScannerRoot = styled(View)(() => ({
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#000",
+    width: "120%",
+    height: "120%",
+    alignItems: "center",
+    justifyContent: "center",
 }));
 
-export const BackButton = styled(IconButton)(({ safeAreaInsets }) => ({
-    position: "absolute",
-    left: 10,
-    top: 10 + safeAreaInsets.top,
-}));
+export const BackButton = styled(IconButton)(() => {
+    return {
+        position: "absolute",
+        left: 20,
+        top: 40,
+    };
+});
 
-export const ChildrenWrapper = styled(View)(() => ({
+export const ChildrenWrapper = styled(View)(({ dimensions: { width, height } }) => ({
     position: "absolute",
-    left: 0,
-    top: 0,
-    height: "100%",
-    width: "100%",
+    height: height,
+    width: width,
 }));
