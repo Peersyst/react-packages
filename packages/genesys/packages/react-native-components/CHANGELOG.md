@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.39
+
+-   Fix select display not ocupying full width
+
 ## 1.2.24
 
 -   Add GlobalStyles to Divider
