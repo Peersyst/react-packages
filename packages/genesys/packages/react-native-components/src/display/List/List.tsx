@@ -25,10 +25,12 @@ const List = (props: ListProps): JSX.Element => {
     const {
         onRefresh,
         loading = false,
-        refreshControlProps: { tintColor = undefined, ...restControlProps } = {},
+        refreshControlProps = {},
         indicatorStyle,
         ...rest
     } = useMergeDefaultProps("List", props);
+
+    const { tintColor, ...restControlProps } = refreshControlProps;
 
     const { palette } = useTheme();
     const spinnerColor = tintColor || palette.text;
