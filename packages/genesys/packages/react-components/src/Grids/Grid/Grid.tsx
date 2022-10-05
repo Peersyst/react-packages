@@ -18,7 +18,7 @@ const Grid = (props: GridProps): JSX.Element => {
     });
 
     const setPatterns = (reset?: boolean): void => {
-        const width = window.innerWidth;
+        const width = document.documentElement.clientWidth;
         let columns = props.cols;
         let rowSize: number | string | undefined = props.rowSize;
         let colGap: number | string | undefined = props.colGap;

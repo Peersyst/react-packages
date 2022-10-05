@@ -17,6 +17,7 @@ export * from "./feedback/Dialog";
 export * from "./feedback/Modal";
 export * from "./feedback/ModalProvider";
 export * from "./feedback/Skeleton";
+export * from "./feedback/Spinner";
 export * from "./feedback/Suspense";
 export * from "./feedback/Toast";
 export * from "./feedback/ToastProvider";

@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import { TextStyle, ViewStyle } from "react-native";
+import { ColorValue, TextStyle, ViewStyle } from "react-native";
 import { SelectItemProps, SelectItemStyles } from "./SelectItem";
 import { FormControlledComponentProps } from "../FormControl";
 import { CoreSelectProps, SelectContextType } from "@peersyst/react-components-core";
@@ -10,11 +10,16 @@ export interface DisplayStylesProps {
     disabled: boolean;
 }
 
+export type BaseDisplayStyle = ViewStyle &
+    TextStyle & {
+        icon?: TextStyle;
+        placeholderColor?: ColorValue;
+    };
+
 export type DisplayStyle = ViewStyle &
     TextStyle & {
-        disabled?: ViewStyle & TextStyle;
-        readonly?: ViewStyle & TextStyle;
-        placeholderColor?: string;
+        disabled?: BaseDisplayStyle;
+        readonly?: BaseDisplayStyle;
     };
 
 export type SelectStyle = Omit<ViewStyle, "display"> & {

@@ -32,11 +32,11 @@ const Label = (props: LabelProps): JSX.Element => {
 
     const content = [
         isValidElement(label) ? (
+            <Fragment key={"label"}>{label}</Fragment>
+        ) : (
             <LabelText key="label" alignment={alignment} style={labelStyle} variant={variant}>
                 {label}
             </LabelText>
-        ) : (
-            <Fragment key={"label"}>{label}</Fragment>
         ),
         <Fragment key="children">{children}</Fragment>,
     ];

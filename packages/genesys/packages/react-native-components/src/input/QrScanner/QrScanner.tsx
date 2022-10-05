@@ -1,15 +1,17 @@
 import { QrScannerProps } from "./QrScanner.types";
 import { useEffect, useState } from "react";
-import { BackButton, IdleQrScanner, QrScannerRoot } from "./QrScanner.styles";
+import { BackButton, ChildrenWrapper, IdleQrScanner, QrScannerRoot } from "./QrScanner.styles";
 import { Backdrop } from "../../feedback/Backdrop";
-import { createModal } from "../../feedback/ModalProvider";
 import { StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { CrossIcon } from "../../assets/icons";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const QrScanner = createModal((props: QrScannerProps): JSX.Element => {
-    const { back, onScan, ...backdropProps } = useMergeDefaultProps("QrScanner", props);
+const QrScanner = (props: QrScannerProps): JSX.Element => {
+    const { back, onScan, children, style, ...backdropProps } = useMergeDefaultProps(
+        "QrScanner",
+        props,
+    );
 
     const [hasPermission, setHasPermission] = useState<boolean>();
 
@@ -30,13 +32,7 @@ const QrScanner = createModal((props: QrScannerProps): JSX.Element => {
             {(open, setOpen) => {
                 if (hasPermission === false) open && setOpen(false);
                 return hasPermission ? (
-                    <QrScannerRoot>
-                        <BackButton
-                            style={{ color: "white", fontSize: 30 }}
-                            onPress={() => setOpen(false)}
-                        >
-                            {back || <CrossIcon />}
-                        </BackButton>
+                    <QrScannerRoot style={style}>
                         <BarCodeScanner
                             onBarCodeScanned={(data) => {
                                 onScan(data);
@@ -44,6 +40,13 @@ const QrScanner = createModal((props: QrScannerProps): JSX.Element => {
                             }}
                             style={StyleSheet.absoluteFillObject}
                         />
+                        <ChildrenWrapper>{children}</ChildrenWrapper>
+                        <BackButton
+                            style={{ color: "white", fontSize: 30 }}
+                            onPress={() => setOpen(false)}
+                        >
+                            {back || <CrossIcon />}
+                        </BackButton>
                     </QrScannerRoot>
                 ) : (
                     <IdleQrScanner />
@@ -51,6 +54,6 @@ const QrScanner = createModal((props: QrScannerProps): JSX.Element => {
             }}
         </Backdrop>
     );
-});
+};
 
 export default QrScanner;

@@ -30,7 +30,7 @@ const IrregularGrid = (props: IrregularGridProps): JSX.Element => {
     }, [pattern]);
 
     const setPatterns = (reset?: boolean): void => {
-        const width = window.innerWidth;
+        const width = document.documentElement.clientWidth;
         let columns = props.cols;
         let pattern = props.pattern;
         let rowSize: number | string | undefined = props.rowSize;

@@ -1,5 +1,5 @@
 import { PaperProps } from "./Paper.types";
-import { PaperOverlay, PaperRoot } from "./Paper.styles";
+import { PaperRoot } from "./Paper.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { useGlobalStyles } from "../../config";
 
@@ -17,7 +17,6 @@ const Paper = (props: PaperProps): JSX.Element => {
 
     return (
         <PaperRoot elevation={elevation} square={square} style={style} {...rest}>
-            <PaperOverlay elevation={elevation} square={square} />
             {children}
         </PaperRoot>
     );

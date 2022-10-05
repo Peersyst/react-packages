@@ -1,12 +1,12 @@
 import { SelectStyle } from "../Select.types";
 import useSelectDisplayDefaultStyles from "./useSelectDisplayDefaultStyles";
 import { extractTextStyles } from "@peersyst/react-native-utils";
-import { TextStyle, ViewStyle } from "react-native";
+import { ColorValue, TextStyle, ViewStyle } from "react-native";
 import { SelectItemStyles } from "../SelectItem";
 
 export interface UseSelectStyles {
     style: ViewStyle;
-    display: [TextStyle, ViewStyle & { placeholderColor?: string }];
+    display: [TextStyle, ViewStyle & { placeholderColor?: ColorValue; icon?: TextStyle }];
     menu: ViewStyle;
     item: SelectItemStyles;
 }
@@ -14,8 +14,16 @@ export interface UseSelectStyles {
 const useSelectDisplayStyles = (
     {
         display: {
-            disabled: displayDisabledStyle,
-            readonly: displayReadonlyStyle,
+            disabled: {
+                placeholderColor: disabledPlaceholderColor = undefined,
+                icon: disabledIcon = undefined,
+                ...displayDisabledStyle
+            } = {},
+            readonly: {
+                placeholderColor: readonlyPlaceholderColor = undefined,
+                icon: readonlyIcon = undefined,
+                ...displayReadonlyStyle
+            } = {},
             ...displayStyle
         } = {},
         menu: menuStyle,
@@ -48,10 +56,14 @@ const useSelectDisplayStyles = (
         ...(readonly && displayReadonlyRootStyle),
         ...(disabled && { ...defaultDisabledDisplayRootStyle, ...displayDisableRootStyle }),
     };
+    const placeholderColor =
+        (readonly ? readonlyPlaceholderColor : disabled ? disabledPlaceholderColor : undefined) ||
+        displayTextStyles.color;
+    const iconStyles = readonly ? readonlyIcon : disabled ? disabledIcon : undefined;
 
     return {
         style,
-        display: [displayTextStyles, displayRootStyles],
+        display: [displayTextStyles, { placeholderColor, icon: iconStyles, ...displayRootStyles }],
         menu: menuStyle || {},
         item,
     };

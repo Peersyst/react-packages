@@ -78,7 +78,9 @@ const componentsConfig: ComponentsConfig = {
         },
     },
     Suspense: {
-        defaultProps: {},
+        defaultProps: {
+            activityIndicatorSize: "large",
+        },
     },
     Toast: {
         defaultProps: {
@@ -254,6 +256,9 @@ const componentsConfig: ComponentsConfig = {
         defaultProps: {},
     },
     ElementStyler: {
+        defaultProps: {},
+    },
+    Spinner: {
         defaultProps: {},
     },
 };

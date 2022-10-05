@@ -1,6 +1,6 @@
 # Versions
 
-## 1.2.30
+## 1.2.39
 
 -   Fix select display not ocupying full width
 

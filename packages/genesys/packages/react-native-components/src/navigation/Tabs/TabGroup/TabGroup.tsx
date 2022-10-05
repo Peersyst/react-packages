@@ -8,6 +8,7 @@ import { useMergeDefaultProps } from "@peersyst/react-components-core";
 export default function TabGroup(props: TabGroupProps) {
     const {
         renderIndicator = true,
+        indicator,
         indicatorStyle,
         children,
         style,
@@ -22,7 +23,13 @@ export default function TabGroup(props: TabGroupProps) {
     return (
         <TabGroupRoot style={style} onLayout={handleLayout}>
             {children}
-            {renderIndicator && <TabIndicator tabGroupLayout={layout} style={indicatorStyle} />}
+            {renderIndicator && (
+                <TabIndicator
+                    tabGroupLayout={layout}
+                    indicator={indicator}
+                    style={indicatorStyle}
+                />
+            )}
         </TabGroupRoot>
     );
 }

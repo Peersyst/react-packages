@@ -52,7 +52,7 @@ function InnerSelect<T>({
 
     const {
         style,
-        display: [displayTextStyle, { placeholderColor, ...displayRootStyle }],
+        display: [displayTextStyle, { placeholderColor, icon: iconStyle, ...displayRootStyle }],
         menu: menuStyle,
         item: itemStyle,
     } = useSelectStyles(styleProp || {}, disabled, readonly);
@@ -85,7 +85,9 @@ function InnerSelect<T>({
                                     </Text>
                                 )}
                             </View>
-                            <Icon style={{ ...displayTextStyle, fontSize: 14 }}>{icon}</Icon>
+                            <Icon style={{ ...displayTextStyle, fontSize: 14, ...iconStyle }}>
+                                {icon}
+                            </Icon>
                         </Row>
                     )}
                 </View>

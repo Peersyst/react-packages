@@ -15,7 +15,7 @@ import { DialogProps } from "../feedback/Dialog";
 import { CenteredLoaderProps } from "../feedback/CenteredLoader";
 import { ModalProps } from "../feedback/Modal";
 import { SkeletonProps } from "../feedback/Skeleton";
-import { SuspenseProps } from "react";
+import { SuspenseProps } from "../feedback/Suspense";
 import { BackdropProps } from "../feedback/Backdrop";
 import { ToastProps } from "../feedback/Toast";
 import { ButtonProps } from "../input/Button";
@@ -42,6 +42,7 @@ import { CopyButtonProps } from "../util/CopyButton/CopyButton.types";
 import { ElementStylerProps } from "../util/ElementStyler";
 import { BlockchainAddressProps } from "../util/BlockchainAddress";
 import { AlertProps } from "../feedback/Alert";
+import { SpinnerProps } from "../feedback/Spinner";
 
 /**
  * ExtendedToolbarConfig
@@ -108,6 +109,7 @@ export interface BlockchainAddressConfig
     extends ExtendedCoreBlockchainAddressConfig<BlockchainAddressProps> {}
 export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface ElementStylerConfig extends ComponentConfig<ElementStylerProps> {}
+export interface SpinnerConfig extends ComponentConfig<SpinnerProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -160,4 +162,5 @@ export interface ComponentsConfig {
     BlockchainAddress: BlockchainAddressConfig;
     CopyButton: CopyButtonConfig;
     ElementStyler: ElementStylerConfig;
+    Spinner: SpinnerConfig;
 }

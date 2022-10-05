@@ -1,6 +1,7 @@
 import { CameraProps } from "expo-camera";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { ExposedBackdropProps } from "../../feedback/Backdrop";
+import { ViewStyle } from "react-native";
 
 export interface QrScannerProps
     extends Omit<
@@ -15,4 +16,6 @@ export interface QrScannerProps
     > {
     back?: ReactElement;
     onScan: NonNullable<CameraProps["onBarCodeScanned"]>;
+    style?: ViewStyle;
+    children?: ReactNode;
 }

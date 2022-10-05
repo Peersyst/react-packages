@@ -1,27 +1,31 @@
-import { ReactElement } from "react";
-import { ActivityIndicator, ActivityIndicatorProps } from "react-native";
+import { Children, ReactElement } from "react";
+import { ActivityIndicatorProps, ColorValue } from "react-native";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { Spinner, SpinnerProps } from "../Spinner";
 
-export interface ControlledSuspenseProps {
+export interface SuspenseProps {
     isLoading: boolean;
-    activityIndicatorColor?: ActivityIndicatorProps["color"];
+    activityIndicatorColor?: SpinnerProps["color"] | ColorValue;
     activityIndicatorSize?: ActivityIndicatorProps["size"];
     children: ReactElement;
     fallback?: ReactElement;
 }
 
-const Suspense = (props: ControlledSuspenseProps) => {
-    const { isLoading, children, fallback, activityIndicatorColor, activityIndicatorSize } =
-        useMergeDefaultProps("Suspense", props);
+const Suspense = (props: SuspenseProps) => {
+    const {
+        isLoading,
+        children,
+        fallback,
+        activityIndicatorColor,
+        activityIndicatorSize = "large",
+    } = useMergeDefaultProps("Suspense", props);
 
     const loaderComponent = fallback || (
-        <ActivityIndicator
-            testID="actIndicator"
-            color={activityIndicatorColor || "black"}
-            size={activityIndicatorSize || "large"}
-        />
+        <Spinner color={activityIndicatorColor} size={activityIndicatorSize} />
     );
-    return isLoading ? loaderComponent : children;
+    const child = Children.only(children);
+
+    return isLoading ? loaderComponent : child;
 };
 
 export default Suspense;
