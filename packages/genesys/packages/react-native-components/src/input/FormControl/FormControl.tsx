@@ -51,7 +51,6 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
                             value,
                             setValue,
                             context,
-                            // @ts-ignore
                             stylesMergeStrategy(defaultStyle, globalStyle, componentStyle, context),
                             setFocused,
                         );

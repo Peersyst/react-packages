@@ -10,7 +10,8 @@ import {
     useMergeDefaultProps,
 } from "@peersyst/react-native-components";
 import useGetSwitchColors from "./hooks/useGetSwitchColors";
-import { switchStylesMergeStrategy } from "./hooks/switchStylesMergeStrategy";
+import switchStylesMergeStrategy from "./utils/switchStylesMergeStrategy";
+import { useGetDefaultStyles } from "./hooks/useGetDefaultStyles";
 
 const Switch = (props: SwitchProps): JSX.Element => {
     const {
@@ -31,39 +32,10 @@ const Switch = (props: SwitchProps): JSX.Element => {
         trackWidth: 0,
         wrapperWidth: 0,
     });
+
+    //Base animation
     const baseAnim = useRef(new Animated.Value(0)).current;
-
-    //Styles
-    const globalStyles = useGlobalStyles("Switch");
-    const { track: trackStyles, thumb: thumbStyles } = switchStylesMergeStrategy(
-        globalStyles,
-        styleProp?.component || {},
-        disabled,
-    );
-    const { backgroundColor, inactiveBackgroundColor, ...thumbStylesRes } = thumbStyles || {};
-    const { thumbBgColor, inactiveThumbBgColor, trackBgColor } = useGetSwitchColors({
-        thumbBgColor: thumbStyles?.backgroundColor,
-        inactiveThumbBgColor: thumbStyles?.inactiveBackgroundColor,
-        trackBgColor: trackStyles?.backgroundColor,
-    });
-    //Track position animation
-    const tXAnim = baseAnim.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, wrapperWidth - trackWidth],
-    });
-    //Bg color animation
-    const colorAnim = useRef(
-        baseAnim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [inactiveThumbBgColor, thumbBgColor],
-        }),
-    ).current;
-    //Oposite opactiy animation
-    const opacityAnim = useRef(
-        baseAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
-    ).current;
-
-    const handleSetValue = (value: boolean) => {
+    const triggerAnimation = (value: boolean) => {
         Animated.timing(baseAnim, {
             toValue: value ? 1 : 0,
             duration: 200,
@@ -71,6 +43,25 @@ const Switch = (props: SwitchProps): JSX.Element => {
             ...animationConfig,
         }).start();
     };
+
+    //Styles
+    const globalStyles = useGlobalStyles("Switch");
+    const defaultStyles = useGetDefaultStyles();
+    const getSwitchColors = useGetSwitchColors();
+
+    //SwitchTrack position animation
+    //It can not be a ref because it need to be updated
+    //when the wrapper + track width change
+    const tXAnim = baseAnim.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, wrapperWidth - trackWidth],
+    });
+
+    //Oposite opactiy animation
+    //Used to hide children element
+    const opacityAnim = useRef(
+        baseAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
+    ).current;
 
     //On components mounted define the width of the wrapper and the track
     //They will be necessary to position the track
@@ -87,23 +78,42 @@ const Switch = (props: SwitchProps): JSX.Element => {
             defaultValue={defaultValue}
             disabled={disabled}
             hideError={hideError}
-            defaultStyle={globalStyles}
+            stylesMergeStrategy={switchStylesMergeStrategy}
+            defaultStyle={defaultStyles}
+            globalStyle={globalStyles}
             style={styleProp}
             readonly={readonly}
             {...rest}
         >
-            {(value, setValue) => {
+            {(value, setValue, _, style) => {
                 const updateValue = () => {
                     setValue(!value);
-                    if (!readonly && !disabled) handleSetValue(!value);
+                    if (!readonly && !disabled) triggerAnimation(!value);
                 };
+
+                const { thumb: thumStyles, track: trackStyles } = style;
+                const {
+                    backgroundColor: thumbDefaultBgColor,
+                    inactiveBackgroundColor: thumbDefaultInactiveBgColor,
+                    ...restThumbStyles
+                } = thumStyles || {};
+                const { thumbBgColor, inactiveThumbBgColor, trackBgColor } = getSwitchColors({
+                    thumbBgColor: thumbDefaultBgColor,
+                    inactiveThumbBgColor: thumbDefaultInactiveBgColor,
+                    trackBgColor: trackStyles?.backgroundColor,
+                });
+
+                //FinalThumbColor
+                const thumbFinalBgColor = onSwitchChangeBgColor
+                    ? baseAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [inactiveThumbBgColor, thumbBgColor],
+                      })
+                    : thumbBgColor;
 
                 return (
                     <TouchableWithoutFeedback onPress={updateValue}>
-                        <SwitchThumb
-                            {...thumbStylesRes}
-                            backgroundColor={onSwitchChangeBgColor ? colorAnim : thumbBgColor}
-                        >
+                        <SwitchThumb {...restThumbStyles} backgroundColor={thumbFinalBgColor}>
                             <SwitchWrapper
                                 onLayout={(e) =>
                                     handleLayout({

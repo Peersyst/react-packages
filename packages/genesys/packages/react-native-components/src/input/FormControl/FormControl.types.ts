@@ -31,9 +31,9 @@ export interface FormControlProps<
     globalStyle?: FormControlStateStyle<ComponentStyleType>;
     style?: FormControlStyle<LabelStyleType, ComponentStyleType>;
     stylesMergeStrategy?: (
-        defaultStyle: FormControlStateStyle<ComponentStyleType>,
-        globalStyles: FormControlStateStyle<ComponentStyleType>,
-        style: FormControlStateStyle<ComponentStyleType>,
+        defaultStyle: FormControlStateStyle<Partial<ComponentStyleType>>,
+        globalStyles: FormControlStateStyle<Partial<ComponentStyleType>>,
+        style: FormControlStateStyle<Partial<ComponentStyleType>>,
         context: FormControlContextType,
     ) => ComponentStyleType;
 }
