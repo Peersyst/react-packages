@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.41
+
+-   Add ThemeOverrideContext
+
 ## 1.2.40
 
 -   Improve QrScanner

@@ -7,10 +7,16 @@ export * from "./shadows";
 export * from "./createTheme.types";
 export * from "./typography";
 export { default as ThemeProvider } from "./ThemeProvider";
+export { default as ThemeOverrideProvider } from "./ThemeOverrideProvider";
 export * from "./ThemeProvider";
 export * from "./withThemeClassName";
 export * from "./withTheme";
-export { useTheme, ThemeContext, ThemeConsumer } from "@peersyst/react-components-core";
+export {
+    useTheme,
+    ThemeContext,
+    ThemeConsumer,
+    ThemeOverrideContext,
+} from "@peersyst/react-components-core";
 export type {
     ThemeContextType,
     Theme,
@@ -23,5 +29,7 @@ export type {
     ThemeTypography,
     ThemeIcons,
     PaletteMode,
+    ThemeOverrideProviderProps,
+    ThemeOverrideContextType,
 } from "@peersyst/react-components-core";
 import "./theme";

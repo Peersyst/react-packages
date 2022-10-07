@@ -68,14 +68,15 @@ function InnerSelect<T>({
     return (
         <View style={{ width: "100%", ...style }}>
             <TouchableWithoutFeedback onPress={handlePress}>
-                <View onStartShouldSetResponderCapture={() => true}>
+                <View onStartShouldSetResponderCapture={() => true} style={{ flex: 1 }}>
                     {display || (
                         <Row
                             style={displayRootStyle}
                             alignItems="center"
                             justifyContent="space-between"
+                            flex={1}
                         >
-                            <View style={{ maxWidth: "92%", flex: 1 }}>
+                            <View style={{ maxWidth: "92%" }}>
                                 {renderedValue || (
                                     <Text
                                         style={[displayTextStyle, { color: placeholderColor }]}

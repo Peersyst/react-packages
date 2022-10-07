@@ -7,7 +7,7 @@ import {
     ScrollView,
 } from "react-native";
 import { useState } from "react";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 
 export interface ListProps extends Omit<FlatListProps<any>, "refreshControl" | "refreshing"> {
     refreshControlProps?: RefreshControlPropsIOS & RefreshControlPropsAndroid;
@@ -25,9 +25,16 @@ const List = (props: ListProps): JSX.Element => {
     const {
         onRefresh,
         loading = false,
-        refreshControlProps,
+        refreshControlProps = {},
+        indicatorStyle,
         ...rest
     } = useMergeDefaultProps("List", props);
+
+    const { tintColor, ...restControlProps } = refreshControlProps;
+
+    const { palette } = useTheme();
+    const spinnerColor = tintColor || palette.text;
+    const scrollIndicatorStyle = indicatorStyle || (palette.mode === "dark" ? "white" : "black");
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -50,10 +57,12 @@ const List = (props: ListProps): JSX.Element => {
                         <RefreshControl
                             refreshing={loading || refreshing}
                             onRefresh={handleRefresh}
-                            {...refreshControlProps}
+                            tintColor={spinnerColor}
+                            {...restControlProps}
                         />
                     ) : undefined
                 }
+                indicatorStyle={scrollIndicatorStyle}
                 {...rest}
             />
         </ScrollView>

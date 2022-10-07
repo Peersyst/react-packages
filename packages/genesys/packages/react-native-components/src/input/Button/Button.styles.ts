@@ -15,7 +15,7 @@ export const ButtonLoader = styled(Row, { alignItems: "center", justifyContent: 
  * Main button styles
  */
 export const ButtonRoot = styled(View)<ButtonRootProps>(({ theme, fullWidth }) => ({
-    alignSelf: fullWidth ? undefined : "flex-start",
+    alignSelf: fullWidth ? "stretch" : "flex-start",
     borderRadius: theme.borderRadius,
 }));
 
