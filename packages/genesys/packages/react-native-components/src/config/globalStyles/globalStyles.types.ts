@@ -6,6 +6,8 @@ import { LabelStyle } from "../../display/Label";
 import { FormControlLabelStyle } from "../../input/FormControlLabel";
 import { PagerViewStyle } from "../../display/PagerView";
 import { DottedPaginationStyle } from "../../navigation/DottedPagination";
+import { SwitchStyle } from "src/input/Switch/Switch.types";
+import { FormControlStateStyle } from "src/input/FormControl/FormControl.types";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -26,5 +28,6 @@ export interface BaseGlobalStyles {
     Paper?: ViewStyle;
     Typography?: TypographyStyle;
     Divider?: ViewStyle;
+    Switch?: FormControlStateStyle<SwitchStyle>;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}
