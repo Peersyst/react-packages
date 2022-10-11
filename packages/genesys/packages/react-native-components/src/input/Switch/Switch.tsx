@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Animated, TouchableWithoutFeedback } from "react-native";
 import { SwitchElementWrapper, SwitchThumb, SwitchTrack, SwitchWrapper } from "./Switch.styles";
-import { HandleLayoutParams, SwitchProps, SwitchStyle, SwitchWidths } from "./Switch.types";
+import { HandleLayoutParams, SwitchProps, SwitchStyle } from "./Switch.types";
 import {
     FormControl,
     Label,
@@ -28,48 +28,55 @@ const Switch = (props: SwitchProps): JSX.Element => {
         ...rest
     } = useMergeDefaultProps("Switch", props);
 
-    const [{ wrapperWidth, trackWidth }, setWrapperWidth] = useState<SwitchWidths>({
-        trackWidth: 0,
-        wrapperWidth: 0,
-    });
-
-    //Base animation
-    const baseAnim = useRef(new Animated.Value(0)).current;
-    const triggerAnimation = (value: boolean) => {
-        Animated.timing(baseAnim, {
-            toValue: value ? 1 : 0,
-            duration: 200,
-            useNativeDriver: false,
-            ...animationConfig,
-        }).start();
-    };
-
     //Styles
     const globalStyles = useGlobalStyles("Switch");
     const defaultStyles = useGetDefaultStyles();
     const getSwitchColors = useGetSwitchColors();
 
-    //SwitchTrack position animation
-    //It can not be a ref because it need to be updated
-    //when the wrapper + track width change
+    //States
+    const [innverValue, setInnerValue] = useState<boolean>(defaultValue);
+    const [wrapperWidth, setWrapperWidth] = useState<number>(0);
+    const [thumbWidth, setThumbWidth] = useState<number>(0);
+
+    //Base animation
+    const baseAnim = useRef(new Animated.Value(0)).current;
+
+    //Trigger animation on value change
+    useEffect(() => {
+        Animated.timing(baseAnim, {
+            toValue: innverValue ? 1 : 0,
+            duration: 200,
+            useNativeDriver: false,
+            ...animationConfig,
+        }).start();
+    }, [innverValue]);
+
+    /**
+     * SwitchTrack position animation
+     * It cannot be a ref because it has to be updated
+     * when the wrapper and track width update
+     */
     const tXAnim = baseAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, wrapperWidth - trackWidth],
+        outputRange: [0, wrapperWidth - thumbWidth],
     });
 
-    //Oposite opactiy animation
-    //Used to hide children element
+    /**
+     * Oposite opacity animation
+     * used to hide the child element
+     * when the switch's value changes
+     */
     const opacityAnim = useRef(
         baseAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
     ).current;
 
-    //On components mounted define the width of the wrapper and the track
-    //They will be necessary to position the track
+    /**
+     * Needed in order to gain knowledge of the humb and track,
+     * as their widths may vary, so translations can be performed correctly
+     */
     const handleLayout = ({ nativeEvent: { layout: newLayout }, type }: HandleLayoutParams) => {
-        setWrapperWidth((wrapperWidth) => ({
-            ...wrapperWidth,
-            [type]: newLayout.width,
-        }));
+        if (type === "thumbWidth") setThumbWidth(newLayout.width);
+        else setWrapperWidth(newLayout.width);
     };
 
     return (
@@ -78,7 +85,9 @@ const Switch = (props: SwitchProps): JSX.Element => {
             defaultValue={defaultValue}
             disabled={disabled}
             hideError={hideError}
-            stylesMergeStrategy={switchStylesMergeStrategy}
+            stylesMergeStrategy={(...mergeStyles) =>
+                switchStylesMergeStrategy(innverValue, ...mergeStyles)
+            }
             defaultStyle={defaultStyles}
             globalStyle={globalStyles}
             style={styleProp}
@@ -86,34 +95,30 @@ const Switch = (props: SwitchProps): JSX.Element => {
             {...rest}
         >
             {(value, setValue, _, style) => {
-                const updateValue = () => {
+                const handleChange = () => {
                     setValue(!value);
-                    if (!readonly && !disabled) triggerAnimation(!value);
+                    if (!readonly && !disabled) setInnerValue(!value);
                 };
 
-                const { thumb: thumStyles, track: trackStyles } = style;
-                const {
-                    backgroundColor: thumbDefaultBgColor,
-                    inactiveBackgroundColor: thumbDefaultInactiveBgColor,
-                    ...restThumbStyles
-                } = thumStyles || {};
-                const { thumbBgColor, inactiveThumbBgColor, trackBgColor } = getSwitchColors({
-                    thumbBgColor: thumbDefaultBgColor,
-                    inactiveThumbBgColor: thumbDefaultInactiveBgColor,
+                const { thumb: thumbStyles, ...trackStyles } = style;
+
+                const { thumbBgColor, inactiveTrackBgColor, trackBgColor } = getSwitchColors({
+                    thumbBgColor: thumbStyles?.backgroundColor,
+                    inactiveTrackBgColor: trackStyles.backgroundColor,
                     trackBgColor: trackStyles?.backgroundColor,
                 });
 
                 //FinalThumbColor
-                const thumbFinalBgColor = onSwitchChangeBgColor
+                const trackFinalColor = onSwitchChangeBgColor
                     ? baseAnim.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [inactiveThumbBgColor, thumbBgColor],
+                          outputRange: [inactiveTrackBgColor, trackBgColor],
                       })
-                    : thumbBgColor;
+                    : trackBgColor;
 
                 return (
-                    <TouchableWithoutFeedback onPress={updateValue}>
-                        <SwitchThumb {...restThumbStyles} backgroundColor={thumbFinalBgColor}>
+                    <TouchableWithoutFeedback onPress={handleChange}>
+                        <SwitchTrack style={{ ...trackStyles, backgroundColor: trackFinalColor }}>
                             <SwitchWrapper
                                 onLayout={(e) =>
                                     handleLayout({
@@ -129,16 +134,17 @@ const Switch = (props: SwitchProps): JSX.Element => {
                                         {children[0]}
                                     </SwitchElementWrapper>
                                 )}
-                                <SwitchTrack
-                                    backgroundColor={trackBgColor}
+                                <SwitchThumb
                                     onLayout={(e) =>
                                         handleLayout({
                                             nativeEvent: e.nativeEvent,
-                                            type: "trackWidth",
+                                            type: "thumbWidth",
                                         })
                                     }
                                     style={{
                                         transform: [{ translateX: tXAnim }],
+                                        ...thumbStyles,
+                                        backgroundColor: thumbBgColor,
                                     }}
                                 />
                                 {!value && children && (
@@ -149,7 +155,7 @@ const Switch = (props: SwitchProps): JSX.Element => {
                                     </SwitchElementWrapper>
                                 )}
                             </SwitchWrapper>
-                        </SwitchThumb>
+                        </SwitchTrack>
                     </TouchableWithoutFeedback>
                 );
             }}
