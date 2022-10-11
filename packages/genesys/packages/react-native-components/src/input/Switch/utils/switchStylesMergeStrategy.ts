@@ -1,8 +1,7 @@
 import { FormControlContextType } from "@peersyst/react-components-core";
-import { SwitchBaseStyle, SwitchPartialStyle } from "../Switch.types";
+import { SwitchCoreStyle, SwitchPartialStyle } from "../Switch.types";
 
 export default function (
-    active: boolean,
     {
         invalid: { active: defaultInvalidActiveStyle, ...defaultInvalidInactiveStyle } = {},
         valid: { active: defaultValidActiveStyle, ...defaultValidInactiveStyle } = {},
@@ -34,8 +33,8 @@ export default function (
         ...styleInactiveStyle
     }: SwitchPartialStyle,
     { readonly, required, focused, invalid, valid, disabled }: FormControlContextType,
-): SwitchBaseStyle {
-    const finalActive = {
+): SwitchCoreStyle {
+    const activeStyle = {
         ...defaultActiveStyle,
         ...globalActiveStyle,
         ...styleActiveStyle,
@@ -70,7 +69,8 @@ export default function (
             ...styleDisabledActiveStyle,
         }),
     };
-    const finalInactive = {
+
+    const style = {
         ...defaultInactiveStyle,
         ...globalInactiveStyle,
         ...styleInactiveStyle,
@@ -105,10 +105,9 @@ export default function (
             ...styleDisabledInactiveStyle,
         }),
     };
+
     return {
-        ...finalInactive,
-        ...(active && {
-            ...finalActive,
-        }),
+        ...style,
+        active: activeStyle,
     };
 }

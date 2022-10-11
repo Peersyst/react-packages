@@ -10,7 +10,12 @@ export type SwitchStyle = FormControlStateStyle<SwitchCoreStyle>;
 export type SwitchPartialStyle = FormControlStateStyle<Partial<SwitchCoreStyle>>;
 
 export type SwitchCoreStyle = SwitchBaseStyle & {
-    active?: SwitchBaseStyle;
+    active?: {
+        backgroundColor?: ColorWithoutOpaqueColorValue;
+        thumb?: {
+            backgroundColor?: ColorWithoutOpaqueColorValue;
+        };
+    };
 };
 
 export type SwitchBaseStyle = SwitchStyles & {
@@ -33,11 +38,6 @@ export interface SwitchProps extends BaseSwitchProps {
      * Animation options
      */
     animationConfig?: Omit<Parameters<typeof Animated.timing>[1], "toValue">;
-    /**
-     * Set to true if you want to change the bg color of the thumb when switch state changes
-     * You can algo customize the color with the style { thumb: ThumbStyle } prop
-     */
-    onSwitchChangeBgColor?: boolean;
 }
 
 export interface HandleLayoutParams {

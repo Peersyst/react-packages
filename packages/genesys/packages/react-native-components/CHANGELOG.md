@@ -1,6 +1,6 @@
 # Versions
 
-## 1.2.46
+## 1.2.48
 
 -   Add Switch component
 
