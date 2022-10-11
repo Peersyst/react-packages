@@ -23,7 +23,6 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
             label: labelStyle = {},
             hint: hintStyle = {},
             error: errorStyle = {},
-            // @ts-ignore
             component: componentStyle = {},
             ...rootStyleProp
         } = {},
@@ -51,7 +50,6 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
                             value,
                             setValue,
                             context,
-                            // @ts-ignore
                             stylesMergeStrategy(defaultStyle, globalStyle, componentStyle, context),
                             setFocused,
                         );

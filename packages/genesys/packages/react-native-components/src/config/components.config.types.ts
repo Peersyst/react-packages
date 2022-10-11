@@ -43,6 +43,7 @@ import { ElementStylerProps } from "../util/ElementStyler";
 import { BlockchainAddressProps } from "../util/BlockchainAddress";
 import { AlertProps } from "../feedback/Alert";
 import { SpinnerProps } from "../feedback/Spinner";
+import { SwitchProps } from "src/input/Switch/Switch.types";
 
 /**
  * ExtendedToolbarConfig
@@ -110,6 +111,7 @@ export interface BlockchainAddressConfig
 export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface ElementStylerConfig extends ComponentConfig<ElementStylerProps> {}
 export interface SpinnerConfig extends ComponentConfig<SpinnerProps> {}
+export interface SwitchConfig extends ComponentConfig<SwitchProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -163,4 +165,5 @@ export interface ComponentsConfig {
     CopyButton: CopyButtonConfig;
     ElementStyler: ElementStylerConfig;
     Spinner: SpinnerConfig;
+    Switch: SwitchConfig;
 }
