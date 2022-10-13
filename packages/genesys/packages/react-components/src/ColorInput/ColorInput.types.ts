@@ -2,24 +2,29 @@ import { CoreFormControlledComponentProps } from "@peersyst/react-components-cor
 import { LabelProps } from "../Label";
 import { FormControlledComponentProps } from "../FormControl";
 import { TextFieldProps } from "../TextField";
+import { ComponentType } from "react";
 
-export type ColorInputTextFieldProps = Pick<
-    TextFieldProps,
-    | "clearable"
-    | "clearElement"
-    | "prefix"
-    | "suffix"
-    | "autoFocus"
-    | "selectOnFocus"
-    | "maxLength"
-    | "placeholder"
-    | "onFocus"
-    | "onBlur"
+export type ColorInputTextFieldProps<TFP extends TextFieldProps> = Omit<
+    TFP,
+    | "value"
+    | "onChange"
+    | "defaultValue"
+    | "hideError"
+    | "required"
+    | "label"
+    | "LabelProps"
+    | "Label"
+    | "disabled"
+    | "readonly"
+    | "showValid"
+    | "name"
+    | "onValidated"
 >;
 
 export type CoreColorInputProps = CoreFormControlledComponentProps<string, LabelProps>;
 
-export interface ColorInputProps extends FormControlledComponentProps<CoreColorInputProps> {
+export interface ColorInputProps<TFP extends TextFieldProps>
+    extends FormControlledComponentProps<CoreColorInputProps> {
     /**
      * Renders text field where the user can enter a color
      */
@@ -27,7 +32,11 @@ export interface ColorInputProps extends FormControlledComponentProps<CoreColorI
     /**
      * ColorInput TextField props
      */
-    TextFieldProps?: ColorInputTextFieldProps;
+    TextFieldProps?: ColorInputTextFieldProps<TFP>;
+    /**
+     * Custom TextField component
+     */
+    TextField?: ComponentType<TFP>;
 }
 
 export interface ColorInputRootProps {

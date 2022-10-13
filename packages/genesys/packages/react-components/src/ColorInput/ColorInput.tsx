@@ -7,10 +7,13 @@ import {
     useMergeDefaultProps,
     useTranslate,
 } from "@peersyst/react-components-core";
-import { ColorInputDisplay, ColorInputRoot, ColorInputTextField } from "./ColorInput.styles";
+import { ColorInputDisplay, ColorInputRoot } from "./ColorInput.styles";
 import { cx } from "@peersyst/react-utils";
+import { TextField, TextFieldProps } from "../TextField";
 
-const ColorInput = (props: ColorInputProps): JSX.Element => {
+function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
+    props: ColorInputProps<TFP>,
+): JSX.Element {
     const {
         defaultValue = "#FFFFFF",
         showTextField,
@@ -21,7 +24,8 @@ const ColorInput = (props: ColorInputProps): JSX.Element => {
         showValid,
         required,
         label,
-        TextFieldProps = {},
+        TextFieldProps: { style: textFieldStyle = {}, ...restTextFieldProps } = {},
+        TextField: TextFieldComponent = TextField,
         ...rest
     } = useMergeDefaultProps("ColorInput", props);
 
@@ -74,7 +78,8 @@ const ColorInput = (props: ColorInputProps): JSX.Element => {
                             onClick={handleDisplayClick}
                         />
                         {showTextField && (
-                            <ColorInputTextField
+                            // @ts-ignore
+                            <TextFieldComponent
                                 value={value}
                                 onChange={setValue}
                                 disabled={disabled}
@@ -82,7 +87,8 @@ const ColorInput = (props: ColorInputProps): JSX.Element => {
                                 hideError
                                 showValid={showValid}
                                 required={required}
-                                {...TextFieldProps}
+                                style={{ flex: 1, ...textFieldStyle }}
+                                {...restTextFieldProps}
                             />
                         )}
                         {active && (
@@ -98,6 +104,6 @@ const ColorInput = (props: ColorInputProps): JSX.Element => {
             }}
         </FormControl>
     );
-};
+}
 
 export default ColorInput;

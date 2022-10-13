@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { ColorInputDisplayProps, ColorInputRootProps } from "./ColorInput.types";
 import { Row } from "../Row";
-import { TextField } from "../TextField";
 
 export const ColorInputRoot = styled(Row).attrs({
     alignItems: "center",
@@ -32,7 +31,3 @@ export const ColorInputDisplay = styled.span<ColorInputDisplayProps>(
         cursor: ${active && "pointer"};
     `,
 );
-
-export const ColorInputTextField = styled(TextField)`
-    flex: 1;
-`;
