@@ -21,6 +21,7 @@ const ColorInput = (props: ColorInputProps): JSX.Element => {
         showValid,
         required,
         label,
+        TextFieldProps = {},
         ...rest
     } = useMergeDefaultProps("ColorInput", props);
 
@@ -81,6 +82,7 @@ const ColorInput = (props: ColorInputProps): JSX.Element => {
                                 hideError
                                 showValid={showValid}
                                 required={required}
+                                {...TextFieldProps}
                             />
                         )}
                         {active && (
