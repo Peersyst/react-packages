@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.48
+
+-   Add Switch component
+
 ## 1.2.41
 
 -   Add ThemeOverrideContext

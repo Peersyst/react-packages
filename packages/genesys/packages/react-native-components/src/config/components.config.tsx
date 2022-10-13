@@ -261,6 +261,9 @@ const componentsConfig: ComponentsConfig = {
     Spinner: {
         defaultProps: {},
     },
+    Switch: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

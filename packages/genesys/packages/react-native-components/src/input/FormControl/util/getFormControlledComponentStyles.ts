@@ -10,7 +10,7 @@ export default function <S>(
         focused: focusedDefaultStyle,
         valid: validDefaultStyle,
         ...restDefaultStyle
-    }: FormControlStateStyle<S>,
+    }: FormControlStateStyle<Partial<S>> = {},
     {
         required: requiredGlobalStyle,
         invalid: invalidGlobalStyle,
@@ -19,7 +19,7 @@ export default function <S>(
         focused: focusedGlobalStyle,
         valid: validGlobalStyle,
         ...defaultGlobalStyle
-    }: FormControlStateStyle<S>,
+    }: FormControlStateStyle<Partial<S>>,
     {
         required: requiredStyle,
         invalid: invalidStyle,
@@ -28,7 +28,7 @@ export default function <S>(
         focused: focusedStyle,
         valid: validStyle,
         ...defaultStyle
-    }: FormControlStateStyle<S>,
+    }: FormControlStateStyle<Partial<S>>,
     { required, invalid, disabled, readonly, focused, valid }: FormControlContextType,
 ): S {
     const defaultStyles = { ...restDefaultStyle, ...defaultGlobalStyle, ...defaultStyle };
