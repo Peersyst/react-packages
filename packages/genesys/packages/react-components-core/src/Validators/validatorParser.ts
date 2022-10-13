@@ -9,6 +9,7 @@ import { MinCharsValidator } from "./MinCharsValidator";
 import { MaxCharsValidator } from "./MaxCharsValidator";
 import { StartsWithValidator } from "./StartsWithValidator";
 import { EndsWithValidator } from "./EndsWithValidator";
+import { ColorValidator } from "./ColorValidator";
 
 export const parseValidator = (
     validator: keyof Validators & keyof ExtraValidators,
@@ -43,6 +44,8 @@ export const parseValidator = (
             return new StartsWithValidator(value, message, translate);
         case "endsWith":
             return new EndsWithValidator(value, message, translate);
+        case "color":
+            return new ColorValidator(message, translate);
         default:
             return new (extraValidators[validator] as IValidator)(message, translate, value);
     }

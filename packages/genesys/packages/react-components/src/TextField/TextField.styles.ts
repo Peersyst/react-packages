@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const TextFieldInput = styled.input`
-    height: 34px;
+    height: 36px;
+    box-sizing: border-box;
     background-color: transparent;
     border: 0;
     outline: 0;

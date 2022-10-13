@@ -14,6 +14,16 @@ export {
     useTranslate,
     useValidators,
     BaseValidator,
+    ColorValidator,
+    EmailValidator,
+    EndsWithValidator,
+    EqualValidator,
+    MaxCharsValidator,
+    MinCharsValidator,
+    NotNullValidator,
+    NumberValidator,
+    PasswordValidator,
+    StartsWithValidator,
 } from "@peersyst/react-components-core";
 export type {
     BlockchainLinksTypes,

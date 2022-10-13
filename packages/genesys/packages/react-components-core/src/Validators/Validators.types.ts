@@ -20,6 +20,7 @@ export interface Validators {
     maxChars?: Validator<number>;
     startsWith?: Validator<string>;
     endsWith?: Validator<string>;
+    color?: Validator;
 }
 
 export interface FunctionalValidator {
@@ -44,4 +45,5 @@ export type ValidatorKey =
     | "insufficient_chars"
     | "too_many_chars"
     | "invalid_start"
-    | "invalid_end";
+    | "invalid_end"
+    | "invalid_color";

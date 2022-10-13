@@ -135,6 +135,14 @@ const componentsConfig: ComponentsConfig = {
     Col: {
         defaultProps: {},
     },
+    ColorInput: {
+        defaultProps: {
+            defaultValue: "#FFFFFF",
+            showTextField: true,
+            LabelProps: {},
+            Label: FormControlLabel,
+        },
+    },
     CopyButton: {
         defaultProps: {},
     },

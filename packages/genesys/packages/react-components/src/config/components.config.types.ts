@@ -59,6 +59,7 @@ import { UploadProps } from "../Upload";
 import { BlockchainAddressProps } from "../BlockchainAddress";
 import { ChipProps } from "../Chip";
 import { AlertProps } from "../Alert";
+import { ColorInputProps } from "../ColorInput";
 
 /**
  * No config for:
@@ -93,6 +94,7 @@ export interface ChartConfig extends ComponentConfig<ChartProps> {}
 export interface CheckboxConfig extends ComponentConfig<CheckboxProps> {}
 export interface ChipConfig extends ComponentConfig<ChipProps> {}
 export interface ColConfig extends ComponentConfig<ColProps> {}
+export interface ColorInputConfig extends ComponentConfig<ColorInputProps> {}
 export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface DividerConfig extends ComponentConfig<DividerProps> {}
 export interface DrawerConfig extends ComponentConfig<DrawerProps> {}
@@ -159,6 +161,7 @@ export interface ComponentsConfig {
     Checkbox: CheckboxConfig;
     Chip: ChipConfig;
     Col: ColConfig;
+    ColorInput: ColorInputConfig;
     CopyButton: CopyButtonConfig;
     Divider: DividerConfig;
     Drawer: DrawerConfig;

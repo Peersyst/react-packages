@@ -14,6 +14,7 @@ export * from "./Checkbox";
 export * from "./Chip";
 export * from "./ClickAwayListener";
 export * from "./Col";
+export * from "./ColorInput";
 export * from "./CopyButton";
 export * from "./Divider";
 export * from "./Drawer";
