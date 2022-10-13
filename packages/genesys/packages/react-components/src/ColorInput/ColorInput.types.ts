@@ -23,7 +23,7 @@ export type ColorInputTextFieldProps<TFP extends TextFieldProps> = Omit<
 
 export type CoreColorInputProps = CoreFormControlledComponentProps<string, LabelProps>;
 
-export interface ColorInputProps<TFP extends TextFieldProps>
+export interface ColorInputProps<TFP extends TextFieldProps = TextFieldProps>
     extends FormControlledComponentProps<CoreColorInputProps> {
     /**
      * Renders text field where the user can enter a color
