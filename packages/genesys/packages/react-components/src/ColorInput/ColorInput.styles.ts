@@ -14,6 +14,8 @@ export const ColorInputRoot = styled(Row).attrs({
 
         > input {
             position: absolute;
+            bottom: 0;
+            left: 0;
             opacity: 0;
             z-index: -1;
         }
