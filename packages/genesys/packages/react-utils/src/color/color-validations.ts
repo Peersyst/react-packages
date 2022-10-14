@@ -1,19 +1,19 @@
 import {
-    validateHTMLColor,
-    validateHTMLColorHex,
-    validateHTMLColorHsl,
-    validateHTMLColorName,
-    validateHTMLColorRgb,
-    validateHTMLColorSpecialName,
-    validateHTMLColorHwb,
-    validateHTMLColorLab,
+    validateHTMLColor as isColor,
+    validateHTMLColorHex as isHexColor,
+    validateHTMLColorHsl as isHslColor,
+    validateHTMLColorName as isNameColor,
+    validateHTMLColorRgb as isRgbColor,
+    validateHTMLColorSpecialName as isSpecialNameColor,
+    validateHTMLColorHwb as isHwbColor,
+    validateHTMLColorLab as isLabColor,
 } from "validate-color";
 
-export { validateHTMLColor as isColor };
-export { validateHTMLColorHex as isHexColor };
-export { validateHTMLColorHsl as isHslColor };
-export { validateHTMLColorName as isNameColor };
-export { validateHTMLColorRgb as isRgbColor };
-export { validateHTMLColorSpecialName as isSpecialNameColor };
-export { validateHTMLColorHwb as isHwbColor };
-export { validateHTMLColorLab as isLabColor };
+export { isColor };
+export { isHexColor };
+export { isHslColor };
+export { isNameColor };
+export { isRgbColor };
+export { isSpecialNameColor };
+export { isHwbColor };
+export { isLabColor };
