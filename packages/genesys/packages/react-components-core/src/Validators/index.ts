@@ -1,5 +1,6 @@
 export { BaseValidator } from "./BaseValidator";
 export { ColorValidator } from "./ColorValidator";
+export * from "./ColorValidator";
 export { EmailValidator } from "./EmailValidator";
 export { EndsWithValidator } from "./EndsWithValidator";
 export { EqualValidator } from "./EqualValidator";

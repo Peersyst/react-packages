@@ -1,5 +1,6 @@
 import { BaseValidator } from "./BaseValidator";
 import { TranslateFn } from "../config";
+import { ColorValidatorType } from "./ColorValidator";
 
 export interface IValidator {
     new (message: string | undefined, translate: TranslateFn, value?: any): BaseValidator;
@@ -20,7 +21,7 @@ export interface Validators {
     maxChars?: Validator<number>;
     startsWith?: Validator<string>;
     endsWith?: Validator<string>;
-    color?: Validator;
+    color?: Validator<ColorValidatorType>;
 }
 
 export interface FunctionalValidator {

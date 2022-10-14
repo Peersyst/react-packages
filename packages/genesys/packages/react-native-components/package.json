@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -36,12 +36,12 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components-core": "^0.2.8",
-        "@peersyst/react-hooks": "^1.4.0",
+        "@peersyst/react-components-core": "^0.2.9",
+        "@peersyst/react-hooks": "^1.4.1",
         "@peersyst/react-native-styled": "^1.3.0",
-        "@peersyst/react-native-utils": "^0.2.0",
+        "@peersyst/react-native-utils": "^0.2.1",
         "@peersyst/react-types": "^1.4.0",
-        "@peersyst/react-utils": "^1.7.0",
+        "@peersyst/react-utils": "^1.7.1",
         "@react-native-async-storage/async-storage": "^1.17.7",
         "@react-native-community/hooks": "^2.8.1",
         "expo-barcode-scanner": "^11.2.1",

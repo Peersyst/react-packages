@@ -3,6 +3,8 @@ import { LabelProps } from "../Label";
 import { FormControlledComponentProps } from "../FormControl";
 import { TextFieldProps } from "../TextField";
 import { ComponentType } from "react";
+import { ColorValidatorType } from "@peersyst/react-components-core";
+import Color from "color";
 
 export type ColorInputTextFieldProps<TFP extends TextFieldProps> = Omit<
     TFP,
@@ -21,10 +23,14 @@ export type ColorInputTextFieldProps<TFP extends TextFieldProps> = Omit<
     | "onValidated"
 >;
 
-export type CoreColorInputProps = CoreFormControlledComponentProps<string, LabelProps>;
+export type CoreColorInputProps = CoreFormControlledComponentProps<Color, LabelProps>;
 
 export interface ColorInputProps<TFP extends TextFieldProps = TextFieldProps>
     extends FormControlledComponentProps<CoreColorInputProps> {
+    /**
+     * Color type/s
+     */
+    colorType?: Exclude<ColorValidatorType, true>;
     /**
      * Renders text field where the user can enter a color
      */

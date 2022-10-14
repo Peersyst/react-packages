@@ -10,6 +10,7 @@ import {
 } from "../assets/icons";
 import { Label } from "../Label";
 import { FormControlLabel } from "../FormControlLabel";
+import Color from "color";
 
 const componentsConfig: ComponentsConfig = {
     Alert: {
@@ -137,7 +138,7 @@ const componentsConfig: ComponentsConfig = {
     },
     ColorInput: {
         defaultProps: {
-            defaultValue: "#FFFFFF",
+            defaultValue: new Color("#FFFFFF"),
             showTextField: true,
             LabelProps: {},
             Label: FormControlLabel,

@@ -1,5 +1,5 @@
 import { ColorInputProps } from "./ColorInput.types";
-import { ChangeEvent, createRef } from "react";
+import { ChangeEvent, createRef, useState } from "react";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
 import {
@@ -10,12 +10,14 @@ import {
 import { ColorInputDisplay, ColorInputRoot } from "./ColorInput.styles";
 import { cx } from "@peersyst/react-utils";
 import { TextField, TextFieldProps } from "../TextField";
+import Color from "color";
 
 function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
     props: ColorInputProps<TFP>,
 ): JSX.Element {
     const {
-        defaultValue = "#FFFFFF",
+        colorType,
+        defaultValue = new Color("#FFFFFF"),
         showTextField,
         readonly = false,
         disabled = false,
@@ -31,6 +33,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
 
     const translate = useTranslate();
 
+    const [textFieldValue, setTextFieldValue] = useState(defaultValue.hex());
     const uploadRef = createRef<HTMLInputElement>();
 
     const active = !disabled && !readonly;
@@ -39,13 +42,13 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
         if (active) uploadRef?.current?.click();
     };
 
-    const handleValidation = (value: string): [boolean, string] => {
-        const colorValidator = new ColorValidator(undefined, translate);
-        return [colorValidator.validate(value), colorValidator.message];
+    const handleValidation = (): [boolean, string] => {
+        const colorValidator = new ColorValidator(colorType || true, undefined, translate);
+        return [colorValidator.validate(textFieldValue), colorValidator.message];
     };
 
     return (
-        <FormControl<string>
+        <FormControl<Color>
             defaultValue={defaultValue}
             Label={[Label, LabelProps]}
             readonly={readonly}
@@ -57,8 +60,16 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
             {...rest}
         >
             {(value, setValue, { focused, invalid, valid }) => {
-                const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-                    setValue(event.target.value.toUpperCase());
+                const handleColorChange = (event: ChangeEvent<HTMLInputElement>) => {
+                    const color = new Color(event.target.value);
+                    setValue(color);
+                    setTextFieldValue(color.hex().toUpperCase());
+                };
+
+                const handleTextFieldChange = (text: string) => {
+                    setTextFieldValue(text);
+                    const color = new Color(text);
+                    setValue(color);
                 };
 
                 return (
@@ -72,7 +83,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
                                 disabled && "Disabled",
                                 readonly && "Readonly",
                             )}
-                            style={{ backgroundColor: value }}
+                            style={{ backgroundColor: value.hex() }}
                             disabled={disabled}
                             active={active}
                             onClick={handleDisplayClick}
@@ -80,8 +91,8 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
                         {showTextField && (
                             // @ts-ignore
                             <TextFieldComponent
-                                value={value}
-                                onChange={setValue}
+                                value={textFieldValue}
+                                onChange={handleTextFieldChange}
                                 disabled={disabled}
                                 readonly={readonly}
                                 hideError
@@ -95,8 +106,8 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
                             <input
                                 ref={uploadRef}
                                 type="color"
-                                value={value}
-                                onChange={handleChange}
+                                value={value.hex()}
+                                onChange={handleColorChange}
                             />
                         )}
                     </ColorInputRoot>

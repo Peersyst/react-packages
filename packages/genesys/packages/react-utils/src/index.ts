@@ -9,7 +9,6 @@ export { default as findSlot } from "./find-slot";
 export { default as formatHash } from "./formatHash";
 export * from "./formatHash";
 export { default as fsx } from "./fsx";
-export { default as isColor } from "./isColor";
 export { default as minDigits } from "./minDigits";
 export { default as nullifyEvent } from "./nullifyEvent";
 export { default as ownerDocument } from "./ownerDocument";

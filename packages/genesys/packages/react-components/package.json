@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components",
     "author": "Peersyst",
-    "version": "2.23.4",
+    "version": "2.23.5",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -41,12 +41,13 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components-core": "^0.2.8",
-        "@peersyst/react-hooks": "^1.4.0",
+        "@peersyst/react-components-core": "^0.2.9",
+        "@peersyst/react-hooks": "^1.4.1",
         "@peersyst/react-types": "^1.4.0",
-        "@peersyst/react-utils": "^1.7.0",
+        "@peersyst/react-utils": "^1.7.1",
         "@popperjs/core": "^2.11.5",
         "clsx": "^1.2.1",
+        "color": "^4.2.3",
         "highcharts": "^9.3.2",
         "highcharts-react-official": "^3.1.0",
         "prop-types": "^15.8.1",
@@ -56,6 +57,7 @@
         "react-transition-group": "^4.4.2"
     },
     "devDependencies": {
+        "@types/color": "^3.0.3",
         "@types/react": "^17.0.38",
         "@types/react-dom": "^17.0.9",
         "@types/react-transition-group": "^4.4.4",

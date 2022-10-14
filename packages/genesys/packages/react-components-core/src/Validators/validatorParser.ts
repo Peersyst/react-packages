@@ -45,7 +45,7 @@ export const parseValidator = (
         case "endsWith":
             return new EndsWithValidator(value, message, translate);
         case "color":
-            return new ColorValidator(message, translate);
+            return new ColorValidator(value, message, translate);
         default:
             return new (extraValidators[validator] as IValidator)(message, translate, value);
     }
