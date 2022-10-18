@@ -32,11 +32,20 @@ function FormControl<T = any>(props: FormControlProps<T>): JSX.Element {
                             const { required, readonly, invalid, disabled, focused, valid } =
                                 context;
                             const content = children(value, setValue, context);
+
+                            const handleFocus = () => {
+                                if (!readonly && !disabled) setFocused(true);
+                            };
+
+                            const handleBlur = () => {
+                                if (focused) setFocused(false);
+                            };
+
                             return (
                                 <FormControlRoot
                                     gap={5}
-                                    onFocus={() => setFocused(true)}
-                                    onBlur={() => setFocused(false)}
+                                    onFocus={handleFocus}
+                                    onBlur={handleBlur}
                                     className={cx(
                                         "FormControl",
                                         required && "Required",
