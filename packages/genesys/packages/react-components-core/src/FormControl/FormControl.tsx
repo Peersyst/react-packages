@@ -11,6 +11,7 @@ function FormControl<T = any>({
     value: valueProp,
     onChange,
     validation,
+    error: errorProp = false,
     required = false,
     disabled = false,
     readonly = false,
@@ -34,7 +35,10 @@ function FormControl<T = any>({
     useEffect(() => {
         let isValueInvalid: boolean;
         let errorMsg: string | undefined;
-        if (
+        if (errorProp) {
+            isValueInvalid = true;
+            errorMsg = Array.isArray(errorProp) ? errorProp[1] : undefined;
+        } else if (
             required &&
             (value === undefined || (value as any) === false || (value as any) === "")
         ) {

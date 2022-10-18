@@ -23,6 +23,10 @@ export interface FormControlProps<T = any> {
      */
     validation?: (v: T) => [boolean, string | undefined];
     /**
+     * Explicit error state
+     */
+    error?: boolean | [boolean, string];
+    /**
      * Required flag that triggers invalid_not_null error
      */
     required?: boolean;
@@ -94,30 +98,26 @@ export interface CoreFormControlProps<
     children: (...args: [...ChildrenParameters<T>, ...ExtraChildrenParameters]) => ReactNode;
 }
 
-export type BaseCoreFormControlledComponentProps<
-    T,
-    LP extends CoreLabelProps = CoreLabelProps,
-> = Pick<
-    CoreFormControlProps<LP, T>,
-    Exclude<keyof CoreFormControlProps, "children" | "Label" | "validation" | "defaultValue">
->;
-export type CoreFormControlledComponentProps<
-    T,
-    LP extends CoreLabelProps = CoreLabelProps,
-> = BaseCoreFormControlledComponentProps<T, LP> & {
-    /**
-     * Default value
-     */
-    defaultValue?: T;
-    /**
-     * FormControl's Label props
-     */
-    LabelProps?: Omit<LP, "label">;
-    /**
-     * FormControl's custom Label
-     */
-    Label?: ComponentType<LP>;
-};
+export type BaseCoreFormControlledComponentProps<T, LP extends CoreLabelProps = CoreLabelProps> =
+    Pick<
+        CoreFormControlProps<LP, T>,
+        Exclude<keyof CoreFormControlProps, "children" | "Label" | "validation" | "defaultValue">
+    >;
+export type CoreFormControlledComponentProps<T, LP extends CoreLabelProps = CoreLabelProps> =
+    BaseCoreFormControlledComponentProps<T, LP> & {
+        /**
+         * Default value
+         */
+        defaultValue?: T;
+        /**
+         * FormControl's Label props
+         */
+        LabelProps?: Omit<LP, "label">;
+        /**
+         * FormControl's custom Label
+         */
+        Label?: ComponentType<LP>;
+    };
 
 export type FormControlContextType = {
     required: boolean;
