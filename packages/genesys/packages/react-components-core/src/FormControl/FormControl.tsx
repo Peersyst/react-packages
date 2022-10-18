@@ -35,9 +35,12 @@ function FormControl<T = any>({
     useEffect(() => {
         let isValueInvalid: boolean;
         let errorMsg: string | undefined;
-        if (errorProp) {
+        const [errorPropValue, errorPropMessage] = Array.isArray(errorProp)
+            ? errorProp
+            : [errorProp, undefined];
+        if (errorPropValue) {
             isValueInvalid = true;
-            errorMsg = Array.isArray(errorProp) ? errorProp[1] : undefined;
+            errorMsg = errorPropMessage;
         } else if (
             required &&
             (value === undefined || (value as any) === false || (value as any) === "")
