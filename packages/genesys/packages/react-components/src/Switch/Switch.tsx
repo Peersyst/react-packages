@@ -11,6 +11,7 @@ export default function Switch(props: SwitchProps): JSX.Element {
     const {
         defaultValue = false,
         disabled = false,
+        readonly = false,
         children,
         LabelProps = {},
         hideError = true,
@@ -34,7 +35,12 @@ export default function Switch(props: SwitchProps): JSX.Element {
 
                 return (
                     <SwitchRoot
-                        className={cx("Switch", value && "Checked", disabled && "Disabled")}
+                        className={cx(
+                            "Switch",
+                            value && "Checked",
+                            readonly && "Readonly",
+                            disabled && "Disabled",
+                        )}
                         onClick={() => setValue(!value)}
                         {...styleProps}
                     >

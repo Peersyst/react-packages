@@ -11,15 +11,12 @@ export const UploadRoot = styled.span<UploadStyleProps>`
         display: none;
     }
 
-    &.Disabled {
+    &.Disabled,
+    &.Readonly {
         cursor: default;
         pointer-events: none;
         * {
             pointer-events: none;
         }
-    }
-
-    &.Readonly {
-        cursor: default;
     }
 `;
