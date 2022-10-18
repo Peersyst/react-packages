@@ -6,7 +6,11 @@ import { cx } from "@peersyst/react-utils";
 import { useTheme } from "../theme";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
-import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
+import {
+    useMergeDefaultProps,
+    useTextInputValidation,
+    useFormControl,
+} from "@peersyst/react-components-core";
 
 export default function TextInput<HTMLT extends HTMLInput>(
     props: TextInputProps & Children<HTMLT>,
@@ -36,7 +40,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
-    const [focused, setFocused] = useState<boolean>(false);
+    const { setFocused } = useFormControl();
     const [active, setActive] = useState<boolean>(false);
     const validation = useTextInputValidation(validators, customValidators);
     const {
@@ -56,7 +60,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
             validation={validation}
             {...rest}
         >
-            {(value, setValue, { invalid, valid }) => {
+            {(value, setValue, { invalid, valid, focused }) => {
                 const handleChange = (e: ChangeEvent<HTMLT>) => {
                     const newValue = e.currentTarget.value;
                     setValue(newValue);

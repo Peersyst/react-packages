@@ -13,13 +13,17 @@ export const SwitchRoot = styled.span<SwitchStyleProps>`
     cursor: pointer;
     transition: 0.4s;
 
-    &.Disabled {
-        opacity: 0.6;
+    &.Disabled,
+    &.Readonly {
         cursor: default;
         pointer-events: none;
         * {
             pointer-events: none;
         }
+    }
+
+    &.Disabled {
+        opacity: 0.6;
     }
 `;
 
