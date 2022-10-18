@@ -19,7 +19,8 @@ export const RadioButtonRoot = styled.span`
     overflow: hidden;
     font-size: 1.2rem;
 
-    &.Disabled {
+    &.Disabled,
+    &.Readonly {
         cursor: default;
         pointer-events: none;
         * {
