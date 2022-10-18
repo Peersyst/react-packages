@@ -10,20 +10,20 @@ export const TextInputRoot = styled.div<TextInputStyles>`
     border: solid 1px ${(p) => p.theme.palette.text};
 
     && {
-        &.Focused,
-        &.Active {
+        &&.Focused,
+        &&.Active {
             border-color: ${(p) => p.theme.palette.primary};
         }
 
-        &.Invalid {
+        &&.Invalid {
             border-color: ${(p) => p.theme.palette.status.error};
         }
 
-        &.Valid {
+        &&.Valid {
             border-color: ${(p) => p.theme.palette.status.success};
         }
 
-        &.Disabled {
+        &&.Disabled {
             border-color: ${(p) => p.theme.palette.disabled};
             cursor: default;
             pointer-events: none;

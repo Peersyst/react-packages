@@ -36,6 +36,7 @@ export class ColorValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
+        if (value === "") return true;
         return this.colorValidators.some((v) => v(value));
     }
 }

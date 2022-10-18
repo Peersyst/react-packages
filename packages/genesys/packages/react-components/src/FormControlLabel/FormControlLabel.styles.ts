@@ -3,25 +3,25 @@ import { Label } from "../Label";
 
 export const FormControlLabelRoot = styled(Label)(
     ({ theme }) => css`
-        &.Focused {
+        &&.Focused {
             .Label {
                 color: ${theme.palette.primary};
             }
         }
 
-        &.Invalid {
+        &&.Invalid {
             .Label {
                 color: ${theme.palette.status.error};
             }
         }
 
-        &.Valid {
+        &&.Valid {
             .Label {
                 color: ${theme.palette.status.success};
             }
         }
 
-        &.Disabled {
+        &&.Disabled {
             .Label {
                 color: ${theme.palette.disabled};
             }
