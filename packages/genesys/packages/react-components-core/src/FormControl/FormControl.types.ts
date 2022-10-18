@@ -126,4 +126,5 @@ export type FormControlContextType = {
     disabled: boolean;
     readonly: boolean;
     focused: boolean;
+    setFocused: (focused: boolean) => void;
 };

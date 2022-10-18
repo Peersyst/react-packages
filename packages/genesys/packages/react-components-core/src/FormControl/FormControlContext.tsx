@@ -8,4 +8,5 @@ export default createContext<FormControlContextType>({
     disabled: false,
     readonly: false,
     focused: false,
+    setFocused: () => undefined,
 });

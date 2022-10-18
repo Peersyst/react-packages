@@ -83,6 +83,7 @@ function FormControl<T = any>({
                 disabled,
                 readonly,
                 focused,
+                setFocused: handleFocus,
             }}
         >
             {children(

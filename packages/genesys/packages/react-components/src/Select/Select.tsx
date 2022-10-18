@@ -1,4 +1,4 @@
-import { ComponentType, useState } from "react";
+import { ComponentType, useEffect, useState } from "react";
 import { DisplayContent, SelectDisplay, SelectDropdown, SelectRoot } from "./Select.styles";
 import { SelectMenu } from "./SelectMenu";
 import {
@@ -7,6 +7,7 @@ import {
     selectIsValid,
     useSelectDisplayContent,
     useMergeDefaultProps,
+    useFormControl,
 } from "@peersyst/react-components-core";
 import { InnerSelectProps, SelectProps } from "./Select.types";
 import { cx } from "@peersyst/react-utils";
@@ -30,9 +31,14 @@ function InnerSelect<T>({
     children,
 }: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useState<boolean>(autoFocus);
+    const { setFocused } = useFormControl();
+
+    useEffect(() => {
+        setFocused(open);
+    }, [open]);
 
     const handleClick = () => {
-        !disabled && setOpen(!open);
+        if (!disabled && !readonly) setOpen(!open);
     };
 
     const displayContent = useSelectDisplayContent<T, SelectItemProps<T>>(
