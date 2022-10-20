@@ -1,5 +1,6 @@
 import { Property } from "csstype";
 import { CSSProperties, ReactNode } from "react";
+import { ThemeColor } from "@peersyst/react-components-core";
 
 export interface DividerProps {
     /**
@@ -11,9 +12,9 @@ export interface DividerProps {
      */
     width?: "sm" | "md" | "lg" | "full-width";
     /**
-     * Color of the divider
+     * Divider color
      */
-    color?: Property.Color;
+    color?: ThemeColor;
     /**
      * Divider className
      */

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { JSXElementConstructor } from "react";
-import { OverridableStringUnion } from "@peersyst/react-types";
+import { FlattenedNestedKeys, OverridableStringUnion } from "@peersyst/react-types";
 
 export type PaletteMode = "light" | "dark";
 
@@ -53,7 +53,10 @@ export interface DefaultThemePalette {
         success: string;
     };
 }
+
 export interface ThemePalette extends DefaultThemePalette {}
+
+export type ThemeColor = FlattenedNestedKeys<Omit<ThemePalette, "mode">>;
 
 export interface DefaultThemeZIndex {
     header: number;

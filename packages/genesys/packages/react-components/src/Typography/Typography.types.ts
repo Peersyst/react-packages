@@ -8,6 +8,7 @@ import {
     TouchEventHandler,
 } from "react";
 import {
+    ThemeColor,
     ThemeFonts,
     TypographyVariants,
     TypographyVariantsOverrides,
@@ -49,6 +50,10 @@ export interface TypographyProps extends TypographyDomProps {
      * Text is light
      */
     light?: boolean;
+    /**
+     * Text color
+     */
+    color?: ThemeColor;
     /**
      * Typography className
      */
@@ -139,7 +144,7 @@ export interface TypographyDomProps {
     onLostPointerCaptureCapture?: PointerEventHandler<HTMLElement> | undefined;
 }
 
-export interface TypographyStyleProps {
+export interface TypographyRootProps {
     font?: keyof ThemeFonts;
     textTransform: Property.TextTransform;
     fontStyle: Property.FontStyle;
@@ -148,4 +153,5 @@ export interface TypographyStyleProps {
     singleLine: boolean;
     light: boolean;
     variantStyles: CSSObject;
+    color?: string;
 }

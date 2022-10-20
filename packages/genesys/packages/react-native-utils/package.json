@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-utils",
     "author": "Peersyst",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -35,7 +35,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-types": "^1.4.0"
+        "@peersyst/react-types": "^1.5.0"
     },
     "devDependencies": {
         "@types/react": "~17.0.39",

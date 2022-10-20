@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components-core",
     "author": "Peersyst",
-    "version": "0.2.17",
+    "version": "0.2.18",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -38,9 +38,9 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-hooks": "^1.5.0",
-        "@peersyst/react-types": "^1.4.0",
-        "@peersyst/react-utils": "^1.7.2"
+        "@peersyst/react-hooks": "^1.5.1",
+        "@peersyst/react-types": "^1.5.0",
+        "@peersyst/react-utils": "^1.7.3"
     },
     "devDependencies": {
         "@types/react": "^17.0.38",

@@ -2,6 +2,7 @@ import { DividerRoot, DividerWithChildren } from "./Divider.styles";
 import { DividerProps } from "./Divider.types";
 import { cx } from "@peersyst/react-utils";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import useColor from "../hooks/useColor";
 
 export default function Divider(props: DividerProps): JSX.Element {
     const {
@@ -9,9 +10,11 @@ export default function Divider(props: DividerProps): JSX.Element {
         width = "full-width",
         className,
         style,
-        color,
+        color: colorProp,
         children,
     } = useMergeDefaultProps("Divider", props);
+
+    const color = useColor(colorProp);
 
     return (
         <>

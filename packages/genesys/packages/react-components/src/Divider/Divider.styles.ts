@@ -6,7 +6,7 @@ import { DividerProps } from "./Divider.types";
 export const DividerRoot = styled.div<{
     height: Property.Height;
     width: NonNullable<DividerProps["width"]>;
-    color?: Property.Color;
+    color?: string;
 }>`
     ${({ height, width, color }) => css`
         height: ${height};

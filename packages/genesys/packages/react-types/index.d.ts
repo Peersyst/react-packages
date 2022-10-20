@@ -13,10 +13,8 @@ export type PropsStyle<Props> = ((props: Props) => CSSProperties) | CSSPropertie
  * If the property value was `true`, the property key will be added to the
  * string union.
  */
-export type OverridableStringUnion<
-    T extends string | number,
-    U = Record<string, any>,
-> = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
+export type OverridableStringUnion<T extends string | number, U = Record<string, any>> =
+    GenerateStringUnion<Overwrite<Record<T, true>, U>>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
@@ -83,13 +81,66 @@ type Loosen<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 type LoosenDeeply<T, K extends keyof T> = Omit<T, K> & DeepPartial<Pick<T, K>>;
 
 /**
+ * Get all keys with type T from O
+ */
+type TypeKeys<O, T> = {
+    [K in keyof O]: O[K] extends T ? K : never;
+}[keyof T];
+
+/**
+ * Removes properties of type T from O
+ */
+export type OmitType<O, T> = Omit<O, TypeKeys<O, T>>;
+
+/**
  * Gets all keys with type undefined of T
  */
-type UndefinedKeys<T> = {
-    [K in keyof T]: T[K] extends undefined ? K : never;
-}[keyof T];
+type UndefinedKeys<T> = TypeKeys<T, undefined>;
 
 /**
  * Removes properties of type undefined from T
  */
-type Defined<T> = Omit<T, UndefinedKeys<T>>;
+type Defined<T> = OmitType<T, undefined>;
+
+/**
+ * All possible iterations for a recursive type
+ */
+type MaxRecursiveIterations = 10;
+// prettier-ignore
+type Iterations = [never, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+/**
+ * Get nested keys from T in the form of key1.key2...
+ */
+type NestedKeys<T extends object> = CoreNestedKeys<T>;
+type CoreNestedKeys<T extends object, I extends number = MaxRecursiveIterations> = I extends 0
+    ? never
+    : {
+          [Key in keyof T]: T[Key] extends object
+              ? `${Key}` | `${Key}.${NestedKeys<T[Key], Iterations[I]>}`
+              : Key;
+      }[Extract<keyof T, string>];
+
+/**
+ * Get nested keys from T in the form of key1.key2...
+ */
+type FlattenedNestedKeys<T extends object> = FlattenedCoreNestedKeys<T>;
+type FlattenedCoreNestedKeys<T extends object, I extends number = MaxRecursiveIterations> =
+    I extends 0
+        ? never
+        : {
+              [Key in keyof T]: T[Key] extends object
+                  ? `${Key}.${NestedKeys<T[Key], Iterations[I]>}`
+                  : Key;
+          }[Extract<keyof T, string>];
+
+/**
+ * Pick K types from T with keys in the form of key1.key2...
+ */
+type DeepPick<T extends object, K extends NestedKeys<T>> = CoreDeepPick<T, K>;
+type CoreDeepPick<T extends object, K extends string, I extends number = MaxRecursiveIterations> =
+    I extends 0
+        ? never
+        : K extends `${infer FirstKey}.${infer RestKey}`
+        ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
+        : T[K];
