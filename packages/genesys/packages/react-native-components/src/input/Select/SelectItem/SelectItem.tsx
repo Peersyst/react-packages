@@ -9,6 +9,7 @@ import {
 } from "@peersyst/react-components-core";
 
 function InnerSelectItem<T>({
+    value,
     isSelected,
     setSelected,
     readonly,
@@ -22,6 +23,7 @@ function InnerSelectItem<T>({
             <SelectItemRoot style={rootStyle}>
                 {typeof children === "string" ? (
                     <SelectItemText
+                        isClearItem={value === undefined}
                         style={[
                             textStyle,
                             rootStyle.backgroundColor && rootStyle.backgroundColor !== "transparent"
@@ -52,6 +54,7 @@ export default function SelectItem<T = any>(props: SelectItemProps<T>): JSX.Elem
         <CoreSelectItem value={value}>
             {({ isSelected, setSelected, readonly }) => (
                 <InnerSelectItem
+                    value={value}
                     isSelected={isSelected}
                     setSelected={setSelected}
                     readonly={readonly}

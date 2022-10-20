@@ -1,5 +1,4 @@
-import { ReactElement, ReactNode } from "react";
-import { SelectItem } from "../SelectItem";
+import { ReactNode } from "react";
 import { ViewStyle } from "react-native";
 
 export interface SelectMenuProps {
@@ -22,7 +21,7 @@ export interface SelectMenuProps {
     /**
      * Menu options and mask
      */
-    children: ReactElement<typeof SelectItem> | ReactElement<typeof SelectItem>[] | undefined;
+    children: ReactNode;
 }
 
 export interface SelectItemsViewProps {

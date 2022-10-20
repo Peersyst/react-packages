@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { DropdownComponentProps, SelectDisplayStyles } from "./Select.types";
 import { ChevronDownIcon } from "../assets/icons";
+import { SelectItem } from "./SelectItem";
 
 export const SelectRoot = styled.div`
     position: relative;
@@ -59,4 +60,8 @@ export const DisplayContent = styled.div`
 export const SelectDropdown = styled(ChevronDownIcon)<DropdownComponentProps>`
     font-size: 0.7em;
     transform: ${({ open }) => open && "scale(-1)"};
+`;
+
+export const ClearItem = styled(SelectItem)`
+    font-style: italic;
 `;

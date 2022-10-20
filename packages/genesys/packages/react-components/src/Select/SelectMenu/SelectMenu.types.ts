@@ -1,5 +1,4 @@
-import { CSSProperties, ReactElement } from "react";
-import { SelectItemProps } from "../SelectItem";
+import { CSSProperties, ReactNode } from "react";
 
 export interface SelectMenuProps {
     /**
@@ -21,5 +20,5 @@ export interface SelectMenuProps {
     /**
      * Menu options and mask
      */
-    children: ReactElement<SelectItemProps<any>> | ReactElement<SelectItemProps<any>>[] | undefined;
+    children: ReactNode;
 }

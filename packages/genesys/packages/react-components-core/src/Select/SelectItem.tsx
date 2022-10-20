@@ -17,7 +17,8 @@ function SelectItem<T>({ value, children }: SelectItemProps<T>): JSX.Element {
     const handleSelect = () => {
         if (!readonly) {
             setValue(handleSelection(value, selected, multiple, isSelected));
-            !multiple && setOpen(false);
+            // Close if not multiple or (multiple and it is a clear item)
+            (!multiple || value === undefined) && setOpen(false);
         }
     };
 

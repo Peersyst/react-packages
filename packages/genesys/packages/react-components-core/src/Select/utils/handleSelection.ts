@@ -5,6 +5,7 @@ export function handleSelection<T>(
     isSelected: boolean,
 ): T | T[] {
     if (multiple) {
+        if (value === undefined) return [];
         const selectedArray = selected as unknown[];
         //@ts-ignore
         return isSelected ? selectedArray.filter((v) => v !== value) : selectedArray.concat(value);

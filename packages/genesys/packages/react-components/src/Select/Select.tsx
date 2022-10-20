@@ -1,5 +1,11 @@
 import { ComponentType, useEffect, useState } from "react";
-import { DisplayContent, SelectDisplay, SelectDropdown, SelectRoot } from "./Select.styles";
+import {
+    ClearItem,
+    DisplayContent,
+    SelectDisplay,
+    SelectDropdown,
+    SelectRoot,
+} from "./Select.styles";
 import { SelectMenu } from "./SelectMenu";
 import {
     SelectProvider,
@@ -17,6 +23,7 @@ import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
 
 function InnerSelect<T>({
+    clear,
     autoFocus,
     disabled,
     readonly,
@@ -64,6 +71,7 @@ function InnerSelect<T>({
                 </SelectDisplay>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                     <SelectMenu open={open} expandable={expandable}>
+                        {clear && <ClearItem value={undefined}>{clear}</ClearItem>}
                         {children ||
                             options.map((option, index) => (
                                 <SelectItem key={index} value={option.value}>
@@ -85,6 +93,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         multiple = false,
         defaultValue,
         placeholder,
+        clear,
         DropdownComponent = SelectDropdown as ComponentType,
         renderValue = renderSelectValue,
         autoFocus = false,
@@ -122,6 +131,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     DropdownComponent={DropdownComponent}
                     multiple={multiple}
                     options={options}
+                    clear={clear}
                 >
                     {children}
                 </InnerSelect>

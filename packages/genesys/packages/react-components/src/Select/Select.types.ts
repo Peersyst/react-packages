@@ -25,7 +25,10 @@ export type SelectProps<T, Multiple extends boolean = false> = FormControlledCom
     DropdownComponent?: ComponentType<DropdownComponentProps>;
 };
 
-export type InnerSelectProps<T> = Pick<SelectProps<T>, "placeholder" | "children" | "options"> &
+export type InnerSelectProps<T> = Pick<
+    SelectProps<T>,
+    "placeholder" | "children" | "options" | "clear"
+> &
     Required<
         Pick<
             SelectProps<T>,

@@ -24,6 +24,7 @@ function InnerSelect<T>({
     readonly,
     renderValue,
     placeholder,
+    clear,
     value,
     setValue,
     multiple,
@@ -95,6 +96,7 @@ function InnerSelect<T>({
             </TouchableWithoutFeedback>
             <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                 <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>
+                    {clear && <SelectItem value={undefined}>{clear}</SelectItem>}
                     {children
                         ? Children.map(children, (child) => {
                               const { style: childStyle, ...rest } = child!.props || {};
@@ -125,6 +127,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         onClose,
         onOpen,
         placeholder,
+        clear,
         icon = <ChevronDownIcon />,
         autoFocus = false,
         disabled = false,
@@ -170,6 +173,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     display={display}
                     style={style}
                     options={options}
+                    clear={clear}
                 >
                     {children}
                 </InnerSelect>

@@ -14,6 +14,10 @@ export type SelectItemStyles = ViewStyle &
         readonly?: ViewStyle & TextStyle;
     };
 
-export type InnerSelectItemProps<T> = Pick<SelectItemProps<T>, "children"> &
+export type InnerSelectItemProps<T> = Pick<SelectItemProps<T>, "value" | "children"> &
     Required<Pick<SelectItemProps<T>, "style">> &
     Pick<SelectItemChildrenContext<T>, "isSelected" | "setSelected" | "readonly">;
+
+export interface SelectItemTextProps {
+    isClearItem: boolean;
+}

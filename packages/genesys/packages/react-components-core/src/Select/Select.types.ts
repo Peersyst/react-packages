@@ -22,6 +22,10 @@ export interface CoreSelectProps<
      */
     placeholder?: ReactNode;
     /**
+     * Adds a clear option with the display content specified
+     */
+    clear?: ReactNode;
+    /**
      * If SelectMenu should open on mount
      */
     autoFocus?: boolean;
