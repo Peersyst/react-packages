@@ -1,10 +1,10 @@
-import { ComponentType } from "react";
+import { ReactElement } from "react";
 import { CoreSelectProps, SelectContextType } from "@peersyst/react-components-core";
 import { SelectItemProps } from "./SelectItem";
 import { FormControlledComponentProps } from "../FormControl";
 import { LabelProps } from "../Label";
 
-export interface DropdownComponentProps {
+export interface SelectDropdownProps {
     open?: boolean;
 }
 
@@ -12,6 +12,7 @@ export interface DisplayStylesProps {
     open: boolean;
     disabled: boolean;
 }
+
 export type SelectProps<T, Multiple extends boolean = false> = FormControlledComponentProps<
     CoreSelectProps<T, SelectItemProps<T>, LabelProps, Multiple>
 > & {
@@ -20,9 +21,9 @@ export type SelectProps<T, Multiple extends boolean = false> = FormControlledCom
      */
     expandable?: boolean;
     /**
-     * DropdownComponent, which can accept an "open" prop
+     * Dropdown element
      */
-    DropdownComponent?: ComponentType<DropdownComponentProps>;
+    dropdownElement?: ReactElement | false;
 };
 
 export type InnerSelectProps<T> = Pick<
@@ -32,12 +33,7 @@ export type InnerSelectProps<T> = Pick<
     Required<
         Pick<
             SelectProps<T>,
-            | "autoFocus"
-            | "disabled"
-            | "readonly"
-            | "renderValue"
-            | "expandable"
-            | "DropdownComponent"
+            "autoFocus" | "disabled" | "readonly" | "renderValue" | "expandable" | "dropdownElement"
         >
     > &
     Pick<SelectContextType<T>, Exclude<keyof SelectContextType<any>, "setOpen">>;

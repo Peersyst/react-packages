@@ -1,4 +1,4 @@
-import { ComponentType, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     ClearItem,
     DisplayContent,
@@ -21,6 +21,7 @@ import { ClickAwayListener } from "../ClickAwayListener";
 import { SelectItem, SelectItemProps } from "./SelectItem";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
+import { ChevronDownIcon } from "../assets/icons";
 
 function InnerSelect<T>({
     clear,
@@ -33,7 +34,7 @@ function InnerSelect<T>({
     setValue,
     multiple,
     expandable,
-    DropdownComponent,
+    dropdownElement,
     options = [],
     children,
 }: InnerSelectProps<T>): JSX.Element {
@@ -67,7 +68,11 @@ function InnerSelect<T>({
                     <DisplayContent className="DisplayContent">
                         {renderValue(displayContent) || placeholder}
                     </DisplayContent>
-                    <DropdownComponent open={open} />
+                    {dropdownElement && (
+                        <SelectDropdown open={open} className="SelectDropdown">
+                            {dropdownElement}
+                        </SelectDropdown>
+                    )}
                 </SelectDisplay>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
                     <SelectMenu open={open} expandable={expandable}>
@@ -94,7 +99,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         defaultValue,
         placeholder,
         clear,
-        DropdownComponent = SelectDropdown as ComponentType,
+        dropdownElement = <ChevronDownIcon />,
         renderValue = renderSelectValue,
         autoFocus = false,
         disabled = false,
@@ -128,7 +133,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     renderValue={renderValue}
                     placeholder={placeholder}
                     expandable={expandable}
-                    DropdownComponent={DropdownComponent}
+                    dropdownElement={dropdownElement}
                     multiple={multiple}
                     options={options}
                     clear={clear}
