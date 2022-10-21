@@ -17,17 +17,15 @@ export const displayBorder = css<SelectDisplayStyles>`
         }};
 `;
 
-export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, disabled, readonly }) => {
-    const disabledStyles = disabled
-        ? css`
-              cursor: default;
-              color: ${theme.palette.disabled};
-              pointer-events: none;
-              * {
-                  pointer-events: none;
-              }
-          `
-        : undefined;
+export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, readonly }) => {
+    const disabledStyles = css`
+        cursor: default;
+        color: ${theme.palette.disabled};
+        pointer-events: none;
+        * {
+            pointer-events: none;
+        }
+    `;
 
     return css`
         display: flex;
@@ -45,7 +43,9 @@ export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, disabled,
         border-radius: ${(props) => props.theme.borderRadius};
         ${displayBorder};
 
-        ${disabledStyles}
+        &&.Disabled {
+            ${disabledStyles}
+        }
     `;
 });
 
