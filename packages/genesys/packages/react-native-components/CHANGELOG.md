@@ -3,6 +3,7 @@
 ## 1.4.14
 
 -   Update react-components-core
+-   Add numberOfLines to the Label component
 
 ## 1.2.48
 

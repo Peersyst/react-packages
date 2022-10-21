@@ -3,6 +3,7 @@
 ## 2.23.5
 
 -   Update react-components-core with core selectgroup
+-   Add singleLine to the Label component
 
 [SelectGroup] Add SelectGroup component
 

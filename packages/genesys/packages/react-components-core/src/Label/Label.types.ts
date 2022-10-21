@@ -14,10 +14,6 @@ export interface CoreLabelProps {
     alignment?: LabelAlignment;
     gap?: number | string;
     children?: ReactNode;
-    /**
-     * Text doesn't wrap and shows ellipsis if overflowed
-     */
-    singleLine?: boolean;
 }
 
 export interface LabelTextProps {
