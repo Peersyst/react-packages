@@ -12,7 +12,8 @@ export interface SelectorOption<T> {
      */
     label: string;
     /**
-     * value for the Selector (passed as a value prop to the FormControl of the Selector)
+     * value for the SelectGroup (not passed as a value prop to the FormControl of the Selector)
+     * because the value props of the Seoector will be isSelected
      */
     value: T;
 }
