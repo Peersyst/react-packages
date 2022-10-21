@@ -95,9 +95,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
                                 onChange={handleTextFieldChange}
                                 disabled={disabled}
                                 readonly={readonly}
-                                hideError
                                 showValid={showValid}
-                                required={required}
                                 style={{ flex: 1, ...textFieldStyle }}
                                 error={invalid}
                                 {...restTextFieldProps}
