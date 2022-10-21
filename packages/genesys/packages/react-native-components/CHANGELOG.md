@@ -1,5 +1,9 @@
 # Versions
 
+## 1.4.14
+
+-   Update react-components-core
+
 ## 1.2.48
 
 -   Add Switch component

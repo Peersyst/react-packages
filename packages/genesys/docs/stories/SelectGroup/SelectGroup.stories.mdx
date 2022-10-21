@@ -1,0 +1,224 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { SelectGroup, Selector } from "@peersyst/react-components";
+import themedContainer from "../styles/themedContainer";
+
+<Meta
+    title="Components/Inputs/SelectGroup"
+    component={SelectGroup}
+    parameters={{
+        docs: {
+            container: themedContainer,
+        },
+    }}
+/>
+
+# SelectGroup
+
+SelectGroup is used to choose between boolean inputs (1 or many)
+
+## Example
+
+<Canvas>
+    <SelectGroup
+        label="Select yout fav lib/framework"
+        name="select"
+        options={[
+            { value: "react", label: "React" },
+            { value: "vue", label: "Vue" },
+            { value: "angular", label: "Angular" },
+            { value: "svelte", label: "Svelte" },
+        ]}
+    />
+</Canvas>
+
+## Usage
+
+SelectGroup can be used by default with the `options` prop.
+
+```jsx
+<SelectGroup
+    label="Select yout fav lib/framework"
+    name="select"
+    options={[
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue" },
+        { value: "angular", label: "Angular" },
+        { value: "svelte", label: "Svelte" },
+    ]}
+/>
+```
+
+<Canvas>
+    <SelectGroup
+        label="Select yout fav lib/framework"
+        name="select"
+        options={[
+            { value: "react", label: "React" },
+            { value: "vue", label: "Vue" },
+            { value: "angular", label: "Angular" },
+            { value: "svelte", label: "Svelte" },
+        ]}
+    />
+</Canvas>
+
+If a higher level of customization is needed, SelectGroup also accepts Selector as children. One can customize them at will.
+
+```jsx
+<SelectGroup label="Select your fav food">
+    <Selector value={1} label="Hamburger" type="switch" />
+    <Selector value={2} label="Fries" type="checkbox" />
+    <Selector
+        value={3}
+        label="Coconut"
+        LabelProps={{ placement: "top", style: { color: "yellow" } }}
+    />
+    <Selector value={4} LabelProps={{ placement: "bottom" }} label="Banana" />
+</SelectGroup>
+```
+
+<Canvas>
+    <SelectGroup label="Select your fav food">
+        <Selector value={1} label="Hamburger" type="switch" />
+        <Selector value={2} label="Fries" type="checkbox" />
+        <Selector
+            value={3}
+            label="Coconut"
+            LabelProps={{ placement: "top", style: { color: "yellow" } }}
+        />
+        <Selector value={4} LabelProps={{ placement: "bottom" }} label="Banana" />
+    </SelectGroup>
+</Canvas>
+
+### Multiple
+
+Multiple selection is also supported
+
+```jsx
+<SelectGroup
+    label="Select yout fav framework"
+    multiple
+    name="select"
+    options={[
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue" },
+        { value: "angular", label: "Angular" },
+        { value: "svelte", label: "Svelte" },
+    ]}
+/>
+```
+
+<Canvas>
+    <SelectGroup
+        label="Select yout fav framework"
+        multiple
+        name="select"
+        options={[
+            { value: "react", label: "React" },
+            { value: "vue", label: "Vue" },
+            { value: "angular", label: "Angular" },
+            { value: "svelte", label: "Svelte" },
+        ]}
+    />
+</Canvas>
+
+### Selector type
+
+Multiple selectors are also supported: checkbox, switch, radio
+
+-   Switch
+
+```jsx
+<SelectGroup
+    label="Select yout fav framework"
+    type="switch"
+    name="select"
+    options={[
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue" },
+        { value: "angular", label: "Angular" },
+        { value: "svelte", label: "Svelte" },
+    ]}
+/>
+```
+
+<Canvas>
+    <SelectGroup
+        label="Select yout fav framework"
+        type="switch"
+        name="select"
+        options={[
+            { value: "react", label: "React" },
+            { value: "vue", label: "Vue" },
+            { value: "angular", label: "Angular" },
+            { value: "svelte", label: "Svelte" },
+        ]}
+    />
+</Canvas>
+
+-   Checkbox
+
+```jsx
+<SelectGroup
+    label="Select yout fav framework"
+    type="checkbox"
+    name="select"
+    options={[
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue" },
+        { value: "angular", label: "Angular" },
+        { value: "svelte", label: "Svelte" },
+    ]}
+/>
+```
+
+<Canvas>
+    <SelectGroup
+        label="Select yout fav framework"
+        type="checkbox"
+        name="select"
+        options={[
+            { value: "react", label: "React" },
+            { value: "vue", label: "Vue" },
+            { value: "angular", label: "Angular" },
+            { value: "svelte", label: "Svelte" },
+        ]}
+    />
+</Canvas>
+
+### Customize the direction
+
+Switch between displaying the controllers in a row or a col.
+You can also pass from the Row/Col props the following parámeters:
+"gap" | "justifyContent" | "alignItems" | "reverse"
+
+```jsx
+<SelectGroup
+    label="Select yout fav framework"
+    direction="row"
+    gap="2rem"
+    type="switch"
+    name="select"
+    options={[
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue" },
+        { value: "angular", label: "Angular" },
+        { value: "svelte", label: "Svelte" },
+    ]}
+/>
+```
+
+<Canvas>
+    <SelectGroup
+        label="Select yout fav framework"
+        direction="row"
+        gap="2rem"
+        type="switch"
+        name="select"
+        options={[
+            { value: "react", label: "React" },
+            { value: "vue", label: "Vue" },
+            { value: "angular", label: "Angular" },
+            { value: "svelte", label: "Svelte" },
+        ]}
+    />
+</Canvas>

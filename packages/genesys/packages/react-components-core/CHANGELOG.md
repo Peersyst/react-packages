@@ -1,8 +1,13 @@
 # Versions
 
+## 0.2.20
+
+[SelectGroup] Add SelectGroup core component
+
 ## 0.0.3
 
 ### BREAKING
+
 Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
 
 [config] Config refactor

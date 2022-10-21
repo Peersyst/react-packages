@@ -1,5 +1,11 @@
 # Versions
 
+## 2.23.5
+
+-   Update react-components-core with core selectgroup
+
+[SelectGroup] Add SelectGroup component
+
 ## 2.22.7
 
 [Carousel] Remove console log + docu
