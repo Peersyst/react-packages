@@ -39,7 +39,6 @@ module.exports = function getBabelConfig(api) {
                 // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
                 version: "^7.4.4",
             },
-            "babel-plugin-styled-components",
         ],
     ];
 
