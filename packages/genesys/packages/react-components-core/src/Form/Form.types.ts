@@ -9,7 +9,7 @@ export interface FormProps {
     /**
      * onSubmit handler
      */
-    onSubmit: (data: any, action?: number) => any;
+    onSubmit: (data: any, action?: string) => any;
     /**
      * onInvalid handler
      */
