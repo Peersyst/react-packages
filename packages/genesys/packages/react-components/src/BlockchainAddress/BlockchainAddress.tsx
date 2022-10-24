@@ -4,7 +4,7 @@ import { cx } from "@peersyst/react-utils";
 import { useComponentConfig, useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
-    const { address, type, className, ...hashProps } = useMergeDefaultProps(
+    const { address, type, className, copy, ...hashProps } = useMergeDefaultProps(
         "BlockchainAddress",
         props,
     );
@@ -16,6 +16,7 @@ const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
             className={cx("BlockchainAddress", className)}
             hash={address}
             url={blockchainLinks[type] + address}
+            copy={copy}
             {...hashProps}
         />
     );

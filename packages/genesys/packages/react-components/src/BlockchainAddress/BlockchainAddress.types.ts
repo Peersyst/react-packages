@@ -14,6 +14,10 @@ export type BlockchainAddressProps = Omit<HashProps, "url" | "hash"> & {
      * Blockchain address type
      */
     type: OverridableStringUnion<BlockchainLinksTypes, BlockchainLinksTypesOverrides>;
+    /**
+     * Show Icon copy
+     */
+    copy?: boolean;
 };
 
 export interface BlockchainAddressRootProps {
