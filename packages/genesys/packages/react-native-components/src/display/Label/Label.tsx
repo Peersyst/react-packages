@@ -12,6 +12,7 @@ const Label = (props: LabelProps): JSX.Element => {
         alignment = "start",
         gap = 10,
         children,
+        numberOfLines,
         style: { label: labelStyleProp = {}, ...rootStyleProp } = {},
         variant,
     } = useMergeDefaultProps("Label", props);
@@ -34,7 +35,13 @@ const Label = (props: LabelProps): JSX.Element => {
         isValidElement(label) ? (
             <Fragment key={"label"}>{label}</Fragment>
         ) : (
-            <LabelText key="label" alignment={alignment} style={labelStyle} variant={variant}>
+            <LabelText
+                key="label"
+                alignment={alignment}
+                style={labelStyle}
+                variant={variant}
+                numberOfLines={numberOfLines}
+            >
                 {label}
             </LabelText>
         ),

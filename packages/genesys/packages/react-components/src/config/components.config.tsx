@@ -302,10 +302,16 @@ const componentsConfig: ComponentsConfig = {
     Select: {
         defaultProps: {},
     },
+    SelectGroup: {
+        defaultProps: {},
+    },
     SelectItem: {
         defaultProps: {},
     },
     SelectMenu: {
+        defaultProps: {},
+    },
+    Selector: {
         defaultProps: {},
     },
     Skeleton: {

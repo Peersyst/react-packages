@@ -1,5 +1,10 @@
 # Versions
 
+## 1.4.16
+
+-   Update react-components-core
+-   Add numberOfLines to the Label component
+
 ## 1.2.48
 
 -   Add Switch component
