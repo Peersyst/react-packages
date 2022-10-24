@@ -60,8 +60,7 @@ import { BlockchainAddressProps } from "../BlockchainAddress";
 import { ChipProps } from "../Chip";
 import { AlertProps } from "../Alert";
 import { ColorInputProps } from "../ColorInput";
-import { SelectorProps } from "../SelectorGroup";
-import { SelectGroupProps } from "../SelectorGroup/SelectGroup.types";
+import { SelectorGroupProps, SelectorProps } from "../SelectorGroup";
 
 /**
  * No config for:
@@ -124,7 +123,7 @@ export interface RadioButtonConfig extends ComponentConfig<RadioButtonProps> {}
 export interface RangeSliderConfig extends ComponentConfig<RangeSliderProps> {}
 export interface RowConfig extends ComponentConfig<RowProps> {}
 export interface SelectConfig extends ComponentConfig<SelectProps<any>> {}
-export interface SelectGroupConfig extends ComponentConfig<SelectGroupProps<any>> {}
+export interface SelectGroupConfig extends ComponentConfig<SelectorGroupProps<any>> {}
 export interface SelectItemConfig extends ComponentConfig<SelectItemProps<any>> {}
 export interface SelectMenuConfig extends ComponentConfig<SelectMenuProps> {}
 export interface SelectorConfig extends ComponentConfig<SelectorProps<any>> {}

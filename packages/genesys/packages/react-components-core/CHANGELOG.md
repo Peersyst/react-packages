@@ -1,6 +1,6 @@
 # Versions
 
-## 0.2.20
+## 0.2.22
 
 [SelectGroup] Add SelectGroup core component
 
