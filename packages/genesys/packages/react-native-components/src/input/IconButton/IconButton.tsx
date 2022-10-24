@@ -10,6 +10,7 @@ const IconButton = (props: IconButtonProps): JSX.Element => {
     const {
         onPress: onPressProp,
         type,
+        action,
         loading = false,
         disabled: disabledProp = false,
         style = {},
@@ -20,10 +21,15 @@ const IconButton = (props: IconButtonProps): JSX.Element => {
 
     const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabledProp);
 
-    const { handleSubmit, valid } = useContext(FormContext);
-    const onPress = type === "submit" ? handleSubmit : onPressProp;
+    const { handleSubmit: submit, valid } = useContext(FormContext);
 
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
+
+    const handleSubmit = () => {
+        submit(action);
+    };
+
+    const onPress = type === "submit" ? handleSubmit : onPressProp;
 
     return (
         <TouchableWithoutFeedback
