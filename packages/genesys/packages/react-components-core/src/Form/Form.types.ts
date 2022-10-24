@@ -9,7 +9,7 @@ export interface FormProps {
     /**
      * onSubmit handler
      */
-    onSubmit: (data: any) => any;
+    onSubmit: (data: any, action?: string) => any;
     /**
      * onInvalid handler
      */
@@ -33,5 +33,5 @@ export interface FormContextInterface {
     notifyForm: (notification: FieldNotification) => void;
     valid: boolean;
     submitted: boolean;
-    handleSubmit: () => any;
+    handleSubmit: (action?: string) => any;
 }

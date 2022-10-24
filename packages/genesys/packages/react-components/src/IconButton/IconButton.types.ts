@@ -1,6 +1,15 @@
 import { CSSProperties, MouseEvent, ReactElement, ButtonHTMLAttributes } from "react";
+import { ButtonType } from "@peersyst/react-components-core";
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    /**
+     * Button type
+     */
+    type?: ButtonType;
+    /**
+     * Additional form action
+     */
+    action?: string;
     /**
      * Button's icon
      */

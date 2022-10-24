@@ -16,9 +16,10 @@ export default function (
                 const rowWidth = rowE.clientWidth;
                 const addressWidth = hashRef.current?.clientWidth || 0;
                 const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
+                const gapWidth = copyButtonWidth ? gap : 0;
 
                 const computedWidth = Math.floor(
-                    (autoLength * (rowWidth - gap - copyButtonWidth)) / addressWidth,
+                    (autoLength * (rowWidth - gapWidth - copyButtonWidth)) / addressWidth,
                 );
                 const newLength = Math.max(Math.min(computedWidth, hash.length), 1);
 

@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
-import { DropdownComponentProps, SelectDisplayStyles } from "./Select.types";
-import { ChevronDownIcon } from "../assets/icons";
+import { SelectDisplayStyles, SelectDropdownProps } from "./Select.types";
 import { SelectItem } from "./SelectItem";
 
 export const SelectRoot = styled.div`
@@ -57,7 +56,8 @@ export const DisplayContent = styled.div`
     max-width: 90%;
 `;
 
-export const SelectDropdown = styled(ChevronDownIcon)<DropdownComponentProps>`
+export const SelectDropdown = styled.span<SelectDropdownProps>`
+    display: flex;
     font-size: 0.7em;
     transform: ${({ open }) => open && "scale(-1)"};
 `;

@@ -18,6 +18,10 @@ export interface IconButtonProps {
      */
     type?: ButtonType;
     /**
+     * Form action
+     */
+    action?: string;
+    /**
      * Prop to display a loading spinner.
      */
     loading?: boolean;

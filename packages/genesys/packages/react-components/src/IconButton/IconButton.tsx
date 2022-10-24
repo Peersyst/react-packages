@@ -1,7 +1,7 @@
 import { IconButtonRoot } from "./IconButton.styles";
 import { IconButtonProps } from "./IconButton.types";
 import { cx, fsx, setRef } from "@peersyst/react-utils";
-import { forwardRef, useContext } from "react";
+import { forwardRef, MouseEventHandler, useContext } from "react";
 import { useTheme } from "../theme";
 import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
@@ -11,18 +11,26 @@ const IconButton = forwardRef((props: IconButtonProps, ref): JSX.Element => {
         loading,
         loadingElement: loadingElementProp,
         disabled: disabledProp = false,
-        onClick,
+        onClick: onClickProp,
         style,
         className,
         type = "button",
+        action,
         ...rest
     } = useMergeDefaultProps("IconButton", props);
 
     const { loader: DefaultLoader } = useTheme();
     const loadingElement = loadingElementProp || <DefaultLoader />;
 
-    const { valid } = useContext(FormContext);
+    const { valid, handleSubmit: submit } = useContext(FormContext);
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
+
+    const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.preventDefault();
+        submit(action);
+    };
+
+    const onClick = type === "submit" ? handleSubmit : onClickProp;
 
     return (
         <IconButtonRoot

@@ -1,21 +1,20 @@
-import { FormEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FieldState } from "../Form.types";
 
 interface UseFormSubmitResult {
     submitted: boolean;
-    handleSubmit: (e?: FormEvent) => void;
+    handleSubmit: (action?: string) => void;
 }
 
 export default function useFormSubmit(
     data: Record<string, FieldState>,
-    onSubmit: (data: any) => any,
+    onSubmit: (data: any, action?: string) => any,
     onInvalid?: () => any,
 ): UseFormSubmitResult {
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = useCallback(
-        (e?: FormEvent): void => {
-            e?.preventDefault();
+        (action?: string): void => {
             if (!submitted) {
                 setSubmitted(true);
             }
@@ -24,7 +23,7 @@ export default function useFormSubmit(
                 if (valid) {
                     const values: Record<string, any> = {};
                     Object.entries(data).forEach((v) => (values[v[0]] = v[1].value));
-                    onSubmit(values);
+                    onSubmit(values, action);
                 } else onInvalid?.();
             };
             try {
