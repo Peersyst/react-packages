@@ -18,9 +18,9 @@ const Hash = (props: HashProps): JSX.Element => {
         variant,
         url,
         gap = 5,
+        copy = true,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
-
     const { typography } = useTheme();
 
     const isAutoLength = length === "auto";
@@ -52,11 +52,16 @@ const Hash = (props: HashProps): JSX.Element => {
                     )}
                 </HashText>
             </HashLink>
-            <CopyButton
-                text={hash}
-                style={variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }}
-                ref={copyButtonRef}
-            />
+
+            {copy && (
+                <CopyButton
+                    text={hash}
+                    style={
+                        variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }
+                    }
+                    ref={copyButtonRef}
+                />
+            )}
         </HashRoot>
     );
 };

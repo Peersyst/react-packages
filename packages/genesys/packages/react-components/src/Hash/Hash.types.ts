@@ -26,6 +26,10 @@ export interface HashProps extends Omit<TypographyProps, "singleLine" | "childre
      * Url of the link attached to the hash
      */
     url?: string;
+    /**
+     * Show Icon copy
+     */
+    copy?: boolean;
 }
 
 export interface HashRootProps {
