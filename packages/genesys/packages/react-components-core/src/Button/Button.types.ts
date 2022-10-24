@@ -19,6 +19,10 @@ export interface CoreButtonProps {
      */
     type?: ButtonType;
     /**
+     * Additional form action
+     */
+    action?: string;
+    /**
      * Display a loading spinner.
      */
     loading?: boolean;

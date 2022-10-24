@@ -33,5 +33,5 @@ export interface FormContextInterface {
     notifyForm: (notification: FieldNotification) => void;
     valid: boolean;
     submitted: boolean;
-    handleSubmit: () => any;
+    handleSubmit: (action?: string) => any;
 }

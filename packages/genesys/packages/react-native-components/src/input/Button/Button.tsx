@@ -11,6 +11,7 @@ const Button = (props: ButtonProps): JSX.Element => {
         onPress: onPressProp,
         children,
         type = "button",
+        action,
         loading = false,
         loadingElement,
         size = "md",
@@ -25,13 +26,18 @@ const Button = (props: ButtonProps): JSX.Element => {
 
     const [pressed, setPressed] = useState(false);
 
-    const { handleSubmit, valid } = useContext(FormContext);
-    const onPress = type === "submit" ? handleSubmit : onPressProp;
-
+    const { handleSubmit: submit, valid } = useContext(FormContext);
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
+
+    const handleSubmit = () => {
+        submit(action);
+    };
+
+    const onPress = type === "submit" ? handleSubmit : onPressProp;
 
     const { textStyle, rootStyle } = useButtonStyles(style, variant, size, disabled, pressed);
     const pressable = !disabled && !loading;
+
     return (
         <TouchableWithoutFeedback
             onPress={(e) => pressable && onPress?.(e)}
