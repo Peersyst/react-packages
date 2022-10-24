@@ -2,15 +2,18 @@ import {
     SelectorType,
     Selector as CoreSelector,
     useMergeDefaultProps,
-    useFormControl,
 } from "@peersyst/react-components-core";
 import { cx } from "@peersyst/react-utils";
 import { RadioButton } from "../../RadioButton";
 import { Checkbox } from "../../Checkbox";
 import { Switch } from "../../Switch";
-import { SelectorProps } from "./Selector.types";
+import { SelectorControllerProps, SelectorProps } from "./Selector.types";
+import { JSXElementConstructor } from "react";
 
-export const SELECTOR_CONTROLLERS: Record<SelectorType, typeof Switch> = {
+export const SELECTOR_CONTROLLERS: Record<
+    SelectorType,
+    JSXElementConstructor<SelectorControllerProps>
+> = {
     checkbox: Checkbox,
     radio: RadioButton,
     switch: Switch,
@@ -22,6 +25,7 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
         className,
         style,
         value,
+        LabelProps,
         ...rest
     } = useMergeDefaultProps("Selector", props);
 
@@ -38,6 +42,7 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
                         className={cx("Selector", isSelected && "Selected", className)}
                         value={isSelected}
                         onChange={setSelected}
+                        LabelProps={{ placement: "right", ...LabelProps }}
                         {...rest}
                     />
                 );

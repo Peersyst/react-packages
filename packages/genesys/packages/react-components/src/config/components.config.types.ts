@@ -60,8 +60,8 @@ import { BlockchainAddressProps } from "../BlockchainAddress";
 import { ChipProps } from "../Chip";
 import { AlertProps } from "../Alert";
 import { ColorInputProps } from "../ColorInput";
-import { SelectorProps } from "../SelectGroup";
-import { SelectGroupProps } from "../SelectGroup/SelectGroup.types";
+import { SelectorProps } from "../SelectorGroup";
+import { SelectGroupProps } from "../SelectorGroup/SelectGroup.types";
 
 /**
  * No config for:

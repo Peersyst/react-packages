@@ -1,10 +1,10 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
-import { SelectGroup, Selector } from "@peersyst/react-components";
+import { SelectorGroup, Selector } from "@peersyst/react-components";
 import themedContainer from "../styles/themedContainer";
 
 <Meta
-    title="Components/Inputs/SelectGroup"
-    component={SelectGroup}
+    title="Components/Inputs/SelectorGroup"
+    component={SelectorGroup}
     parameters={{
         docs: {
             container: themedContainer,
@@ -12,14 +12,14 @@ import themedContainer from "../styles/themedContainer";
     }}
 />
 
-# SelectGroup
+# SelectorGroup
 
-SelectGroup is used to choose between boolean inputs (1 or many)
+SelectorGroup is used to choose between boolean inputs (1 or many)
 
 ## Example
 
 <Canvas>
-    <SelectGroup
+    <SelectorGroup
         label="Select yout fav lib/framework"
         name="select"
         options={[
@@ -33,10 +33,10 @@ SelectGroup is used to choose between boolean inputs (1 or many)
 
 ## Usage
 
-SelectGroup can be used by default with the `options` prop.
+SelectorGroup can be used by default with the `options` prop.
 
 ```jsx
-<SelectGroup
+<SelectorGroup
     label="Select yout fav lib/framework"
     name="select"
     options={[
@@ -49,7 +49,7 @@ SelectGroup can be used by default with the `options` prop.
 ```
 
 <Canvas>
-    <SelectGroup
+    <SelectorGroup
         label="Select yout fav lib/framework"
         name="select"
         options={[
@@ -61,10 +61,10 @@ SelectGroup can be used by default with the `options` prop.
     />
 </Canvas>
 
-If a higher level of customization is needed, SelectGroup also accepts Selector as children. One can customize them at will.
+If a higher level of customization is needed, SelectorGroup also accepts Selector as children. One can customize them at will.
 
 ```jsx
-<SelectGroup label="Select your fav food">
+<SelectorGroup label="Select your fav food">
     <Selector value={1} label="Hamburger" type="switch" />
     <Selector value={2} label="Fries" type="checkbox" />
     <Selector
@@ -73,11 +73,11 @@ If a higher level of customization is needed, SelectGroup also accepts Selector 
         LabelProps={{ placement: "top", style: { color: "yellow" } }}
     />
     <Selector value={4} LabelProps={{ placement: "bottom" }} label="Banana" />
-</SelectGroup>
+</SelectorGroup>
 ```
 
 <Canvas>
-    <SelectGroup label="Select your fav food">
+    <SelectorGroup label="Select your fav food">
         <Selector value={1} label="Hamburger" type="switch" />
         <Selector value={2} label="Fries" type="checkbox" />
         <Selector
@@ -86,7 +86,7 @@ If a higher level of customization is needed, SelectGroup also accepts Selector 
             LabelProps={{ placement: "top", style: { color: "yellow" } }}
         />
         <Selector value={4} LabelProps={{ placement: "bottom" }} label="Banana" />
-    </SelectGroup>
+    </SelectorGroup>
 </Canvas>
 
 ### Multiple
@@ -94,7 +94,7 @@ If a higher level of customization is needed, SelectGroup also accepts Selector 
 Multiple selection is also supported
 
 ```jsx
-<SelectGroup
+<SelectorGroup
     label="Select yout fav framework"
     multiple
     name="select"
@@ -108,7 +108,7 @@ Multiple selection is also supported
 ```
 
 <Canvas>
-    <SelectGroup
+    <SelectorGroup
         label="Select yout fav framework"
         multiple
         name="select"
@@ -128,7 +128,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 -   Switch
 
 ```jsx
-<SelectGroup
+<SelectorGroup
     label="Select yout fav framework"
     type="switch"
     name="select"
@@ -142,7 +142,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 ```
 
 <Canvas>
-    <SelectGroup
+    <SelectorGroup
         label="Select yout fav framework"
         type="switch"
         name="select"
@@ -158,7 +158,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 -   Checkbox
 
 ```jsx
-<SelectGroup
+<SelectorGroup
     label="Select yout fav framework"
     type="checkbox"
     name="select"
@@ -172,7 +172,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 ```
 
 <Canvas>
-    <SelectGroup
+    <SelectorGroup
         label="Select yout fav framework"
         type="checkbox"
         name="select"
@@ -188,11 +188,11 @@ Multiple selectors are also supported: checkbox, switch, radio
 ### Customize the direction
 
 Switch between displaying the controllers in a row or a col.
-You can also pass from the Row/Col props the following parámeters:
+You can also pass from the Row/Col props the following parameters:
 "gap" | "justifyContent" | "alignItems" | "reverse"
 
 ```jsx
-<SelectGroup
+<SelectorGroup
     label="Select yout fav framework"
     direction="row"
     gap="2rem"
@@ -208,7 +208,7 @@ You can also pass from the Row/Col props the following parámeters:
 ```
 
 <Canvas>
-    <SelectGroup
+    <SelectorGroup
         label="Select yout fav framework"
         direction="row"
         gap="2rem"

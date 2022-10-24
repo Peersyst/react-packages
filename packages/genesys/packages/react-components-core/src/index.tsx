@@ -14,7 +14,7 @@ export * from "./Paper";
 export * from "./RadioButton";
 export * from "./RangeSlider";
 export * from "./Select";
-export * from "./SelectGroup";
+export * from "./SelectorGroup";
 export * from "./Slider";
 export * from "./Switch";
 export * from "./TextInput";

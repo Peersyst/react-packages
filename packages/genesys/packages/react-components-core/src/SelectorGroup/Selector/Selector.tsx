@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { SelectGroupContext } from "../SelectGroupContext";
+import { SelectorGroupContext } from "../SelectorGroupContext";
 import { SelectorProps } from "./Selector.types";
-import { SelectGroupContextType } from "../SelectGroup.types";
+import { SelectorGroupContextType } from "../SelectorGroup.types";
 import { handleSelection, useSelected } from "../../Select";
 
 function Selector<T>({ value, children }: SelectorProps<T>): JSX.Element {
@@ -11,7 +11,7 @@ function Selector<T>({ value, children }: SelectorProps<T>): JSX.Element {
         value: selected,
         multiple,
         disabled,
-    } = useContext<SelectGroupContextType<T>>(SelectGroupContext);
+    } = useContext<SelectorGroupContextType<T>>(SelectorGroupContext);
     const isSelected = useSelected(value, selected, multiple);
 
     const handleSelect = () => {

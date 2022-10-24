@@ -1,24 +1,22 @@
 import { ReactElement } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
-import { SelectorProps } from "./Selector/Selector.types";
 
 export type SelectorType = "radio" | "checkbox" | "switch";
 export type SelectorDirection = "row" | "column";
 
 export interface SelectorOption<T> {
     /**
-     * label for the Selector (passed as a label prop to the FormControl of the Selector)
+     * Selector label
      */
     label: string;
     /**
-     * value for the SelectGroup (not passed as a value prop to the FormControl of the Selector)
-     * because the value props of the Seoector will be isSelected
+     * Selector value
      */
     value: T;
 }
 
-export type CoreSelectGroupProps<
+export type CoreSelectorGroupProps<
     T,
     CustomSelectorProps,
     LP extends CoreLabelProps,
@@ -34,7 +32,7 @@ export type CoreSelectGroupProps<
      */
     options?: SelectorOption<T>[];
     /**
-     * Add custom Selector component
+     * Add custom Selector components
      */
     children?: ReactElement<CustomSelectorProps>[];
     /**
@@ -47,33 +45,10 @@ export type CoreSelectGroupProps<
     direction?: D;
 };
 
-export interface SelectGroupContextType<T> {
+export interface SelectorGroupContextType<T> {
     value: T | T[];
     multiple: boolean;
     readonly: boolean;
     disabled: boolean;
     setValue: (value: T | T[]) => void;
 }
-
-export interface SelectorChildrenContext<T>
-    extends Omit<SelectGroupContextType<T>, "setValue" | "value"> {
-    isSelected: boolean;
-    /**
-     * Current selected values of the SelectGroup
-     */
-    selected: T | T[];
-    /**
-     * Set the current selected value/s of the SelectGroup
-     */
-    setSelected: () => void;
-}
-
-export type CoreSelectorProps<T, LP extends CoreLabelProps = CoreLabelProps> = Omit<
-    SelectorProps<T>,
-    "children"
-> & {
-    /**
-     * Selector type
-     */
-    type?: SelectorType;
-} & Pick<CoreFormControlledComponentProps<T, LP>, "Label" | "LabelProps" | "label">;

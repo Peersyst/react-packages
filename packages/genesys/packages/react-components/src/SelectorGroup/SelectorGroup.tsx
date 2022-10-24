@@ -1,6 +1,6 @@
 import {
     SelectorDirection,
-    SelectGroupProvider,
+    SelectorGroupProvider,
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { cx } from "@peersyst/react-utils";
@@ -8,7 +8,7 @@ import { FormControl } from "../FormControl";
 import { Col } from "../Col";
 import { FormControlLabel } from "../FormControlLabel";
 import { Row } from "../Row";
-import { InnerSelectGroupProps, SelectGroupProps } from "./SelectGroup.types";
+import { InnerSelectorGroupProps, SelectorGroupProps } from "./SelectorGroup.types";
 import { Selector } from "./Selector";
 
 function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirection>({
@@ -26,12 +26,16 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
     multiple,
     options,
     children,
-}: InnerSelectGroupProps<T, Multiple, D>): JSX.Element {
+}: InnerSelectorGroupProps<T, Multiple, D>): JSX.Element {
     const layoutProps = { gap, justifyContent, alignItems, reverse };
-    const Wrapper = direction === "row" ? Row : Col;
+    const [Wrapper, WrapperProps] =
+        direction === "row"
+            ? [Row, { ...layoutProps, wrap: true, wrapGap: gap }]
+            : [Col, layoutProps];
+
     return (
-        <SelectGroupProvider value={{ value, setValue, disabled, multiple, readonly }}>
-            <Wrapper {...layoutProps} className={"SelectorWrapper"} wrap wrapGap={gap}>
+        <SelectorGroupProvider value={{ value, setValue, disabled, multiple, readonly }}>
+            <Wrapper className={"SelectorWrapper"} {...WrapperProps}>
                 {children ||
                     options?.map(({ label, value }, index) => {
                         return (
@@ -45,12 +49,12 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
                         );
                     })}
             </Wrapper>
-        </SelectGroupProvider>
+        </SelectorGroupProvider>
     );
 }
 
-function SelectGroup<T, Multiple extends boolean = false, D extends SelectorDirection = "column">(
-    props: SelectGroupProps<T, Multiple, D>,
+function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDirection = "column">(
+    props: SelectorGroupProps<T, Multiple, D>,
 ): JSX.Element {
     const {
         required,
@@ -107,4 +111,4 @@ function SelectGroup<T, Multiple extends boolean = false, D extends SelectorDire
     );
 }
 
-export default SelectGroup;
+export default SelectorGroup;

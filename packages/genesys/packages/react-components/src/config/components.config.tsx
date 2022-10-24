@@ -312,11 +312,7 @@ const componentsConfig: ComponentsConfig = {
         defaultProps: {},
     },
     Selector: {
-        defaultProps: {
-            LabelProps: {
-                placement: "right",
-            },
-        },
+        defaultProps: {},
     },
     Skeleton: {
         defaultProps: {

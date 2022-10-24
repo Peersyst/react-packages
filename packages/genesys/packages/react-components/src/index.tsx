@@ -45,7 +45,7 @@ export * from "./ProgressBar";
 export * from "./RadioButton";
 export * from "./Row";
 export * from "./Select";
-export * from "./SelectGroup";
+export * from "./SelectorGroup";
 export * from "./Skeleton";
 export * from "./Slider";
 export * from "./SvgIcon";
