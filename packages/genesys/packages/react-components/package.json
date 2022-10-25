@@ -46,7 +46,6 @@
         "@peersyst/react-types": "^1.5.0",
         "@peersyst/react-utils": "^1.7.3",
         "@popperjs/core": "^2.11.5",
-        "@types/validator": "^13.7.9",
         "clsx": "^1.2.1",
         "color": "^4.2.3",
         "highcharts": "^9.3.2",
@@ -55,8 +54,7 @@
         "react-click-away-listener": "^2.0.5",
         "react-multi-carousel": "^2.6.5",
         "react-player": "^2.9.0",
-        "react-transition-group": "^4.4.2",
-        "validator": "^13.7.0"
+        "react-transition-group": "^4.4.2"
     },
     "devDependencies": {
         "@types/color": "^3.0.3",
