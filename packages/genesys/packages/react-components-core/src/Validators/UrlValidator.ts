@@ -1,6 +1,6 @@
 import { BaseValidator } from "./BaseValidator";
 import { TranslateFn } from "../config";
-import isUrl from "validator/lib/isUrl";
+import validator from "validator";
 
 export class UrlValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn) {
@@ -8,6 +8,6 @@ export class UrlValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return value !== "" && isUrl(value);
+        return value !== "" && validator.isURL(value);
     }
 }

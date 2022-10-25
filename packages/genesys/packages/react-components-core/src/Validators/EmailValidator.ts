@@ -1,6 +1,6 @@
 import { BaseValidator } from "./BaseValidator";
 import { TranslateFn } from "../config";
-import isEmail from "validator/lib/isEmail";
+import validator from "validator";
 
 export class EmailValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn) {
@@ -8,6 +8,6 @@ export class EmailValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return value !== "" && isEmail(value);
+        return value !== "" && validator.isEmail(value);
     }
 }
