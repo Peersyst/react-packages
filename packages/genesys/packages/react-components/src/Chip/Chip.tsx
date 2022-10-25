@@ -2,10 +2,11 @@ import { ChipProps } from "./Chip.types";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 import { chipGapSizes, ChipLabel, ChipRoot } from "./Chip.styles";
 import { cx } from "@peersyst/react-utils";
-import { isValidElement, MouseEventHandler } from "react";
+import { forwardRef, isValidElement, MouseEventHandler } from "react";
 import { IconButton } from "../IconButton";
+import { setRef } from "@peersyst/react-utils";
 
-const Chip = (props: ChipProps): JSX.Element => {
+const Chip = forwardRef((props: ChipProps, ref): JSX.Element => {
     const {
         clickable: clickableProp,
         onClick,
@@ -39,6 +40,7 @@ const Chip = (props: ChipProps): JSX.Element => {
 
     return (
         <ChipRoot
+            ref={(r) => setRef(ref, r)}
             className={cx(
                 "Chip",
                 clickable && "Clickable",
@@ -59,6 +61,6 @@ const Chip = (props: ChipProps): JSX.Element => {
             {deleteIcon || suffix}
         </ChipRoot>
     );
-};
+});
 
 export default Chip;
