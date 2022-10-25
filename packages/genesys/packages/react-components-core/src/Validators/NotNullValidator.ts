@@ -7,6 +7,6 @@ export class NotNullValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return value !== "";
+        return !!value;
     }
 }

@@ -8,6 +8,6 @@ export class EmailValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return value !== "" && validator.isEmail(value);
+        return !!value && validator.isEmail(value);
     }
 }

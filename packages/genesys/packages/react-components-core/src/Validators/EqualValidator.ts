@@ -10,6 +10,6 @@ export class EqualValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return value === this.compare;
+        return !!value && value === this.compare;
     }
 }

@@ -8,6 +8,6 @@ export class PasswordValidator extends BaseValidator {
 
     validate(value: string): boolean {
         const regex = /(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).*/g;
-        return regex.test(value);
+        return !!value && regex.test(value);
     }
 }

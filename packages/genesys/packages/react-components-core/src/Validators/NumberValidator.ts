@@ -49,7 +49,7 @@ export class NumberValidator extends BaseValidator {
     validate(value: string): boolean {
         const parsed = Number(value);
         if (isNaN(parsed)) return false;
-        else if (value === "") return true;
+        else if (value === "" || value === null || value === undefined) return true;
         let valid = true;
         if (this.options.greaterThan !== undefined) {
             const stepValid = parsed > this.options.greaterThan;

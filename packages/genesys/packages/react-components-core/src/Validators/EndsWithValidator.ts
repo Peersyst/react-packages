@@ -10,6 +10,6 @@ export class EndsWithValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return value.endsWith(this.end);
+        return !!value && value.endsWith(this.end);
     }
 }
