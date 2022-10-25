@@ -8,6 +8,7 @@ export class UrlValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return !!value && validator.isURL(value);
+        if (!value) return true;
+        return validator.isURL(value);
     }
 }

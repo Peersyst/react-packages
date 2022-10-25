@@ -10,6 +10,7 @@ export class MaxCharsValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return !!value && value.length <= this.chars;
+        if (!value) return true;
+        return value.length <= this.chars;
     }
 }

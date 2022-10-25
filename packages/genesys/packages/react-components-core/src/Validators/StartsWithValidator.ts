@@ -10,6 +10,7 @@ export class StartsWithValidator extends BaseValidator {
     }
 
     validate(value: string): boolean {
-        return !!value && value.startsWith(this.start);
+        if (!value) return true;
+        return value.startsWith(this.start);
     }
 }
