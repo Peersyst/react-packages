@@ -41,12 +41,12 @@
         "@peersyst/react-hooks": "^1.5.1",
         "@peersyst/react-types": "^1.5.0",
         "@peersyst/react-utils": "^1.7.3",
-        "@types/validator": "^13.7.9",
         "validator": "^13.7.0"
     },
     "devDependencies": {
         "@types/react": "^17.0.38",
         "@types/react-dom": "^17.0.9",
+        "@types/validator": "^13.7.9",
         "react": "^17.0.0",
         "react-dom": "^17.0.0"
     },
