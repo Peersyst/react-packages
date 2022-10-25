@@ -138,7 +138,7 @@ const componentsConfig: ComponentsConfig = {
     },
     ColorInput: {
         defaultProps: {
-            defaultValue: new Color("#FFFFFF"),
+            defaultValue: new Color(),
             showTextField: true,
             LabelProps: {},
             Label: FormControlLabel,

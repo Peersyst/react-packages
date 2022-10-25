@@ -17,7 +17,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
 ): JSX.Element {
     const {
         colorType,
-        defaultValue = new Color("#FFFFFF"),
+        defaultValue = new Color(),
         showTextField,
         readonly = false,
         disabled = false,
