@@ -22,6 +22,7 @@ export interface Validators {
     startsWith?: Validator<string>;
     endsWith?: Validator<string>;
     color?: Validator<ColorValidatorType>;
+    url?: Validator;
 }
 
 export interface FunctionalValidator {

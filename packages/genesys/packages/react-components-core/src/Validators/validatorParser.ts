@@ -10,6 +10,7 @@ import { MaxCharsValidator } from "./MaxCharsValidator";
 import { StartsWithValidator } from "./StartsWithValidator";
 import { EndsWithValidator } from "./EndsWithValidator";
 import { ColorValidator } from "./ColorValidator";
+import { UrlValidator } from "./UrlValidator";
 
 export const parseValidator = (
     validator: keyof Validators & keyof ExtraValidators,
@@ -46,6 +47,8 @@ export const parseValidator = (
             return new EndsWithValidator(value, message, translate);
         case "color":
             return new ColorValidator(value, message, translate);
+        case "url":
+            return new UrlValidator(message, translate);
         default:
             return new (extraValidators[validator] as IValidator)(message, translate, value);
     }

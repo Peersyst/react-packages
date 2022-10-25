@@ -1,13 +1,13 @@
 import { BaseValidator } from "./BaseValidator";
 import { TranslateFn } from "../config";
-import isEmail from "validator/lib/isEmail";
+import isUrl from "validator/lib/isUrl";
 
-export class EmailValidator extends BaseValidator {
+export class UrlValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn) {
-        super(message || translate("invalid_email"));
+        super(message || translate("invalid_url"));
     }
 
     validate(value: string): boolean {
-        return value !== "" && isEmail(value);
+        return value !== "" && isUrl(value);
     }
 }
