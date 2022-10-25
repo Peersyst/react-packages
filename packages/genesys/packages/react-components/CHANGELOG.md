@@ -1,5 +1,12 @@
 # Versions
 
+## 2.23.30
+
+-   Update react-components-core with core selectgroup
+-   Add singleLine to the Label component
+
+[SelectGroup] Add SelectGroup component
+
 ## 2.22.7
 
 [Carousel] Remove console log + docu

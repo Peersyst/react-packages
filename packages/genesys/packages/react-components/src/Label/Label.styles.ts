@@ -39,6 +39,12 @@ export const LabelText = styled.label<LabelTextProps>(({ alignment, variant, the
         ["&&"]: {
             ...variantStyle,
         },
+        ["&.SingleLine"]: {
+            width: "100%",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+        },
     };
 });
 

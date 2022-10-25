@@ -13,6 +13,7 @@ const Label = (props: LabelProps): JSX.Element => {
         alignment: alignmentProp = "start",
         gap: gapProp = 10,
         children,
+        singleLine = false,
         className,
         style,
         breakpoint,
@@ -41,7 +42,12 @@ const Label = (props: LabelProps): JSX.Element => {
 
     const RootComponent = direction.includes("row") ? LabelRowRoot : LabelColRoot;
     const content = [
-        <LabelText key="label" alignment={alignment} className="Label" variant={variant}>
+        <LabelText
+            key="label"
+            alignment={alignment}
+            className={cx("Label", singleLine && "SingleLine")}
+            variant={variant}
+        >
             {label}
         </LabelText>,
         <LabelChildren key="children" className="LabelChildren">

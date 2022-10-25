@@ -19,4 +19,8 @@ export interface LabelProps extends CoreLabelProps {
      * Label style
      */
     style?: CSSProperties;
+    /**
+     * Text doesn't wrap and shows ellipsis if overflowed
+     */
+    singleLine?: boolean;
 }
