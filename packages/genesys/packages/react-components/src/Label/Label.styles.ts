@@ -41,7 +41,7 @@ export const LabelText = styled.label<LabelTextProps>(({ alignment, variant, the
             ...variantStyle,
         },
         ["&.SingleLine"]: {
-            width: "100%",
+            flex: 1,
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",

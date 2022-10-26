@@ -1,5 +1,10 @@
 # Versions
 
+## 2.23.35
+
+[Chip] Reforwarning on chip
+[Lable] Fix singleLine
+
 ## 2.23.30
 
 -   Update react-components-core with core selectgroup
