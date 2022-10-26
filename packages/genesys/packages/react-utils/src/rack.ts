@@ -5,16 +5,17 @@ import createSlot from "./createSlot";
 export type Slots<S extends string[], E extends object> = {
     [K in Exclude<S[number], keyof E>]: JSXElementConstructor<{ children: ReactNode }>;
 } & {
-    [K in keyof E]: E[K] extends JSXElementConstructor<infer P>
-        ? JSXElementConstructor<P>
-        : JSXElementConstructor<any>;
+    [K in keyof E]: E[K];
 };
 
-export default function rack<
+export default function <
     P extends { children: ReactNode },
     S extends string[],
     K extends S[number],
-    E extends Partial<Record<K, JSXElementConstructor<any>>>,
+    E extends {
+        // @ts-ignore
+        [x: K]: JSXElementConstructor<any>;
+    },
 >(
     factory: (props: P, slots: Slots<K[], E>) => JSX.Element,
     slots: K[],
