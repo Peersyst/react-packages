@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-utils",
     "author": "Peersyst",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
