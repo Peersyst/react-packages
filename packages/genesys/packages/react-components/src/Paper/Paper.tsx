@@ -3,7 +3,7 @@ import { PaperRoot } from "./Paper.styles";
 import { PaperProps } from "./Paper.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Paper = forwardRef((props: PaperProps, ref) => {
+const Paper = forwardRef(function Paper(props: PaperProps, ref) {
     const {
         elevation = 1,
         square = false,
@@ -26,7 +26,5 @@ const Paper = forwardRef((props: PaperProps, ref) => {
         </PaperRoot>
     );
 });
-
-Paper.displayName = "Paper";
 
 export default Paper;

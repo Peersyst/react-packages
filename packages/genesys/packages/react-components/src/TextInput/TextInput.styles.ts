@@ -11,7 +11,7 @@ export const TextInputRoot = styled.div<TextInputStyles>`
 
     && {
         &&.Focused,
-        &&.Active {
+        &&.Active:not(.Readonly):not(.Disabled) {
             border-color: ${(p) => p.theme.palette.primary};
         }
 
@@ -25,15 +25,6 @@ export const TextInputRoot = styled.div<TextInputStyles>`
 
         &&.Disabled {
             border-color: ${(p) => p.theme.palette.disabled};
-        }
-
-        &&.Readonly,
-        &&.Disabled {
-            cursor: default;
-            pointer-events: none;
-            * {
-                pointer-events: none;
-            }
         }
     }
     border-radius: ${(props) => props.theme.borderRadius};

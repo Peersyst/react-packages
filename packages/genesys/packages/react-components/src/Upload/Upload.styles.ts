@@ -14,9 +14,5 @@ export const UploadRoot = styled.span<UploadStyleProps>`
     &.Disabled,
     &.Readonly {
         cursor: default;
-        pointer-events: none;
-        * {
-            pointer-events: none;
-        }
     }
 `;

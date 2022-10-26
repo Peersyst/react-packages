@@ -35,6 +35,7 @@ export const LabelText = styled.label<LabelTextProps>(({ alignment, variant, the
     })();
     const variantStyle = variant ? theme.typography[variant].style : {};
     return {
+        cursor: "text",
         textAlign,
         ["&&"]: {
             ...variantStyle,

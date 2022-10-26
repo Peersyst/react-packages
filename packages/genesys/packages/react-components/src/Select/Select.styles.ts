@@ -18,12 +18,8 @@ export const displayBorder = css<SelectDisplayStyles>`
 
 export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, readonly }) => {
     const disabledStyles = css`
-        cursor: default;
         color: ${theme.palette.disabled};
-        pointer-events: none;
-        * {
-            pointer-events: none;
-        }
+        cursor: auto;
     `;
 
     return css`
@@ -32,7 +28,7 @@ export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, readonly 
         align-items: center;
         flex: 1;
 
-        cursor: ${readonly ? "default" : "pointer"};
+        cursor: ${readonly ? "auto" : "pointer"};
 
         min-height: 36px;
 
