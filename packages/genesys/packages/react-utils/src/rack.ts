@@ -2,6 +2,7 @@ import { JSXElementConstructor, ReactNode } from "react";
 import extractSlots from "./extractSlots";
 import createSlot from "./createSlot";
 
+//eslint-disable-next-line @typescript-eslint/ban-types
 export type Slots<S extends string[], E extends object> = {
     [K in Exclude<S[number], keyof E>]: JSXElementConstructor<{ children: ReactNode }>;
 } & {
@@ -22,11 +23,15 @@ export default function <
     P extends { children: ReactNode },
     S extends string[],
     K extends S[number],
-    E extends Record<K, JSXElementConstructor<any>>,
+    E extends {
+        //@ts-ignore
+        [x: K]: JSXElementConstructor<any>;
+    },
 >(
     factory: (props: P, slots: Slots<K[], E>) => JSX.Element,
     slots: K[],
-    extensions: Partial<E> = {},
+    // @ts-ignore
+    extensions: E = {},
 ): JSXElementConstructor<P> & Slots<K[], E> {
     const RackComponent = ({ children, ...rest }: P): JSX.Element => {
         const [slots, remainingChildren] = extractSlots(children);
