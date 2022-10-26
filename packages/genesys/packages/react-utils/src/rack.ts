@@ -22,16 +22,11 @@ export default function <
     P extends { children: ReactNode },
     S extends string[],
     K extends S[number],
-    E extends Partial<Record<K, JSXElementConstructor<any>>>,
-    RE extends {
-        //@ts-ignore
-        [x: K]: JSXElementConstructor<any>;
-    },
+    E extends Record<K, JSXElementConstructor<any>>,
 >(
-    factory: (props: P, slots: Slots<K[], RE>) => JSX.Element,
+    factory: (props: P, slots: Slots<K[], E>) => JSX.Element,
     slots: K[],
-    //@ts-ignore
-    extensions: E = {},
+    extensions: Partial<E> = {},
 ): JSXElementConstructor<P> & Slots<K[], E> {
     const RackComponent = ({ children, ...rest }: P): JSX.Element => {
         const [slots, remainingChildren] = extractSlots(children);
