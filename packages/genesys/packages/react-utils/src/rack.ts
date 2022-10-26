@@ -9,6 +9,11 @@ export type Slots<S extends string[], E extends object> = {
     [K in keyof E]: E[K];
 };
 
+//eslint-disable-next-line @typescript-eslint/ban-types
+export type SlotElements<S extends string[]> = {
+    [K in S[number]]: JSX.Element;
+};
+
 /**
  * Utility that creates racks and its slots.
  * IMPORTANT: Recursive racks are supported.
@@ -28,7 +33,7 @@ export default function <
         [x: K]: JSXElementConstructor<any>;
     },
 >(
-    factory: (props: P, slots: Slots<K[], E>) => JSX.Element,
+    factory: (props: P, slots: SlotElements<K[]>) => JSX.Element,
     slots: K[],
     // @ts-ignore
     extensions: E = {},
