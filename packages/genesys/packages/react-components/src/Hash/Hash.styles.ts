@@ -6,7 +6,7 @@ import { Typography } from "../Typography";
 export const HashRoot = styled(Row).attrs({
     alignItems: "center",
 })<HashRootProps>`
-    width: ${(p) => p.autoLength && "fit-content"};
+    width: 100%;
     max-width: 100%;
 `;
 
