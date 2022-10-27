@@ -1,7 +1,7 @@
 import { LabelProps } from "./Label.types";
 import { Property } from "csstype";
 import { LabelChildren, LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
-import { cx } from "@peersyst/react-utils";
+import { capitalize, cx } from "@peersyst/react-utils";
 import { useMediaQuery } from "@peersyst/react-hooks";
 import { useTheme } from "../theme";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -45,7 +45,7 @@ const Label = (props: LabelProps): JSX.Element => {
         <LabelText
             key="label"
             alignment={alignment}
-            className={cx("Label", singleLine && "SingleLine")}
+            className={cx("Label", capitalize(placement) + "Placement", singleLine && "SingleLine")}
             variant={variant}
         >
             {label}
