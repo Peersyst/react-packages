@@ -10,6 +10,10 @@ export default function (
 ): number {
     const [autoLength, setAutoLength] = useState(hash.length);
 
+    useEffect(() => {
+        setAutoLength(hash.length);
+    }, [hash]);
+
     const setAddressLength = useCallback(
         (rowE: Element) => {
             if (hashRef.current) {
