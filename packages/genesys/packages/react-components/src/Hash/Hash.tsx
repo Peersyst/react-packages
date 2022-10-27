@@ -19,6 +19,7 @@ const Hash = (props: HashProps): JSX.Element => {
         url,
         gap = 5,
         copy = true,
+        color,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
     const { typography } = useTheme();
@@ -40,7 +41,7 @@ const Hash = (props: HashProps): JSX.Element => {
             ref={rowRef}
         >
             <HashLink href={url} target="_blank" rel="noreferrer" ref={hashRef} url={url}>
-                <HashText variant={variant} break={breakProp} {...typographyProps}>
+                <HashText variant={variant} break={breakProp} color={color} {...typographyProps}>
                     {formatHash(
                         hash,
                         ellipsis,
@@ -52,7 +53,6 @@ const Hash = (props: HashProps): JSX.Element => {
                     )}
                 </HashText>
             </HashLink>
-
             {copy && (
                 <CopyButton
                     text={hash}
@@ -60,6 +60,7 @@ const Hash = (props: HashProps): JSX.Element => {
                         variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }
                     }
                     ref={copyButtonRef}
+                    color={color}
                 />
             )}
         </HashRoot>

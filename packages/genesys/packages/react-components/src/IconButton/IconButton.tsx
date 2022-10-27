@@ -4,6 +4,7 @@ import { cx, fsx, setRef } from "@peersyst/react-utils";
 import { forwardRef, MouseEventHandler, useContext } from "react";
 import { useTheme } from "../theme";
 import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
+import useColor from "../hooks/useColor";
 
 const IconButton = forwardRef((props: IconButtonProps, ref): JSX.Element => {
     const {
@@ -16,11 +17,14 @@ const IconButton = forwardRef((props: IconButtonProps, ref): JSX.Element => {
         className,
         type = "button",
         action,
+        color: colorProp,
         ...rest
     } = useMergeDefaultProps("IconButton", props);
 
     const { loader: DefaultLoader } = useTheme();
     const loadingElement = loadingElementProp || <DefaultLoader />;
+
+    const color = useColor(colorProp);
 
     const { valid, handleSubmit: submit } = useContext(FormContext);
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
@@ -40,6 +44,7 @@ const IconButton = forwardRef((props: IconButtonProps, ref): JSX.Element => {
             className={cx("IconButton", disabled && "Disabled", className)}
             type={type}
             ref={(r) => setRef(ref, r)}
+            color={color}
             {...rest}
         >
             {loading ? loadingElement : children}

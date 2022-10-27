@@ -1,5 +1,5 @@
 import { CSSProperties, MouseEvent, ReactElement, ButtonHTMLAttributes } from "react";
-import { ButtonType } from "@peersyst/react-components-core";
+import { ButtonType, ThemeColor } from "@peersyst/react-components-core";
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -31,6 +31,10 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
      */
     onClick?: (e: MouseEvent<HTMLButtonElement>) => any;
     /**
+     * Icon color
+     */
+    color?: ThemeColor;
+    /**
      * Button's className
      */
     className?: string;
@@ -40,6 +44,6 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
     style?: CSSProperties;
 }
 
-export interface IconButtonStyle {
-    disabled: boolean | undefined;
+export interface IconButtonRootProps {
+    color: string | undefined;
 }
