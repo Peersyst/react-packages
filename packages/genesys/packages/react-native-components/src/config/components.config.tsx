@@ -250,6 +250,8 @@ const componentsConfig: ComponentsConfig = {
         blockchainLinks: {
             address: "https://etherscan.io/address/",
             tx: "https://etherscan.io/tx/",
+            token: "https://etherscan.io/token/",
+            nft: "https://etherscan.io/token/",
         },
     },
     CopyButton: {

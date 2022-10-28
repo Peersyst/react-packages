@@ -1,5 +1,9 @@
 # Versions
 
+## 2.23.47
+
+[BlockchainLinks] Add Nfts & Tokens to BlockchainAddress
+
 ## 2.23.35
 
 [Chip] Reforwarning on chip

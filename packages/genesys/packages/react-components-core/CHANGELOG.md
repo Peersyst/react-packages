@@ -1,5 +1,9 @@
 # Versions
 
+## 0.2.32
+
+[BlockchainLinks] Add Nfts & Tokens to BlockchainAddress
+
 ## 0.2.22
 
 [SelectGroup] Add SelectGroup core component

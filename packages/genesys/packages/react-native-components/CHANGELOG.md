@@ -1,5 +1,9 @@
 # Versions
 
+## 1.4.26
+
+[BlockchainLinks] Add Nfts & Tokens to BlockchainAddress
+
 ## 1.4.16
 
 -   Update react-components-core

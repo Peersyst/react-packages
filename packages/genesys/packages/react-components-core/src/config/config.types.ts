@@ -5,11 +5,13 @@ import { Theme } from "../theme";
 export interface CoreConfigTypes {}
 export interface ConfigTypes extends CoreConfigTypes {}
 
-export type BlockchainLinksTypes = "address" | "tx";
+export type BlockchainLinksTypes = "address" | "tx" | "nft" | "token";
 export interface BlockchainLinksTypesOverrides {}
 export interface DefaultBlockchainLinks {
     address: string;
     tx: string;
+    nft: string;
+    token: string;
 }
 export interface BlockchainLinks extends DefaultBlockchainLinks {}
 
