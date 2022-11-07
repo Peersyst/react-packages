@@ -104,8 +104,8 @@ const Popover = ((props: PopoverProps): JSX.Element => {
 
     const handleClick = () => {
         if (showOn === "click") {
-            setVisible(true);
-            setFullyVisible(true);
+            setVisible(!visible);
+            setFullyVisible(!visible);
         }
     };
 

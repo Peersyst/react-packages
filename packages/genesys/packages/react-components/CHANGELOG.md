@@ -1,5 +1,9 @@
 # Versions
 
+## 2.23.49
+
+[Popover] showOn = "click" -> hide onClick
+
 ## 2.23.48
 
 [Upload] Add input testid for easier testing
