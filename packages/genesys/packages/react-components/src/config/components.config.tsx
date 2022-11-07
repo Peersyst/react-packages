@@ -268,7 +268,7 @@ const componentsConfig: ComponentsConfig = {
         defaultProps: {
             showOn: "hover",
             position: "bottom",
-            skidding: 0,
+            offsetX: 0,
             animation: {
                 AnimatedComponent: Animated.Fade,
                 props: { duration: 200 },

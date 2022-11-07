@@ -1,5 +1,9 @@
 # Versions
 
+## 2.23.51
+
+[Popover] Change skidding for offset. Add offset in both axis
+
 ## 2.23.50
 
 [useSetTheme] Export it from core
