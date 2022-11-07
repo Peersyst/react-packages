@@ -6,7 +6,7 @@ import { forwardRef, isValidElement, MouseEventHandler } from "react";
 import { IconButton } from "../IconButton";
 import { setRef } from "@peersyst/react-utils";
 
-const Chip = forwardRef((props: ChipProps, ref): JSX.Element => {
+const Chip = forwardRef(function Chip(props: ChipProps, ref): JSX.Element {
     const {
         clickable: clickableProp,
         onClick,
@@ -21,6 +21,8 @@ const Chip = forwardRef((props: ChipProps, ref): JSX.Element => {
         suffix,
         className,
         style,
+        role,
+        ...rest
     } = useMergeDefaultProps("Chip", props);
     const {
         icons: { cross: CrossIcon },
@@ -54,7 +56,8 @@ const Chip = forwardRef((props: ChipProps, ref): JSX.Element => {
             style={style}
             gap={chipGapSizes[size!]}
             onClick={disabled ? undefined : onClick}
-            role={onClick ? "button" : undefined}
+            role={onClick ? "button" : role}
+            {...rest}
         >
             {prefix}
             <ChipLabel className="ChipLabel">{label}</ChipLabel>

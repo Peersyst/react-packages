@@ -99,6 +99,7 @@ export default function Upload(props: UploadProps): JSX.Element {
                         {typeof children === "function" ? children(drag) : children}
                         {active && (
                             <input
+                                data-testid="upload"
                                 ref={uploadRef}
                                 type="file"
                                 accept={getFileTypes(fileTypes)}

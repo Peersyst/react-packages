@@ -1,5 +1,10 @@
 # Versions
 
+## 2.23.47
+
+[Upload] Add input testid for easier testing
+[Chip] Props now extend React.HTMLAttributes<HTMLDivElement>
+
 ## 2.23.35
 
 [Chip] Reforwarning on chip
