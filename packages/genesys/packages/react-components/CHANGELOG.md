@@ -1,5 +1,9 @@
 # Versions
 
+## 2.23.50
+
+[useSetTheme] Export it from core
+
 ## 2.23.49
 
 [Popover] showOn = "click" -> hide onClick

@@ -1,5 +1,9 @@
 # Versions
 
+## 1.4.27
+
+[useSetTheme] Export it from core
+
 ## 1.4.26
 
 [BlockchainLinks] Add Nfts & Tokens to BlockchainAddress

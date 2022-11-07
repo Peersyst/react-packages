@@ -13,6 +13,7 @@ export * from "./withThemeClassName";
 export * from "./withTheme";
 export {
     useTheme,
+    useSetTheme,
     ThemeContext,
     ThemeConsumer,
     ThemeOverrideContext,

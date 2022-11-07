@@ -9,6 +9,7 @@ export { default as ThemeProvider } from "./ThemeProvider";
 export { default as ThemeOverrideProvider } from "./ThemeOverrideProvider";
 export {
     useTheme,
+    useSetTheme,
     ThemeContext,
     ThemeConsumer,
     ThemeOverrideContext,
