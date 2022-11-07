@@ -1,9 +1,13 @@
 # Versions
 
-## 2.23.47
+## 2.23.48
 
 [Upload] Add input testid for easier testing
 [Chip] Props now extend React.HTMLAttributes<HTMLDivElement>
+
+## 2.23.47
+
+[BlockchainLinks] Add Nfts & Tokens to BlockchainAddress
 
 ## 2.23.35
 
