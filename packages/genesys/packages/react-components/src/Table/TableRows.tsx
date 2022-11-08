@@ -39,17 +39,20 @@ export default function TableRows<T extends object>({
                                           <Popover arrow position="top">
                                               <Popover.Content>
                                                   <TableText singleLine textAlign={alignment}>
+                                                      {/* @ts-ignore */}
                                                       {row[field]}
                                                   </TableText>
                                               </Popover.Content>
                                               <Popover.Popper>
                                                   <PopoverPopperWrapper>
+                                                      {/* @ts-ignore */}
                                                       <TableText>{row[field]}</TableText>
                                                   </PopoverPopperWrapper>
                                               </Popover.Popper>
                                           </Popover>
                                       ) : (
                                           <TableText singleLine textAlign={alignment}>
+                                              {/* @ts-ignore */}
                                               {row[field]}
                                           </TableText>
                                       )}

@@ -41,6 +41,7 @@ export default function Toast(props: ToastProps): JSX.Element {
                 };
 
                 return (
+                    // @ts-ignore
                     <AnimatedComponent
                         {...animatedProps}
                         position={position}

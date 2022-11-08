@@ -18,12 +18,12 @@
         "release": "yarn build && npm publish build"
     },
     "peerDependencies": {
-        "@types/react": "~17.0.39",
-        "@types/react-native": "~0.64.12",
-        "expo": "^44.0.6",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-native": "0.64.3"
+        "@types/react": "^18.0.25",
+        "@types/react-native": "0.69.6",
+        "expo": "^46.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-native": "0.69.6"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -38,12 +38,12 @@
         "@peersyst/react-types": "^1.5.0"
     },
     "devDependencies": {
-        "@types/react": "~17.0.39",
-        "@types/react-native": "~0.64.12",
-        "expo": "^44.0.6",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-native": "0.64.3"
+        "@types/react": "^18.0.25",
+        "@types/react-native": "0.69.6",
+        "expo": "^46.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-native": "0.69.6"
     },
     "publishConfig": {
         "access": "public"

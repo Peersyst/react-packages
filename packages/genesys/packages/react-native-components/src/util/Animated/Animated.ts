@@ -29,10 +29,15 @@ export type CreateAnimatedComponent = typeof BaseAnimated.createAnimatedComponen
 
 const createAnimatedComponent: CreateAnimatedComponent =
     BaseAnimated.createAnimatedComponent as CreateAnimatedComponent;
+// @ts-ignore
 createAnimatedComponent.fade = fade;
+// @ts-ignore
 createAnimatedComponent.scale = scale;
+// @ts-ignore
 createAnimatedComponent.slide = slide;
+// @ts-ignore
 createAnimatedComponent.fadingSlide = fadingSlide;
+// @ts-ignore
 createAnimatedComponent.fadingScale = fadingScale;
 
 const Animated = { ...BaseAnimated, createAnimatedComponent };

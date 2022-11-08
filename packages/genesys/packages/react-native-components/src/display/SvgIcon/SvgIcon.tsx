@@ -1,6 +1,6 @@
 import { SvgIconProps } from "./SvgIcon.types";
-import Svg, { Color } from "react-native-svg";
-import { StyleSheet } from "react-native";
+import Svg from "react-native-svg";
+import { ColorValue, StyleSheet } from "react-native";
 import { useTheme } from "@peersyst/react-native-styled";
 
 const SvgIcon = ({
@@ -13,11 +13,11 @@ const SvgIcon = ({
         palette: { text: textColor },
     } = useTheme();
 
-    let color: Color = textColor,
+    let color: ColorValue = textColor,
         size = sizeProp;
     if (style) {
         const flattenedStyle = StyleSheet.flatten(style);
-        if (flattenedStyle.color) color = flattenedStyle.color as Color;
+        if (flattenedStyle.color) color = flattenedStyle.color as ColorValue;
         if (flattenedStyle.fontSize) size = flattenedStyle.fontSize;
     }
 

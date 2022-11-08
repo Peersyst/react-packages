@@ -66,6 +66,7 @@ export default function useControlledState<T = unknown>({
         }, [JSON.stringify(defaultProp)]);
     }
 
+    // @ts-ignore
     const setValueIfUncontrolled = useCallback((newValue) => {
         if (!isControlled) {
             setValue(newValue);

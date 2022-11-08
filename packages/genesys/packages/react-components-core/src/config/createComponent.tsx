@@ -1,8 +1,8 @@
-import { ComponentType } from "react";
+import { ComponentType, PropsWithChildren } from "react";
 import { useMergeDefaultProps } from "./hook";
 import { ComponentsConfig } from "./config.types";
 
-export default function <K extends keyof ComponentsConfig, P>(
+export default function <K extends keyof ComponentsConfig, P extends PropsWithChildren>(
     displayName: K,
     Component: ComponentType<P>,
 ): ComponentType<P> {

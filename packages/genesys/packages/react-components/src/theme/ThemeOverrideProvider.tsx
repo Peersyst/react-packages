@@ -9,6 +9,7 @@ const ThemeOverrideProvider = ({
     children,
 }: ThemeOverrideProviderProps): JSX.Element => (
     <CoreThemeOverrideProvider theme={themeKey}>
+        {/* @ts-ignore */}
         {(theme) => <StyledComponentsProvider theme={theme}>{children}</StyledComponentsProvider>}
     </CoreThemeOverrideProvider>
 );

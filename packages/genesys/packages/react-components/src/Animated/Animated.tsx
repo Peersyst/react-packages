@@ -54,6 +54,7 @@ const Animated = forwardRef(function Animated(props: AnimatedProps, ref) {
             onExited={onExited}
             addEndListener={addEndListener}
         >
+            {/* @ts-ignore */}
             {(status: Exclude<TransitionStatus, "unmounted">) => {
                 return cloneElement(children, {
                     ...children.props,

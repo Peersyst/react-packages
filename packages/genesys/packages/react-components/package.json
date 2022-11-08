@@ -21,11 +21,11 @@
         "build-storybook": "build-storybook"
     },
     "peerDependencies": {
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
         "@types/styled-components": "^5.1.18",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "styled-components": "^5.3.3"
     },
     "peerDependenciesMeta": {
@@ -58,12 +58,12 @@
     },
     "devDependencies": {
         "@types/color": "^3.0.3",
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
         "@types/react-transition-group": "^4.4.4",
         "@types/styled-components": "^5.1.18",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "styled-components": "^5.3.3"
     },
     "resolutions": {

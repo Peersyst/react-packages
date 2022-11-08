@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
 import {
     Theme,
     ThemeProvider as CoreThemeProvider,
@@ -8,7 +8,7 @@ import {
 import { ThemeProvider as StyledComponentsProvider } from "styled-components";
 import getColorScheme from "./getColorScheme";
 
-const ThemeProvider: FC = ({ children }) => {
+const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     const projectName = useConfig("projectName");
     const storageKey = projectName + "-theme";
     const [systemColorScheme, setSystemColorScheme] = useState(getColorScheme());

@@ -15,8 +15,8 @@
         "@babel/runtime": "^7.16.7",
         "@peersyst/react-components": "^2.23.51",
         "@peersyst/react-components-core": "^0.2.33",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "styled-components": "^5.3.5"
     },
     "devDependencies": {
@@ -29,12 +29,12 @@
         "@storybook/addons": "^6.4.9",
         "@storybook/react": "^6.4.9",
         "@storybook/theming": "^6.4.9",
-        "@types/react": "^17.0.0",
-        "@types/react-dom": "^17.0.0",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
         "@types/styled-components": "^5.1.18"
     },
     "resolutions": {
-        "@types/react": "^17.0.0",
-        "@types/react-dom": "^17.0.0"
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0"
     }
 }
