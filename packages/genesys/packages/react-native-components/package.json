@@ -19,12 +19,12 @@
         "generate-icons": "node ./scripts/iconGeneratorNative.js ./src/assets/svgs/ ./src/assets/icons/ && prettier --write ./src/assets/icons/"
     },
     "peerDependencies": {
-        "@types/react": "~17.0.39",
-        "@types/react-native": "~0.64.12",
-        "expo": "^44.0.6",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-native": "0.64.3"
+        "@types/react": "~18.0.0",
+        "@types/react-native": "~0.69.6",
+        "expo": "^46.0.0",
+        "react": "18.0.0",
+        "react-dom": "18.0.0",
+        "react-native": "0.69.6"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -55,16 +55,16 @@
         "react-native-modal": "^13.0.1",
         "react-native-pager-view": "^5.4.15",
         "react-native-qrcode-svg": "^6.1.2",
-        "react-native-safe-area-context": "3.3.2",
+        "react-native-safe-area-context": "4.4.1",
         "react-native-svg": "^12.1.1"
     },
     "devDependencies": {
-        "@types/react": "~17.0.39",
-        "@types/react-native": "~0.64.12",
-        "expo": "^44.0.6",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-native": "0.64.3"
+        "@types/react": "~18.0.0",
+        "@types/react-native": "~0.69.6",
+        "expo": "^46.0.0",
+        "react": "18.0.0",
+        "react-dom": "18.0.0",
+        "react-native": "0.69.6"
     },
     "publishConfig": {
         "access": "public"
