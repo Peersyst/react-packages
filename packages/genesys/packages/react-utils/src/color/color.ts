@@ -266,5 +266,5 @@ export function emphasize(color: string, coefficient = 0.15) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function deemphasize(color: string, coefficient = 0.15) {
-    return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+    return getLuminance(color) > 0.5 ? lighten(color, coefficient) : darken(color, coefficient);
 }
