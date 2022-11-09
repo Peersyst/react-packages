@@ -10,7 +10,6 @@ export interface UseDialogResult {
 
 export default function (): UseDialogResult {
     const { showModal, hideModal, isModalActive } = useModal();
-
     const showDialog = (props: DialogProps): void => showModal(Dialog, props);
     const hideDialog = (): void => hideModal(Dialog.id);
     const isDialogOpen = (): boolean => isModalActive(Dialog.id);

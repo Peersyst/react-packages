@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components",
     "author": "Peersyst",
-    "version": "2.23.51",
+    "version": "3.0.0",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -21,11 +21,11 @@
         "build-storybook": "build-storybook"
     },
     "peerDependencies": {
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
         "@types/styled-components": "^5.1.18",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "styled-components": "^5.3.3"
     },
     "peerDependenciesMeta": {
@@ -41,10 +41,10 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components-core": "^0.2.33",
-        "@peersyst/react-hooks": "^1.5.7",
+        "@peersyst/react-components-core": "^1.0.0",
+        "@peersyst/react-hooks": "^2.0.0",
         "@peersyst/react-types": "^1.5.0",
-        "@peersyst/react-utils": "^1.8.7",
+        "@peersyst/react-utils": "^2.0.0",
         "@popperjs/core": "^2.11.5",
         "clsx": "^1.2.1",
         "color": "^4.2.3",
@@ -58,12 +58,12 @@
     },
     "devDependencies": {
         "@types/color": "^3.0.3",
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
         "@types/react-transition-group": "^4.4.4",
         "@types/styled-components": "^5.1.18",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "styled-components": "^5.3.3"
     },
     "resolutions": {

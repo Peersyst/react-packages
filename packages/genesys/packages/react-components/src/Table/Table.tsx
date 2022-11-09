@@ -3,11 +3,11 @@ import { TableBorders, TableColumnsProps, TableProps, TableRootProps } from "./T
 import TableColumns from "./TableColumns";
 import TableRows from "./TableRows";
 import { cx } from "@peersyst/react-utils";
-import { createRef, ReactElement } from "react";
+import { createRef, ReactElement, ReactNode } from "react";
 import { InfiniteScroll } from "../InfiniteScroll";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function Table<T extends object = Record<string, never>>(
+export default function Table<T extends Record<string | number | symbol, ReactNode>>(
     props: TableProps<T>,
 ): JSX.Element {
     const {

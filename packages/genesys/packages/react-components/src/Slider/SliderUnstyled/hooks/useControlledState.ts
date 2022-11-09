@@ -26,7 +26,7 @@ export default function useControlledState<T = unknown>({
     default: defaultProp,
     name,
     state = "value",
-}: UseControlledProps): [T, (newValue: T | ((prevValue: T) => T)) => void] {
+}: UseControlledProps): [T, (newValue: T) => void] {
     // isControlled is ignored in the hook dependency lists as it should never change.
     const { current: isControlled } = useRef(controlled !== undefined);
     const [valueState, setValue] = useState(defaultProp);
@@ -66,7 +66,7 @@ export default function useControlledState<T = unknown>({
         }, [JSON.stringify(defaultProp)]);
     }
 
-    const setValueIfUncontrolled = useCallback((newValue) => {
+    const setValueIfUncontrolled = useCallback((newValue: T) => {
         if (!isControlled) {
             setValue(newValue);
         }

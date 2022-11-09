@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import {FC, PropsWithChildren, useEffect, useState} from "react";
 import {
     Themes,
     useConfig,
@@ -8,7 +8,7 @@ import { useColorScheme } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeProvider as StyledComponentsProvider } from "@peersyst/react-native-styled";
 
-const ThemeProvider: FC = ({ children }) => {
+const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     const projectName = useConfig("projectName");
     const storageKey = projectName + "-theme";
     const systemColorScheme = useColorScheme();

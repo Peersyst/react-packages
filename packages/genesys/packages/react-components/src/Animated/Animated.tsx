@@ -1,7 +1,7 @@
 import { cloneElement, forwardRef } from "react";
 import { getDelay, getDuration, getTimingFunction, reflow } from "./helpers";
 import { AnimatedComponent, AnimatedProps } from "./Animated.types";
-import { Transition, TransitionStatus } from "react-transition-group";
+import { Transition } from "react-transition-group";
 import { Fade } from "./Fade";
 import { Slide } from "./Slide";
 import { FadingSlide } from "./FadingSlide";
@@ -54,7 +54,7 @@ const Animated = forwardRef(function Animated(props: AnimatedProps, ref) {
             onExited={onExited}
             addEndListener={addEndListener}
         >
-            {(status: Exclude<TransitionStatus, "unmounted">) => {
+            {(status) => {
                 return cloneElement(children, {
                     ...children.props,
                     ref,
@@ -63,7 +63,7 @@ const Animated = forwardRef(function Animated(props: AnimatedProps, ref) {
                         transition: "unset",
                         visibility:
                             hideOnExit && status === "exited" && !inProp ? "hidden" : undefined,
-                        ...animation[status],
+                        ...(status !== "unmounted" && animation[status]),
                         transitionTimingFunction: getTimingFunction(timingFunction, status),
                         transitionDuration: getDuration(duration, status) + "ms",
                         transitionDelay: getDelay(delay, status) + "ms",
