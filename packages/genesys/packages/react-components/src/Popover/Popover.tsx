@@ -58,8 +58,8 @@ const Popover = ((props: PopoverProps): JSX.Element => {
     const handlePopperRef = useRef(debounce(setPopperRef, 350)).current;
     const handleContentRef = useRef(debounce(setContentRef, 350)).current;
 
-    const finalYOffset = typeof offsetY === "number" ? offsetY : arrow ? 10 : 0;
     const popperInstance = useMemo(() => {
+        const finalYOffset = offsetY ?? (arrow ? 10 : 0);
         if (popperRef && contentRef)
             return createPopper(contentRef, popperRef, {
                 placement: position,
