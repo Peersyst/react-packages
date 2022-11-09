@@ -1,4 +1,4 @@
-import { CommonModalComponentProps, createModal } from "../ModalProvider";
+import { createModal } from "../ModalProvider";
 import { DialogProps } from "./Dialog.types";
 import { DialogRoot, DialogTitle, DialogMessage, DialogOption } from "./Dialog.styles";
 import { Col } from "../../layout/Col";
@@ -7,7 +7,7 @@ import { Pressable } from "react-native";
 import { useState } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const Dialog = createModal((props: DialogProps & CommonModalComponentProps): JSX.Element => {
+const Dialog = createModal((props: DialogProps): JSX.Element => {
     const { title, message, buttons, ...modalProps } = useMergeDefaultProps("Dialog", props);
 
     const [open, setOpen] = useState(true);

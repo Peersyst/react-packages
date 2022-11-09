@@ -1,3 +1,5 @@
+import { CommonModalComponentProps } from "@peersyst/react-components-core";
+
 /**
  * Type default: shows buttons in primary color
  * Type destructive: show buttons colors in warning color
@@ -11,7 +13,7 @@ export interface DialogButton {
     type?: DialogButtonType;
 }
 
-export interface DialogProps {
+export interface DialogProps extends CommonModalComponentProps {
     title: string;
     message?: string;
     buttons?: DialogButton[];
