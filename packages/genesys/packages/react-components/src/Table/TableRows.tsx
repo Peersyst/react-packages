@@ -2,8 +2,9 @@ import { TableRowsProps } from "./Table.types";
 import { PopoverPopperWrapper, TableBody, TableCell, TableRow, TableText } from "./Table.styles";
 import { cx } from "@peersyst/react-utils";
 import { Popover } from "../Popover";
+import { ReactNode } from "react";
 
-export default function TableRows<T extends object>({
+export default function TableRows<T extends Record<string | number | symbol, ReactNode>>({
     rows,
     columns,
     rowClassName,

@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components-core",
     "author": "Peersyst",
-    "version": "0.2.32",
+    "version": "1.0.0",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -20,10 +20,10 @@
         "build-storybook": "build-storybook"
     },
     "peerDependencies": {
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.9",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0"
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -38,17 +38,17 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-hooks": "^1.5.7",
+        "@peersyst/react-hooks": "^2.0.0",
         "@peersyst/react-types": "^1.5.0",
-        "@peersyst/react-utils": "^1.8.5",
+        "@peersyst/react-utils": "^2.0.0",
         "validator": "^13.7.0"
     },
     "devDependencies": {
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.0",
         "@types/validator": "^13.7.9",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0"
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "publishConfig": {
         "access": "public"

@@ -3,7 +3,7 @@
     "compilerOptions": {
         "declarationDir": "./build/@types",
         "rootDir": "./src",
-        "baseUrl": "./"
+        "baseUrl": "./",
     },
     "include": ["./src/**/*.ts*"]
 }

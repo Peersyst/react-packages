@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Theme, useTheme } from "@peersyst/react-native-styled";
-import { ComponentType, useMemo } from "react";
+import { ComponentType, PropsWithChildren, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
 import { ScaledSize, StyleSheet, useWindowDimensions } from "react-native";
 import { SX, StyledFunction } from "./types";

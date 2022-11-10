@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-hooks",
     "author": "Peersyst",
-    "version": "1.5.7",
+    "version": "2.0.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -18,8 +18,8 @@
         "release": "yarn build && npm publish build"
     },
     "peerDependencies": {
-        "@types/react": "^17.0.38",
-        "react": "^17.0.0"
+        "@types/react": "^18.0.25",
+        "react": "^18.2.0"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -28,11 +28,11 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-utils": "^1.8.5"
+        "@peersyst/react-utils": "^2.0.0"
     },
     "devDependencies": {
-        "@types/react": "^17.0.38",
-        "react": "^17.0.0"
+        "@types/react": "^18.0.25",
+        "react": "^18.2.0"
     },
     "publishConfig": {
         "access": "public"

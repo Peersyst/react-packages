@@ -25,13 +25,13 @@ export function useSelectDisplayContent<
         }
 
         if (multiple) {
-            const selectedChildren = Children.toArray(options).filter((c) =>
-                (value as T[]).find((v) => v === (c as ReactElement).props?.value),
+            const selectedChildren = Children.toArray(options as ReactNode | ReactNode[]).filter(
+                (c) => (value as T[]).find((v) => v === (c as ReactElement).props?.value),
             );
             return selectedChildren.map((c) => (c as ReactElement).props?.children);
         } else
             return (
-                Children.toArray(options).find(
+                Children.toArray(options as ReactNode | ReactNode[]).find(
                     (c) => (c as ReactElement).props.value === value,
                 ) as ReactElement
             )?.props?.children;

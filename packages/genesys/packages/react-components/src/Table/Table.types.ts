@@ -153,7 +153,7 @@ export interface TableColumnsProps<T> {
     cellStyle: CSSProperties | undefined;
 }
 
-export interface TableRowsProps<T> {
+export interface TableRowsProps<T extends Record<string | number | symbol, ReactNode>> {
     /**
      * Table rows
      */

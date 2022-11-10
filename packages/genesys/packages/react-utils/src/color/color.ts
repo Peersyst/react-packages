@@ -257,3 +257,14 @@ export function lighten(color: string | ColorObject, coefficient: number) {
 export function emphasize(color: string, coefficient = 0.15) {
     return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
+
+/**
+ * Darken or lighten a color, depending on its luminance.
+ * Light colors are lightened, dark colors are darkened.
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+export function deemphasize(color: string, coefficient = 0.15) {
+    return getLuminance(color) > 0.5 ? lighten(color, coefficient) : darken(color, coefficient);
+}
