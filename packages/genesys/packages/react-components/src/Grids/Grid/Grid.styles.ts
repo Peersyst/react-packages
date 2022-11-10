@@ -23,7 +23,7 @@ export const GridRoot = styled.div<GridStyles>`
     overflow-x: auto;
 
     ${({ columns, rowSize, colGap, rowGap, alignItems, justifyItems, justifyContent }) => css`
-        grid-template-columns: repeat(${columns}, 1fr);
+        grid-template-columns: repeat(${columns}, minmax(0, 1fr));
         grid-auto-rows: ${rowSize || "auto"};
         column-gap: ${parseGapUnits(colGap)};
         row-gap: ${parseGapUnits(rowGap)};
