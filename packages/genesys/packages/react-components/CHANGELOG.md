@@ -1,6 +1,6 @@
 # Versions
 
-## 2.24.0
+## 3.0.2
 
 ### BREAKING
 
