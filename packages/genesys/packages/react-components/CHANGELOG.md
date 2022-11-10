@@ -1,8 +1,8 @@
 # Versions
 
-### BREAKING
-
 ## 2.24.0
+
+### BREAKING
 
 [Popover] Change skidding for offset. Add offset in both axis
 
