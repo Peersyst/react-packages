@@ -34,7 +34,8 @@ const Popover = ((props: PopoverProps): JSX.Element => {
         showOn = "hover",
         position = "bottom",
         arrow,
-        skidding = 0,
+        offsetX = 0,
+        offsetY,
         animation: { AnimatedComponent, props: AnimatedComponentProps } = {
             AnimatedComponent: Animated.Fade,
             props: { duration: 200 },
@@ -58,6 +59,7 @@ const Popover = ((props: PopoverProps): JSX.Element => {
     const handleContentRef = useRef(debounce(setContentRef, 350)).current;
 
     const popperInstance = useMemo(() => {
+        const finalYOffset = offsetY ?? (arrow ? 10 : 0);
         if (popperRef && contentRef)
             return createPopper(contentRef, popperRef, {
                 placement: position,
@@ -65,7 +67,7 @@ const Popover = ((props: PopoverProps): JSX.Element => {
                     {
                         name: "offset",
                         options: {
-                            offset: [skidding, arrow ? 10 : 0],
+                            offset: [offsetX, finalYOffset],
                         },
                     },
                 ],

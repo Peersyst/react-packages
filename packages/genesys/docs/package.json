@@ -2,7 +2,7 @@
     "name": "docs",
     "private": true,
     "author": "Peersyst",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "./src/index.tsx",
     "engines": {
         "node": ">=10"

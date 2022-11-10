@@ -33,9 +33,13 @@ export interface PopoverProps {
      */
     arrow?: boolean;
     /**
-     * Displaces the popper along the reference element.
+     * Displaces the popper along the reference element in the X axis.
      */
-    skidding?: number;
+    offsetX?: number;
+    /**
+     * Displaces the popper along the reference element in the Y axis.
+     */
+    offsetY?: number;
     /**
      * Popper animation
      */
