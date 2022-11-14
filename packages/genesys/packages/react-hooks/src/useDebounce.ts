@@ -1,5 +1,5 @@
 import { debounce } from "@peersyst/react-utils";
-import { useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 export interface UseDebounceResult<T> {
     value: T;
@@ -8,7 +8,11 @@ export interface UseDebounceResult<T> {
     debouncing: boolean;
 }
 
-export default function <T>(defaultValue: T, callback?: (debouncedValue: T) => void, delay = 600): UseDebounceResult<T> {
+export default function <T>(
+    defaultValue: T,
+    callback?: (debouncedValue: T) => void,
+    delay = 600,
+): UseDebounceResult<T> {
     const [value, setValue] = useState<T>(defaultValue);
     const [debouncedValue, setDebouncedValue] = useState<T>(defaultValue);
     const [debouncing, setDebouncing] = useState(false);
@@ -19,13 +23,14 @@ export default function <T>(defaultValue: T, callback?: (debouncedValue: T) => v
         changeDebouncedValue(v);
     };
 
-    const changeDebouncedValue = useRef(
+    const changeDebouncedValue = useCallback(
         debounce((v: T) => {
             setDebouncedValue(v);
             callback?.(v);
             setDebouncing(false);
         }, delay),
-    ).current;
+        [callback],
+    );
 
     return {
         value,
