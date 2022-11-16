@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.2
+
+[Select] Add testID to select display touchable
+
 ## 1.4.27
 
 [useSetTheme] Export it from core
