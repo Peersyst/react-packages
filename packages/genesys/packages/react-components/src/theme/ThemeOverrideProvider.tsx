@@ -5,10 +5,10 @@ import {
 import { ThemeProvider as StyledComponentsProvider } from "styled-components";
 
 const ThemeOverrideProvider = ({
-    theme: themeKey,
     children,
+    ...coreThemeOverrideProps
 }: ThemeOverrideProviderProps): JSX.Element => (
-    <CoreThemeOverrideProvider theme={themeKey}>
+    <CoreThemeOverrideProvider {...coreThemeOverrideProps}>
         {(theme) => (
             <StyledComponentsProvider theme={theme}>
                 {typeof children === "function" ? children(theme) : children}

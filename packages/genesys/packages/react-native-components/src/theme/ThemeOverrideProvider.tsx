@@ -5,10 +5,10 @@ import {
 import { ThemeProvider as StyledComponentsProvider } from "@peersyst/react-native-styled";
 
 const ThemeOverrideProvider = ({
-    theme: themeKey,
     children,
+    ...coreThemeOverrideProps
 }: ThemeOverrideProviderProps): JSX.Element => (
-    <CoreThemeOverrideProvider theme={themeKey}>
+    <CoreThemeOverrideProvider {...coreThemeOverrideProps}>
         {(theme) => (
             <StyledComponentsProvider theme={theme}>
                 {typeof children === "function" ? children(theme) : children}
