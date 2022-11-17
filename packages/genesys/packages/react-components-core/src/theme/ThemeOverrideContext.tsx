@@ -6,13 +6,16 @@ export const ThemeOverrideContext = createContext<ThemeOverrideContextType>({} a
 
 export const ThemeOverrideProvider = ({
     theme: themeProp,
+    overrides,
     children,
 }: ThemeOverrideProviderProps): JSX.Element => {
     const theme = useTheme(themeProp);
 
+    const overriddenTheme = overrides ? overrides(theme) : theme;
+
     return (
-        <ThemeOverrideContext.Provider value={{ theme }}>
-            {typeof children === "function" ? children(theme) : children}
+        <ThemeOverrideContext.Provider value={{ theme: overriddenTheme }}>
+            {typeof children === "function" ? children(overriddenTheme) : children}
         </ThemeOverrideContext.Provider>
     );
 };
