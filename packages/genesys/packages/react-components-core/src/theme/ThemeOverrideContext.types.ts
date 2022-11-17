@@ -7,7 +7,7 @@ export interface ThemeOverrideContextType {
 }
 
 export interface ThemeOverrideProviderProps {
-    theme: keyof Themes;
+    theme?: keyof Themes;
     overrides?: (theme: Theme) => Theme;
     children?: ReactNode | ((theme: Theme) => ReactNode);
 }

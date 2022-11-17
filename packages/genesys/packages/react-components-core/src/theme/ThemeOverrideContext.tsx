@@ -1,15 +1,20 @@
 import { createContext } from "react";
-import useTheme from "../config/hook/useTheme";
+import useThemes from "../config/hook/useThemes";
 import { ThemeOverrideContextType, ThemeOverrideProviderProps } from "./ThemeOverrideContext.types";
+import { useTheme } from "./hook";
+import { Theme } from "./theme.types";
 
 export const ThemeOverrideContext = createContext<ThemeOverrideContextType>({} as any);
 
 export const ThemeOverrideProvider = ({
-    theme: themeProp,
+    theme: themeKey,
     overrides,
     children,
 }: ThemeOverrideProviderProps): JSX.Element => {
-    const theme = useTheme(themeProp);
+    const themes = useThemes();
+    const inheritedTheme = useTheme();
+
+    const theme = (themeKey ? themes[themeKey] : inheritedTheme) as Theme;
 
     const overriddenTheme = overrides ? overrides(theme) : theme;
 
