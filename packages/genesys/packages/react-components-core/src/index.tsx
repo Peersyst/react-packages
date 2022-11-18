@@ -8,6 +8,7 @@ export * from "./Form";
 export * from "./FormControl";
 export * from "./FormControlError";
 export * from "./FormControlHint";
+export * from "./Image";
 export * from "./Label";
 export * from "./ModalProvider";
 export * from "./Paper";
