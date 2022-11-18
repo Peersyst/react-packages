@@ -12,10 +12,16 @@ export default function Image(props: ImageProps): JSX.Element {
         className,
         style,
         SkeletonProps,
+        onLoad,
         loading = false,
     } = useMergeDefaultProps("Image", props);
 
     const [loaded, setLoaded] = useState(false);
+
+    const handleLoad = () => {
+        setLoaded(true);
+        onLoad?.();
+    };
 
     return (
         <Skeleton
@@ -27,7 +33,7 @@ export default function Image(props: ImageProps): JSX.Element {
             <StyledImg
                 src={src}
                 alt={alt}
-                onLoad={() => setLoaded(true)}
+                onLoad={handleLoad}
                 className={cx("Image", className)}
                 style={style}
                 role="img"

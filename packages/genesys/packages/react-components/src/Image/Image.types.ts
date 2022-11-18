@@ -15,6 +15,10 @@ export interface ImageProps {
      */
     loading?: boolean;
     /**
+     * onLoad handler
+     */
+    onLoad?: () => void;
+    /**
      * Skeleton props
      */
     SkeletonProps?: Omit<SkeletonProps, "children" | "loading">;

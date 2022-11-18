@@ -1,6 +1,5 @@
 import { Property } from "csstype";
-import { CSSProperties } from "react";
-import * as React from "react";
+import { CSSProperties, HTMLAttributes } from "react";
 import { Breakpoint } from "../theme";
 
 export type RowBreakpointWidth = Breakpoint | number;
@@ -13,7 +12,7 @@ export interface RowBreakpoint {
     reverse?: boolean;
 }
 
-export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface RowProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * Flex factor
      */
