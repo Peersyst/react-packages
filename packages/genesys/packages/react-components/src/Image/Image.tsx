@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactEventHandler, useState } from "react";
 import { Skeleton } from "../Skeleton";
 import { ImageProps } from "./Image.types";
 import { StyledImg } from "./Image.styles";
@@ -14,13 +14,15 @@ export default function Image(props: ImageProps): JSX.Element {
         SkeletonProps,
         onLoad,
         loading = false,
+        loadingMode,
+        ...rest
     } = useMergeDefaultProps("Image", props);
 
     const [loaded, setLoaded] = useState(false);
 
-    const handleLoad = () => {
+    const handleLoad: ReactEventHandler<HTMLImageElement> = (e) => {
         setLoaded(true);
-        onLoad?.();
+        onLoad?.(e);
     };
 
     return (
@@ -37,6 +39,8 @@ export default function Image(props: ImageProps): JSX.Element {
                 className={cx("Image", className)}
                 style={style}
                 role="img"
+                loading={loadingMode}
+                {...rest}
             />
         </Skeleton>
     );

@@ -1,33 +1,17 @@
-import { CSSProperties } from "react";
+import { ImgHTMLAttributes } from "react";
 import { SkeletonProps } from "../Skeleton";
 
-export interface ImageProps {
-    /**
-     * Image source
-     */
-    src: string | undefined;
-    /**
-     * Image alt
-     */
-    alt: string;
+export interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "loading" | "role"> {
     /**
      * External loading
      */
     loading?: boolean;
     /**
-     * onLoad handler
+     * img loading native prop
      */
-    onLoad?: () => void;
+    loadingMode?: ImgHTMLAttributes<HTMLImageElement>["loading"];
     /**
      * Skeleton props
      */
     SkeletonProps?: Omit<SkeletonProps, "children" | "loading">;
-    /**
-     * Image className
-     */
-    className?: string;
-    /**
-     * Image style
-     */
-    style?: CSSProperties;
 }
