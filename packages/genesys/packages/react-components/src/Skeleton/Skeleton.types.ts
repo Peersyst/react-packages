@@ -44,6 +44,8 @@ export interface SkeletonProps {
 }
 
 export type WithSkeleton<T> = T & { loading?: boolean };
-export type WithLoading<TProps> = TProps | (DeepPartial<TProps> & { loading: boolean });
+export type WithLoading<TProps> =
+    | (TProps & { loading?: false | undefined })
+    | (DeepPartial<TProps> & { loading: true });
 
 export type WithSkeletonProps = Omit<SkeletonProps, "loading" | "children">;
