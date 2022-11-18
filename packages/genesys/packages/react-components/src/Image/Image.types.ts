@@ -1,7 +1,13 @@
 import { ImgHTMLAttributes } from "react";
 import { SkeletonProps } from "../Skeleton";
+import { Demand } from "@peersyst/react-types";
 
-export interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "loading" | "role"> {
+export interface ImageProps
+    extends Demand<Omit<ImgHTMLAttributes<HTMLImageElement>, "loading" | "role">, "src" | "alt"> {
+    /**
+     * Image fallback
+     */
+    fallback?: string;
     /**
      * External loading
      */

@@ -7,7 +7,7 @@ import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function Image(props: ImageProps): JSX.Element {
     const {
-        src,
+        src: srcProp,
         alt,
         className,
         style,
@@ -15,15 +15,35 @@ export default function Image(props: ImageProps): JSX.Element {
         onLoad,
         loading = false,
         loadingMode,
+        fallback,
+        onError,
         ...rest
     } = useMergeDefaultProps("Image", props);
 
     const [loaded, setLoaded] = useState(false);
+    const [error, setError] = useState(false);
+    const [fallbackError, setFallbackError] = useState(false);
 
     const handleLoad: ReactEventHandler<HTMLImageElement> = (e) => {
         setLoaded(true);
-        onLoad?.(e);
+        if (!error) onLoad?.(e);
     };
+
+    const handleError: ReactEventHandler<HTMLImageElement> = (e) => {
+        if (!error) {
+            setError(true);
+            onError?.(e);
+        } else {
+            setFallbackError(true);
+            setLoaded(true);
+        }
+    };
+
+    const src = ((): string | undefined => {
+        if (!error) return srcProp;
+        else if (!fallbackError) return fallback;
+        else return undefined;
+    })();
 
     return (
         <Skeleton
@@ -36,6 +56,7 @@ export default function Image(props: ImageProps): JSX.Element {
                 src={src}
                 alt={alt}
                 onLoad={handleLoad}
+                onError={handleError}
                 className={cx("Image", className)}
                 style={style}
                 role="img"
