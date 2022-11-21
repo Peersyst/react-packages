@@ -1,5 +1,4 @@
 import { CSSProperties, ReactNode } from "react";
-import { DeepPartial } from "@peersyst/react-types";
 
 export type SkeletonShape = "circular" | "rectangular" | "stadium";
 export type SkeletonAnimation = "wave" | "pulse" | false;
@@ -46,6 +45,6 @@ export interface SkeletonProps {
 export type WithSkeleton<T> = T & { loading?: boolean };
 export type WithLoading<TProps> =
     | (TProps & { loading?: false | undefined })
-    | (DeepPartial<TProps> & { loading: true });
+    | (Partial<TProps> & { loading: true });
 
 export type WithSkeletonProps = Omit<SkeletonProps, "loading" | "children">;

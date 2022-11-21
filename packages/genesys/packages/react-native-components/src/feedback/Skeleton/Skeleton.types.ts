@@ -50,6 +50,8 @@ export type SkeletonOverlayProps = Pick<SkeletonProps, "appearance">;
 export type SkeletonAnimationProps = SkeletonOverlayProps;
 
 export type WithSkeleton<T> = T & { loading?: boolean };
-export type WithLoading<TProps> = TProps | (Partial<TProps> & { loading: boolean });
+export type WithLoading<TProps> =
+    | (TProps & { loading?: false | undefined })
+    | (Partial<TProps> & { loading: true });
 
 export type WithSkeletonProps = Omit<SkeletonProps, "loading" | "children">;
