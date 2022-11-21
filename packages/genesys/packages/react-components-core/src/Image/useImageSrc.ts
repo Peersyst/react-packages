@@ -46,7 +46,7 @@ export default function <SrcT, LoadEvent, ErrorEvent>(
     };
 
     const computedSrc = ((): SrcT | undefined => {
-        if (!error) return src;
+        if (!!src && !error) return src;
         else if (!fallbackError) return fallback;
         else return undefined;
     })();
