@@ -18,6 +18,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
     const {
         colorType,
         defaultValue = new Color(),
+        value: valueProp,
         showTextField,
         readonly = false,
         disabled = false,
@@ -33,7 +34,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
 
     const translate = useTranslate();
 
-    const [textFieldValue, setTextFieldValue] = useState(defaultValue.hex());
+    const [textFieldValue, setTextFieldValue] = useState((valueProp || defaultValue).hex());
     const uploadRef = createRef<HTMLInputElement>();
 
     const active = !disabled && !readonly;
@@ -57,6 +58,7 @@ function ColorInput<TFP extends TextFieldProps = TextFieldProps>(
             required={required}
             validation={handleValidation}
             label={label}
+            value={valueProp}
             {...rest}
         >
             {(value, setValue, { focused, invalid, valid }) => {
