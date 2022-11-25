@@ -30,16 +30,17 @@ export default function Drawer(props: DrawerProps) {
         renderAtRoot,
     } = useMergeDefaultProps("Drawer", props);
 
-    const [open, setOpen] = useControlled(
-        defaultOpen,
-        variant === "permanent" ? true : propOpen,
-        propOpen ? onClose : undefined,
-    );
+    const [open, setOpen] = useControlled(defaultOpen, variant === "permanent" ? true : propOpen);
+
+    const handleClose = () => {
+        setOpen(false);
+        onClose?.();
+    };
 
     const forwardedBackdropProps: ForwardedBackdropProps = {
         defaultOpen,
         open,
-        onClose: variant === "temporary" ? () => setOpen(false) : undefined,
+        onClose: variant === "temporary" ? handleClose : undefined,
         closable: variant !== "permanent",
         onExited,
         preventScroll: variant === "temporary",

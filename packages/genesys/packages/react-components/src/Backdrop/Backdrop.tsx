@@ -38,12 +38,13 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         children,
     } = useMergeDefaultProps("Backdrop", props);
 
-    const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
+    const [open, setOpen] = useControlled(defaultOpen, propsOpen);
     usePreventBodyScroll(open && preventScroll);
 
     const handleClose = useCallback(() => {
         if (closable && open) {
             setOpen(false);
+            onClose?.();
         }
     }, [closable, open, setOpen]);
 

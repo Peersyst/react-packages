@@ -19,7 +19,7 @@ export default function Modal(props: ModalProps): JSX.Element {
         ...rest
     } = useMergeDefaultProps("Modal", props);
 
-    const [open, setOpen] = useControlled(defaultOpen, propOpen, propOpen ? onClose : undefined);
+    const [open, setOpen] = useControlled(defaultOpen, propOpen);
     const {
         icons: { cross: CrossIcon },
     } = useTheme();
@@ -27,6 +27,7 @@ export default function Modal(props: ModalProps): JSX.Element {
     const handleClose = useCallback(() => {
         if (closable && open) {
             setOpen(false);
+            onClose?.();
         }
     }, [closable, open, setOpen]);
 

@@ -38,7 +38,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         style,
     } = useMergeDefaultProps("Backdrop", props);
 
-    const [open, setOpen] = useControlled(defaultOpen, propsOpen, propsOpen ? onClose : undefined);
+    const [open, setOpen] = useControlled(defaultOpen, propsOpen);
     const [entered, setEntered] = useState(false);
     const { toastActive, hideToast } = useToast();
     const [toastWasActive, setToastWasActive] = useState(toastActive);
@@ -46,6 +46,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     const handleClose = useCallback(() => {
         if (closable && open) {
             setOpen(false);
+            onClose?.();
         }
     }, [closable, open, setOpen]);
 

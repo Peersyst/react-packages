@@ -26,11 +26,12 @@ export default function Modal(props: ModalProps): JSX.Element {
         preventScroll = true,
     } = useMergeDefaultProps("Modal", props);
 
-    const [open, setOpen] = useControlled(defaultOpen, propOpen, propOpen ? onClose : undefined);
+    const [open, setOpen] = useControlled(defaultOpen, propOpen);
 
     const handleClose = useCallback(() => {
         if (closable && open) {
             setOpen(false);
+            onClose?.();
         }
     }, [closable, open, setOpen]);
 

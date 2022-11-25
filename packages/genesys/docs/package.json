@@ -2,7 +2,7 @@
     "name": "docs",
     "private": true,
     "author": "Peersyst",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "main": "./src/index.tsx",
     "engines": {
         "node": ">=10"
@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components": "^3.0.15",
+        "@peersyst/react-components": "^3.0.16",
         "@peersyst/react-components-core": "^1.0.5",
         "@types/color": "^3.0.3",
         "color": "^4.2.3",
