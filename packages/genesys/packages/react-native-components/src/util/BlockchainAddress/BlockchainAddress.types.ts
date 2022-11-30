@@ -24,4 +24,8 @@ export interface BlockchainAddressProps
      * If ellipsis should be in the middle or end
      */
     ellipsis?: HashEllipsis;
+    /**
+     * Show Icon copy
+     */
+    copy?: boolean;
 }

@@ -11,7 +11,7 @@ const CopyButton = (props: CopyButtonProps): JSX.Element => {
     const { showToast } = useToast();
 
     const copyToClipboard = () => {
-        Clipboard.setString(text);
+        Clipboard.setStringAsync(text);
         if (message) showToast(message, { type: "success" });
     };
 
