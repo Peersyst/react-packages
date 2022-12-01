@@ -13,7 +13,7 @@ import {
 } from "@peersyst/react-components-core";
 
 const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
-    const { address, ellipsis, type, length, style, variant, ...typographyProps } =
+    const { address, ellipsis, type, length, style, copy, variant, ...typographyProps } =
         useMergeDefaultProps("BlockchainAddress", props);
 
     const { typography } = useTheme();
@@ -30,7 +30,7 @@ const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
 
     return (
         <Row alignItems="center" gap={10} style={rootStyle}>
-            <TouchableOpacity onPress={openExplorer}>
+            <TouchableOpacity onPress={copy ? openExplorer : () => void 0}>
                 <Typography
                     numberOfLines={1}
                     style={textStyle}
@@ -40,11 +40,13 @@ const BlockchainAddress = (props: BlockchainAddressProps): JSX.Element => {
                     {formatHash(address, ellipsis, length)}
                 </Typography>
             </TouchableOpacity>
-            <CopyButton
-                text={address}
-                message={translate("copied_to_clipboard")}
-                style={{ ...typographyVariantStyles, ...textStyle, fontSize: copyFontSize }}
-            />
+            {copy && (
+                <CopyButton
+                    text={address}
+                    message={translate("copied_to_clipboard")}
+                    style={{ ...typographyVariantStyles, ...textStyle, fontSize: copyFontSize }}
+                />
+            )}
         </Row>
     );
 };

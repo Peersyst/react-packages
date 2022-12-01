@@ -1,5 +1,10 @@
 # Versions
 
+## 2.0.11
+
+[CopyButton] Fix copy to clipboard setString deprecated. Now use setStringAsync (only async on web)
+[BlockchainAddress] Enable not displaying the copy button
+
 ## 2.0.2
 
 [Select] Add testID to select display touchable
