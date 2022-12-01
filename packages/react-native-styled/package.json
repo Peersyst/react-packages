@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-utils": "^2.0.0",
+        "@peersyst/react-utils": "^2.1.0",
         "react-native-safe-area-context": "4.4.1"
     },
     "devDependencies": {

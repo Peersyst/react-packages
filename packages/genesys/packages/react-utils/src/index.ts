@@ -17,5 +17,6 @@ export { default as minDigits } from "./minDigits";
 export { default as nullifyEvent } from "./nullifyEvent";
 export { default as ownerDocument } from "./ownerDocument";
 export { default as ownerWindow } from "./ownerWindow";
+export { default as polling } from "./polling";
 export { default as rack } from "./rack";
 export { default as setRef } from "./setRef";
