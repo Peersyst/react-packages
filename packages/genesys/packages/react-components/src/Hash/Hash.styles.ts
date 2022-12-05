@@ -8,6 +8,7 @@ export const HashRoot = styled(Row).attrs({
 })<HashRootProps>`
     width: 100%;
     max-width: 100%;
+    overflow: hidden;
 `;
 
 export const HashLink = styled.a<HashLinkProps>(
