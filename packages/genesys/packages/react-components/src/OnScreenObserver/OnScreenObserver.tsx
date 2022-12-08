@@ -4,9 +4,19 @@ import { OnScreenObserverWrapper } from "./OnScreenObserver.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 export default function OnScreenObserver(props: OnScreenObserverProps): JSX.Element {
-    const { children, offset = "0", container } = useMergeDefaultProps("OnScreenObserver", props);
+    const {
+        children,
+        offset = "0",
+        container,
+        onScreen: onScreenProp,
+    } = useMergeDefaultProps("OnScreenObserver", props);
 
     const [onScreen, setOnScreen] = useState(false);
+
+    const handleOnScreen = (isOnScreen: boolean) => {
+        onScreenProp?.(isOnScreen);
+        setOnScreen(isOnScreen);
+    };
 
     const ref = createRef<HTMLDivElement>();
 
@@ -34,15 +44,15 @@ export default function OnScreenObserver(props: OnScreenObserverProps): JSX.Elem
                 child.boundingClientRect.y <= bottom &&
                 child.boundingClientRect.y >= top
             )
-                setOnScreen(true);
-            else if (onScreen && child.boundingClientRect.y > bottom) setOnScreen(false);
+                handleOnScreen(true);
+            else if (onScreen && child.boundingClientRect.y > bottom) handleOnScreen(false);
         },
         [onScreen, setOnScreen, children],
     );
 
     return (
         <OnScreenObserverWrapper ref={ref} offset={offset}>
-            {children(onScreen)}
+            {typeof children === "function" ? children(onScreen) : children}
         </OnScreenObserverWrapper>
     );
 }

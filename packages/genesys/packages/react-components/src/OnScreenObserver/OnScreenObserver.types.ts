@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { ReactNode, RefObject } from "react";
 
 export interface OnScreenObserverProps {
     /**
@@ -10,9 +10,13 @@ export interface OnScreenObserverProps {
      */
     offset?: string;
     /**
+     * onScreen handler
+     */
+    onScreen?: (onScreen: boolean) => any;
+    /**
      * Element that consumes observer state
      */
-    children: (onScreen: boolean) => any;
+    children: ((onScreen: boolean) => ReactNode) | ReactNode;
 }
 
 export interface OnScreenObserverWrapperProps {
