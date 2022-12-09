@@ -41,6 +41,7 @@ const TextInput = (props: TextInputProps): JSX.Element => {
         hint,
         LabelProps = {},
         Label = FormControlLabel,
+        error,
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
@@ -75,6 +76,7 @@ const TextInput = (props: TextInputProps): JSX.Element => {
             defaultStyle={defaultStyles}
             style={styleProp}
             stylesMergeStrategy={textInputStylesMergeStrategy}
+            error={error}
         >
             {(value, setValue, { invalid, valid }, style, setFocused) => {
                 const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {

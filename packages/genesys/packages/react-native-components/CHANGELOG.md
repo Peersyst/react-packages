@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.14
+
+[TextInput] Pass error prop to component
+
 ## 2.0.11
 
 [CopyButton] Fix copy to clipboard setString deprecated. Now use setStringAsync (only async on web)
