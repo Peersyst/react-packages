@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "2.0.16",
+    "version": "2.0.17",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -36,8 +36,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components-core": "^1.0.6",
-        "@peersyst/react-hooks": "^2.0.2",
+        "@peersyst/react-components-core": "^1.0.8",
+        "@peersyst/react-hooks": "^2.0.3",
         "@peersyst/react-native-styled": "^2.0.0",
         "@peersyst/react-native-utils": "^1.0.1",
         "@peersyst/react-types": "^1.5.0",

@@ -7,5 +7,10 @@ export default function useControlled<T>(
 ): [T, (value: T) => unknown] {
     const [state, setState] = useState<T>(defaultValue);
 
-    return [value ?? state, onChange || setState];
+    const handleChange = (v: T) => {
+        if (value === undefined) setState(v);
+        onChange?.(v);
+    };
+
+    return [value ?? state, handleChange];
 }
