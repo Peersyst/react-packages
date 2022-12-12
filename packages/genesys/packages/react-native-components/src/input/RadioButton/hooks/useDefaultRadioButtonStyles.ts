@@ -15,8 +15,5 @@ export default function (): FormControlStateStyle<Partial<RadioButtonStyle>> {
                 color: lighten(theme.palette.disabled, 0.1),
             },
         },
-        invalid: {
-            color: theme.palette.status.error,
-        },
     };
 }
