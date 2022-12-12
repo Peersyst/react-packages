@@ -5,21 +5,22 @@ import {
 } from "@peersyst/react-native-components";
 import { Animated, LayoutChangeEvent, OpaqueColorValue, ViewStyle } from "react-native";
 import { CoreSwitchProps } from "@peersyst/react-components-core";
+import { BaseBooleanStyle } from "src/utils";
 
 export type SwitchStyle = FormControlStateStyle<SwitchCoreStyle>;
 export type SwitchPartialStyle = FormControlStateStyle<Partial<SwitchCoreStyle>>;
 
-export type SwitchCoreStyle = SwitchBaseStyle & {
-    active?: {
-        backgroundColor?: ColorWithoutOpaqueColorValue;
-        thumb?: {
-            backgroundColor?: ColorWithoutOpaqueColorValue;
-        };
-    };
-};
+export type SwitchCoreStyle = BaseBooleanStyle<SwitchBaseStyle, SwitchBaseActiveStyle>;
 
 export type SwitchBaseStyle = SwitchStyles & {
     thumb?: SwitchStyles;
+};
+
+export type SwitchBaseActiveStyle = {
+    backgroundColor?: ColorWithoutOpaqueColorValue;
+    thumb?: {
+        backgroundColor?: ColorWithoutOpaqueColorValue;
+    };
 };
 
 type ColorWithoutOpaqueColorValue = Exclude<ViewStyle["backgroundColor"], OpaqueColorValue>;

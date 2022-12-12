@@ -7,6 +7,7 @@ import { FormControlLabelStyle } from "../../input/FormControlLabel";
 import { PagerViewStyle } from "../../display/PagerView";
 import { DottedPaginationStyle } from "../../navigation/DottedPagination";
 import { SwitchStyle } from "src/input/Switch/Switch.types";
+import { RadioButtonStyle } from "src/input/RadioButton";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -28,5 +29,6 @@ export interface BaseGlobalStyles {
     Typography?: TypographyStyle;
     Divider?: ViewStyle;
     Switch?: SwitchStyle;
+    RadioButton?: RadioButtonStyle;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}

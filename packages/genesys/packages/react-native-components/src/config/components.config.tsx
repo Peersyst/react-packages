@@ -266,6 +266,9 @@ const componentsConfig: ComponentsConfig = {
     Switch: {
         defaultProps: {},
     },
+    RadioButton: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;
