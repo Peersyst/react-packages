@@ -1,5 +1,10 @@
 # Versions
 
+## 2.0.15
+
+[Switch] Export component + refactor styles
+[RadioButton] New component
+
 ## 2.0.14
 
 [TextInput] Pass error prop to component

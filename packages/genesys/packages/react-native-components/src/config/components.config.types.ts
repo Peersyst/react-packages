@@ -44,7 +44,7 @@ import { BlockchainAddressProps } from "../util/BlockchainAddress";
 import { AlertProps } from "../feedback/Alert";
 import { SpinnerProps } from "../feedback/Spinner";
 import { SwitchProps } from "src/input/Switch/Switch.types";
-
+import { RadioButtonProps } from "src/input/RadioButton";
 /**
  * ExtendedToolbarConfig
  */
@@ -112,6 +112,7 @@ export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface ElementStylerConfig extends ComponentConfig<ElementStylerProps> {}
 export interface SpinnerConfig extends ComponentConfig<SpinnerProps> {}
 export interface SwitchConfig extends ComponentConfig<SwitchProps> {}
+export interface RadioButtonConfig extends ComponentConfig<RadioButtonProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -166,4 +167,5 @@ export interface ComponentsConfig {
     ElementStyler: ElementStylerConfig;
     Spinner: SpinnerConfig;
     Switch: SwitchConfig;
+    RadioButton: RadioButtonConfig;
 }
