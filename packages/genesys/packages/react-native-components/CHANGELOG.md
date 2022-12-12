@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.16
+
+[SelectorGroup] Add SelectorGroup component
+
 ## 2.0.15
 
 [Switch] Export component + refactor styles

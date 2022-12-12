@@ -22,6 +22,7 @@ export type CoreSelectorGroupProps<
     LP extends CoreLabelProps,
     D extends SelectorDirection = "column",
     Multiple extends boolean = false,
+    ST = SelectorType,
 > = CoreFormControlledComponentProps<Multiple extends true ? T[] : T, LP> & {
     /**
      * Make the selection multiple
@@ -38,7 +39,7 @@ export type CoreSelectorGroupProps<
     /**
      * Selector type
      */
-    type?: SelectorType;
+    type?: ST;
     /**
      * Selector direction
      */

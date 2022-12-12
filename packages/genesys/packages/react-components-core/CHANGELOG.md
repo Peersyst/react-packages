@@ -1,5 +1,9 @@
 # Versions
 
+## 1.0.7
+
+[SelectorGroup] Change selectorgroup types
+
 ## 0.2.32
 
 [BlockchainLinks] Add Nfts & Tokens to BlockchainAddress
