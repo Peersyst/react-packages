@@ -27,14 +27,15 @@ export interface SelectorProps<T> {
     children: (context: SelectorChildrenContext<T>) => ReactElement<SelectorControllerProps>;
 }
 
-export type CoreSelectorProps<T, LP extends CoreLabelProps = CoreLabelProps> = Pick<
-    SelectorProps<T>,
-    Exclude<keyof SelectorProps<any>, "children">
-> & {
+export type CoreSelectorProps<
+    T,
+    LP extends CoreLabelProps = CoreLabelProps,
+    ST = SelectorType,
+> = Pick<SelectorProps<T>, Exclude<keyof SelectorProps<any>, "children">> & {
     /**
      * Selector type
      */
-    type?: SelectorType;
+    type?: ST;
 } & Pick<CoreFormControlledComponentProps<T, LP>, "Label" | "LabelProps" | "label">;
 
 export interface SelectorControllerProps<LP extends CoreLabelProps = CoreLabelProps> {

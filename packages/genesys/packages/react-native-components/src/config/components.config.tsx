@@ -269,6 +269,12 @@ const componentsConfig: ComponentsConfig = {
     RadioButton: {
         defaultProps: {},
     },
+    Selector: {
+        defaultProps: {},
+    },
+    SelectorGroup: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

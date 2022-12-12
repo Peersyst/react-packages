@@ -35,6 +35,7 @@ export * from "./input/Select";
 export * from "./input/TextInput";
 export * from "./input/Switch";
 export * from "./input/RadioButton";
+export * from "./input/SelectorGroup";
 export * from "./layout/Col";
 export * from "./layout/Row";
 export * from "./layout/StatusBar";
