@@ -1,8 +1,12 @@
 # Versions
 
-## 2.0.17
+## 2.0.18
 
 [SelectorGroup] Add wrapper width 100%
+
+## 2.0.17
+
+[Package.json] Update react-components-core
 
 ## 2.0.16
 
