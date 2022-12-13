@@ -3,13 +3,11 @@ import {
     SelectorGroupProvider,
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
-import {
-    Col,
-    Row,
-    FormControlLabel,
-    Selector,
-    FormControl,
-} from "@peersyst/react-native-components";
+import { Col } from "../../layout/Col";
+import { Row } from "../../layout/Row";
+import { FormControl } from "../FormControl";
+import { FormControlLabel } from "../FormControlLabel";
+import Selector from "./Selector/Selector";
 import { InnerSelectorGroupProps, SelectorGroupProps } from "./SelectorGroup.types";
 
 function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirection>({

@@ -1,14 +1,10 @@
 import { SwitchProps, SwitchStyle } from "./Switch.types";
-import {
-    FormControl,
-    Label,
-    LabelStyle,
-    useGlobalStyles,
-    useMergeDefaultProps,
-} from "@peersyst/react-native-components";
 import switchStylesMergeStrategy from "./utils/switchStylesMergeStrategy";
 import useDefaultSwitchStyles from "./hooks/useDefaultSwitchStyles";
 import InnerSwitch from "./InnerSwitch";
+import { Label, LabelStyle } from "../../display/Label";
+import { useGlobalStyles, useMergeDefaultProps } from "../../config";
+import { FormControl } from "../FormControl";
 
 const Switch = (props: SwitchProps): JSX.Element => {
     const {

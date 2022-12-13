@@ -3,8 +3,9 @@ import {
     SelectorControllerProps,
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
-import { RadioButton, Switch } from "@peersyst/react-native-components";
 import { JSXElementConstructor } from "react";
+import { Switch } from "../../../input/Switch";
+import { RadioButton } from "../../../input/RadioButton";
 import { NativeSelectorType, SelectorProps } from "./Selector.types";
 
 export const SELECTOR_CONTROLLERS: Record<
