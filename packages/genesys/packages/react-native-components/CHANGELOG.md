@@ -2,7 +2,7 @@
 
 ## 2.0.18
 
-[SelectorGroup] Add wrapper width 100%
+[SelectorGroup] Pass style to InnerSelectorGroup
 
 ## 2.0.17
 
