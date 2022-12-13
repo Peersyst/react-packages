@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.17
+
+[SelectorGroup] Add wrapper width 100%
+
 ## 2.0.16
 
 [SelectorGroup] Add SelectorGroup component

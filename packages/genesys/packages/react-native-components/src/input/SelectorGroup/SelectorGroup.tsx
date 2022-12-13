@@ -35,7 +35,7 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
 
     return (
         <SelectorGroupProvider value={{ value, setValue, disabled, multiple, readonly }}>
-            <Wrapper {...WrapperProps}>
+            <Wrapper {...WrapperProps} style={{ width: "100%" }}>
                 {children ||
                     options?.map(({ label, value }, index) => {
                         return (
