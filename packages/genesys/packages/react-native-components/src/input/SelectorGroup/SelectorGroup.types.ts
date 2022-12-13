@@ -33,4 +33,5 @@ export type InnerSelectorGroupProps<
     > &
     SelectorGroupLayoutProps & {
         setValue: (val: Multiple extends true ? T[] : T) => any;
+        style?: RowProps["style"];
     };
