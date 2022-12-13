@@ -26,6 +26,7 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
     multiple,
     options,
     children,
+    style,
 }: InnerSelectorGroupProps<T, Multiple, D>): JSX.Element {
     const layoutProps = { gap, justifyContent, alignItems };
     const [Wrapper, WrapperProps] =
@@ -35,7 +36,7 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
 
     return (
         <SelectorGroupProvider value={{ value, setValue, disabled, multiple, readonly }}>
-            <Wrapper {...WrapperProps} style={{ width: "100%" }}>
+            <Wrapper {...WrapperProps} style={style}>
                 {children ||
                     options?.map(({ label, value }, index) => {
                         return (
@@ -85,7 +86,7 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
             required={required}
             {...rest}
         >
-            {(value, setValue) => (
+            {(value, setValue, _, style) => (
                 <InnerSelectGroup<T, Multiple, D>
                     value={value}
                     setValue={setValue}
@@ -96,6 +97,7 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
                     justifyContent={justifyContent}
                     alignItems={alignItems}
                     type={type}
+                    style={style}
                     readonly={readonly}
                     multiple={multiple}
                     options={options}
