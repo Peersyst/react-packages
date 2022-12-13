@@ -5,8 +5,10 @@ export type BaseBooleanStyle<S, AS = S> = S & {
     active?: AS;
 };
 
-export type BaseStyle<S, AS = S> = FormControlStateStyle<BaseBooleanStyle<S, AS>>;
-export type BasePartialStyle<S, AS = S> = FormControlStateStyle<Partial<BaseBooleanStyle<S, AS>>>;
+export type FormControleBooleanStyle<S, AS = S> = FormControlStateStyle<BaseBooleanStyle<S, AS>>;
+export type FormControleBooleanPartialStyle<S, AS = S> = FormControlStateStyle<
+    Partial<BaseBooleanStyle<S, AS>>
+>;
 
 export default function <S, AS = S>(
     {
@@ -18,7 +20,7 @@ export default function <S, AS = S>(
         required: { active: defaultRequiredActiveStyle, ...defaultRequiredInactiveStyle } = {},
         active: defaultActiveStyle,
         ...defaultInactiveStyle
-    }: BasePartialStyle<S, AS>,
+    }: FormControleBooleanPartialStyle<S, AS>,
     {
         active: globalActiveStyle,
         invalid: { active: globalInvalidActiveStyle, ...globalInvalidInactiveStyle } = {},
@@ -28,7 +30,7 @@ export default function <S, AS = S>(
         readonly: { active: globalReadonlyActiveStyle, ...globalReadonlyInactiveStyle } = {},
         required: { active: globalRequiredActiveStyle, ...globalRequiredInactiveStyle } = {},
         ...globalInactiveStyle
-    }: BasePartialStyle<S, AS>,
+    }: FormControleBooleanPartialStyle<S, AS>,
     {
         invalid: { active: styleInvalidActiveStyle, ...styleInvalidInactiveStyle } = {},
         valid: { active: styleValidActiveStyle, ...styleValidInactiveStyle } = {},
@@ -38,7 +40,7 @@ export default function <S, AS = S>(
         required: { active: styleRequiredActiveStyle, ...styleRequiredInactiveStyle } = {},
         active: styleActiveStyle,
         ...styleInactiveStyle
-    }: BasePartialStyle<S, AS>,
+    }: FormControleBooleanPartialStyle<S, AS>,
     { readonly, required, focused, invalid, valid, disabled }: FormControlContextType,
 ): BaseBooleanStyle<S, AS> {
     const activeStyle = {
