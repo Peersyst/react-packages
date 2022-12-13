@@ -1,5 +1,6 @@
-import { Theme, useMergeDefaultProps, useTheme } from "@peersyst/react-native-components";
 import { ActivityIndicator, ActivityIndicatorProps, ColorValue } from "react-native";
+import { useMergeDefaultProps } from "../../config";
+import { Theme, useTheme } from "../../theme";
 
 export interface SpinnerProps extends Omit<ActivityIndicatorProps, "color" | "testID"> {
     color?: ((theme: Theme["palette"]) => string) | ColorValue;

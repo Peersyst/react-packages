@@ -1,10 +1,12 @@
 import { RadioButtonCoreStyle, RadioButtonProps } from "./RadioButton.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../../assets/icons";
-import { FormControl, IconButton, Label, useGlobalStyles } from "@peersyst/react-native-components";
 import useDefaultRadioButtonStyles from "./hooks/useDefaultRadioButtonStyles";
 import radioButtonStylesMergeStrategy from "./utils/radioButtonStylesMergeStrategy";
-import { LabelStyle } from "src/display/Label";
+import { Label, LabelStyle } from "../../display/Label";
+import { useGlobalStyles } from "../../config";
+import { FormControl } from "../FormControl";
+import { IconButton } from "../IconButton";
 
 export default function RadioButton(props: RadioButtonProps) {
     const {

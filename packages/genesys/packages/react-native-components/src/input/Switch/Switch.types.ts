@@ -1,11 +1,8 @@
-import {
-    LabelProps,
-    FormControlledComponentProps,
-    FormControlStateStyle,
-} from "@peersyst/react-native-components";
 import { Animated, LayoutChangeEvent, OpaqueColorValue, ViewStyle } from "react-native";
 import { CoreSwitchProps } from "@peersyst/react-components-core";
-import { BaseBooleanStyle } from "src/utils";
+import { BaseBooleanStyle } from "../../utils";
+import { FormControlledComponentProps, FormControlStateStyle } from "../FormControl";
+import { LabelProps } from "../../display/Label";
 
 export type SwitchStyle = FormControlStateStyle<SwitchCoreStyle>;
 export type SwitchPartialStyle = FormControlStateStyle<Partial<SwitchCoreStyle>>;

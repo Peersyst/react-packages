@@ -1,11 +1,8 @@
 import { CoreSelectorGroupProps, SelectorDirection } from "@peersyst/react-components-core";
-import {
-    LabelProps,
-    RowProps,
-    NativeSelectorType,
-    SelectorProps,
-    FormControlledComponentProps,
-} from "@peersyst/react-native-components";
+import { LabelProps } from "../../display/Label";
+import { RowProps } from "../../layout/Row";
+import { FormControlledComponentProps } from "../FormControl";
+import { NativeSelectorType, SelectorProps } from "./Selector/Selector.types";
 
 export type SelectorGroupLayoutProps = Pick<RowProps, "gap" | "justifyContent" | "alignItems">;
 

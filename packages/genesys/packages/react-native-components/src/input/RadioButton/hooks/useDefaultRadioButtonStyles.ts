@@ -1,6 +1,6 @@
-import { FormControlStateStyle } from "@peersyst/react-native-components";
 import { useTheme } from "@peersyst/react-native-styled";
 import { emphasize, lighten } from "@peersyst/react-utils";
+import { FormControlStateStyle } from "../../../input/FormControl";
 import { RadioButtonStyle } from "../RadioButton.types";
 
 export default function (): FormControlStateStyle<Partial<RadioButtonStyle>> {

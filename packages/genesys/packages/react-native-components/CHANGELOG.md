@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.19
+
+Fix imports
+
 ## 2.0.18
 
 [SelectorGroup] Pass style to InnerSelectorGroup
