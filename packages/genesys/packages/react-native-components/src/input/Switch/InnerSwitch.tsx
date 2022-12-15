@@ -92,7 +92,11 @@ const InnerSwitch = ({
                 >
                     {value && children && (
                         <SwitchElementWrapper
-                            style={{ opacity: baseAnim, justifyContent: "flex-start" }}
+                            style={{
+                                opacity: baseAnim,
+                                justifyContent: "flex-start",
+                                alignItems: "center",
+                            }}
                         >
                             {children[0]}
                         </SwitchElementWrapper>
@@ -112,7 +116,11 @@ const InnerSwitch = ({
                     />
                     {!value && children && (
                         <SwitchElementWrapper
-                            style={{ opacity: opacityAnim, justifyContent: "flex-end" }}
+                            style={{
+                                opacity: opacityAnim,
+                                justifyContent: "flex-end",
+                                alignItems: "center",
+                            }}
                         >
                             {children[1]}
                         </SwitchElementWrapper>

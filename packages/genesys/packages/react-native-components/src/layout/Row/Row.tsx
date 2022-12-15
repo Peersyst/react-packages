@@ -20,7 +20,7 @@ const Row = (props: RowProps): JSX.Element => {
     const childrenLength = Children.count(children);
 
     const style = StyleSheet.flatten(styleProp);
-    const justifyContent = style.justifyContent || justifyContentProp;
+    const justifyContent = style?.justifyContent || justifyContentProp;
 
     const hasGap =
         !justifyContent ||
