@@ -1,5 +1,10 @@
 # Versions
 
+## 2.0.22
+
+[Row] Fix row when style is undefined
+[Switch] Fix alignItems center in the InnerSwitch component
+
 ## 2.0.21
 
 [Row] Fix row styles
