@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.21
+
+[Row] Fix row styles
+
 ## 2.0.19
 
 Fix imports
