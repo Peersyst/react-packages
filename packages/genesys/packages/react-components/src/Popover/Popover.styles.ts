@@ -5,6 +5,7 @@ export const PopoverRoot = styled.div`
     position: relative;
     display: flex;
     width: fit-content;
+    height: fit-content;
 `;
 
 export const PopperArrow = styled(Paper)`
