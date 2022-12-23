@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.23
+
+[Image] fix image props
+
 ## 2.0.22
 
 [Row] Fix row when style is undefined
