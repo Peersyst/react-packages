@@ -5,7 +5,7 @@ import {
 } from "@peersyst/react-components-core";
 import { DividerProps } from "../display/Divider";
 import { IconProps } from "../display/Icon";
-import { ImageProps } from "react-native";
+import { ImageProps } from "../display/Image";
 import { LabelProps } from "../display/Label";
 import { ListProps } from "../display/List";
 import { PagerViewProps } from "../display/PagerView";

@@ -4,10 +4,14 @@ import { useImageSrc, useMergeDefaultProps } from "@peersyst/react-components-co
 import { ImageProps } from "./Image.types";
 
 const Image = (props: ImageProps): JSX.Element => {
-    const { source, onLoad, onError, loading, fallback, ...rest } = useMergeDefaultProps(
-        "Image",
-        props,
-    );
+    const {
+        source,
+        onLoad,
+        onError,
+        loading = false,
+        fallback,
+        ...rest
+    } = useMergeDefaultProps("Image", props);
 
     const { src, handleLoad, handleError, loaded } = useImageSrc(source, fallback, onLoad, onError);
 
