@@ -1,5 +1,5 @@
 import useFetch, { UseFetchOptions, UseFetchResult } from "./util/useFetch";
-import useTransactionRequestStatus from "./useTransactionRequestStatus";
+import useTransactionRequestStatus, {TransactionRequestStatus} from "./useTransactionRequestStatus";
 import useVerifySignIn, { VerifySignInResponse } from "./useVerifySignIn";
 import useXumm from "./useXumm";
 import { XummPostPayloadResponse } from "./types";
@@ -21,11 +21,13 @@ export interface UseSignInResult extends Omit<UseFetchResult<any>, "data" | "fet
 export interface UseSignInOptions extends Omit<UseFetchOptions<SignInResponse>, "onSuccess"> {
     onSignIn?: (data: SignInResponse) => void;
     onSignInVerified?: (data: VerifySignInResponse) => void;
+    onSignatureResolved?: (status: TransactionRequestStatus) => void;
 }
 
 export default function ({
     onSignIn,
     onSignInVerified,
+    onSignatureResolved,
     ...restOptions
 }: UseSignInOptions = {}): UseSignInResult {
     const { setToken, removeToken } = useXumm();
@@ -50,6 +52,7 @@ export default function ({
         isError: transactionRequestStatusError,
     } = useTransactionRequestStatus({
         onSigned: verifySignIn,
+        onSignatureResolved
     });
     // Sign in and store temporal token to verify sign in later
     const {

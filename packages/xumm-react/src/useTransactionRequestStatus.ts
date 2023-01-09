@@ -20,10 +20,12 @@ export interface UseTransactionRequestStatus
 
 export interface UseTransactionRequestOptions extends UseFetchOptions<StatusRequestResponse> {
     onSigned?: () => void;
+    onSignatureResolved?: (status: TransactionRequestStatus) => void;
 }
 
 export default function ({
     onSigned,
+    onSignatureResolved,
     retryDelay = 10000,
     ...restOptions
 }: UseTransactionRequestOptions = {}): UseTransactionRequestStatus {
@@ -35,8 +37,11 @@ export default function ({
 
     const fetchStatus = async (uuid: string): Promise<TransactionRequestStatus | undefined> => {
         const res = await fetchData(uuid);
-        if (res?.status === "signed") await onSigned?.();
-        return res?.status;
+        if (res) {
+            onSignatureResolved?.(res.status);
+            if (res.status === "signed") await onSigned?.();
+            return res?.status;
+        }
     };
 
     return {
