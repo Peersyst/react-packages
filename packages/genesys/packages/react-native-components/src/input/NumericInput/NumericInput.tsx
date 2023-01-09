@@ -10,7 +10,7 @@ const NumericInput = (props: NumericInputProps): JSX.Element => {
     const {
         value: valueProp,
         defaultValue,
-        onChangeText: onChangeTextProp,
+        onChange: onChangeProp,
         ...rest
     } = useMergeDefaultProps("NumericInput", props);
     const maxDecimals = useComponentConfig("NumericInput").maxDecimals;
@@ -18,7 +18,7 @@ const NumericInput = (props: NumericInputProps): JSX.Element => {
     const { value, onChange } = useNumericInput({
         defaultValue,
         value: valueProp,
-        onChange: onChangeTextProp,
+        onChange: onChangeProp,
         maxDecimals,
     });
 
