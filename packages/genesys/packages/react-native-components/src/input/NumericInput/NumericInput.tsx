@@ -4,7 +4,7 @@ import {
     useMergeDefaultProps,
     useNumericInput,
 } from "@peersyst/react-components-core";
-import { TextField } from "../TextInput";
+import { TextInput } from "../TextInput";
 
 const NumericInput = (props: NumericInputProps): JSX.Element => {
     const {
@@ -22,7 +22,7 @@ const NumericInput = (props: NumericInputProps): JSX.Element => {
         maxDecimals,
     });
 
-    return <TextField value={value} onChange={onChange} keyboardType="numeric" {...rest} />;
+    return <TextInput value={value} onChange={onChange} keyboardType="numeric" {...rest} />;
 };
 
 export default NumericInput;

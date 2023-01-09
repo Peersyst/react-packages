@@ -1,4 +1,4 @@
-import { getGroupSeparator, getDecimalSeparator } from "../locale";
+import { getDecimalSeparator, getGroupSeparator } from "./utils";
 
 const formatNumber = (value: string, locale: string) => {
     const digitGroupingSeparator = getGroupSeparator(locale);

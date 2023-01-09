@@ -1,3 +1,3 @@
-import { TextFieldProps } from "../TextInput";
+import { TextInputProps } from "../TextInput";
 
-export type NumericInputProps = Omit<TextFieldProps, "keyboardType">;
+export type NumericInputProps = Omit<TextInputProps, "keyboardType">;
