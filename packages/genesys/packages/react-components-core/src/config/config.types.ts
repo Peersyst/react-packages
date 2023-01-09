@@ -40,6 +40,7 @@ export interface BaseCoreConfig {
     projectName: string;
     themes: Themes;
     translate: TranslateFn;
+    locale: string;
     validators: Record<keyof ExtraValidators, IValidator>;
     components: ComponentsConfig;
 }

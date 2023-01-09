@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.1
+
+Add locale and number utils
+
 ## 1.4.7
 
 Dependencies update

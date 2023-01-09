@@ -1,5 +1,10 @@
 # Versions
 
+## 3.0.25
+
+[Package.json] Update dependecies: react-components-core & react-utils
+[Config] Add locale to the config
+
 ## 3.0.2
 
 ### BREAKING
