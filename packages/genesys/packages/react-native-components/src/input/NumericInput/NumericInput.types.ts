@@ -1,3 +1,3 @@
-import { TextInputProps } from "react-native";
+import { TextFieldProps } from "../TextInput";
 
-export type NumericInputProps = Omit<TextInputProps, "keyboardType">;
+export type NumericInputProps = Omit<TextFieldProps, "keyboardType">;
