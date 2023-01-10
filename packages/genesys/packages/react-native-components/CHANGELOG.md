@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.25
+
+[NumericInput] Fix numeric input
+
 ## 2.0.24
 
 [NumericInput] Make NumericInput reactive to the locale
