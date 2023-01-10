@@ -4,13 +4,13 @@ import {
     useMergeDefaultProps,
     useNumericInput,
 } from "@peersyst/react-components-core";
-import { TextInput } from "../TextInput";
+import { TextInput } from "react-native";
 
 const NumericInput = (props: NumericInputProps): JSX.Element => {
     const {
         value: valueProp,
         defaultValue,
-        onChange: onChangeProp,
+        onChangeText: onChangeProp,
         ...rest
     } = useMergeDefaultProps("NumericInput", props);
     const maxDecimals = useComponentConfig("NumericInput").maxDecimals;
@@ -22,7 +22,7 @@ const NumericInput = (props: NumericInputProps): JSX.Element => {
         maxDecimals,
     });
 
-    return <TextInput value={value} onChange={onChange} keyboardType="numeric" {...rest} />;
+    return <TextInput value={value} onChangeText={onChange} keyboardType="numeric" {...rest} />;
 };
 
 export default NumericInput;
