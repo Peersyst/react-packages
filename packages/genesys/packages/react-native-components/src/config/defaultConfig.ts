@@ -5,6 +5,7 @@ import componentsConfig from "./components.config";
 const defaultConfig: Omit<Config, "projectName"> = {
     themes: { default: defaultTheme, light: lightTheme, dark: darkTheme },
     translate: (w: string) => w,
+    locale: "en",
     validators: {},
     components: componentsConfig,
     globalStyles: () => ({}),

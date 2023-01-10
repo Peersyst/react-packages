@@ -6,6 +6,7 @@ export interface BaseCoreCreateConfig {
     projectName: string;
     themes?: Partial<Config["themes"]>;
     translate?: Config["translate"];
+    locale?: Config["locale"];
     validators?: Config["validators"];
     components?: DeepPartial<Config["components"]>;
 }

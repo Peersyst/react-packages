@@ -9,13 +9,15 @@ export default function createConfigCore(
         translate: defaultTranslate,
         validators: defaultValidators,
         components: defaultComponents,
+        locale: defaultLocale,
         ...restDefaults
     }: Omit<Config, "projectName">,
-    { themes, translate, validators, components, ...extraConfig }: CreateConfig,
+    { themes, translate, validators, components, locale, ...extraConfig }: CreateConfig,
 ): Config {
     return {
         themes: createThemes(defaultThemes, themes),
         translate: translate || defaultTranslate,
+        locale: locale || defaultLocale,
         validators: { defaultValidators, ...validators },
         components: deepmerge(defaultComponents, components || {}),
         ...restDefaults,

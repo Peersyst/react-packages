@@ -11,6 +11,7 @@ export * from "./FormControlHint";
 export * from "./Image";
 export * from "./Label";
 export * from "./ModalProvider";
+export * from "./NumericInput";
 export * from "./Paper";
 export * from "./RadioButton";
 export * from "./RangeSlider";
