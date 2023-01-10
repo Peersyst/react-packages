@@ -1,7 +1,7 @@
 import { useControlled } from "@peersyst/react-hooks";
-import { formatNumber, getDecimalSeparator, getGroupSeparator } from "@peersyst/react-utils";
 import { useLocale } from "../../config";
 import { CoreTextInputProps } from "../../TextInput";
+import { getGroupSeparator, getDecimalSeparator, formatNumber } from "../utils";
 
 export type UseNumericInputParams = Pick<
     CoreTextInputProps,

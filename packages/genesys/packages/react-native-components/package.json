@@ -37,11 +37,11 @@
     "dependencies": {
         "@babel/runtime": "^7.16.7",
         "@peersyst/react-components-core": "^1.0.10",
-        "@peersyst/react-hooks": "^2.0.5",
+        "@peersyst/react-hooks": "^2.0.4",
         "@peersyst/react-native-styled": "^2.0.0",
         "@peersyst/react-native-utils": "^1.0.1",
         "@peersyst/react-types": "^1.5.0",
-        "@peersyst/react-utils": "^2.1.1",
+        "@peersyst/react-utils": "^2.1.0",
         "@react-native-async-storage/async-storage": "^1.17.7",
         "@react-native-community/hooks": "^2.8.1",
         "expo-barcode-scanner": "^11.2.1",

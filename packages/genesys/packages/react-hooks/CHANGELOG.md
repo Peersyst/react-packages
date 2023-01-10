@@ -1,9 +1,5 @@
 # Versions
 
-## 2.0.5
-
-Dependencies update
-
 ## 1.2.5
 
 Dependencies update

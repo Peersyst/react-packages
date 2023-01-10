@@ -2,7 +2,9 @@
 
 ## 2.0.24
 
-[Image] fix image props
+[NumericInput] Make NumericInput reactive to the locale
+[Packege.json] Update react-components-core
+[Config] Add locale to the config
 
 ## 2.0.23
 
