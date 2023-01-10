@@ -1,5 +1,11 @@
 # Versions
 
+## 2.0.26
+
+[NumericInput] Fix useNumericInput
+[Packege.json] Update react-components-core
+[Config] Remove max decimals from the config
+
 ## 2.0.25
 
 [NumericInput] Fix numeric input

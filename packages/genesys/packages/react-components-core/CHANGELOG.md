@@ -1,5 +1,9 @@
 # Versions
 
+## 1.0.11
+
+[Config] Don't make the NumericInput config mandatory
+
 ## 1.0.10
 
 [NumericInput] Add base NumericInputComponent. (useNumericInput hook)

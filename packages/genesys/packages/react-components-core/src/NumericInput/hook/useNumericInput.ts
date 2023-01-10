@@ -16,7 +16,7 @@ export default function useNumericInput({
     defaultValue = "",
     value: valueProp,
     onChange: onChangeProp,
-    locale = "en",
+    locale,
     maxDecimals,
 }: UseNumericInputParams): UseNumericInputResult {
     const [value, setValue] = useControlled(defaultValue, valueProp, onChangeProp);
