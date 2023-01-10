@@ -20,4 +20,3 @@ export { default as ownerWindow } from "./ownerWindow";
 export { default as polling } from "./polling";
 export { default as rack } from "./rack";
 export { default as setRef } from "./setRef";
-export * from "./number";
