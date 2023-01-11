@@ -1,5 +1,21 @@
 # Versions
 
+## 2.0.26
+
+[NumericInput] Fix useNumericInput
+[Packege.json] Update react-components-core
+[Config] Remove max decimals from the config
+
+## 2.0.25
+
+[NumericInput] Fix numeric input
+
+## 2.0.24
+
+[NumericInput] Make NumericInput reactive to the locale
+[Packege.json] Update react-components-core
+[Config] Add locale to the config
+
 ## 2.0.23
 
 [Image] fix image props

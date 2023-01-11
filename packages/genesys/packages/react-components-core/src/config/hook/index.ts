@@ -6,3 +6,4 @@ export { default as useMergeDefaultProps } from "./useMergeDefaultProps";
 export { default as useThemes } from "./useThemes";
 export { default as useTranslate } from "./useTranslate";
 export { default as useValidators } from "./useValidators";
+export { default as useLocale } from "./useLocale";

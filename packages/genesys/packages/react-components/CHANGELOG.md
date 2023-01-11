@@ -1,5 +1,14 @@
 # Versions
 
+## 3.0.26
+
+[Package.json] Update dependecies: react-components-core
+
+## 3.0.25
+
+[Package.json] Update dependecies: react-components-core
+[Config] Add locale to the config
+
 ## 3.0.2
 
 ### BREAKING

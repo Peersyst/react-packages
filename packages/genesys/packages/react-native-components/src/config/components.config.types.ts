@@ -59,7 +59,7 @@ export type ExtendedToolbarConfig = ComponentConfig<{}> & {
  * ExtendedNumericInputConfig
  */
 export type ExtendedNumericInputConfig = ComponentConfig<NumericInputProps> & {
-    maxDecimals: number;
+    maxDecimals?: number;
 };
 
 export interface AlertConfig extends ComponentConfig<AlertProps> {}

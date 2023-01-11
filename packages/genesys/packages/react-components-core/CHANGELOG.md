@@ -1,5 +1,14 @@
 # Versions
 
+## 1.0.11
+
+[Config] Don't make the NumericInput config mandatory
+
+## 1.0.10
+
+[NumericInput] Add base NumericInputComponent. (useNumericInput hook)
+[Config] Add locale to the config. Add useLocale hook
+
 ## 1.0.7
 
 [SelectorGroup] Change selectorgroup types

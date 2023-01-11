@@ -123,7 +123,6 @@ const componentsConfig: ComponentsConfig = {
     },
     NumericInput: {
         defaultProps: {},
-        maxDecimals: 4,
     },
     PressableText: {
         defaultProps: {
