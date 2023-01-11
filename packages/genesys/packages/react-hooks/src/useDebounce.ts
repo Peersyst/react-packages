@@ -8,10 +8,15 @@ export interface UseDebounceResult<T> {
     debouncing: boolean;
 }
 
+export interface UseDebounceOptions<T> {
+    onChange?: (value: T) => void;
+    callback?: (debouncedValue: T) => any;
+    delay?: number;
+}
+
 export default function <T>(
     defaultValue: T,
-    callback?: (debouncedValue: T) => void,
-    delay = 600,
+    { onChange, callback, delay = 600 }: UseDebounceOptions<T> = {},
 ): UseDebounceResult<T> {
     const [value, setValue] = useState<T>(defaultValue);
     const [debouncedValue, setDebouncedValue] = useState<T>(defaultValue);
@@ -20,13 +25,14 @@ export default function <T>(
     const handleChange = (v: T) => {
         setDebouncing(true);
         setValue(v);
+        onChange?.(v);
         changeDebouncedValue(v);
     };
 
     const changeDebouncedValue = useCallback(
-        debounce((v: T) => {
+        debounce(async (v: T) => {
             setDebouncedValue(v);
-            callback?.(v);
+            await Promise.resolve(callback?.(v));
             setDebouncing(false);
         }, delay),
         [callback],
