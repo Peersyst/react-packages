@@ -1,5 +1,10 @@
 # Versions
 
+## 1.1.0
+
+[Dialog] Add common Dialog logic
+[Button] Add color prop to core props
+
 ## 1.0.11
 
 [Config] Don't make the NumericInput config mandatory

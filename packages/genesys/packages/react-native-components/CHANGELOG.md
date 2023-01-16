@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.28
+
+[Dialog] Extract some logic to @react-components-core
+
 ## 2.0.26
 
 [NumericInput] Fix useNumericInput

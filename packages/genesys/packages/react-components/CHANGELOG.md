@@ -1,5 +1,10 @@
 # Versions
 
+## 3.1.0
+
+[Dialog] Add Dialog component
+[Button] Implement color prop
+
 ## 3.0.26
 
 [Package.json] Update dependecies: react-components-core

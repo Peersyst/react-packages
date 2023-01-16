@@ -1,6 +1,6 @@
-import styled, { css, CSSObject } from "styled-components";
-import { ButtonStyles } from "./Button.types";
-import { ButtonSize, ButtonVariant } from "@peersyst/react-components-core";
+import styled, { css, CSSObject, FlattenInterpolation, ThemedStyledProps } from "styled-components";
+import { ButtonRootProps } from "./Button.types";
+import { ButtonSize, ButtonVariant, Theme } from "@peersyst/react-components-core";
 import { emphasize, getLuminance } from "@peersyst/react-utils";
 
 export const ButtonLoader = styled.div`
@@ -29,56 +29,67 @@ const sizeStyles: Record<ButtonSize, CSSObject> = {
     },
 };
 
-const variantStyles: Record<ButtonVariant, ReturnType<typeof css>> = {
-    filled: css(({ theme }) => ({
-        backgroundColor: theme.palette.primary,
-        color: getLuminance(theme.palette.primary) > 0.5 ? "#000" : "#FFF",
-        "&:hover": {
-            backgroundColor: emphasize(theme.palette.primary, 0.2),
-        },
-        "&:active": {
-            backgroundColor: emphasize(theme.palette.primary, 0.4),
-        },
-        "&:disabled": {
-            backgroundColor: theme.palette.disabled,
-            color: getLuminance(theme.palette.disabled) > 0.5 ? "#000" : "#FFF",
-        },
-    })),
-    outlined: css(({ theme }) => ({
-        backgroundColor: "transparent",
-        color: theme.palette.primary,
-        border: "1px solid currentColor",
-        "&:hover": {
-            color: emphasize(theme.palette.primary, 0.2),
-        },
-        "&:active": {
-            color: emphasize(theme.palette.primary, 0.4),
-        },
-        "&:disabled": {
-            color: theme.palette.disabled,
-        },
-    })),
-    text: css(({ theme }) => ({
-        backgroundColor: "transparent",
-        color: theme.palette.primary,
-        border: "none",
-        "&:hover": {
-            color: emphasize(theme.palette.primary, 0.2),
-        },
-        "&:active": {
-            color: emphasize(theme.palette.primary, 0.4),
-        },
-        "&:disabled": {
-            color: theme.palette.disabled,
-        },
-    })),
-};
+function getVariantStyles(
+    variant: ButtonVariant,
+): FlattenInterpolation<ThemedStyledProps<ButtonRootProps, Theme>> {
+    return css<ButtonRootProps>(({ theme, color: colorProp }) => {
+        const color = colorProp || theme.palette.primary;
+
+        switch (variant) {
+            case "filled":
+                return {
+                    backgroundColor: color,
+                    color: getLuminance(color) > 0.5 ? "#000" : "#FFF",
+                    "&:hover": {
+                        backgroundColor: emphasize(color, 0.2),
+                    },
+                    "&:active": {
+                        backgroundColor: emphasize(color, 0.4),
+                    },
+                    "&:disabled": {
+                        backgroundColor: theme.palette.disabled,
+                        color: getLuminance(theme.palette.disabled) > 0.5 ? "#000" : "#FFF",
+                    },
+                };
+            case "outlined":
+                return {
+                    backgroundColor: "transparent",
+                    color: color,
+                    border: "1px solid currentColor",
+                    "&:hover": {
+                        color: emphasize(color, 0.2),
+                    },
+                    "&:active": {
+                        color: emphasize(color, 0.4),
+                    },
+                    "&:disabled": {
+                        color: theme.palette.disabled,
+                    },
+                };
+            case "text":
+                return {
+                    backgroundColor: "transparent",
+                    color: color,
+                    border: "none",
+                    "&:hover": {
+                        color: emphasize(color, 0.2),
+                    },
+                    "&:active": {
+                        color: emphasize(color, 0.4),
+                    },
+                    "&:disabled": {
+                        color: theme.palette.disabled,
+                    },
+                };
+        }
+    });
+}
 
 export const ButtonContent = styled.span`
     display: contents;
 `;
 
-export const ButtonRoot = styled.button<ButtonStyles>(
+export const ButtonRoot = styled.button<ButtonRootProps>(
     ({ theme, size, variant, fullWidth, isLoading }) => css`
         position: relative;
         isolation: isolate;
@@ -100,7 +111,7 @@ export const ButtonRoot = styled.button<ButtonStyles>(
 
         ${theme.typography.button.style};
         ${sizeStyles[size]};
-        ${variantStyles[variant]};
+        ${getVariantStyles(variant)};
         ${fullWidth && "width: 100%"};
 
         &:focus {

@@ -149,6 +149,14 @@ const componentsConfig: ComponentsConfig = {
     CopyButton: {
         defaultProps: {},
     },
+    Dialog: {
+        defaultProps: {
+            size: "sm",
+        },
+        actions: {
+            variant: "text",
+        },
+    },
     Divider: {
         defaultProps: {
             size: "1px",

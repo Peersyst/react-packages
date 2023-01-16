@@ -16,6 +16,7 @@ export * from "./ClickAwayListener";
 export * from "./Col";
 export * from "./ColorInput";
 export * from "./CopyButton";
+export * from "./Dialog";
 export * from "./Divider";
 export * from "./Drawer";
 export * from "./ErrorBoundary";

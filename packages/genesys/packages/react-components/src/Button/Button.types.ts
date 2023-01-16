@@ -17,9 +17,10 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
         style?: CSSProperties;
     };
 
-export interface ButtonStyles {
+export interface ButtonRootProps {
     isLoading: boolean | undefined;
     variant: ButtonVariant;
     size: ButtonSize;
     fullWidth: boolean;
+    color?: string;
 }

@@ -2,6 +2,7 @@
 import {
     ComponentConfig,
     ExtendedCoreBlockchainAddressConfig,
+    ExtendedCoreDialogConfig,
 } from "@peersyst/react-components-core";
 import { DividerProps } from "../display/Divider";
 import { IconProps } from "../display/Icon";
@@ -131,7 +132,7 @@ export interface ComponentsConfig {
     Typography: TypographyConfig;
     Backdrop: BackdropConfig;
     CenteredLoader: CenteredLoaderConfig;
-    Dialog: DialogConfig;
+    Dialog: ExtendedCoreDialogConfig<DialogProps>;
     Modal: ModalConfig;
     Skeleton: SkeletonConfig;
     Suspense: SuspenseConfig;

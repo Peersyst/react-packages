@@ -4,6 +4,7 @@ import { useTheme } from "../theme";
 import { capitalize, cx, fsx } from "@peersyst/react-utils";
 import { MouseEventHandler, useContext } from "react";
 import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
+import useColor from "../hooks/useColor";
 
 const Button = (props: ButtonProps): JSX.Element => {
     const {
@@ -19,8 +20,11 @@ const Button = (props: ButtonProps): JSX.Element => {
         style,
         type = "button",
         action,
+        color: colorProp,
         ...rest
     } = useMergeDefaultProps("Button", props);
+
+    const color = useColor(colorProp);
 
     const { loader: DefaultLoader } = useTheme();
     const loadingElement = loadingElementProp || <DefaultLoader />;
@@ -53,6 +57,7 @@ const Button = (props: ButtonProps): JSX.Element => {
             )}
             style={fsx(style, { disabled, loading })}
             type={type}
+            color={color}
             {...rest}
         >
             <ButtonContent>{children}</ButtonContent>

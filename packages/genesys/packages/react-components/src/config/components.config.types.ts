@@ -2,6 +2,7 @@
 import {
     ExtendedCoreBlockchainAddressConfig,
     ComponentConfig,
+    ExtendedCoreDialogConfig,
 } from "@peersyst/react-components-core";
 import {
     AnimatedProps,
@@ -61,6 +62,7 @@ import { ChipProps } from "../Chip";
 import { AlertProps } from "../Alert";
 import { ColorInputProps } from "../ColorInput";
 import { SelectorGroupProps, SelectorProps } from "../SelectorGroup";
+import { DialogProps } from "../Dialog/Dialog.types";
 
 /**
  * No config for:
@@ -166,6 +168,7 @@ export interface ComponentsConfig {
     Col: ColConfig;
     ColorInput: ColorInputConfig;
     CopyButton: CopyButtonConfig;
+    Dialog: ExtendedCoreDialogConfig<DialogProps>;
     Divider: DividerConfig;
     Drawer: DrawerConfig;
     Expandable: ExpandableConfig;

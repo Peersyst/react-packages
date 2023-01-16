@@ -62,6 +62,9 @@ const componentsConfig: ComponentsConfig = {
     },
     Dialog: {
         defaultProps: {},
+        actions: {
+            variant: "text",
+        },
     },
     Modal: {
         defaultProps: {

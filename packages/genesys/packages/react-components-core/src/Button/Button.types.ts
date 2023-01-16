@@ -1,5 +1,6 @@
 import { OverridableStringUnion } from "@peersyst/react-types";
 import { ReactElement, ReactNode } from "react";
+import { ThemeColor } from "../theme";
 
 //TODO: Reset
 export type ButtonType = "button" | "submit" | "reset";
@@ -50,4 +51,8 @@ export interface CoreButtonProps {
      * Button's content
      */
     children?: ReactNode;
+    /**
+     * Text color
+     */
+    color?: ThemeColor;
 }

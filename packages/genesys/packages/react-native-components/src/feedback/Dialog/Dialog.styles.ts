@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
 import { Text } from "react-native";
 import { Modal } from "../Modal";
-import { DialogOptionProps } from "./Dialog.types";
+import { DialogOptionProps } from "@peersyst/react-components-core";
 
 export const DialogRoot = styled(Modal)(() => ({
     width: "90%",

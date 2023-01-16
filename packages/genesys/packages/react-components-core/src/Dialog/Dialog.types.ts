@@ -9,7 +9,7 @@ export type DialogButtonType = "default" | "destructive" | "positive";
 
 export interface DialogButton {
     text: string;
-    onPress?: () => any;
+    action?: () => any;
     type?: DialogButtonType;
 }
 

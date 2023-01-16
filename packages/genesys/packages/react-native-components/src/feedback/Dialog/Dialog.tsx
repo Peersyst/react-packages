@@ -1,11 +1,10 @@
 import { createModal } from "../ModalProvider";
-import { DialogProps } from "./Dialog.types";
 import { DialogRoot, DialogTitle, DialogMessage, DialogOption } from "./Dialog.styles";
 import { Col } from "../../layout/Col";
 import { Row } from "../../layout/Row";
 import { Pressable } from "react-native";
 import { useState } from "react";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { DialogProps, useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const Dialog = createModal((props: DialogProps): JSX.Element => {
     const { title, message, buttons, ...modalProps } = useMergeDefaultProps("Dialog", props);
@@ -28,9 +27,9 @@ const Dialog = createModal((props: DialogProps): JSX.Element => {
                 <DialogTitle>{title}</DialogTitle>
                 <DialogMessage>{message}</DialogMessage>
                 <Row justifyContent="flex-end" gap={20}>
-                    {buttons?.map(({ text, type, onPress }, key) => (
+                    {buttons?.map(({ text, type, action }, key) => (
                         <Pressable
-                            onPress={onPress || closeDialog}
+                            onPress={action || closeDialog}
                             accessibilityRole="button"
                             key={key}
                         >
