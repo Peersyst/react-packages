@@ -33,7 +33,7 @@ function getVariantStyles(
     variant: ButtonVariant,
 ): FlattenInterpolation<ThemedStyledProps<ButtonRootProps, Theme>> {
     return css<ButtonRootProps>(({ theme, color: colorProp }) => {
-        const color = colorProp || theme.palette.primary;
+        const color = `${colorProp} !important` || theme.palette.primary;
 
         switch (variant) {
             case "filled":
