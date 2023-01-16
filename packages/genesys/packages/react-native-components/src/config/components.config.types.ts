@@ -132,7 +132,7 @@ export interface ComponentsConfig {
     Typography: TypographyConfig;
     Backdrop: BackdropConfig;
     CenteredLoader: CenteredLoaderConfig;
-    Dialog: ExtendedCoreDialogConfig<DialogProps>;
+    Dialog: ExtendedCoreDialogConfig<DialogProps, ButtonProps>;
     Modal: ModalConfig;
     Skeleton: SkeletonConfig;
     Suspense: SuspenseConfig;

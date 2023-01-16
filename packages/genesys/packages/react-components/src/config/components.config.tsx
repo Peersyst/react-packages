@@ -11,6 +11,7 @@ import {
 import { Label } from "../Label";
 import { FormControlLabel } from "../FormControlLabel";
 import Color from "color";
+import { Button } from "../Button";
 
 const componentsConfig: ComponentsConfig = {
     Alert: {
@@ -155,6 +156,7 @@ const componentsConfig: ComponentsConfig = {
         },
         actions: {
             variant: "text",
+            component: Button,
         },
     },
     Divider: {

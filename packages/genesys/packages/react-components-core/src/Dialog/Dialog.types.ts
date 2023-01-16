@@ -1,4 +1,5 @@
 import { CommonModalComponentProps } from "@peersyst/react-components-core";
+import { ReactNode } from "react";
 
 /**
  * Type default: shows buttons in primary color
@@ -15,7 +16,7 @@ export interface DialogButton {
 
 export interface DialogProps extends CommonModalComponentProps {
     title: string;
-    message?: string;
+    content?: ReactNode;
     buttons?: DialogButton[];
 }
 

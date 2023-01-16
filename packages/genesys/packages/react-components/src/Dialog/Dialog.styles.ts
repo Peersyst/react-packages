@@ -8,6 +8,7 @@ export const DialogRoot = styled(Modal)<DialogRootProps>(({ size }) => ({
     padding: 0,
     maxWidth: DIALOG_SIZES_MAP[size as DialogSize] || size,
     width: "100%",
+    height: "auto",
     margin: "32px",
 }));
 

@@ -1,12 +1,16 @@
 import { BlockchainLinks, ComponentConfig } from "./config.types";
-import { ButtonVariant } from "../Button";
+import { CoreButtonProps } from "../Button";
+import { JSXElementConstructor } from "react";
 
 export type ExtendedCoreBlockchainAddressConfig<P> = ComponentConfig<P> & {
     blockchainLinks: BlockchainLinks;
 };
 
-export type ExtendedCoreDialogConfig<P> = ComponentConfig<P> & {
+export type ExtendedCoreDialogConfig<
+    P,
+    BP extends CoreButtonProps = CoreButtonProps,
+> = ComponentConfig<P> & {
     actions: {
-        variant: ButtonVariant;
-    };
+        component: JSXElementConstructor<BP>;
+    } & Partial<BP>;
 };

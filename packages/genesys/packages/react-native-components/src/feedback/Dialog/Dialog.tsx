@@ -7,7 +7,7 @@ import { useState } from "react";
 import { DialogProps, useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const Dialog = createModal((props: DialogProps): JSX.Element => {
-    const { title, message, buttons, ...modalProps } = useMergeDefaultProps("Dialog", props);
+    const { title, content, buttons, ...modalProps } = useMergeDefaultProps("Dialog", props);
 
     const [open, setOpen] = useState(true);
 
@@ -25,7 +25,7 @@ const Dialog = createModal((props: DialogProps): JSX.Element => {
         >
             <Col gap={14}>
                 <DialogTitle>{title}</DialogTitle>
-                <DialogMessage>{message}</DialogMessage>
+                {typeof content === "string" ? <DialogMessage>{content}</DialogMessage> : content}
                 <Row justifyContent="flex-end" gap={20}>
                     {buttons?.map(({ text, type, action }, key) => (
                         <Pressable

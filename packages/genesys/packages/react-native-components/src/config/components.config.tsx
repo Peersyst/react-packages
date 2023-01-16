@@ -1,6 +1,7 @@
 import { ComponentsConfig } from "./components.config.types";
 import { ChevronDownIcon } from "../assets/icons";
 import { FormControlLabel } from "../input/FormControlLabel";
+import { Button } from "../input/Button";
 
 const componentsConfig: ComponentsConfig = {
     Alert: {
@@ -64,6 +65,7 @@ const componentsConfig: ComponentsConfig = {
         defaultProps: {},
         actions: {
             variant: "text",
+            component: Button,
         },
     },
     Modal: {

@@ -168,7 +168,7 @@ export interface ComponentsConfig {
     Col: ColConfig;
     ColorInput: ColorInputConfig;
     CopyButton: CopyButtonConfig;
-    Dialog: ExtendedCoreDialogConfig<DialogProps>;
+    Dialog: ExtendedCoreDialogConfig<DialogProps, ButtonProps>;
     Divider: DividerConfig;
     Drawer: DrawerConfig;
     Expandable: ExpandableConfig;
