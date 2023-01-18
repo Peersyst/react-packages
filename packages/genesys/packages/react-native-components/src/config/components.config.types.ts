@@ -56,13 +56,6 @@ export type ExtendedToolbarConfig = ComponentConfig<{}> & {
     height: number;
 };
 
-/**
- * ExtendedNumericInputConfig
- */
-export type ExtendedNumericInputConfig = ComponentConfig<NumericInputProps> & {
-    maxDecimals?: number;
-};
-
 export interface AlertConfig extends ComponentConfig<AlertProps> {}
 export interface DividerConfig extends ComponentConfig<DividerProps> {}
 export interface IconConfig extends ComponentConfig<IconProps> {}
@@ -86,7 +79,7 @@ export interface FormControlErrorConfig extends ComponentConfig<FormControlError
 export interface FormControlHintConfig extends ComponentConfig<FormControlHintProps> {}
 export interface FormControlLabelConfig extends ComponentConfig<FormControlLabelProps> {}
 export interface IconButtonConfig extends ComponentConfig<IconButtonProps> {}
-export interface NumericInputConfig extends ExtendedNumericInputConfig {}
+export interface NumericInputConfig extends ComponentConfig<NumericInputProps> {}
 export interface PressableTextConfig extends ComponentConfig<PressableTextProps> {}
 export interface QrScannerConfig extends ComponentConfig<QrScannerProps> {}
 export interface SelectConfig extends ComponentConfig<SelectProps<any>> {}

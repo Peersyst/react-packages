@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.31
+
+[NumericInput] Remove numeric input config
+
 ## 2.0.28
 
 [Dialog] Extract some logic to @react-components-core
