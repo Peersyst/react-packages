@@ -1,6 +1,11 @@
 import { TextInputProps, TextInputStyle } from "./TextInput.types";
 import { Input, InvalidIcon, TextInputRoot, ValidIcon } from "./TextInput.styles";
-import { NativeSyntheticEvent, TextInputFocusEventData, TextStyle } from "react-native";
+import {
+    NativeSyntheticEvent,
+    TextInputFocusEventData,
+    TextStyle,
+    TextInputProps as NativeTextInputProps,
+} from "react-native";
 import { useState } from "react";
 import { useTheme } from "@peersyst/react-native-styled";
 import { Icon } from "../../display/Icon";
@@ -11,7 +16,9 @@ import useTextInputDefaultStyles from "./hooks/useTextInputDefaultStyles";
 import textInputStylesMergeStrategy from "./util/textInputStylesMergeStrategy";
 import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 
-const TextInput = (props: TextInputProps): JSX.Element => {
+function TextInput<P extends NativeTextInputProps = NativeTextInputProps>(
+    props: TextInputProps<P>,
+): JSX.Element {
     const {
         name,
         defaultValue = "",
@@ -42,6 +49,7 @@ const TextInput = (props: TextInputProps): JSX.Element => {
         LabelProps = {},
         Label = FormControlLabel,
         error,
+        inputProps = {},
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
@@ -123,6 +131,7 @@ const TextInput = (props: TextInputProps): JSX.Element => {
                             secureTextEntry={showText}
                             as={input}
                             {...rest}
+                            {...(inputProps as P)}
                         />
                         {clearable && !!value && editable && (
                             <IconButton style={iconStyle} onPress={() => setValue("")}>
@@ -150,6 +159,6 @@ const TextInput = (props: TextInputProps): JSX.Element => {
             }}
         </FormControl>
     );
-};
+}
 
 export default TextInput;

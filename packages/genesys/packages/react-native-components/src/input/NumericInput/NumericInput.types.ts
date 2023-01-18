@@ -1,3 +1,5 @@
 import { TextInputProps } from "react-native";
 
-export type NumericInputProps = Omit<TextInputProps, "keyboardType">;
+export interface NumericInputProps extends Omit<TextInputProps, "keyboardType"> {
+    maxDecimals?: number;
+}

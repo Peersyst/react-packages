@@ -1,11 +1,14 @@
 import { TextFieldProps } from "./TextInput.types";
 import TextInput from "./TextInput";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { TextInputProps } from "react-native";
 
-const TextField = (props: TextFieldProps): JSX.Element => {
+function TextField<P extends TextInputProps = TextInputProps>(
+    props: TextFieldProps<P>,
+): JSX.Element {
     const mergedProps = useMergeDefaultProps("TextField", props);
 
-    return <TextInput {...mergedProps} />;
-};
+    return <TextInput<P> {...mergedProps} />;
+}
 
 export default TextField;
