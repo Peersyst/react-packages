@@ -8,7 +8,7 @@ import { ToastAlert } from "./Toast.styles";
 
 export default function Toast(props: ToastProps): JSX.Element {
     const {
-        message,
+        content,
         icon,
         type,
         action,
@@ -47,7 +47,7 @@ export default function Toast(props: ToastProps): JSX.Element {
                         safeAreaInsets={safeAreaInsets}
                     >
                         <ToastAlert
-                            message={message}
+                            content={content}
                             icon={icon}
                             type={type}
                             action={action}

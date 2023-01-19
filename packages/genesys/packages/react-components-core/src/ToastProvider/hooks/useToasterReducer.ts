@@ -14,7 +14,7 @@ const reducer = (state: ToasterState, action: ToasterAction): ToasterState => {
             }
             return state.length < 2
                 ? state.concat({
-                      message: (action as ShowToastAction).payload.message,
+                      content: (action as ShowToastAction).payload.content,
                       props: {
                           ...(action as ShowToastAction).payload.props,
                           key: new Date().getMilliseconds(),
@@ -23,7 +23,7 @@ const reducer = (state: ToasterState, action: ToasterAction): ToasterState => {
                 : state;
         case ToasterActionType.HIDE_TOAST:
             return state.map((t, i) =>
-                i === 0 ? { message: t.message, props: { ...t.props, open: false } } : t,
+                i === 0 ? { content: t.content, props: { ...t.props, open: false } } : t,
             );
         case ToasterActionType.REMOVE_TOAST:
             return state.slice(1);

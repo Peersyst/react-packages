@@ -1,5 +1,12 @@
 # Versions
 
+### BREAKING
+
+## 1.2.0
+
+[Alert] Change message prop to content
+[Toast] Change message prop to content because Toast uses Alert
+
 ## 1.1.0
 
 [Dialog] Add common Dialog logic

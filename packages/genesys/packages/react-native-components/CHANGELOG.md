@@ -1,5 +1,12 @@
 # Versions
 
+### BREAKING
+
+## 2.1.0
+
+[Alert] Change message prop to content + Content (text) styles
+[Toast] Change message prop to content because Toast uses Alert
+
 ## 2.0.31
 
 [NumericInput] Remove numeric input config

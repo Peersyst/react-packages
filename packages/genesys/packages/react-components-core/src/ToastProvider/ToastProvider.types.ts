@@ -1,17 +1,18 @@
+import { ReactNode } from "react";
 import { CoreToastProps } from "../Toast";
 
-export type ToasterToastProps = Omit<CoreToastProps<any>, "message"> & { key?: number };
-export type ShowToastProps = Omit<CoreToastProps<any>, "message" | "open">;
+export type ToasterToastProps = Omit<CoreToastProps<any>, "content"> & { key?: number };
+export type ShowToastProps = Omit<CoreToastProps<any>, "content" | "open">;
 
 export interface ToastContextType {
-    showToast: (message: string, props?: ShowToastProps) => unknown;
+    showToast: (content: ReactNode, props?: ShowToastProps) => unknown;
     hideToast: () => unknown;
     removeToast: () => unknown;
     toasts: ToasterState;
 }
 
 export interface ToasterToast {
-    message: string;
+    content: ReactNode;
     props?: ToasterToastProps;
 }
 
@@ -25,7 +26,7 @@ export enum ToasterActionType {
 
 export interface ShowToastAction {
     type: ToasterActionType.SHOW_TOAST;
-    payload: { message: string; props?: ShowToastProps };
+    payload: { content: ReactNode; props?: ShowToastProps };
 }
 
 export interface HideToastAction {

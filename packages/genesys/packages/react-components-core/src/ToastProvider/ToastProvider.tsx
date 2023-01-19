@@ -13,10 +13,10 @@ export default function ToastProvider({ children }: ToastProviderProps): JSX.Ele
     return (
         <ToastContext.Provider
             value={{
-                showToast: (message, props) =>
+                showToast: (content, props) =>
                     dispatch({
                         type: ToasterActionType.SHOW_TOAST,
-                        payload: { message, props },
+                        payload: { content, props },
                     }),
                 hideToast: () => dispatch({ type: ToasterActionType.HIDE_TOAST }),
                 removeToast: () => dispatch({ type: ToasterActionType.REMOVE_TOAST }),
