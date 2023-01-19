@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.1
+
+Updated react-components-core 
+
 ### BREAKING
 
 ## 2.1.0

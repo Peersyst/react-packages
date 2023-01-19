@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.1
+
+[NumericInput] Updated getDecimalSeparator method 
+
 ### BREAKING
 
 ## 1.2.0
