@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.1
+
+Updated react-components-core
+
 ### BREAKING
 
 ## 3.2.0
