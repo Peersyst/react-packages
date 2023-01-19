@@ -2,7 +2,8 @@ import { useControlled } from "@peersyst/react-hooks";
 import { useLocale } from "../../config";
 import { CoreTextInputProps } from "../../TextInput";
 import { getGroupSeparator, getDecimalSeparator, formatNumber } from "../utils";
-import { parseNumber, replaceAll } from "../utils/formatNumber";
+import { parseNumber } from "../utils/formatNumber";
+import { escapeReplaceAll } from "../../utils";
 
 export type UseNumericInputParams = Pick<
     CoreTextInputProps,
@@ -29,7 +30,7 @@ export default function useNumericInput({
     const onChange = (newValue: string) => {
         if (
             newValue.endsWith(digitGroupingSeparator) ||
-            isNaN(Number(parseNumber(newValue, digitGroupingSeparator, decimalSeparator)))
+            isNaN(parseNumber(newValue, digitGroupingSeparator, decimalSeparator))
         )
             return;
         else if (newValue === "") {
@@ -37,7 +38,7 @@ export default function useNumericInput({
         } else {
             const [int, dec] = newValue.split(decimalSeparator);
             if (maxDecimals !== undefined && dec && dec.length > maxDecimals) return;
-            const rawInt = replaceAll(int, digitGroupingSeparator, "");
+            const rawInt = escapeReplaceAll(int, digitGroupingSeparator, "");
             const rawValue =
                 rawInt + (newValue.includes(decimalSeparator) ? "." : "") + (dec || "");
             setValue?.(rawValue);

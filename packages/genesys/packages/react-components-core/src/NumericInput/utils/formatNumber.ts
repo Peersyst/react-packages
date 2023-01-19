@@ -1,4 +1,5 @@
 import { getDecimalSeparator, getGroupSeparator } from "./utils";
+import { escapeReplaceAll } from "../../utils";
 
 const formatNumber = (value: string, locale: string) => {
     const digitGroupingSeparator = getGroupSeparator(locale);
@@ -14,16 +15,8 @@ const formatNumber = (value: string, locale: string) => {
     }
 };
 
-export const parseNumber = (value: string, digit: string, decimal: string): string => {
-    return replaceAll(replaceAll(value, digit, ""), decimal, ".");
+export const parseNumber = (value: string, digit: string, decimal: string): number => {
+    return Number(escapeReplaceAll(escapeReplaceAll(value, digit, ""), decimal, "."));
 };
-
-export function escapeRegExp(value: string) {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
-}
-
-export function replaceAll(value: string, find: string, replace: string): string {
-    return value.replace(new RegExp(escapeRegExp(find), "g"), replace);
-}
 
 export default formatNumber;
