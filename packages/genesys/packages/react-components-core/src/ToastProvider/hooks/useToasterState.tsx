@@ -10,20 +10,15 @@ export function useToasterState<P extends CoreToastProps<any> = CoreToastProps<a
     const toast = toasts[0];
 
     if (toast) {
-        const { message, props } = toast;
+        const handleOnExited = () => {
+            onExited?.();
+            removeToast();
+        };
+        const { content, props = {} } = toast;
         const { onExited, ...rest } = props || {};
+        const toastProps = { content, onExited: handleOnExited, ...rest } as P;
 
-        return (
-            // @ts-ignore
-            <Toast
-                message={message}
-                {...rest}
-                onExited={() => {
-                    onExited?.();
-                    removeToast();
-                }}
-            />
-        );
+        return <Toast {...toastProps} />;
     } else {
         return undefined;
     }

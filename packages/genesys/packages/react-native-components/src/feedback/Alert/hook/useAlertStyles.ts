@@ -12,7 +12,8 @@ export default function useAlertStyles(
     const { palette } = useTheme();
     const statusColor = type && type !== "loading" ? palette.status[type] : palette.background;
     const backgroundColor = style.backgroundColor || statusColor;
-    const textColor = getLuminance(backgroundColor as string) > 0.5 ? "#000000" : "#FFFFFF";
+    const textColor =
+        style.color || getLuminance(backgroundColor as string) > 0.5 ? "#000000" : "#FFFFFF";
     const [textStyle, containerStyle] = extractTextStyles(style);
     return {
         text: { ...textStyle, color: textColor },

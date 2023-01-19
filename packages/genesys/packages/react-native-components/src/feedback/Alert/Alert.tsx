@@ -11,7 +11,7 @@ import { useMergeDefaultProps } from "@peersyst/react-components-core";
 const Alert = (props: AlertProps): JSX.Element => {
     const {
         icon: iconProp = true,
-        message,
+        content,
         type,
         action,
         style,
@@ -34,9 +34,13 @@ const Alert = (props: AlertProps): JSX.Element => {
                         </Row>
                     )}
                     <Row flex={1}>
-                        <Text style={textStyle} lineBreakMode="head">
-                            {message}
-                        </Text>
+                        {typeof content === "string" ? (
+                            <Text style={textStyle} lineBreakMode="head">
+                                {content}
+                            </Text>
+                        ) : (
+                            content
+                        )}
                     </Row>
                 </Row>
                 {action && <AlertAction style={textStyle}>{action}</AlertAction>}

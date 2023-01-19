@@ -7,7 +7,7 @@ const ShowControlledToast = () => {
     return (
         <>
             <Button onClick={() => setOpen(true)}>Show Controlled Toast</Button>
-            <Toast message="I'm controlled!" open={open} onClose={() => setOpen(false)} />
+            <Toast content="I'm controlled!" open={open} onClose={() => setOpen(false)} />
         </>
     );
 };

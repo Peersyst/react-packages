@@ -5,7 +5,7 @@ import { useMergeDefaultProps, Toast as CoreToast } from "@peersyst/react-compon
 
 export default function Toast(props: ToastProps): JSX.Element {
     const {
-        message,
+        content,
         icon,
         type,
         action,
@@ -35,7 +35,7 @@ export default function Toast(props: ToastProps): JSX.Element {
                     >
                         <ToastAlert
                             type={type}
-                            message={message}
+                            content={content}
                             icon={icon}
                             action={action}
                             className={className}
