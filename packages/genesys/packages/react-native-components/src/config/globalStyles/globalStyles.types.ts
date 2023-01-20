@@ -1,13 +1,15 @@
 import { Theme } from "@peersyst/react-components-core";
 import { ScaledSize, TextStyle, ViewStyle } from "react-native";
 import { EdgeInsets } from "react-native-safe-area-context";
-import { TypographyStyle } from "src/display/Typography";
+import { TypographyStyle } from "../../display/Typography";
 import { LabelStyle } from "../../display/Label";
 import { FormControlLabelStyle } from "../../input/FormControlLabel";
 import { PagerViewStyle } from "../../display/PagerView";
 import { DottedPaginationStyle } from "../../navigation/DottedPagination";
-import { SwitchStyle } from "src/input/Switch/Switch.types";
-import { RadioButtonStyle } from "src/input/RadioButton";
+import { SwitchStyle } from "../../input/Switch/Switch.types";
+import { RadioButtonStyle } from "../../input/RadioButton";
+import { AlertStyle } from "../../feedback/Alert";
+import { ToastStyle } from "../../feedback/Toast";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -30,5 +32,7 @@ export interface BaseGlobalStyles {
     Divider?: ViewStyle;
     Switch?: SwitchStyle;
     RadioButton?: RadioButtonStyle;
+    Alert?: AlertStyle;
+    Toast?: ToastStyle;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}

@@ -1,8 +1,13 @@
 # Versions
 
+## 2.1.2
+
+[Alert] Add global styles
+[Toast] Add global styles
+
 ## 2.1.1
 
-Updated react-components-core 
+Updated react-components-core
 
 ### BREAKING
 

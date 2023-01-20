@@ -6,6 +6,8 @@ export type ToastPosition = "top" | "bottom";
 
 export type ToastProps = CoreToastProps<ToastPosition, AlertProps>;
 
+export type ToastStyle = Pick<ToastProps, "style">;
+
 export interface ToastContainerStylesProps {
     position: ToastPosition;
     safeAreaInsets: EdgeInsets;
