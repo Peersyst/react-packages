@@ -7,6 +7,7 @@ import { Text } from "react-native";
 import { Col } from "../../layout/Col";
 import useAlertStyles from "./hook/useAlertStyles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useGlobalStyles } from "../../config";
 
 const Alert = (props: AlertProps): JSX.Element => {
     const {
@@ -14,10 +15,13 @@ const Alert = (props: AlertProps): JSX.Element => {
         content,
         type,
         action,
-        style,
+        style: styleProp,
         elevation = 0,
         square,
     } = useMergeDefaultProps("Alert", props);
+
+    const defaultStyle = useGlobalStyles("Alert");
+    const style = { ...defaultStyle, ...styleProp };
 
     const defaultIcon = useGetAlertIcon(type);
     const icon = iconProp === true ? defaultIcon : iconProp;
