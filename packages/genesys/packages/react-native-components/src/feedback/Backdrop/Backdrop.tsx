@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { BackdropProps } from "./Backdrop.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
@@ -43,12 +43,12 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     const { toastActive, hideToast } = useToast();
     const [toastWasActive, setToastWasActive] = useState(toastActive);
 
-    const handleClose = useCallback(() => {
+    const handleClose = () => {
         if (closable && open) {
             setOpen(false);
             onClose?.();
         }
-    }, [closable, open, setOpen]);
+    };
 
     const handleEntered = () => {
         setEntered(true);
@@ -59,10 +59,17 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     };
 
     const handleOpen = () => {
-        if (toastWasActive) {
-            hideToast();
+        if (!open) {
+            if (toastWasActive) {
+                hideToast();
+            }
+            onOpen?.();
         }
-        onOpen?.();
+    };
+
+    const handleOpenChange = (newOpen: boolean) => {
+        if (newOpen) handleOpen();
+        else handleClose();
     };
 
     const { palette } = useTheme();
@@ -98,7 +105,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             onResponderStart={() => toastActive && hideToast()}
             statusBarTranslucent
         >
-            {typeof children === "function" ? children(open, setOpen) : children}
+            {typeof children === "function" ? children(open, handleOpenChange) : children}
             {entered && !toastWasActive && toastActive && open && (
                 <View
                     style={{

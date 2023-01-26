@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.3
+
+[Backdrop] Fix children setClose function to use Backdrop handlers
+
 ## 2.1.2
 
 [Alert] Add global styles
