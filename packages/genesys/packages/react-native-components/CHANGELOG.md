@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.5
+
+[Button] Fix children render based on type
+
 ## 2.1.4
 
 [useColorStyle] Add hook that returns `{ color: string } | {}` depending on the color value
