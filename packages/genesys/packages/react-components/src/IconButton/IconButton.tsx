@@ -3,8 +3,7 @@ import { IconButtonProps } from "./IconButton.types";
 import { cx, fsx, setRef } from "@peersyst/react-utils";
 import { forwardRef, MouseEventHandler, useContext } from "react";
 import { useTheme } from "../theme";
-import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
-import useColor from "../hooks/useColor";
+import { FormContext, useMergeDefaultProps, useColor } from "@peersyst/react-components-core";
 
 const IconButton = forwardRef((props: IconButtonProps, ref): JSX.Element => {
     const {

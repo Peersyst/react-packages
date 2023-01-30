@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.2
+
+[useColor] Add useColor hook 
+
 ## 1.2.1
 
 [NumericInput] Updated getDecimalSeparator method 

@@ -2,8 +2,7 @@ import { TypographyRoot } from "./Typography.styles";
 import { TypographyProps } from "./Typography.types";
 import { useTheme } from "../theme";
 import { cx } from "@peersyst/react-utils";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import useColor from "../hooks/useColor";
+import { useMergeDefaultProps, useColor } from "@peersyst/react-components-core";
 
 export default function Typography(props: TypographyProps): JSX.Element {
     const {

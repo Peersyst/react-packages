@@ -1,8 +1,7 @@
 import { DividerRoot, DividerWithChildren } from "./Divider.styles";
 import { DividerProps } from "./Divider.types";
 import { cx } from "@peersyst/react-utils";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import useColor from "../hooks/useColor";
+import { useMergeDefaultProps, useColor } from "@peersyst/react-components-core";
 
 export default function Divider(props: DividerProps): JSX.Element {
     const {

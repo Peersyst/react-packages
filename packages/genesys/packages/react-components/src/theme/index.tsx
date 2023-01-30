@@ -14,6 +14,7 @@ export * from "./withTheme";
 export {
     useTheme,
     useSetTheme,
+    useColor,
     ThemeContext,
     ThemeConsumer,
     ThemeOverrideContext,

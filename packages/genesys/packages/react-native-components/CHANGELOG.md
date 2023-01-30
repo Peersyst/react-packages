@@ -1,5 +1,11 @@
 # Versions
 
+## 2.1.4
+
+[useColorStyle] Add hook that returns `{ color: string } | {}` depending on the color value
+[Typography] Add color prop
+[Label] Add color prop
+
 ## 2.1.3
 
 [Backdrop] Fix children setClose function to use Backdrop handlers

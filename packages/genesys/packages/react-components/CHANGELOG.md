@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.2
+
+[useColor] Moved to react-components-core
+
 ## 3.2.1
 
 Updated react-components-core

@@ -3,8 +3,7 @@ import { ButtonProps } from "./Button.types";
 import { useTheme } from "../theme";
 import { capitalize, cx, fsx } from "@peersyst/react-utils";
 import { MouseEventHandler, useContext } from "react";
-import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
-import useColor from "../hooks/useColor";
+import { FormContext, useMergeDefaultProps, useColor } from "@peersyst/react-components-core";
 
 const Button = (props: ButtonProps): JSX.Element => {
     const {

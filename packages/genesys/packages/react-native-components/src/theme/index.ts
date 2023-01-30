@@ -5,11 +5,13 @@ export * from "./defaultTheme";
 export * from "./lightTheme";
 export * from "./shadows";
 export * from "./typography";
+export * from "./hooks";
 export { default as ThemeProvider } from "./ThemeProvider";
 export { default as ThemeOverrideProvider } from "./ThemeOverrideProvider";
 export {
     useTheme,
     useSetTheme,
+    useColor,
     ThemeContext,
     ThemeConsumer,
     ThemeOverrideContext,

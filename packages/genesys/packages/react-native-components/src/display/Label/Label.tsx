@@ -4,6 +4,7 @@ import { LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
 import { Fragment, isValidElement } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { useGlobalStyles } from "../../config";
+import { useColorStyle } from "../../theme";
 
 const Label = (props: LabelProps): JSX.Element => {
     const {
@@ -15,12 +16,15 @@ const Label = (props: LabelProps): JSX.Element => {
         numberOfLines,
         style: { label: labelStyleProp = {}, ...rootStyleProp } = {},
         variant,
+        color: colorProp,
     } = useMergeDefaultProps("Label", props);
 
     const { label: labelGlobalStyles, ...rootGlobalStyles } = useGlobalStyles("Label");
 
+    const colorStyle = useColorStyle(colorProp);
+
     const rootStyle = { ...rootGlobalStyles, ...rootStyleProp };
-    const labelStyle = { ...labelGlobalStyles, ...labelStyleProp };
+    const labelStyle = { ...labelGlobalStyles, ...colorStyle, ...labelStyleProp };
 
     const direction: FlexStyle["flexDirection"] = (() => {
         if (placement === "top") return "column";

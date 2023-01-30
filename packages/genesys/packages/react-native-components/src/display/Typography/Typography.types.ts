@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import {
+    ThemeColor,
     ThemeFonts,
     TypographyVariants,
     TypographyVariantsOverrides,
@@ -44,6 +45,10 @@ export interface TypographyProps extends TextProps {
      * Text is light
      */
     light?: boolean;
+    /**
+     * Text color
+     */
+    color?: ThemeColor;
     /**
      * Typography style
      */
