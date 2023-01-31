@@ -11,6 +11,7 @@ import { StartsWithValidator } from "./StartsWithValidator";
 import { EndsWithValidator } from "./EndsWithValidator";
 import { ColorValidator } from "./ColorValidator";
 import { UrlValidator } from "./UrlValidator";
+import { NotEqualValidator } from "./NotEqualValidator";
 
 export const parseValidator = (
     validator: keyof Validators & keyof ExtraValidators,
@@ -29,6 +30,8 @@ export const parseValidator = (
             return new PasswordValidator(message, translate);
         case "eq":
             return new EqualValidator(message, translate, value);
+        case "notEq":
+            return new NotEqualValidator(message, translate, value);
         case "gt":
             return new NumberValidator(message, translate, { greaterThan: value });
         case "gte":

@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.7
+
+[Package.json] Update `react-components-core`
+
 ## 2.1.6
 
 [NumericInput] Update useNumericInput
