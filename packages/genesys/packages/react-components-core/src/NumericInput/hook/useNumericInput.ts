@@ -2,7 +2,8 @@ import { useControlled } from "@peersyst/react-hooks";
 import { useLocale } from "../../config";
 import { CoreTextInputProps } from "../../TextInput";
 import { getGroupSeparator, getDecimalSeparator, formatNumber } from "../utils";
-import { parseNumber, recoverNumber } from "../utils/formatNumber";
+import { parseNumber } from "../utils/formatNumber";
+import { recoverNumber } from "../utils/recoverNumber";
 
 export type UseNumericInputParams = Pick<
     CoreTextInputProps,
@@ -40,8 +41,7 @@ export default function useNumericInput({
                     maxDecimals,
                 );
                 if (rawValue) setValue?.(rawValue);
-                else return;
-            } else return;
+            }
         } else if (isNaN(parseNumber(newValue, digitGroupingSeparator, decimalSeparator))) return;
         else if (newValue === "") {
             setValue?.("");
@@ -53,7 +53,6 @@ export default function useNumericInput({
                 maxDecimals,
             );
             if (rawValue) setValue?.(rawValue);
-            else return;
         }
     };
 

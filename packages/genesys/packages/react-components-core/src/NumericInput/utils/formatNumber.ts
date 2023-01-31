@@ -19,16 +19,4 @@ export const parseNumber = (value: string, digit: string, decimal: string): numb
     return Number(escapeReplaceAll(escapeReplaceAll(value, digit, ""), decimal, "."));
 };
 
-export const recoverNumber = (
-    value: string,
-    decimalSeparator: string,
-    digitGroupingSeparator: string,
-    maxDecimals?: number,
-): string | undefined => {
-    const [int, dec] = value.split(decimalSeparator);
-    if (maxDecimals !== undefined && dec && dec.length > maxDecimals) return;
-    const rawInt = escapeReplaceAll(int, digitGroupingSeparator, "");
-    return rawInt + (value.includes(decimalSeparator) ? "." : "") + (dec || "");
-};
-
 export default formatNumber;
