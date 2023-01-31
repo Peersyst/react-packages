@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.4
+
+[Package.json] `react-components-core` update (not_equal_validator)
+
 ## 3.2.3
 
 [Package.json] `react-components-core` update (useNumericInput)

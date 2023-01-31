@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.4
+
+[NotEqualValidator] Not equal validator
+
 ## 1.2.3
 
 [useNumericInput] Fix useNumericInput decimals
