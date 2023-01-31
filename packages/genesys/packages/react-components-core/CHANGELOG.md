@@ -1,12 +1,16 @@
 # Versions
 
+## 1.2.3
+
+[useNumericInput] Fix useNumericInput decimals
+
 ## 1.2.2
 
-[useColor] Add useColor hook 
+[useColor] Add useColor hook
 
 ## 1.2.1
 
-[NumericInput] Updated getDecimalSeparator method 
+[NumericInput] Updated getDecimalSeparator method
 
 ### BREAKING
 

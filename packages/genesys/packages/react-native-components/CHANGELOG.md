@@ -1,5 +1,10 @@
 # Versions
 
+## 2.1.6
+
+[NumericInput] Update useNumericInput
+[Package.json] Update `react-components-core`
+
 ## 2.1.5
 
 [Button] Fix children render based on type

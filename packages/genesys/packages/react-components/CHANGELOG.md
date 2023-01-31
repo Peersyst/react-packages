@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.3
+
+[Package.json] `react-components-core` update (useNumericInput)
+
 ## 3.2.2
 
 [useColor] Moved to react-components-core

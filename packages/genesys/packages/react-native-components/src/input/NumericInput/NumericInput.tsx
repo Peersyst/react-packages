@@ -1,9 +1,5 @@
 import { NumericInputProps } from "./NumericInput.types";
-import {
-    useComponentConfig,
-    useMergeDefaultProps,
-    useNumericInput,
-} from "@peersyst/react-components-core";
+import { useMergeDefaultProps, useNumericInput } from "@peersyst/react-components-core";
 import { TextInput } from "react-native";
 
 const NumericInput = (props: NumericInputProps): JSX.Element => {
