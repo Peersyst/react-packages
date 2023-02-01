@@ -7,12 +7,12 @@ import {
     DIALOG_ACTION_COLOR_MAP,
     DialogButtonsLayoutAlignment,
     DialogButtonsLayoutJustification,
-    DialogProps,
     useComponentConfig,
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { FlexStyle } from "react-native";
-import { ComponentsConfig } from "../../config";
+import { useGlobalStyles } from "../../config";
+import { DialogProps } from "./Dialog.types";
 
 const DIALOG_BUTTONS_JUSTIFY_MAP: Record<
     DialogButtonsLayoutJustification,
@@ -33,10 +33,16 @@ const DIALOG_BUTTONS_ALIGN_MAP: Record<DialogButtonsLayoutAlignment, FlexStyle["
     baseline: "baseline",
 };
 
-const Dialog = createModal((props: DialogProps<ComponentsConfig["Dialog"]>): JSX.Element => {
+const Dialog = createModal((props: DialogProps): JSX.Element => {
     const {
         actions: { component: ActionComponent, ...actionComponentProps },
     } = useComponentConfig("Dialog");
+
+    const {
+        title: titleGlobalStyle,
+        content: contentGlobalStyle,
+        ...rootGlobalStyle
+    } = useGlobalStyles("Dialog");
 
     const {
         title,
@@ -49,6 +55,7 @@ const Dialog = createModal((props: DialogProps<ComponentsConfig["Dialog"]>): JSX
             gap = 20,
             ...restButtonsLayout
         } = {},
+        style: { title: titleStyle = {}, content: contentStyle = {}, ...rootStyle } = {},
         ...modalProps
     } = useMergeDefaultProps("Dialog", props);
 
@@ -66,11 +73,22 @@ const Dialog = createModal((props: DialogProps<ComponentsConfig["Dialog"]>): JSX
             onClose={closeDialog}
             animationIn="fadeIn"
             animationOut="fadeOut"
+            style={{ ...rootGlobalStyle, ...rootStyle }}
             {...modalProps}
         >
             <Col gap={14}>
-                {title && <DialogTitle>{title}</DialogTitle>}
-                {typeof content === "string" ? <DialogMessage>{content}</DialogMessage> : content}
+                {title && (
+                    <DialogTitle style={{ ...titleGlobalStyle, ...titleStyle }}>
+                        {title}
+                    </DialogTitle>
+                )}
+                {typeof content === "string" ? (
+                    <DialogMessage style={{ ...contentGlobalStyle, ...contentStyle }}>
+                        {content}
+                    </DialogMessage>
+                ) : (
+                    content
+                )}
                 <ButtonsLayoutComponent
                     justifyContent={DIALOG_BUTTONS_JUSTIFY_MAP[justifyContent]}
                     alignItems={DIALOG_BUTTONS_ALIGN_MAP[alignItems]}
