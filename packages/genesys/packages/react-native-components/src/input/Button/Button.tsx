@@ -36,7 +36,15 @@ const Button = (props: ButtonProps): JSX.Element => {
 
     const onPress = type === "submit" ? handleSubmit : onPressProp;
 
-    const { textStyle, rootStyle } = useButtonStyles(style, variant, size, disabled, pressed);
+    const {
+        textStyle,
+        rootStyle: { gradient, backgroundColor, ...restRootStyle },
+    } = useButtonStyles(style, variant, size, disabled, pressed);
+    const {
+        colors = [backgroundColor, backgroundColor] as [string, string],
+        ...restGradientProps
+    } = gradient || {};
+
     const pressable = !disabled && !loading;
 
     return (
@@ -47,7 +55,12 @@ const Button = (props: ButtonProps): JSX.Element => {
             onPressOut={() => pressable && setPressed(false)}
             {...rest}
         >
-            <ButtonRoot style={{ ...rootStyle, justifyContent: "center" }} fullWidth={fullWidth}>
+            <ButtonRoot
+                colors={colors}
+                style={restRootStyle}
+                fullWidth={fullWidth}
+                {...restGradientProps}
+            >
                 {loading && (
                     <ButtonLoader>
                         {loadingElement ? (
@@ -66,7 +79,7 @@ const Button = (props: ButtonProps): JSX.Element => {
                 )}
                 <ButtonContent
                     isLoading={loading}
-                    style={{ justifyContent: rootStyle["justifyContent"] || "center" }}
+                    style={{ justifyContent: restRootStyle["justifyContent"] || "center" }}
                 >
                     {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
                     {typeof children === "string" ? (

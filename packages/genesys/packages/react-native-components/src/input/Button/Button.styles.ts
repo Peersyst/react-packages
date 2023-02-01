@@ -1,7 +1,7 @@
 import { Row } from "../../layout/Row";
 import { ButtonRootProps, ButtonContainerProps } from "./Button.types";
-import { View } from "react-native";
 import styled from "@peersyst/react-native-styled";
+import { LinearGradient } from "expo-linear-gradient";
 
 /**
  * Container for the loader
@@ -14,8 +14,9 @@ export const ButtonLoader = styled(Row, { alignItems: "center", justifyContent: 
 /**
  * Main button styles
  */
-export const ButtonRoot = styled(View)<ButtonRootProps>(({ theme, fullWidth }) => ({
+export const ButtonRoot = styled(LinearGradient)<ButtonRootProps>(({ theme, fullWidth }) => ({
     alignSelf: fullWidth ? "stretch" : "flex-start",
+    justifyContent: "center",
     borderRadius: theme.borderRadius,
 }));
 

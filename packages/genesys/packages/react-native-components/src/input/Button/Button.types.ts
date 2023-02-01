@@ -2,8 +2,10 @@ import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-na
 import { ReactElement } from "react";
 import { SX } from "@peersyst/react-native-styled";
 import { ButtonVariant, CoreButtonProps } from "@peersyst/react-components-core";
+import { LinearGradientProps } from "expo-linear-gradient";
 
-export type ButtonStyle = ViewStyle & TextStyle;
+export type ButtonStyle = ViewStyle &
+    TextStyle & { gradient?: Pick<LinearGradientProps, "colors" | "locations" | "start" | "end"> };
 export type ButtonVariantStyle = Partial<Record<ButtonVariant, ButtonStyle>>;
 export type ButtonStyleWithVariant = ButtonStyle & { variant?: ButtonVariantStyle };
 

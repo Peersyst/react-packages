@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.6
+
+[Button] Add LinearGradient root to allow gradient buttons
+
 ## 2.1.5
 
 [Button] Fix children render based on type
