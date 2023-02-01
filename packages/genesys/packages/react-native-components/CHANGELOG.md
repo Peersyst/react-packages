@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.12
+
+[Dialog] Add global styles
+
 ## 2.1.11
 
 [Dialog] Add buttons props

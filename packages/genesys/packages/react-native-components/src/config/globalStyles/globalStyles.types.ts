@@ -6,10 +6,11 @@ import { LabelStyle } from "../../display/Label";
 import { FormControlLabelStyle } from "../../input/FormControlLabel";
 import { PagerViewStyle } from "../../display/PagerView";
 import { DottedPaginationStyle } from "../../navigation/DottedPagination";
-import { SwitchStyle } from "../../input/Switch/Switch.types";
+import { SwitchStyle } from "../../input/Switch";
 import { RadioButtonStyle } from "../../input/RadioButton";
 import { AlertStyle } from "../../feedback/Alert";
 import { ToastStyle } from "../../feedback/Toast";
+import { DialogStyle } from "../../feedback/Dialog";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -20,6 +21,7 @@ export interface CreateGlobalStylesParams {
 export type CreateGlobalStyles = (params: CreateGlobalStylesParams) => GlobalStyles;
 
 export interface BaseGlobalStyles {
+    Dialog?: DialogStyle;
     DottedPagination?: DottedPaginationStyle;
     FormControlLabel?: FormControlLabelStyle;
     FormControlHint?: TextStyle;
