@@ -1,6 +1,6 @@
 import { useTheme } from "@peersyst/react-native-styled";
 import { ButtonSizeStyle, ButtonStyleWithVariant } from "../Button.types";
-import { alpha, darken, emphasize } from "@peersyst/react-utils";
+import { alpha, darken, emphasize, getLuminance } from "@peersyst/react-utils";
 
 export interface UseDefaultStylesResult {
     defaultStyles: ButtonStyleWithVariant;
@@ -9,21 +9,23 @@ export interface UseDefaultStylesResult {
     defaultSizeStyles: ButtonSizeStyle;
 }
 
-export default function (): UseDefaultStylesResult {
+export default function (colorParam: string | undefined): UseDefaultStylesResult {
     const theme = useTheme();
+
+    const color = colorParam || theme.palette.primary;
 
     const defaultStyles: ButtonStyleWithVariant = {
         backgroundColor: "transparent",
-        color: theme.palette.primary,
+        color,
         variant: {
             filled: {
-                backgroundColor: theme.palette.primary,
-                color: theme.palette.text,
+                backgroundColor: color,
+                color: getLuminance(color) > 0.5 ? "#000" : "#FFF",
             },
             outlined: {
                 borderStyle: "solid",
                 borderWidth: 2,
-                borderColor: theme.palette.primary,
+                borderColor: color,
             },
             text: {
                 borderColor: "transparent",
@@ -45,10 +47,10 @@ export default function (): UseDefaultStylesResult {
     };
 
     const defaultPressedStyles: ButtonStyleWithVariant = {
-        backgroundColor: alpha(theme.palette.primary, 0.2),
+        backgroundColor: alpha(color, 0.2),
         variant: {
             filled: {
-                backgroundColor: darken(theme.palette.primary, 0.1),
+                backgroundColor: darken(color, 0.1),
             },
             text: {
                 backgroundColor: "transparent",

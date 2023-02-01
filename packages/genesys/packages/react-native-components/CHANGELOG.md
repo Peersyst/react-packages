@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.10
+
+[Button] Fix color prop styles
+
 ## 2.1.9
 
 [Button] Add color prop
