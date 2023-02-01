@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.6
+
+[Dialog] Add buttons props
+
 ## 1.2.5
 
 [Dialog] Optional title prop

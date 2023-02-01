@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.6
+
+[Dialog] Add buttons props
+
 ## 3.2.5
 
 [Package.json] `react-components-core` update (Dialog buttons layout)

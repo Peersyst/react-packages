@@ -12,6 +12,7 @@ import {
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { FlexStyle } from "react-native";
+import { ComponentsConfig } from "../../config";
 
 const DIALOG_BUTTONS_JUSTIFY_MAP: Record<
     DialogButtonsLayoutJustification,
@@ -32,7 +33,7 @@ const DIALOG_BUTTONS_ALIGN_MAP: Record<DialogButtonsLayoutAlignment, FlexStyle["
     baseline: "baseline",
 };
 
-const Dialog = createModal((props: DialogProps): JSX.Element => {
+const Dialog = createModal((props: DialogProps<ComponentsConfig["Dialog"]>): JSX.Element => {
     const {
         actions: { component: ActionComponent, ...actionComponentProps },
     } = useComponentConfig("Dialog");
@@ -76,9 +77,10 @@ const Dialog = createModal((props: DialogProps): JSX.Element => {
                     gap={gap}
                     {...restButtonsLayout}
                 >
-                    {buttons?.map(({ text, type = "default", action }, key) => (
+                    {buttons?.map(({ text, type = "default", action, ...buttonProps }, key) => (
                         <ActionComponent
                             {...actionComponentProps}
+                            {...buttonProps}
                             onPress={action || closeDialog}
                             color={DIALOG_ACTION_COLOR_MAP[type]}
                             key={key}

@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.11
+
+[Dialog] Add buttons props
+
 ## 2.1.10
 
 [Button] Fix color prop styles

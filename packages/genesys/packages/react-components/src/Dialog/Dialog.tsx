@@ -71,9 +71,10 @@ const Dialog = createModal<DialogProps>((props): JSX.Element => {
                 gap={gap}
                 {...restButtonsLayout}
             >
-                {buttons?.map(({ text, type = "default", action }, key) => (
+                {buttons?.map(({ text, type = "default", action, ...buttonProps }, key) => (
                     <ActionComponent
                         {...actionComponentProps}
+                        {...buttonProps}
                         className={cx(
                             "DialogAction",
                             capitalize(type) + "DialogAction",

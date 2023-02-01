@@ -1,4 +1,7 @@
-import { CommonModalComponentProps } from "@peersyst/react-components-core";
+import {
+    CommonModalComponentProps,
+    ExtendedCoreDialogConfig,
+} from "@peersyst/react-components-core";
 import { ReactNode } from "react";
 
 /**
@@ -8,11 +11,11 @@ import { ReactNode } from "react";
  */
 export type DialogButtonType = "default" | "destructive" | "positive";
 
-export interface DialogButton {
+export type DialogButton<P = {}> = {
     text: string;
     action?: () => any;
     type?: DialogButtonType;
-}
+} & P;
 
 export type DialogButtonsLayoutJustification =
     | "start"
@@ -24,10 +27,11 @@ export type DialogButtonsLayoutJustification =
 
 export type DialogButtonsLayoutAlignment = "start" | "end" | "center" | "stretch" | "baseline";
 
-export interface DialogProps extends CommonModalComponentProps {
+export interface DialogProps<P extends ExtendedCoreDialogConfig<{}> = ExtendedCoreDialogConfig<{}>>
+    extends CommonModalComponentProps {
     title?: string;
     content?: ReactNode;
-    buttons?: DialogButton[];
+    buttons?: DialogButton<Omit<P["actions"], "component" | "type" | "action">>[];
     buttonsLayout?: {
         direction?: "column" | "row";
         gap?: string | number;
