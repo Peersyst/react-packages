@@ -7,6 +7,7 @@ export { EqualValidator } from "./EqualValidator";
 export { MaxCharsValidator } from "./MaxCharsValidator";
 export { MinCharsValidator } from "./MinCharsValidator";
 export { NotNullValidator } from "./NotNullValidator";
+export { NotEqualValidator } from "./NotEqualValidator";
 export { NumberValidator } from "./NumberValidator";
 export { PasswordValidator } from "./PasswordValidator";
 export { StartsWithValidator } from "./StartsWithValidator";

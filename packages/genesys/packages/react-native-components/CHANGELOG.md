@@ -1,8 +1,17 @@
 # Versions
 
-## 2.1.6
+## 2.1.8
 
 [Button] Add LinearGradient root to allow gradient buttons
+
+## 2.1.7
+
+[Package.json] Update `react-components-core`
+
+## 2.1.6
+
+[NumericInput] Update useNumericInput
+[Package.json] Update `react-components-core`
 
 ## 2.1.5
 

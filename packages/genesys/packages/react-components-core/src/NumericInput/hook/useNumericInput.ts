@@ -3,7 +3,7 @@ import { useLocale } from "../../config";
 import { CoreTextInputProps } from "../../TextInput";
 import { getGroupSeparator, getDecimalSeparator, formatNumber } from "../utils";
 import { parseNumber } from "../utils/formatNumber";
-import { escapeReplaceAll } from "../../utils";
+import { recoverNumber } from "../utils/recoverNumber";
 
 export type UseNumericInputParams = Pick<
     CoreTextInputProps,
@@ -28,20 +28,31 @@ export default function useNumericInput({
     const decimalSeparator = getDecimalSeparator(finalLocale);
 
     const onChange = (newValue: string) => {
-        if (
-            newValue.endsWith(digitGroupingSeparator) ||
-            isNaN(parseNumber(newValue, digitGroupingSeparator, decimalSeparator))
-        )
-            return;
+        if (newValue.endsWith(digitGroupingSeparator)) {
+            const finalNewValue = newValue.substring(0, newValue.length - 1) + decimalSeparator;
+            if (
+                newValue.length > 1 &&
+                !isNaN(parseNumber(finalNewValue, digitGroupingSeparator, decimalSeparator))
+            ) {
+                const rawValue = recoverNumber(
+                    finalNewValue,
+                    decimalSeparator,
+                    digitGroupingSeparator,
+                    maxDecimals,
+                );
+                if (rawValue) setValue?.(rawValue);
+            }
+        } else if (isNaN(parseNumber(newValue, digitGroupingSeparator, decimalSeparator))) return;
         else if (newValue === "") {
             setValue?.("");
         } else {
-            const [int, dec] = newValue.split(decimalSeparator);
-            if (maxDecimals !== undefined && dec && dec.length > maxDecimals) return;
-            const rawInt = escapeReplaceAll(int, digitGroupingSeparator, "");
-            const rawValue =
-                rawInt + (newValue.includes(decimalSeparator) ? "." : "") + (dec || "");
-            setValue?.(rawValue);
+            const rawValue = recoverNumber(
+                newValue,
+                decimalSeparator,
+                digitGroupingSeparator,
+                maxDecimals,
+            );
+            if (rawValue) setValue?.(rawValue);
         }
     };
 

@@ -13,6 +13,7 @@ export interface Validators {
     email?: Validator;
     password?: Validator;
     eq?: Validator<any>;
+    notEq?: Validator<any>;
     gt?: Validator<number>;
     gte?: Validator<number>;
     lt?: Validator<number>;
@@ -39,6 +40,7 @@ export type ValidatorKey =
     | "invalid_email"
     | "invalid_password"
     | "invalid_equal"
+    | "invalid_not_equal"
     | "invalid_number_gt"
     | "invalid_number_gte"
     | "invalid_number_eq"
