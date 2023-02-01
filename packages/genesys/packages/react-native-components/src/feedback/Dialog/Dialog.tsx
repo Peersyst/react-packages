@@ -1,13 +1,57 @@
 import { createModal } from "../ModalProvider";
-import { DialogRoot, DialogTitle, DialogMessage, DialogOption } from "./Dialog.styles";
+import { DialogRoot, DialogTitle, DialogMessage } from "./Dialog.styles";
 import { Col } from "../../layout/Col";
 import { Row } from "../../layout/Row";
-import { Pressable } from "react-native";
 import { useState } from "react";
-import { DialogProps, useMergeDefaultProps } from "@peersyst/react-components-core";
+import {
+    DIALOG_ACTION_COLOR_MAP,
+    DialogButtonsLayoutAlignment,
+    DialogButtonsLayoutJustification,
+    DialogProps,
+    useComponentConfig,
+    useMergeDefaultProps,
+} from "@peersyst/react-components-core";
+import { FlexStyle } from "react-native";
+
+const DIALOG_BUTTONS_JUSTIFY_MAP: Record<
+    DialogButtonsLayoutJustification,
+    FlexStyle["justifyContent"]
+> = {
+    start: "flex-start",
+    center: "center",
+    end: "flex-end",
+    "space-between": "space-between",
+    "space-evenly": "space-evenly",
+    "space-around": "space-around",
+};
+const DIALOG_BUTTONS_ALIGN_MAP: Record<DialogButtonsLayoutAlignment, FlexStyle["alignItems"]> = {
+    start: "flex-start",
+    center: "center",
+    end: "flex-end",
+    stretch: "stretch",
+    baseline: "baseline",
+};
 
 const Dialog = createModal((props: DialogProps): JSX.Element => {
-    const { title, content, buttons, ...modalProps } = useMergeDefaultProps("Dialog", props);
+    const {
+        actions: { component: ActionComponent, ...actionComponentProps },
+    } = useComponentConfig("Dialog");
+
+    const {
+        title,
+        content,
+        buttons,
+        buttonsLayout: {
+            direction = "row",
+            justifyContent = "end",
+            alignItems = "center",
+            gap = 20,
+            ...restButtonsLayout
+        } = {},
+        ...modalProps
+    } = useMergeDefaultProps("Dialog", props);
+
+    const ButtonsLayoutComponent = direction === "row" ? Row : Col;
 
     const [open, setOpen] = useState(true);
 
@@ -24,23 +68,29 @@ const Dialog = createModal((props: DialogProps): JSX.Element => {
             {...modalProps}
         >
             <Col gap={14}>
-                <DialogTitle>{title}</DialogTitle>
+                {title && <DialogTitle>{title}</DialogTitle>}
                 {typeof content === "string" ? <DialogMessage>{content}</DialogMessage> : content}
-                <Row justifyContent="flex-end" gap={20}>
-                    {buttons?.map(({ text, type, action }, key) => (
-                        <Pressable
+                <ButtonsLayoutComponent
+                    justifyContent={DIALOG_BUTTONS_JUSTIFY_MAP[justifyContent]}
+                    alignItems={DIALOG_BUTTONS_ALIGN_MAP[alignItems]}
+                    gap={gap}
+                    {...restButtonsLayout}
+                >
+                    {buttons?.map(({ text, type = "default", action }, key) => (
+                        <ActionComponent
+                            {...actionComponentProps}
                             onPress={action || closeDialog}
-                            accessibilityRole="button"
+                            color={DIALOG_ACTION_COLOR_MAP[type]}
                             key={key}
                         >
-                            <DialogOption type={type}>{text}</DialogOption>
-                        </Pressable>
+                            {text}
+                        </ActionComponent>
                     )) || (
-                        <Pressable onPress={closeDialog} accessibilityRole="button">
-                            <DialogOption>OK</DialogOption>
-                        </Pressable>
+                        <ActionComponent {...actionComponentProps} onPress={close}>
+                            OK
+                        </ActionComponent>
                     )}
-                </Row>
+                </ButtonsLayoutComponent>
             </Col>
         </DialogRoot>
     );

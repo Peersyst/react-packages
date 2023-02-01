@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native"
 import { isValidElement, ReactElement, useContext, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
-import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
+import { FormContext, useColor, useMergeDefaultProps } from "@peersyst/react-components-core";
 import { ElementStyler } from "../../util/ElementStyler";
 
 const Button = (props: ButtonProps): JSX.Element => {
@@ -22,8 +22,11 @@ const Button = (props: ButtonProps): JSX.Element => {
         disabled: disabledProp = false,
         variant = "filled",
         style = {},
+        color: colorProp,
         ...rest
     } = useMergeDefaultProps("Button", props);
+
+    const color = useColor(colorProp);
 
     const [pressed, setPressed] = useState(false);
 
@@ -39,7 +42,7 @@ const Button = (props: ButtonProps): JSX.Element => {
     const {
         textStyle,
         rootStyle: { gradient, backgroundColor, ...restRootStyle },
-    } = useButtonStyles(style, variant, size, disabled, pressed);
+    } = useButtonStyles(style, variant, size, disabled, pressed, color);
     const {
         colors = [backgroundColor, backgroundColor] as [string, string],
         ...restGradientProps

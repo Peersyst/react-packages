@@ -1,5 +1,10 @@
 # Versions
 
+## 1.2.5
+
+[Dialog] Optional title prop
+[Dialog] Buttons layout prop
+
 ## 1.2.4
 
 [NotEqualValidator] Not equal validator

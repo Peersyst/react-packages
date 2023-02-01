@@ -52,7 +52,7 @@ export interface CoreButtonProps {
      */
     children?: ReactNode;
     /**
-     * Text color
+     * Button color
      */
     color?: ThemeColor;
 }

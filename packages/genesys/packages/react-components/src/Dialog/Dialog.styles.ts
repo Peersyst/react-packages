@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Modal } from "../Modal";
 import { DialogRootProps, DialogSize } from "./Dialog.types";
 import { DIALOG_SIZES_MAP } from "./Dialog.constants";
-import { Row } from "../Row";
 
 export const DialogRoot = styled(Modal)<DialogRootProps>(({ size }) => ({
     padding: 0,
@@ -28,11 +27,7 @@ export const DialogBody = styled.div({
     fontSize: "1rem",
 });
 
-export const DialogActions = styled(Row).attrs({
-    gap: "0.5rem",
-    alignItems: "center",
-    justifyContent: "flex-end",
-})({
+export const DialogActions = styled.div({
     padding: "1rem",
     flex: "0 0 auto",
 });

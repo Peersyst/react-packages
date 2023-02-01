@@ -1,5 +1,11 @@
 # Versions
 
+## 2.1.9
+
+[Button] Add color prop
+[Dialog] Add button actions
+[Dialog] Add buttons layout prop
+
 ## 2.1.8
 
 [Button] Add LinearGradient root to allow gradient buttons

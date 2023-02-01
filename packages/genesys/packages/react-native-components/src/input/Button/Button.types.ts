@@ -1,7 +1,7 @@
 import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-native";
 import { ReactElement } from "react";
 import { SX } from "@peersyst/react-native-styled";
-import { ButtonVariant, CoreButtonProps } from "@peersyst/react-components-core";
+import { ButtonVariant, CoreButtonProps, ThemeColor } from "@peersyst/react-components-core";
 import { LinearGradientProps } from "expo-linear-gradient";
 
 export type ButtonStyle = ViewStyle &
@@ -52,4 +52,8 @@ export type ButtonProps = Omit<NativeButtonProps, "title" | "color" | "onPress">
          * Display icon to the left of the text
          */
         leftIcon?: ReactElement;
+        /**
+         * Button Color
+         */
+        color?: ThemeColor;
     };

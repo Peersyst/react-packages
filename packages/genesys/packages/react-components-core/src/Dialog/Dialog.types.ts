@@ -14,10 +14,27 @@ export interface DialogButton {
     type?: DialogButtonType;
 }
 
+export type DialogButtonsLayoutJustification =
+    | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
+
+export type DialogButtonsLayoutAlignment = "start" | "end" | "center" | "stretch" | "baseline";
+
 export interface DialogProps extends CommonModalComponentProps {
-    title: string;
+    title?: string;
     content?: ReactNode;
     buttons?: DialogButton[];
+    buttonsLayout?: {
+        direction?: "column" | "row";
+        gap?: string | number;
+        justifyContent?: DialogButtonsLayoutJustification;
+        alignItems?: DialogButtonsLayoutAlignment;
+        wrap?: boolean;
+    };
 }
 
 export interface DialogOptionProps {
