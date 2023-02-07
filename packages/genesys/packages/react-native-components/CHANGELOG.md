@@ -1,8 +1,12 @@
 # Versions
 
-## 2.1.12
+## 2.1.13
 
 [SectionList] Created new component SectionList
+
+## 2.1.12
+
+[Dialog] Add global styles
 
 ## 2.1.11
 
