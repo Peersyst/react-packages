@@ -44,9 +44,9 @@ import { ElementStylerProps } from "../util/ElementStyler";
 import { BlockchainAddressProps } from "../util/BlockchainAddress";
 import { AlertProps } from "../feedback/Alert";
 import { SpinnerProps } from "../feedback/Spinner";
-import { SwitchProps } from "../input/Switch/Switch.types";
+import { SwitchProps } from "../input/Switch";
 import { RadioButtonProps } from "../input/RadioButton";
-import { SelectorProps } from "../input/SelectorGroup/Selector/Selector.types";
+import { SelectorProps } from "../input/SelectorGroup";
 import { SelectorGroupProps } from "src/input/SelectorGroup/SelectorGroup.types";
 import { SectionListProps } from "react-native";
 
