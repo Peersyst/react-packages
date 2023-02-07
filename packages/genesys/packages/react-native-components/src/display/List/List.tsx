@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 
-export interface ListProps extends Omit<FlatListProps<any>, "refreshControl" | "refreshing"> {
+export interface ListProps<T> extends Omit<FlatListProps<T>, "refreshControl" | "refreshing"> {
     refreshControlProps?: RefreshControlPropsIOS & RefreshControlPropsAndroid;
     loading?: boolean;
 }
@@ -21,7 +21,7 @@ export interface ListProps extends Omit<FlatListProps<any>, "refreshControl" | "
  * More info here https://nyxo.app/fixing-virtualizedlists-should-never-be-nested-inside-plain-scrollviews
  */
 
-const List = (props: ListProps): JSX.Element => {
+function List<T>(props: ListProps<T>): JSX.Element {
     const {
         onRefresh,
         loading = false,
@@ -67,6 +67,6 @@ const List = (props: ListProps): JSX.Element => {
             />
         </ScrollView>
     );
-};
+}
 
 export default List;

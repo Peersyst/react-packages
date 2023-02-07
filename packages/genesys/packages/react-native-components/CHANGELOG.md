@@ -3,6 +3,7 @@
 ## 2.1.14
 
 [SectionList] Fixed SectionListProps
+[List] Fixed ListProps
 
 ## 2.1.13
 

@@ -22,7 +22,7 @@ export interface SectionListProps<T, D>
  * More info here https://nyxo.app/fixing-virtualizedlists-should-never-be-nested-inside-plain-scrollviews
  */
 
-const SectionList = (props: SectionListProps<any, any>): JSX.Element => {
+function SectionList<T, D>(props: SectionListProps<T, D>): JSX.Element {
     const {
         onRefresh,
         loading = false,
@@ -68,6 +68,6 @@ const SectionList = (props: SectionListProps<any, any>): JSX.Element => {
             />
         </ScrollView>
     );
-};
+}
 
 export default SectionList;
