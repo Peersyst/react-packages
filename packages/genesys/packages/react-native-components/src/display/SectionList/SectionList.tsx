@@ -9,8 +9,8 @@ import {
 import { useState } from "react";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 
-export interface SectionListProps
-    extends Omit<BaseSectionListProps<any, any>, "refreshControl" | "refreshing"> {
+export interface SectionListProps<T, D>
+    extends Omit<BaseSectionListProps<T, D>, "refreshControl" | "refreshing"> {
     refreshControlProps?: RefreshControlPropsIOS & RefreshControlPropsAndroid;
     loading?: boolean;
 }
@@ -22,7 +22,7 @@ export interface SectionListProps
  * More info here https://nyxo.app/fixing-virtualizedlists-should-never-be-nested-inside-plain-scrollviews
  */
 
-const SectionList = (props: SectionListProps): JSX.Element => {
+const SectionList = (props: SectionListProps<any, any>): JSX.Element => {
     const {
         onRefresh,
         loading = false,

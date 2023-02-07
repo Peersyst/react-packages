@@ -8,6 +8,7 @@ export * from "./display/Label";
 export * from "./display/List";
 export * from "./display/PagerView";
 export * from "./display/ScrollView";
+export * from "./display/SectionList";
 export * from "./display/SvgIcon";
 export * from "./display/Typography";
 export * from "./feedback/Alert";

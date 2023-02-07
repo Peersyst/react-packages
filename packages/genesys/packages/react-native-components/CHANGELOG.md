@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.14
+
+[SectionList] Fixed SectionListProps
+
 ## 2.1.13
 
 [SectionList] Created new component SectionList
