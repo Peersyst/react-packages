@@ -177,6 +177,11 @@ const componentsConfig: ComponentsConfig = {
     Row: {
         defaultProps: {},
     },
+    SectionList: {
+        defaultProps: {
+            refreshing: false,
+        },
+    },
     StatusBar: {
         defaultProps: {},
     },

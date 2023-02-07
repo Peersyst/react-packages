@@ -48,6 +48,7 @@ import { SwitchProps } from "../input/Switch/Switch.types";
 import { RadioButtonProps } from "../input/RadioButton";
 import { SelectorProps } from "../input/SelectorGroup/Selector/Selector.types";
 import { SelectorGroupProps } from "src/input/SelectorGroup/SelectorGroup.types";
+import { SectionListProps } from "react-native";
 
 /**
  * ExtendedToolbarConfig
@@ -90,6 +91,7 @@ export interface TextAreaConfig extends ComponentConfig<TextAreaProps> {}
 export interface TextFieldConfig extends ComponentConfig<TextFieldProps> {}
 export interface ColConfig extends ComponentConfig<ColProps> {}
 export interface RowConfig extends ComponentConfig<RowProps> {}
+export interface SectionListConfig extends ComponentConfig<SectionListProps<any, any>> {}
 export interface StatusBarConfig extends ComponentConfig<StatusBarProps> {}
 export interface ToolbarConfig extends ExtendedToolbarConfig {}
 export interface DottedPaginationConfig extends ComponentConfig<DottedPaginationProps> {}
@@ -148,6 +150,7 @@ export interface ComponentsConfig {
     TextField: TextFieldConfig;
     Col: ColConfig;
     Row: RowConfig;
+    SectionList: SectionListConfig;
     StatusBar: StatusBarConfig;
     Toolbar: ToolbarConfig;
     DottedPagination: DottedPaginationConfig;
