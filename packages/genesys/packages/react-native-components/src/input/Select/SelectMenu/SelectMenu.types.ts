@@ -21,7 +21,7 @@ export interface SelectMenuProps {
     /**
      * Menu options and mask
      */
-    children: ReactNode;
+    children: Exclude<ReactNode, "string" | "number">;
 }
 
 export interface SelectItemsViewProps {

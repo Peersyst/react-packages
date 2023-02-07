@@ -47,8 +47,8 @@ import { SpinnerProps } from "../feedback/Spinner";
 import { SwitchProps } from "../input/Switch";
 import { RadioButtonProps } from "../input/RadioButton";
 import { SelectorProps } from "../input/SelectorGroup";
-import { SelectorGroupProps } from "src/input/SelectorGroup/SelectorGroup.types";
-import { SectionListProps } from "react-native";
+import { SelectorGroupProps } from "../input/SelectorGroup/SelectorGroup.types";
+import { SectionListProps } from "../display/SectionList";
 
 /**
  * ExtendedToolbarConfig
@@ -91,7 +91,7 @@ export interface TextAreaConfig extends ComponentConfig<TextAreaProps> {}
 export interface TextFieldConfig extends ComponentConfig<TextFieldProps> {}
 export interface ColConfig extends ComponentConfig<ColProps> {}
 export interface RowConfig extends ComponentConfig<RowProps> {}
-export interface SectionListConfig extends ComponentConfig<SectionListProps<any, any>> {}
+export interface SectionListConfig extends ComponentConfig<SectionListProps> {}
 export interface StatusBarConfig extends ComponentConfig<StatusBarProps> {}
 export interface ToolbarConfig extends ExtendedToolbarConfig {}
 export interface DottedPaginationConfig extends ComponentConfig<DottedPaginationProps> {}

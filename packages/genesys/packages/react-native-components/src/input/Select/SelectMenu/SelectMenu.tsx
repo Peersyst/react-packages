@@ -1,4 +1,4 @@
-import { Children, useContext } from "react";
+import { Children, ReactElement, useContext } from "react";
 import { SelectItemsView, SelectMenuRoot } from "./SelectMenu.styles";
 import { SelectMenuProps } from "./SelectMenu.types";
 import { List } from "../../../display/List";
@@ -20,7 +20,7 @@ export default function SelectMenu(props: SelectMenuProps): JSX.Element {
             {header}
             <SelectItemsView itemCount={Children.count(children)}>
                 <List
-                    data={Children.toArray(children)}
+                    data={Children.toArray(children) as ReactElement[]}
                     renderItem={({ item }) => item}
                     contentContainerStyle={{
                         paddingTop: header ? 0 : 20,
