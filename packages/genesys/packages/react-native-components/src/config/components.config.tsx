@@ -179,7 +179,7 @@ const componentsConfig: ComponentsConfig = {
     },
     SectionList: {
         defaultProps: {
-            refreshing: false,
+            loading: false,
         },
     },
     StatusBar: {
