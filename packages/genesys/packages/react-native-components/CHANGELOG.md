@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.15
+
+[Package.json] Update react-components-core (coreTheme)
+
 ## 2.1.14
 
 [SectionList] Fixed SectionListProps

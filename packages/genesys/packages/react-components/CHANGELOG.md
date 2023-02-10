@@ -2,7 +2,7 @@
 
 ## 3.2.7
 
-[coreTheme] Update z-Index values
+[package.json] Update react-components-core (update z-Index values)
 
 ## 3.2.6
 
