@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.7
+
+[coreTheme] Update z-Index values
+
 ## 3.2.6
 
 [Dialog] Add buttons props
