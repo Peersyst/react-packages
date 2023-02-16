@@ -8,6 +8,7 @@ export { isPlainObject } from "./deepmerge";
 export { default as deepmerge } from "./deepmerge";
 export { default as extractSlots } from "./extractSlots";
 export { default as findSlot } from "./find-slot";
+export { default as filter } from "./filter";
 export { default as formatHash } from "./formatHash";
 export * from "./formatHash";
 export { default as fsx } from "./fsx";

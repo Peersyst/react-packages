@@ -1,62 +1,61 @@
 import { ButtonRoot, ButtonLoader, ButtonContent } from "./Button.styles";
-import { ButtonProps } from "./Button.types";
 import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native";
-import { isValidElement, ReactElement, useContext, useState } from "react";
+import { isValidElement, ReactElement, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
-import { FormContext, useColor, useMergeDefaultProps } from "@peersyst/react-components-core";
+import { ButtonProps, useButton } from "@peersyst/react-components-core";
 import { ElementStyler } from "../../util/ElementStyler";
+import { GestureResponderEvent } from "react-native-modal";
+import { filter } from "@peersyst/react-utils";
 
 const Button = (props: ButtonProps): JSX.Element => {
     const {
-        onPress: onPressProp,
+        onPress,
         children,
-        type = "button",
-        action,
         loading = false,
         loadingElement,
         size = "md",
         rightIcon,
         leftIcon,
         fullWidth = false,
-        disabled: disabledProp = false,
         variant = "filled",
         style = {},
-        color: colorProp,
+        color,
+        handleSubmit,
+        enabled,
         ...rest
-    } = useMergeDefaultProps("Button", props);
+    } = useButton(props);
 
-    const color = useColor(colorProp);
+    const touchableProps = filter(rest, "type", "disabled", "action");
 
     const [pressed, setPressed] = useState(false);
 
-    const { handleSubmit: submit, valid } = useContext(FormContext);
-    const disabled = disabledProp || loading || (type === "submit" && valid === false);
-
-    const handleSubmit = () => {
-        submit(action);
+    const handlePress = (e: GestureResponderEvent): void => {
+        if (handleSubmit) handleSubmit();
+        else onPress?.(e);
     };
 
-    const onPress = type === "submit" ? handleSubmit : onPressProp;
+    const normalizedPressEventHandler =
+        (pressed: boolean): (() => void) =>
+        () =>
+            setPressed(pressed);
 
     const {
         textStyle,
         rootStyle: { gradient, backgroundColor, ...restRootStyle },
-    } = useButtonStyles(style, variant, size, disabled, pressed, color);
+    } = useButtonStyles(style, variant, size, !enabled, pressed, color);
     const {
         colors = [backgroundColor, backgroundColor] as [string, string],
         ...restGradientProps
     } = gradient || {};
 
-    const pressable = !disabled && !loading;
-
     return (
         <TouchableWithoutFeedback
-            onPress={(e) => pressable && onPress?.(e)}
+            onPress={enabled ? handlePress : undefined}
             accessibilityRole="button"
-            onPressIn={() => pressable && setPressed(true)}
-            onPressOut={() => pressable && setPressed(false)}
-            {...rest}
+            onPressIn={enabled ? normalizedPressEventHandler(true) : undefined}
+            onPressOut={enabled ? normalizedPressEventHandler(false) : undefined}
+            {...touchableProps}
         >
             <ButtonRoot
                 colors={colors}

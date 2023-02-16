@@ -56,3 +56,4 @@ export interface CoreButtonProps {
      */
     color?: ThemeColor;
 }
+export interface ButtonProps extends CoreButtonProps {}

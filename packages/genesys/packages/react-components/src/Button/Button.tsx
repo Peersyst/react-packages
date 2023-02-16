@@ -1,14 +1,13 @@
 import { ButtonContent, ButtonLoader, ButtonRoot } from "./Button.styles";
-import { ButtonProps } from "./Button.types";
 import { useTheme } from "../theme";
-import { capitalize, cx, fsx } from "@peersyst/react-utils";
-import { MouseEventHandler, useContext } from "react";
-import { FormContext, useMergeDefaultProps, useColor } from "@peersyst/react-components-core";
+import { capitalize, cx, filter, fsx } from "@peersyst/react-utils";
+import { MouseEventHandler } from "react";
+import { ButtonProps, useButton } from "@peersyst/react-components-core";
 
 const Button = (props: ButtonProps): JSX.Element => {
     const {
         className,
-        disabled: disabledProp,
+        disabled,
         children,
         loading,
         loadingElement: loadingElementProp,
@@ -18,25 +17,23 @@ const Button = (props: ButtonProps): JSX.Element => {
         onClick: onClickProp,
         style,
         type = "button",
-        action,
-        color: colorProp,
+        color,
+        handleSubmit,
+        enabled,
         ...rest
-    } = useMergeDefaultProps("Button", props);
+    } = useButton(props);
 
-    const color = useColor(colorProp);
+    const buttonElementProps = filter(rest, "action");
 
     const { loader: DefaultLoader } = useTheme();
     const loadingElement = loadingElementProp || <DefaultLoader />;
 
-    const { valid, handleSubmit: submit } = useContext(FormContext);
-    const disabled = disabledProp || loading || (type === "submit" && valid === false);
-
-    const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
-        e.preventDefault();
-        submit(action);
+    const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+        if (handleSubmit) {
+            e.preventDefault();
+            handleSubmit();
+        } else onClickProp?.(e);
     };
-
-    const onClick = type === "submit" ? handleSubmit : onClickProp;
 
     return (
         <ButtonRoot
@@ -45,7 +42,7 @@ const Button = (props: ButtonProps): JSX.Element => {
             size={size}
             fullWidth={fullWidth}
             disabled={disabled}
-            onClick={onClick}
+            onClick={enabled ? handleClick : undefined}
             className={cx(
                 "Button",
                 loading && "Loading",
@@ -57,7 +54,7 @@ const Button = (props: ButtonProps): JSX.Element => {
             style={fsx(style, { disabled, loading })}
             type={type}
             color={color}
-            {...rest}
+            {...buttonElementProps}
         >
             <ButtonContent>{children}</ButtonContent>
             {loading && <ButtonLoader className="ButtonLoader">{loadingElement}</ButtonLoader>}

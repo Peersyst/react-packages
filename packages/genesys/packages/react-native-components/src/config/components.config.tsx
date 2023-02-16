@@ -1,9 +1,11 @@
-import { ComponentsConfig } from "./components.config.types";
+import { ComponentsConfig as DeprecatedComponentsConfig } from "./components.config.types";
+import { ComponentsConfig } from "@peersyst/react-components-core";
 import { ChevronDownIcon } from "../assets/icons";
 import { FormControlLabel } from "../input/FormControlLabel";
 import { Button } from "../input/Button";
 
-const componentsConfig: ComponentsConfig = {
+// TODO: Remove DeprecatedComponentsConfig when all components are migrated to the new config
+const componentsConfig: ComponentsConfig & DeprecatedComponentsConfig = {
     Alert: {
         defaultProps: {
             elevation: 1,

@@ -3,6 +3,7 @@ import {
     ExtendedCoreBlockchainAddressConfig,
     ComponentConfig,
     ExtendedCoreDialogConfig,
+    ButtonProps,
 } from "@peersyst/react-components-core";
 import {
     AnimatedProps,
@@ -16,7 +17,6 @@ import { AppBarProps } from "../AppBar";
 import { BackdropProps } from "../Backdrop";
 import { BackgroundImageProps } from "../BackgroundImage";
 import { BadgeProps } from "../Badge";
-import { ButtonProps } from "../Button";
 import { CarouselProps } from "../Carousel";
 import { ChartProps } from "../Chart";
 import { CheckboxProps } from "../Checkbox";
@@ -91,7 +91,6 @@ export interface BackgroundImageConfig extends ComponentConfig<BackgroundImagePr
 export interface BadgeConfig extends ComponentConfig<BadgeProps> {}
 export interface BlockchainAddressConfig
     extends ExtendedCoreBlockchainAddressConfig<BlockchainAddressProps> {}
-export interface ButtonConfig extends ComponentConfig<ButtonProps> {}
 export interface CarouselConfig extends ComponentConfig<CarouselProps> {}
 export interface ChartConfig extends ComponentConfig<ChartProps> {}
 export interface CheckboxConfig extends ComponentConfig<CheckboxProps> {}
@@ -160,7 +159,6 @@ export interface ComponentsConfig {
     BackgroundImage: BackgroundImageConfig;
     Badge: BadgeConfig;
     BlockchainAddress: BlockchainAddressConfig;
-    Button: ButtonConfig;
     Carousel: CarouselConfig;
     Chart: ChartConfig;
     Checkbox: CheckboxConfig;

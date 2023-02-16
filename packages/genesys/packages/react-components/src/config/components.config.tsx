@@ -1,4 +1,5 @@
 import { ComponentsConfig } from "@peersyst/react-components-core";
+import { ComponentsConfig as DeprecatedComponentsConfig } from "./components.config.types";
 import { Animated } from "../Animated";
 import {
     CheckedBoxIcon,
@@ -13,7 +14,8 @@ import { FormControlLabel } from "../FormControlLabel";
 import Color from "color";
 import { Button } from "../Button";
 
-const componentsConfig: ComponentsConfig = {
+// TODO: Remove DeprecatedComponentsConfig when all components are migrated to the new config
+const componentsConfig: ComponentsConfig & DeprecatedComponentsConfig = {
     Alert: {
         defaultProps: {
             elevation: 0,

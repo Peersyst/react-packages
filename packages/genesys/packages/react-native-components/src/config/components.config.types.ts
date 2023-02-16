@@ -73,7 +73,6 @@ export interface ModalConfig extends ComponentConfig<ModalProps> {}
 export interface SkeletonConfig extends ComponentConfig<SkeletonProps> {}
 export interface SuspenseConfig extends ComponentConfig<SuspenseProps> {}
 export interface ToastConfig extends ComponentConfig<ToastProps> {}
-export interface ButtonConfig extends ComponentConfig<ButtonProps> {}
 export interface FormConfig extends ComponentConfig<FormProps> {}
 export interface FormControlConfig extends ComponentConfig<FormControlProps> {}
 export interface FormControlErrorConfig extends ComponentConfig<FormControlErrorProps> {}
@@ -132,7 +131,6 @@ export interface ComponentsConfig {
     Skeleton: SkeletonConfig;
     Suspense: SuspenseConfig;
     Toast: ToastConfig;
-    Button: ButtonConfig;
     Form: FormConfig;
     FormControl: FormControlConfig;
     FormControlError: FormControlErrorConfig;

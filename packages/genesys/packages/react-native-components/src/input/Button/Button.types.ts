@@ -1,6 +1,10 @@
-import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-native";
+import {
+    ViewStyle,
+    TextStyle,
+    ButtonProps as NativeButtonProps,
+    AccessibilityProps,
+} from "react-native";
 import { ReactElement } from "react";
-import { SX } from "@peersyst/react-native-styled";
 import { ButtonVariant, CoreButtonProps, ThemeColor } from "@peersyst/react-components-core";
 import { LinearGradientProps } from "expo-linear-gradient";
 
@@ -30,20 +34,17 @@ export interface ButtonContainerProps {
 /**
  * Buttons props omit title in order to make button generic
  */
-export type ButtonProps = Omit<NativeButtonProps, "title" | "color" | "onPress"> &
-    CoreButtonProps & {
+type CoreAndNativeButtonProps = CoreButtonProps & Omit<AccessibilityProps, "accessibilityRole">;
+declare module "@peersyst/react-components-core" {
+    export interface ButtonProps extends CoreAndNativeButtonProps {
         /**
          * onPress handler
          */
         onPress?: NativeButtonProps["onPress"];
         /**
-         * Button's style
+         * Button style
          */
         style?: ButtonStyles;
-        /**
-         * Button sx
-         */
-        sx?: SX<ButtonStyles>;
         /**
          * Display icon to the right of the text
          */
@@ -56,4 +57,9 @@ export type ButtonProps = Omit<NativeButtonProps, "title" | "color" | "onPress">
          * Button Color
          */
         color?: ThemeColor;
-    };
+        /**
+         * Button test id
+         */
+        testID?: string | undefined;
+    }
+}

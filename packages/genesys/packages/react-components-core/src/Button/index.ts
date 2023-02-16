@@ -1,1 +1,2 @@
-export * from "./Button.types";
+export * from "./Button.d";
+export { default as useButton } from "./useButton";
