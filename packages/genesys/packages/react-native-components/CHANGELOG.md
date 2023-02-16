@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.16
+
+[Modal] Add global styles
+
 ## 2.1.15
 
 [Package.json] Update react-components-core (coreTheme)

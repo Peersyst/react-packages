@@ -21,20 +21,21 @@ export interface CreateGlobalStylesParams {
 export type CreateGlobalStyles = (params: CreateGlobalStylesParams) => GlobalStyles;
 
 export interface BaseGlobalStyles {
+    Alert?: AlertStyle;
     Dialog?: DialogStyle;
+    Divider?: ViewStyle;
     DottedPagination?: DottedPaginationStyle;
     FormControlLabel?: FormControlLabelStyle;
     FormControlHint?: TextStyle;
     FormControlError?: TextStyle;
     FormControl?: ViewStyle;
     Label?: LabelStyle;
+    Modal?: ViewStyle;
     PagerView?: PagerViewStyle;
     Paper?: ViewStyle;
-    Typography?: TypographyStyle;
-    Divider?: ViewStyle;
-    Switch?: SwitchStyle;
     RadioButton?: RadioButtonStyle;
-    Alert?: AlertStyle;
+    Switch?: SwitchStyle;
+    Typography?: TypographyStyle;
     Toast?: ToastStyle;
 }
 export interface GlobalStyles extends BaseGlobalStyles {}
