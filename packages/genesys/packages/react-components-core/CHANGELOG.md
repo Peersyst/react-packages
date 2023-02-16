@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.7
+
+[coreTheme] Update zIndex values of the core theme
+
 ## 1.2.6
 
 [Dialog] Add buttons props
