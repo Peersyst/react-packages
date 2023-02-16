@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.15
+
+[Modal] Add global styles
+
 ## 2.1.14
 
 [SectionList] Fixed SectionListProps

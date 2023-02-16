@@ -5,6 +5,7 @@ import { Backdrop } from "../Backdrop";
 import { CloseButton, ModalRoot } from "./Modal.styles";
 import { useTheme } from "@peersyst/react-native-styled";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useGlobalStyles } from "../../config";
 
 export default function Modal(props: ModalProps): JSX.Element {
     const {
@@ -15,9 +16,12 @@ export default function Modal(props: ModalProps): JSX.Element {
         children,
         onClose,
         elevation = 16,
-        style,
+        style: styleProp = {},
         ...rest
     } = useMergeDefaultProps("Modal", props);
+
+    const globalStyle = useGlobalStyles("Modal");
+    const style = { ...globalStyle, ...styleProp };
 
     const [open, setOpen] = useControlled(defaultOpen, propOpen);
     const {
