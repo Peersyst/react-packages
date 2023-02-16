@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.8
+
+[package.json] Update react-components-core (SelectItem non blocking updates)
+
 ## 3.2.7
 
 [package.json] Update react-components-core (update z-Index values)

@@ -1,10 +1,12 @@
 import { SelectItemProps } from "./Select.types";
-import { useContext } from "react";
+import { useContext, useTransition } from "react";
 import { SelectContext, SelectContextType } from "./SelectContext";
 import { useSelected } from "./hooks";
 import { handleSelection } from "./utils";
 
 function SelectItem<T>({ value, children }: SelectItemProps<T>): JSX.Element {
+    const [, startTransition] = useTransition();
+
     const {
         setValue,
         setOpen,
@@ -16,9 +18,12 @@ function SelectItem<T>({ value, children }: SelectItemProps<T>): JSX.Element {
 
     const handleSelect = () => {
         if (!readonly) {
-            setValue(handleSelection(value, selected, multiple, isSelected));
             // Close if not multiple or (multiple and it is a clear item)
             (!multiple || value === undefined) && setOpen(false);
+            // Do not block ui
+            startTransition(() => {
+                setValue(handleSelection(value, selected, multiple, isSelected));
+            });
         }
     };
 

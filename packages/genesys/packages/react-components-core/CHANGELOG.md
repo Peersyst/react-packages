@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.8
+
+[SelectItem] Non blocking updates when selecting an item
+
 ## 1.2.7
 
 [coreTheme] Update zIndex values of the core theme

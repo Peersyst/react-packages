@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.17
+
+[package.json] Update react-components-core (SelectItem non blocking updates)
+
 ## 2.1.16
 
 [Modal] Add global styles
