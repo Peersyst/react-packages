@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.1
+
+[styled] Fix useMemos dependencies
+
 ## 2.1.0
 
 [styled] Improve useMemos

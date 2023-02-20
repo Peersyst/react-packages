@@ -38,14 +38,7 @@ export default function styled<
                         ),
                         sxProp?.({ theme, dimensions, safeAreaInsets }),
                     ),
-                [
-                    theme,
-                    dimensions,
-                    safeAreaInsets,
-                    JSON.stringify(styleProp),
-                    JSON.stringify(rest),
-                    sxProp?.toString(),
-                ],
+                [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()],
             );
 
             const finalProps = {

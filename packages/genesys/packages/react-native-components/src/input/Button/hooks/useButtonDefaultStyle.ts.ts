@@ -1,13 +1,20 @@
 import { useTheme } from "@peersyst/react-native-styled";
-import { ButtonStyle } from "../Button.types";
+import { ButtonSizeStyle, ButtonStatelessStyle } from "../Button.types";
 import { alpha, darken, emphasize, getLuminance } from "@peersyst/react-utils";
 
-export default function (colorParam: string | undefined): ButtonStyle {
+export interface UseDefaultStylesResult {
+    defaultStyles: ButtonStatelessStyle;
+    defaultDisabledStyles: ButtonStatelessStyle;
+    defaultPressedStyles: ButtonStatelessStyle;
+    defaultSizeStyles: ButtonSizeStyle;
+}
+
+export default function (colorParam: string | undefined): UseDefaultStylesResult {
     const theme = useTheme();
 
     const color = colorParam || theme.palette.primary;
 
-    return {
+    const defaultStyles: ButtonStatelessStyle = {
         backgroundColor: "transparent",
         color,
 
@@ -23,7 +30,33 @@ export default function (colorParam: string | undefined): ButtonStyle {
         text: {
             borderColor: "transparent",
         },
+    };
 
+    const defaultDisabledStyles: ButtonStatelessStyle = {
+        color: theme.palette.disabled,
+
+        filled: {
+            backgroundColor: theme.palette.disabled,
+            color: emphasize(theme.palette.disabled, 0.5),
+        },
+        outlined: {
+            borderColor: theme.palette.disabled,
+        },
+    };
+
+    const defaultPressedStyles: ButtonStatelessStyle = {
+        backgroundColor: alpha(color, 0.2),
+
+        filled: {
+            backgroundColor: darken(color, 0.1),
+        },
+        text: {
+            backgroundColor: "transparent",
+            textDecorationLine: "underline",
+        },
+    };
+
+    const defaultSizeStyles: ButtonSizeStyle = {
         sm: {
             paddingHorizontal: 10,
             height: 32,
@@ -39,29 +72,7 @@ export default function (colorParam: string | undefined): ButtonStyle {
             height: 48,
             fontSize: 13,
         },
-
-        pressed: {
-            backgroundColor: alpha(color, 0.2),
-
-            filled: {
-                backgroundColor: darken(color, 0.1),
-            },
-            text: {
-                backgroundColor: "transparent",
-                textDecorationLine: "underline",
-            },
-        },
-
-        disabled: {
-            color: theme.palette.disabled,
-
-            filled: {
-                backgroundColor: theme.palette.disabled,
-                color: emphasize(theme.palette.disabled, 0.5),
-            },
-            outlined: {
-                borderColor: theme.palette.disabled,
-            },
-        },
     };
+
+    return { defaultStyles, defaultDisabledStyles, defaultPressedStyles, defaultSizeStyles };
 }
