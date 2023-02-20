@@ -3,7 +3,7 @@ import { extractTextStyles } from "@peersyst/react-native-utils";
 import { ButtonRootStyle, ButtonStyle, ButtonTextStyle } from "../Button.types";
 import { useMemo } from "react";
 import { ButtonSize, ButtonVariant } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "src/config";
+import { useGlobalStyles } from "../../../config";
 
 export interface UseButtonStylesResult {
     textStyle: ButtonTextStyle;
