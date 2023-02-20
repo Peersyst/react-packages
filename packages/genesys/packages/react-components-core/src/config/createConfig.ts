@@ -20,7 +20,6 @@ export default function createConfigCore(
         locale: locale || defaultLocale,
         validators: { defaultValidators, ...validators },
         components: deepmerge(defaultComponents, components || {}),
-        ...restDefaults,
-        ...extraConfig,
+        ...deepmerge(restDefaults, extraConfig),
     };
 }

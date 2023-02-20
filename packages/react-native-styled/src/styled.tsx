@@ -1,17 +1,24 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Theme, useTheme } from "@peersyst/react-native-styled";
-import { ComponentType, PropsWithChildren, useMemo } from "react";
+import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
 import { ScaledSize, StyleSheet, useWindowDimensions } from "react-native";
-import { SX, StyledFunction } from "./types";
+import { StyledFunction, StyledComponentProps } from "./types";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
+import { Loosen } from "@peersyst/react-types";
 
-// T extends Partial<Omit<P, "sx" | "style">>
-export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style"] }>(
+export default function styled<
+    P extends StyledComponentProps<P["style"]>,
+    K extends keyof Omit<P, "style" | "sx">,
+>(
     Component: ComponentType<P>,
-    props?: Partial<Omit<P, "sx" | "style">>,
-): <E = {}>(sx?: StyledFunction<P, E>) => ComponentType<P & E> {
+    props?: Record<K, P[K]>,
+): <E = {}>(
+    sx?: StyledFunction<P, E>,
+) => ComponentType<Loosen<P, K> & E & StyledComponentProps<P["style"]>> {
     const styledConstructor = function <E = {}>(styledSx?: StyledFunction<P, E>) {
+        const componentName = Component.displayName || Component.name;
+
         const StyledComponent = ({ sx: sxProp, style: styleProp, ...rest }: P & E): JSX.Element => {
             const theme = useTheme();
             const dimensions = useWindowDimensions();
@@ -22,15 +29,23 @@ export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style
                     deepmerge(
                         deepmerge(
                             styledSx?.({ theme, dimensions, safeAreaInsets, ...rest } as P &
-                                E & { theme: Theme } & {
+                                E & {
+                                    theme: Theme;
                                     dimensions: ScaledSize;
                                     safeAreaInsets: EdgeInsets;
                                 }),
                             StyleSheet.flatten(styleProp),
                         ),
-                        sxProp?.(theme),
+                        sxProp?.({ theme, dimensions, safeAreaInsets }),
                     ),
-                [styleProp, theme, rest, sxProp, dimensions, safeAreaInsets],
+                [
+                    theme,
+                    dimensions,
+                    safeAreaInsets,
+                    JSON.stringify(styleProp),
+                    JSON.stringify(rest),
+                    sxProp?.toString(),
+                ],
             );
 
             const finalProps = {
@@ -41,10 +56,11 @@ export default function styled<P extends { sx?: SX<P["style"]>; style?: P["style
 
             return <Component {...(finalProps as P & E)} />;
         };
-        StyledComponent.displayName = Component.displayName;
+        StyledComponent.displayName = componentName;
         return StyledComponent;
     };
 
+    // @ts-ignore
     return function <E = {}>(sx?: StyledFunction<P, E>) {
         return styledConstructor<E>(sx);
     };

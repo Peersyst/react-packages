@@ -6,12 +6,12 @@ export interface DeepmergeOptions {
     clone?: boolean;
 }
 
-export default function deepmerge<T>(
+export default function deepmerge<T, Q>(
     target: T,
-    source: unknown,
+    source: Q,
     options: DeepmergeOptions = { clone: true },
-): T {
-    const output = options.clone ? { ...target } : target;
+): T & Q {
+    const output = (options.clone ? { ...target } : target) as T & Q;
 
     if (isPlainObject(target) && isPlainObject(source)) {
         Object.keys(source).forEach((key) => {

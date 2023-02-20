@@ -10,6 +10,9 @@ export interface As<P> {
     as?: ComponentType<P>;
 }
 
+/**
+ * @Experimental
+ */
 export default function styled<
     P extends { sx?: SX<P["style"]>; style?: P["style"] },
     IP extends Partial<Omit<P, "sx" | "style">>,
@@ -36,9 +39,16 @@ export default function styled<
                                 }),
                             StyleSheet.flatten(styleProp),
                         ),
-                        sxProp?.(theme),
+                        sxProp?.({ theme, dimensions, safeAreaInsets }),
                     ),
-                [styleProp, theme, rest, sxProp, dimensions, safeAreaInsets],
+                [
+                    theme,
+                    dimensions,
+                    safeAreaInsets,
+                    JSON.stringify(styleProp),
+                    JSON.stringify(rest),
+                    sxProp?.toString(),
+                ],
             );
 
             const finalProps = {

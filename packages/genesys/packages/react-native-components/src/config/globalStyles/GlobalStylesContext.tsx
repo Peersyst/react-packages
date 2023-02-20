@@ -1,4 +1,4 @@
-import {createContext, FC, PropsWithChildren} from "react";
+import { createContext, FC, PropsWithChildren } from "react";
 import { GlobalStyles } from "./globalStyles.types";
 import { useCreateGlobalStyles } from "./hook";
 

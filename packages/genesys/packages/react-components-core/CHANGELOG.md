@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.9
+
+[package.json] Update react-utils
+
 ## 1.2.8
 
 [SelectItem] Non blocking updates when selecting an item

@@ -11,6 +11,7 @@ import { RadioButtonStyle } from "../../input/RadioButton";
 import { AlertStyle } from "../../feedback/Alert";
 import { ToastStyle } from "../../feedback/Toast";
 import { DialogStyle } from "../../feedback/Dialog";
+import { ButtonStyle } from "src/input/Button";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -20,8 +21,13 @@ export interface CreateGlobalStylesParams {
 
 export type CreateGlobalStyles = (params: CreateGlobalStylesParams) => GlobalStyles;
 
+export type CreateComponentGlobalStyles<S> =
+    | ((color: string) => (params: CreateGlobalStylesParams) => S)
+    | ((params: CreateGlobalStylesParams) => S);
+
 export interface BaseGlobalStyles {
     Alert?: AlertStyle;
+    Button?: ButtonStyle;
     Dialog?: DialogStyle;
     Divider?: ViewStyle;
     DottedPagination?: DottedPaginationStyle;

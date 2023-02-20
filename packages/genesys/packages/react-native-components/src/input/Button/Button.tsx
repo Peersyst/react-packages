@@ -39,10 +39,20 @@ const Button = (props: ButtonProps): JSX.Element => {
 
     const onPress = type === "submit" ? handleSubmit : onPressProp;
 
-    const {
-        textStyle,
-        rootStyle: { gradient, backgroundColor, ...restRootStyle },
-    } = useButtonStyles(style, variant, size, disabled, pressed, color);
+    const [{ gradient, backgroundColor, ...restRootStyle }, textStyle] = useButtonStyles(
+        style,
+        color,
+        {
+            filled: variant === "filled",
+            outlined: variant === "outlined",
+            text: variant === "text",
+            sm: size === "sm",
+            md: size === "md",
+            lg: size === "lg",
+            pressed: pressed,
+            disabled: disabled,
+        },
+    );
     const {
         colors = [backgroundColor, backgroundColor] as [string, string],
         ...restGradientProps

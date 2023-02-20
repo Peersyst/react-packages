@@ -1,23 +1,29 @@
 import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-native";
 import { ReactElement } from "react";
 import { SX } from "@peersyst/react-native-styled";
-import { ButtonVariant, CoreButtonProps, ThemeColor } from "@peersyst/react-components-core";
+import { ButtonSize, ButtonVariant, CoreButtonProps } from "@peersyst/react-components-core";
 import { LinearGradientProps } from "expo-linear-gradient";
 
-export type ButtonStyle = ViewStyle &
-    TextStyle & { gradient?: Pick<LinearGradientProps, "colors" | "locations" | "start" | "end"> };
-export type ButtonVariantStyle = Partial<Record<ButtonVariant, ButtonStyle>>;
-export type ButtonStyleWithVariant = ButtonStyle & { variant?: ButtonVariantStyle };
+export type ButtonRootStyle = ViewStyle & {
+    gradient?: Pick<LinearGradientProps, "colors" | "locations" | "start" | "end">;
+};
 
-export interface ButtonSizeStyle {
-    sm?: ButtonStyle;
-    md?: ButtonStyle;
-    lg?: ButtonStyle;
-}
-export type ButtonStyles = ButtonStyleWithVariant & {
-    disabled?: ButtonStyleWithVariant;
-    pressed?: ButtonStyleWithVariant;
-} & ButtonSizeStyle;
+export type ButtonTextStyle = TextStyle;
+
+export type BaseButtonStyle = ButtonRootStyle & ButtonTextStyle;
+
+export type ButtonVariantStyle = Partial<Record<ButtonVariant, BaseButtonStyle>>;
+
+export type ButtonSizeStyle = Partial<Record<ButtonSize, BaseButtonStyle>>;
+
+export type ButtonStatelessStyle = BaseButtonStyle & ButtonVariantStyle & ButtonSizeStyle;
+
+export type ButtonStatefulStyle = {
+    disabled?: ButtonStatelessStyle;
+    pressed?: ButtonStatelessStyle;
+};
+
+export type ButtonStyle = ButtonStatelessStyle & ButtonStatefulStyle;
 
 export interface ButtonRootProps {
     fullWidth: boolean;
@@ -39,11 +45,11 @@ export type ButtonProps = Omit<NativeButtonProps, "title" | "color" | "onPress">
         /**
          * Button's style
          */
-        style?: ButtonStyles;
+        style?: ButtonStyle;
         /**
          * Button sx
          */
-        sx?: SX<ButtonStyles>;
+        sx?: SX<ButtonStyle>;
         /**
          * Display icon to the right of the text
          */
@@ -52,8 +58,4 @@ export type ButtonProps = Omit<NativeButtonProps, "title" | "color" | "onPress">
          * Display icon to the left of the text
          */
         leftIcon?: ReactElement;
-        /**
-         * Button Color
-         */
-        color?: ThemeColor;
     };

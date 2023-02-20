@@ -1,5 +1,11 @@
 # Versions
 
+## 2.1.18
+
+[package.json] Update react-utils
+[Button] Refactor styles
+[useMergeStyles] Add generic hook to merge styles with priorities
+
 ## 2.1.17
 
 [package.json] Update react-components-core (SelectItem non blocking updates)

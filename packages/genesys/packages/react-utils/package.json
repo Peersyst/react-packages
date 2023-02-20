@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-utils",
     "author": "Peersyst",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {

@@ -1,5 +1,9 @@
 # Versions
 
+## 2.2.0
+
+[filter] Util that filters keys from an object
+
 ## 1.4.7
 
 Dependencies update

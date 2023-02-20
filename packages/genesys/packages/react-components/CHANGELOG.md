@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.9
+
+[package.json] Update react-utils
+
 ## 3.2.8
 
 [package.json] Update react-components-core (SelectItem non blocking updates)
