@@ -1,11 +1,13 @@
-import { ButtonRoot, ButtonLoader, ButtonContent } from "./Button.styles";
+import { ButtonRoot } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
-import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native";
+import { TouchableWithoutFeedback, Text } from "react-native";
 import { isValidElement, ReactElement, useContext, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
 import { FormContext, useColor, useMergeDefaultProps } from "@peersyst/react-components-core";
 import { ElementStyler } from "../../util/ElementStyler";
+import { Suspense } from "../../feedback/Suspense";
+import { Row } from "../../layout/Row";
 
 const Button = (props: ButtonProps): JSX.Element => {
     const {
@@ -64,36 +66,21 @@ const Button = (props: ButtonProps): JSX.Element => {
                 fullWidth={fullWidth}
                 {...restGradientProps}
             >
-                {loading && (
-                    <ButtonLoader>
-                        {loadingElement ? (
-                            <Icon style={textStyle}>{loadingElement}</Icon>
+                <Suspense fallback={loadingElement} isLoading={loading}>
+                    <Row gap={16} alignItems="center">
+                        {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
+                        {typeof children === "string" ? (
+                            <Text style={textStyle}>{children}</Text>
+                        ) : isValidElement(children) ? (
+                            <ElementStyler style={textStyle}>
+                                {children as ReactElement}
+                            </ElementStyler>
                         ) : (
-                            <ActivityIndicator
-                                size={
-                                    textStyle.fontSize && textStyle.fontSize > 20
-                                        ? "large"
-                                        : "small"
-                                }
-                                color={textStyle.color}
-                            />
+                            children
                         )}
-                    </ButtonLoader>
-                )}
-                <ButtonContent
-                    isLoading={loading}
-                    style={{ justifyContent: restRootStyle["justifyContent"] || "center" }}
-                >
-                    {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
-                    {typeof children === "string" ? (
-                        <Text style={textStyle}>{children}</Text>
-                    ) : isValidElement(children) ? (
-                        <ElementStyler style={textStyle}>{children as ReactElement}</ElementStyler>
-                    ) : (
-                        children
-                    )}
-                    {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}
-                </ButtonContent>
+                        {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}
+                    </Row>
+                </Suspense>
             </ButtonRoot>
         </TouchableWithoutFeedback>
     );

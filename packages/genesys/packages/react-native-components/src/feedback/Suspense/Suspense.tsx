@@ -1,15 +1,9 @@
-import { Children, ReactElement } from "react";
-import { ActivityIndicatorProps, ColorValue } from "react-native";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { Spinner, SpinnerProps } from "../Spinner";
-
-export interface SuspenseProps {
-    isLoading: boolean;
-    activityIndicatorColor?: SpinnerProps["color"] | ColorValue;
-    activityIndicatorSize?: ActivityIndicatorProps["size"];
-    children: ReactElement;
-    fallback?: ReactElement;
-}
+import { Children } from "react";
+import { useColor, useMergeDefaultProps } from "@peersyst/react-components-core";
+import { Spinner } from "../Spinner";
+import { SuspenseProps } from "./Suspense.types";
+import { SuspenseContent, SuspenseLoader, SuspenseRoot } from "./Suspense.styles";
+import { Icon } from "../../display/Icon";
 
 const Suspense = (props: SuspenseProps) => {
     const {
@@ -18,14 +12,31 @@ const Suspense = (props: SuspenseProps) => {
         fallback,
         activityIndicatorColor,
         activityIndicatorSize = "large",
+        activityIndicatorAlignment = "center",
+        style,
     } = useMergeDefaultProps("Suspense", props);
 
-    const loaderComponent = fallback || (
-        <Spinner color={activityIndicatorColor} size={activityIndicatorSize} />
-    );
-    const child = Children.only(children);
+    const color = useColor(activityIndicatorColor || "text");
 
-    return isLoading ? loaderComponent : child;
+    return (
+        <SuspenseRoot style={style}>
+            {isLoading && (
+                <SuspenseLoader activityIndicatorAlignment={activityIndicatorAlignment}>
+                    {fallback ? (
+                        <Icon style={{ color }}>{fallback}</Icon>
+                    ) : (
+                        <Spinner color={activityIndicatorColor} size={activityIndicatorSize} />
+                    )}
+                </SuspenseLoader>
+            )}
+            <SuspenseContent
+                isLoading={isLoading}
+                style={{ justifyContent: style?.["justifyContent"] || "center" }}
+            >
+                {Children.only(children)}
+            </SuspenseContent>
+        </SuspenseRoot>
+    );
 };
 
 export default Suspense;

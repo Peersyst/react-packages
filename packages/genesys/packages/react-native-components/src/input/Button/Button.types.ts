@@ -29,10 +29,6 @@ export interface ButtonRootProps {
     fullWidth: boolean;
 }
 
-export interface ButtonContainerProps {
-    isLoading: boolean;
-}
-
 /**
  * Buttons props omit title in order to make button generic
  */
