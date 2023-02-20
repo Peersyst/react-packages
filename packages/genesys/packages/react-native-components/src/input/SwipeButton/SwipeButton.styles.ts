@@ -27,4 +27,5 @@ export const SwipeButtonRail = styled(View)(() => ({
 export const SwipeButtonThumb = styled(View)(() => ({
     alignItems: "center",
     justifyContent: "center",
+    padding: 12,
 }));

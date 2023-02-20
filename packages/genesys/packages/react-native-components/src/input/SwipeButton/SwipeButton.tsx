@@ -83,7 +83,9 @@ const SwipeButton = (props: SwipeButtonProps) => {
                                 ]}
                             >
                                 {thumbContent && (
-                                    <ElementStyler style={thumbContentStyles}>
+                                    <ElementStyler
+                                        style={{ fontSize: "100%", ...thumbContentStyles }}
+                                    >
                                         {thumbContent}
                                     </ElementStyler>
                                 )}
