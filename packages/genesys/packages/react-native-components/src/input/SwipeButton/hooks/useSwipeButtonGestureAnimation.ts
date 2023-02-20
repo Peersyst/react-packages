@@ -22,9 +22,12 @@ export default function useSwipeButtonGestureAnimation({
     onMaxDistanceReached,
 }: UseSwipeButtonGestureAnimationOptions): UseSwipeButtonGestureAnimationReturn {
     const xPos = useSharedValue(0);
-    const animatedStyle = useAnimatedStyle(() => ({
-        transform: [{ translateX: xPos.value }],
-    }));
+    const animatedStyle = useAnimatedStyle(() => {
+        "worklet";
+        return {
+            transform: [{ translateX: xPos.value }],
+        };
+    });
 
     const start = useSharedValue(0);
     const gesture = Gesture.Pan()
