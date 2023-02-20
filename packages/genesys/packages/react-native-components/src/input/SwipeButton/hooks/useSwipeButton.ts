@@ -5,8 +5,8 @@ import {
     useColor,
     useMergeDefaultProps,
     WithParsedThemeColor,
+    UseButtonSubmitResult,
 } from "@peersyst/react-components-core";
-import { UseButtonSubmitResult } from "@peersyst/react-components-core/src/Button/hooks/useButtonSubmit";
 import { SwipeButtonProps } from "../SwipeButton.types";
 
 export type UseSwipeButtonResult = WithParsedThemeColor<SwipeButtonProps> & UseButtonSubmitResult;

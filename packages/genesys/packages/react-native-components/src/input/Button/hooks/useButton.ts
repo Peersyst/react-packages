@@ -1,14 +1,13 @@
 // TODO: Remove in pr #155
 
 import {
+    useButtonSubmit,
     useColor,
     useMergeDefaultProps,
+    UseButtonSubmitResult,
     WithParsedThemeColor,
 } from "@peersyst/react-components-core";
 import { ButtonProps } from "../Button.types";
-import useButtonSubmit, {
-    UseButtonSubmitResult,
-} from "@peersyst/react-components-core/src/Button/hooks/useButtonSubmit";
 
 /**
  * useButton return properties
