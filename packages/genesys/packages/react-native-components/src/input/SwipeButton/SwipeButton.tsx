@@ -21,7 +21,7 @@ const AnimatedSwipeButtonThumb = Animated.createAnimatedComponent(classify(Swipe
 
 const SwipeButton = (props: SwipeButtonProps) => {
     const {
-        onSlide,
+        onSwipe,
         children,
         fullWidth = true,
         thumbContent = <ChevronRightIcon />,
@@ -40,7 +40,7 @@ const SwipeButton = (props: SwipeButtonProps) => {
 
     const handleSlide = (): void => {
         if (handleSubmit) handleSubmit();
-        else onSlide?.();
+        else onSwipe?.();
     };
 
     const [railLayout, setRailLayout] = useState<LayoutRectangle>({

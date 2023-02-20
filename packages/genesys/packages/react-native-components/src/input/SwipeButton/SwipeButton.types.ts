@@ -18,7 +18,7 @@ export interface SwipeButtonProps {
     /**
      * Swipe handler
      */
-    onSlide?: () => void;
+    onSwipe?: () => void;
     /**
      * Button type
      */
