@@ -1,5 +1,9 @@
 # Versions
 
+## 2.1.19
+
+[fix] Imports
+
 ## 2.1.18
 
 [package.json] Update react-utils

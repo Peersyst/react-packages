@@ -11,7 +11,7 @@ import { RadioButtonStyle } from "../../input/RadioButton";
 import { AlertStyle } from "../../feedback/Alert";
 import { ToastStyle } from "../../feedback/Toast";
 import { DialogStyle } from "../../feedback/Dialog";
-import { ButtonStyle } from "src/input/Button";
+import { ButtonStyle } from "../../input/Button";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;

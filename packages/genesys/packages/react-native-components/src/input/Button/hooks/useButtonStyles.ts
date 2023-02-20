@@ -3,7 +3,7 @@ import { extractTextStyles } from "@peersyst/react-native-utils";
 import { ButtonRootStyle, ButtonStyle, ButtonTextStyle } from "../Button.types";
 import { useMemo } from "react";
 import useButtonDefaultStyle from "./useButtonDefaultStyle.ts";
-import { useGlobalStyles } from "src/config";
+import { useGlobalStyles } from "../../../config";
 import { StyleFlags } from "../../../utils";
 import { useMergeStyles } from "../../../hooks";
 
