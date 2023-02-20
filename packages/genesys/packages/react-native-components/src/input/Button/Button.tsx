@@ -1,91 +1,92 @@
-import { ButtonRoot, ButtonLoader, ButtonContent } from "./Button.styles";
-import { ButtonProps } from "./Button.types";
-import { TouchableWithoutFeedback, ActivityIndicator, Text } from "react-native";
-import { isValidElement, ReactElement, useContext, useState } from "react";
+import { ButtonRoot } from "./Button.styles";
+import { TouchableWithoutFeedback, Text } from "react-native";
+import { isValidElement, ReactElement, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
-import { FormContext, useColor, useMergeDefaultProps } from "@peersyst/react-components-core";
 import { ElementStyler } from "../../util/ElementStyler";
+import { GestureResponderEvent } from "react-native-modal";
+import { filter } from "@peersyst/react-utils";
+import { ButtonProps } from "./Button.types";
+import useButton from "./hooks/useButton";
+import { ContainedSuspense } from "../../feedback/ContainedSuspense";
+import { Row } from "../../layout/Row";
 
 const Button = (props: ButtonProps): JSX.Element => {
     const {
-        onPress: onPressProp,
+        onPress,
         children,
-        type = "button",
-        action,
         loading = false,
         loadingElement,
         size = "md",
         rightIcon,
         leftIcon,
         fullWidth = false,
-        disabled: disabledProp = false,
         variant = "filled",
         style = {},
-        color: colorProp,
+        color,
+        handleSubmit,
+        enabled,
         ...rest
-    } = useMergeDefaultProps("Button", props);
-    const color = useColor(colorProp);
+    } = useButton(props);
+
+    const touchableProps = filter(rest, "type", "disabled", "action");
+
     const [pressed, setPressed] = useState(false);
-    const { handleSubmit: submit, valid } = useContext(FormContext);
-    const disabled = disabledProp || loading || (type === "submit" && valid === false);
-    const handleSubmit = () => {
-        submit(action);
+
+    const handlePress = (e: GestureResponderEvent): void => {
+        if (handleSubmit) handleSubmit();
+        else onPress?.(e);
     };
-    const onPress = type === "submit" ? handleSubmit : onPressProp;
-    const {
-        textStyle,
-        rootStyle: { gradient, backgroundColor, ...restRootStyle },
-    } = useButtonStyles(style, variant, size, disabled, pressed, color);
-    const {
-        colors = [backgroundColor, backgroundColor] as [string, string],
-        ...restGradientProps
-    } = gradient || {};
-    const pressable = !disabled && !loading;
+
+    const normalizedPressEventHandler =
+        (pressed: boolean): (() => void) =>
+        () =>
+            setPressed(pressed);
+
+    const { textStyle, rootStyle } = useButtonStyles(
+        style,
+        variant,
+        size,
+        !enabled,
+        pressed,
+        color,
+    );
+
     return (
         <TouchableWithoutFeedback
-            onPress={(e) => pressable && onPress?.(e)}
+            onPress={enabled ? handlePress : undefined}
             accessibilityRole="button"
-            onPressIn={() => pressable && setPressed(true)}
-            onPressOut={() => pressable && setPressed(false)}
-            {...rest}
+            onPressIn={enabled ? normalizedPressEventHandler(true) : undefined}
+            onPressOut={enabled ? normalizedPressEventHandler(false) : undefined}
+            {...touchableProps}
         >
-            <ButtonRoot
-                colors={colors}
-                style={restRootStyle}
-                fullWidth={fullWidth}
-                {...restGradientProps}
-            >
-                {loading && (
-                    <ButtonLoader>
-                        {loadingElement ? (
-                            <Icon style={textStyle}>{loadingElement}</Icon>
-                        ) : (
-                            <ActivityIndicator
-                                size={
-                                    textStyle.fontSize && textStyle.fontSize > 20
-                                        ? "large"
-                                        : "small"
-                                }
-                                color={textStyle.color}
-                            />
-                        )}
-                    </ButtonLoader>
-                )}
-                <ButtonContent
+            <ButtonRoot style={rootStyle} fullWidth={fullWidth}>
+                <ContainedSuspense
                     isLoading={loading}
-                    style={{ justifyContent: restRootStyle["justifyContent"] || "center" }}
+                    activityIndicatorColor={textStyle.color as string}
+                    activityIndicatorSize={
+                        textStyle.fontSize && textStyle.fontSize > 20 ? "large" : "small"
+                    }
+                    fallback={loadingElement}
                 >
-                    {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
-                    {typeof children === "string" ? (
-                        <Text style={textStyle}>{children}</Text>
-                    ) : isValidElement(children) ? (
-                        <ElementStyler style={textStyle}>{children as ReactElement}</ElementStyler>
-                    ) : (
-                        children
-                    )}
-                    {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}
-                </ButtonContent>
+                    <Row
+                        gap={16}
+                        alignItems="center"
+                        style={{ justifyContent: rootStyle["justifyContent"] || "center" }}
+                    >
+                        {leftIcon && <Icon style={textStyle}>{leftIcon}</Icon>}
+                        {typeof children === "string" ? (
+                            <Text style={textStyle}>{children}</Text>
+                        ) : isValidElement(children) ? (
+                            <ElementStyler style={textStyle}>
+                                {children as ReactElement}
+                            </ElementStyler>
+                        ) : (
+                            children
+                        )}
+                        {rightIcon && <Icon style={textStyle}>{rightIcon}</Icon>}
+                    </Row>
+                </ContainedSuspense>
             </ButtonRoot>
         </TouchableWithoutFeedback>
     );

@@ -1,5 +1,9 @@
 # Versions
 
+## 1.2.11
+
+[useButtonSubmit] useButtonSubmit hook that returns if form button is enabled and submit handler
+
 ## 1.2.9
 
 [package.json] Update react-utils

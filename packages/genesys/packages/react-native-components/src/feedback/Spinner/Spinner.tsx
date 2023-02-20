@@ -10,7 +10,7 @@ export interface SpinnerProps extends Omit<ActivityIndicatorProps, "color" | "te
 const Spinner = (props: SpinnerProps): JSX.Element => {
     const { color: colorProp, style, ...rest } = useMergeDefaultProps("Spinner", props);
 
-    const color = useColor(colorProp || "text");
+    const color = useColor((colorProp as ThemeColor) || "text") || colorProp;
 
     return <ActivityIndicator testID="ActivityIndicator" style={style} color={color} {...rest} />;
 };

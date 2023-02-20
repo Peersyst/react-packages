@@ -1,5 +1,12 @@
 # Versions
 
+## 2.2.0
+
+[GradientView] Add GradientView layout component
+[ContainedSuspense] Add ContainedSuspense feedback component
+[Button] Refactor Button to use ContainedSuspense
+[SwipeButton] Add SwipeButton input component
+
 ## 2.1.21
 
 [fix] Imports

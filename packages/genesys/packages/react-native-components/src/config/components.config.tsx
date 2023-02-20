@@ -284,6 +284,15 @@ const componentsConfig: ComponentsConfig = {
     SelectorGroup: {
         defaultProps: {},
     },
+    SwipeButton: {
+        defaultProps: {},
+    },
+    GradientView: {
+        defaultProps: {},
+    },
+    ContainedSuspense: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

@@ -49,6 +49,9 @@ import { RadioButtonProps } from "../input/RadioButton";
 import { SelectorProps } from "../input/SelectorGroup";
 import { SelectorGroupProps } from "../input/SelectorGroup/SelectorGroup.types";
 import { SectionListProps } from "../display/SectionList";
+import { SwipeButtonProps } from "../input/SwipeButton/SwipeButton.types";
+import { GradientViewProps } from "../layout/GradientView";
+import { ContainedSuspenseProps } from "../feedback/ContainedSuspense";
 
 /**
  * ExtendedToolbarConfig
@@ -114,6 +117,9 @@ export interface SwitchConfig extends ComponentConfig<SwitchProps> {}
 export interface RadioButtonConfig extends ComponentConfig<RadioButtonProps> {}
 export interface SelectorConfig extends ComponentConfig<SelectorProps<any>> {}
 export interface SelectorGroupConfig extends ComponentConfig<SelectorGroupProps<any>> {}
+export interface SwipeButtonConfig extends ComponentConfig<SwipeButtonProps> {}
+export interface GradientViewConfig extends ComponentConfig<GradientViewProps> {}
+export interface ContainedSuspenseConfig extends ComponentConfig<ContainedSuspenseProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -172,4 +178,7 @@ export interface ComponentsConfig {
     RadioButton: RadioButtonConfig;
     Selector: SelectorConfig;
     SelectorGroup: SelectorGroupConfig;
+    SwipeButton: SwipeButtonConfig;
+    GradientView: GradientViewConfig;
+    ContainedSuspense: ContainedSuspenseConfig;
 }

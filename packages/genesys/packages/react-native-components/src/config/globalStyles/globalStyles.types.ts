@@ -12,6 +12,7 @@ import { AlertStyle } from "../../feedback/Alert";
 import { ToastStyle } from "../../feedback/Toast";
 import { DialogStyle } from "../../feedback/Dialog";
 import { ButtonStyle } from "../../input/Button";
+import { SwipeButtonStyle } from "../../input/SwipeButton/SwipeButton.types";
 
 export interface CreateGlobalStylesParams {
     theme: Theme;
@@ -40,6 +41,7 @@ export interface BaseGlobalStyles {
     PagerView?: PagerViewStyle;
     Paper?: ViewStyle;
     RadioButton?: RadioButtonStyle;
+    SwipeButton?: SwipeButtonStyle;
     Switch?: SwitchStyle;
     Typography?: TypographyStyle;
     Toast?: ToastStyle;

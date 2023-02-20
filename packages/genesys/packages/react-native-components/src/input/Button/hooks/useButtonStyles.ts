@@ -1,4 +1,4 @@
-import useDefaultStyles from "./useButtonDefaultStyle.ts";
+import useDefaultStyles from "./useButtonDefaultStyle";
 import { extractTextStyles } from "@peersyst/react-native-utils";
 import { ButtonRootStyle, ButtonStyle, ButtonTextStyle } from "../Button.types";
 import { useMemo } from "react";
