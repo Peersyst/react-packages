@@ -1,9 +1,9 @@
 import { CoreChipProps } from "@peersyst/react-components-core";
 import { MouseEvent, ReactElement } from "react";
-import * as React from "react";
+import { HTMLAttributes } from "react";
 
-export type ChipProps = CoreChipProps &
-    React.HTMLAttributes<HTMLDivElement> & {
+export type ChipProps = Omit<HTMLAttributes<HTMLDivElement>, "prefix"> &
+    CoreChipProps & {
         /**
          * Whether Chip appears as clickable, does not affect onClick
          */

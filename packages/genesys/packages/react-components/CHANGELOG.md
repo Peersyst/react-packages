@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.10
+
+[Chip] Omit HTMLAttributes "prefix" overriding CoreChipProps prefix
+
 ## 3.2.9
 
 [package.json] Update react-utils
