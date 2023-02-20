@@ -31,6 +31,7 @@ const SwipeButton = (props: SwipeButtonProps) => {
         color,
         handleSubmit,
         enabled,
+        loadingElement,
     } = useSwipeButton(props);
 
     const { contentStyles, rootStyles, trackStyles, railStyles, thumbContentStyles, thumbStyles } =
@@ -90,6 +91,7 @@ const SwipeButton = (props: SwipeButtonProps) => {
                 activityIndicatorSize={
                     contentStyles.fontSize && contentStyles.fontSize > 20 ? "large" : "small"
                 }
+                fallback={loadingElement}
             >
                 <>
                     {typeof children === "string" ? (

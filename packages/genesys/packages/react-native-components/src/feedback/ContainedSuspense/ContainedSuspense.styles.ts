@@ -26,12 +26,10 @@ export const ContainedSuspenseLoader = styled(Row, {
 
 export const ContainedSuspenseRoot = styled(View)(() => ({
     justifyContent: "center",
-    flex: 1,
 }));
 
 export const ContainedSuspenseContent = styled(View)<ContainedSuspenseContentProps>(
     ({ isLoading }) => ({
         opacity: isLoading ? 0 : 1,
-        flex: 1,
     }),
 );

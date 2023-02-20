@@ -26,7 +26,7 @@ export default function useButtonSubmit({
     action,
 }: UseButtonSubmitParams): UseButtonSubmitResult {
     const { valid, handleSubmit: submit } = useContext(FormContext);
-    const enabled = disabled || loading || (type === "submit" && valid === false);
+    const enabled = !(disabled || loading || (type === "submit" && valid === false));
 
     const handleSubmit = () => {
         submit(action);
