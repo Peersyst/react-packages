@@ -2,6 +2,7 @@ import { useState } from "react";
 import useXumm from "../useXumm";
 import { XummContextType } from "../XummContext";
 import catchErrors from "./catchErrors";
+import timeoutPromise from "./timeoutPromise";
 
 export interface FetchError {
     status: number;
@@ -84,7 +85,7 @@ export default function <T = any>(
         return new Promise((resolve) => {
             const tryFetch = async () => {
                 try {
-                    const res = await fetch(url, { headers });
+                    const res = await timeoutPromise(fetch(url, { headers }), 50000);
                     await catchErrors(res);
                     const jsonRes = await res.json();
                     // Resolve correctly or retry
