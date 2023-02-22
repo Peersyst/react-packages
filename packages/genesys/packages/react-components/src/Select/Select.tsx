@@ -55,6 +55,9 @@ function InnerSelect<T>({
         children || options,
     );
 
+    const renderedValue = renderValue(displayContent);
+    const isPlaceholder = !!renderedValue && !!placeholder;
+
     return (
         <ClickAwayListener onClickAway={() => setOpen(false)}>
             <SelectRoot className="Select">
@@ -66,9 +69,9 @@ function InnerSelect<T>({
                     className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
                 >
                     <DisplayContent
-                        className={cx("DisplayContent", !!placeholder && "Placeholder")}
+                        className={cx("DisplayContent", isPlaceholder && "Placeholder")}
                     >
-                        {renderValue(displayContent) || placeholder}
+                        {renderedValue || placeholder}
                     </DisplayContent>
                     {dropdownElement && (
                         <SelectDropdown open={open} className="SelectDropdown">
