@@ -56,7 +56,7 @@ function InnerSelect<T>({
     );
 
     const renderedValue = renderValue(displayContent);
-    const isPlaceholder = !!renderedValue && !!placeholder;
+    const isPlaceholder = !renderedValue && !!placeholder;
 
     return (
         <ClickAwayListener onClickAway={() => setOpen(false)}>
