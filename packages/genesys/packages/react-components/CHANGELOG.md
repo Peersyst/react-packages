@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.15
+
+[Select] Add Select Placeholder classname
+
 ## 3.2.10
 
 [Chip] Omit HTMLAttributes "prefix" overriding CoreChipProps prefix

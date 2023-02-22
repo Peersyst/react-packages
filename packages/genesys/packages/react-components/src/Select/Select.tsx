@@ -65,7 +65,9 @@ function InnerSelect<T>({
                     readonly={readonly}
                     className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
                 >
-                    <DisplayContent className="DisplayContent">
+                    <DisplayContent
+                        className={cx("DisplayContent", !!placeholder && "Placeholder")}
+                    >
                         {renderValue(displayContent) || placeholder}
                     </DisplayContent>
                     {dropdownElement && (
