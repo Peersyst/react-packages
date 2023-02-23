@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.18
+
+[TextInput] Fix valid `TextInput` showing `ValidIcon` with `validElement` prop set to `false`.
+
 ## 3.2.15
 
 [Select] Add Select Placeholder classname

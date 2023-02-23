@@ -115,7 +115,9 @@ export default function TextInput<HTMLT extends HTMLInput>(
                                 onSubmit,
                             })}
                             {suffix}
-                            {valid && <ValidElementWrapper>{validElement}</ValidElementWrapper>}
+                            {valid && validElement && (
+                                <ValidElementWrapper>{validElement}</ValidElementWrapper>
+                            )}
                             {invalid && errorElement && (
                                 <ErrorElementWrapper>{errorElement}</ErrorElementWrapper>
                             )}
