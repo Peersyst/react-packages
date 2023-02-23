@@ -47,7 +47,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
         icons: { invalid: Invalid, valid: Valid },
     } = useTheme();
     const errorElement = errorElementProp === true ? <Invalid /> : errorElementProp ?? <Invalid />;
-    const validElement = validElementProp || <Valid />;
+    const validElement = validElementProp === true ? <Valid /> : validElementProp ?? <Valid />;
 
     const ref = createRef<HTMLT>();
 
