@@ -21,6 +21,7 @@ export type {
     Theme,
     CreateTheme,
     ThemePalette,
+    ThemeColor,
     ThemeFonts,
     ThemeZIndex,
     TypographyVariants,
