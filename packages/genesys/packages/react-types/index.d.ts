@@ -117,7 +117,7 @@ type CoreNestedKeys<T extends object, I extends number = MaxRecursiveIterations>
     ? never
     : {
           [Key in keyof T]: T[Key] extends object
-              ? `${Key}` | `${Key}.${NestedKeys<T[Key], Iterations[I]>}`
+              ? `${Key}` | `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
               : Key;
       }[Extract<keyof T, string>];
 
@@ -130,7 +130,7 @@ type FlattenedCoreNestedKeys<T extends object, I extends number = MaxRecursiveIt
         ? never
         : {
               [Key in keyof T]: T[Key] extends object
-                  ? `${Key}.${NestedKeys<T[Key], Iterations[I]>}`
+                  ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
                   : Key;
           }[Extract<keyof T, string>];
 
