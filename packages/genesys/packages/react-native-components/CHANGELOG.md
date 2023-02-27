@@ -1,5 +1,9 @@
 # Versions
 
+## 2.2.10
+
+[TextInput] Update caret-color based on textfield validity status
+
 ## 2.2.0
 
 [GradientView] Add GradientView layout component
