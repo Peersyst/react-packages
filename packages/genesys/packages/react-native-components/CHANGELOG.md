@@ -1,6 +1,6 @@
 # Versions
 
-## 2.2.10
+## 2.2.11
 
 [TextInput] Update caret-color based on textfield validity status
 
