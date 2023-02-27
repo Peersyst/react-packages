@@ -5,7 +5,7 @@ import {
     SwipeButtonThumb,
 } from "./SwipeButton.styles";
 import { SwipeButtonProps } from "./SwipeButton.types";
-import { GestureDetector } from "react-native-gesture-handler";
+import { GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
 import { classify } from "@peersyst/react-utils";
 import useSwipeButtonGestureAnimation from "./hooks/useSwipeButtonGestureAnimation";
@@ -72,25 +72,27 @@ const SwipeButton = (props: SwipeButtonProps) => {
                         onLayout={handleSwipeButtonRailLayout}
                         style={[{ borderRadius: rootStyles.borderRadius }, railStyles]}
                     >
-                        <GestureDetector gesture={gesture}>
-                            <AnimatedSwipeButtonThumb
-                                onStartShouldSetResponder={() => true}
-                                style={[
-                                    { borderRadius: rootStyles.borderRadius },
-                                    thumbStyles,
-                                    { height: thumbSize, width: thumbSize },
-                                    animatedStyle,
-                                ]}
-                            >
-                                {thumbContent && (
-                                    <ElementStyler
-                                        style={{ fontSize: "100%", ...thumbContentStyles }}
-                                    >
-                                        {thumbContent}
-                                    </ElementStyler>
-                                )}
-                            </AnimatedSwipeButtonThumb>
-                        </GestureDetector>
+                        <GestureHandlerRootView>
+                            <GestureDetector gesture={gesture}>
+                                <AnimatedSwipeButtonThumb
+                                    onStartShouldSetResponder={() => true}
+                                    style={[
+                                        { borderRadius: rootStyles.borderRadius },
+                                        thumbStyles,
+                                        { height: thumbSize, width: thumbSize },
+                                        animatedStyle,
+                                    ]}
+                                >
+                                    {thumbContent && (
+                                        <ElementStyler
+                                            style={{ fontSize: "100%", ...thumbContentStyles }}
+                                        >
+                                            {thumbContent}
+                                        </ElementStyler>
+                                    )}
+                                </AnimatedSwipeButtonThumb>
+                            </GestureDetector>
+                        </GestureHandlerRootView>
                     </SwipeButtonRail>
                 </SwipeButtonTrack>
             )}
