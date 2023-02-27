@@ -10,15 +10,22 @@ export default function useTextInputDefaultStyles(): FormControlStateStyle<TextI
         input: {
             color: theme.palette.text,
             fontSize: 14,
+            highlightColor: theme.palette.primary,
         },
     };
 
     const invalid: TextInputStyle = {
         borderColor: theme.palette.status.error,
+        input: {
+            highlightColor: theme.palette.status.error,
+        },
     };
 
     const valid: TextInputStyle = {
         borderColor: theme.palette.status.success,
+        input: {
+            highlightColor: theme.palette.status.success,
+        },
     };
 
     const focused: TextInputStyle = {

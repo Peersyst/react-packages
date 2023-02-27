@@ -1,5 +1,9 @@
 # Versions
 
+## 3.2.21
+
+[TextInput] Update carete-color based on textinput validity status
+
 ## 3.2.18
 
 [TextInput] Fix valid `TextInput` showing `ValidIcon` with `validElement` prop set to `false`.
