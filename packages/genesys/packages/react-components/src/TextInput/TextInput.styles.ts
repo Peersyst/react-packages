@@ -1,38 +1,51 @@
 import styled from "styled-components";
 import { TextInputStyles } from "./TextInput.types";
 
-export const TextInputRoot = styled.div<TextInputStyles>`
+export const TextInputRoot = styled.div<TextInputStyles>(
+    ({ theme, disabled }) => `
     position: relative;
 
     display: inline-flex;
     padding: 0 8px;
 
-    border: solid 1px ${(p) => p.theme.palette.text};
+    border: solid 1px ${theme.palette.text};
 
     && {
         &&.Focused,
         &&.Active:not(.Readonly):not(.Disabled) {
-            border-color: ${(p) => p.theme.palette.primary};
+            border-color: ${theme.palette.primary};
+            input,
+            textarea {
+                caret-color: ${theme.palette.primary};
+            }
         }
 
         &&.Invalid {
-            border-color: ${(p) => p.theme.palette.status.error};
+            border-color: ${theme.palette.status.error};
+            input,
+            textarea {
+                caret-color: ${theme.palette.status.error};
+            }
         }
 
         &&.Valid {
-            border-color: ${(p) => p.theme.palette.status.success};
+            border-color: ${theme.palette.status.success};
+            input,
+            textarea {
+                caret-color: ${theme.palette.status.success};
+            }
         }
 
         &&.Disabled {
-            border-color: ${(p) => p.theme.palette.disabled};
+            border-color: ${theme.palette.disabled};
         }
     }
-    border-radius: ${(props) => props.theme.borderRadius};
+    border-radius: ${theme.borderRadius};
     box-sizing: border-box;
     width: 100%;
     cursor: text;
 
-    color: ${({ disabled, theme }) => disabled && theme.palette.disabled};
+    color: ${disabled && theme.palette.disabled};
 
     input,
     textarea {
@@ -40,8 +53,9 @@ export const TextInputRoot = styled.div<TextInputStyles>`
         font-family: inherit;
     }
 
-    opacity: ${({ disabled }) => disabled && 0.7};
-`;
+    opacity: ${disabled && 0.7};
+`,
+);
 
 export const ErrorElementWrapper = styled.div`
     display: contents;
