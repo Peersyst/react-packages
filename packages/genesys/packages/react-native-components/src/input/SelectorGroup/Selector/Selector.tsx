@@ -31,26 +31,24 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
 
     return (
         <CoreSelector value={value}>
-            {({ setSelected, isSelected, readonly, disabled, ...restOfContext }) => {
+            {({ setSelected, isSelected, ...restOfContext }) => {
                 return renderController ? (
                     renderController({
                         label,
                         value,
                         isSelected,
                         setSelected,
-                        readonly,
-                        disabled,
+
                         ...restOfContext,
                     })
                 ) : (
                     <Controller
-                        readonly={readonly}
-                        disabled={disabled}
                         value={isSelected}
                         onChange={setSelected}
                         label={label}
                         LabelProps={{ placement: "right", ...LabelProps }}
                         {...rest}
+                        {...restOfContext}
                     />
                 );
             }}
