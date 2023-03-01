@@ -12,6 +12,7 @@ function Selector<T>({ value, children }: SelectorProps<T>): JSX.Element {
         multiple,
         disabled,
     } = useContext<SelectorGroupContextType<T>>(SelectorGroupContext);
+
     const isSelected = useSelected(value, selected, multiple);
 
     const handleSelect = () => {
