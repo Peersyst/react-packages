@@ -4,10 +4,10 @@ import { CoreLabelProps } from "../../Label";
 import { CoreFormControlledComponentProps } from "../../FormControl";
 import { ReactChild } from "@peersyst/react-types";
 
-export type BaseSelectorType = "radio" | "checkbox" | "switch";
+export type BaseSelectorController = "radio" | "checkbox" | "switch";
 
-export type SelectorType<LP extends CoreLabelProps = CoreLabelProps> =
-    | BaseSelectorType
+export type SelectorController<LP extends CoreLabelProps = CoreLabelProps> =
+    | BaseSelectorController
     | JSXElementConstructor<SelectorControllerProps<LP>>;
 
 export interface SelectorChildrenContext<T>
@@ -37,7 +37,7 @@ export interface SelectorProps<T> {
 export type CoreSelectorProps<
     T,
     LP extends CoreLabelProps = CoreLabelProps,
-    ST = SelectorType<LP> /* Custom selector types */,
+    ST = SelectorController<LP> /* Custom selector types */,
 > = Pick<SelectorProps<T>, Exclude<keyof SelectorProps<T>, "children">> & {
     /**
      * Selector type

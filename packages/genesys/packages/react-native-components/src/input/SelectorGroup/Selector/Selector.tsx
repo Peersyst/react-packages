@@ -6,10 +6,10 @@ import {
 import { JSXElementConstructor } from "react";
 import { Switch } from "../../../input/Switch";
 import { RadioButton } from "../../../input/RadioButton";
-import { BaseNativeSelectorType, SelectorProps } from "./Selector.types";
+import { BaseNativeSelectorController, SelectorProps } from "./Selector.types";
 
 export const SELECTOR_CONTROLLERS: Record<
-    BaseNativeSelectorType,
+    BaseNativeSelectorController,
     JSXElementConstructor<SelectorControllerProps>
 > = {
     radio: RadioButton,
@@ -21,17 +21,20 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
         controller = "radio",
         renderController,
         value,
+        label,
         LabelProps,
         ...rest
     } = useMergeDefaultProps("Selector", props);
 
-    const Controller = typeof content === "string" ? SELECTOR_CONTROLLERS[content] : content;
+    const Controller =
+        typeof controller === "string" ? SELECTOR_CONTROLLERS[controller] : controller;
 
     return (
         <CoreSelector value={value}>
             {({ setSelected, isSelected, readonly, disabled, ...restOfContext }) => {
                 return renderController ? (
                     renderController({
+                        label,
                         isSelected,
                         setSelected,
                         readonly,
@@ -44,6 +47,7 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
                         disabled={disabled}
                         value={isSelected}
                         onChange={setSelected}
+                        label={label}
                         LabelProps={{ placement: "right", ...LabelProps }}
                         {...rest}
                     />

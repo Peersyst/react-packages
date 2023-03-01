@@ -1,7 +1,7 @@
 import {
     Selector as CoreSelector,
     useMergeDefaultProps,
-    BaseSelectorType,
+    BaseSelectorController,
 } from "@peersyst/react-components-core";
 import { cx } from "@peersyst/react-utils";
 import { RadioButton } from "../../RadioButton";
@@ -11,7 +11,7 @@ import { SelectorControllerProps, SelectorProps } from "./Selector.types";
 import { JSXElementConstructor } from "react";
 
 export const SELECTOR_CONTROLLERS: Record<
-    BaseSelectorType,
+    BaseSelectorController,
     JSXElementConstructor<SelectorControllerProps>
 > = {
     checkbox: Checkbox,

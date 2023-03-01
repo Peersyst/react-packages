@@ -2,7 +2,7 @@ import { ReactChild } from "@peersyst/react-types";
 import { ReactElement } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
-import { CoreSelectorProps, SelectorType } from "./Selector/Selector.types";
+import { CoreSelectorProps, SelectorController } from "./Selector/Selector.types";
 
 export type SelectorDirection = "row" | "column";
 
@@ -23,7 +23,7 @@ export type CoreSelectorGroupProps<
     LP extends CoreLabelProps,
     D extends SelectorDirection = "column",
     Multiple extends boolean = false,
-    ST = SelectorType<LP>,
+    ST = SelectorController<LP>,
 > = CoreFormControlledComponentProps<Multiple extends true ? T[] : T, LP> &
     Pick<CoreSelectorProps<T, LP, ST>, "controller" | "renderController"> & {
         /**
