@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle, ButtonProps as NativeButtonProps } from "react-native";
+import { TextStyle, ButtonProps as NativeButtonProps } from "react-native";
 import { ReactElement } from "react";
 import { SX } from "@peersyst/react-native-styled";
 import { ButtonSize, ButtonVariant, CoreButtonProps } from "@peersyst/react-components-core";

@@ -6,10 +6,10 @@ import {
 import { JSXElementConstructor } from "react";
 import { Switch } from "../../../input/Switch";
 import { RadioButton } from "../../../input/RadioButton";
-import { NativeSelectorType, SelectorProps } from "./Selector.types";
+import { BaseNativeSelectorController, SelectorProps } from "./Selector.types";
 
 export const SELECTOR_CONTROLLERS: Record<
-    NativeSelectorType,
+    BaseNativeSelectorController,
     JSXElementConstructor<SelectorControllerProps>
 > = {
     radio: RadioButton,
@@ -17,21 +17,37 @@ export const SELECTOR_CONTROLLERS: Record<
 };
 
 function Selector<T>(props: SelectorProps<T>): JSX.Element {
-    const { type = "radio", value, LabelProps, ...rest } = useMergeDefaultProps("Selector", props);
+    const {
+        controller = "radio",
+        renderController,
+        value,
+        label,
+        LabelProps,
+        ...rest
+    } = useMergeDefaultProps("Selector", props);
 
-    const Controller = SELECTOR_CONTROLLERS[type];
+    const Controller =
+        typeof controller === "string" ? SELECTOR_CONTROLLERS[controller] : controller;
 
     return (
         <CoreSelector value={value}>
-            {({ setSelected, isSelected, readonly, disabled }) => {
-                return (
+            {({ setSelected, isSelected, ...restOfContext }) => {
+                return renderController ? (
+                    renderController({
+                        label,
+                        value,
+                        isSelected,
+                        setSelected,
+                        ...restOfContext,
+                    })
+                ) : (
                     <Controller
-                        readonly={readonly}
-                        disabled={disabled}
                         value={isSelected}
                         onChange={setSelected}
+                        label={label}
                         LabelProps={{ placement: "right", ...LabelProps }}
                         {...rest}
+                        {...restOfContext}
                     />
                 );
             }}

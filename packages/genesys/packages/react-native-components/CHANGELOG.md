@@ -1,5 +1,12 @@
 # Versions
 
+### BREAKING
+
+## 2.3.0
+
+[Selector] Refactor of selector. `type` prop now is `controller`. Enable custom render function
+[SelectorGroup] SelectorGroup update `type` prop now is `controller`. Enable custom render function
+
 ## 2.2.11
 
 [TextInput] Update caret-color based on textfield validity status

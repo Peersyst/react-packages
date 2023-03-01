@@ -1,4 +1,5 @@
-import { ComponentType, ReactChild, ReactNode } from "react";
+import { ReactChild } from "@peersyst/react-types";
+import { ComponentType, ReactNode } from "react";
 import { CoreLabelProps } from "../Label";
 
 export interface FormControlProps<T = any> {
@@ -98,26 +99,30 @@ export interface CoreFormControlProps<
     children: (...args: [...ChildrenParameters<T>, ...ExtraChildrenParameters]) => ReactNode;
 }
 
-export type BaseCoreFormControlledComponentProps<T, LP extends CoreLabelProps = CoreLabelProps> =
-    Pick<
-        CoreFormControlProps<LP, T>,
-        Exclude<keyof CoreFormControlProps, "children" | "Label" | "validation" | "defaultValue">
-    >;
-export type CoreFormControlledComponentProps<T, LP extends CoreLabelProps = CoreLabelProps> =
-    BaseCoreFormControlledComponentProps<T, LP> & {
-        /**
-         * Default value
-         */
-        defaultValue?: T;
-        /**
-         * FormControl's Label props
-         */
-        LabelProps?: Omit<LP, "label">;
-        /**
-         * FormControl's custom Label
-         */
-        Label?: ComponentType<LP>;
-    };
+export type BaseCoreFormControlledComponentProps<
+    T,
+    LP extends CoreLabelProps = CoreLabelProps,
+> = Pick<
+    CoreFormControlProps<LP, T>,
+    Exclude<keyof CoreFormControlProps, "children" | "Label" | "validation" | "defaultValue">
+>;
+export type CoreFormControlledComponentProps<
+    T,
+    LP extends CoreLabelProps = CoreLabelProps,
+> = BaseCoreFormControlledComponentProps<T, LP> & {
+    /**
+     * Default value
+     */
+    defaultValue?: T;
+    /**
+     * FormControl's Label props
+     */
+    LabelProps?: Omit<LP, "label">;
+    /**
+     * FormControl's custom Label
+     */
+    Label?: ComponentType<LP>;
+};
 
 export type FormControlContextType = {
     required: boolean;

@@ -1,6 +1,7 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
-import { SelectorGroup, Selector } from "@peersyst/react-components";
+import { SelectorGroup, Selector, Row } from "@peersyst/react-components";
 import themedContainer from "../styles/themedContainer";
+import CustomSelectorGroup from "./component/CustomSelectorGroup";
 
 <Meta
     title="Components/Inputs/SelectorGroup"
@@ -65,8 +66,8 @@ If a higher level of customization is needed, SelectorGroup also accepts Selecto
 
 ```jsx
 <SelectorGroup label="Select your fav food">
-    <Selector value={1} label="Hamburger" type="switch" />
-    <Selector value={2} label="Fries" type="checkbox" />
+    <Selector value={1} label="Hamburger" controller="switch" />
+    <Selector value={2} label="Fries" controller="checkbox" />
     <Selector
         value={3}
         label="Coconut"
@@ -78,14 +79,26 @@ If a higher level of customization is needed, SelectorGroup also accepts Selecto
 
 <Canvas>
     <SelectorGroup label="Select your fav food">
-        <Selector value={1} label="Hamburger" type="switch" />
-        <Selector value={2} label="Fries" type="checkbox" />
+        <Selector value={1} label="Hamburger" controller="switch" />
+        <Selector value={2} label="Fries" controller="checkbox" />
         <Selector
             value={3}
             label="Coconut"
             LabelProps={{ placement: "top", style: { color: "yellow" } }}
         />
-        <Selector value={4} LabelProps={{ placement: "bottom" }} label="Banana" />
+        <Selector
+            value={4}
+            LabelProps={{ placement: "bottom" }}
+            label={
+                <Row alignItems="center" gap="0.5rem">
+                    <label>Custom element</label>
+                    <img
+                        src="https://peersyst.com/wp-content/uploads/2021/11/svgexport-1.svg"
+                        height="20px"
+                    />
+                </Row>
+            }
+        />
     </SelectorGroup>
 </Canvas>
 
@@ -130,7 +143,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 ```jsx
 <SelectorGroup
     label="Select yout fav framework"
-    type="switch"
+    controller="switch"
     name="select"
     options={[
         { value: "react", label: "React" },
@@ -144,7 +157,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 <Canvas>
     <SelectorGroup
         label="Select yout fav framework"
-        type="switch"
+        controller="switch"
         name="select"
         options={[
             { value: "react", label: "React" },
@@ -160,7 +173,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 ```jsx
 <SelectorGroup
     label="Select yout fav framework"
-    type="checkbox"
+    controller="checkbox"
     name="select"
     options={[
         { value: "react", label: "React" },
@@ -174,7 +187,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 <Canvas>
     <SelectorGroup
         label="Select yout fav framework"
-        type="checkbox"
+        controller="checkbox"
         name="select"
         options={[
             { value: "react", label: "React" },
@@ -183,6 +196,46 @@ Multiple selectors are also supported: checkbox, switch, radio
             { value: "svelte", label: "Svelte" },
         ]}
     />
+</Canvas>
+
+### Customize the controller
+
+```jsx
+function CustomSelectorGroup(): JSX.Element {
+    return (
+        <SelectorGroup
+            label="Loogin with your favorite app"
+            controller={CustomSelector}
+            options={[
+                { value: "google", label: "Google" },
+                { value: "facebook", label: "Facebook" },
+                { value: "twitter", label: "Twitter" },
+            ]}
+        />
+    );
+}
+
+
+function CustomSelector({ value = false, onChange, label }: SelectorControllerProps) {
+    const [selected, setSelected] = useControlled(value, value, onChange);
+
+    const handleChange = () => {
+        setSelected(!selected);
+    };
+
+    const finalLabel = label as string;
+
+    return (
+        <Row style={{ cursor: "pointer" }} onClick={handleChange} gap="1rem" alignItems="center">
+            <img src={SOCIAL_ICONS[finalLabel.toLocaleLowerCase()]} alt={finalLabel} width="15px" />
+            <label style={{ color: value ? "green" : "white", cursor: "pointer" }}>{label}</label>
+        </Row>
+    );
+}
+```
+
+<Canvas>
+    <CustomSelectorGroup />
 </Canvas>
 
 ### Customize the direction
@@ -196,7 +249,7 @@ You can also pass from the Row/Col props the following parameters:
     label="Select yout fav framework"
     direction="row"
     gap="2rem"
-    type="switch"
+    controller="switch"
     name="select"
     options={[
         { value: "react", label: "React" },
@@ -212,7 +265,7 @@ You can also pass from the Row/Col props the following parameters:
         label="Select yout fav framework"
         direction="row"
         gap="2rem"
-        type="switch"
+        controller="switch"
         name="select"
         options={[
             { value: "react", label: "React" },

@@ -24,11 +24,14 @@ export type InnerSelectorGroupProps<
     T,
     Multiple extends boolean = false,
     D extends SelectorDirection = "column",
-> = Pick<SelectorGroupProps<T, Multiple, D>, "options" | "children" | "selectorLabelProps"> &
+> = Pick<
+    SelectorGroupProps<T, Multiple, D>,
+    "options" | "children" | "selectorLabelProps" | "renderController"
+> &
     Required<
         Pick<
             SelectorGroupProps<T, Multiple, D>,
-            "direction" | "disabled" | "readonly" | "type" | "multiple" | "value"
+            "direction" | "disabled" | "readonly" | "controller" | "multiple" | "value"
         >
     > &
     SelectorGroupLayoutProps & {

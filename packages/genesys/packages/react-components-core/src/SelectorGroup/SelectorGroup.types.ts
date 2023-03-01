@@ -1,15 +1,16 @@
+import { ReactChild } from "@peersyst/react-types";
 import { ReactElement } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
+import { CoreSelectorProps, SelectorController } from "./Selector/Selector.types";
 
-export type SelectorType = "radio" | "checkbox" | "switch";
 export type SelectorDirection = "row" | "column";
 
 export interface SelectorOption<T> {
     /**
      * Selector label
      */
-    label: string;
+    label: ReactChild;
     /**
      * Selector value
      */
@@ -22,29 +23,26 @@ export type CoreSelectorGroupProps<
     LP extends CoreLabelProps,
     D extends SelectorDirection = "column",
     Multiple extends boolean = false,
-    ST = SelectorType,
-> = CoreFormControlledComponentProps<Multiple extends true ? T[] : T, LP> & {
-    /**
-     * Make the selection multiple
-     */
-    multiple?: Multiple;
-    /**
-     * SelectGroup with default Selector component
-     */
-    options?: SelectorOption<T>[];
-    /**
-     * Add custom Selector components
-     */
-    children?: ReactElement<CustomSelectorProps>[];
-    /**
-     * Selector type
-     */
-    type?: ST;
-    /**
-     * Selector direction
-     */
-    direction?: D;
-};
+    ST = SelectorController<LP>,
+> = CoreFormControlledComponentProps<Multiple extends true ? T[] : T, LP> &
+    Pick<CoreSelectorProps<T, LP, ST>, "controller" | "renderController"> & {
+        /**
+         * Make the selection multiple
+         */
+        multiple?: Multiple;
+        /**
+         * SelectGroup with default Selector component
+         */
+        options?: SelectorOption<T>[];
+        /**
+         * Add custom Selector components
+         */
+        children?: ReactElement<CustomSelectorProps>[];
+        /**
+         * Selector direction
+         */
+        direction?: D;
+    };
 
 export interface SelectorGroupContextType<T> {
     value: T | T[];
