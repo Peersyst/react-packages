@@ -49,7 +49,7 @@ export type CoreSelectorProps<
      * - Use isSelected to know if the current element is the selected one
      */
     renderController?: (
-        context: SelectorChildrenContext<T> & { label?: ReactChild },
+        context: SelectorChildrenContext<T> & { label?: ReactChild; value?: T },
     ) => ReactElement;
 } & Pick<CoreFormControlledComponentProps<T, LP>, "Label" | "LabelProps" | "label">;
 

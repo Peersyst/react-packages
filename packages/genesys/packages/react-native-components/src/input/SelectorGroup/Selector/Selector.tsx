@@ -35,6 +35,7 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
                 return renderController ? (
                     renderController({
                         label,
+                        value,
                         isSelected,
                         setSelected,
                         readonly,
