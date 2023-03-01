@@ -1,6 +1,7 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
-import { SelectorGroup, Selector } from "@peersyst/react-components";
+import { SelectorGroup, Selector, Row } from "@peersyst/react-components";
 import themedContainer from "../styles/themedContainer";
+import CustomSelectorGroup from "./component/CustomSelectorGroup";
 
 <Meta
     title="Components/Inputs/SelectorGroup"
@@ -85,7 +86,19 @@ If a higher level of customization is needed, SelectorGroup also accepts Selecto
             label="Coconut"
             LabelProps={{ placement: "top", style: { color: "yellow" } }}
         />
-        <Selector value={4} LabelProps={{ placement: "bottom" }} label="Banana" />
+        <Selector
+            value={4}
+            LabelProps={{ placement: "bottom" }}
+            label={
+                <Row alignItems="center" gap="0.5rem">
+                    <label>Custom element</label>
+                    <img
+                        src="https://peersyst.com/wp-label/uploads/2021/11/svgexport-1.svg"
+                        height="20px"
+                    />
+                </Row>
+            }
+        />
     </SelectorGroup>
 </Canvas>
 
@@ -185,11 +198,29 @@ Multiple selectors are also supported: checkbox, switch, radio
     />
 </Canvas>
 
+### Customize the controller
+
+```jsx
+<SelectorGroup
+    label="Select yout fav framework"
+    options={[
+        { value: "react", label: "React" },
+        { value: "vue", label: "Vue" },
+        { value: "angular", label: "Angular" },
+        { value: "svelte", label: "Svelte" },
+    ]}
+/>
+```
+
+<Canvas>
+    <CustomSelectorGroup />
+</Canvas>
+
 ### Customize the direction
 
 Switch between displaying the controllers in a row or a col.
 You can also pass from the Row/Col props the following parameters:
-"gap" | "justifyContent" | "alignItems" | "reverse"
+"gap" | "justifylabel" | "alignItems" | "reverse"
 
 ```jsx
 <SelectorGroup
