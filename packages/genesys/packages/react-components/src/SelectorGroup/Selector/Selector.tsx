@@ -21,22 +21,25 @@ export const SELECTOR_CONTROLLERS: Record<
 
 function Selector<T>(props: SelectorProps<T>): JSX.Element {
     const {
-        content = "radio",
-        renderSelector,
+        controller = "radio",
+        renderController,
         className,
         style,
         value,
+        label,
         LabelProps,
         ...rest
     } = useMergeDefaultProps("Selector", props);
 
-    const Controller = typeof content === "string" ? SELECTOR_CONTROLLERS[content] : content;
+    const Controller =
+        typeof controller === "string" ? SELECTOR_CONTROLLERS[controller] : controller;
 
     return (
         <CoreSelector value={value}>
             {({ setSelected, isSelected, readonly, disabled, ...contextRest }) => {
-                return renderSelector ? (
-                    renderSelector({
+                return renderController ? (
+                    renderController({
+                        label,
                         isSelected,
                         setSelected,
                         readonly,
@@ -51,6 +54,7 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
                         className={cx("Selector", isSelected && "Selected", className)}
                         value={isSelected}
                         onChange={setSelected}
+                        label={label}
                         LabelProps={{ placement: "right", ...LabelProps }}
                         {...rest}
                     />

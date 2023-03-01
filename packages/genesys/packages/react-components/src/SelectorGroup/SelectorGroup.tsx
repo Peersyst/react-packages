@@ -21,8 +21,8 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
     alignItems,
     reverse,
     selectorLabelProps,
-    content,
-    renderSelector,
+    controller = "radio",
+    renderController,
     readonly,
     multiple,
     options,
@@ -43,10 +43,10 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
                             <Selector
                                 LabelProps={selectorLabelProps}
                                 value={value}
-                                content={content}
+                                controller={controller}
                                 label={label}
                                 key={index}
-                                renderSelector={renderSelector}
+                                renderController={renderController}
                             />
                         );
                     })}
@@ -70,8 +70,8 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
         Label = FormControlLabel,
         options,
         direction = "column" as D,
-        content = "radio",
-        renderSelector,
+        controller = "radio",
+        renderController,
         className,
         gap = "1rem",
         justifyContent,
@@ -84,12 +84,12 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
         <FormControl<Multiple extends true ? T[] : T>
             Label={[Label, LabelProps]}
             className={cx("SelectGroup", className)}
-            // @ts-ignore
-            defaultValue={defaultValue}
             disabled={disabled}
             readonly={readonly}
             required={required}
             {...rest}
+            // @ts-ignore
+            defaultValue={defaultValue}
         >
             {(value, setValue) => (
                 <InnerSelectGroup<T, Multiple, D>
@@ -102,8 +102,8 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
                     justifyContent={justifyContent}
                     alignItems={alignItems}
                     reverse={reverse}
-                    renderSelector={renderSelector}
-                    content={content}
+                    renderController={renderController}
+                    controller={controller}
                     readonly={readonly}
                     multiple={multiple}
                     options={options}

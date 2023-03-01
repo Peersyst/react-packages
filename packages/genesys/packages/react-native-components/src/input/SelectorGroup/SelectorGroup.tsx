@@ -19,8 +19,8 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
     justifyContent,
     alignItems,
     selectorLabelProps,
-    content,
-    renderSelector,
+    controller,
+    renderController,
     readonly,
     multiple,
     options,
@@ -42,8 +42,8 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
                             <Selector
                                 LabelProps={selectorLabelProps}
                                 value={value}
-                                content={content}
-                                renderSelector={renderSelector}
+                                controller={controller}
+                                renderController={renderController}
                                 label={label}
                                 key={index}
                             />
@@ -69,8 +69,8 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
         Label = FormControlLabel,
         options,
         direction = "column" as D,
-        content = "radio",
-        renderSelector,
+        controller = "radio",
+        renderController,
         gap = 20,
         justifyContent,
         alignItems,
@@ -80,12 +80,12 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
     return (
         <FormControl<Multiple extends true ? T[] : T>
             Label={[Label, LabelProps]}
-            // @ts-ignore
-            defaultValue={defaultValue}
             disabled={disabled}
             readonly={readonly}
             required={required}
             {...rest}
+            // @ts-ignore
+            defaultValue={defaultValue}
         >
             {(value, setValue, _, style) => (
                 <InnerSelectGroup<T, Multiple, D>
@@ -97,8 +97,8 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
                     gap={gap}
                     justifyContent={justifyContent}
                     alignItems={alignItems}
-                    content={content}
-                    renderSelector={renderSelector}
+                    controller={controller}
+                    renderController={renderController}
                     style={style}
                     readonly={readonly}
                     multiple={multiple}

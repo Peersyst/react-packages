@@ -18,8 +18,8 @@ export const SELECTOR_CONTROLLERS: Record<
 
 function Selector<T>(props: SelectorProps<T>): JSX.Element {
     const {
-        content = "radio",
-        renderSelector,
+        controller = "radio",
+        renderController,
         value,
         LabelProps,
         ...rest
@@ -30,8 +30,8 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
     return (
         <CoreSelector value={value}>
             {({ setSelected, isSelected, readonly, disabled, ...restOfContext }) => {
-                return renderSelector ? (
-                    renderSelector({
+                return renderController ? (
+                    renderController({
                         isSelected,
                         setSelected,
                         readonly,

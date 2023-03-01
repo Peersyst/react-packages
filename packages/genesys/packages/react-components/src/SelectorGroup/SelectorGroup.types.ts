@@ -2,7 +2,7 @@ import { CoreSelectorGroupProps, SelectorDirection } from "@peersyst/react-compo
 import { FormControlledComponentProps } from "../FormControl";
 import { LabelProps } from "../Label";
 import { RowProps } from "../Row";
-import { SelectorControllerExtraProps, SelectorProps } from "./Selector";
+import { SelectorProps } from "./Selector";
 
 export type SelectorGroupLayoutProps = Pick<
     RowProps,
@@ -14,14 +14,7 @@ export type SelectorGroupProps<
     Multiple extends boolean = false,
     D extends SelectorDirection = "column",
 > = FormControlledComponentProps<
-    CoreSelectorGroupProps<
-        T,
-        SelectorProps<T>,
-        LabelProps,
-        D,
-        Multiple,
-        SelectorControllerExtraProps
-    >
+    CoreSelectorGroupProps<T, SelectorProps<T>, LabelProps, D, Multiple>
 > &
     SelectorGroupLayoutProps & {
         selectorLabelProps?: Omit<LabelProps, "label">;
@@ -33,12 +26,12 @@ export type InnerSelectorGroupProps<
     D extends SelectorDirection = "column",
 > = Pick<
     SelectorGroupProps<T, Multiple, D>,
-    "options" | "children" | "selectorLabelProps" | "renderSelector"
+    "options" | "children" | "selectorLabelProps" | "renderController"
 > &
     Required<
         Pick<
             SelectorGroupProps<T, Multiple, D>,
-            "direction" | "disabled" | "readonly" | "content" | "multiple" | "value"
+            "direction" | "disabled" | "readonly" | "controller" | "multiple" | "value"
         >
     > &
     SelectorGroupLayoutProps & {

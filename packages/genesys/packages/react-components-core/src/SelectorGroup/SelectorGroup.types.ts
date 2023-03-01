@@ -1,3 +1,4 @@
+import { ReactChild } from "@peersyst/react-types";
 import { ReactElement } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
@@ -9,7 +10,7 @@ export interface SelectorOption<T> {
     /**
      * Selector label
      */
-    label: string;
+    label: ReactChild;
     /**
      * Selector value
      */
@@ -22,10 +23,9 @@ export type CoreSelectorGroupProps<
     LP extends CoreLabelProps,
     D extends SelectorDirection = "column",
     Multiple extends boolean = false,
-    CP extends object = {}, //Custom controller props
-    ST = SelectorType<LP, CP>,
+    ST = SelectorType<LP>,
 > = CoreFormControlledComponentProps<Multiple extends true ? T[] : T, LP> &
-    Pick<CoreSelectorProps<T, LP, CP, ST>, "content" | "renderSelector"> & {
+    Pick<CoreSelectorProps<T, LP, ST>, "controller" | "renderController"> & {
         /**
          * Make the selection multiple
          */

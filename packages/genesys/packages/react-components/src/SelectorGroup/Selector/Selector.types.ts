@@ -5,8 +5,7 @@ import {
 import { CSSProperties } from "react";
 import { LabelProps } from "../../Label";
 
-export interface SelectorProps<T>
-    extends CoreSelectorProps<T, LabelProps, SelectorControllerExtraProps> {
+export interface SelectorProps<T> extends CoreSelectorProps<T, LabelProps> {
     /**
      * Selector className
      */

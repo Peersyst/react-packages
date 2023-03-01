@@ -65,8 +65,8 @@ If a higher level of customization is needed, SelectorGroup also accepts Selecto
 
 ```jsx
 <SelectorGroup label="Select your fav food">
-    <Selector value={1} label="Hamburger" content="switch" />
-    <Selector value={2} label="Fries" content="checkbox" />
+    <Selector value={1} label="Hamburger" controller="switch" />
+    <Selector value={2} label="Fries" controller="checkbox" />
     <Selector
         value={3}
         label="Coconut"
@@ -78,8 +78,8 @@ If a higher level of customization is needed, SelectorGroup also accepts Selecto
 
 <Canvas>
     <SelectorGroup label="Select your fav food">
-        <Selector value={1} label="Hamburger" content="switch" />
-        <Selector value={2} label="Fries" content="checkbox" />
+        <Selector value={1} label="Hamburger" controller="switch" />
+        <Selector value={2} label="Fries" controller="checkbox" />
         <Selector
             value={3}
             label="Coconut"
@@ -130,7 +130,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 ```jsx
 <SelectorGroup
     label="Select yout fav framework"
-    content="switch"
+    controller="switch"
     name="select"
     options={[
         { value: "react", label: "React" },
@@ -144,7 +144,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 <Canvas>
     <SelectorGroup
         label="Select yout fav framework"
-        content="switch"
+        controller="switch"
         name="select"
         options={[
             { value: "react", label: "React" },
@@ -160,7 +160,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 ```jsx
 <SelectorGroup
     label="Select yout fav framework"
-    content="checkbox"
+    controller="checkbox"
     name="select"
     options={[
         { value: "react", label: "React" },
@@ -174,7 +174,7 @@ Multiple selectors are also supported: checkbox, switch, radio
 <Canvas>
     <SelectorGroup
         label="Select yout fav framework"
-        content="checkbox"
+        controller="checkbox"
         name="select"
         options={[
             { value: "react", label: "React" },
@@ -189,14 +189,14 @@ Multiple selectors are also supported: checkbox, switch, radio
 
 Switch between displaying the controllers in a row or a col.
 You can also pass from the Row/Col props the following parameters:
-"gap" | "justifyContent" | "alignItems" | "reverse"
+"gap" | "justifycontroller" | "alignItems" | "reverse"
 
 ```jsx
 <SelectorGroup
     label="Select yout fav framework"
     direction="row"
     gap="2rem"
-    content="switch"
+    controller="switch"
     name="select"
     options={[
         { value: "react", label: "React" },
@@ -212,7 +212,7 @@ You can also pass from the Row/Col props the following parameters:
         label="Select yout fav framework"
         direction="row"
         gap="2rem"
-        content="switch"
+        controller="switch"
         name="select"
         options={[
             { value: "react", label: "React" },
