@@ -38,7 +38,6 @@ function Selector<T>(props: SelectorProps<T>): JSX.Element {
                         value,
                         isSelected,
                         setSelected,
-
                         ...restOfContext,
                     })
                 ) : (
