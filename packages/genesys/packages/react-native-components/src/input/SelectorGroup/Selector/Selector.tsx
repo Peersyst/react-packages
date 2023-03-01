@@ -6,10 +6,10 @@ import {
 import { JSXElementConstructor } from "react";
 import { Switch } from "../../../input/Switch";
 import { RadioButton } from "../../../input/RadioButton";
-import { NativeSelectorType, SelectorProps } from "./Selector.types";
+import { BaseNativeSelectorType, SelectorProps } from "./Selector.types";
 
 export const SELECTOR_CONTROLLERS: Record<
-    NativeSelectorType,
+    BaseNativeSelectorType,
     JSXElementConstructor<SelectorControllerProps>
 > = {
     radio: RadioButton,
@@ -17,14 +17,28 @@ export const SELECTOR_CONTROLLERS: Record<
 };
 
 function Selector<T>(props: SelectorProps<T>): JSX.Element {
-    const { type = "radio", value, LabelProps, ...rest } = useMergeDefaultProps("Selector", props);
+    const {
+        content = "radio",
+        renderSelector,
+        value,
+        LabelProps,
+        ...rest
+    } = useMergeDefaultProps("Selector", props);
 
-    const Controller = SELECTOR_CONTROLLERS[type];
+    const Controller = typeof content === "string" ? SELECTOR_CONTROLLERS[content] : content;
 
     return (
         <CoreSelector value={value}>
-            {({ setSelected, isSelected, readonly, disabled }) => {
-                return (
+            {({ setSelected, isSelected, readonly, disabled, ...restOfContext }) => {
+                return renderSelector ? (
+                    renderSelector({
+                        isSelected,
+                        setSelected,
+                        readonly,
+                        disabled,
+                        ...restOfContext,
+                    })
+                ) : (
                     <Controller
                         readonly={readonly}
                         disabled={disabled}

@@ -11,7 +11,7 @@ export type SelectorGroupProps<
     Multiple extends boolean = false,
     D extends SelectorDirection = "column",
 > = FormControlledComponentProps<
-    CoreSelectorGroupProps<T, SelectorProps<T>, LabelProps, D, Multiple, NativeSelectorType>
+    CoreSelectorGroupProps<T, SelectorProps<T>, LabelProps, D, Multiple, {}, NativeSelectorType>
 > &
     SelectorGroupLayoutProps & {
         selectorLabelProps?: Omit<LabelProps, "label">;
@@ -21,11 +21,14 @@ export type InnerSelectorGroupProps<
     T,
     Multiple extends boolean = false,
     D extends SelectorDirection = "column",
-> = Pick<SelectorGroupProps<T, Multiple, D>, "options" | "children" | "selectorLabelProps"> &
+> = Pick<
+    SelectorGroupProps<T, Multiple, D>,
+    "options" | "children" | "selectorLabelProps" | "renderSelector"
+> &
     Required<
         Pick<
             SelectorGroupProps<T, Multiple, D>,
-            "direction" | "disabled" | "readonly" | "type" | "multiple" | "value"
+            "direction" | "disabled" | "readonly" | "content" | "multiple" | "value"
         >
     > &
     SelectorGroupLayoutProps & {

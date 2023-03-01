@@ -1,7 +1,14 @@
-import { ReactElement } from "react";
-import { SelectorGroupContextType, SelectorType } from "../SelectorGroup.types";
+import { JSXElementConstructor, ReactElement } from "react";
+import { SelectorGroupContextType } from "../SelectorGroup.types";
 import { CoreLabelProps } from "../../Label";
 import { CoreFormControlledComponentProps } from "../../FormControl";
+
+export type BaseSelectorType = "radio" | "checkbox" | "switch";
+
+export type SelectorType<
+    LP extends CoreLabelProps = CoreLabelProps,
+    CP extends object = {} /* Custom controller props */,
+> = BaseSelectorType | JSXElementConstructor<SelectorControllerProps<LP & CP>>;
 
 export interface SelectorChildrenContext<T>
     extends Omit<SelectorGroupContextType<T>, "setValue" | "value"> {
@@ -30,12 +37,19 @@ export interface SelectorProps<T> {
 export type CoreSelectorProps<
     T,
     LP extends CoreLabelProps = CoreLabelProps,
-    ST = SelectorType,
-> = Pick<SelectorProps<T>, Exclude<keyof SelectorProps<any>, "children">> & {
+    CP extends object = {} /* Custom controller props */,
+    ST = SelectorType<LP, CP> /* Custom selector types */,
+> = Pick<SelectorProps<T>, Exclude<keyof SelectorProps<T>, "children">> & {
     /**
      * Selector type
      */
-    type?: ST;
+    content?: ST;
+    /**
+     * Custom render selector function. If not provided, the default selector will be rendered
+     * - Use setSelected to update the selected value/s of the SelectorGroup
+     * - Use isSelected to know if the current element is the selected one
+     */
+    renderSelector?: (context: SelectorChildrenContext<T>) => ReactElement;
 } & Pick<CoreFormControlledComponentProps<T, LP>, "Label" | "LabelProps" | "label">;
 
 export interface SelectorControllerProps<LP extends CoreLabelProps = CoreLabelProps> {

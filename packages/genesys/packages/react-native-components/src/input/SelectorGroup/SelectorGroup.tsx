@@ -19,7 +19,8 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
     justifyContent,
     alignItems,
     selectorLabelProps,
-    type,
+    content,
+    renderSelector,
     readonly,
     multiple,
     options,
@@ -41,7 +42,8 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
                             <Selector
                                 LabelProps={selectorLabelProps}
                                 value={value}
-                                type={type}
+                                content={content}
+                                renderSelector={renderSelector}
                                 label={label}
                                 key={index}
                             />
@@ -67,7 +69,8 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
         Label = FormControlLabel,
         options,
         direction = "column" as D,
-        type = "radio",
+        content = "radio",
+        renderSelector,
         gap = 20,
         justifyContent,
         alignItems,
@@ -94,7 +97,8 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
                     gap={gap}
                     justifyContent={justifyContent}
                     alignItems={alignItems}
-                    type={type}
+                    content={content}
+                    renderSelector={renderSelector}
                     style={style}
                     readonly={readonly}
                     multiple={multiple}
