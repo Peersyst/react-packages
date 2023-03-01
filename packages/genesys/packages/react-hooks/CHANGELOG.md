@@ -1,8 +1,13 @@
 # Versions
 
+## 2.2.5
+
+Dependencies update (react-types)
+
 ## 1.2.6
 
 Dependencies update
+
 ## 1.2.5
 
 Dependencies update

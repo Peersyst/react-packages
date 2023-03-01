@@ -1,5 +1,9 @@
 # Versions
 
+## 1.5.2
+
+[ReactChild] Add react child type as it is deprecated in the react package
+
 ## 1.3.4
 
 [LoosenDeeply]
