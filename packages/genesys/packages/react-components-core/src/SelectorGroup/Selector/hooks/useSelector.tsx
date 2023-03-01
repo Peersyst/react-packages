@@ -21,7 +21,6 @@ export function useSelector<T>({ value }: UseSelectorProps<T>): SelectorChildren
     const isSelected = useSelected(value, selected, multiple);
 
     const handleSelect = () => {
-        console.log("Running");
         if (!readonly && !disabled) {
             setValue(handleSelection(value, selected, multiple, isSelected));
         }
