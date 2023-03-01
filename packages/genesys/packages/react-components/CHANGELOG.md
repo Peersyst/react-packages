@@ -1,5 +1,12 @@
 # Versions
 
+### BREAKING
+
+## 3.3.0
+
+[Selector] Refactor of selector. `type` prop now is `content`. Enable custom render function
+[SelectorGroup] SelectorGroup update `type` prop now is `content`. Enable custom render function
+
 ## 3.2.21
 
 [TextInput] Update carete-color based on textinput validity status
