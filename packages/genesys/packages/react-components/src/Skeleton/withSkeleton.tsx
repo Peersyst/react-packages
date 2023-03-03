@@ -1,17 +1,15 @@
-import { ComponentType } from "react";
+import { JSXElementConstructor } from "react";
 import Skeleton from "./Skeleton";
 import { WithLoading, WithSkeletonProps } from "./Skeleton.types";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function withSkeleton<TProps = {}>(
-    WrappedComponent: ComponentType<TProps>,
+    WrappedComponent: JSXElementConstructor<TProps>,
     skeletonProps?: WithSkeletonProps,
-): ComponentType<WithLoading<TProps>> {
-    // eslint-disable-next-line react/display-name
-    return ({ loading = false, ...componentProps }: WithLoading<any>) => {
+): JSXElementConstructor<WithLoading<TProps>> {
+    return ({ loading = false, ...componentProps }: WithLoading<TProps>) => {
         return (
             <Skeleton loading={loading} {...skeletonProps}>
-                <WrappedComponent loading={loading} {...componentProps} />
+                <WrappedComponent loading={loading} {...(componentProps as TProps)} />
             </Skeleton>
         );
     };
