@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { ActivityIndicatorProps, ViewStyle } from "react-native";
+import { ActivityIndicatorProps } from "react-native";
 import { SpinnerProps } from "../Spinner";
 
 export interface SuspenseProps {

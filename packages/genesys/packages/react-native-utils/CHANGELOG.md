@@ -1,5 +1,9 @@
 # Versions
 
+## 1.1.4
+
+Dependencies update [react-types]
+
 ## 1.1.0
 
 Dependencies update

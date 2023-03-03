@@ -1,5 +1,5 @@
-import { ReactChild, ReactNode } from "react";
-import { OverridableStringUnion } from "@peersyst/react-types";
+import { ReactNode } from "react";
+import { OverridableStringUnion, ReactChild } from "@peersyst/react-types";
 import { TypographyVariants, TypographyVariantsOverrides } from "../theme";
 
 export type LabelPlacement = "top" | "left" | "right" | "bottom";

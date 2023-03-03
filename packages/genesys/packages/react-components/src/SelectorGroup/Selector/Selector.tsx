@@ -1,7 +1,7 @@
 import {
-    SelectorType,
     Selector as CoreSelector,
     useMergeDefaultProps,
+    BaseSelectorController,
 } from "@peersyst/react-components-core";
 import { cx } from "@peersyst/react-utils";
 import { RadioButton } from "../../RadioButton";
@@ -11,7 +11,7 @@ import { SelectorControllerProps, SelectorProps } from "./Selector.types";
 import { JSXElementConstructor } from "react";
 
 export const SELECTOR_CONTROLLERS: Record<
-    SelectorType,
+    BaseSelectorController,
     JSXElementConstructor<SelectorControllerProps>
 > = {
     checkbox: Checkbox,
@@ -21,29 +21,40 @@ export const SELECTOR_CONTROLLERS: Record<
 
 function Selector<T>(props: SelectorProps<T>): JSX.Element {
     const {
-        type = "radio",
+        controller = "radio",
+        renderController,
         className,
         style,
         value,
+        label,
         LabelProps,
         ...rest
     } = useMergeDefaultProps("Selector", props);
 
-    const Controller = SELECTOR_CONTROLLERS[type];
+    const Controller =
+        typeof controller === "string" ? SELECTOR_CONTROLLERS[controller] : controller;
 
     return (
         <CoreSelector value={value}>
-            {({ setSelected, isSelected, readonly, disabled }) => {
-                return (
+            {({ setSelected, isSelected, ...contextRest }) => {
+                return renderController ? (
+                    renderController({
+                        label,
+                        value,
+                        isSelected,
+                        setSelected,
+                        ...contextRest,
+                    })
+                ) : (
                     <Controller
                         style={style}
-                        readonly={readonly}
-                        disabled={disabled}
                         className={cx("Selector", isSelected && "Selected", className)}
                         value={isSelected}
                         onChange={setSelected}
+                        label={label}
                         LabelProps={{ placement: "right", ...LabelProps }}
                         {...rest}
+                        {...contextRest}
                     />
                 );
             }}

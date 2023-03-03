@@ -16,7 +16,16 @@ export interface SelectorProps<T> extends CoreSelectorProps<T, LabelProps> {
     style?: CSSProperties;
 }
 
-export interface SelectorControllerProps extends CoreSelectorControllerProps {
+export interface SelectorControllerExtraProps {
+    /**
+     * Selector controller className
+     */
     className?: string;
+    /**
+     * Selector controller style
+     */
     style?: CSSProperties;
 }
+
+export type SelectorControllerProps = CoreSelectorControllerProps<LabelProps> &
+    SelectorControllerExtraProps;
