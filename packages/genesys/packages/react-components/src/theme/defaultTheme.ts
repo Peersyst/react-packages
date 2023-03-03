@@ -5,6 +5,8 @@ import { createBreakpoints } from "./createBreakpoints";
 import { coreTheme, Theme } from "@peersyst/react-components-core";
 import {
     CheckIcon,
+    ChevronDownIcon,
+    ChevronUpIcon,
     CopyIcon,
     CrossIcon,
     ErrorIcon,
@@ -30,6 +32,8 @@ export const defaultTheme: Theme = {
         valid: SuccessIcon,
         check: CheckIcon,
         copy: CopyIcon,
+        chevronDown: ChevronDownIcon,
+        chevronUp: ChevronUpIcon,
     },
     loader: Loader,
     typography,

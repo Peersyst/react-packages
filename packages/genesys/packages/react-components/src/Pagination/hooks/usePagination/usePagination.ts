@@ -1,6 +1,7 @@
 import { PaginationItemType, UsePaginationProps, UsePaginationResult } from "./usePagination.types";
 import { useControlled } from "@peersyst/react-hooks";
 
+// usePagination hook from @mui
 export default function usePagination(props: UsePaginationProps): UsePaginationResult {
     const {
         boundaryCount = 1,

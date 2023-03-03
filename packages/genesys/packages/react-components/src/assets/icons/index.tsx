@@ -3,6 +3,7 @@ export { default as CheckedBoxIcon } from "./CheckedBoxIcon";
 export { default as ChevronDownIcon } from "./ChevronDownIcon";
 export { default as ChevronLeftIcon } from "./ChevronLeftIcon";
 export { default as ChevronRightIcon } from "./ChevronRightIcon";
+export { default as ChevronUpIcon } from "./ChevronUpIcon";
 export { default as CopyIcon } from "./CopyIcon";
 export { default as CrossIcon } from "./CrossIcon";
 export { default as EndIcon } from "./EndIcon";

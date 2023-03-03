@@ -38,8 +38,14 @@ export const PaginationItemRoot = styled.button<PaginationItemRootProps>(
             background-color: ${selected ? alpha(theme.palette.primary, 0.6) : "transparent"};
             opacity: ${disabled && 0.6};
 
+            transition: background-color 200ms;
+
             &:hover {
                 background-color: ${enabled && alpha(theme.palette.primary, 0.3)};
+            }
+
+            &:active {
+                background-color: ${enabled && alpha(theme.palette.primary, 0.4)};
             }
         `;
     },
