@@ -1,5 +1,10 @@
 # Versions
 
+## 3.3.1
+
+[withColor] Add withColor HOC
+[withSkeleton] Improve withSkeleton types
+
 ### BREAKING
 
 ## 3.3.0
