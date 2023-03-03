@@ -47,6 +47,7 @@
         "@peersyst/react-types": "^1.5.3",
         "@peersyst/react-utils": "^2.2.5",
         "@popperjs/core": "^2.11.5",
+        "@tanstack/react-table": "^8.7.9",
         "clsx": "^1.2.1",
         "color": "^4.2.3",
         "highcharts": "^9.3.2",
