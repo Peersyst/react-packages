@@ -351,15 +351,7 @@ const componentsConfig: ComponentsConfig = {
         },
     },
     Table: {
-        defaultProps: {
-            rowHeight: "52px",
-            headerHeight: "56px",
-            borders: {
-                outline: true,
-                horizontal: true,
-                vertical: true,
-            },
-        },
+        defaultProps: {},
     },
     Tabs: {
         defaultProps: {

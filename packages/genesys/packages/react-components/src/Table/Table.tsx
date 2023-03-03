@@ -1,108 +1,107 @@
-import { TableFooter, TableLoadMoreRow, TableRoot } from "./Table.styles";
-import { TableBorders, TableColumnsProps, TableProps, TableRootProps } from "./Table.types";
-import TableColumns from "./TableColumns";
-import TableRows from "./TableRows";
-import { cx } from "@peersyst/react-utils";
-import { createRef, ReactElement, ReactNode } from "react";
-import { InfiniteScroll } from "../InfiniteScroll";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import {
+    OnChangeFn,
+    SortingState,
+    Updater,
+    createColumnHelper,
+    getCoreRowModel,
+    getSortedRowModel,
+    useReactTable,
+} from "@tanstack/react-table";
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
+import { InnerTableProps, TableInstance, TableProps } from "./Table.types";
+import { setRef } from "@peersyst/react-utils";
+import { TableRoot, TableElement, TableContainer } from "./Table.styles";
+import clsx from "clsx";
+import { TableHead } from "./TableHead";
+import { TableBody } from "./TableBody";
+import { TableFooter } from "./TableFooter";
+import { TableContextType, TableProvider } from "./TableContext";
+import { TableLoadingOverlay } from "./TableLoadingOverlay";
+import { TableNoRowsOverlay } from "./TableNoRowsOverlay";
 
-export default function Table<T extends Record<string | number | symbol, ReactNode>>(
-    props: TableProps<T>,
-): JSX.Element {
-    const {
-        rows,
-        columns,
+const InnerTable = forwardRef(function InnerTable(
+    {
         footer,
         className,
         style,
-        headerClassName,
-        headerStyle,
-        footerClassName,
-        footerStyle,
-        rowClassName,
-        rowStyle,
-        cellStyle,
-        cellClassName,
-        rowHeight = "52px",
-        headerHeight = "56px",
-        footerHeight,
-        infiniteProps,
-        onRowClick,
-        borders: bordersProp = {
-            outline: true,
-            horizontal: true,
-            vertical: true,
-        },
-        emptyElement,
-    } = useMergeDefaultProps("Table", props);
-
-    const rowProps = { rowClassName, rowStyle, cellClassName, cellStyle, onRowClick };
-    const columnsProps: TableColumnsProps<T> = {
-        ...rowProps,
-        columns,
-        className: headerClassName,
-        style: headerStyle,
-    };
-    const rowsProps = { ...rowProps, rows, columns, emptyElement };
-    const borders: TableBorders = {
-        outline: bordersProp?.outline ?? true,
-        horizontal: bordersProp?.horizontal ?? true,
-        vertical: bordersProp?.vertical ?? true,
-    };
-    const tableRootProps: TableRootProps = { borders, rowHeight, headerHeight, footerHeight };
-
-    const { loadMoreElement } =
-        (infiniteProps as { loadMoreElement?: ReactElement } | undefined) || {};
-    const {
-        callback = () => undefined,
         loading = false,
-        end = true,
-        observerOffset,
-        loaderElement,
-    } = (infiniteProps as
-        | {
-              callback: (...args: unknown[]) => unknown;
-              loading: boolean;
-              end: boolean;
-              observerOffset?: string;
-              loaderElement?: ReactElement;
-          }
-        | undefined) || {};
+        noRowsElement,
+        rowCount,
+        onSortingChange,
+        state,
+        data,
+        autoResetPageIndex = false,
+        ...tableOptions
+    }: InnerTableProps,
+    ref: ForwardedRef<HTMLDivElement>,
+): JSX.Element {
+    const containerRef = useRef<HTMLDivElement>();
+    const headerRef = useRef<HTMLDivElement>();
 
-    const tableRef = createRef<HTMLDivElement>();
+    const [sorting, setSorting] = useState<SortingState>([]);
+
+    const handleSortingChange: OnChangeFn<SortingState> = (updater: Updater<SortingState>) => {
+        const sortingState = typeof updater === "function" ? updater(sorting) : updater;
+        onSortingChange?.(sortingState);
+        setSorting(sortingState);
+    };
+
+    const table = useReactTable({
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        onSortingChange: handleSortingChange,
+        state: {
+            ...state,
+            sorting: state?.sorting || sorting,
+        },
+        data,
+        autoResetPageIndex,
+        ...tableOptions,
+    });
+
+    const rows = table.getRowModel().rows;
+
+    const [context, setContext] = useState<TableContextType>({
+        table,
+        data,
+        rowCount,
+    });
+
+    useEffect(() => {
+        setContext({ table, data, rowCount });
+    }, [table, data, rowCount]);
 
     return (
-        <TableRoot
-            ref={tableRef}
-            className={cx("Table", className)}
-            style={style}
-            {...tableRootProps}
-        >
-            <TableColumns {...columnsProps} />
-            <InfiniteScroll
-                callback={callback}
-                loading={loading}
-                end={end}
-                loaderElement={loaderElement}
-                observerOffset={observerOffset}
-                container={tableRef}
-            >
-                <TableRows {...rowsProps} />
-                {loadMoreElement && (
-                    <TableLoadMoreRow className="TableRow TableLoadMoreRow">
-                        {loadMoreElement}
-                    </TableLoadMoreRow>
+        <TableRoot className={clsx("TableRoot", className)} ref={ref} style={style}>
+            <TableProvider value={context}>
+                <TableContainer ref={(r) => setRef(containerRef, r)}>
+                    <TableElement className="Table">
+                        <TableHead ref={headerRef} />
+                        <TableBody />
+                    </TableElement>
+                </TableContainer>
+                {!loading && !rows.length && (
+                    <TableNoRowsOverlay
+                        containerRef={containerRef}
+                        headerRef={headerRef}
+                        noRowsElement={noRowsElement}
+                    />
                 )}
-            </InfiniteScroll>
-            {footer && (
-                <TableFooter
-                    className={cx("TableFooter", "TableRow", footerClassName)}
-                    style={footerStyle}
-                >
-                    {footer}
-                </TableFooter>
-            )}
+                <TableLoadingOverlay
+                    containerRef={containerRef}
+                    headerRef={headerRef}
+                    loading={loading}
+                />
+                {footer && <TableFooter>{footer}</TableFooter>}
+            </TableProvider>
         </TableRoot>
     );
+});
+
+function Table<TData = any>(props: TableProps<TData>): JSX.Element {
+    return <InnerTable {...props} />;
 }
+
+Table.createColumnHelper = createColumnHelper;
+
+export default Table as TableInstance;

@@ -14,6 +14,7 @@ import {
     useSelectDisplayContent,
     useMergeDefaultProps,
     useFormControl,
+    useTheme,
 } from "@peersyst/react-components-core";
 import { InnerSelectProps, SelectProps } from "./Select.types";
 import { cx } from "@peersyst/react-utils";
@@ -21,7 +22,6 @@ import { ClickAwayListener } from "../ClickAwayListener";
 import { SelectItem, SelectItemProps } from "./SelectItem";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
-import { ChevronDownIcon } from "../assets/icons";
 
 function InnerSelect<T>({
     clear,
@@ -104,7 +104,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         defaultValue,
         placeholder,
         clear,
-        dropdownElement = <ChevronDownIcon />,
+        dropdownElement: dropdownElementProp,
         renderValue = renderSelectValue,
         autoFocus = false,
         disabled = false,
@@ -116,6 +116,12 @@ export default function Select<T = any, Multiple extends boolean = false>(
         options,
         ...rest
     } = useMergeDefaultProps("Select", props);
+
+    const {
+        icons: { chevronDown: ChevronDown },
+    } = useTheme();
+
+    const dropdownElement = dropdownElementProp || <ChevronDown />;
 
     return (
         <FormControl<T | T[]>

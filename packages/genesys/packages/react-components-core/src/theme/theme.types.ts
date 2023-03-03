@@ -16,6 +16,8 @@ export interface ThemeIcons {
     invalid: JSXElementConstructor<any>;
     valid: JSXElementConstructor<any>;
     check: JSXElementConstructor<any>;
+    chevronDown: JSXElementConstructor<any>;
+    chevronUp: JSXElementConstructor<any>;
 }
 
 export type TypographyVariants =

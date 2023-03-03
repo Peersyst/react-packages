@@ -5,6 +5,7 @@ import {
     selectIsValid,
     useSelectDisplayContent,
     useMergeDefaultProps,
+    useTheme,
 } from "@peersyst/react-components-core";
 import { InnerSelectProps, SelectProps, SelectStyle } from "./Select.types";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
@@ -12,7 +13,6 @@ import useSelectStyles from "./hooks/useSelectStyles";
 import { SelectMenu } from "./SelectMenu";
 import { Icon } from "../../display/Icon";
 import { Row } from "../../layout/Row";
-import { ChevronDownIcon } from "../../assets/icons";
 import { FormControl } from "../FormControl";
 import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
 import { SelectItem, SelectItemProps } from "./SelectItem";
@@ -128,7 +128,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         onOpen,
         placeholder,
         clear,
-        icon = <ChevronDownIcon />,
+        icon: iconProp,
         autoFocus = false,
         disabled = false,
         readonly = false,
@@ -142,6 +142,12 @@ export default function Select<T = any, Multiple extends boolean = false>(
         options,
         ...rest
     } = useMergeDefaultProps("Select", props);
+
+    const {
+        icons: { chevronDown: ChevronDown },
+    } = useTheme();
+
+    const icon = iconProp || <ChevronDown />;
 
     return (
         <FormControl<T | T[], FormControlLabelStyle, SelectStyle>

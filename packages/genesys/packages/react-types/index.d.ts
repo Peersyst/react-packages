@@ -25,6 +25,10 @@ export type OverridableStringUnion<
     T extends string | number,
     U = Record<string, any>,
 > = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
+export type OverridableStringUnion<
+    T extends string | number,
+    U = Record<string, any>,
+> = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
@@ -145,6 +149,16 @@ type FlattenedCoreNestedKeys<
               ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
               : Key;
       }[Extract<keyof T, string>];
+type FlattenedCoreNestedKeys<
+    T extends object,
+    I extends number = MaxRecursiveIterations,
+> = I extends 0
+    ? never
+    : {
+          [Key in keyof T]: T[Key] extends object
+              ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
+              : Key;
+      }[Extract<keyof T, string>];
 
 /**
  * Pick K types from T with keys in the form of key1.key2...
@@ -159,3 +173,18 @@ type CoreDeepPick<
     : K extends `${infer FirstKey}.${infer RestKey}`
     ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
     : T[K];
+type CoreDeepPick<
+    T extends object,
+    K extends string,
+    I extends number = MaxRecursiveIterations,
+> = I extends 0
+    ? never
+    : K extends `${infer FirstKey}.${infer RestKey}`
+    ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
+    : T[K];
+
+/**
+ * Updater types
+ */
+export type Updater<T> = T | ((old: T) => T);
+export type UpdaterFn<T> = (updaterOrValue: Updater<T>) => void;

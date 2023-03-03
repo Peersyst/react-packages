@@ -72,7 +72,7 @@ const Pagination = (props: PaginationProps): JSX.Element => {
             >
                 {items.map(({ type, ...itemProps }, key) => (
                     <li key={key}>
-                        <PaginationItem {...itemProps} size={size}>
+                        <PaginationItem className={type} {...itemProps} size={size}>
                             {renderItem(type, itemProps.page)}
                         </PaginationItem>
                     </li>

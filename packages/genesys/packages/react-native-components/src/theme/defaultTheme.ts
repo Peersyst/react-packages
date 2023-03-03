@@ -12,6 +12,8 @@ import {
     WarningIcon,
     CopyIcon,
     CheckIcon,
+    ChevronDownIcon,
+    ChevronUpIcon,
 } from "../assets/icons";
 
 export const defaultTheme: Theme = {
@@ -28,6 +30,8 @@ export const defaultTheme: Theme = {
         cross: CrossIcon,
         copy: CopyIcon,
         check: CheckIcon,
+        chevronDown: ChevronDownIcon,
+        chevronUp: ChevronUpIcon,
     },
     typography,
     shadows,
