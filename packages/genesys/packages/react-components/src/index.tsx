@@ -61,6 +61,6 @@ export * from "./ToggleButton";
 export * from "./Toolbar";
 export * from "./Typography";
 export * from "./Upload";
-
+export * from "./utils";
 export * from "./DeprecatedSlider";
 export * from "./DepcrecatedRangeSlider";
