@@ -11,6 +11,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
         children,
         style: { light: lightStyleProp = {}, ...styleProp } = {},
         color: colorProp,
+        suppressHighlighting = true,
         ...rest
     } = useMergeDefaultProps("Typography", props);
     const { typography } = useTheme();
@@ -27,6 +28,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
             style={style}
             lightStyle={lightStyle}
             variantStyles={variantStyle}
+            suppressHighlighting={suppressHighlighting}
             {...rest}
         >
             {children}
