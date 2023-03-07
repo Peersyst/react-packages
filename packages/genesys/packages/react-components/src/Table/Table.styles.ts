@@ -27,6 +27,7 @@ export const TableRoot = styled.div(({ theme }) => {
             text-overflow: ellipsis;
             padding: 0 1rem;
             text-align: left;
+            vertical-align: middle;
         }
     `;
 });
