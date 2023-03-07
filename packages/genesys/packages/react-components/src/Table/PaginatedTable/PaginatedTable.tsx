@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-table";
 import { useRef, useState } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import clsx from "clsx";
 
 const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
     const {
@@ -19,6 +20,7 @@ const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
         onPaginationChange,
         data,
         getPaginationRowModel: getPaginationRowModelProp,
+        className,
         ...rest
     } = useMergeDefaultProps("PaginatedTable", props);
 
@@ -46,6 +48,7 @@ const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
             }}
             getPaginationRowModel={getPaginationRowModel}
             onPaginationChange={handlePaginationChange}
+            className={clsx("PaginatedTable", className)}
             {...rest}
         />
     );
