@@ -268,6 +268,9 @@ const componentsConfig: ComponentsConfig = {
             size: "md",
         },
     },
+    PaginatedTable: {
+        defaultProps: {},
+    },
     Paper: {
         defaultProps: {
             elevation: 1,

@@ -48,7 +48,7 @@ import { SelectItemProps, SelectMenuProps, SelectProps } from "../Select";
 import { SkeletonProps } from "../Skeleton";
 import { SliderProps } from "../Slider";
 import { SwitchProps } from "../Switch";
-import { TableProps } from "../Table";
+import { PaginatedTableProps, TableProps } from "../Table";
 import { TabGroupProps, TabPanelProps, TabProps, TabsProps } from "../Tabs";
 import { TextAreaProps } from "../TextArea";
 import { TextFieldProps } from "../TextField";
@@ -118,6 +118,7 @@ export interface ModalConfig extends ComponentConfig<ModalProps> {}
 export interface OnScreenObserverConfig extends ComponentConfig<OnScreenObserverProps> {}
 export interface PaginationConfig extends ComponentConfig<PaginationProps> {}
 export interface PaginationItemConfig extends ComponentConfig<PaginationItemProps> {}
+export interface PaginatedTableConfig extends ComponentConfig<PaginatedTableProps<any>> {}
 export interface PaperConfig extends ComponentConfig<PaperProps> {}
 export interface PopoverConfig extends ComponentConfig<PopoverProps> {}
 export interface ProgressBarConfig extends ComponentConfig<ProgressBarProps> {}
@@ -188,6 +189,7 @@ export interface ComponentsConfig {
     OnScreenObserver: OnScreenObserverConfig;
     Pagination: PaginationConfig;
     PaginationItem: PaginationItemConfig;
+    PaginatedTable: PaginatedTableConfig;
     Paper: PaperConfig;
     Popover: PopoverConfig;
     ProgressBar: ProgressBarConfig;
