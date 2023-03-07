@@ -77,7 +77,7 @@ const InnerTable = forwardRef(function InnerTable(
     return (
         <TableRoot className={clsx("TableRoot", className)} ref={ref} style={style}>
             <TableProvider value={context}>
-                <TableContainer ref={(r) => setRef(containerRef, r)}>
+                <TableContainer className="TableContainer" ref={(r) => setRef(containerRef, r)}>
                     <TableElement className="Table">
                         <TableHead ref={headerRef} />
                         <TableBody />
