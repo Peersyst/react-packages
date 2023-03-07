@@ -7,18 +7,21 @@ import {
     getPaginationRowModel as reactTableGetPaginationRowModel,
 } from "@tanstack/react-table";
 import { useRef, useState } from "react";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const PaginatedTable = ({
-    Pagination,
-    Count,
-    state,
-    pageSize,
-    pageIndex: pageIndexProp,
-    onPaginationChange,
-    data,
-    getPaginationRowModel: getPaginationRowModelProp,
-    ...rest
-}: PaginatedTableProps): JSX.Element => {
+const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
+    const {
+        Pagination,
+        Count,
+        state,
+        pageSize,
+        pageIndex: pageIndexProp,
+        onPaginationChange,
+        data,
+        getPaginationRowModel: getPaginationRowModelProp,
+        ...rest
+    } = useMergeDefaultProps("PaginatedTable", props);
+
     const getPaginationRowModel = useRef(
         getPaginationRowModelProp || reactTableGetPaginationRowModel(),
     ).current;

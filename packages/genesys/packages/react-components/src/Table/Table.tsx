@@ -18,9 +18,13 @@ import { TableFooter } from "./TableFooter";
 import { TableContextType, TableProvider } from "./TableContext";
 import { TableLoadingOverlay } from "./TableLoadingOverlay";
 import { TableNoRowsOverlay } from "./TableNoRowsOverlay";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
 const InnerTable = forwardRef(function InnerTable(
-    {
+    props: InnerTableProps,
+    ref: ForwardedRef<HTMLDivElement>,
+): JSX.Element {
+    const {
         footer,
         className,
         style,
@@ -32,9 +36,8 @@ const InnerTable = forwardRef(function InnerTable(
         data,
         autoResetPageIndex = false,
         ...tableOptions
-    }: InnerTableProps,
-    ref: ForwardedRef<HTMLDivElement>,
-): JSX.Element {
+    } = useMergeDefaultProps("Table", props);
+
     const containerRef = useRef<HTMLDivElement>();
     const headerRef = useRef<HTMLDivElement>();
 
