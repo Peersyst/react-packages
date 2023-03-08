@@ -21,14 +21,10 @@ export type ReactChild = ReactElement | string | number;
  * If the property value was `true`, the property key will be added to the
  * string union.
  */
-export type OverridableStringUnion<
-    T extends string | number,
-    U = Record<string, any>,
-> = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
-export type OverridableStringUnion<
-    T extends string | number,
-    U = Record<string, any>,
-> = GenerateStringUnion<Overwrite<Record<T, true>, U>>;
+export type OverridableStringUnion<T extends string | number, U = Record<string, any>> =
+    GenerateStringUnion<Overwrite<Record<T, true>, U>>;
+export type OverridableStringUnion<T extends string | number, U = Record<string, any>> =
+    GenerateStringUnion<Overwrite<Record<T, true>, U>>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
@@ -139,52 +135,48 @@ type CoreNestedKeys<T extends object, I extends number = MaxRecursiveIterations>
  * Get nested keys from T in the form of key1.key2...
  */
 type FlattenedNestedKeys<T extends object> = FlattenedCoreNestedKeys<T>;
-type FlattenedCoreNestedKeys<
-    T extends object,
-    I extends number = MaxRecursiveIterations,
-> = I extends 0
-    ? never
-    : {
-          [Key in keyof T]: T[Key] extends object
-              ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
-              : Key;
-      }[Extract<keyof T, string>];
-type FlattenedCoreNestedKeys<
-    T extends object,
-    I extends number = MaxRecursiveIterations,
-> = I extends 0
-    ? never
-    : {
-          [Key in keyof T]: T[Key] extends object
-              ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
-              : Key;
-      }[Extract<keyof T, string>];
+type FlattenedCoreNestedKeys<T extends object, I extends number = MaxRecursiveIterations> =
+    I extends 0
+        ? never
+        : {
+              [Key in keyof T]: T[Key] extends object
+                  ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
+                  : Key;
+          }[Extract<keyof T, string>];
+type FlattenedCoreNestedKeys<T extends object, I extends number = MaxRecursiveIterations> =
+    I extends 0
+        ? never
+        : {
+              [Key in keyof T]: T[Key] extends object
+                  ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
+                  : Key;
+          }[Extract<keyof T, string>];
 
 /**
  * Pick K types from T with keys in the form of key1.key2...
  */
 type DeepPick<T extends object, K extends NestedKeys<T>> = CoreDeepPick<T, K>;
-type CoreDeepPick<
-    T extends object,
-    K extends string,
-    I extends number = MaxRecursiveIterations,
-> = I extends 0
-    ? never
-    : K extends `${infer FirstKey}.${infer RestKey}`
-    ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
-    : T[K];
-type CoreDeepPick<
-    T extends object,
-    K extends string,
-    I extends number = MaxRecursiveIterations,
-> = I extends 0
-    ? never
-    : K extends `${infer FirstKey}.${infer RestKey}`
-    ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
-    : T[K];
+type CoreDeepPick<T extends object, K extends string, I extends number = MaxRecursiveIterations> =
+    I extends 0
+        ? never
+        : K extends `${infer FirstKey}.${infer RestKey}`
+        ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
+        : T[K];
+type CoreDeepPick<T extends object, K extends string, I extends number = MaxRecursiveIterations> =
+    I extends 0
+        ? never
+        : K extends `${infer FirstKey}.${infer RestKey}`
+        ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
+        : T[K];
 
 /**
  * Updater types
  */
 export type Updater<T> = T | ((old: T) => T);
 export type UpdaterFn<T> = (updaterOrValue: Updater<T>) => void;
+
+/**
+ * Replaces all occurrences of S in T with D
+ */
+export type Replace<T extends string, S extends string, D extends string, A extends string = ""> =
+    T extends `${infer L}${S}${infer R}` ? Replace<R, S, D, `${A}${L}${D}`> : `${A}${T}`;

@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-types": "^1.5.3",
+        "@peersyst/react-types": "^1.5.4",
         "validate-color": "^2.2.1"
     },
     "devDependencies": {
