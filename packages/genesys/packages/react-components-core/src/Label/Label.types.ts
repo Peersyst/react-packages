@@ -17,6 +17,7 @@ export interface CoreLabelProps {
 }
 
 export interface LabelTextProps {
+    placement: LabelPlacement;
     alignment: LabelAlignment;
     variant?: OverridableStringUnion<TypographyVariants, TypographyVariantsOverrides>;
 }

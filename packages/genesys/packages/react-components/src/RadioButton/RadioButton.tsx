@@ -5,6 +5,7 @@ import { RadioCheckedIcon, RadioUncheckedIcon } from "../assets/icons";
 import { Label } from "../Label";
 import { FormControl } from "../FormControl";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useRef } from "react";
 
 export default function RadioButton(props: RadioButtonProps) {
     const {
@@ -18,12 +19,19 @@ export default function RadioButton(props: RadioButtonProps) {
         ...rest
     } = useMergeDefaultProps("RadioButton", props);
 
+    const radioButtonRef = useRef<HTMLInputElement>(null);
+
+    const handleClick = () => {
+        if (radioButtonRef.current) radioButtonRef.current.click();
+    };
+
     return (
         <FormControl<boolean>
             Label={[LabelProp, { placement: "right", ...LabelProps }]}
             defaultValue={defaultValue}
             disabled={disabled}
             hideError={hideError}
+            onClick={handleClick}
             {...rest}
         >
             {(value, setValue) => (
@@ -33,6 +41,7 @@ export default function RadioButton(props: RadioButtonProps) {
                     role="radio"
                     aria-checked={value}
                     tabIndex={0}
+                    ref={radioButtonRef}
                 >
                     {value ? checkedIcon : icon}
                 </RadioButtonRoot>

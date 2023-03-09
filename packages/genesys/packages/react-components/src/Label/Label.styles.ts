@@ -23,31 +23,33 @@ export const LabelColRoot = styled(Col)<LabelRowRootProps>(({ alignment }) => ({
 }));
 
 export const LabelRowRoot = styled(Row)<LabelRowRootProps>(({ alignment }) => ({
-    alignItems: "center",
     justifyContent: labelFlexJustification[alignment],
 }));
 
-export const LabelText = styled.label<LabelTextProps>(({ alignment, variant, theme }) => {
-    const textAlign: Property.TextAlign = (() => {
-        if (alignment === "end") return "right";
-        else if (alignment === "center") return "center";
-        else return "left";
-    })();
-    const variantStyle = variant ? theme.typography[variant].style : {};
-    return {
-        cursor: "text",
-        textAlign,
-        ["&&"]: {
-            ...variantStyle,
-        },
-        ["&.SingleLine"]: {
-            flex: 1,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-        },
-    };
-});
+export const LabelText = styled.label<LabelTextProps>(
+    ({ placement, alignment, variant, theme }) => {
+        const textAlign: Property.TextAlign = (() => {
+            if (alignment === "end") return "right";
+            else if (alignment === "center") return "center";
+            else return "left";
+        })();
+        const variantStyle = variant ? theme.typography[variant].style : {};
+        return {
+            cursor: "text",
+            alignSelf: placement === "left" || placement === "right" ? "center" : undefined,
+            textAlign,
+            ["&&"]: {
+                ...variantStyle,
+            },
+            ["&.SingleLine"]: {
+                flex: 1,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+            },
+        };
+    },
+);
 
 export const LabelChildren = styled.div`
     display: contents;

@@ -41,6 +41,7 @@ const Label = (props: LabelProps): JSX.Element => {
         ) : (
             <LabelText
                 key="label"
+                placement={placement}
                 alignment={alignment}
                 style={labelStyle}
                 variant={variant}

@@ -18,6 +18,7 @@ function FormControl<T = any>(props: FormControlProps<T>): JSX.Element {
         hint,
         Label = FormControlLabel,
         children,
+        onClick,
         ...coreProps
     } = useMergeDefaultProps("FormControl", props);
 
@@ -44,6 +45,7 @@ function FormControl<T = any>(props: FormControlProps<T>): JSX.Element {
                             return (
                                 <FormControlRoot
                                     gap={5}
+                                    onClick={onClick}
                                     onFocus={handleFocus}
                                     onBlur={handleBlur}
                                     className={cx(

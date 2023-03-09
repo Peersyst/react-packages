@@ -14,17 +14,7 @@ export const RadioButtonRoot = styled.span`
     box-sizing: border-box;
     position: relative;
     display: flex;
-    cursor: pointer;
     ${radioColor};
     overflow: hidden;
     font-size: 1.2rem;
-
-    &.Disabled,
-    &.Readonly {
-        cursor: default;
-        pointer-events: none;
-        * {
-            pointer-events: none;
-        }
-    }
 `;
