@@ -3,7 +3,7 @@ import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
 
 export interface SelectOption<T> {
-    label: string;
+    label: string | number | ReactElement;
     value: T;
 }
 

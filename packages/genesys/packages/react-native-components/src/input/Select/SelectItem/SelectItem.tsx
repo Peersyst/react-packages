@@ -1,12 +1,13 @@
 import { SelectItemRoot, SelectItemText } from "./SelectItem.styles";
 import { InnerSelectItemProps, SelectItemProps } from "./SelectItem.types";
 import useSelectItemStyle from "./hooks/useSelectIemStyles";
-import { TouchableWithoutFeedback } from "react-native";
+import { TouchableWithoutFeedback, Text } from "react-native";
 import { getLuminance } from "@peersyst/react-utils";
 import {
     SelectItem as CoreSelectItem,
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
+import { isValidElement } from "react";
 
 function InnerSelectItem<T>({
     value,
@@ -35,9 +36,12 @@ function InnerSelectItem<T>({
                                   }
                                 : undefined,
                         ]}
-                        numberOfLines={1}
                     >
-                        {children}
+                        {isValidElement(children) ? (
+                            children
+                        ) : (
+                            <Text numberOfLines={1}>{children}</Text>
+                        )}
                     </SelectItemText>
                 ) : (
                     children

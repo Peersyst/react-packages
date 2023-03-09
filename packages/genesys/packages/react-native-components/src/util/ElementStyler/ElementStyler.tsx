@@ -6,13 +6,13 @@ import { useMergeDefaultProps } from "@peersyst/react-components-core";
 function ElementStyler<TProps extends { style?: StyleProp<any> }>(
     props: ElementStylerProps<TProps>,
 ): JSX.Element {
-    const { children: child, style: iconStyle } = useMergeDefaultProps("ElementStyler", props);
+    const { children: child, style: stylerStyle } = useMergeDefaultProps("ElementStyler", props);
 
     const { style, ...rest } = child.props;
 
     return cloneElement(child, {
         ...rest,
-        style: { ...StyleSheet.flatten(iconStyle), ...style } as TProps["style"],
+        style: { ...StyleSheet.flatten(stylerStyle), ...style } as TProps["style"],
     } as TProps);
 }
 
