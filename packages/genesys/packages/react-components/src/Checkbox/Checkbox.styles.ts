@@ -1,3 +1,4 @@
+import { FormControl } from "../FormControl";
 import styled, { css } from "styled-components";
 
 const checkboxColor = css(({ theme }) => ({
@@ -11,20 +12,9 @@ const checkboxColor = css(({ theme }) => ({
 }));
 
 export const CheckboxRoot = styled.span`
-    align-self: center;
     box-sizing: border-box;
     position: relative;
     display: flex;
-    cursor: pointer;
     ${checkboxColor};
     font-size: 1.2rem;
-
-    &.Disabled,
-    &.Readonly {
-        cursor: default;
-        pointer-events: none;
-        * {
-            pointer-events: none;
-        }
-    }
 `;

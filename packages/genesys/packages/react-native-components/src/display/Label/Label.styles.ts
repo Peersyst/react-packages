@@ -28,16 +28,19 @@ export const LabelRowRoot = styled(Row)<LabelRowRootProps>(({ alignment }) => ({
     justifyContent: labelFlexJustification[alignment],
 }));
 
-export const LabelText = styled(Text)<LabelTextProps>(({ alignment, variant, theme }) => {
-    const textAlign: Property.TextAlign = (() => {
-        if (alignment === "end") return "right";
-        else if (alignment === "center") return "center";
-        else return "left";
-    })();
-    const variantStyle = variant ? theme.typography[variant] : {};
-    return {
-        color: theme.palette.text,
-        textAlign,
-        ...variantStyle,
-    };
-});
+export const LabelText = styled(Text)<LabelTextProps>(
+    ({ placement, alignment, variant, theme }) => {
+        const textAlign: Property.TextAlign = (() => {
+            if (alignment === "end") return "right";
+            else if (alignment === "center") return "center";
+            else return "left";
+        })();
+        const variantStyle = variant ? theme.typography[variant] : {};
+        return {
+            color: theme.palette.text,
+            alignSelf: placement === "left" || placement === "right" ? "center" : undefined,
+            textAlign,
+            ...variantStyle,
+        };
+    },
+);

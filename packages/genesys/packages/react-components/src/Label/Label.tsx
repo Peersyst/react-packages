@@ -44,6 +44,7 @@ const Label = (props: LabelProps): JSX.Element => {
     const content = [
         <LabelText
             key="label"
+            placement={placement}
             alignment={alignment}
             className={cx("Label", capitalize(placement) + "Placement", singleLine && "SingleLine")}
             variant={variant}

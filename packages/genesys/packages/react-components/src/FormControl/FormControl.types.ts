@@ -4,6 +4,10 @@ import { LabelProps } from "../Label";
 
 export interface FormControlProps<T = any> extends CoreFormControlProps<LabelProps, T> {
     /**
+     * onClick handler
+     */
+    onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    /**
      * FormControl className
      */
     className?: string;

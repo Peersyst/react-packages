@@ -36,6 +36,7 @@ export interface FormControlProps<
         style: FormControlStateStyle<Partial<ComponentStyleType>>,
         context: FormControlContextType,
     ) => ComponentStyleType;
+    onPress?: () => void;
 }
 
 export type FormControlledComponentProps<
