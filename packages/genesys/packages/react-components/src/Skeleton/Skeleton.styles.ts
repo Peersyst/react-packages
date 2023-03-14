@@ -69,7 +69,6 @@ export const SkeletonRoot = styled.span<SkeletonStyles>`
       position: relative;
       isolation: isolate;
       display: block;
-      max-width: ${width ? undefined : "max-content"};
       overflow: hidden;
       width: ${width};
       height: ${height};

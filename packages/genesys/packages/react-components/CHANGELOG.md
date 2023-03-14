@@ -1,5 +1,9 @@
 # Versions
 
+## 3.4.9
+
+[Skeleton] Remove max-width from Skeleton
+
 ## 3.3.1
 
 [withColor] Add withColor HOC
