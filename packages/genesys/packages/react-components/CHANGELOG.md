@@ -4,6 +4,10 @@
 
 [TextInput] Add format prop that can be used to format the input value
 
+## 3.4.9
+
+[Skeleton] Remove max-width from Skeleton
+
 ## 3.3.1
 
 [withColor] Add withColor HOC
