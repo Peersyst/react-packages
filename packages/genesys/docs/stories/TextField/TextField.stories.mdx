@@ -38,12 +38,27 @@ This component can be used in multiple ways, so here we'll see some examples and
                 { maxWidth: 600, cols: 1 },
             ]}
         >
-            <TextField placeholder="Write something..." />
+            <TextField placeholder="Write something..." format={(x) => x.replace("a", "x")} />
             <TextField placeholder="Write something..." prefix={<InfoIcon />} />
             <TextField placeholder="Write something..." suffix={<InfoIcon />} />
-            <TextField label="Error label" placeholder="Write something..." value="Validate number" validators={{number: true}} />
-            <TextField label="Success label" placeholder="Write something..." value="Show valid" showValid />
-            <TextField label="Normal label" readonly placeholder="Write something..." type="password" />
+            <TextField
+                label="Error label"
+                placeholder="Write something..."
+                value="Validate number"
+                validators={{ number: true }}
+            />
+            <TextField
+                label="Success label"
+                placeholder="Write something..."
+                value="Show valid"
+                showValid
+            />
+            <TextField
+                label="Normal label"
+                readonly
+                placeholder="Write something..."
+                type="password"
+            />
             <TextField placeholder="Write something..." type="number" />
             <TextField placeholder="Write something..." clearable />
             <TextField
@@ -73,7 +88,7 @@ This component can be used in multiple ways, so here we'll see some examples and
     <TextField placeholder="Write something..." />
     <TextField placeholder="Write something..." prefix={<InfoIcon />} />
     <TextField placeholder="Write something..." suffix={<InfoIcon />} />
-    <TextField placeholder="Write something..." validators={{number: true}} />
+    <TextField placeholder="Write something..." validators={{ number: true }} />
     <TextField placeholder="Write something..." showValid />
     <TextField placeholder="Write something..." type="password" />
     <TextField placeholder="Write something..." type="number" />
@@ -92,25 +107,25 @@ A custom message can be passed following the key with ":" + {your custom message
 
 Also, you can pass your own CustomValidators that extend the abstract class BaseValidator or implement the interface:
 
-````typescript
+```typescript
 interface FunctionalValidator {
     validate: (value: string) => boolean;
     message: string;
 }
-````
+```
 
 ### Validators list
 
-- not-null
-- number
-- email
-- password
-- eq= + string
-- gt + number (gt0)
-- gte + number (gte0)
-- eq + number (eq0)
-- lt + number (lt0)
-- lte + number (lte0)
+-   not-null
+-   number
+-   email
+-   password
+-   eq= + string
+-   gt + number (gt0)
+-   gte + number (gte0)
+-   eq + number (eq0)
+-   lt + number (lt0)
+-   lte + number (lte0)
 
 ### Translations
 

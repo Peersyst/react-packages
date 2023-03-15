@@ -1,8 +1,11 @@
 # Versions
 
-### BREAKING
+## 2.4.0 **BREAING**
 
-## 2.3.0
+[TextInput] Remove input and inputProps props
+[TextInput] Add format prop that can be used to format the input value
+
+## 2.3.0 **BREAING**
 
 [Selector] Refactor of selector. `type` prop now is `controller`. Enable custom render function
 [SelectorGroup] SelectorGroup update `type` prop now is `controller`. Enable custom render function
@@ -111,9 +114,7 @@
 
 Updated react-components-core
 
-### BREAKING
-
-## 2.1.0
+## 2.1.0 **BREAING**
 
 [Alert] Change message prop to content + Content (text) styles
 [Toast] Change message prop to content because Toast uses Alert
@@ -222,9 +223,7 @@ Fix imports
 
 -   Add GlobalStyles to Divider
 
-## 0.0.9
-
-### BREAKING
+## 0.0.9 **BREAING**
 
 Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
 

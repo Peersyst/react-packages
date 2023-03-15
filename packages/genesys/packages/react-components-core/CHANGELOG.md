@@ -1,8 +1,10 @@
 # Versions
 
-### BREAKING
+## 1.4.0
 
-## 1.3.0
+[TextInput] Add format prop that can be used to format the input value
+
+## 1.3.0 **BREAKING**
 
 [Selector] Refactor of selector. `type` prop now is `controller`. Enable custom render function
 [SelectorGroup] SelectorGroup update `type` prop now is `controller`. Enable custom render function
@@ -48,9 +50,7 @@
 
 [NumericInput] Updated getDecimalSeparator method
 
-### BREAKING
-
-## 1.2.0
+## 1.2.0 **BREAKING**
 
 [Alert] Change message prop to content
 [Toast] Change message prop to content because Toast uses Alert
@@ -81,9 +81,7 @@
 
 [SelectGroup] Add SelectGroup core component
 
-## 0.0.3
-
-### BREAKING
+## 0.0.3 **BREAKING**
 
 Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
 
