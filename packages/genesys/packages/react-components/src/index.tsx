@@ -55,6 +55,7 @@ export * from "./Table";
 export * from "./Tabs";
 export * from "./TextArea";
 export * from "./TextField";
+export * from "./TextInput";
 export * from "./Toast";
 export * from "./ToastProvider";
 export * from "./ToggleButton";
