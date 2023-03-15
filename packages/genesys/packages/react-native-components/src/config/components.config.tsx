@@ -126,9 +126,6 @@ const componentsConfig: ComponentsConfig = {
             disabled: false,
         },
     },
-    NumericInput: {
-        defaultProps: {},
-    },
     PressableText: {
         defaultProps: {
             disabled: false,
