@@ -26,7 +26,6 @@ import { FormControlErrorProps } from "../input/FormControlError";
 import { FormControlHintProps } from "../input/FormControlHint";
 import { FormControlLabelProps } from "../input/FormControlLabel";
 import { IconButtonProps } from "../input/IconButton";
-import { NumericInputProps } from "../input/NumericInput";
 import { PressableTextProps } from "../input/PressableText";
 import { QrScannerProps } from "../input/QrScanner";
 import { SelectItemProps, SelectMenuProps, SelectProps } from "../input/Select";
@@ -83,7 +82,6 @@ export interface FormControlErrorConfig extends ComponentConfig<FormControlError
 export interface FormControlHintConfig extends ComponentConfig<FormControlHintProps> {}
 export interface FormControlLabelConfig extends ComponentConfig<FormControlLabelProps> {}
 export interface IconButtonConfig extends ComponentConfig<IconButtonProps> {}
-export interface NumericInputConfig extends ComponentConfig<NumericInputProps> {}
 export interface PressableTextConfig extends ComponentConfig<PressableTextProps> {}
 export interface QrScannerConfig extends ComponentConfig<QrScannerProps> {}
 export interface SelectConfig extends ComponentConfig<SelectProps<any>> {}
@@ -145,7 +143,6 @@ export interface ComponentsConfig {
     FormControlHint: FormControlHintConfig;
     FormControlLabel: FormControlLabelConfig;
     IconButton: IconButtonConfig;
-    NumericInput: NumericInputConfig;
     PressableText: PressableTextConfig;
     QrScanner: QrScannerConfig;
     Select: SelectConfig;

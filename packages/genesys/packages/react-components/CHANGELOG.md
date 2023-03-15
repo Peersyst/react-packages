@@ -1,5 +1,9 @@
 # Versions
 
+## 3.5.0
+
+[TextInput] Add format prop that can be used to format the input value
+
 ## 3.4.9
 
 [Skeleton] Remove max-width from Skeleton
@@ -9,9 +13,7 @@
 [withColor] Add withColor HOC
 [withSkeleton] Improve withSkeleton types
 
-### BREAKING
-
-## 3.3.0
+## 3.3.0 **BREAKING**
 
 [Selector] Refactor of selector. `type` prop now is `controller`. Enable custom render function
 [SelectorGroup] SelectorGroup update `type` prop now is `controller`. Enable custom render function
@@ -68,9 +70,7 @@
 
 Updated react-components-core
 
-### BREAKING
-
-## 3.2.0
+## 3.2.0 **BREAING**
 
 [Alert] Change message prop to content
 [Toast] Change message prop to content because Toast uses Alert
@@ -89,9 +89,7 @@ Updated react-components-core
 [Package.json] Update dependecies: react-components-core
 [Config] Add locale to the config
 
-## 3.0.2
-
-### BREAKING
+## 3.0.2 **BREAING**
 
 [Popover] Change skidding for offset. Add offset in both axis
 
@@ -129,9 +127,7 @@ Updated react-components-core
 [Carousel] Remove console log + docu
 [Col] Forward the ref to the root of the col
 
-## 2.19.0
-
-### BREAKING
+## 2.19.0 **BREAING**
 
 Theme is now a part of config and ConfigProvider must be provided instead of just the ThemeProvider
 
@@ -199,16 +195,9 @@ Dependencies update
 
 [createModal] Now uses a higher order component that grants the `id` of the modal that is being created and a `closeModal` function to be able to close it from inside
 
-## 2.17.0
+## 2.17.0 **BREAING**
 
----
-
-#### BREAKING CHANGES
-
-Popover `position` prop has changed on order to match Popper.js'.
-
----
-
+[Popover] `position` prop has changed on order to match Popper.js'.
 [Popover] Improved Popover built on top of Popper.js
 
 ## 2.16.2
@@ -227,7 +216,7 @@ Popover `position` prop has changed on order to match Popper.js'.
 
 ---
 
-#### BREAKING CHANGES
+**BREAING**
 
 Backdrops, Modals and Drawers no longer use names in order to be used with their corresponding hooks. This is now handled internally by create(Backdrop|Modal|Drawer) helper function. That is to say, to create a Backdrop based component, its corresponding creator function should be used.
 

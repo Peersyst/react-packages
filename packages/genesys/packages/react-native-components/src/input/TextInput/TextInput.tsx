@@ -1,11 +1,6 @@
 import { TextInputProps, TextInputStyle } from "./TextInput.types";
 import { Input, InvalidIcon, TextInputRoot, ValidIcon } from "./TextInput.styles";
-import {
-    NativeSyntheticEvent,
-    TextInputFocusEventData,
-    TextStyle,
-    TextInputProps as NativeTextInputProps,
-} from "react-native";
+import { NativeSyntheticEvent, TextInputFocusEventData, TextStyle } from "react-native";
 import { useState } from "react";
 import { useTheme } from "@peersyst/react-native-styled";
 import { Icon } from "../../display/Icon";
@@ -16,9 +11,7 @@ import useTextInputDefaultStyles from "./hooks/useTextInputDefaultStyles";
 import textInputStylesMergeStrategy from "./util/textInputStylesMergeStrategy";
 import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 
-function TextInput<P extends NativeTextInputProps = NativeTextInputProps>(
-    props: TextInputProps<P>,
-): JSX.Element {
+function TextInput(props: TextInputProps): JSX.Element {
     const {
         name,
         defaultValue = "",
@@ -41,7 +34,6 @@ function TextInput<P extends NativeTextInputProps = NativeTextInputProps>(
         onFocus,
         onBlur,
         secureTextEntry = false,
-        input,
         hideError,
         showValid,
         label,
@@ -49,7 +41,8 @@ function TextInput<P extends NativeTextInputProps = NativeTextInputProps>(
         LabelProps = {},
         Label = FormControlLabel,
         error,
-        inputProps = {},
+        format = (x: string) => x,
+        parse = (x: string) => x,
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
@@ -99,6 +92,9 @@ function TextInput<P extends NativeTextInputProps = NativeTextInputProps>(
                         onBlur?.(e);
                     }
                 };
+                const handleChange = (newValue: string) => {
+                    setValue(parse(newValue, value));
+                };
 
                 const {
                     input: {
@@ -123,15 +119,13 @@ function TextInput<P extends NativeTextInputProps = NativeTextInputProps>(
                             placeholderTextColor={placeholderColor}
                             selectionColor={highlightColor}
                             style={inputStyle}
-                            value={value}
-                            onChangeText={setValue}
+                            value={format(value)}
+                            onChangeText={handleChange}
                             onFocus={handleFocus}
                             onBlur={handleBlur}
                             editable={editable}
                             secureTextEntry={showText}
-                            as={input}
                             {...rest}
-                            {...(inputProps as P)}
                         />
                         {clearable && !!value && editable && (
                             <IconButton style={iconStyle} onPress={() => setValue("")}>

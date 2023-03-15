@@ -30,7 +30,6 @@ export * from "./input/FormControlError";
 export * from "./input/FormControlHint";
 export * from "./input/FormControlLabel";
 export * from "./input/IconButton";
-export * from "./input/NumericInput";
 export * from "./input/PressableText";
 export * from "./input/QrScanner";
 export * from "./input/Select";

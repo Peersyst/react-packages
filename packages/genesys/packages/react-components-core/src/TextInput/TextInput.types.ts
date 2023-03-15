@@ -26,4 +26,12 @@ export interface CoreTextInputProps<LP extends CoreLabelProps = CoreLabelProps>
      * Element shown when showValid is true and input is valid
      */
     validElement?: ReactElement | boolean;
+    /**
+     * Format input value
+     */
+    format?: (value: string) => string;
+    /**
+     * Parse input value
+     */
+    parse?: (currValue: string, prevValue: string) => string;
 }
