@@ -38,6 +38,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
         LabelProps = {},
         Label = FormControlLabel,
         format = (x: string) => x,
+        parse = (x: string) => x,
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
@@ -64,7 +65,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
             {(value, setValue, { invalid, valid, focused }) => {
                 const handleChange = (e: ChangeEvent<HTMLT>) => {
                     const newValue = e.currentTarget.value;
-                    setValue(format(newValue));
+                    setValue(parse(newValue, value));
                 };
 
                 const wrapperStyleProps: TextInputStyles = {
@@ -96,7 +97,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
                             {prefix}
                             {children({
                                 ref,
-                                value,
+                                value: format(value),
                                 setValue,
                                 placeholder,
                                 onChange: handleChange,

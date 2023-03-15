@@ -42,6 +42,7 @@ function TextInput(props: TextInputProps): JSX.Element {
         Label = FormControlLabel,
         error,
         format = (x: string) => x,
+        parse = (x: string) => x,
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
@@ -92,7 +93,7 @@ function TextInput(props: TextInputProps): JSX.Element {
                     }
                 };
                 const handleChange = (newValue: string) => {
-                    setValue(format(newValue));
+                    setValue(parse(newValue, value));
                 };
 
                 const {
@@ -118,7 +119,7 @@ function TextInput(props: TextInputProps): JSX.Element {
                             placeholderTextColor={placeholderColor}
                             selectionColor={highlightColor}
                             style={inputStyle}
-                            value={value}
+                            value={format(value)}
                             onChangeText={handleChange}
                             onFocus={handleFocus}
                             onBlur={handleBlur}

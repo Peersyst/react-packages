@@ -13,7 +13,7 @@
 [withColor] Add withColor HOC
 [withSkeleton] Improve withSkeleton types
 
-## 3.3.0 **BREAING**
+## 3.3.0 **BREAKING**
 
 [Selector] Refactor of selector. `type` prop now is `controller`. Enable custom render function
 [SelectorGroup] SelectorGroup update `type` prop now is `controller`. Enable custom render function

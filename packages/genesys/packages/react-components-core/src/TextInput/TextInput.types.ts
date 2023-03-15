@@ -30,4 +30,8 @@ export interface CoreTextInputProps<LP extends CoreLabelProps = CoreLabelProps>
      * Format input value
      */
     format?: (value: string) => string;
+    /**
+     * Parse input value
+     */
+    parse?: (currValue: string, prevValue: string) => string;
 }
