@@ -102,6 +102,7 @@ export default function Upload(props: UploadProps): JSX.Element {
                                 data-testid="upload"
                                 ref={uploadRef}
                                 type="file"
+                                value=""
                                 accept={getFileTypes(fileTypes)}
                                 multiple={multiple}
                                 onChange={handleChange}
