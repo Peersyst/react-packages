@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useState } from "react";
-import { Table, TableProps } from "../../src";
 import { Person, data, sort } from "./Table.utils";
 import { SortingState } from "@tanstack/react-table";
+import { Table, TableProps } from "../../../src";
 
 const ManualSortingTable = (props: TableProps) => {
     const [sorting, setSorting] = useState<SortingState>([]);

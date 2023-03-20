@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
-import { ColumnDef } from "../../src";
-import { ColumnSort } from "@tanstack/react-table";
+import { ColumnDef, ColumnSort } from "@tanstack/react-table";
 
 export type Person = {
     id: number;

@@ -1,8 +1,7 @@
 {
     "extends": "../../../../tsconfig.build.json",
     "compilerOptions": {
-        "declarationDir": "./build/@types",
-        "rootDir": "./src",
+        "declarationDir": "./build/@types"
     },
-    "include": ["./src/**/*.ts*"]
+    "include": ["./src/**/*.ts*", "./storybook/**/*.ts*"]
 }

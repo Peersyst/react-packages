@@ -17,9 +17,8 @@
         "build:copy-files": "node ../../../../scripts/copy-files.js",
         "release": "yarn build && npm publish build",
         "generate-icons": "node ./scripts/iconGenerator.js ./src/assets/svgs/ ./src/assets/icons/ && prettier --write ./src/assets/icons/",
-        "start": "yarn generate-icons && start-storybook -p 6006",
-        "build-storybook": "build-storybook",
-        "storybook": "start-storybook -p 6006"
+        "build-storybook": "build-storybook -c storybook",
+        "storybook": "start-storybook -c storybook -p 6006"
     },
     "peerDependencies": {
         "@types/react": "^18.0.25",
