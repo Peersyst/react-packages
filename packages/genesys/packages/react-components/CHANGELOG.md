@@ -1,5 +1,9 @@
 # Versions
 
+## 3.5.2
+
+[Upload] Fix onChange not being called with same file
+
 ## 3.5.0
 
 [TextInput] Add format prop that can be used to format the input value
