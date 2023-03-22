@@ -1,5 +1,9 @@
 # Versions
 
+## 3.5.4
+
+[useNumericInput] Fix useNumericInput
+
 ## 3.5.2
 
 [Upload] Fix onChange not being called with same file

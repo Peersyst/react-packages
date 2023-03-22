@@ -1,5 +1,9 @@
 # Versions
 
+## 1.4.1
+
+[useNumericInput] Fix max decimals
+
 ## 1.4.0
 
 [TextInput] Add format prop that can be used to format the input value
