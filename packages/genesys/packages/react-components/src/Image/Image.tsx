@@ -34,6 +34,7 @@ export default function Image(props: ImageProps): JSX.Element {
             {...SkeletonProps}
         >
             <StyledImg
+                key={src}
                 src={src}
                 alt={alt}
                 onLoad={handleLoad}
