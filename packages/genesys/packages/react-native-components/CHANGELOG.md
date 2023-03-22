@@ -1,5 +1,9 @@
 # Versions
 
+## 2.4.3
+
+[NumericInput] Fix useNumericInput
+
 ## 2.4.0 **BREAING**
 
 [TextInput] Remove input and inputProps props

@@ -23,14 +23,16 @@ export const isNumber = (str: string): boolean => {
     return /^-?\d*\.?\d+$/.test(str);
 };
 
-export const parseNumber = (value: string): string => {
+export const parseNumber = (value: string, maxDecimals?: number): string => {
     const parsedValue = escapeReplaceAll(value, ",", ".");
-    console.log(value, Number(value));
     if (parsedValue.split(".").length > 2) return "NaN";
     else if (parsedValue === "") return "";
     else if (parsedValue === "-") return "-0";
     else if (parsedValue.endsWith(".") && parsedValue.length > 1 && isNumber(parsedValue + "0"))
         return parsedValue;
-    else if (isNumber(parsedValue)) return parsedValue;
-    else return "NaN";
+    else if (isNumber(parsedValue)) {
+        const [int, dec] = parsedValue.split(".");
+        if (!dec || !maxDecimals) return parsedValue;
+        return int + "." + dec.substring(0, maxDecimals);
+    } else return "NaN";
 };

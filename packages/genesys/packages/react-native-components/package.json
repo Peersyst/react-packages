@@ -36,7 +36,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components-core": "^1.4.0",
+        "@peersyst/react-components-core": "^1.4.1",
         "@peersyst/react-hooks": "^2.2.6",
         "@peersyst/react-native-styled": "^2.1.2",
         "@peersyst/react-native-utils": "^1.1.5",
