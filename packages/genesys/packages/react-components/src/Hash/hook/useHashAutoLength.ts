@@ -5,7 +5,7 @@ export default function (
     hash: string,
     gap: number,
     rowRef: RefObject<HTMLDivElement>,
-    hashRef: RefObject<HTMLAnchorElement>,
+    hashRef: RefObject<HTMLAnchorElement | HTMLDivElement>,
     copyButtonRef: RefObject<HTMLButtonElement>,
 ): number {
     const [autoLength, setAutoLength] = useState(hash.length);
