@@ -9,12 +9,12 @@ export default function useCopyToClipboard(): UseCopyToClipboard {
 
     async function copyToClipboard({
         text,
-        toastMessage,
+        //TODO: Change locale_keys to camelCaseLocaleKeys
+        toastMessage = translate("copied_to_clipboard"),
         showToastOnCopy = true,
     }: CopyToClipboardParams): Promise<void> {
         await Clipboard.setStringAsync(text || "");
-        if (showToastOnCopy && toastMessage) {
-            //TODO: Change locale_keys to camelCaseLocaleKeys
+        if (showToastOnCopy) {
             showToast(toastMessage, { type: "success" });
         }
     }
