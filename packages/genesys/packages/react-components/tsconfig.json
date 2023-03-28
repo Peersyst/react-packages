@@ -3,5 +3,5 @@
     "compilerOptions": {
         "declarationDir": "./build/@types"
     },
-    "include": ["./src/**/*.ts*", "./storybook/**/*.ts*"]
+    "include": ["./src/**/*.ts*"]
 }
