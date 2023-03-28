@@ -51,6 +51,7 @@ import { SectionListProps } from "../display/SectionList";
 import { SwipeButtonProps } from "../input/SwipeButton/SwipeButton.types";
 import { GradientViewProps } from "../layout/GradientView";
 import { ContainedSuspenseProps } from "../feedback/ContainedSuspense";
+import { HashProps } from "../util/Hash";
 
 /**
  * ExtendedToolbarConfig
@@ -110,6 +111,7 @@ export interface BlockchainAddressConfig
     extends ExtendedCoreBlockchainAddressConfig<BlockchainAddressProps> {}
 export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
 export interface ElementStylerConfig extends ComponentConfig<ElementStylerProps> {}
+export interface HashConfig extends ComponentConfig<HashProps> {}
 export interface SpinnerConfig extends ComponentConfig<SpinnerProps> {}
 export interface SwitchConfig extends ComponentConfig<SwitchProps> {}
 export interface RadioButtonConfig extends ComponentConfig<RadioButtonProps> {}
@@ -178,4 +180,5 @@ export interface ComponentsConfig {
     SwipeButton: SwipeButtonConfig;
     GradientView: GradientViewConfig;
     ContainedSuspense: ContainedSuspenseConfig;
+    Hash: HashConfig;
 }

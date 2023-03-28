@@ -1,45 +1,38 @@
-import { HashEllipsis } from "@peersyst/react-utils";
+import { CoreHashProps } from "@peersyst/react-components-core";
+import { ReactNode } from "react";
 import { TypographyProps } from "../Typography";
 
-export interface HashProps extends Omit<TypographyProps, "singleLine" | "children"> {
-    /**
-     * Hash
-     */
+//Common types
+export type HashProps = Omit<TypographyProps, "singleLine" | "children"> &
+    CoreHashProps & {
+        /**
+         * Address' length in characters
+         */
+        length?: number | "auto" | "complete";
+        /**
+         * If address should break
+         */
+        break?: boolean;
+        /**
+         * In case action === share, this function can be passed to personalize the ShareData.
+         * If action !== share, it will be ignored.
+         */
+        hashToShareData?: (hash: string) => ShareData;
+    };
+
+export interface HashWrapperProps {
+    url: HashProps["url"];
+    children: ReactNode;
+    action: HashProps["action"];
+    hashToShareData: HashProps["hashToShareData"];
     hash: string;
-    /**
-     * Address' length in characters
-     */
-    length?: number | "auto" | "complete";
-    /**
-     * If ellipsis should be in the middle or end
-     */
-    ellipsis?: HashEllipsis;
-    /**
-     * If address should break
-     */
-    break?: boolean;
-    /**
-     * Gap between the address and copy button
-     */
-    gap?: number;
-    /**
-     * Url of the link attached to the hash
-     */
-    url?: string;
-    /**
-     * Show Icon copy
-     */
-    copy?: boolean;
 }
 
+//Style types
 export interface HashRootProps {
     autoLength: boolean;
 }
 
 export interface HashTextProps {
     break: boolean;
-}
-
-export interface HashLinkProps {
-    url: HashProps["url"];
 }

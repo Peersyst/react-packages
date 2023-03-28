@@ -1,5 +1,9 @@
 # Versions
 
+## 1.5.0
+
+[Hash] Add Core HashProps
+
 ## 1.4.1
 
 [useNumericInput] Fix max decimals

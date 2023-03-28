@@ -1,5 +1,10 @@
 # Versions
 
+## 1.2.0
+
+[Clipboard] Add Clipboard from expo to the utils.
+If Clipboard API changes it will allow to just rewrite it from this package
+
 ## 1.1.4
 
 Dependencies update [react-types]
