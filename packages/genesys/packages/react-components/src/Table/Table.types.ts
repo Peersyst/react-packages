@@ -1,5 +1,5 @@
 import { Loosen } from "@peersyst/react-types";
-import { TableOptions, createColumnHelper } from "@tanstack/react-table";
+import { SortingState, TableOptions, createColumnHelper } from "@tanstack/react-table";
 import { CSSProperties, ForwardedRef, ReactElement } from "react";
 
 export type TableAlignment = "left" | "center" | "right";
@@ -12,6 +12,7 @@ export interface InnerTableProps<TData = any>
     footer?: ReactElement;
     className?: string;
     style?: CSSProperties;
+    sorting?: SortingState;
 }
 
 export interface TableProps<TData = any> extends InnerTableProps<TData> {

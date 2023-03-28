@@ -19,6 +19,7 @@ import { TableContextType, TableProvider } from "./TableContext";
 import { TableLoadingOverlay } from "./TableLoadingOverlay";
 import { TableNoRowsOverlay } from "./TableNoRowsOverlay";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useControlled } from "@peersyst/react-hooks";
 
 const InnerTable = forwardRef(function InnerTable(
     props: InnerTableProps,
@@ -35,17 +36,21 @@ const InnerTable = forwardRef(function InnerTable(
         state,
         data,
         autoResetPageIndex = false,
+        sorting: sortingProp,
         ...tableOptions
     } = useMergeDefaultProps("Table", props);
 
     const containerRef = useRef<HTMLDivElement>();
     const headerRef = useRef<HTMLDivElement>();
 
-    const [sorting, setSorting] = useState<SortingState>([]);
+    const [sorting, setSorting] = useControlled<SortingState>(
+        [],
+        sortingProp,
+        sortingProp ? onSortingChange : undefined,
+    );
 
     const handleSortingChange: OnChangeFn<SortingState> = (updater: Updater<SortingState>) => {
         const sortingState = typeof updater === "function" ? updater(sorting) : updater;
-        onSortingChange?.(sortingState);
         setSorting(sortingState);
     };
 
