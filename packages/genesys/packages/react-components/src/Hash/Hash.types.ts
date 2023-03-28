@@ -2,6 +2,7 @@ import { CoreHashProps } from "@peersyst/react-components-core";
 import { ReactNode } from "react";
 import { TypographyProps } from "../Typography";
 
+//Common types
 export type HashProps = Omit<TypographyProps, "singleLine" | "children"> &
     CoreHashProps & {
         /**
@@ -14,18 +15,10 @@ export type HashProps = Omit<TypographyProps, "singleLine" | "children"> &
         break?: boolean;
         /**
          * In case action === share, this function can be passed to personalize the ShareData.
-         * If action is not set to share it will be ignored.
+         * If action !== share, it will be ignored.
          */
         hashToShareData?: (hash: string) => ShareData;
     };
-
-export interface HashRootProps {
-    autoLength: boolean;
-}
-
-export interface HashTextProps {
-    break: boolean;
-}
 
 export interface HashWrapperProps {
     url: HashProps["url"];
@@ -33,4 +26,13 @@ export interface HashWrapperProps {
     action: HashProps["action"];
     hashToShareData: HashProps["hashToShareData"];
     hash: string;
+}
+
+//Style types
+export interface HashRootProps {
+    autoLength: boolean;
+}
+
+export interface HashTextProps {
+    break: boolean;
 }

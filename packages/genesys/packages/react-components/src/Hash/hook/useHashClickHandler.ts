@@ -1,11 +1,9 @@
 import { HashAction } from "@peersyst/react-components-core";
-import { useCopyToClipboard, useShare } from "@peersyst/react-hooks";
-import { HashProps } from "../Hash.types";
+import { useCopyToClipboard } from "@peersyst/react-hooks";
+import useShareHash, { ShareHashParams } from "./useShareHash";
 
-export interface UseHashOnClickHandlerParams {
+export interface UseHashOnClickHandlerParams extends ShareHashParams {
     action: HashAction | undefined;
-    hash: string;
-    hashToShareData?: HashProps["hashToShareData"];
 }
 
 export default function useHashOnClickHandler({
@@ -13,8 +11,8 @@ export default function useHashOnClickHandler({
     hash,
     hashToShareData,
 }: UseHashOnClickHandlerParams) {
-    const { canShare, share } = useShare();
     const { copyToClipboard } = useCopyToClipboard();
+    const shareHash = useShareHash();
 
     async function handleClick() {
         switch (action) {
@@ -22,8 +20,7 @@ export default function useHashOnClickHandler({
                 await copyToClipboard(hash);
                 break;
             case "share":
-                const shareData: ShareData = hashToShareData?.(hash) ?? { text: hash };
-                if (canShare(shareData)) await share(shareData);
+                await shareHash({ hash, hashToShareData });
                 break;
             default:
                 if (typeof action === "function") action(hash);

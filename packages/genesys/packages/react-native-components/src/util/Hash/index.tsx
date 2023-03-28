@@ -1,2 +1,2 @@
 export { default as BlockchainAddress } from "./BlockchainAddress";
-export * from "./BlockchainAddress.types";
+export * from "./Hash.types";

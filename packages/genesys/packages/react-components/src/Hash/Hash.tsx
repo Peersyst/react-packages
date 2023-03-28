@@ -20,9 +20,9 @@ const Hash = (props: HashProps): JSX.Element => {
         variant,
         url,
         gap = 5,
-        showCopyIcon = true,
-        color,
         action,
+        showCopyIcon,
+        color,
         hashToShareData,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
@@ -30,7 +30,7 @@ const Hash = (props: HashProps): JSX.Element => {
 
     const isAutoLength = length === "auto";
     const rowRef = createRef<HTMLDivElement>();
-    const hashRef = createRef<HTMLAnchorElement | HTMLDivElement>();
+    const hashRef = createRef<HTMLAnchorElement | HTMLSpanElement>();
     const copyButtonRef = createRef<HTMLButtonElement>();
 
     const autoLength = useHashAutoLength(isAutoLength, hash, gap, rowRef, hashRef, copyButtonRef);
@@ -69,6 +69,7 @@ const Hash = (props: HashProps): JSX.Element => {
                     color={color}
                 />
             )}
+            {/*TODO: add share Icon */}
         </HashRoot>
     );
 };

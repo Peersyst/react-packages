@@ -12,5 +12,4 @@ export { default as usePaginatedList } from "./usePaginatedList";
 export { default as usePreventBodyScroll } from "./usePreventBodyScroll";
 export { default as useScrollTrigger } from "./useScrollTrigger";
 export * from "./useScrollTrigger";
-export { default as useShare } from "./useShare";
 export * from "./useShare";
