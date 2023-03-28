@@ -13,9 +13,9 @@ export default function useCopyToClipboard(): UseCopyToClipboard {
         showToastOnCopy = true,
     }: CopyToClipboardParams): Promise<void> {
         await Clipboard.setStringAsync(text || "");
-        if (showToastOnCopy) {
+        if (showToastOnCopy && toastMessage) {
             //TODO: Change locale_keys to camelCaseLocaleKeys
-            showToast(toastMessage ?? translate("copied_to_clipboard"), { type: "success" });
+            showToast(toastMessage, { type: "success" });
         }
     }
 

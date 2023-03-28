@@ -6,7 +6,7 @@ import { useTheme } from "@peersyst/react-native-styled";
 import { CopyButton } from "../CopyButton";
 import { TouchableOpacity } from "react-native";
 import { extractTextStyles } from "@peersyst/react-native-utils";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useMergeDefaultProps, useTranslate } from "@peersyst/react-components-core";
 import useHashOnPressHandler from "./hook/useHashOnPressHandler";
 
 const Hash = (props: HashProps): JSX.Element => {
@@ -24,6 +24,7 @@ const Hash = (props: HashProps): JSX.Element => {
         hashToSharePayload,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
+    const translate = useTranslate();
     const { typography } = useTheme();
     const handleOnPress = useHashOnPressHandler({ action, hash, url, hashToSharePayload });
 
@@ -48,6 +49,7 @@ const Hash = (props: HashProps): JSX.Element => {
             )}
             {showCopyIcon && (
                 <CopyButton
+                    message={translate("copied_to_clipboard")}
                     text={hash}
                     style={{ ...typographyVariantStyles, ...textStyle, fontSize: copyFontSize }}
                 />

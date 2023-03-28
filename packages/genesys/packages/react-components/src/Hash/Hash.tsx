@@ -63,7 +63,7 @@ const Hash = (props: HashProps): JSX.Element => {
                 <CopyButton
                     text={hash}
                     style={
-                        variant === "inherit" ? { fontSize: "inherit" } : typography[variant].style
+                        variant !== "inherit" ? typography[variant].style : { fontSize: "inherit" }
                     }
                     ref={copyButtonRef}
                     color={color}

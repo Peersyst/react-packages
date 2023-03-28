@@ -1,6 +1,7 @@
 import { HashWrapperProps } from "./Hash.types";
 import { forwardRef, RefObject } from "react";
 import useHashOnClickHandler from "./hook/useHashClickHandler";
+import { HashLink } from "./Hash.styles";
 
 const HashWrapper = forwardRef<HTMLAnchorElement | HTMLSpanElement, HashWrapperProps>(
     function HashWrapper({ children, url, action, ...params }: HashWrapperProps, ref): JSX.Element {
@@ -11,7 +12,7 @@ const HashWrapper = forwardRef<HTMLAnchorElement | HTMLSpanElement, HashWrapperP
         const anchorWrapper = url && action === "link";
 
         return anchorWrapper ? (
-            <a
+            <HashLink
                 href={url}
                 target="_blank"
                 rel="noreferrer"
@@ -19,7 +20,7 @@ const HashWrapper = forwardRef<HTMLAnchorElement | HTMLSpanElement, HashWrapperP
                 ref={ref as RefObject<HTMLAnchorElement>}
             >
                 {children}
-            </a>
+            </HashLink>
         ) : (
             <span
                 className="HashWrapper"

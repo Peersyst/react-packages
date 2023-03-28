@@ -19,3 +19,12 @@ export const HashRoot = styled(Row).attrs({
 export const HashText = styled(Typography)<HashTextProps>`
     word-break: ${(p) => p.break && "break-word"};
 `;
+
+export const HashLink = styled.a(
+    () => css`
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    `,
+);
