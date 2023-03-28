@@ -1,5 +1,10 @@
 # Versions
 
+## 2.2.7
+
+[useShare] Add hook to share in web
+[useCopyToClipboard] Add hook to copy to clipboard
+
 ## 2.2.5
 
 Dependencies update (react-types)
