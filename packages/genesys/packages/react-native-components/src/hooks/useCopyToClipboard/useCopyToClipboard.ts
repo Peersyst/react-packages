@@ -8,12 +8,15 @@ export default function useCopyToClipboard(): UseCopyToClipboard {
     const translate = useTranslate();
 
     async function copyToClipboard({
-        message,
+        text,
         toastMessage,
+        showToastOnCopy = true,
     }: CopyToClipboardParams): Promise<void> {
-        await Promise.resolve(Clipboard.setStringAsync(message || ""));
-        //TODO: Change locale_keys to camelCaseLocaleKeys
-        showToast(toastMessage ?? translate("copied_to_clipboard"), { type: "success" });
+        await Clipboard.setStringAsync(text || "");
+        if (showToastOnCopy) {
+            //TODO: Change locale_keys to camelCaseLocaleKeys
+            showToast(toastMessage ?? translate("copied_to_clipboard"), { type: "success" });
+        }
     }
 
     return copyToClipboard;

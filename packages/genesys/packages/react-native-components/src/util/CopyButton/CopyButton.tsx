@@ -1,6 +1,4 @@
-import * as Clipboard from "expo-clipboard";
 import { CopyButtonProps } from "./CopyButton.types";
-import { useToast } from "../../feedback/ToastProvider";
 import { IconButton } from "../../input/IconButton";
 import { CopyIcon } from "../../assets/icons";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -12,7 +10,11 @@ const CopyButton = (props: CopyButtonProps): JSX.Element => {
     const copyToClipboard = useCopyToClipboard();
 
     return (
-        <IconButton {...rest} style={style} onPress={() => copyToClipboard({ message })}>
+        <IconButton
+            {...rest}
+            style={style}
+            onPress={() => copyToClipboard({ toastMessage: message, text })}
+        >
             <CopyIcon />
         </IconButton>
     );
