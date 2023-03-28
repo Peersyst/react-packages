@@ -5,7 +5,7 @@ import {
 import { OverridableStringUnion } from "@peersyst/react-types";
 import { HashProps } from "../Hash";
 
-export type BlockchainAddressProps = Omit<HashProps, "url" | "hash"> & {
+export type BlockchainAddressProps = Omit<HashProps, "url" | "hash" | "hashToShareData"> & {
     /**
      * Blockchain address
      */
@@ -15,9 +15,9 @@ export type BlockchainAddressProps = Omit<HashProps, "url" | "hash"> & {
      */
     type: OverridableStringUnion<BlockchainLinksTypes, BlockchainLinksTypesOverrides>;
     /**
-     * Enable address link
+     * Address to shareData mapper
      */
-    link?: boolean;
+    addressToShareData?: HashProps["hashToShareData"];
 };
 
 export interface BlockchainAddressRootProps {

@@ -1,11 +1,13 @@
 import { HashProps } from "./Hash.types";
-import { cx, formatHash } from "@peersyst/react-utils";
+import { formatHash } from "@peersyst/react-utils";
 import { createRef } from "react";
 import useHashAutoLength from "./hook/useHashAutoLength";
 import { CopyButton } from "../CopyButton";
 import { useTheme } from "../theme";
-import { HashRoot, HashText, HashLink } from "./Hash.styles";
+import { HashRoot, HashText } from "./Hash.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import HashWrapper from "./HashWrapper";
+import clsx from "clsx";
 
 const Hash = (props: HashProps): JSX.Element => {
     const {
@@ -18,42 +20,46 @@ const Hash = (props: HashProps): JSX.Element => {
         variant,
         url,
         gap = 5,
-        copy = true,
+        action,
+        showCopyIcon,
         color,
+        hashToShareData,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
     const { typography } = useTheme();
 
     const isAutoLength = length === "auto";
-
     const rowRef = createRef<HTMLDivElement>();
-    const hashRef = createRef<HTMLAnchorElement>();
+    const hashRef = createRef<HTMLAnchorElement | HTMLSpanElement>();
     const copyButtonRef = createRef<HTMLButtonElement>();
 
     const autoLength = useHashAutoLength(isAutoLength, hash, gap, rowRef, hashRef, copyButtonRef);
+    const formattedHash = formatHash(
+        hash,
+        ellipsis,
+        isAutoLength ? autoLength : typeof length === "number" ? length : hash.length,
+    );
 
     return (
         <HashRoot
             autoLength={isAutoLength}
             gap={gap}
-            className={cx("Hash", className)}
+            className={clsx("Hash", className)}
             style={style}
             ref={rowRef}
         >
-            <HashLink href={url} target="_blank" rel="noreferrer" ref={hashRef} url={url}>
+            <HashWrapper
+                ref={hashRef}
+                url={url}
+                action={action}
+                hashToShareData={hashToShareData}
+                hash={hash}
+            >
                 <HashText variant={variant} break={breakProp} color={color} {...typographyProps}>
-                    {formatHash(
-                        hash,
-                        ellipsis,
-                        isAutoLength
-                            ? autoLength
-                            : typeof length === "number"
-                            ? length
-                            : hash.length,
-                    )}
+                    {formattedHash}
                 </HashText>
-            </HashLink>
-            {copy && (
+            </HashWrapper>
+            {showCopyIcon && (
                 <CopyButton
                     text={hash}
                     style={
@@ -63,6 +69,7 @@ const Hash = (props: HashProps): JSX.Element => {
                     color={color}
                 />
             )}
+            {/*TODO: add share Icon */}
         </HashRoot>
     );
 };

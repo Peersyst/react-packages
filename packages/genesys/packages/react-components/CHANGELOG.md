@@ -1,5 +1,14 @@
 # Versions
 
+## 3.6.0 **BREAKING**
+
+[Hash] Refactor hash to work with actions: `share`, `copy`, `link`, `customAction`
+[BlockchainAddress] Refactor to work with new Hash component
+
+## 3.5.4
+
+[useNumericInput] Fix useNumericInput
+
 ## 3.5.2
 
 [Upload] Fix onChange not being called with same file

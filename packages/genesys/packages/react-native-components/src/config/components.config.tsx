@@ -290,6 +290,9 @@ const componentsConfig: ComponentsConfig = {
     ContainedSuspense: {
         defaultProps: {},
     },
+    Hash: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

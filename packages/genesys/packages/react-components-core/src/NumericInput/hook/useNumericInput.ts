@@ -21,7 +21,7 @@ export default function useNumericInput({
     return {
         format: (value: string) => formatNumber(value, finalLocale, maxDecimals),
         parse: (curr: string, prev: string) => {
-            const parseValue = parseNumber(curr);
+            const parseValue = parseNumber(curr, maxDecimals);
             if (parseValue === "NaN") return prev;
             return parseValue;
         },

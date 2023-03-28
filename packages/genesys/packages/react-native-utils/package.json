@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-utils",
     "author": "Peersyst",
-    "version": "1.1.5",
+    "version": "1.2.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -35,7 +35,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-types": "^1.5.4"
+        "@peersyst/react-types": "^1.5.4",
+        "expo-clipboard": "^4.1.2"
     },
     "devDependencies": {
         "@types/react": "^18.0.25",

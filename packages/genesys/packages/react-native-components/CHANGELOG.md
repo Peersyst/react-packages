@@ -1,5 +1,16 @@
 # Versions
 
+## 2.5.0 **BREAKING**
+
+[Hash] Refactor hash to work with actions: `share`, `copy`, `link`, `customAction`
+[BlockchainAddress] Refactor to work with new Hash component
+[useShare] Add hook to manage the share
+[useCopyToClipboard] Add hook to manage the copy to clipboard
+
+## 2.4.3
+
+[NumericInput] Fix useNumericInput
+
 ## 2.4.0 **BREAING**
 
 [TextInput] Remove input and inputProps props
