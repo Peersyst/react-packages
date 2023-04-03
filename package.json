@@ -36,7 +36,8 @@
     "workspaces": [
         "packages/*",
         "packages/genesys/packages/*",
-        "packages/genesys/docs"
+        "packages/genesys/docs",
+        "packages/genesys/packages/react-native-components/playground"
     ],
     "dependencies": {},
     "version": "0.0.0"

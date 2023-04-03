@@ -20,8 +20,8 @@
         "build-storybook": "build-storybook"
     },
     "peerDependencies": {
-        "@types/react": "^18.0.25",
-        "@types/react-dom": "^18.0.0",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.11",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -44,8 +44,8 @@
         "validator": "^13.7.0"
     },
     "devDependencies": {
-        "@types/react": "^18.0.25",
-        "@types/react-dom": "^18.0.0",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.11",
         "@types/validator": "^13.7.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
