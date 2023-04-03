@@ -2,7 +2,7 @@
     "name": "docs",
     "private": true,
     "author": "Peersyst",
-    "version": "1.6.2",
+    "version": "1.6.3",
     "main": "./src/index.tsx",
     "engines": {
         "node": ">=10"
@@ -13,8 +13,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components": "^3.6.2",
-        "@peersyst/react-components-core": "^1.5.0",
+        "@peersyst/react-components": "^3.6.3",
+        "@peersyst/react-components-core": "^1.5.1",
         "@types/color": "^3.0.3",
         "color": "^4.2.3",
         "react": "^18.2.0",
@@ -31,7 +31,7 @@
         "@storybook/addons": "^6.4.9",
         "@storybook/react": "^6.4.9",
         "@storybook/theming": "^6.4.9",
-        "@types/react": "^18.0.25",
+        "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.0",
         "@types/styled-components": "^5.1.18"
     },

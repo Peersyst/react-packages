@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-types",
     "author": "Peersyst",
-    "version": "1.5.4",
+    "version": "1.5.5",
     "license": "MIT",
     "types": "./index.d.ts",
     "engines": {
@@ -21,7 +21,7 @@
         }
     },
     "devDependencies": {
-        "@types/react": "^18.0.25"
+        "@types/react": "^18.0.27"
     },
     "publishConfig": {
         "access": "public"

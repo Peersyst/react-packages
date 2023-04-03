@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-utils",
     "author": "Peersyst",
-    "version": "2.2.5",
+    "version": "2.2.6",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -18,7 +18,7 @@
         "release": "yarn build && npm publish build"
     },
     "peerDependencies": {
-        "@types/react": "^18.0.25",
+        "@types/react": "^18.0.27",
         "react": "^18.2.0"
     },
     "peerDependenciesMeta": {
@@ -28,11 +28,11 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-types": "^1.5.4",
+        "@peersyst/react-types": "^1.5.5",
         "validate-color": "^2.2.1"
     },
     "devDependencies": {
-        "@types/react": "^18.0.25",
+        "@types/react": "^18.0.27",
         "react": "^18.2.0"
     },
     "publishConfig": {

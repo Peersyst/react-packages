@@ -1,4 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { ShadowPropTypesIOSStatic } from "react-native";
+import { ShadowStyleIOS } from "react-native";
 
-export type Shadow = ShadowPropTypesIOSStatic & { elevation?: number | undefined };
+export type Shadow = ShadowStyleIOS & { elevation?: number | undefined };

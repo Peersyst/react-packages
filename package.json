@@ -3,7 +3,7 @@
     "private": true,
     "scripts": {
         "start": "lerna run --parallel --scope \"@peersyst/react-components\" start",
-        "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --ignore \"playground\"",
+        "release:version": "lerna version --ignore \"playground\" --no-changelog --no-push --no-git-tag-version",
         "release:build": "lerna run --parallel --ignore \"docs\" --ignore \"playground\" build",
         "release:publish": "lerna publish from-package --dist-tag latest --contents build",
         "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\"",
