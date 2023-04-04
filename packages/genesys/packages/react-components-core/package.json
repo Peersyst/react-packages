@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components-core",
     "author": "Peersyst",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -20,8 +20,8 @@
         "build-storybook": "build-storybook"
     },
     "peerDependencies": {
-        "@types/react": "^18.0.25",
-        "@types/react-dom": "^18.0.0",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.11",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -38,14 +38,14 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-hooks": "^2.2.7",
-        "@peersyst/react-types": "^1.5.4",
-        "@peersyst/react-utils": "^2.2.5",
+        "@peersyst/react-hooks": "^2.2.8",
+        "@peersyst/react-types": "^1.5.5",
+        "@peersyst/react-utils": "^2.2.6",
         "validator": "^13.7.0"
     },
     "devDependencies": {
-        "@types/react": "^18.0.25",
-        "@types/react-dom": "^18.0.0",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.11",
         "@types/validator": "^13.7.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"

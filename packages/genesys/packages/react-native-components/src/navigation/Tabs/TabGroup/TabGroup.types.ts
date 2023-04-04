@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Tab } from "../Tab";
-import { ViewProps, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 
 export interface TabGroupProps {
     /**
@@ -10,7 +10,7 @@ export interface TabGroupProps {
     /**
      * Indicator style
      */
-    indicatorStyle?: ViewProps;
+    indicatorStyle?: ViewStyle;
     /**
      * Custom Indicator element
      */

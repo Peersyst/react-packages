@@ -1,6 +1,6 @@
 {
     "name": "xumm-react",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "React package that aims to unplug XUMM logic from your React App",
     "main": "index.js",
     "scripts": {
@@ -18,7 +18,7 @@
     "author": "AgustinMJ",
     "license": "MIT",
     "devDependencies": {
-        "@types/react": "^18.0.25",
+        "@types/react": "^18.0.27",
         "react": "^18.2.0"
     },
     "peerDependencies": {
