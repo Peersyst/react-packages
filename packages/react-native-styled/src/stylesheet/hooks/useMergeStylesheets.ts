@@ -11,8 +11,6 @@ export default function useMergeStylesheets<P extends StyledComponentProps<P["st
         for (const stylesheet of restStylesheets)
             resolvedStylesheet = deepmerge(resolvedStylesheet, stylesheet);
 
-        //resolveStyles({ ...params, style: resolvedStylesheet });
-
         return resolvedStylesheet || {};
     }, [stylesheets]);
 }
