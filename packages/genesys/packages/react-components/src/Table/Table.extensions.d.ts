@@ -1,4 +1,4 @@
-import { RowData, ColumnDefBase as ReactTableColumnDefBase } from "@tanstack/table-core";
+import { RowData } from "@tanstack/table-core";
 import { TableAlignment } from "./Table.types";
 
 declare module "@tanstack/table-core" {

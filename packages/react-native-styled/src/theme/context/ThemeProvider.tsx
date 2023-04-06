@@ -1,4 +1,4 @@
-import { ThemeProps } from "./Theme.types";
+import { ThemeProps } from "../Theme.types";
 import ThemeContext from "./ThemeContext";
 
 const ThemeProvider = ({ theme, children }: ThemeProps): JSX.Element => {

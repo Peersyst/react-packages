@@ -1,5 +1,9 @@
 import { createContext } from "react";
-import { ThemeContextType } from "./Theme.types";
+import { Theme } from "../Theme.types";
+
+export interface ThemeContextType {
+    theme: Theme;
+}
 
 const ThemeContext = createContext<ThemeContextType>({ theme: {} as any });
 

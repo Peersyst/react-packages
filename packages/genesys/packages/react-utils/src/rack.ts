@@ -46,7 +46,6 @@ export default function <
     };
     const Rack = RackComponent as JSXElementConstructor<P> & Slots<K[], E>;
     for (const [name, element] of Object.entries(extensions)) {
-        //console.log(name, element);
         Object.defineProperty(Rack, name, {
             value: createSlot(name, element as JSXElementConstructor<any>),
             writable: false,

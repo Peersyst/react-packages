@@ -11,25 +11,23 @@ import useButton from "./hooks/useButton";
 import { ContainedSuspense } from "../../feedback/ContainedSuspense";
 import { Row } from "../../layout/Row";
 
-const Button = (props: ButtonProps): JSX.Element => {
+const Button = (rawProps: ButtonProps): JSX.Element => {
+    const { props, computed } = useButton(rawProps);
+
     const {
         onPress,
         children,
         loading = false,
         loadingElement,
-        size = "md",
         rightIcon,
         leftIcon,
         fullWidth = false,
-        variant = "filled",
-        style = {},
-        color,
-        handleSubmit,
-        enabled,
-        ...rest
-    } = useButton(props);
+        ...restProps
+    } = props;
 
-    const touchableProps = filter(rest, "type", "disabled", "action");
+    const { handleSubmit, enabled } = computed;
+
+    const touchableProps = filter(restProps, "type", "disabled", "action");
 
     const [pressed, setPressed] = useState(false);
 
@@ -43,14 +41,7 @@ const Button = (props: ButtonProps): JSX.Element => {
         () =>
             setPressed(pressed);
 
-    const { textStyle, rootStyle } = useButtonStyles(
-        style,
-        variant,
-        size,
-        !enabled,
-        pressed,
-        color,
-    );
+    const { textStyle, rootStyle } = useButtonStyles(props, computed, pressed);
 
     return (
         <TouchableWithoutFeedback

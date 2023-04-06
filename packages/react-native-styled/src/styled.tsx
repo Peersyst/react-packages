@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { Theme, useTheme } from "@peersyst/react-native-styled";
+import { useTheme } from "@peersyst/react-native-styled";
 import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
-import { ScaledSize, StyleSheet, useWindowDimensions } from "react-native";
-import { StyledFunction, StyledComponentProps } from "./types";
-import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
+import { StyleSheet, useWindowDimensions } from "react-native";
+import { StyledFunction, StyledComponentProps, StyledParams, Stylesheet } from "./types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Loosen } from "@peersyst/react-types";
+import { resolveStyles } from "./helpers";
 
 export default function styled<
     P extends StyledComponentProps<P["style"]>,
@@ -19,27 +20,30 @@ export default function styled<
     const styledConstructor = function <E = {}>(styledSx?: StyledFunction<P, E>) {
         const componentName = Component.displayName || Component.name;
 
-        const StyledComponent = ({ sx: sxProp, style: styleProp, ...rest }: P & E): JSX.Element => {
+        const StyledComponent = (styledComponentProps: P & E): JSX.Element => {
+            const { sx: sxProp, style: styleProp, ...rest } = styledComponentProps;
+
             const theme = useTheme();
             const dimensions = useWindowDimensions();
             const safeAreaInsets = useSafeAreaInsets();
 
-            const style = useMemo(
-                () =>
-                    deepmerge(
-                        deepmerge(
-                            styledSx?.({ theme, dimensions, safeAreaInsets, ...rest } as P &
-                                E & {
-                                    theme: Theme;
-                                    dimensions: ScaledSize;
-                                    safeAreaInsets: EdgeInsets;
-                                }),
-                            StyleSheet.flatten(styleProp),
-                        ),
-                        sxProp?.({ theme, dimensions, safeAreaInsets }),
-                    ),
-                [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()],
-            );
+            const params = {
+                theme,
+                dimensions,
+                safeAreaInsets,
+                ...styledComponentProps,
+            } as StyledParams<P, E>;
+
+            // Compute style
+            const style = useMemo(() => {
+                const styles = deepmerge(
+                    deepmerge(styledSx?.(params), StyleSheet.flatten(styleProp)),
+                    sxProp?.({ theme, dimensions, safeAreaInsets }),
+                ) as Stylesheet<P["style"]>;
+
+                // TODO: Evaluate adding a resolved prop in the stylesheet metadata to not recompute styles if not needed
+                return resolveStyles(params, styles);
+            }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
 
             const finalProps = {
                 ...props,

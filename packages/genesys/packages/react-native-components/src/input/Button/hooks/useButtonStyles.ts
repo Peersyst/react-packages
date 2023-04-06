@@ -1,108 +1,61 @@
-import useDefaultStyles from "./useButtonDefaultStyle";
-import { extractTextStyles } from "@peersyst/react-native-utils";
-import { ButtonRootStyle, ButtonStyle, ButtonTextStyle } from "../Button.types";
+import { ButtonProps, ButtonRootStyle, ButtonTextStyle } from "../Button.types";
 import { useMemo } from "react";
-import { ButtonSize, ButtonVariant } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../../config";
+import { extractTextStyles, extractViewStyles } from "@peersyst/react-native-utils";
+import { ButtonComputedProps } from "./useButton";
+import {
+    useMergeStylesheets,
+    useResolveStylesheet,
+    useStylesheet,
+} from "@peersyst/react-native-styled";
 
 export interface UseButtonStylesResult {
     textStyle: ButtonTextStyle;
     rootStyle: ButtonRootStyle;
 }
 
-// TODO: Refactor or add sizes merge to stateful styles
 export default function useButtonStyles(
-    style: ButtonStyle,
-    variant: ButtonVariant,
-    size: ButtonSize,
-    disabled: boolean,
+    props: ButtonProps,
+    computed: ButtonComputedProps,
     pressed: boolean,
-    color: string | undefined,
 ): UseButtonStylesResult {
-    const { defaultStyles, defaultDisabledStyles, defaultPressedStyles, defaultSizeStyles } =
-        useDefaultStyles(color);
-    const {
-        disabled: globalDisabledStyles = {},
-        pressed: globalPressedStyles = {},
-        ...globalStyles
-    } = useGlobalStyles("Button");
-    const { disabled: disabledStyles = {}, pressed: pressedStyles = {}, ...styles } = style;
+    const { style = {}, variant = "filled", size = "md" } = props;
+    const { enabled, color } = computed;
 
-    const [textStyles, rootStyles] = useMemo(
-        () => extractTextStyles({ ...defaultStyles, ...globalStyles, ...styles }),
-        [defaultStyles, globalStyles, styles],
+    const stylesheet = useStylesheet<ButtonProps>("Button");
+    const mergedStylesheets = useMergeStylesheets<ButtonProps>(
+        { currentColor: color },
+        stylesheet,
+        style,
     );
 
-    const [variantTextStyles, variantRootStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...defaultStyles[variant],
-                ...globalStyles[variant],
-                ...styles[variant],
-            }),
-        [defaultStyles, globalStyles, styles, variant],
-    );
+    const buttonStyles = useMemo(() => {
+        const {
+            disabled: disabledStyles = {},
+            pressed: pressedStyles = {},
+            ...styles
+        } = mergedStylesheets;
 
-    const [sizeTextStyles, sizeRootStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...defaultSizeStyles[size],
-                ...globalStyles[size],
-                ...styles[size],
-            }),
-        [defaultSizeStyles, globalStyles, styles, size],
-    );
+        const variantStyles = styles[variant];
+        const sizeStyles = styles[size];
+        const pressedVariantStyles = pressedStyles[variant];
+        const disabledVariantStyles = disabledStyles[variant];
 
-    const [pressedTextStyles, pressedRootStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...defaultPressedStyles,
-                ...globalPressedStyles,
-                ...pressedStyles,
-            }),
-        [defaultPressedStyles, globalPressedStyles, pressedStyles],
-    );
+        return {
+            ...styles,
+            ...variantStyles,
+            ...sizeStyles,
+            ...(pressed && { ...pressedStyles, ...pressedVariantStyles }),
+            ...(!enabled && { ...disabledStyles, ...disabledVariantStyles }),
+        };
+    }, [mergedStylesheets, variant, size, enabled, pressed, color]);
 
-    const [variantPressedTextStyles, variantPressedRootStyles] = useMemo(() => {
-        return extractTextStyles({
-            ...defaultPressedStyles[variant],
-            ...globalPressedStyles[variant],
-            ...pressedStyles[variant],
-        });
-    }, [defaultPressedStyles, globalPressedStyles, pressedStyles, variant]);
+    const resolvedStyles = useResolveStylesheet(props, buttonStyles);
 
-    const [disabledTextStyles, disabledRootStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...defaultDisabledStyles,
-                ...globalDisabledStyles,
-                ...disabledStyles,
-            }),
-        [defaultDisabledStyles, globalDisabledStyles, disabledStyles],
-    );
+    const [textStyle, otherStyles] = extractTextStyles(resolvedStyles);
+    const [rootStyle] = extractViewStyles(otherStyles);
 
-    const [variantDisabledTextStyles, variantDisabledRootStyles] = useMemo(() => {
-        return extractTextStyles({
-            ...defaultDisabledStyles[variant],
-            ...globalDisabledStyles[variant],
-            ...disabledStyles[variant],
-        });
-    }, [defaultDisabledStyles, globalDisabledStyles, disabledStyles, variant]);
-
-    const textStyle = {
-        ...textStyles,
-        ...variantTextStyles,
-        ...sizeTextStyles,
-        ...(pressed && { ...pressedTextStyles, ...variantPressedTextStyles }),
-        ...(disabled && { ...disabledTextStyles, ...variantDisabledTextStyles }),
+    return {
+        textStyle,
+        rootStyle,
     };
-    const rootStyle = {
-        ...rootStyles,
-        ...variantRootStyles,
-        ...sizeRootStyles,
-        ...(disabled && { ...disabledRootStyles, ...variantDisabledRootStyles }),
-        ...(pressed && { ...pressedRootStyles, ...variantPressedRootStyles }),
-    };
-
-    return { textStyle, rootStyle };
 }

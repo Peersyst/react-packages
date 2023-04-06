@@ -1,6 +1,7 @@
-import { TextStyle } from "react-native";
+import { extract } from "@peersyst/react-utils";
+import { TextStyle, ViewStyle } from "react-native";
 
-export const textStyleKeys = [
+export const textStyleKeys: Readonly<(keyof Omit<TextStyle, keyof ViewStyle>)[]> = [
     "color",
     "fontFamily",
     "fontSize",
@@ -19,6 +20,7 @@ export const textStyleKeys = [
     "fontVariant",
     "writingDirection",
     "textAlignVertical",
+    "verticalAlign",
     "includeFontPadding",
 ] as const;
 
@@ -29,15 +31,5 @@ export default function extractTextStyles<T extends TextStyle>(
 ): [TextStyle, Omit<T, TextStylesKeys>] {
     if (!styles) return [{}, {} as Omit<T, TextStylesKeys>];
 
-    return Object.entries(styles).reduce(
-        ([textStyles, rest], [key, value]) => {
-            if (textStyleKeys.includes(key as TextStylesKeys)) {
-                textStyles[key as TextStylesKeys] = value;
-            } else {
-                rest[key as Exclude<keyof T, TextStylesKeys>] = value;
-            }
-            return [textStyles, rest];
-        },
-        [{} as TextStyle, {} as Omit<T, TextStylesKeys>],
-    );
+    return extract(styles, ...textStyleKeys);
 }

@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-utils",
     "author": "Peersyst",
-    "version": "2.2.6",
+    "version": "2.3.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-types": "^1.5.5",
+        "@peersyst/react-types": "^1.6.0",
         "validate-color": "^2.2.1"
     },
     "devDependencies": {
