@@ -19,9 +19,9 @@
     },
     "peerDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.4",
+        "@types/react-native": "0.71.6",
         "react": "^18.2.0",
-        "react-native": "0.71.4"
+        "react-native": "0.71.6"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -39,9 +39,9 @@
     },
     "devDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.4",
+        "@types/react-native": "0.71.6",
         "react": "18.2.0",
-        "react-native": "0.71.4"
+        "react-native": "0.71.6"
     },
     "publishConfig": {
         "access": "public"
