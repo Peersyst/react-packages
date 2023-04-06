@@ -23,7 +23,7 @@
     },
     "peerDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.6",
+        "@types/react-native": "0.71.5",
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -65,7 +65,7 @@
     },
     "devDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.6",
+        "@types/react-native": "0.71.5",
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
