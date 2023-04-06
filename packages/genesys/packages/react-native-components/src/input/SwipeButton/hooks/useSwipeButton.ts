@@ -4,12 +4,14 @@ import {
     useButtonSubmit,
     useColor,
     useMergeDefaultProps,
-    WithParsedThemeColor,
+    ParsedThemeColor,
     UseButtonSubmitResult,
 } from "@peersyst/react-components-core";
 import { SwipeButtonProps } from "../SwipeButton.types";
 
-export type UseSwipeButtonResult = WithParsedThemeColor<SwipeButtonProps> & UseButtonSubmitResult;
+export type UseSwipeButtonResult = Omit<SwipeButtonProps, "color"> & {
+    color: ParsedThemeColor;
+} & UseButtonSubmitResult;
 
 export default function useSwipeButton(props: SwipeButtonProps): UseSwipeButtonResult {
     const {
