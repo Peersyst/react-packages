@@ -9,6 +9,12 @@ import {
 import { fromTheme, fromProps, fromDimensions, fromSafeAreaInsets } from "../accessors";
 import { getComponentStylesheetName } from "./utils";
 
+/**
+ * Creates a stylesheet for a component with a set of accessors.
+ * Similar to the css function from styled-components.
+ * @param Component
+ * @returns A function that takes a stylesheet function and returns a stylesheet.
+ */
 export default function stylesheet<P extends StyledComponentProps<P["style"]>>(
     Component: ComponentType<P> | string,
 ): (sx?: StylesheetFunction<P>) => StylesheetWithMetadata<P["style"]> {

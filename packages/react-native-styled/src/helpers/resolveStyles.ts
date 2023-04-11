@@ -3,7 +3,10 @@ import isCurrentColor from "./isCurrentColor";
 import resolveStyleProperty from "./resolveStyleProperty";
 
 /**
- * Resolve styles from params
+ * Resolve styles from params I.e. currentColor to the actual currentColor
+ * @param params Styled params
+ * @param styles Component styles
+ * @returns The resolved styles
  */
 export default function resolveStyles<P extends StyledComponentProps<P["style"]>>(
     params: StyledParams<P>,

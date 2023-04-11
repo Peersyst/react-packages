@@ -7,6 +7,9 @@ export interface StylesheetProviderProps {
     children: ReactNode;
 }
 
+/**
+ * Stylesheets provider that merges its stylesheets with the parent stylesheets
+ */
 const StylesheetProvider = ({ stylesheets, children }: StylesheetProviderProps): JSX.Element => {
     const higherStylesheets = useContext(StylesheetContext);
 

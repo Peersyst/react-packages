@@ -13,6 +13,13 @@ export interface UseButtonStylesResult {
     rootStyle: ButtonRootStyle;
 }
 
+/**
+ *
+ * @param props Button props
+ * @param computed Button computed props
+ * @param pressed Button pressed flag
+ * @returns [textStyle, rootStyle] computed from parameters using stylesheets
+ */
 export default function useButtonStyles(
     props: ButtonProps,
     computed: ButtonComputedProps,
@@ -51,11 +58,13 @@ export default function useButtonStyles(
 
     const resolvedStyles = useResolveStylesheet(props, buttonStyles);
 
-    const [textStyle, otherStyles] = extractTextStyles(resolvedStyles);
-    const [rootStyle] = extractViewStyles(otherStyles);
+    return useMemo(() => {
+        const [textStyle, otherStyles] = extractTextStyles(resolvedStyles);
+        const [rootStyle] = extractViewStyles(otherStyles);
 
-    return {
-        textStyle,
-        rootStyle,
-    };
+        return {
+            textStyle,
+            rootStyle,
+        };
+    }, [resolvedStyles]);
 }

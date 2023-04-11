@@ -5,6 +5,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useMemo } from "react";
 import { resolveStyles } from "../../helpers";
 
+/**
+ * Resolves a stylesheet of a component with props P
+ * @param props Component props
+ * @param styles Component styles or styleshet
+ * @returns The resolved styles
+ */
 export default function useResolveStylesheet<P extends StyledComponentProps<P["style"]>>(
     props: P,
     styles: Stylesheet<P["style"]>,

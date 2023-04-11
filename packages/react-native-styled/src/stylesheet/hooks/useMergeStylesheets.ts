@@ -2,15 +2,20 @@ import { deepmerge } from "@peersyst/react-utils";
 import { Stylesheet, StyledComponentProps } from "../../types";
 import { useMemo } from "react";
 
+/**
+ * Merges a set of stylesheets into a single stylesheet using a deepmerge strategy
+ * @param stylesheets
+ * @returns The merged stylesheet
+ */
 export default function useMergeStylesheets<P extends StyledComponentProps<P["style"]> = any>(
     ...stylesheets: Stylesheet<P["style"]>[]
 ): NonNullable<P["style"]> {
     return useMemo(() => {
         const [baseStylesheet, ...restStylesheets] = stylesheets;
-        let resolvedStylesheet = baseStylesheet;
+        let mergedStylesheet = baseStylesheet;
         for (const stylesheet of restStylesheets)
-            resolvedStylesheet = deepmerge(resolvedStylesheet, stylesheet);
+            mergedStylesheet = deepmerge(mergedStylesheet, stylesheet);
 
-        return resolvedStylesheet || {};
+        return mergedStylesheet || {};
     }, [stylesheets]);
 }
