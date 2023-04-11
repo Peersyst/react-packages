@@ -9,9 +9,9 @@ import { Stylesheet } from "../types";
 export default function createStylesheets(
     ...stylesheets: Stylesheet<AnyObject>[]
 ): Record<string, Stylesheet<AnyObject>> {
-    return stylesheets.reduce((record, stylesheet) => {
+    return stylesheets.reduce((stylesheetsObj, stylesheet) => {
         const { _metadata } = stylesheet;
-        record[_metadata.component] = stylesheet;
-        return record;
+        stylesheetsObj[_metadata.component] = stylesheet;
+        return stylesheetsObj;
     }, {} as Record<string, Stylesheet<AnyObject>>);
 }

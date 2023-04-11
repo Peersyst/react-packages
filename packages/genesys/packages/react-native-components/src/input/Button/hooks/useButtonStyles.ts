@@ -1,12 +1,12 @@
 import { ButtonProps, ButtonRootStyle, ButtonTextStyle } from "../Button.types";
 import { useMemo } from "react";
-import { extractTextStyles, extractViewStyles } from "@peersyst/react-native-utils";
 import { ButtonComputedProps } from "./useButton";
 import {
     useMergeStylesheets,
     useResolveStylesheet,
     useStylesheet,
 } from "@peersyst/react-native-styled";
+import { useTextAndViewStyles } from "../../../hooks";
 
 export interface UseButtonStylesResult {
     textStyle: ButtonTextStyle;
@@ -58,13 +58,10 @@ export default function useButtonStyles(
 
     const resolvedStyles = useResolveStylesheet(props, buttonStyles);
 
-    return useMemo(() => {
-        const [textStyle, otherStyles] = extractTextStyles(resolvedStyles);
-        const [rootStyle] = extractViewStyles(otherStyles);
+    const [textStyle, rootStyle] = useTextAndViewStyles(resolvedStyles);
 
-        return {
-            textStyle,
-            rootStyle,
-        };
-    }, [resolvedStyles]);
+    return {
+        textStyle,
+        rootStyle,
+    };
 }

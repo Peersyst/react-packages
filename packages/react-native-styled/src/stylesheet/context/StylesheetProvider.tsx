@@ -8,7 +8,7 @@ export interface StylesheetProviderProps {
 }
 
 /**
- * Stylesheets provider that merges its stylesheets with the parent stylesheets
+ * Stylesheets provider that merges its stylesheets with the parent stylesheets at load time
  */
 const StylesheetProvider = ({ stylesheets, children }: StylesheetProviderProps): JSX.Element => {
     const higherStylesheets = useContext(StylesheetContext);
