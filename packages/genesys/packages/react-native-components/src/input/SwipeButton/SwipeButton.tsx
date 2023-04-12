@@ -19,24 +19,24 @@ import { ChevronRightIcon } from "../../assets/icons";
 
 const AnimatedSwipeButtonThumb = Animated.createAnimatedComponent(classify(SwipeButtonThumb));
 
-const SwipeButton = (props: SwipeButtonProps) => {
+const SwipeButton = (rawProps: SwipeButtonProps) => {
+    const { props, computed } = useSwipeButton(rawProps);
+
     const {
         onSwipe,
         children,
         fullWidth = true,
         thumbContent = <ChevronRightIcon />,
-        style = {},
         loading = false,
-        color,
-        handleSubmit,
-        enabled,
+
         loadingElement,
-    } = useSwipeButton(props);
+        style: _style,
+    } = props;
+
+    const { handleSubmit } = computed;
 
     const { contentStyles, rootStyles, trackStyles, railStyles, thumbContentStyles, thumbStyles } =
-        useSwipeButtonStyles(style, color!, {
-            disabled: !enabled,
-        });
+        useSwipeButtonStyles(props, computed);
 
     const handleSlide = (): void => {
         if (handleSubmit) handleSubmit();

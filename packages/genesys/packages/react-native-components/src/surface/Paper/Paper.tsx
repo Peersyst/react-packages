@@ -1,19 +1,14 @@
 import { PaperProps } from "./Paper.types";
 import { PaperRoot } from "./Paper.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
+import { usePaperStyles } from "./hooks";
 
-const Paper = (props: PaperProps): JSX.Element => {
-    const {
-        elevation = 1,
-        square = false,
-        style: styleProp = {},
-        children,
-        ...rest
-    } = useMergeDefaultProps("Paper", props);
+const Paper = (rawProps: PaperProps): JSX.Element => {
+    const props = useMergeDefaultProps("Paper", rawProps);
 
-    const defaultStyle = useGlobalStyles("Paper");
-    const style = { ...defaultStyle, ...styleProp };
+    const { elevation = 1, square = false, children, style: _style, ...rest } = props;
+
+    const style = usePaperStyles(props);
 
     return (
         <PaperRoot elevation={elevation} square={square} style={style} {...rest}>

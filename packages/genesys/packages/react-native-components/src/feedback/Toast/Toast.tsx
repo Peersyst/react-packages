@@ -5,9 +5,11 @@ import getAnimatedComponent from "./utils/getAnimatedComponent";
 import { SlideProps } from "../../util/Animated/Slide";
 import { useMergeDefaultProps, Toast as CoreToast } from "@peersyst/react-components-core";
 import { ToastAlert } from "./Toast.styles";
-import { useGlobalStyles } from "../../config";
+import { useToastStyles } from "./hooks";
 
-export default function Toast(props: ToastProps): JSX.Element {
+export default function Toast(rawProps: ToastProps): JSX.Element {
+    const props = useMergeDefaultProps("Toast", rawProps);
+
     const {
         content,
         icon,
@@ -19,13 +21,12 @@ export default function Toast(props: ToastProps): JSX.Element {
         onExited,
         animation = "fadingSlide",
         duration = 4000,
-        style: styleProp,
         elevation = 1,
         square,
-    } = useMergeDefaultProps("Toast", props);
+        style: _style,
+    } = props;
 
-    const defaultStyle = useGlobalStyles("Toast");
-    const style = { ...defaultStyle, ...styleProp };
+    const style = useToastStyles(props);
 
     const safeAreaInsets = useSafeAreaInsets();
 

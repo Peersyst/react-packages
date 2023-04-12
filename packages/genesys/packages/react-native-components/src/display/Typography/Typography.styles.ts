@@ -31,7 +31,6 @@ export const TypographyRoot = styled(Text)<TypographyStyleProps>(
         }
         return {
             ...variantStyles,
-            color: theme.palette.text,
             fontFamily: getFont(),
             textTransform,
             textAlign,

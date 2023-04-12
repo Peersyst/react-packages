@@ -1,4 +1,4 @@
-import { ComponentType, ReactElement } from "react";
+import { ReactElement } from "react";
 import {
     ColorValue,
     TextInputProps as NativeTextInputProps,
@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import { CoreTextInputProps } from "@peersyst/react-components-core";
 import { FormControlledComponentProps } from "../FormControl";
-import { Difference } from "@peersyst/react-types";
 
 export interface InputStyle extends TextStyle {
     placeholderColor?: ColorValue;

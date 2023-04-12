@@ -2,33 +2,23 @@ import { TypographyProps } from "./Typography.types";
 import { useTheme } from "@peersyst/react-native-styled";
 import { TypographyRoot } from "./Typography.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
-import { useColorStyle } from "../../theme";
+import { useTypographyStyles } from "./hook";
 
-const Typography = (props: TypographyProps): JSX.Element => {
-    const {
-        variant,
-        children,
-        style: { light: lightStyleProp = {}, ...styleProp } = {},
-        color: colorProp,
-        suppressHighlighting = true,
-        ...rest
-    } = useMergeDefaultProps("Typography", props);
+const Typography = (rawProps: TypographyProps): JSX.Element => {
+    const props = useMergeDefaultProps("Typography", rawProps);
+    const { variant, children, suppressHighlighting = true, style: _style, ...rest } = props;
+
     const { typography } = useTheme();
     const variantStyle = typography[variant];
-    const { light: lightGlobalStyle, ...typographyGlobalStyle } = useGlobalStyles("Typography");
 
-    const colorStyle = useColorStyle(colorProp);
-
-    const style = { ...typographyGlobalStyle, ...colorStyle, ...styleProp };
-    const lightStyle = { ...lightGlobalStyle, ...colorStyle, ...lightStyleProp };
+    const { light: lightStyle = {}, ...style } = useTypographyStyles(props);
 
     return (
         <TypographyRoot
-            style={style}
             lightStyle={lightStyle}
             variantStyles={variantStyle}
             suppressHighlighting={suppressHighlighting}
+            style={style}
             {...rest}
         >
             {children}

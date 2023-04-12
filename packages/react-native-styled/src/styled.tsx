@@ -6,8 +6,16 @@ import { StyleSheet, useWindowDimensions } from "react-native";
 import { StyledFunction, StyledComponentProps, StyledParams, Stylesheet } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Loosen } from "@peersyst/react-types";
-import { resolveStyles } from "./helpers";
 
+/**
+ * Makes a styled component
+ *
+ * IMPORTANT! styles are not automatically resolved. If accessors are added, make sure to resolve them with the useResolveStylesheet hook.
+ *
+ * @param Component
+ * @param props
+ * @returns
+ */
 export default function styled<
     P extends StyledComponentProps<P["style"]>,
     K extends keyof Omit<P, "style" | "sx">,
@@ -36,13 +44,10 @@ export default function styled<
 
             // Compute style
             const style = useMemo(() => {
-                const styles = deepmerge(
+                return deepmerge(
                     deepmerge(styledSx?.(params), StyleSheet.flatten(styleProp)),
                     sxProp?.({ theme, dimensions, safeAreaInsets }),
                 ) as Stylesheet<P["style"]>;
-
-                // TODO: Evaluate adding a resolved prop in the stylesheet metadata to not recompute styles if not needed
-                return resolveStyles(params, styles);
             }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
 
             const finalProps = {
@@ -62,3 +67,5 @@ export default function styled<
         return styledConstructor<E>(sx);
     };
 }
+
+StyleSheet;

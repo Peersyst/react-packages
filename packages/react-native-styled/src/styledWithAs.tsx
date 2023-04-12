@@ -5,7 +5,6 @@ import { deepmerge } from "@peersyst/react-utils";
 import { StyleSheet, useWindowDimensions } from "react-native";
 import { SX, StyledFunction, StyledParams, Stylesheet } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { resolveStyles } from "./helpers";
 
 export interface As<P> {
     as?: ComponentType<P>;
@@ -37,16 +36,13 @@ export default function styled<
 
             // Compute style
             const style = useMemo(() => {
-                const styles = deepmerge(
+                return deepmerge(
                     deepmerge(
                         styledSx?.(params as unknown as StyledParams<P, E>),
                         StyleSheet.flatten(styleProp),
                     ),
                     sxProp?.({ theme, dimensions, safeAreaInsets }),
                 ) as Stylesheet<P["style"]>;
-
-                // TODO: Evaluate adding a resolved prop in the stylesheet metadata to not recompute styles if not needed
-                return resolveStyles(params, styles);
             }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
 
             const finalProps = {

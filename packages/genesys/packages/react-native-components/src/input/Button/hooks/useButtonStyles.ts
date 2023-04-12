@@ -7,6 +7,7 @@ import {
     useStylesheet,
 } from "@peersyst/react-native-styled";
 import { useTextAndViewStyles } from "../../../hooks";
+import { useGlobalStyles } from "../../../config";
 
 export interface UseButtonStylesResult {
     textStyle: ButtonTextStyle;
@@ -28,10 +29,12 @@ export default function useButtonStyles(
     const { style = {}, variant = "filled", size = "md" } = props;
     const { enabled, color } = computed;
 
+    const defaultStyle = useGlobalStyles("Button");
     const stylesheet = useStylesheet<ButtonProps>("Button");
     const mergedStylesheets = useMergeStylesheets<ButtonProps>(
         { currentColor: color },
         stylesheet,
+        defaultStyle,
         style,
     );
 
