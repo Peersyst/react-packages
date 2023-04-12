@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { useTheme } from "@peersyst/react-native-styled";
+import { resolveStyles, useTheme } from "@peersyst/react-native-styled";
 import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
 import { StyleSheet, useWindowDimensions } from "react-native";
@@ -9,9 +9,6 @@ import { Loosen } from "@peersyst/react-types";
 
 /**
  * Makes a styled component
- *
- * IMPORTANT! styles are not automatically resolved. If accessors are added, make sure to resolve them with the useResolveStylesheet hook.
- *
  * @param Component
  * @param props
  * @returns
@@ -44,10 +41,12 @@ export default function styled<
 
             // Compute style
             const style = useMemo(() => {
-                return deepmerge(
+                const styles = deepmerge(
                     deepmerge(styledSx?.(params), StyleSheet.flatten(styleProp)),
                     sxProp?.({ theme, dimensions, safeAreaInsets }),
                 ) as Stylesheet<P["style"]>;
+
+                return resolveStyles(params, styles);
             }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
 
             const finalProps = {

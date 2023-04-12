@@ -5,7 +5,6 @@ export default stylesheet(Button)(
     ({ fromTheme, fromProps, fromDimensions, fromSafeAreaInsets }) => ({
         filled: {
             width: fromDimensions("width", (width) => width * 0.5),
-
             currentColor: fromProps("size", (size) =>
                 size === "md" ? fromTheme("palette.primary") : fromTheme("palette.status.error"),
             ),

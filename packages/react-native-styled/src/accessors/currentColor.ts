@@ -18,6 +18,10 @@ export default function currentColor<R = string>(
         const color = (style as any)?.color;
         const resolvedColor =
             currentColor || (typeof color === "string" && property !== "color" ? color : undefined);
+
+        if (!resolvedColor || typeof resolvedColor !== "string")
+            throw new Error("currentColor is not resolved");
+
         return fn ? fn(resolvedColor) : (resolvedColor as R);
     });
 }

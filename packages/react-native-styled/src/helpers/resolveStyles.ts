@@ -1,5 +1,4 @@
 import { StyledParams, StyledComponentProps, Stylesheet } from "../types";
-import isAccessor from "./isAccessor";
 import resolveStyleProperty from "./resolveStyleProperty";
 
 /**
@@ -20,11 +19,11 @@ export default function resolveStyles<P extends StyledComponentProps<P["style"]>
         const { color, currentColor, ...restStyles } = style;
 
         // Resolve currentColor first
-        if (isAccessor(currentColor))
+        if (currentColor)
             style.currentColor = resolveStyleProperty(params, style, "currentColor", currentColor);
 
         // Resolve color second so that other styles can use currentColor
-        if (isAccessor(color)) style.color = resolveStyleProperty(params, style, "color", color);
+        if (color) style.color = resolveStyleProperty(params, style, "color", color);
 
         for (const property in restStyles) {
             // If property is an object, resolve it recursively
@@ -34,8 +33,8 @@ export default function resolveStyles<P extends StyledComponentProps<P["style"]>
                 style[property] !== null
             ) {
                 style[property] = resolveStyles(params, {
-                    currentColor,
-                    color,
+                    ...(!!currentColor && { currentColor }),
+                    ...(!!color && { color }),
                     ...style[property],
                 });
             }
