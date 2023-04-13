@@ -5,6 +5,7 @@ import { formControlLabelStylesheet } from "../input/FormControlLabel";
 import { swipeButtonStylesheet } from "../input/SwipeButton/SwipeButton.stylesheet";
 import { textInputStylesheet } from "../input/TextInput";
 import { iconButtonStylesheet } from "../input/IconButton";
+import { radioButtonStylesheet } from "../input/RadioButton";
 
 export default createStylesheets(
     buttonStylesheet,
@@ -13,4 +14,5 @@ export default createStylesheets(
     swipeButtonStylesheet,
     textInputStylesheet,
     iconButtonStylesheet,
+    radioButtonStylesheet,
 );

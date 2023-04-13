@@ -8,6 +8,7 @@ import Alert from "./Alert.playground";
 import TextField from "./TextField.playground";
 import TextArea from "./TextArea.playground";
 import SwipeButton from "./SwipeButton.playground";
+import RadioButton from "./RadioButton.playground";
 
 export default {
     Welcome,
@@ -20,4 +21,5 @@ export default {
     TextField,
     TextArea,
     SwipeButton,
+    RadioButton,
 };

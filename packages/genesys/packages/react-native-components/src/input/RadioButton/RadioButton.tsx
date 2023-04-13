@@ -1,14 +1,14 @@
 import { RadioButtonCoreStyle, RadioButtonProps } from "./RadioButton.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../../assets/icons";
-import useDefaultRadioButtonStyles from "./hooks/useDefaultRadioButtonStyles";
-import radioButtonStylesMergeStrategy from "./utils/radioButtonStylesMergeStrategy";
 import { Label, LabelStyle } from "../../display/Label";
-import { useGlobalStyles } from "../../config";
 import { FormControl } from "../FormControl";
 import { IconButton } from "../IconButton";
+import { useRadioButtonStyles } from "./hooks";
 
-export default function RadioButton(props: RadioButtonProps) {
+export default function RadioButton(rawProps: RadioButtonProps) {
+    const props = useMergeDefaultProps("RadioButton", rawProps);
+
     const {
         defaultValue = false,
         icon = <RadioUncheckedIcon />,
@@ -17,24 +17,19 @@ export default function RadioButton(props: RadioButtonProps) {
         LabelProps = {},
         hideError = true,
         Label: LabelProp = Label,
-        style: styleProp,
+        style: _style,
         ...rest
-    } = useMergeDefaultProps("RadioButton", props);
+    } = props;
 
-    // Styles
-    const globalStyles = useGlobalStyles("RadioButton");
-    const defaultStyles = useDefaultRadioButtonStyles();
+    const style = useRadioButtonStyles(props);
 
     return (
         <FormControl<boolean, LabelStyle, RadioButtonCoreStyle>
             Label={[LabelProp, { placement: "right", ...LabelProps }]}
             defaultValue={defaultValue}
             disabled={disabled}
-            globalStyle={globalStyles}
-            defaultStyle={defaultStyles}
-            stylesMergeStrategy={radioButtonStylesMergeStrategy}
             hideError={hideError}
-            style={styleProp}
+            style={style}
             {...rest}
         >
             {(value, setValue, _, style) => {
