@@ -1,11 +1,7 @@
 import { IconButtonProps } from "../IconButton.types";
 import { TextStyle, ViewStyle } from "react-native";
-import {
-    useStylesheet,
-    useMergeStylesheets,
-    useResolveStylesheet,
-} from "@peersyst/react-native-styled";
-import { useTextAndViewStyles } from "../../../hooks";
+import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { makeStyleComputation } from "../../../utils";
 
 export interface UseIconButtonStylesResult {
     textStyle: TextStyle;
@@ -17,22 +13,22 @@ export default function useIconButtonStyles(
     pressed: boolean,
     disabled: boolean,
 ): UseIconButtonStylesResult {
-    const { style = {} } = props;
+    const compute = makeStyleComputation(
+        function (stylesheet) {
+            const { pressed: pressedStyles, disabled: disabledStyles, ...rootStyles } = stylesheet;
 
-    const stylesheet = useStylesheet<IconButtonProps>("IconButton");
-    const mergedStylesheets = useMergeStylesheets<IconButtonProps>(stylesheet, style);
+            return {
+                ...rootStyles,
+                ...(pressed && { ...pressedStyles }),
+                ...(disabled && { ...disabledStyles }),
+            };
+        },
+        [pressed, disabled],
+    );
 
-    const { pressed: pressedStyles, disabled: disabledStyles, ...rootStyles } = mergedStylesheets;
+    const computedStyles = useComputeStyles("IconButton", props, undefined, { compute });
 
-    const iconButtonStyles = {
-        ...rootStyles,
-        ...(pressed && { ...pressedStyles }),
-        ...(disabled && { ...disabledStyles }),
-    };
-
-    const resolvedStyles = useResolveStylesheet(props, iconButtonStyles);
-
-    const [textStyle, rootStyle] = useTextAndViewStyles(resolvedStyles);
+    const [textStyle, rootStyle] = useTextAndViewStyles(computedStyles);
 
     return { textStyle, rootStyle };
 }
