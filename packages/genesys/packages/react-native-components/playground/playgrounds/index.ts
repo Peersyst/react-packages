@@ -9,6 +9,7 @@ import TextField from "./TextField.playground";
 import TextArea from "./TextArea.playground";
 import SwipeButton from "./SwipeButton.playground";
 import RadioButton from "./RadioButton.playground";
+import Select from "./Select.playground";
 
 export default {
     Welcome,
@@ -22,4 +23,5 @@ export default {
     TextArea,
     SwipeButton,
     RadioButton,
+    Select,
 };

@@ -6,6 +6,7 @@ import { swipeButtonStylesheet } from "../input/SwipeButton/SwipeButton.styleshe
 import { textInputStylesheet } from "../input/TextInput";
 import { iconButtonStylesheet } from "../input/IconButton";
 import { radioButtonStylesheet } from "../input/RadioButton";
+import { selectStylesheet, selectItemStylesheet } from "../input/Select";
 
 export default createStylesheets(
     buttonStylesheet,
@@ -15,4 +16,6 @@ export default createStylesheets(
     textInputStylesheet,
     iconButtonStylesheet,
     radioButtonStylesheet,
+    selectStylesheet,
+    selectItemStylesheet,
 );

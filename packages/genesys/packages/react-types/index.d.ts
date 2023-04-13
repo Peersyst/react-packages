@@ -147,30 +147,11 @@ type FlattenedCoreNestedKeys<
               ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
               : Key;
       }[Extract<keyof T, string>];
-type FlattenedCoreNestedKeys<
-    T extends object,
-    I extends number = MaxRecursiveIterations,
-> = I extends 0
-    ? never
-    : {
-          [Key in keyof T]: T[Key] extends object
-              ? `${Key}.${CoreNestedKeys<T[Key], Iterations[I]>}`
-              : Key;
-      }[Extract<keyof T, string>];
 
 /**
  * Pick K types from T with keys in the form of key1.key2...
  */
 type DeepPick<T extends object, K extends NestedKeys<T>> = CoreDeepPick<T, K>;
-type CoreDeepPick<
-    T extends object,
-    K extends string,
-    I extends number = MaxRecursiveIterations,
-> = I extends 0
-    ? never
-    : K extends `${infer FirstKey}.${infer RestKey}`
-    ? CoreDeepPick<T[FirstKey], RestKey, Iterations[I]>
-    : T[K];
 type CoreDeepPick<
     T extends object,
     K extends string,
@@ -207,12 +188,19 @@ export type Override<T extends AnyObject, O extends AnyObject> = {
 /**
  * Deeply overrides type T with O
  */
-export type DeepOverride<T extends AnyObject, O extends AnyObject> = Override<
-    {
-        [K in keyof T]: T[K] extends AnyObject | undefined ? DeepOverride<T[K], O> : T[K];
-    },
-    O
->;
+export type DeepOverride<T extends AnyObject, O extends AnyObject> = CoreDeepOverride<T, O>;
+type CoreDeepOverride<
+    T extends AnyObject,
+    O extends AnyObject,
+    I extends number = MaxRecursiveIterations,
+> = I extends 0
+    ? never
+    : Override<
+          {
+              [K in keyof T]: T[K] extends AnyObject | undefined ? DeepOverride<T[K], O> : T[K];
+          },
+          O
+      >;
 
 /**
  * Injects type O into type T
@@ -222,9 +210,16 @@ export type Inject<T extends AnyObject, O extends AnyObject> = T & O;
 /**
  * Deeply injects type O into type T
  */
-export type DeepInject<T extends AnyObject, O extends AnyObject> = Inject<
-    {
-        [K in keyof T]: T[K] extends AnyObject | undefined ? DeepInject<T[K], O> : T[K];
-    },
-    O
->;
+export type DeepInject<T extends AnyObject, O extends AnyObject> = CoreDeepInject<T, O>;
+type CoreDeepInject<
+    T extends AnyObject,
+    O extends AnyObject,
+    I extends number = MaxRecursiveIterations,
+> = I extends 0
+    ? never
+    : Inject<
+          {
+              [K in keyof T]: T[K] extends AnyObject | undefined ? DeepInject<T[K], O> : T[K];
+          },
+          O
+      >;
