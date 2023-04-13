@@ -5,6 +5,7 @@ import Label from "./Label.playground";
 import Typography from "./Typography.playground";
 import Alert from "./Alert.playground";
 import TextField from "./TextField.playground";
+import TextArea from "./TextArea.playground";
 import SwipeButton from "./SwipeButton.playground";
 
 export default {
@@ -15,5 +16,6 @@ export default {
     Typography,
     Alert,
     TextField,
+    TextArea,
     SwipeButton,
 };

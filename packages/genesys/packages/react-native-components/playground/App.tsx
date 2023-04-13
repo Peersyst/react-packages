@@ -5,12 +5,14 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import playgrounds from "./playgrounds";
 import { StylesheetProvider, createStylesheets } from "@peersyst/react-native-styled";
 import buttonStylesheet from "./stylesheets/Button.stylesheet";
+import textFieldStylesheet from "./stylesheets/TextField.stylesheet";
+import textAreaStylesheet from "./stylesheets/TextArea.stylesheet";
 
 const config = createConfig({
     projectName: "playground",
 });
 
-const stylesheets = createStylesheets(buttonStylesheet);
+const stylesheets = createStylesheets(buttonStylesheet, textFieldStylesheet, textAreaStylesheet);
 
 const Drawer = createDrawerNavigator();
 
