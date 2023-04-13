@@ -7,12 +7,14 @@ import { StyleSheet } from "react-native";
 import { Backdrop } from "../../feedback/Backdrop";
 import { CrossIcon } from "../../assets/icons";
 import { StatusBar } from "../../layout/StatusBar";
+import { useQrScannerStyles } from "./hooks";
 
-const QrScanner = (props: QrScannerProps): JSX.Element => {
-    const { back, onScan, children, style, ...backdropProps } = useMergeDefaultProps(
-        "QrScanner",
-        props,
-    );
+const QrScanner = (rawProps: QrScannerProps): JSX.Element => {
+    const props = useMergeDefaultProps("QrScanner", rawProps);
+
+    const { back, onScan, children, style: _style, ...backdropProps } = props;
+
+    const style = useQrScannerStyles(props);
 
     const [hasPermission, setHasPermission] = useState<boolean>();
 
