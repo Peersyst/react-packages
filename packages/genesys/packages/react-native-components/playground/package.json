@@ -2,8 +2,9 @@
     "name": "playground",
     "version": "1.0.0",
     "main": "index.js",
+    "private": true,
     "scripts": {
-        "start": "npx expo start",
+        "start": "npx expo start -c",
         "android": "yarn start --android",
         "ios": "yarn start --ios"
     },
@@ -13,7 +14,7 @@
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.4",
+        "react-native": "0.71.6",
         "react-native-gesture-handler": "~2.9.0",
         "react-native-reanimated": "~2.14.4",
         "react-native-safe-area-context": "4.5.0",
@@ -22,6 +23,6 @@
     "devDependencies": {
         "@babel/core": "^7.21.0",
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.4"
+        "@types/react-native": "0.71.5"
     }
 }
