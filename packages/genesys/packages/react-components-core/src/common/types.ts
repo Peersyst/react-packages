@@ -1,5 +1,1 @@
-import { ThemeColor } from "../theme";
-
-export type WithParsedThemeColor<T> = Omit<T, "color"> & {
-    color: string | undefined;
-};
+export type ParsedThemeColor = string | undefined;

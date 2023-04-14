@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-utils",
     "author": "Peersyst",
-    "version": "1.2.1",
+    "version": "2.0.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -19,11 +19,11 @@
     },
     "peerDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.4",
+        "@types/react-native": "0.71.5",
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.4"
+        "react-native": "0.71.6"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -35,16 +35,16 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-types": "^1.5.5",
+        "@peersyst/react-types": "^1.6.0",
         "expo-clipboard": "~4.1.2"
     },
     "devDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.4",
+        "@types/react-native": "0.71.5",
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.4"
+        "react-native": "0.71.6"
     },
     "publishConfig": {
         "access": "public"

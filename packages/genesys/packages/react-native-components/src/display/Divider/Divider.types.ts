@@ -1,3 +1,4 @@
+import { ThemeColor } from "@peersyst/react-components-core";
 import { ReactNode } from "react";
 import { ViewStyle } from "react-native";
 
@@ -15,7 +16,7 @@ export interface DividerProps {
     /**
      * Color of the divider
      */
-    color?: string;
+    color?: ThemeColor;
     /**
      * Divider style
      */
@@ -29,7 +30,6 @@ export interface DividerProps {
 export interface DividerRootProps {
     height: ViewStyle["height"];
     width: NonNullable<DividerProps["width"]>;
-    color?: string;
 }
 
 export interface DividerWithChildrenProps {

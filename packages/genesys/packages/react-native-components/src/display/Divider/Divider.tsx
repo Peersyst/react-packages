@@ -1,39 +1,37 @@
 import { DividerRoot, DividerWithChildren } from "./Divider.styles";
 import { DividerProps } from "./Divider.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
+import { useDividerStyles } from "./hooks";
 
-export default function Divider(props: DividerProps): JSX.Element {
+export default function Divider(rawProps: DividerProps): JSX.Element {
+    const props = useMergeDefaultProps("Divider", rawProps);
+    const { size = 1, width: widthProp = "full-width", children, style: _style } = props;
+
+    const style = useDividerStyles(props);
     const {
-        size = 1,
-        width: widthProp = "full-width",
-        style: styleProp,
-        color,
-        children,
-    } = useMergeDefaultProps("Divider", props);
-    const defaultStyle = useGlobalStyles("Divider");
-    const style = { ...defaultStyle, ...styleProp };
-    const {
-        backgroundColor,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        width,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        height,
+        width: _width,
+        height: _height,
         minWidth,
         minHeight,
         maxHeight,
         maxWidth,
         ...restStyle
     } = style || {};
-    const divStyle = { backgroundColor, minWidth, minHeight, maxHeight, maxWidth };
+    const divStyle = {
+        currentColor: (style as any).currentColor,
+        minWidth,
+        minHeight,
+        maxHeight,
+        maxWidth,
+    };
 
     return children ? (
         <DividerWithChildren width={widthProp} style={restStyle}>
-            <DividerRoot height={size} color={color} width="full-width" style={divStyle} />
+            <DividerRoot height={size} width="full-width" style={divStyle} />
             {children}
-            <DividerRoot height={size} color={color} width="full-width" style={divStyle} />
+            <DividerRoot height={size} width="full-width" style={divStyle} />
         </DividerWithChildren>
     ) : (
-        <DividerRoot height={size} color={color} width={widthProp} style={style} />
+        <DividerRoot height={size} width={widthProp} style={style} />
     );
 }

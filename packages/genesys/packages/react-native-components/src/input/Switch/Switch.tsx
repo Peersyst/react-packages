@@ -1,12 +1,13 @@
 import { SwitchProps, SwitchStyle } from "./Switch.types";
-import switchStylesMergeStrategy from "./utils/switchStylesMergeStrategy";
-import useDefaultSwitchStyles from "./hooks/useDefaultSwitchStyles";
 import InnerSwitch from "./InnerSwitch";
 import { Label, LabelStyle } from "../../display/Label";
-import { useGlobalStyles, useMergeDefaultProps } from "../../config";
+import { useMergeDefaultProps } from "../../config";
 import { FormControl } from "../FormControl";
+import { useSwitchStyles } from "./hooks";
 
-const Switch = (props: SwitchProps): JSX.Element => {
+const Switch = (rawProps: SwitchProps): JSX.Element => {
+    const props = useMergeDefaultProps("Switch", rawProps);
+
     const {
         defaultValue = false,
         disabled = false,
@@ -16,13 +17,11 @@ const Switch = (props: SwitchProps): JSX.Element => {
         Label: LabelProp = Label,
         animationConfig,
         children,
-        style: styleProp,
+        style: _style,
         ...rest
-    } = useMergeDefaultProps("Switch", props);
+    } = props;
 
-    // Styles
-    const globalStyles = useGlobalStyles("Switch");
-    const defaultStyles = useDefaultSwitchStyles();
+    const style = useSwitchStyles(props);
 
     return (
         <FormControl<boolean, LabelStyle, SwitchStyle>
@@ -30,10 +29,7 @@ const Switch = (props: SwitchProps): JSX.Element => {
             defaultValue={defaultValue}
             disabled={disabled}
             hideError={hideError}
-            stylesMergeStrategy={switchStylesMergeStrategy}
-            defaultStyle={defaultStyles}
-            globalStyle={globalStyles}
-            style={styleProp}
+            style={style}
             readonly={readonly}
             {...rest}
         >

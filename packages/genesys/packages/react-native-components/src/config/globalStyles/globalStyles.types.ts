@@ -26,24 +26,31 @@ export type CreateComponentGlobalStyles<S> =
     | ((color: string) => (params: CreateGlobalStylesParams) => S)
     | ((params: CreateGlobalStylesParams) => S);
 
+/**
+ * @deprecated
+ */
 export interface BaseGlobalStyles {
-    Alert?: AlertStyle;
-    Button?: ButtonStyle;
-    Dialog?: DialogStyle;
-    Divider?: ViewStyle;
-    DottedPagination?: DottedPaginationStyle;
-    FormControlLabel?: FormControlLabelStyle;
-    FormControlHint?: TextStyle;
-    FormControlError?: TextStyle;
-    FormControl?: ViewStyle;
-    Label?: LabelStyle;
-    Modal?: ViewStyle;
-    PagerView?: PagerViewStyle;
-    Paper?: ViewStyle;
+    Alert?: AlertStyle; // Migrated
+    Button?: ButtonStyle; // Migrated
+    Dialog?: DialogStyle; // Migrated
+    Divider?: ViewStyle; // Migrated
+    DottedPagination?: DottedPaginationStyle; // Migrated
+    FormControlLabel?: FormControlLabelStyle; // Migrated
+    FormControlHint?: TextStyle; // Migrated
+    FormControlError?: TextStyle; // Migrated
+    FormControl?: ViewStyle; // Migrated
+    Label?: LabelStyle; // Migrated
+    Modal?: ViewStyle; // Migrated
+    PagerView?: PagerViewStyle; // Migrated
+    Paper?: ViewStyle; // Migrated
     RadioButton?: RadioButtonStyle;
-    SwipeButton?: SwipeButtonStyle;
+    SwipeButton?: SwipeButtonStyle; // Migrated
     Switch?: SwitchStyle;
-    Typography?: TypographyStyle;
-    Toast?: ToastStyle;
+    Typography?: TypographyStyle; // Migrated
+    Toast?: ToastStyle; // Migrated
 }
+
+/**
+ * @deprecated
+ */
 export interface GlobalStyles extends BaseGlobalStyles {}

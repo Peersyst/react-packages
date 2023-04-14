@@ -4,6 +4,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useWindowDimensions } from "react-native";
 import { CreateGlobalStylesParams } from "../globalStyles.types";
 
+/**
+ * @deprecated
+ */
 export default function (): GlobalStyles {
     const globalStyles = useConfig("globalStyles");
 

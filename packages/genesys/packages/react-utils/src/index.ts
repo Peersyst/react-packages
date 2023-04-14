@@ -6,6 +6,7 @@ export { default as cx } from "./cx";
 export { default as debounce } from "./debounce";
 export { isPlainObject } from "./deepmerge";
 export { default as deepmerge } from "./deepmerge";
+export { default as extract } from "./extract";
 export { default as extractSlots } from "./extractSlots";
 export { default as findSlot } from "./find-slot";
 export { default as filter } from "./filter";

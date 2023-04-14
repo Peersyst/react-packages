@@ -9,7 +9,6 @@ import {
 } from "@peersyst/react-components-core";
 import { InnerSelectProps, SelectProps, SelectStyle } from "./Select.types";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
-import useSelectStyles from "./hooks/useSelectStyles";
 import { SelectMenu } from "./SelectMenu";
 import { Icon } from "../../display/Icon";
 import { Row } from "../../layout/Row";
@@ -17,6 +16,7 @@ import { FormControl } from "../FormControl";
 import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
 import { SelectItem, SelectItemProps } from "./SelectItem";
 import { useControlled } from "@peersyst/react-hooks";
+import { useInnerSelectStyles, useSelectStyles } from "./hooks";
 
 function InnerSelect<T>({
     autoFocus,
@@ -30,7 +30,7 @@ function InnerSelect<T>({
     multiple,
     options = [],
     children,
-    style: styleProp,
+    style: styleProp = {},
     display,
     header,
     footer,
@@ -56,15 +56,15 @@ function InnerSelect<T>({
         display: [displayTextStyle, { placeholderColor, icon: iconStyle, ...displayRootStyle }],
         menu: menuStyle,
         item: itemStyle,
-    } = useSelectStyles(styleProp || {}, disabled, readonly);
+    } = useInnerSelectStyles(styleProp);
 
-    const renderedValue = renderValue ? (
-        renderValue(displayContent)
-    ) : (
-        <Text style={displayTextStyle} numberOfLines={1}>
-            {renderSelectValue(displayContent)}
-        </Text>
-    );
+    const renderedValue = renderValue
+        ? renderValue(displayContent)
+        : displayContent && (
+              <Text style={displayTextStyle} numberOfLines={1}>
+                  {renderSelectValue(displayContent)}
+              </Text>
+          );
 
     return (
         <View style={{ width: "100%", ...style }}>
@@ -75,12 +75,14 @@ function InnerSelect<T>({
                             style={displayRootStyle}
                             alignItems="center"
                             justifyContent="space-between"
-                            flex={1}
                         >
                             <View style={{ maxWidth: "92%" }}>
                                 {renderedValue || (
                                     <Text
-                                        style={[displayTextStyle, { color: placeholderColor }]}
+                                        style={{
+                                            ...displayTextStyle,
+                                            color: displayTextStyle.color || placeholderColor,
+                                        }}
                                         numberOfLines={1}
                                     >
                                         {placeholder}
@@ -117,8 +119,10 @@ function InnerSelect<T>({
 }
 
 export default function Select<T = any, Multiple extends boolean = false>(
-    props: SelectProps<T, Multiple>,
+    rawProps: SelectProps<T, Multiple>,
 ): JSX.Element {
+    const props = useMergeDefaultProps("Select", rawProps);
+
     const {
         required,
         multiple = false,
@@ -140,14 +144,17 @@ export default function Select<T = any, Multiple extends boolean = false>(
         LabelProps = {},
         Label = FormControlLabel,
         options,
+        style: _style,
         ...rest
-    } = useMergeDefaultProps("Select", props);
+    } = props;
 
     const {
         icons: { chevronDown: ChevronDown },
     } = useTheme();
 
     const icon = iconProp || <ChevronDown />;
+
+    const style = useSelectStyles(props, disabled, readonly);
 
     return (
         <FormControl<T | T[], FormControlLabelStyle, SelectStyle>
@@ -158,6 +165,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
             readonly={readonly}
             required={required}
             validation={(val) => [selectIsValid(val, multiple, required), undefined]}
+            style={style}
             {...rest}
         >
             {(value, setValue, _, style) => (

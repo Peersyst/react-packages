@@ -3,10 +3,10 @@ import { FlexStyle } from "react-native";
 import { LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
 import { Fragment, isValidElement } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
-import { useColorStyle } from "../../theme";
+import { useLabelStyles } from "./hooks";
 
-const Label = (props: LabelProps): JSX.Element => {
+const Label = (rawProps: LabelProps): JSX.Element => {
+    const props = useMergeDefaultProps("Label", rawProps);
     const {
         label,
         placement = "top",
@@ -14,17 +14,11 @@ const Label = (props: LabelProps): JSX.Element => {
         gap = 10,
         children,
         numberOfLines,
-        style: { label: labelStyleProp = {}, ...rootStyleProp } = {},
         variant,
-        color: colorProp,
-    } = useMergeDefaultProps("Label", props);
+        style: _style,
+    } = props;
 
-    const { label: labelGlobalStyles, ...rootGlobalStyles } = useGlobalStyles("Label");
-
-    const colorStyle = useColorStyle(colorProp);
-
-    const rootStyle = { ...rootGlobalStyles, ...rootStyleProp };
-    const labelStyle = { ...labelGlobalStyles, ...colorStyle, ...labelStyleProp };
+    const { label: labelStyle, ...rootStyle } = useLabelStyles(props);
 
     const direction: FlexStyle["flexDirection"] = (() => {
         if (placement === "top") return "column";

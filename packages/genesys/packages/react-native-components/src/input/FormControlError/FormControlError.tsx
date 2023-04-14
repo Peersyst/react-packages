@@ -1,13 +1,14 @@
 import { FormControlErrorProps } from "./FormControlError.types";
 import { FormControlErrorRoot } from "./FormControlError.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
+import { useFormControlErrorStyles } from "./hooks";
 
-const FormControlError = (props: FormControlErrorProps): JSX.Element => {
-    const { error, style: styleProp } = useMergeDefaultProps("FormControlError", props);
+const FormControlError = (rawProps: FormControlErrorProps): JSX.Element => {
+    const props = useMergeDefaultProps("FormControlError", rawProps);
 
-    const globalStyle = useGlobalStyles("FormControlError");
-    const style = { ...globalStyle, ...styleProp };
+    const { error, style: _style } = props;
+
+    const style = useFormControlErrorStyles(props);
 
     return <FormControlErrorRoot hint={error} style={style} />;
 };

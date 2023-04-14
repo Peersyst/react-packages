@@ -27,9 +27,18 @@ export interface FormControlProps<
         T,
         [style: ComponentStyleType, setFocused: (focused: boolean) => void]
     > {
+    /**
+     * @deprecated
+     */
     defaultStyle?: FormControlStateStyle<ComponentStyleType>;
+    /**
+     * @deprecated
+     */
     globalStyle?: FormControlStateStyle<ComponentStyleType>;
     style?: FormControlStyle<LabelStyleType, ComponentStyleType>;
+    /**
+     * @deprecated
+     */
     stylesMergeStrategy?: (
         defaultStyle: FormControlStateStyle<Partial<ComponentStyleType>>,
         globalStyles: FormControlStateStyle<Partial<ComponentStyleType>>,
