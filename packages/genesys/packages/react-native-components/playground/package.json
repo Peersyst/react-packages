@@ -2,6 +2,7 @@
     "name": "playground",
     "version": "1.0.0",
     "main": "index.js",
+    "private": true,
     "scripts": {
         "start": "npx expo start -c",
         "android": "yarn start --android",
