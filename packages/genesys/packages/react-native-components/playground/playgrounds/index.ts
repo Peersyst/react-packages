@@ -10,6 +10,7 @@ import TextArea from "./TextArea.playground";
 import SwipeButton from "./SwipeButton.playground";
 import RadioButton from "./RadioButton.playground";
 import Select from "./Select.playground";
+import SelectorGroup from "./SelectorGroup.playground";
 
 export default {
     Welcome,
@@ -24,4 +25,5 @@ export default {
     SwipeButton,
     RadioButton,
     Select,
+    SelectorGroup,
 };

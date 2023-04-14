@@ -9,6 +9,7 @@ import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
 import Selector from "./Selector/Selector";
 import { InnerSelectorGroupProps, SelectorGroupProps } from "./SelectorGroup.types";
+import { useSelectorGroupStyles } from "./hooks";
 
 function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirection>({
     value,
@@ -55,8 +56,10 @@ function InnerSelectGroup<T, Multiple extends boolean, D extends SelectorDirecti
 }
 
 function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDirection = "column">(
-    props: SelectorGroupProps<T, Multiple, D>,
+    rawProps: SelectorGroupProps<T, Multiple, D>,
 ): JSX.Element {
+    const props = useMergeDefaultProps("SelectorGroup", rawProps);
+
     const {
         required,
         multiple = false as Multiple,
@@ -74,8 +77,11 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
         gap = 20,
         justifyContent,
         alignItems,
+        style: _style,
         ...rest
-    } = useMergeDefaultProps("SelectorGroup", props);
+    } = props;
+
+    const style = useSelectorGroupStyles(props);
 
     return (
         <FormControl<Multiple extends true ? T[] : T>
@@ -83,6 +89,7 @@ function SelectorGroup<T, Multiple extends boolean = false, D extends SelectorDi
             disabled={disabled}
             readonly={readonly}
             required={required}
+            style={style}
             {...rest}
             // @ts-ignore
             defaultValue={defaultValue}
