@@ -13,8 +13,8 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components": "^3.6.3",
-        "@peersyst/react-components-core": "^1.5.1",
+        "@peersyst/react-components": "^3.6.4",
+        "@peersyst/react-components-core": "^1.5.2",
         "@types/color": "^3.0.3",
         "color": "^4.2.3",
         "react": "^18.2.0",

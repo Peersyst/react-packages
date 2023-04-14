@@ -11,32 +11,32 @@ import { FormControlHint } from "../FormControlHint";
 import { FormControlError } from "../FormControlError";
 import getFormControlledComponentStyles from "./util/getFormControlledComponentStyles";
 import { ViewStyle } from "react-native";
-import { useGlobalStyles } from "../../config";
+import { useFormControlStyles } from "./hooks";
 
 function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>(
-    props: FormControlProps<T, LabelStyleType, ComponentStyle>,
+    rawProps: FormControlProps<T, LabelStyleType, ComponentStyle>,
 ): JSX.Element {
+    const props = useMergeDefaultProps("FormControl", rawProps);
+
     const {
         defaultStyle = {},
         globalStyle = {},
-        style: {
-            label: labelStyle = {},
-            hint: hintStyle = {},
-            error: errorStyle = {},
-            component: componentStyle = {},
-            ...rootStyleProp
-        } = {},
         stylesMergeStrategy = getFormControlledComponentStyles,
         label,
         hint,
         Label = FormControlLabel,
         children,
-        //TODO: Add onPress
+        style: _style,
         ...coreProps
-    } = useMergeDefaultProps("FormControl", props);
+    } = props;
 
-    const globalRootStyle = useGlobalStyles("FormControl");
-    const rootStyle = { ...globalRootStyle, ...rootStyleProp };
+    const {
+        label: labelStyle = {},
+        hint: hintStyle = {},
+        error: errorStyle = {},
+        component: componentStyle = {},
+        ...rootStyle
+    } = useFormControlStyles(props);
 
     const [LabelComponent, { style: LabelPropsStyle = {}, ...LabelProps }] = Array.isArray(Label)
         ? Label

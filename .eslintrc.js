@@ -31,6 +31,15 @@ module.exports = {
         "no-case-declarations": 0,
         "@typescript-eslint/no-empty-interface": 0,
         "react/prop-types": 0,
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                argsIgnorePattern: "^_",
+                varsIgnorePattern: "^_",
+                caughtErrorsIgnorePattern: "^_",
+            },
+        ],
     },
     settings: {},
 };

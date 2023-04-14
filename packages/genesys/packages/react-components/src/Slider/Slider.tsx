@@ -68,10 +68,8 @@ const Slider = forwardRef(function Slider(props: SliderProps, ref) {
         >
             {(value, setValue) => {
                 const handleChange = (
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     _event: Event,
                     val: number | number[],
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     _activeThumb: number,
                 ) => {
                     setValue(val);

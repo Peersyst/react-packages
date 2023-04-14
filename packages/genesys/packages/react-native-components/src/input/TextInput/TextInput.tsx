@@ -7,11 +7,12 @@ import { Icon } from "../../display/Icon";
 import { IconButton } from "../IconButton";
 import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
 import { FormControl } from "../FormControl";
-import useTextInputDefaultStyles from "./hooks/useTextInputDefaultStyles";
-import textInputStylesMergeStrategy from "./util/textInputStylesMergeStrategy";
 import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
+import { useTextInputStyles } from "./hooks";
 
-function TextInput(props: TextInputProps): JSX.Element {
+function TextInput(rawProps: TextInputProps): JSX.Element {
+    const props = useMergeDefaultProps("TextInput", rawProps);
+
     const {
         name,
         defaultValue = "",
@@ -30,7 +31,6 @@ function TextInput(props: TextInputProps): JSX.Element {
         hideTextElement: hideTextElementProp,
         clearable = false,
         clearElement: clearElementProp,
-        style: styleProp = {},
         onFocus,
         onBlur,
         secureTextEntry = false,
@@ -43,13 +43,14 @@ function TextInput(props: TextInputProps): JSX.Element {
         error,
         format = (x: string) => x,
         parse = (x: string) => x,
+        style: _style,
         ...rest
-    } = useMergeDefaultProps("TextInput", props);
+    } = props;
 
     const [showText, setShowText] = useState(secureTextEntry);
     const validation = useTextInputValidation(validators, customValidators);
     const editable = !disabled && !readonly;
-    const defaultStyles = useTextInputDefaultStyles();
+
     const {
         icons: { invalid: Invalid, valid: Valid, show: Show, hide: Hide, cross: Cross },
     } = useTheme();
@@ -58,6 +59,8 @@ function TextInput(props: TextInputProps): JSX.Element {
     const showTextElement = showTextElementProp || <Show />;
     const hideTextElement = hideTextElementProp || <Hide />;
     const clearElement = clearElementProp || <Cross />;
+
+    const style = useTextInputStyles(props);
 
     return (
         <FormControl<string, FormControlLabelStyle, TextInputStyle>
@@ -74,9 +77,7 @@ function TextInput(props: TextInputProps): JSX.Element {
             validation={validation}
             hideError={hideError}
             showValid={showValid}
-            defaultStyle={defaultStyles}
-            style={styleProp}
-            stylesMergeStrategy={textInputStylesMergeStrategy}
+            style={style}
             error={error}
         >
             {(value, setValue, { invalid, valid }, style, setFocused) => {

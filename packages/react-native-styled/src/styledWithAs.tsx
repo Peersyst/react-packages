@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { Theme, useTheme } from "@peersyst/react-native-styled";
+import { useTheme } from "@peersyst/react-native-styled";
 import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
-import { ScaledSize, StyleSheet, useWindowDimensions } from "react-native";
-import { SX, StyledFunction } from "./types";
-import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
+import { StyleSheet, useWindowDimensions } from "react-native";
+import { SX, StyledFunction, StyledParams, Stylesheet } from "./types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface As<P> {
     as?: ComponentType<P>;
@@ -18,31 +18,32 @@ export default function styled<
     IP extends Partial<Omit<P, "sx" | "style">>,
 >(Component: ComponentType<P>, props?: IP) {
     const styledConstructor = function <E = {}>(styledSx?: StyledFunction<P, E>) {
-        function StyledComponent<AP = P>({
-            sx: sxProp,
-            style: styleProp,
-            as,
-            ...rest
-        }: AP & E & As<AP> & { sx?: SX<P["style"]>; style?: P["style"] }) {
+        function StyledComponent<AP extends { sx?: SX<P["style"]>; style?: P["style"] } = P>(
+            styledComponentProps: AP & E & As<AP> & { sx?: SX<P["style"]>; style?: P["style"] },
+        ) {
+            const { sx: sxProp, style: styleProp, as, ...rest } = styledComponentProps;
+
             const theme = useTheme();
             const dimensions = useWindowDimensions();
             const safeAreaInsets = useSafeAreaInsets();
 
-            const style = useMemo(
-                () =>
+            const params = {
+                theme,
+                dimensions,
+                safeAreaInsets,
+                ...styledComponentProps,
+            } as StyledParams<AP, E>;
+
+            // Compute style
+            const style = useMemo(() => {
+                return deepmerge(
                     deepmerge(
-                        deepmerge(
-                            styledSx?.({ theme, dimensions, safeAreaInsets, ...rest } as AP &
-                                E & { theme: Theme } & {
-                                    dimensions: ScaledSize;
-                                    safeAreaInsets: EdgeInsets;
-                                }),
-                            StyleSheet.flatten(styleProp),
-                        ),
-                        sxProp?.({ theme, dimensions, safeAreaInsets }),
+                        styledSx?.(params as unknown as StyledParams<P, E>),
+                        StyleSheet.flatten(styleProp),
                     ),
-                [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()],
-            );
+                    sxProp?.({ theme, dimensions, safeAreaInsets }),
+                ) as Stylesheet<P["style"]>;
+            }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
 
             const finalProps = {
                 ...props,

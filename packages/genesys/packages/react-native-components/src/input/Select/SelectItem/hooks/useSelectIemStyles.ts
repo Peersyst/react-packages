@@ -1,33 +1,29 @@
 import { TextStyle, ViewStyle } from "react-native";
-import { SelectItemStyles } from "../SelectItem.types";
-import useDefaultSelectItemStyles from "./useDefaultSelectItemStyles";
-import { extractTextStyles } from "@peersyst/react-native-utils";
+import { SelectItemProps } from "../SelectItem.types";
+import { useComputeStyles, useTextAndViewStyles } from "../../../../hooks";
+import { makeStyleComputation } from "../../../../utils";
 
-const useSelectItemStyles = (
-    { selected: selectedStyle = {}, readonly: readonlyStyle, ...style }: SelectItemStyles,
+export default function useSelectItemStyles<T = any>(
+    props: SelectItemProps<T>,
     selected: boolean,
     readonly: boolean,
-): [TextStyle, ViewStyle] => {
-    const { defaultSelectedStyle } = useDefaultSelectItemStyles();
+): [TextStyle, ViewStyle] {
+    const compute = makeStyleComputation(
+        function (stylesheet) {
+            const { selected: selectedStyle = {}, readonly: readonlyStyle, ...style } = stylesheet;
 
-    const [defaultTextSelectedStyle, defaultRootSelectedStyle] =
-        extractTextStyles(defaultSelectedStyle);
-    const [textStyle, rootStyle] = extractTextStyles(style);
-    const [selectedTextStyle, selectedRootStyle] = extractTextStyles(selectedStyle);
-    const [readonlyTextStyle, readonlyRootStyle] = extractTextStyles(readonlyStyle);
+            return {
+                ...style,
+                ...(selected && { ...selectedStyle }),
+                ...(readonly && { ...readonlyStyle }),
+            };
+        },
+        [selected, readonly],
+    );
 
-    const textStyles = {
-        ...textStyle,
-        ...(selected && { ...defaultTextSelectedStyle, ...selectedTextStyle }),
-        ...(readonly && readonlyTextStyle),
-    };
-    const rootStyles = {
-        ...rootStyle,
-        ...(selected && { ...defaultRootSelectedStyle, ...selectedRootStyle }),
-        ...(readonly && readonlyRootStyle),
-    };
+    const computedStyles = useComputeStyles("SelectItem", props, undefined, {
+        compute,
+    });
 
-    return [textStyles, rootStyles];
-};
-
-export default useSelectItemStyles;
+    return useTextAndViewStyles(computedStyles);
+}

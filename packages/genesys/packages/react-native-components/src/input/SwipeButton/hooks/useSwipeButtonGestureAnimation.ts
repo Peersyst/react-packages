@@ -2,6 +2,7 @@ import { ViewStyle } from "react-native";
 import { Gesture, PanGesture } from "react-native-gesture-handler";
 import {
     AnimatedStyleProp,
+    runOnJS,
     useAnimatedStyle,
     useSharedValue,
     withTiming,
@@ -34,8 +35,9 @@ export default function useSwipeButtonGestureAnimation({
         .onUpdate(({ translationX }) => {
             const distance = translationX + start.value;
             if (distance >= 0 && distance <= maxDistance) xPos.value = translationX + start.value;
-            else if (distance > maxDistance * 0.9) onMaxDistanceReached?.();
-            else xPos.value = withTiming(0);
+            else if (distance > maxDistance * 0.9) {
+                if (onMaxDistanceReached) runOnJS(onMaxDistanceReached)();
+            } else xPos.value = withTiming(0);
         })
         .onEnd(() => {
             start.value = xPos.value;

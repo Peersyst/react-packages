@@ -1,13 +1,14 @@
 import { FormControlHintProps } from "./FormControlHint.types";
 import { FormControlHintRoot } from "./FormControlHint.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
+import { useFormControlHintStyles } from "./hooks";
 
-const FormControlHint = (props: FormControlHintProps): JSX.Element => {
-    const { hint, style: styleProp, light = true } = useMergeDefaultProps("FormControlHint", props);
+const FormControlHint = (rawProps: FormControlHintProps): JSX.Element => {
+    const props = useMergeDefaultProps("FormControlHint", rawProps);
 
-    const globalStyle = useGlobalStyles("FormControlHint");
-    const style = { ...globalStyle, ...styleProp };
+    const { hint, light = true, style: _style } = props;
+
+    const style = useFormControlHintStyles(props);
 
     return (
         <FormControlHintRoot variant="caption" light={light} style={style}>

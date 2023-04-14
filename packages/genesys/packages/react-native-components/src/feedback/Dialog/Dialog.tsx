@@ -11,8 +11,8 @@ import {
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { FlexStyle } from "react-native";
-import { useGlobalStyles } from "../../config";
 import { DialogProps } from "./Dialog.types";
+import { useDialogStyles } from "./hooks";
 
 const DIALOG_BUTTONS_JUSTIFY_MAP: Record<
     DialogButtonsLayoutJustification,
@@ -33,16 +33,12 @@ const DIALOG_BUTTONS_ALIGN_MAP: Record<DialogButtonsLayoutAlignment, FlexStyle["
     baseline: "baseline",
 };
 
-const Dialog = createModal((props: DialogProps): JSX.Element => {
+const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
     const {
         actions: { component: ActionComponent, ...actionComponentProps },
     } = useComponentConfig("Dialog");
 
-    const {
-        title: titleGlobalStyle,
-        content: contentGlobalStyle,
-        ...rootGlobalStyle
-    } = useGlobalStyles("Dialog");
+    const props = useMergeDefaultProps("Dialog", rawProps);
 
     const {
         title,
@@ -55,9 +51,11 @@ const Dialog = createModal((props: DialogProps): JSX.Element => {
             gap = 20,
             ...restButtonsLayout
         } = {},
-        style: { title: titleStyle = {}, content: contentStyle = {}, ...rootStyle } = {},
+        style: _style,
         ...modalProps
-    } = useMergeDefaultProps("Dialog", props);
+    } = props;
+
+    const { title: titleStyle, content: contentStyle, ...rootStyle } = useDialogStyles(props);
 
     const ButtonsLayoutComponent = direction === "row" ? Row : Col;
 
@@ -73,19 +71,13 @@ const Dialog = createModal((props: DialogProps): JSX.Element => {
             onClose={closeDialog}
             animationIn="fadeIn"
             animationOut="fadeOut"
-            style={{ ...rootGlobalStyle, ...rootStyle }}
+            style={rootStyle}
             {...modalProps}
         >
             <Col gap={14}>
-                {title && (
-                    <DialogTitle style={{ ...titleGlobalStyle, ...titleStyle }}>
-                        {title}
-                    </DialogTitle>
-                )}
+                {title && <DialogTitle style={titleStyle}>{title}</DialogTitle>}
                 {typeof content === "string" ? (
-                    <DialogMessage style={{ ...contentGlobalStyle, ...contentStyle }}>
-                        {content}
-                    </DialogMessage>
+                    <DialogMessage style={contentStyle}>{content}</DialogMessage>
                 ) : (
                     content
                 )}

@@ -1,7 +1,9 @@
 export default function <T, K extends (keyof T)[]>(obj: T, ...keys: K): Omit<T, K[number]> {
-    const objCopy = { ...obj };
-    for (const key of keys) {
-        delete objCopy[key];
-    }
-    return objCopy;
+    return keys.reduce(
+        (filteredObj, key) => {
+            delete filteredObj[key as keyof typeof filteredObj];
+            return filteredObj;
+        },
+        { ...obj } as Omit<T, K[number]>,
+    );
 }
