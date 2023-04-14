@@ -6,24 +6,24 @@ import useIconButtonStyles from "./hook/useIconButtonStyles";
 import { ActivityIndicator, TouchableWithoutFeedback } from "react-native";
 import { FormContext, useMergeDefaultProps } from "@peersyst/react-components-core";
 
-const IconButton = (props: IconButtonProps): JSX.Element => {
+const IconButton = (rawProps: IconButtonProps): JSX.Element => {
+    const props = useMergeDefaultProps("IconButton", rawProps);
+
     const {
         onPress: onPressProp,
         type,
         action,
         loading = false,
         disabled: disabledProp = false,
-        style = {},
         children,
-    } = useMergeDefaultProps("IconButton", props);
+        style: _style,
+    } = props;
 
     const [pressed, setPressed] = useState(false);
-
-    const { textStyle, rootStyle } = useIconButtonStyles(style, pressed, disabledProp);
-
     const { handleSubmit: submit, valid } = useContext(FormContext);
-
     const disabled = disabledProp || loading || (type === "submit" && valid === false);
+
+    const { textStyle, rootStyle } = useIconButtonStyles(props, pressed, disabled);
 
     const handleSubmit = () => {
         submit(action);

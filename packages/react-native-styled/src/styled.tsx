@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { useTheme } from "@peersyst/react-native-styled";
+import { resolveStyles, useTheme } from "@peersyst/react-native-styled";
 import { ComponentType, useMemo } from "react";
 import { deepmerge } from "@peersyst/react-utils";
 import { StyleSheet, useWindowDimensions } from "react-native";
 import { StyledFunction, StyledComponentProps, StyledParams, Stylesheet } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Loosen } from "@peersyst/react-types";
-import { resolveStyles } from "./helpers";
 
+/**
+ * Makes a styled component
+ * @param Component
+ * @param props
+ * @returns
+ */
 export default function styled<
     P extends StyledComponentProps<P["style"]>,
     K extends keyof Omit<P, "style" | "sx">,
@@ -34,14 +39,18 @@ export default function styled<
                 ...styledComponentProps,
             } as StyledParams<P, E>;
 
+            // TODO: Add in v4 as it is not backward compatible with deprecated global styles
+            // const stylesheet = useStylesheet(componentName);
+
             // Compute style
             const style = useMemo(() => {
-                const styles = deepmerge(
-                    deepmerge(styledSx?.(params), StyleSheet.flatten(styleProp)),
-                    sxProp?.({ theme, dimensions, safeAreaInsets }),
-                ) as Stylesheet<P["style"]>;
+                let styles = {} as Stylesheet<P["style"]>;
 
-                // TODO: Evaluate adding a resolved prop in the stylesheet metadata to not recompute styles if not needed
+                if (styledSx) styles = deepmerge(styles, styledSx(params));
+                if (styleProp) styles = deepmerge(styles, StyleSheet.flatten(styleProp));
+                if (sxProp)
+                    styles = deepmerge(styles, sxProp({ theme, dimensions, safeAreaInsets }));
+
                 return resolveStyles(params, styles);
             }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
 
@@ -62,3 +71,5 @@ export default function styled<
         return styledConstructor<E>(sx);
     };
 }
+
+StyleSheet;

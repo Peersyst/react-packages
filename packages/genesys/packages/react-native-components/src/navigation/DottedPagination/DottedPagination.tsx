@@ -2,40 +2,27 @@ import { Row } from "../../layout/Row";
 import { PaginationDot } from "./DottedPagination.styles";
 import { DottedPaginationProps } from "./DottedPagination.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
+import { useDottedPaginationStyles } from "./hooks";
 
-const DottedPagination = (props: DottedPaginationProps) => {
-    const {
-        pages,
-        currentPage,
-        style: {
-            dot: { active: activeStyle = {}, ...dotStyle } = {},
-            gap = undefined,
-            ...style
-        } = {},
-    } = useMergeDefaultProps("DottedPagination", props);
+const DottedPagination = (rawProps: DottedPaginationProps) => {
+    const props = useMergeDefaultProps("DottedPagination", rawProps);
+
+    const { pages, currentPage, style: _style } = props;
 
     const {
-        dot: { active: globalActiveStyle = {}, ...globalDotStyle } = {},
-        gap: globalGap,
-        ...globalStyle
-    } = useGlobalStyles("DottedPagination");
+        dot: { active: dotActiveStyle = {}, ...dotStyle } = {},
+        gap: gap,
+        ...style
+    } = useDottedPaginationStyles(props);
 
     return (
-        <Row
-            justifyContent="center"
-            gap={gap ?? globalGap ?? 5}
-            style={{ ...globalStyle, ...style }}
-        >
+        <Row justifyContent="center" gap={gap ?? 5} style={style}>
             {[...Array(pages)].map((_, i) => {
                 const isActive = currentPage === i + 1;
                 return (
                     <PaginationDot
                         active={isActive}
-                        style={[
-                            { ...globalDotStyle, ...dotStyle },
-                            isActive && { ...globalActiveStyle, ...activeStyle },
-                        ]}
+                        style={[dotStyle, isActive && { ...dotActiveStyle }]}
                         key={i}
                     />
                 );

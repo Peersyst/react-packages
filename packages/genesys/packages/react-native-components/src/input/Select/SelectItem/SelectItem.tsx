@@ -1,6 +1,5 @@
 import { SelectItemRoot, SelectItemText } from "./SelectItem.styles";
 import { InnerSelectItemProps, SelectItemProps } from "./SelectItem.types";
-import useSelectItemStyle from "./hooks/useSelectIemStyles";
 import { TouchableWithoutFeedback, Text } from "react-native";
 import { getLuminance } from "@peersyst/react-utils";
 import {
@@ -8,16 +7,12 @@ import {
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
 import { isValidElement } from "react";
+import { useSelectItemStyles } from "./hooks";
 
-function InnerSelectItem<T>({
-    value,
-    isSelected,
-    setSelected,
-    readonly,
-    children,
-    style,
-}: InnerSelectItemProps<T>): JSX.Element {
-    const [textStyle, rootStyle] = useSelectItemStyle(style, isSelected, readonly);
+function InnerSelectItem<T>(props: InnerSelectItemProps<T>): JSX.Element {
+    const { value, isSelected, setSelected, readonly, children, style: _style } = props;
+
+    const [textStyle, rootStyle] = useSelectItemStyles(props, isSelected, readonly);
 
     return (
         <TouchableWithoutFeedback onPress={setSelected}>

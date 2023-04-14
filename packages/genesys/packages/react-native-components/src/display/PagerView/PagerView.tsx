@@ -5,7 +5,7 @@ import { NativeSyntheticEvent, View, ViewStyle } from "react-native";
 import { PagerViewOnPageSelectedEventData } from "react-native-pager-view/src/types";
 import { DottedPagination, DottedPaginationStyle } from "../../navigation/DottedPagination";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { useGlobalStyles } from "../../config";
+import { usePagerViewStyles } from "./hooks";
 
 export type PagerViewStyle = ViewStyle & {
     pagination?: DottedPaginationStyle;
@@ -28,11 +28,11 @@ export interface PagerViewProps extends Omit<BasePagerViewProps, "onPageSelected
     style?: PagerViewStyle;
 }
 
-const PagerView = (props: PagerViewProps): JSX.Element => {
+const PagerView = (rawProps: PagerViewProps): JSX.Element => {
+    const props = useMergeDefaultProps("PagerView", rawProps);
     const {
         children,
         showPageIndicator,
-        style: { pagination: paginationStyle = {}, ...style } = {},
         onPageSelected,
         page,
         initialPage = 0,
@@ -48,10 +48,11 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
             horizontal: paddingHorizontal = undefined,
             vertical: paddingVertical = undefined,
         } = {},
+        style: _style,
         ...rest
-    } = useMergeDefaultProps("PagerView", props);
+    } = props;
 
-    const { pagination: globalPaginationStyle, ...globalStyle } = useGlobalStyles("PagerView");
+    const { pagination: paginationStyle, ...style } = usePagerViewStyles(props);
 
     const [currentPage, setCurrentPage] = useState(page ?? initialPage);
     const [rerender, setRerender] = useState(false);
@@ -78,7 +79,7 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
     };
 
     return (
-        <Col style={[globalStyle, style, { height }]} gap={gap}>
+        <Col style={[style, { height }]} gap={gap}>
             {!rerender && (
                 <BasePagerView
                     style={{ flex: 1 }}
@@ -112,7 +113,7 @@ const PagerView = (props: PagerViewProps): JSX.Element => {
                 <DottedPagination
                     pages={Children.count(children)}
                     currentPage={currentPage + 1}
-                    style={{ ...globalPaginationStyle, ...paginationStyle }}
+                    style={paginationStyle}
                 />
             )}
         </Col>

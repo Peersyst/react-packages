@@ -46,7 +46,7 @@ export type Stylesheet<S> = S extends AnyObject
           {
               [K in keyof S]: S[K] extends AnyObject | undefined
                   ? Inject<Stylesheet<S[K]>, { currentColor?: string | StylesheetAccessor<string> }>
-                  : S[K] | ((...args: any[]) => S[K]);
+                  : S[K] | StylesheetAccessor<S[K]>;
           },
           { currentColor?: string | StylesheetAccessor<string> }
       >

@@ -1,5 +1,4 @@
 import { StyledParams, StyledComponentProps, Stylesheet } from "../types";
-import isCurrentColor from "./isCurrentColor";
 import resolveStyleProperty from "./resolveStyleProperty";
 
 /**
@@ -12,21 +11,37 @@ export default function resolveStyles<P extends StyledComponentProps<P["style"]>
     params: StyledParams<P>,
     styles: Stylesheet<P["style"]>,
 ): P["style"] {
-    const style = {} as any;
+    let style = {} as any;
     if (typeof styles === "object" && styles) {
+        style = { ...styles };
+
         // Casting styles to any is safe as we already checked it is an object
-        const { color, ...restStyles } = styles as any;
+        const { color, currentColor, ...restStyles } = style;
 
-        // Color has to be handled separately first in order to resolve currentColor
-        if (isCurrentColor(color)) style.color = color(params, style, "color");
+        // Resolve currentColor first
+        if (currentColor)
+            style.currentColor = resolveStyleProperty(params, style, "currentColor", currentColor);
 
-        for (const property in restStyles)
-            style[property] = resolveStyleProperty(
-                params,
-                style,
-                property,
-                (styles as any)[property],
-            );
+        // Resolve color second so that other styles can use currentColor
+        if (color) style.color = resolveStyleProperty(params, style, "color", color);
+
+        for (const property in restStyles) {
+            // If property is an object, resolve it recursively
+            if (
+                typeof style[property] === "object" &&
+                !Array.isArray(style[property]) &&
+                style[property] !== null &&
+                property !== "_metadata"
+            ) {
+                style[property] = resolveStyles(params, {
+                    ...(!!currentColor && { currentColor }),
+                    ...(!!color && { color }),
+                    ...style[property],
+                });
+            }
+            // Otherwise resolve it normally
+            else style[property] = resolveStyleProperty(params, style, property, style[property]);
+        }
     }
 
     return style;

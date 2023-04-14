@@ -16,11 +16,10 @@ export type BaseDisplayStyle = ViewStyle &
         placeholderColor?: ColorValue;
     };
 
-export type DisplayStyle = ViewStyle &
-    TextStyle & {
-        disabled?: BaseDisplayStyle;
-        readonly?: BaseDisplayStyle;
-    };
+export type DisplayStyle = BaseDisplayStyle & {
+    disabled?: BaseDisplayStyle;
+    readonly?: BaseDisplayStyle;
+};
 
 export type SelectStyle = Omit<ViewStyle, "display"> & {
     display?: DisplayStyle;

@@ -1,9 +1,10 @@
 import { extractTextStyles } from "@peersyst/react-native-utils";
 import { useMemo } from "react";
 import { TextStyle, ViewStyle } from "react-native";
-import { useGlobalStyles } from "../../../config";
-import { SwipeButtonStyle } from "../SwipeButton.types";
-import useSlideToAcceptDefaultStyles from "./useSwipeButtonDefaultStyles";
+import { SwipeButtonProps } from "../SwipeButton.types";
+import { SwipeButtonComputedProps } from "./useSwipeButton";
+import { useComputeStyles } from "../../../hooks";
+import { makeStyleComputation } from "../../../utils";
 
 export interface UseSwipeButtonStylesOptions {
     disabled: boolean;
@@ -19,145 +20,71 @@ export interface UseSwipeButtonStylesResult {
 }
 
 export default function useSwipeButtonStyles(
-    style: SwipeButtonStyle,
-    color: string,
-    { disabled }: UseSwipeButtonStylesOptions,
+    props: SwipeButtonProps,
+    computed: SwipeButtonComputedProps,
 ): UseSwipeButtonStylesResult {
-    const {
-        track: defaultTrackStyle,
-        rail: defaultRailStyle,
-        thumb: defaultThumbStyle,
-        disabled: {
-            track: defaultDisabledTrackStyle,
-            rail: defaultDisabledRailStyle,
-            thumb: defaultDisabledThumbStyle,
-            ...defaultDisabledRootStyle
-        } = {},
-        ...defaultRootStyle
-    } = useSlideToAcceptDefaultStyles(color);
+    const { enabled, color = "primary" } = computed;
 
-    const {
-        track: globalTrackStyle,
-        rail: globalRailStyle,
-        thumb: globalThumbStyle,
-        disabled: {
-            track: globalDisabledTrackStyle = {},
-            rail: globalDisabledRailStyle = {},
-            thumb: globalDisabledThumbStyle = {},
-            ...globalDisabledRootStyle
-        } = {},
-        ...globalRootStyle
-    } = useGlobalStyles("SwipeButton");
+    const compute = makeStyleComputation<SwipeButtonProps>(
+        function (stylesheet) {
+            const {
+                track: trackStyle,
+                thumb: thumbStyle,
+                rail: railStyle,
+                disabled: {
+                    track: disabledTrackStyle,
+                    rail: disabledRailStyle,
+                    thumb: disabledThumbStyle,
+                    ...disabledStyle
+                } = {},
+                ...styles
+            } = stylesheet;
 
-    const {
-        track: trackStyle,
-        rail: railStyle,
-        thumb: thumbStyle,
-        disabled: {
-            track: disabledTrackStyle,
-            rail: disabledRailStyle,
-            thumb: disabledThumbStyle,
-            ...disabledRootStyle
-        } = {},
-        ...rootStyle
-    } = style;
-
-    const [contentStyles, rootStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...defaultRootStyle,
-                ...globalRootStyle,
-                ...rootStyle,
-                ...(disabled && {
-                    ...defaultDisabledRootStyle,
-                    ...globalDisabledRootStyle,
-                    ...disabledRootStyle,
-                }),
-            }),
-        [
-            defaultRootStyle,
-            globalRootStyle,
-            rootStyle,
-            defaultDisabledRootStyle,
-            globalDisabledRootStyle,
-            disabledRootStyle,
-            disabled,
-        ],
+            return {
+                ...styles,
+                ...(!enabled && { ...disabledStyle }),
+                track: {
+                    ...trackStyle,
+                    ...(!enabled && { ...disabledTrackStyle }),
+                },
+                thumb: {
+                    ...thumbStyle,
+                    ...(!enabled && { ...disabledThumbStyle }),
+                },
+                rail: {
+                    ...railStyle,
+                    ...(!enabled && { ...disabledRailStyle }),
+                },
+            };
+        },
+        [enabled],
     );
 
-    const trackStyles = useMemo(
-        () => ({
-            ...defaultTrackStyle,
-            ...globalTrackStyle,
-            ...trackStyle,
-            ...(disabled && {
-                ...defaultDisabledTrackStyle,
-                ...globalDisabledTrackStyle,
-                ...disabledTrackStyle,
-            }),
-        }),
-        [
-            defaultTrackStyle,
-            globalTrackStyle,
-            trackStyle,
-            defaultDisabledTrackStyle,
-            globalDisabledTrackStyle,
-            disabledTrackStyle,
-            disabled,
-        ],
+    const computedStyles = useComputeStyles(
+        "SwipeButton",
+        props,
+        { currentColor: color },
+        { compute },
     );
 
-    const railStyles = useMemo(
-        () => ({
-            ...defaultRailStyle,
-            ...globalRailStyle,
-            ...railStyle,
-            ...(disabled && {
-                ...defaultDisabledRailStyle,
-                ...globalDisabledRailStyle,
-                ...disabledRailStyle,
-            }),
-        }),
-        [
-            defaultRailStyle,
-            globalRailStyle,
-            railStyle,
-            defaultDisabledRailStyle,
-            globalDisabledRailStyle,
-            disabledRailStyle,
-            disabled,
-        ],
-    );
+    return useMemo(() => {
+        const {
+            track: trackStyles = {},
+            thumb: thumbStyle,
+            rail: railStyles = {},
+            ...styles
+        } = computedStyles;
 
-    const [thumbContentStyles, thumbStyles] = useMemo(
-        () =>
-            extractTextStyles({
-                ...defaultThumbStyle,
-                ...globalThumbStyle,
-                ...thumbStyle,
-                ...(disabled && {
-                    ...defaultDisabledThumbStyle,
-                    ...globalDisabledThumbStyle,
-                    ...disabledThumbStyle,
-                }),
-            }),
-        [
-            defaultThumbStyle,
-            globalThumbStyle,
-            thumbStyle,
-            defaultDisabledThumbStyle,
-            globalDisabledThumbStyle,
-            disabledThumbStyle,
-            disabled,
-        ],
-    );
+        const [contentStyles, rootStyles] = extractTextStyles(styles);
+        const [thumbContentStyles, thumbStyles] = extractTextStyles(thumbStyle);
 
-    return {
-        contentStyles,
-        rootStyles,
-        trackStyles,
-        railStyles,
-        thumbContentStyles,
-        thumbStyles,
-    };
+        return {
+            contentStyles,
+            rootStyles,
+            trackStyles,
+            railStyles,
+            thumbContentStyles,
+            thumbStyles,
+        };
+    }, [computedStyles]);
 }

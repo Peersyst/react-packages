@@ -1,4 +1,4 @@
-import styled from "@peersyst/react-native-styled";
+import styled, { currentColor } from "@peersyst/react-native-styled";
 import { Col } from "../../layout/Col";
 import { LabelAlignment, LabelRowRootProps, LabelTextProps } from "@peersyst/react-components-core";
 import { FlexAlignType, FlexStyle, Text } from "react-native";
@@ -37,7 +37,6 @@ export const LabelText = styled(Text)<LabelTextProps>(
         })();
         const variantStyle = variant ? theme.typography[variant] : {};
         return {
-            color: theme.palette.text,
             alignSelf: placement === "left" || placement === "right" ? "center" : undefined,
             textAlign,
             ...variantStyle,

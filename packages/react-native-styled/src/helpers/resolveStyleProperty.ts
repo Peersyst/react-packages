@@ -17,6 +17,15 @@ export default function resolveStyleProperty<P extends StyledComponentProps<P["s
     value: any,
 ): void {
     let resolvedValue = value;
-    while (isAccessor(resolvedValue)) resolvedValue = resolvedValue(params, styles, property);
+    let bypass = false;
+
+    while (!bypass && isAccessor(resolvedValue)) {
+        try {
+            resolvedValue = resolvedValue(params, styles, property);
+        } catch (_) {
+            bypass = true;
+        }
+    }
+
     return resolvedValue;
 }

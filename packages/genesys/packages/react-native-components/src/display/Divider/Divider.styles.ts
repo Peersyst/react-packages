@@ -1,5 +1,5 @@
 import { DividerRootProps, DividerWidths, DividerWithChildrenProps } from "./Divider.types";
-import styled from "@peersyst/react-native-styled";
+import styled, { currentColor } from "@peersyst/react-native-styled";
 import { View } from "react-native";
 import { Row } from "../../layout/Row";
 
@@ -10,10 +10,10 @@ const dividerWidths: Record<DividerWidths, string> = {
     "full-width": "100%",
 };
 
-export const DividerRoot = styled(View)<DividerRootProps>(({ height, width, color, theme }) => ({
+export const DividerRoot = styled(View)<DividerRootProps>(({ height, width }) => ({
     height,
-    backgroundColor: color || theme.palette.text,
     width: dividerWidths[width],
+    backgroundColor: currentColor(),
 }));
 
 export const DividerWithChildren = styled(Row, {
