@@ -1,6 +1,10 @@
-import { Text } from "react-native";
 import playground from "../playground";
+import { Typography } from "@peersyst/react-native-components";
 
-const Welcome = () => <Text style={{ fontSize: 24 }}>Welcome to the Playground ⚽️</Text>;
+const Welcome = () => (
+    <Typography variant="h5" textAlign="center" style={{ padding: 10, lineHeight: 45 }}>
+        Welcome to the Playground ⚽️
+    </Typography>
+);
 
 export default playground("Welcome", Welcome);
