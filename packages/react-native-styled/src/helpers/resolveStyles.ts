@@ -30,7 +30,8 @@ export default function resolveStyles<P extends StyledComponentProps<P["style"]>
             if (
                 typeof style[property] === "object" &&
                 !Array.isArray(style[property]) &&
-                style[property] !== null
+                style[property] !== null &&
+                property !== "_metadata"
             ) {
                 style[property] = resolveStyles(params, {
                     ...(!!currentColor && { currentColor }),

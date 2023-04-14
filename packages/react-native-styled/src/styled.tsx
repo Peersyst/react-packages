@@ -39,12 +39,17 @@ export default function styled<
                 ...styledComponentProps,
             } as StyledParams<P, E>;
 
+            // TODO: Add in v4 as it is not backward compatible with deprecated global styles
+            // const stylesheet = useStylesheet(componentName);
+
             // Compute style
             const style = useMemo(() => {
-                const styles = deepmerge(
-                    deepmerge(styledSx?.(params), StyleSheet.flatten(styleProp)),
-                    sxProp?.({ theme, dimensions, safeAreaInsets }),
-                ) as Stylesheet<P["style"]>;
+                let styles = {} as Stylesheet<P["style"]>;
+
+                if (styledSx) styles = deepmerge(styles, styledSx(params));
+                if (styleProp) styles = deepmerge(styles, StyleSheet.flatten(styleProp));
+                if (sxProp)
+                    styles = deepmerge(styles, sxProp({ theme, dimensions, safeAreaInsets }));
 
                 return resolveStyles(params, styles);
             }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);

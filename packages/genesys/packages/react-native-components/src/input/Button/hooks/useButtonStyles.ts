@@ -1,13 +1,7 @@
 import { ButtonProps, ButtonRootStyle, ButtonTextStyle } from "../Button.types";
-import { useMemo } from "react";
 import { ButtonComputedProps } from "./useButton";
-import {
-    useMergeStylesheets,
-    useResolveStylesheet,
-    useStylesheet,
-} from "@peersyst/react-native-styled";
-import { useTextAndViewStyles } from "../../../hooks";
-import { useGlobalStyles } from "../../../config";
+import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { makeStyleComputation } from "../../../utils";
 
 export interface UseButtonStylesResult {
     textStyle: ButtonTextStyle;
@@ -26,42 +20,36 @@ export default function useButtonStyles(
     computed: ButtonComputedProps,
     pressed: boolean,
 ): UseButtonStylesResult {
-    const { style = {}, variant = "filled", size = "md" } = props;
+    const { variant = "filled", size = "md" } = props;
     const { enabled, color } = computed;
 
-    const defaultStyle = useGlobalStyles("Button");
-    const stylesheet = useStylesheet<ButtonProps>("Button");
-    const mergedStylesheets = useMergeStylesheets<ButtonProps>(
-        { currentColor: color },
-        stylesheet,
-        defaultStyle,
-        style,
+    const compute = makeStyleComputation<ButtonProps>(
+        function (stylesheet) {
+            const {
+                disabled: disabledStyles = {},
+                pressed: pressedStyles = {},
+                ...styles
+            } = stylesheet;
+
+            const variantStyles = styles[variant];
+            const sizeStyles = styles[size];
+            const pressedVariantStyles = pressedStyles[variant];
+            const disabledVariantStyles = disabledStyles[variant];
+
+            return {
+                ...styles,
+                ...variantStyles,
+                ...sizeStyles,
+                ...(pressed && { ...pressedStyles, ...pressedVariantStyles }),
+                ...(!enabled && { ...disabledStyles, ...disabledVariantStyles }),
+            };
+        },
+        [variant, size, enabled, pressed],
     );
 
-    const buttonStyles = useMemo(() => {
-        const {
-            disabled: disabledStyles = {},
-            pressed: pressedStyles = {},
-            ...styles
-        } = mergedStylesheets;
+    const computedStyles = useComputeStyles("Button", props, { currentColor: color }, { compute });
 
-        const variantStyles = styles[variant];
-        const sizeStyles = styles[size];
-        const pressedVariantStyles = pressedStyles[variant];
-        const disabledVariantStyles = disabledStyles[variant];
-
-        return {
-            ...styles,
-            ...variantStyles,
-            ...sizeStyles,
-            ...(pressed && { ...pressedStyles, ...pressedVariantStyles }),
-            ...(!enabled && { ...disabledStyles, ...disabledVariantStyles }),
-        };
-    }, [mergedStylesheets, variant, size, enabled, pressed, color]);
-
-    const resolvedStyles = useResolveStylesheet(props, buttonStyles);
-
-    const [textStyle, rootStyle] = useTextAndViewStyles(resolvedStyles);
+    const [textStyle, rootStyle] = useTextAndViewStyles(computedStyles);
 
     return {
         textStyle,

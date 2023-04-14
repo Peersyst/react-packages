@@ -6,7 +6,7 @@ LogBox.ignoreLogs([CURRENT_COLOR_WARNING]);
 
 const consoleError = console.error;
 console.error = (...args: any[]) => {
-    if (args[2].startsWith(CURRENT_COLOR_WARNING)) {
+    if (args[2]?.startsWith(CURRENT_COLOR_WARNING)) {
         return;
     } else {
         consoleError(...args);

@@ -8,13 +8,13 @@ import { useMemo } from "react";
  * @returns The merged stylesheet
  */
 export default function useMergeStylesheets<P extends StyledComponentProps<P["style"]> = any>(
-    ...stylesheets: Stylesheet<P["style"]>[]
+    ...stylesheets: (Stylesheet<P["style"]> | P["style"] | undefined)[]
 ): NonNullable<P["style"]> {
     return useMemo(() => {
-        const [baseStylesheet, ...restStylesheets] = stylesheets;
+        const [baseStylesheet = {}, ...restStylesheets] = stylesheets;
         let mergedStylesheet = baseStylesheet;
         for (const stylesheet of restStylesheets)
-            mergedStylesheet = deepmerge(mergedStylesheet, stylesheet);
+            if (stylesheet) mergedStylesheet = deepmerge(mergedStylesheet, stylesheet);
 
         return mergedStylesheet || {};
     }, [stylesheets]);

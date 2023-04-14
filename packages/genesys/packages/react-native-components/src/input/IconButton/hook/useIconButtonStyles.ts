@@ -1,8 +1,7 @@
-import { IconButtonStyles } from "../IconButton.types";
-import { useMemo } from "react";
-import { extractTextStyles } from "@peersyst/react-native-utils";
-import useDefaultStyles from "./useDefaultStyles";
+import { IconButtonProps } from "../IconButton.types";
 import { TextStyle, ViewStyle } from "react-native";
+import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { makeStyleComputation } from "../../../utils";
 
 export interface UseIconButtonStylesResult {
     textStyle: TextStyle;
@@ -10,37 +9,26 @@ export interface UseIconButtonStylesResult {
 }
 
 export default function useIconButtonStyles(
-    style: IconButtonStyles,
+    props: IconButtonProps,
     pressed: boolean,
     disabled: boolean,
 ): UseIconButtonStylesResult {
-    const { defaultStyles, defaultDisabledStyles, defaultPressedStyles } = useDefaultStyles();
-    const { pressed: pressedStyles, disabled: disabledStyles, ...styles } = style;
+    const compute = makeStyleComputation(
+        function (stylesheet) {
+            const { pressed: pressedStyles, disabled: disabledStyles, ...rootStyles } = stylesheet;
 
-    const [textStyles, rootStyles] = useMemo(
-        () => extractTextStyles({ ...defaultStyles, ...styles }),
-        [defaultStyles, styles],
-    );
-    const [pressedTextStyles, pressedRootStyles] = useMemo(
-        () => extractTextStyles({ ...defaultPressedStyles, ...pressedStyles }),
-        [defaultPressedStyles, pressedStyles],
-    );
-    const [disabledTextStyles, disabledRootStyles] = useMemo(
-        () => extractTextStyles({ ...defaultDisabledStyles, ...disabledStyles }),
-        [defaultDisabledStyles, disabledStyles],
+            return {
+                ...rootStyles,
+                ...(pressed && { ...pressedStyles }),
+                ...(disabled && { ...disabledStyles }),
+            };
+        },
+        [pressed, disabled],
     );
 
-    const textStyle = {
-        ...textStyles,
-        ...(pressed && pressedTextStyles),
-        ...(disabled && disabledTextStyles),
-    };
+    const computedStyles = useComputeStyles("IconButton", props, undefined, { compute });
 
-    const rootStyle = {
-        ...rootStyles,
-        ...(pressed && pressedRootStyles),
-        ...(disabled && disabledRootStyles),
-    };
+    const [textStyle, rootStyle] = useTextAndViewStyles(computedStyles);
 
     return { textStyle, rootStyle };
 }
