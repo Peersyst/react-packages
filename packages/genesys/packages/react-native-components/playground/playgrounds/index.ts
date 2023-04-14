@@ -11,6 +11,7 @@ import SwipeButton from "./SwipeButton.playground";
 import RadioButton from "./RadioButton.playground";
 import Select from "./Select.playground";
 import SelectorGroup from "./SelectorGroup.playground";
+import Switch from "./Switch.playground";
 
 export default {
     Welcome,
@@ -26,4 +27,5 @@ export default {
     RadioButton,
     Select,
     SelectorGroup,
+    Switch,
 };

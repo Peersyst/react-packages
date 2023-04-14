@@ -7,6 +7,7 @@ import { textInputStylesheet } from "../input/TextInput";
 import { iconButtonStylesheet } from "../input/IconButton";
 import { radioButtonStylesheet } from "../input/RadioButton";
 import { selectStylesheet, selectItemStylesheet } from "../input/Select";
+import { switchStylesheet } from "../input/Switch";
 
 export default createStylesheets(
     buttonStylesheet,
@@ -18,4 +19,5 @@ export default createStylesheets(
     radioButtonStylesheet,
     selectStylesheet,
     selectItemStylesheet,
+    switchStylesheet,
 );
