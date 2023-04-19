@@ -40,6 +40,7 @@ module.exports = {
                 caughtErrorsIgnorePattern: "^_",
             },
         ],
+        "@typescript-eslint/no-var-requires": 0,
     },
     settings: {},
 };

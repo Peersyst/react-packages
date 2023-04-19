@@ -45,6 +45,7 @@ export interface CoreButtonProps {
     size?: ButtonSize;
     /**
      * Button is full width
+     * @default false
      */
     fullWidth?: boolean;
     /**
