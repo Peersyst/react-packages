@@ -1,6 +1,6 @@
 import { FormControlProps } from "./FormControl.types";
 import { useFormControlled } from "./hook";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useFormNotification } from "../Form";
 import FormControlContext from "./FormControlContext";
 import useTranslate from "../config/hook/useTranslate";
@@ -32,12 +32,15 @@ function FormControl<T = any>({
     const [error, setError] = useState<string | undefined>();
     useFormNotification(name, value, !invalid);
 
+    const [errorPropValue, errorPropMessage] = useMemo(
+        () => (Array.isArray(errorProp) ? errorProp : [errorProp, undefined]),
+        [errorProp],
+    );
+
     useEffect(() => {
         let isValueInvalid: boolean;
         let errorMsg: string | undefined;
-        const [errorPropValue, errorPropMessage] = Array.isArray(errorProp)
-            ? errorProp
-            : [errorProp, undefined];
+
         if (errorPropValue) {
             isValueInvalid = true;
             errorMsg = errorPropMessage;
@@ -62,8 +65,8 @@ function FormControl<T = any>({
         }
         setInvalid(isValueInvalid);
         setError(errorMsg);
-        if (modified) onValidated?.(isValueInvalid, errorMsg);
-    }, [value, required, validation, modified]);
+        if (modified || errorPropValue) onValidated?.(isValueInvalid, errorMsg);
+    }, [value, required, validation, modified, errorProp]);
 
     const handleFocus = (f: boolean) => {
         if (f) onFocus?.();
@@ -71,7 +74,7 @@ function FormControl<T = any>({
         setFocused(f);
     };
 
-    const isInvalid = !hideError && modified && invalid;
+    const isInvalid = !hideError && (modified || errorPropValue) && invalid;
     const isValid = showValid && !isInvalid && modified;
 
     return (
