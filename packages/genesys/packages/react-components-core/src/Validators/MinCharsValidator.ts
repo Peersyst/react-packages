@@ -5,7 +5,7 @@ export class MinCharsValidator extends BaseValidator {
     chars: number;
 
     constructor(chars: number, message: string | undefined, translate: TranslateFn) {
-        super(message || translate("insufficient_chars", { chars: chars.toString() }));
+        super(message ?? translate("insufficient_chars", { chars: chars.toString() }));
         this.chars = chars;
     }
 

@@ -5,7 +5,7 @@ export class EqualValidator extends BaseValidator {
     private readonly compare: string;
 
     constructor(message: string | undefined, translate: TranslateFn, compare: string) {
-        super(message || translate("invalid_equal"));
+        super(message ?? translate("invalid_equal"));
         this.compare = compare;
     }
 

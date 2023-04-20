@@ -29,7 +29,7 @@ export class ColorValidator extends BaseValidator {
     colorValidators: ((value: string) => boolean)[];
 
     constructor(type: ColorValidatorType, message: string | undefined, translate: TranslateFn) {
-        super(message || translate("invalid_color"));
+        super(message ?? translate("invalid_color"));
         if (type === true) this.colorValidators = [isColor];
         else if (Array.isArray(type)) this.colorValidators = type.map((t) => colorValidators[t]);
         else this.colorValidators = [colorValidators[type]];

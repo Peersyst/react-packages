@@ -6,11 +6,7 @@ import { cx } from "@peersyst/react-utils";
 import { useTheme } from "../theme";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
-import {
-    useMergeDefaultProps,
-    useTextInputValidation,
-    useFormControl,
-} from "@peersyst/react-components-core";
+import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 
 export default function TextInput<HTMLT extends HTMLInput>(
     props: TextInputProps & Children<HTMLT>,
@@ -39,10 +35,12 @@ export default function TextInput<HTMLT extends HTMLInput>(
         Label = FormControlLabel,
         format = (x: string) => x,
         parse = (x: string) => x,
+        onKeyDown,
+        onBlur,
+        onFocus,
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
-    const { setFocused } = useFormControl();
     const [active, setActive] = useState<boolean>(false);
     const validation = useTextInputValidation(validators, customValidators);
     const {
@@ -62,7 +60,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
             validation={validation}
             {...rest}
         >
-            {(value, setValue, { invalid, valid, focused }) => {
+            {(value, setValue, { invalid, valid, focused, setFocused }) => {
                 const handleChange = (e: ChangeEvent<HTMLT>) => {
                     const newValue = e.currentTarget.value;
                     setValue(parse(newValue, value));
@@ -104,9 +102,13 @@ export default function TextInput<HTMLT extends HTMLInput>(
                                 disabled,
                                 onFocus: () => {
                                     setFocused(true);
+                                    onFocus?.();
                                     if (selectOnFocus) ref.current?.select();
                                 },
-                                onBlur: () => setFocused(false),
+                                onBlur: () => {
+                                    setFocused(false);
+                                    onBlur?.();
+                                },
                                 readOnly: readonly,
                                 autoFocus,
                                 autoComplete: autoComplete ? "on" : "off",
@@ -115,6 +117,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
                                 spellCheck,
                                 maxLength,
                                 onSubmit,
+                                onKeyDown,
                             })}
                             {suffix}
                             {valid && validElement && (

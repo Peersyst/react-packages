@@ -62,7 +62,8 @@ import { ChipProps } from "../Chip";
 import { AlertProps } from "../Alert";
 import { ColorInputProps } from "../ColorInput";
 import { SelectorGroupProps, SelectorProps } from "../SelectorGroup";
-import { DialogProps } from "../Dialog/Dialog.types";
+import { DialogProps } from "../Dialog";
+import { CodeFieldProps } from "../CodeField";
 
 /**
  * No config for:
@@ -96,6 +97,7 @@ export interface CarouselConfig extends ComponentConfig<CarouselProps> {}
 export interface ChartConfig extends ComponentConfig<ChartProps> {}
 export interface CheckboxConfig extends ComponentConfig<CheckboxProps> {}
 export interface ChipConfig extends ComponentConfig<ChipProps> {}
+export interface CodeFieldConfig extends ComponentConfig<CodeFieldProps> {}
 export interface ColConfig extends ComponentConfig<ColProps> {}
 export interface ColorInputConfig extends ComponentConfig<ColorInputProps> {}
 export interface CopyButtonConfig extends ComponentConfig<CopyButtonProps> {}
@@ -166,6 +168,7 @@ export interface ComponentsConfig {
     Chart: ChartConfig;
     Checkbox: CheckboxConfig;
     Chip: ChipConfig;
+    CodeField: CodeFieldConfig;
     Col: ColConfig;
     ColorInput: ColorInputConfig;
     CopyButton: CopyButtonConfig;

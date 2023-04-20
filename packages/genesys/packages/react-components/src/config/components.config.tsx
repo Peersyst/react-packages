@@ -136,6 +136,9 @@ const componentsConfig: ComponentsConfig = {
             rounded: false,
         },
     },
+    CodeField: {
+        defaultProps: {},
+    },
     Col: {
         defaultProps: {},
     },

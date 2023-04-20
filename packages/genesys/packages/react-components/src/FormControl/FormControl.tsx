@@ -26,7 +26,7 @@ function FormControl<T = any>(props: FormControlProps<T>): JSX.Element {
 
     return (
         <CoreFormControl<T> {...coreProps}>
-            {(value, setValue, setFocused, error) => {
+            {(value, setValue, _setFocused, error) => {
                 return (
                     <FormControlContext.Consumer>
                         {(context) => {
@@ -34,20 +34,10 @@ function FormControl<T = any>(props: FormControlProps<T>): JSX.Element {
                                 context;
                             const content = children(value, setValue, context);
 
-                            const handleFocus = () => {
-                                if (!readonly && !disabled) setFocused(true);
-                            };
-
-                            const handleBlur = () => {
-                                if (focused) setFocused(false);
-                            };
-
                             return (
                                 <FormControlRoot
                                     gap={5}
                                     onClick={onClick}
-                                    onFocus={handleFocus}
-                                    onBlur={handleBlur}
                                     className={cx(
                                         "FormControl",
                                         required && "Required",
