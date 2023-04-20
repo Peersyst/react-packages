@@ -12,6 +12,7 @@ import RadioButton from "./RadioButton.playground";
 import Select from "./Select.playground";
 import SelectorGroup from "./SelectorGroup.playground";
 import Switch from "./Switch.playground";
+import CodeField from "./CodeField.playground";
 
 export default {
     Welcome,
@@ -28,4 +29,5 @@ export default {
     Select,
     SelectorGroup,
     Switch,
+    CodeField,
 };
