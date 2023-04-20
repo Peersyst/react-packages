@@ -13,6 +13,7 @@ export * from "./Chart";
 export * from "./Checkbox";
 export * from "./Chip";
 export * from "./ClickAwayListener";
+export * from "./CodeField";
 export * from "./Col";
 export * from "./ColorInput";
 export * from "./CopyButton";

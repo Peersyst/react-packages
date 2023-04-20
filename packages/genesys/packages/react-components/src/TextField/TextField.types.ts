@@ -7,7 +7,7 @@ export interface TextFieldOwnProps {
     /**
      * TextField type
      */
-    type?: "email" | "number" | "text" | "password";
+    type?: "email" | "number" | "text" | "password" | "tel" | "search";
     /**
      * Show password element
      */

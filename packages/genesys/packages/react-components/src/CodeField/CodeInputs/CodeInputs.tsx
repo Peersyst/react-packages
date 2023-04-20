@@ -1,22 +1,22 @@
 import { CodeInputsProps } from "./CodeInputs.types";
-import { Row } from "../../../layout/Row";
-import { createRef, useRef } from "react";
-import { NativeSyntheticEvent, TextInput, TextInputKeyPressEventData } from "react-native";
+import { createRef, useRef, KeyboardEvent } from "react";
 import { CodeInput } from "./CodeInputs.styles";
+import { Row } from "../../Row";
+import { useNumericInput } from "@peersyst/react-components-core";
 
 const CodeInputs = ({
     digits,
     gap = 8,
-    onBlur,
-    onFocus,
     placeholder,
     value,
     setValue,
-    context: { invalid, disabled, readonly },
-    style: { textFields: textFieldsStyle = {}, ...rootStyle },
-    setFocused,
+    context: { invalid, disabled, readonly, setFocused },
+    onBlur,
+    onFocus,
 }: CodeInputsProps) => {
-    const refs = useRef([...Array(digits)].map(() => createRef<TextInput>()));
+    const refs = useRef([...Array(digits)].map(() => createRef<HTMLInputElement>()));
+
+    const { parse, format } = useNumericInput();
 
     const handleChange =
         (index: number) =>
@@ -34,61 +34,59 @@ const CodeInputs = ({
             }
         };
 
-    const handleKeyPress =
-        (index: number) => (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
-            if (e.nativeEvent.key === "Backspace") {
-                const values = value.split("");
-
-                if (values[index]) {
-                    handleChange(index)("", true);
-                } else if (index > 0) {
-                    handleChange(index - 1)("", true);
-                    refs.current[index - 1].current?.focus();
-                }
+    const handleKeyDown = (index: number) => (e: KeyboardEvent) => {
+        if (e.key === "Backspace") {
+            if (refs.current[index].current?.value) {
+                handleChange(index)("", true);
+            } else if (index > 0) {
+                handleChange(index - 1)("", true);
+                refs.current[index - 1].current?.focus();
             }
-        };
+        }
+    };
 
     const handleFocus = () => {
         setFocused(true);
         onFocus?.();
 
         let i = 0;
-        const values = value.split("");
-
         while (i < digits) {
-            if (!values[i] || i === digits - 1) {
+            if (!refs.current[i].current?.value || i === digits - 1) {
                 break;
             }
             i++;
         }
+
         refs.current[i].current?.focus();
     };
 
     const handleBlur = () => {
-        if (refs.current.every((ref) => !ref.current?.isFocused())) {
+        if (refs.current.every((ref) => ref.current === document.activeElement)) {
             setFocused(false);
             onBlur?.();
         }
     };
 
     return (
-        <Row gap={gap} style={rootStyle}>
+        <Row gap={gap} className="CodeInputs">
             {[...Array(digits)].map((_, i) => (
                 <CodeInput
                     placeholder={placeholder?.split("")[i]}
                     value={value.split("")[i]}
                     onChange={handleChange(i)}
                     key={i.toString()}
-                    keyboardType="number-pad"
+                    type="tel"
                     ref={refs.current[i]}
-                    onKeyPress={handleKeyPress(i)}
+                    onKeyDown={handleKeyDown(i)}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    selectTextOnFocus
+                    selectOnFocus
                     readonly={readonly}
                     disabled={disabled}
                     error={invalid}
-                    style={{ component: textFieldsStyle }}
+                    className="CodeInput"
+                    parse={parse}
+                    format={format}
                 />
             ))}
         </Row>
