@@ -42,6 +42,7 @@ const TextField = forwardRef(function TextField(rawProps: TextFieldProps, fwdRef
                             setRef(ref, r);
                             setRef(fwdRef, r);
                         }}
+                        onClick={(e) => e.stopPropagation()}
                     />
                     {!!value && clearable && (
                         <IconButton onClick={() => setValue("")}>{clearElement}</IconButton>

@@ -13,4 +13,8 @@ export const Example = Template.bind({});
 Example.args = {
     digits: 6,
     onChange: undefined,
+    onFocus: undefined,
+    onBlur: undefined,
+    label: "LABEL",
+    style: { width: "100%" },
 };

@@ -1,7 +1,7 @@
+// TODO: Check if a headless hook can be built between rwc and rnc
 import { CodeInputsProps } from "./CodeInputs.types";
-import { createRef, useRef, KeyboardEvent } from "react";
-import { CodeInput } from "./CodeInputs.styles";
-import { Row } from "../../Row";
+import { createRef, useRef, KeyboardEvent, useState, useEffect } from "react";
+import { CodeInput, CodeInputsRoot } from "./CodeInputs.styles";
 import { useNumericInput } from "@peersyst/react-components-core";
 
 const CodeInputs = ({
@@ -10,10 +10,12 @@ const CodeInputs = ({
     placeholder,
     value,
     setValue,
-    context: { invalid, disabled, readonly, setFocused },
+    context: { invalid, disabled, readonly, focused, setFocused },
     onBlur,
     onFocus,
 }: CodeInputsProps) => {
+    const [focusIndex, setFocusIndex] = useState<number | undefined>(undefined);
+
     const refs = useRef([...Array(digits)].map(() => createRef<HTMLInputElement>()));
 
     const { parse, format } = useNumericInput();
@@ -27,6 +29,12 @@ const CodeInputs = ({
             newValue[index] = digit;
             setValue(newValue.join(""));
 
+            if (force) {
+                // Force value on ref as only updating state won't be reflected in handlers
+                refs.current[index].current!.value = digit;
+                return;
+            }
+
             if (digit && refs.current[index + 1]) {
                 refs.current[index + 1].current?.focus();
             } else if (newValue[index] && index === digits - 1) {
@@ -36,7 +44,8 @@ const CodeInputs = ({
 
     const handleKeyDown = (index: number) => (e: KeyboardEvent) => {
         if (e.key === "Backspace") {
-            if (refs.current[index].current?.value) {
+            const values = value.split("");
+            if (values[index]) {
                 handleChange(index)("", true);
             } else if (index > 0) {
                 handleChange(index - 1)("", true);
@@ -46,29 +55,42 @@ const CodeInputs = ({
     };
 
     const handleFocus = () => {
-        setFocused(true);
-        onFocus?.();
+        if (!focused) {
+            setFocused(true);
+            onFocus?.();
+        }
 
         let i = 0;
-        while (i < digits) {
-            if (!refs.current[i].current?.value || i === digits - 1) {
+
+        while (i < digits - 1) {
+            if (!refs.current[i].current?.value) {
                 break;
             }
             i++;
         }
 
-        refs.current[i].current?.focus();
+        if (i !== focusIndex) setFocusIndex(i);
     };
 
-    const handleBlur = () => {
-        if (refs.current.every((ref) => ref.current === document.activeElement)) {
-            setFocused(false);
-            onBlur?.();
+    useEffect(() => {
+        if (focusIndex !== undefined) {
+            refs.current[focusIndex].current?.focus();
+            setFocusIndex(undefined);
         }
+    }, [focusIndex]);
+
+    const handleBlur = () => {
+        // Wait for next focus to be set
+        setTimeout(() => {
+            if (refs.current.every((ref) => ref.current !== document.activeElement)) {
+                setFocused(false);
+                onBlur?.();
+            }
+        }, 10);
     };
 
     return (
-        <Row gap={gap} className="CodeInputs">
+        <CodeInputsRoot gap={gap} className="CodeInputs">
             {[...Array(digits)].map((_, i) => (
                 <CodeInput
                     placeholder={placeholder?.split("")[i]}
@@ -89,7 +111,7 @@ const CodeInputs = ({
                     format={format}
                 />
             ))}
-        </Row>
+        </CodeInputsRoot>
     );
 };
 

@@ -1,3 +1,4 @@
+// TODO: Check if a headless hook can be built between rwc and rnc
 import { CodeInputsProps } from "./CodeInputs.types";
 import { Row } from "../../../layout/Row";
 import { createRef, useRef } from "react";
@@ -12,7 +13,7 @@ const CodeInputs = ({
     placeholder,
     value,
     setValue,
-    context: { invalid, disabled, readonly },
+    context: { invalid, disabled, readonly, focused },
     style: { textFields: textFieldsStyle = {}, ...rootStyle },
     setFocused,
 }: CodeInputsProps) => {
@@ -26,6 +27,8 @@ const CodeInputs = ({
             const newValue = value.slice(0, digits).split("");
             newValue[index] = digit;
             setValue(newValue.join(""));
+
+            if (force) return;
 
             if (digit && refs.current[index + 1]) {
                 refs.current[index + 1].current?.focus();
@@ -49,18 +52,21 @@ const CodeInputs = ({
         };
 
     const handleFocus = () => {
-        setFocused(true);
-        onFocus?.();
+        if (!focused) {
+            setFocused(true);
+            onFocus?.();
+        }
 
         let i = 0;
         const values = value.split("");
 
-        while (i < digits) {
-            if (!values[i] || i === digits - 1) {
+        while (i < digits - 1) {
+            if (!values[i]) {
                 break;
             }
             i++;
         }
+
         refs.current[i].current?.focus();
     };
 
