@@ -1,0 +1,62 @@
+.props-table {
+    width: 100%;
+    display: table;
+    overflow-x: auto;
+    margin-bottom: 20px;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    word-break: normal;
+}
+
+.props-table tr {
+    border-bottom: 1px solid var(--ifm-table-border-color);
+    border-top: none;
+}
+
+.props-table thead,
+table tr:nth-child(1n) {
+    background-color: transparent;
+}
+
+.props-table th {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+
+    white-space: pre;
+
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    border: none;
+}
+
+.props-table td {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    border: none;
+}
+
+.prop-name {
+}
+
+.prop-name.required {
+    font-weight: 600;
+}
+
+.prop-type {
+    color: rgb(189, 147, 249);
+}
+
+.prop-default {
+}
