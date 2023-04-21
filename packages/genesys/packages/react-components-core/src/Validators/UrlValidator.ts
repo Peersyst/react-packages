@@ -4,7 +4,7 @@ import validator from "validator";
 
 export class UrlValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn) {
-        super(message || translate("invalid_url"));
+        super(message ?? translate("invalid_url"));
     }
 
     validate(value: string): boolean {

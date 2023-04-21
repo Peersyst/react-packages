@@ -25,6 +25,7 @@ export * from "./feedback/Toast";
 export * from "./feedback/ToastProvider";
 export * from "./hooks";
 export * from "./input/Button";
+export * from "./input/CodeField";
 export * from "./input/Form";
 export * from "./input/FormControl";
 export * from "./input/FormControlError";

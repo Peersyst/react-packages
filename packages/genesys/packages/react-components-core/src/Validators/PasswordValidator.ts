@@ -3,7 +3,7 @@ import { TranslateFn } from "../config";
 
 export class PasswordValidator extends BaseValidator {
     constructor(message: string | undefined, translate: TranslateFn) {
-        super(message || translate("invalid_password"));
+        super(message ?? translate("invalid_password"));
     }
 
     validate(value: string): boolean {

@@ -5,7 +5,7 @@ export class EndsWithValidator extends BaseValidator {
     end: string;
 
     constructor(end: string, message: string | undefined, translate: TranslateFn) {
-        super(message || translate("invalid_end", { end }));
+        super(message ?? translate("invalid_end", { end }));
         this.end = end;
     }
 

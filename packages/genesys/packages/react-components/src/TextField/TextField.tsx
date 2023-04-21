@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import { TextFieldInput } from "./TextField.styles";
 import { IconButton } from "../IconButton";
 import { TextFieldProps } from "./TextField.types";
 import { useTheme } from "../theme";
-import { cx } from "@peersyst/react-utils";
+import { cx, setRef } from "@peersyst/react-utils";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
-export default function TextField(props: TextFieldProps): JSX.Element {
+const TextField = forwardRef(function TextField(rawProps: TextFieldProps, fwdRef): JSX.Element {
+    const props = useMergeDefaultProps("TextField", rawProps);
+
     const {
         type,
         showPasswordElement: showPasswordElementProp,
@@ -16,7 +18,7 @@ export default function TextField(props: TextFieldProps): JSX.Element {
         clearable,
         className,
         ...textInputProps
-    } = useMergeDefaultProps("TextField", props);
+    } = props;
 
     const [showPwd, setShowPwd] = useState(false);
 
@@ -29,13 +31,18 @@ export default function TextField(props: TextFieldProps): JSX.Element {
 
     return (
         <TextInput<HTMLInputElement> className={cx("TextField", className)} {...textInputProps}>
-            {({ spellCheck, value, setValue, ...props }) => (
+            {({ spellCheck, value, setValue, ref, ...props }) => (
                 <>
                     <TextFieldInput
                         {...props}
                         value={value}
                         type={showPwd ? "text" : type || "text"}
                         spellCheck={!(type === "email" || type === "password") || spellCheck}
+                        ref={(r) => {
+                            setRef(ref, r);
+                            setRef(fwdRef, r);
+                        }}
+                        onClick={(e) => e.stopPropagation()}
                     />
                     {!!value && clearable && (
                         <IconButton onClick={() => setValue("")}>{clearElement}</IconButton>
@@ -49,4 +56,6 @@ export default function TextField(props: TextFieldProps): JSX.Element {
             )}
         </TextInput>
     );
-}
+});
+
+export default TextField;

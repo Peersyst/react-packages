@@ -52,6 +52,7 @@ import { SwipeButtonProps } from "../input/SwipeButton/SwipeButton.types";
 import { GradientViewProps } from "../layout/GradientView";
 import { ContainedSuspenseProps } from "../feedback/ContainedSuspense";
 import { HashProps } from "../util/Hash";
+import { CodeFieldProps } from "../input/CodeField";
 
 /**
  * ExtendedToolbarConfig
@@ -120,6 +121,7 @@ export interface SelectorGroupConfig extends ComponentConfig<SelectorGroupProps<
 export interface SwipeButtonConfig extends ComponentConfig<SwipeButtonProps> {}
 export interface GradientViewConfig extends ComponentConfig<GradientViewProps> {}
 export interface ContainedSuspenseConfig extends ComponentConfig<ContainedSuspenseProps> {}
+export interface CodeFieldConfig extends ComponentConfig<CodeFieldProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -181,4 +183,5 @@ export interface ComponentsConfig {
     GradientView: GradientViewConfig;
     ContainedSuspense: ContainedSuspenseConfig;
     Hash: HashConfig;
+    CodeField: CodeFieldConfig;
 }

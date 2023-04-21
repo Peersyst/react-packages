@@ -5,5 +5,6 @@ export default function getComponentStylesheetName(
 ): string {
     return typeof Component === "string"
         ? Component
-        : (Component as any).displayName || Component.name;
+        : // Class component || Function component || ForwardRef
+          (Component as any).displayName || Component.name || (Component as any).render.name;
 }

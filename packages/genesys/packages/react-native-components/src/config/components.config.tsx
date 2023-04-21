@@ -293,6 +293,9 @@ const componentsConfig: ComponentsConfig = {
     Hash: {
         defaultProps: {},
     },
+    CodeField: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

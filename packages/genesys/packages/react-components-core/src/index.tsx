@@ -5,6 +5,7 @@ export * from "./Alert";
 export * from "./Button";
 export * from "./Checkbox";
 export * from "./Chip";
+export * from "./CodeField";
 export * from "./Dialog";
 export * from "./Form";
 export * from "./FormControl";

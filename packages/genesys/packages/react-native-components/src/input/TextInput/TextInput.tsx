@@ -1,7 +1,7 @@
 import { TextInputProps, TextInputStyle } from "./TextInput.types";
 import { Input, InvalidIcon, TextInputRoot, ValidIcon } from "./TextInput.styles";
 import { NativeSyntheticEvent, TextInputFocusEventData, TextStyle } from "react-native";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useTheme } from "@peersyst/react-native-styled";
 import { Icon } from "../../display/Icon";
 import { IconButton } from "../IconButton";
@@ -10,7 +10,7 @@ import { FormControl } from "../FormControl";
 import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 import { useTextInputStyles } from "./hooks";
 
-function TextInput(rawProps: TextInputProps): JSX.Element {
+const TextInput = forwardRef(function TextInput(rawProps: TextInputProps, ref): JSX.Element {
     const props = useMergeDefaultProps("TextInput", rawProps);
 
     const {
@@ -43,6 +43,7 @@ function TextInput(rawProps: TextInputProps): JSX.Element {
         error,
         format = (x: string) => x,
         parse = (x: string) => x,
+        onValidated,
         style: _style,
         ...rest
     } = props;
@@ -79,6 +80,7 @@ function TextInput(rawProps: TextInputProps): JSX.Element {
             showValid={showValid}
             style={style}
             error={error}
+            onValidated={onValidated}
         >
             {(value, setValue, { invalid, valid }, style, setFocused) => {
                 const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -126,6 +128,7 @@ function TextInput(rawProps: TextInputProps): JSX.Element {
                             onBlur={handleBlur}
                             editable={editable}
                             secureTextEntry={showText}
+                            ref={ref}
                             {...rest}
                         />
                         {clearable && !!value && editable && (
@@ -154,6 +157,6 @@ function TextInput(rawProps: TextInputProps): JSX.Element {
             }}
         </FormControl>
     );
-}
+});
 
 export default TextInput;

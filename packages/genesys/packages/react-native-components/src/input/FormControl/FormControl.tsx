@@ -54,6 +54,7 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
                             stylesMergeStrategy(defaultStyle, globalStyle, componentStyle, context),
                             setFocused,
                         );
+
                         return (
                             <FormControlRoot gap={5} style={rootStyle}>
                                 {label ? (
@@ -67,8 +68,8 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
                                 ) : (
                                     content
                                 )}
-                                {hint && <FormControlHint hint={hint} style={hintStyle} />}
-                                {error && <FormControlError error={error} style={errorStyle} />}
+                                {!!hint && <FormControlHint hint={hint} style={hintStyle} />}
+                                {!!error && <FormControlError error={error} style={errorStyle} />}
                             </FormControlRoot>
                         );
                     }}
