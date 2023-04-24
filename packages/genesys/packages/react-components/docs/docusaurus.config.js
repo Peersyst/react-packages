@@ -88,26 +88,7 @@ const config = {
             },
             footer: {
                 style: "dark",
-                links: [
-                    {
-                        title: "Docs",
-                        items: [
-                            {
-                                label: "Tutorial",
-                                to: "/docs/intro",
-                            },
-                        ],
-                    },
-                    {
-                        title: "More",
-                        items: [
-                            {
-                                label: "GitHub",
-                                href: "https://github.com/facebook/docusaurus",
-                            },
-                        ],
-                    },
-                ],
+                links: [],
                 copyright: `Copyright © ${new Date().getFullYear()} React Component, Inc. Built with Docusaurus.`,
             },
             prism: {
