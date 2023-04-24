@@ -20,7 +20,6 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: "Peersyst", // Usually your GitHub org/user name.
     projectName: "react-components", // Usually your repo name.
-    deploymentBranch: "main",
     trailingSlash: false,
 
     onBrokenLinks: "throw",
