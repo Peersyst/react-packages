@@ -11,15 +11,15 @@ const config = {
     favicon: "img/favicon.ico",
 
     // Set the production url of your site here
-    url: "https://peersyst.github.io",
+    url: "https://react-components.peersyst.tech",
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
-    baseUrl: "/react-components",
+    baseUrl: "/",
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
     organizationName: "Peersyst", // Usually your GitHub org/user name.
-    projectName: "react-components", // Usually your repo name.
+    projectName: "react-components-docs", // Usually your repo name.
     trailingSlash: false,
 
     onBrokenLinks: "throw",
