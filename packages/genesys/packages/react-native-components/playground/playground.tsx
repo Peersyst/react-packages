@@ -21,6 +21,7 @@ export default function playground<P>(
                         height: "100%",
                         justifyContent: "center",
                         alignItems: "center",
+                        padding: 20,
                     }}
                 >
                     <Component {...(props as any)} />
