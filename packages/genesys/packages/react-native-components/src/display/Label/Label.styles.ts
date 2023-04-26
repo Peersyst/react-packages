@@ -1,4 +1,4 @@
-import styled, { currentColor } from "@peersyst/react-native-styled";
+import styled from "@peersyst/react-native-styled";
 import { Col } from "../../layout/Col";
 import { LabelAlignment, LabelRowRootProps, LabelTextProps } from "@peersyst/react-components-core";
 import { FlexAlignType, FlexStyle, Text } from "react-native";

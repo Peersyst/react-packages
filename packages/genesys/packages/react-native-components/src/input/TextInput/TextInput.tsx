@@ -112,7 +112,6 @@ const TextInput = forwardRef(function TextInput(rawProps: TextInputProps, ref): 
                     ...inputStyle,
                     lineHeight: undefined,
                     height: undefined,
-                    fontSize: (inputStyle.fontSize || 0) + 4,
                 };
 
                 return (
