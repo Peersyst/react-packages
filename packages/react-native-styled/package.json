@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-styled",
     "author": "Peersyst",
-    "version": "3.0.0-alpha.1",
+    "version": "3.0.0-alpha.2",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -19,9 +19,9 @@
     },
     "peerDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.5",
+        "@types/react-native": "0.71.6",
         "react": "^18.2.0",
-        "react-native": "0.71.6"
+        "react-native": "0.71.7"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -39,9 +39,9 @@
     },
     "devDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.5",
+        "@types/react-native": "0.71.7",
         "react": "18.2.0",
-        "react-native": "0.71.6"
+        "react-native": "0.71.7"
     },
     "publishConfig": {
         "access": "public"

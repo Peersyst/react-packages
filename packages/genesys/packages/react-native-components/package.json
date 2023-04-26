@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.0.0-alpha.7",
+    "version": "3.0.0-alpha.8",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -23,11 +23,11 @@
     },
     "peerDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.5",
+        "@types/react-native": "0.71.6",
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.6"
+        "react-native": "0.71.7"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -41,8 +41,8 @@
         "@babel/runtime": "^7.16.7",
         "@peersyst/react-components-core": "^1.6.0",
         "@peersyst/react-hooks": "^2.2.8",
-        "@peersyst/react-native-styled": "^3.0.0-alpha.1",
-        "@peersyst/react-native-utils": "^2.0.0",
+        "@peersyst/react-native-styled": "^3.0.0-alpha.2",
+        "@peersyst/react-native-utils": "^2.0.1",
         "@peersyst/react-types": "^1.6.0",
         "@peersyst/react-utils": "^2.3.0",
         "@react-native-async-storage/async-storage": "^1.17.11",
@@ -69,7 +69,7 @@
         "expo": "^48.0.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.6"
+        "react-native": "0.71.7"
     },
     "publishConfig": {
         "access": "public"
