@@ -1,5 +1,5 @@
 import styled from "@peersyst/react-native-styled";
-import { Animated, View } from "react-native";
+import { View } from "react-native";
 import {
     SkeletonAnimationProps,
     SkeletonOverlayProps,
@@ -7,6 +7,8 @@ import {
     SkeletonShape,
 } from "./Skeleton.types";
 import { Theme } from "@peersyst/react-components-core";
+import Animated from "react-native-reanimated";
+import { classify } from "@peersyst/react-utils";
 
 const getSkeletonBorderRadius = (shape: SkeletonShape, { borderRadius }: Theme): number => {
     if (shape === "rectangular") return 0;
@@ -41,18 +43,20 @@ export const SkeletonOverlay = styled(View)<SkeletonOverlayProps>(
     },
 );
 
-export const SkeletonAnimation = styled(Animated.View)<SkeletonAnimationProps>(
-    ({ appearance: appearanceProp, theme }) => {
-        const appearance = appearanceProp || theme.palette.mode;
-        return {
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 2,
-            backgroundColor:
-                appearance === "light" ? "rgba(0, 0, 0, 0.12)" : "rgba(255, 255, 255, 0.14)",
-        };
-    },
+export const SkeletonAnimation = Animated.createAnimatedComponent(
+    classify(
+        styled(View)<SkeletonAnimationProps>(({ appearance: appearanceProp, theme }) => {
+            const appearance = appearanceProp || theme.palette.mode;
+            return {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                zIndex: 2,
+                backgroundColor:
+                    appearance === "light" ? "rgba(0, 0, 0, 0.12)" : "rgba(255, 255, 255, 0.14)",
+            };
+        }),
+    ),
 );
