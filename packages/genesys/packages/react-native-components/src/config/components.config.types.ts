@@ -53,6 +53,7 @@ import { GradientViewProps } from "../layout/GradientView";
 import { ContainedSuspenseProps } from "../feedback/ContainedSuspense";
 import { HashProps } from "../util/Hash";
 import { CodeFieldProps } from "../input/CodeField";
+import { ChipProps } from "../display/Chip";
 
 /**
  * ExtendedToolbarConfig
@@ -122,6 +123,7 @@ export interface SwipeButtonConfig extends ComponentConfig<SwipeButtonProps> {}
 export interface GradientViewConfig extends ComponentConfig<GradientViewProps> {}
 export interface ContainedSuspenseConfig extends ComponentConfig<ContainedSuspenseProps> {}
 export interface CodeFieldConfig extends ComponentConfig<CodeFieldProps> {}
+export interface ChipConfig extends ComponentConfig<ChipProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -184,4 +186,5 @@ export interface ComponentsConfig {
     ContainedSuspense: ContainedSuspenseConfig;
     Hash: HashConfig;
     CodeField: CodeFieldConfig;
+    Chip: ChipConfig;
 }

@@ -1,6 +1,7 @@
 export * from "./config";
 export * from "./theme";
 export * from "./assets/icons";
+export * from "./display/Chip";
 export * from "./display/Divider";
 export * from "./display/Icon";
 export * from "./display/Image";

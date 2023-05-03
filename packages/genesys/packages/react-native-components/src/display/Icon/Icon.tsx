@@ -3,6 +3,9 @@ import { IconProps } from "./Icon.types";
 import { StyleSheet } from "react-native";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
+/**
+ * @deprecated
+ */
 const Icon = (props: IconProps): JSX.Element => {
     const { children: child, style: iconStyle } = useMergeDefaultProps("Icon", props);
 

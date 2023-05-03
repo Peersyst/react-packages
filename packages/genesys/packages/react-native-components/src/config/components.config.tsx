@@ -296,6 +296,9 @@ const componentsConfig: ComponentsConfig = {
     CodeField: {
         defaultProps: {},
     },
+    Chip: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

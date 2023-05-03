@@ -1,6 +1,6 @@
 import { TextStyle, ViewStyle } from "react-native";
 import { SelectItemProps } from "../SelectItem.types";
-import { useComputeStyles, useTextAndViewStyles } from "../../../../hooks";
+import { useComputeStyles, useSplitTextAndViewStyles } from "../../../../hooks";
 import { makeStyleComputation } from "../../../../utils";
 
 export default function useSelectItemStyles<T = any>(
@@ -25,5 +25,5 @@ export default function useSelectItemStyles<T = any>(
         compute,
     });
 
-    return useTextAndViewStyles(computedStyles);
+    return useSplitTextAndViewStyles(computedStyles);
 }

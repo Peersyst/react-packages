@@ -13,6 +13,7 @@ import Select from "./Select.playground";
 import SelectorGroup from "./SelectorGroup.playground";
 import Switch from "./Switch.playground";
 import CodeField from "./CodeField.playground";
+import Chip from "./Chip.playground";
 
 export default {
     Welcome,
@@ -30,4 +31,5 @@ export default {
     SelectorGroup,
     Switch,
     CodeField,
+    Chip,
 };
