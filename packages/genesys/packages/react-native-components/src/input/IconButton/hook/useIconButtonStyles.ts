@@ -1,6 +1,6 @@
 import { IconButtonProps } from "../IconButton.types";
 import { TextStyle, ViewStyle } from "react-native";
-import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { useComputeStyles, useSplitTextAndViewStyles } from "../../../hooks";
 import { makeStyleComputation } from "../../../utils";
 
 export interface UseIconButtonStylesResult {
@@ -28,7 +28,7 @@ export default function useIconButtonStyles(
 
     const computedStyles = useComputeStyles("IconButton", props, undefined, { compute });
 
-    const [textStyle, rootStyle] = useTextAndViewStyles(computedStyles);
+    const [textStyle, rootStyle] = useSplitTextAndViewStyles(computedStyles);
 
     return { textStyle, rootStyle };
 }

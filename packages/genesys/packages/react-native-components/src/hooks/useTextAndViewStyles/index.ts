@@ -1,1 +1,1 @@
-export { default as useTextAndViewStyles } from "./useTextAndViewStyles";
+export { default as useSplitTextAndViewStyles } from "./useSplitTextAndViewStyles";
