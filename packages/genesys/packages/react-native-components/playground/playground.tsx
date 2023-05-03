@@ -1,5 +1,7 @@
 import { JSXElementConstructor } from "react";
-import { View } from "react-native";
+import { useWindowDimensions } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface Playground {
     name: string;
@@ -14,18 +16,23 @@ export default function playground<P>(
     return {
         name,
         component: function PlaygroundComponent(): JSX.Element {
+            const { width, height } = useWindowDimensions();
+            const { bottom } = useSafeAreaInsets();
+
             return (
-                <View
-                    style={{
-                        width: "100%",
-                        height: "100%",
+                <KeyboardAwareScrollView
+                    alwaysBounceVertical={false}
+                    contentContainerStyle={{
+                        width,
+                        height,
                         justifyContent: "center",
                         alignItems: "center",
                         padding: 20,
+                        paddingBottom: 20 + bottom,
                     }}
                 >
                     <Component {...(props as any)} />
-                </View>
+                </KeyboardAwareScrollView>
             );
         },
     };
