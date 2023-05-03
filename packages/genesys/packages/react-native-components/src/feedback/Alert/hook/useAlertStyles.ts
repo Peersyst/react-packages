@@ -1,6 +1,6 @@
 import { TextStyle, ViewStyle } from "react-native";
 import { AlertProps } from "../Alert.types";
-import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { useComputeStyles, useSplitTextAndViewStyles } from "../../../hooks";
 
 export default function useAlertStyles(props: AlertProps): {
     container: ViewStyle;
@@ -8,7 +8,7 @@ export default function useAlertStyles(props: AlertProps): {
 } {
     const computedStyles = useComputeStyles("Alert", props);
 
-    const [text, container] = useTextAndViewStyles(computedStyles);
+    const [text, container] = useSplitTextAndViewStyles(computedStyles);
 
     return { text, container };
 }

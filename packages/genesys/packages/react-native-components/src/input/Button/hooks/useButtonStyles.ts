@@ -1,6 +1,6 @@
 import { ButtonProps, ButtonRootStyle, ButtonTextStyle } from "../Button.types";
 import { ButtonComputedProps } from "./useButton";
-import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { useComputeStyles, useSplitTextAndViewStyles } from "../../../hooks";
 import { makeStyleComputation } from "../../../utils";
 
 export interface UseButtonStylesResult {
@@ -49,7 +49,7 @@ export default function useButtonStyles(
 
     const computedStyles = useComputeStyles("Button", props, { currentColor: color }, { compute });
 
-    const [textStyle, rootStyle] = useTextAndViewStyles(computedStyles);
+    const [textStyle, rootStyle] = useSplitTextAndViewStyles(computedStyles);
 
     return {
         textStyle,

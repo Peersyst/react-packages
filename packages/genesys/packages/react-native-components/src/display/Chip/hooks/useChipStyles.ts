@@ -1,4 +1,4 @@
-import { useComputeStyles, useTextAndViewStyles } from "../../../hooks";
+import { useComputeStyles, useSplitTextAndViewStyles } from "../../../hooks";
 import { makeStyleComputation } from "../../../utils";
 import { ChipProps, ChipComps, ChipTextStyle, ChipRootStyle } from "../Chip.types";
 
@@ -66,7 +66,7 @@ export default function useChipStyles(
 
     const computedStyles = useComputeStyles("Chip", props, { currentColor: color }, { compute });
 
-    const [textStyle, rootStyle] = useTextAndViewStyles(computedStyles);
+    const [textStyle, rootStyle] = useSplitTextAndViewStyles(computedStyles);
 
     return {
         textStyle,
