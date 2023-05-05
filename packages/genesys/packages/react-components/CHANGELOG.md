@@ -1,5 +1,9 @@
 # Versions
 
+## 3.7.1
+
+[Expandable] Add open classname
+
 ## 3.6.0 **BREAKING**
 
 [Hash] Refactor hash to work with actions: `share`, `copy`, `link`, `customAction`
