@@ -17,30 +17,26 @@ function InnerSelectItem<T>(props: InnerSelectItemProps<T>): JSX.Element {
     return (
         <TouchableWithoutFeedback onPress={setSelected}>
             <SelectItemRoot style={rootStyle}>
-                {typeof children === "string" ? (
-                    <SelectItemText
-                        isClearItem={value === undefined}
-                        style={[
-                            textStyle,
-                            rootStyle.backgroundColor && rootStyle.backgroundColor !== "transparent"
-                                ? {
-                                      color:
-                                          getLuminance(rootStyle.backgroundColor as string) > 0.5
-                                              ? "#000000"
-                                              : "#FFFFFF",
-                                  }
-                                : undefined,
-                        ]}
-                    >
-                        {isValidElement(children) ? (
-                            children
-                        ) : (
-                            <Text numberOfLines={1}>{children}</Text>
-                        )}
-                    </SelectItemText>
-                ) : (
-                    children
-                )}
+                <SelectItemText
+                    isClearItem={value === undefined}
+                    style={[
+                        textStyle,
+                        rootStyle.backgroundColor && rootStyle.backgroundColor !== "transparent"
+                            ? {
+                                  color:
+                                      getLuminance(rootStyle.backgroundColor as string) > 0.5
+                                          ? "#000000"
+                                          : "#FFFFFF",
+                              }
+                            : undefined,
+                    ]}
+                >
+                    {isValidElement(children) ? (
+                        children
+                    ) : (
+                        <Text numberOfLines={1}>{children}</Text>
+                    )}
+                </SelectItemText>
             </SelectItemRoot>
         </TouchableWithoutFeedback>
     );
