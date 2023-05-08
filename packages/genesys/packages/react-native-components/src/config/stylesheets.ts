@@ -8,7 +8,8 @@ import { iconButtonStylesheet } from "../input/IconButton";
 import { radioButtonStylesheet } from "../input/RadioButton";
 import { selectStylesheet, selectItemStylesheet } from "../input/Select";
 import { switchStylesheet } from "../input/Switch";
-import { chipStylesheet } from "../display/Chip/Chip.stylesheet";
+import { chipStylesheet } from "../display/Chip";
+import { typographyStylesheet } from "../display/Typography";
 
 export default createStylesheets(
     buttonStylesheet,
@@ -22,4 +23,5 @@ export default createStylesheets(
     selectItemStylesheet,
     switchStylesheet,
     chipStylesheet,
+    typographyStylesheet,
 );

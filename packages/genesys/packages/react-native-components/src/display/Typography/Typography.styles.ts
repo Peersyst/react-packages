@@ -1,23 +1,9 @@
 import styled from "@peersyst/react-native-styled";
-import { Text, TextStyle } from "react-native";
-import { TypographyStyleProps } from "./Typography.types";
+import { Text } from "react-native";
+import { TypographyRootProps } from "./Typography.types";
 
-const typographyLightStyle: TextStyle = {
-    opacity: 0.7,
-};
-
-export const TypographyRoot = styled(Text)<TypographyStyleProps>(
-    ({
-        light,
-        font,
-        variantStyles,
-        lightStyle,
-        theme,
-        textTransform,
-        textAlign,
-        fontStyle,
-        fontWeight,
-    }) => {
+export const TypographyRoot = styled(Text)<TypographyRootProps>(
+    ({ font, variantStyles, theme, textTransform, textAlign, fontStyle, fontWeight }) => {
         function getFont() {
             if (font) {
                 const returnFont = theme.fonts?.[font];
@@ -36,7 +22,6 @@ export const TypographyRoot = styled(Text)<TypographyStyleProps>(
             textAlign,
             fontStyle,
             fontWeight,
-            ...(light ? { ...typographyLightStyle, ...lightStyle } : {}),
         };
     },
 );

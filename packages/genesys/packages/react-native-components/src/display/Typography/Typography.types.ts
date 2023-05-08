@@ -59,13 +59,11 @@ export interface TypographyProps extends TextProps {
     children?: ReactNode;
 }
 
-export interface TypographyStyleProps {
+export interface TypographyRootProps {
     font?: keyof ThemeFonts;
     textTransform?: TextStyle["textTransform"];
     fontStyle?: TextStyle["fontStyle"];
     textAlign?: TextStyle["textAlign"];
     fontWeight?: TextStyle["fontWeight"];
-    light?: boolean;
-    lightStyle: TextStyle;
     variantStyles: TextStyle;
 }
