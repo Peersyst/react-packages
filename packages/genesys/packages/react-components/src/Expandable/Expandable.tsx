@@ -28,7 +28,7 @@ const Expandable = ((props: ExpandableProps): JSX.Element => {
     const [open, setOpen] = useControlled(false, openProp, openProp ? onClose : onOpen);
 
     return (
-        <ExpandableRoot className={cx("Expandable", className)} style={style}>
+        <ExpandableRoot className={cx("Expandable", open && "Open", className)} style={style}>
             <ExpandableProvider
                 value={{
                     open,
