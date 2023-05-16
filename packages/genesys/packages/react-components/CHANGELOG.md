@@ -1,5 +1,9 @@
 # Versions
 
+## 3.7.3
+
+[withColor] Add defaultColor value
+
 ## 3.7.1
 
 [Expandable] Add open classname
