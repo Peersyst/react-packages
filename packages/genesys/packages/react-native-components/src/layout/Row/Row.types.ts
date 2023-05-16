@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { FlexStyle, PressableProps, ViewStyle } from "react-native";
+import { FlexStyle, PressableProps, StyleProp, ViewStyle } from "react-native";
 
 export interface RowProps extends Omit<PressableProps, "children" | "stlye"> {
     flex?: number;
@@ -7,6 +7,6 @@ export interface RowProps extends Omit<PressableProps, "children" | "stlye"> {
     justifyContent?: FlexStyle["justifyContent"];
     alignItems?: FlexStyle["alignItems"];
     wrap?: boolean;
-    style?: ViewStyle;
+    style?: StyleProp<ViewStyle>;
     children?: ReactNode;
 }
