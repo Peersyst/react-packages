@@ -1,11 +1,11 @@
 import styled from "@peersyst/react-native-styled";
-import { Pressable } from "react-native";
+import { View } from "react-native";
 
 export interface RowRootProps {
     wrap: boolean;
 }
 
-export const RowRoot = styled(Pressable)<RowRootProps>(({ wrap }) => ({
+export const RowRoot = styled(View)<RowRootProps>(({ wrap }) => ({
     flexDirection: "row",
     flexWrap: wrap ? "wrap" : "nowrap",
 }));
