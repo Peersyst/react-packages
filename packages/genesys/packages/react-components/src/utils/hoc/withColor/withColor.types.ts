@@ -4,10 +4,11 @@ export interface WithColorProps {
     color?: string;
 }
 
-export type WithColor<TProps> =
-    | TProps & {
-          /*
-           * Color prop
-           */
-          color?: ThemeColor;
-      };
+export interface ThemeColorProps {
+    /*
+     * Color prop
+     */
+    color?: ThemeColor;
+}
+
+export type WithColor<TProps> = TProps & ThemeColorProps;
