@@ -1,10 +1,11 @@
-import { FlexStyle, ViewProps } from "react-native";
+import { FlexStyle, PressableProps, ViewStyle } from "react-native";
 import { ReactNode } from "react";
 
-export interface ColProps extends ViewProps {
-    children: ReactNode;
+export interface ColProps extends Omit<PressableProps, "children" | "stlye"> {
     gap?: number | string;
     justifyContent?: FlexStyle["justifyContent"];
     alignItems?: FlexStyle["alignItems"];
     flex?: number;
+    style?: ViewStyle;
+    children?: ReactNode;
 }

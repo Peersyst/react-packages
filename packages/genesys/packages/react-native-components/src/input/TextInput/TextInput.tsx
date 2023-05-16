@@ -14,7 +14,6 @@ import { FormControlLabel, FormControlLabelStyle } from "../FormControlLabel";
 import { FormControl } from "../FormControl";
 import { useMergeDefaultProps, useTextInputValidation } from "@peersyst/react-components-core";
 import { useTextInputStyles } from "./hooks";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useForkRef } from "@peersyst/react-hooks";
 
 const TextInput = forwardRef(function TextInput(rawProps: TextInputProps, ref): JSX.Element {
@@ -125,48 +124,43 @@ const TextInput = forwardRef(function TextInput(rawProps: TextInputProps, ref): 
                 };
 
                 return (
-                    <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
-                        <TextInputRoot style={rootStyle}>
-                            {prefix && <Icon style={iconStyle}>{prefix}</Icon>}
-                            <Input
-                                placeholderTextColor={placeholderColor}
-                                selectionColor={highlightColor}
-                                style={inputStyle}
-                                value={format(value)}
-                                onChangeText={handleChange}
-                                onFocus={handleFocus}
-                                onBlur={handleBlur}
-                                editable={editable}
-                                secureTextEntry={showText}
-                                ref={handleRef}
-                                {...rest}
-                            />
-                            {clearable && !!value && editable && (
-                                <IconButton style={iconStyle} onPress={() => setValue("")}>
-                                    {clearElement}
-                                </IconButton>
-                            )}
-                            {secureTextEntry && (
-                                <IconButton
-                                    style={iconStyle}
-                                    onPress={() => setShowText(!showText)}
-                                >
-                                    {showText ? showTextElement : hideTextElement}
-                                </IconButton>
-                            )}
-                            {suffix && <Icon style={iconStyle}>{suffix}</Icon>}
-                            {invalid && errorElement && (
-                                <InvalidIcon style={{ fontSize: iconStyle.fontSize }}>
-                                    {errorElement}
-                                </InvalidIcon>
-                            )}
-                            {valid && validElement && (
-                                <ValidIcon style={{ fontSize: iconStyle.fontSize }}>
-                                    {validElement}
-                                </ValidIcon>
-                            )}
-                        </TextInputRoot>
-                    </TouchableWithoutFeedback>
+                    <TextInputRoot onPress={() => inputRef.current?.focus()} style={rootStyle}>
+                        {prefix && <Icon style={iconStyle}>{prefix}</Icon>}
+                        <Input
+                            placeholderTextColor={placeholderColor}
+                            selectionColor={highlightColor}
+                            style={inputStyle}
+                            value={format(value)}
+                            onChangeText={handleChange}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
+                            editable={editable}
+                            secureTextEntry={showText}
+                            ref={handleRef}
+                            {...rest}
+                        />
+                        {clearable && !!value && editable && (
+                            <IconButton style={iconStyle} onPress={() => setValue("")}>
+                                {clearElement}
+                            </IconButton>
+                        )}
+                        {secureTextEntry && (
+                            <IconButton style={iconStyle} onPress={() => setShowText(!showText)}>
+                                {showText ? showTextElement : hideTextElement}
+                            </IconButton>
+                        )}
+                        {suffix && <Icon style={iconStyle}>{suffix}</Icon>}
+                        {invalid && errorElement && (
+                            <InvalidIcon style={{ fontSize: iconStyle.fontSize }}>
+                                {errorElement}
+                            </InvalidIcon>
+                        )}
+                        {valid && validElement && (
+                            <ValidIcon style={{ fontSize: iconStyle.fontSize }}>
+                                {validElement}
+                            </ValidIcon>
+                        )}
+                    </TextInputRoot>
                 );
             }}
         </FormControl>

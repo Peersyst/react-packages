@@ -1,4 +1,4 @@
 import styled from "@peersyst/react-native-styled";
-import { View } from "react-native";
+import { Pressable } from "react-native";
 
-export const ColRoot = styled(View)(() => ({ flexDirection: "column" }));
+export const ColRoot = styled(Pressable)(() => ({ flexDirection: "column" }));
