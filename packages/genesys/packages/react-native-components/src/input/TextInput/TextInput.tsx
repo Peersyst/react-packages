@@ -5,6 +5,7 @@ import {
     TextInputFocusEventData,
     TextStyle,
     TextInput as RNTextInput,
+    Pressable,
 } from "react-native";
 import { forwardRef, useRef, useState } from "react";
 import { useTheme } from "@peersyst/react-native-styled";
@@ -124,43 +125,53 @@ const TextInput = forwardRef(function TextInput(rawProps: TextInputProps, ref): 
                 };
 
                 return (
-                    <TextInputRoot onPress={() => inputRef.current?.focus()} style={rootStyle}>
-                        {prefix && <Icon style={iconStyle}>{prefix}</Icon>}
-                        <Input
-                            placeholderTextColor={placeholderColor}
-                            selectionColor={highlightColor}
-                            style={inputStyle}
-                            value={format(value)}
-                            onChangeText={handleChange}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
-                            editable={editable}
-                            secureTextEntry={showText}
-                            ref={handleRef}
-                            {...rest}
-                        />
-                        {clearable && !!value && editable && (
-                            <IconButton style={iconStyle} onPress={() => setValue("")}>
-                                {clearElement}
-                            </IconButton>
-                        )}
-                        {secureTextEntry && (
-                            <IconButton style={iconStyle} onPress={() => setShowText(!showText)}>
-                                {showText ? showTextElement : hideTextElement}
-                            </IconButton>
-                        )}
-                        {suffix && <Icon style={iconStyle}>{suffix}</Icon>}
-                        {invalid && errorElement && (
-                            <InvalidIcon style={{ fontSize: iconStyle.fontSize }}>
-                                {errorElement}
-                            </InvalidIcon>
-                        )}
-                        {valid && validElement && (
-                            <ValidIcon style={{ fontSize: iconStyle.fontSize }}>
-                                {validElement}
-                            </ValidIcon>
-                        )}
-                    </TextInputRoot>
+                    <Pressable
+                        onPress={() => inputRef.current?.focus()}
+                        style={{ width: "100%" }}
+                        hitSlop={10}
+                        onStartShouldSetResponder={() => true}
+                    >
+                        <TextInputRoot style={rootStyle}>
+                            {prefix && <Icon style={iconStyle}>{prefix}</Icon>}
+                            <Input
+                                placeholderTextColor={placeholderColor}
+                                selectionColor={highlightColor}
+                                style={inputStyle}
+                                value={format(value)}
+                                onChangeText={handleChange}
+                                onFocus={handleFocus}
+                                onBlur={handleBlur}
+                                editable={editable}
+                                secureTextEntry={showText}
+                                ref={handleRef}
+                                {...rest}
+                            />
+                            {clearable && !!value && editable && (
+                                <IconButton style={iconStyle} onPress={() => setValue("")}>
+                                    {clearElement}
+                                </IconButton>
+                            )}
+                            {secureTextEntry && (
+                                <IconButton
+                                    style={iconStyle}
+                                    onPress={() => setShowText(!showText)}
+                                >
+                                    {showText ? showTextElement : hideTextElement}
+                                </IconButton>
+                            )}
+                            {suffix && <Icon style={iconStyle}>{suffix}</Icon>}
+                            {invalid && errorElement && (
+                                <InvalidIcon style={{ fontSize: iconStyle.fontSize }}>
+                                    {errorElement}
+                                </InvalidIcon>
+                            )}
+                            {valid && validElement && (
+                                <ValidIcon style={{ fontSize: iconStyle.fontSize }}>
+                                    {validElement}
+                                </ValidIcon>
+                            )}
+                        </TextInputRoot>
+                    </Pressable>
                 );
             }}
         </FormControl>
