@@ -1,12 +1,13 @@
 import { CopyButtonProps } from "./CopyButton.types";
 import { IconButton } from "../../input/IconButton";
-import { CopyIcon } from "../../assets/icons";
-import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 import useCopyToClipboard from "../../hooks/useCopyToClipboard/useCopyToClipboard";
 
 const CopyButton = (props: CopyButtonProps): JSX.Element => {
     const { text, style, message, ...rest } = useMergeDefaultProps("CopyButton", props);
-
+    const {
+        icons: { copy: CopyIcon },
+    } = useTheme();
     const copyToClipboard = useCopyToClipboard();
 
     return (
