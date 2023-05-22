@@ -1,5 +1,9 @@
 # Versions
 
+## 3.0.0-alpha.19
+
+[CopyButton] fix: CopyButton now uses CopyIcon from theme
+
 ## 2.5.0 **BREAKING**
 
 [Hash] Refactor hash to work with actions: `share`, `copy`, `link`, `customAction`
