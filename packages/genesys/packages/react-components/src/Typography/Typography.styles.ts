@@ -33,7 +33,6 @@ export const TypographyRoot = styled.div<TypographyRootProps>(
         ${numberOfLines &&
         css`
             -webkit-line-clamp: ${numberOfLines};
-            text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             word-wrap: break-word; /* Important for long words! */
