@@ -1,4 +1,3 @@
-import { LayoutChangeEvent, LayoutRectangle, View } from "react-native";
 import { ExpandableContentProps } from "./ExpandableContent.types";
 import { useExpandableContext } from "../context";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -9,8 +8,9 @@ import Animated, {
     withTiming,
     WithTimingConfig,
 } from "react-native-reanimated";
-import { useEffect, useState } from "react";
-import { LayoutSnitch } from "../../../util/LayoutSnitch";
+import { useEffect } from "react";
+import { useLayout } from "../../../hooks";
+import { ExpandableContentRoot } from "./ExpandableContent.styles";
 
 function ExpandableContent<AnimationConfig = WithTimingConfig>(
     rawProps: ExpandableContentProps<AnimationConfig>,
@@ -27,19 +27,14 @@ function ExpandableContent<AnimationConfig = WithTimingConfig>(
 
     const style = useExpandableContentStyles(props, open);
 
-    const [layout, setLayout] = useState<LayoutRectangle | undefined>(undefined);
-
-    const handleLayout = (event: LayoutChangeEvent) => {
-        if (layout === undefined) {
-            setLayout(event.nativeEvent.layout);
-        }
-    };
+    const [layout, onLayout] = useLayout();
 
     const height = useSharedValue(0);
 
     const animatedStyle = useAnimatedStyle(() => {
         return {
             height: height.value,
+            overflow: "hidden",
         };
     });
 
@@ -48,11 +43,11 @@ function ExpandableContent<AnimationConfig = WithTimingConfig>(
     }, [open, layout]);
 
     return (
-        <LayoutSnitch onLayout={handleLayout}>
-            <Animated.View style={animatedStyle}>
-                <View style={style}>{children}</View>
-            </Animated.View>
-        </LayoutSnitch>
+        <Animated.View style={animatedStyle}>
+            <ExpandableContentRoot style={style} onLayout={onLayout}>
+                {children}
+            </ExpandableContentRoot>
+        </Animated.View>
     );
 }
 

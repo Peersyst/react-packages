@@ -8,7 +8,7 @@ const Display = (): JSX.Element => {
             <Expandable>
                 <Expandable.Display>DISPLAY</Expandable.Display>
                 <Expandable.Content>
-                    <Typography variant="h6">CONTENT</Typography>
+                    <Typography variant="body1">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum ex elit.\n\nQuisque eget molestie nulla. Vivamus in augue vel ex volutpat lobortis. Donec eros nisl, efficitur sed ultricies quis, commodo accumsan nisl.`}</Typography>
                 </Expandable.Content>
             </Expandable>
         </View>
