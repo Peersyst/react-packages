@@ -25,5 +25,7 @@ export default function useSelectItemStyles<T = any>(
         compute,
     });
 
-    return useSplitTextAndViewStyles(computedStyles);
+    const [textStyle, viewStyle] = useSplitTextAndViewStyles(computedStyles);
+
+    return [textStyle, viewStyle];
 }
