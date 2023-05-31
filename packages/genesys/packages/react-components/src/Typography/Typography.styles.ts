@@ -32,10 +32,8 @@ export const TypographyRoot = styled.div<TypographyRootProps>(
         font-family: ${font && theme.fonts?.[font as keyof ThemeFonts]};
         ${numberOfLines &&
         css`
-            width: 100%;
             -webkit-line-clamp: ${numberOfLines};
             text-overflow: ellipsis;
-            overflow-x: hidden;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             word-wrap: break-word; /* Important for long words! */
