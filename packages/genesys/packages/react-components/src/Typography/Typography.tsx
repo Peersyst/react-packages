@@ -11,11 +11,14 @@ export default function Typography(props: TypographyProps): JSX.Element {
         className,
         light,
         color: colorProp,
+        singleLine,
+        numberOfLines: numberOfLinesProp,
         ...rest
     } = useMergeDefaultProps("Typography", props);
 
     const { typography } = useTheme();
     const color = useColor(colorProp);
+    const numberOfLines = numberOfLinesProp ?? (singleLine ? 1 : undefined);
 
     const { component, style } =
         variantKey === "inherit"
@@ -28,6 +31,7 @@ export default function Typography(props: TypographyProps): JSX.Element {
             variantStyles={style}
             color={color}
             className={cx("Typography", "Typography-" + variantKey, light && "Light", className)}
+            numberOfLines={numberOfLines}
             {...rest}
         >
             {children}
