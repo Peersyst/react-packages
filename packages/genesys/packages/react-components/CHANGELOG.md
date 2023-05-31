@@ -1,5 +1,9 @@
 # Versions
 
+## 3.7.4
+
+[Typography] Add `numberOfLines` prop to `Typography`. It works in a similar way as: https://reactnative.dev/docs/text#numberoflines
+
 ## 3.7.3
 
 [withColor] Add defaultColor value
