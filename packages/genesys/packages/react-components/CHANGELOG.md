@@ -1,6 +1,6 @@
 # Versions
 
-## 3.7.4
+## 3.8.0
 
 [Typography] Add `numberOfLines` prop to `Typography`. It works in a similar way as: https://reactnative.dev/docs/text#numberoflines
 

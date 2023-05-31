@@ -44,6 +44,7 @@ export interface TypographyProps extends TypographyDomProps {
     fontWeight?: Property.FontWeight;
     /**
      * Text doesn't wrap and shows ellipsis if overflowed
+     * @deprecated Use numberOfLines instead
      */
     singleLine?: boolean;
     /**
