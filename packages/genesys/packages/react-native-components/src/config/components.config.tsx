@@ -299,6 +299,15 @@ const componentsConfig: ComponentsConfig = {
     Chip: {
         defaultProps: {},
     },
+    Expandable: {
+        defaultProps: {},
+    },
+    ExpandableDisplay: {
+        defaultProps: {},
+    },
+    ExpandableContent: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

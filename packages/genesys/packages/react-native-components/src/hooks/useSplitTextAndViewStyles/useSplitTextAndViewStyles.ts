@@ -5,11 +5,11 @@ import { TextStyle, ViewStyle } from "react-native";
 
 export default function useSplitTextAndViewStyles<S extends AnyObject>(
     styles: S,
-): [TextStyle, ViewStyle] {
+): [TextStyle, ViewStyle, Omit<S, keyof (TextStyle | ViewStyle)>] {
     return useMemo(() => {
         const [textStyle, otherStyles] = extractTextStyles(styles);
-        const [rootStyle] = extractViewStyles(otherStyles);
+        const [rootStyle, restStyle] = extractViewStyles(otherStyles);
 
-        return [textStyle, rootStyle];
+        return [textStyle, rootStyle, restStyle as Omit<S, keyof (TextStyle | ViewStyle)>];
     }, [styles]);
 }

@@ -14,6 +14,7 @@ import SelectorGroup from "./SelectorGroup.playground";
 import Switch from "./Switch.playground";
 import CodeField from "./CodeField.playground";
 import Chip from "./Chip.playground";
+import Expandable from "./Expandable.playground";
 
 export default {
     Welcome,
@@ -32,4 +33,5 @@ export default {
     Switch,
     CodeField,
     Chip,
+    Expandable,
 };

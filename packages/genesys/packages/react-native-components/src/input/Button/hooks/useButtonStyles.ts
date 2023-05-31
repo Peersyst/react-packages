@@ -49,10 +49,10 @@ export default function useButtonStyles(
 
     const computedStyles = useComputeStyles("Button", props, { currentColor: color }, { compute });
 
-    const [textStyle, rootStyle] = useSplitTextAndViewStyles(computedStyles);
+    const [textStyle, rootStyle, restStyle] = useSplitTextAndViewStyles(computedStyles);
 
     return {
         textStyle,
-        rootStyle,
+        rootStyle: { ...rootStyle, backgroundGradient: restStyle.backgroundGradient },
     };
 }

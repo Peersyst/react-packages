@@ -54,6 +54,11 @@ import { ContainedSuspenseProps } from "../feedback/ContainedSuspense";
 import { HashProps } from "../util/Hash";
 import { CodeFieldProps } from "../input/CodeField";
 import { ChipProps } from "../display/Chip";
+import {
+    ExpandableProps,
+    ExpandableDisplayProps,
+    ExpandableContentProps,
+} from "../display/Expandable";
 
 /**
  * ExtendedToolbarConfig
@@ -124,6 +129,9 @@ export interface GradientViewConfig extends ComponentConfig<GradientViewProps> {
 export interface ContainedSuspenseConfig extends ComponentConfig<ContainedSuspenseProps> {}
 export interface CodeFieldConfig extends ComponentConfig<CodeFieldProps> {}
 export interface ChipConfig extends ComponentConfig<ChipProps> {}
+export interface ExpandableConfig extends ComponentConfig<ExpandableProps> {}
+export interface ExpandableDisplayConfig extends ComponentConfig<ExpandableDisplayProps> {}
+export interface ExpandableContentConfig extends ComponentConfig<ExpandableContentProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -187,4 +195,7 @@ export interface ComponentsConfig {
     Hash: HashConfig;
     CodeField: CodeFieldConfig;
     Chip: ChipConfig;
+    Expandable: ExpandableConfig;
+    ExpandableDisplay: ExpandableDisplayConfig;
+    ExpandableContent: ExpandableContentConfig;
 }

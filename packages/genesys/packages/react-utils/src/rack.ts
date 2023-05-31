@@ -1,4 +1,12 @@
-import { JSXElementConstructor, ReactNode } from "react";
+import {
+    ForwardRefExoticComponent,
+    ForwardedRef,
+    JSXElementConstructor,
+    PropsWithoutRef,
+    ReactNode,
+    RefAttributes,
+    forwardRef,
+} from "react";
 import extractSlots from "./extractSlots";
 import createSlot from "./createSlot";
 
@@ -32,19 +40,27 @@ export default function <
         //@ts-ignore
         [x: K]: JSXElementConstructor<any>;
     },
+    T,
 >(
-    factory: (props: P, slots: SlotElements<K[]>) => JSX.Element,
+    factory: (props: P, slots: SlotElements<K[]>, ref: ForwardedRef<T>) => JSX.Element,
     slots: K[],
     // @ts-ignore
     extensions: E = {},
-): JSXElementConstructor<P> & Slots<K[], E> {
-    const RackComponent = ({ children, ...rest }: P): JSX.Element => {
+): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>> & Slots<K[], E> {
+    const RackComponent = forwardRef<T, P>(function RackComponent(
+        { children, ...rest }: P,
+        ref,
+    ): JSX.Element {
         const [slots, remainingChildren] = extractSlots(children);
 
         // @ts-ignore
-        return factory({ children: remainingChildren, ...rest }, slots);
-    };
-    const Rack = RackComponent as JSXElementConstructor<P> & Slots<K[], E>;
+        return factory({ children: remainingChildren, ...rest }, slots, ref);
+    });
+
+    const Rack = RackComponent as ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>> &
+        Slots<K[], E>;
+    Object.defineProperty(Rack, "name", { value: factory.name, writable: false });
+
     for (const [name, element] of Object.entries(extensions)) {
         Object.defineProperty(Rack, name, {
             value: createSlot(name, element as JSXElementConstructor<any>),
@@ -55,5 +71,6 @@ export default function <
         if (!Rack[slot as keyof typeof Rack])
             Object.defineProperty(Rack, slot, { value: createSlot(slot), writable: false });
     }
+
     return Rack;
 }
