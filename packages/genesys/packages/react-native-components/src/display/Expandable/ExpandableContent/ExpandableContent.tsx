@@ -39,7 +39,6 @@ function ExpandableContent<AnimationConfig = WithTimingConfig>(
     });
 
     useEffect(() => {
-        console.log("LAYOUT", layout);
         if (layout) height.value = animation(open ? layout.height : 0, animationConfig as any);
     }, [open, layout]);
 
