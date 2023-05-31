@@ -44,8 +44,16 @@ export interface TypographyProps extends TypographyDomProps {
     fontWeight?: Property.FontWeight;
     /**
      * Text doesn't wrap and shows ellipsis if overflowed
+     * @deprecated Use numberOfLines instead
      */
     singleLine?: boolean;
+    /**
+     * Used to truncate the text with an ellipsis. The text is truncated at a character that
+     * make the text fit in the specified number of lines.
+     * With numberOfLines set to 0, it will be ignored and the text will be displayed as normal.
+     * With numberOfLines set to 1, it will make the same effect as singleLine.
+     */
+    numberOfLines?: number;
     /**
      * Text is light
      */
@@ -150,8 +158,8 @@ export interface TypographyRootProps {
     fontStyle: Property.FontStyle;
     textAlign: Property.TextAlign;
     fontWeight: Property.FontWeight;
-    singleLine: boolean;
     light: boolean;
     variantStyles: CSSObject;
     color?: string;
+    numberOfLines?: number;
 }
