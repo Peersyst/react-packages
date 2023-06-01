@@ -33,7 +33,7 @@ const componentsConfig: ComponentsConfig = {
             loading: false,
         },
     },
-    FlatList: {
+    FlashList: {
         defaultProps: {
             loading: false,
         },
