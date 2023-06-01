@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.0.4",
+    "version": "3.1.0",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -47,6 +47,7 @@
         "@peersyst/react-utils": "^2.4.0",
         "@react-native-async-storage/async-storage": "^1.17.11",
         "@react-native-community/hooks": "^3.0.0",
+        "@shopify/flash-list": "^1.4.3",
         "expo-barcode-scanner": "^12.3.2",
         "expo-camera": "~13.2.1",
         "expo-clipboard": "~4.1.2",
