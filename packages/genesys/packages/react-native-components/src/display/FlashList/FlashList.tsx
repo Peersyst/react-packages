@@ -11,7 +11,7 @@ export default function FlashList<T>(props: FlashListProps<T>): JSX.Element {
         refreshControlProps = {},
         indicatorStyle,
         ...rest
-    } = useMergeDefaultProps("FlatList", props);
+    } = useMergeDefaultProps("FlashList", props);
 
     const { tintColor, ...restControlProps } = refreshControlProps;
 
