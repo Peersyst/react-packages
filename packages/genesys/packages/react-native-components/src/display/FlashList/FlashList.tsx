@@ -1,8 +1,8 @@
 import { FlashList as BaseFlashList } from "@shopify/flash-list";
 import { RefreshControl, ScrollView } from "react-native";
 import { FlashListProps } from "./FlashList.types";
-import { useMergeDefaultProps, useTheme } from "@peersyst/react-native-components";
 import { useState } from "react";
+import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 
 export default function FlashList<T>(props: FlashListProps<T>): JSX.Element {
     const {
