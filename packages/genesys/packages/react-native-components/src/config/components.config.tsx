@@ -33,6 +33,11 @@ const componentsConfig: ComponentsConfig = {
             loading: false,
         },
     },
+    FlatList: {
+        defaultProps: {
+            loading: false,
+        },
+    },
     PagerView: {
         defaultProps: {
             initialPage: 0,
