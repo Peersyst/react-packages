@@ -1,10 +1,10 @@
 import { FlashList as BaseFlashList } from "@shopify/flash-list";
 import { RefreshControl, ScrollView } from "react-native";
-import { FlatListProps } from "./FlatList.types";
+import { FlashListProps } from "./FlashList.types";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-native-components";
 import { useState } from "react";
 
-export default function FlatList<T>(props: FlatListProps<T>): JSX.Element {
+export default function FlashList<T>(props: FlashListProps<T>): JSX.Element {
     const {
         onRefresh = () => undefined,
         loading = false,

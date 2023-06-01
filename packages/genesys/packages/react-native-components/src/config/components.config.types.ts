@@ -59,7 +59,7 @@ import {
     ExpandableDisplayProps,
     ExpandableContentProps,
 } from "../display/Expandable";
-import { FlatListProps } from "../display/FlatList/FlatList.types";
+import { FlashListProps } from "../display/FlashList/FlashList.types";
 
 /**
  * ExtendedToolbarConfig
@@ -74,7 +74,7 @@ export interface IconConfig extends ComponentConfig<IconProps> {}
 export interface ImageConfig extends ComponentConfig<ImageProps> {}
 export interface LabelConfig extends ComponentConfig<LabelProps> {}
 export interface ListConfig extends ComponentConfig<ListProps> {}
-export interface FlatListConfig extends ComponentConfig<FlatListProps> {}
+export interface FlatListConfig extends ComponentConfig<FlashListProps> {}
 export interface PagerViewConfig extends ComponentConfig<PagerViewProps> {}
 export interface ScrollViewConfig extends ComponentConfig<ScrollViewProps> {}
 export interface TypographyConfig extends ComponentConfig<TypographyProps> {}
