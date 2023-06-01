@@ -33,7 +33,7 @@ export default function FlashList<T>(props: FlashListProps<T>): JSX.Element {
             horizontal
             scrollEnabled={false}
         >
-            <BaseFlashList
+            <BaseFlashList<T>
                 refreshControl={
                     onRefresh || loading ? (
                         <RefreshControl
