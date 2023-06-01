@@ -8,6 +8,13 @@ import { iconButtonStylesheet } from "../input/IconButton";
 import { radioButtonStylesheet } from "../input/RadioButton";
 import { selectStylesheet, selectItemStylesheet } from "../input/Select";
 import { switchStylesheet } from "../input/Switch";
+import { chipStylesheet } from "../display/Chip";
+import { typographyStylesheet } from "../display/Typography";
+import {
+    expandableDisplayStylesheet,
+    expandableStylesheet,
+    expandableContentStylesheet,
+} from "../display/Expandable";
 
 export default createStylesheets(
     buttonStylesheet,
@@ -20,4 +27,9 @@ export default createStylesheets(
     selectStylesheet,
     selectItemStylesheet,
     switchStylesheet,
+    chipStylesheet,
+    typographyStylesheet,
+    expandableDisplayStylesheet,
+    expandableStylesheet,
+    expandableContentStylesheet,
 );

@@ -48,6 +48,16 @@ export interface FormControlProps<
     onPress?: () => void;
 }
 
+export interface InnerFormControlProps<
+    T = any,
+    LabelStyleType = LabelStyle,
+    ComponentStyleType = ViewStyle,
+> extends FormControlProps<T, LabelStyleType, ComponentStyleType> {
+    setValue: (value: T) => void;
+    setFocused: (focused: boolean) => void;
+    errorMsg?: string;
+}
+
 export type FormControlledComponentProps<
     CoreProps,
     ComponentStyleType = ViewStyle,

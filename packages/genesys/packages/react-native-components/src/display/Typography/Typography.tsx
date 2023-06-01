@@ -6,16 +6,22 @@ import { useTypographyStyles } from "./hook";
 
 const Typography = (rawProps: TypographyProps): JSX.Element => {
     const props = useMergeDefaultProps("Typography", rawProps);
-    const { variant, children, suppressHighlighting = true, style: _style, ...rest } = props;
+    const {
+        variant,
+        children,
+        suppressHighlighting = true,
+        style: _style,
+        light: _light,
+        ...rest
+    } = props;
 
     const { typography } = useTheme();
     const variantStyle = typography[variant];
 
-    const { light: lightStyle = {}, ...style } = useTypographyStyles(props);
+    const style = useTypographyStyles(props);
 
     return (
         <TypographyRoot
-            lightStyle={lightStyle}
             variantStyles={variantStyle}
             suppressHighlighting={suppressHighlighting}
             style={style}

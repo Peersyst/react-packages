@@ -296,6 +296,18 @@ const componentsConfig: ComponentsConfig = {
     CodeField: {
         defaultProps: {},
     },
+    Chip: {
+        defaultProps: {},
+    },
+    Expandable: {
+        defaultProps: {},
+    },
+    ExpandableDisplay: {
+        defaultProps: {},
+    },
+    ExpandableContent: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

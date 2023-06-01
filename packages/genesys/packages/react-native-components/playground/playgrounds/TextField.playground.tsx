@@ -18,4 +18,5 @@ export default playground("TextField", Wrapper, {
         width: 300,
         height: 100,
     },
+    secureTextEntry: true,
 });

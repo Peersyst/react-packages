@@ -1,7 +1,9 @@
 export * from "./config";
 export * from "./theme";
 export * from "./assets/icons";
+export * from "./display/Chip";
 export * from "./display/Divider";
+export * from "./display/Expandable";
 export * from "./display/Icon";
 export * from "./display/Image";
 export * from "./display/Label";
@@ -53,4 +55,5 @@ export * from "./util/BlockchainAddress";
 export * from "./util/CopyButton";
 export * from "./util/ElementStyler";
 export * from "./util/Hash";
+export * from "./util/LayoutSnitch";
 export * from "./utils";

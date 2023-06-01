@@ -1,11 +1,11 @@
-import { FormControlProps } from "./FormControl.types";
+import { FormControlProps, InnerFormControlProps } from "./FormControl.types";
 import { LabelStyle } from "../../display/Label";
 import { FormControlLabel } from "../FormControlLabel";
 import { FormControlRoot } from "./FormControl.styles";
 import {
-    FormControlContext,
     FormControl as CoreFormControl,
     useMergeDefaultProps,
+    useFormControl,
 } from "@peersyst/react-components-core";
 import { FormControlHint } from "../FormControlHint";
 import { FormControlError } from "../FormControlError";
@@ -13,12 +13,13 @@ import getFormControlledComponentStyles from "./util/getFormControlledComponentS
 import { ViewStyle } from "react-native";
 import { useFormControlStyles } from "./hooks";
 
-function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>(
-    rawProps: FormControlProps<T, LabelStyleType, ComponentStyle>,
+function InnerFormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>(
+    props: InnerFormControlProps<T, LabelStyleType, ComponentStyle>,
 ): JSX.Element {
-    const props = useMergeDefaultProps("FormControl", rawProps);
-
     const {
+        value,
+        setValue,
+        setFocused,
         defaultStyle = {},
         globalStyle = {},
         stylesMergeStrategy = getFormControlledComponentStyles,
@@ -26,9 +27,11 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
         hint,
         Label = FormControlLabel,
         children,
+        errorMsg,
         style: _style,
-        ...coreProps
     } = props;
+
+    const context = useFormControl();
 
     const {
         label: labelStyle = {},
@@ -36,44 +39,66 @@ function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = View
         error: errorStyle = {},
         component: componentStyle = {},
         ...rootStyle
-    } = useFormControlStyles(props);
+    } = useFormControlStyles(props, context);
 
     const [LabelComponent, { style: LabelPropsStyle = {}, ...LabelProps }] = Array.isArray(Label)
         ? Label
         : [Label, {}];
 
+    const content = children(
+        value!,
+        setValue,
+        context,
+        stylesMergeStrategy(defaultStyle, globalStyle, componentStyle, context),
+        setFocused,
+    );
+
+    return (
+        <FormControlRoot gap={5} style={rootStyle}>
+            {label ? (
+                <LabelComponent
+                    label={label}
+                    style={{ ...labelStyle, ...LabelPropsStyle }}
+                    {...LabelProps}
+                >
+                    {content}
+                </LabelComponent>
+            ) : (
+                content
+            )}
+            {!!hint && <FormControlHint hint={hint} style={hintStyle} />}
+            {!!errorMsg && <FormControlError error={errorMsg} style={errorStyle} />}
+        </FormControlRoot>
+    );
+}
+
+function FormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle = ViewStyle>(
+    rawProps: FormControlProps<T, LabelStyleType, ComponentStyle>,
+): JSX.Element {
+    const props = useMergeDefaultProps("FormControl", rawProps);
+
+    const {
+        defaultStyle: _defaultStyle,
+        globalStyle: _globalStyle,
+        stylesMergeStrategy: _stylesMergeStrategy,
+        label: _label,
+        hint: _hint,
+        Label: _Label,
+        children: _children,
+        style: _style,
+        ...coreProps
+    } = props;
+
     return (
         <CoreFormControl<T> {...coreProps}>
             {(value, setValue, setFocused, error) => (
-                <FormControlContext.Consumer>
-                    {(context) => {
-                        const content = children(
-                            value,
-                            setValue,
-                            context,
-                            stylesMergeStrategy(defaultStyle, globalStyle, componentStyle, context),
-                            setFocused,
-                        );
-
-                        return (
-                            <FormControlRoot gap={5} style={rootStyle}>
-                                {label ? (
-                                    <LabelComponent
-                                        label={label}
-                                        style={{ ...labelStyle, ...LabelPropsStyle }}
-                                        {...LabelProps}
-                                    >
-                                        {content}
-                                    </LabelComponent>
-                                ) : (
-                                    content
-                                )}
-                                {!!hint && <FormControlHint hint={hint} style={hintStyle} />}
-                                {!!error && <FormControlError error={error} style={errorStyle} />}
-                            </FormControlRoot>
-                        );
-                    }}
-                </FormControlContext.Consumer>
+                <InnerFormControl
+                    {...props}
+                    value={value}
+                    setValue={setValue}
+                    setFocused={setFocused}
+                    errorMsg={error}
+                />
             )}
         </CoreFormControl>
     );

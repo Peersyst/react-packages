@@ -1,5 +1,17 @@
 # Versions
 
+## 3.8.0
+
+[Typography] Add `numberOfLines` prop to `Typography`. It works in a similar way as: https://reactnative.dev/docs/text#numberoflines
+
+## 3.7.3
+
+[withColor] Add defaultColor value
+
+## 3.7.1
+
+[Expandable] Add open classname
+
 ## 3.6.0 **BREAKING**
 
 [Hash] Refactor hash to work with actions: `share`, `copy`, `link`, `customAction`

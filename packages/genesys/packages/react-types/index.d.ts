@@ -97,7 +97,7 @@ type LoosenDeeply<T, K extends keyof T> = Omit<T, K> & DeepPartial<Pick<T, K>>;
  */
 type TypeKeys<O, T> = {
     [K in keyof O]: O[K] extends T ? K : never;
-}[keyof T];
+}[keyof O];
 
 /**
  * Removes properties of type T from O
