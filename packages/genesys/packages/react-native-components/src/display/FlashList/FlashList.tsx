@@ -10,6 +10,8 @@ export default function FlashList<T>(props: FlashListProps<T>): JSX.Element {
         loading = false,
         refreshControlProps = {},
         indicatorStyle,
+        style,
+        contentContainerStyle,
         ...rest
     } = useMergeDefaultProps("FlashList", props);
 
@@ -28,8 +30,11 @@ export default function FlashList<T>(props: FlashListProps<T>): JSX.Element {
     };
     return (
         <ScrollView
-            style={{ flex: 1 }}
-            contentContainerStyle={{ flex: 1 }}
+            style={[{ flex: 1 }, style]}
+            contentContainerStyle={[
+                { flex: 1, position: "absolute", height: "100%", width: "100%" },
+                contentContainerStyle,
+            ]}
             horizontal
             scrollEnabled={false}
         >
