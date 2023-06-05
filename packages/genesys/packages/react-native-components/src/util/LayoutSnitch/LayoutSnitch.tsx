@@ -1,4 +1,4 @@
-import { LayoutChangeEvent, LayoutRectangle } from "react-native";
+import { LayoutChangeEvent, LayoutRectangle, StyleSheet } from "react-native";
 import { LayoutSnitchProps } from "./LayoutSnitch.types";
 import { cloneElement, useState } from "react";
 
@@ -12,7 +12,7 @@ const LayoutSnitch = ({ onLayout, children }: LayoutSnitchProps) => {
             children.props.onLayout?.(event);
             setLayout(event.nativeEvent.layout);
         },
-        style: [
+        style: StyleSheet.flatten([
             children.props.style,
             layout === undefined && {
                 opacity: 0,
@@ -24,7 +24,7 @@ const LayoutSnitch = ({ onLayout, children }: LayoutSnitchProps) => {
                 minWidth: undefined,
                 maxWidth: undefined,
             },
-        ],
+        ]),
     });
 };
 

@@ -81,7 +81,9 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             onModalHide={onExited}
             onBackdropPress={closeOnBackdropTap ? handleClose : undefined}
             onBackButtonPress={handleClose}
-            swipeDirection={toastActive && !toastWasActive ? undefined : swipeDirection}
+            swipeDirection={
+                !swipeable || (toastActive && !toastWasActive) ? undefined : swipeDirection
+            }
             swipeThreshold={swipeable && closable ? swipeThreshold : 9999}
             onSwipeComplete={() => swipeable && handleClose()}
             onModalWillShow={handleOpen}
