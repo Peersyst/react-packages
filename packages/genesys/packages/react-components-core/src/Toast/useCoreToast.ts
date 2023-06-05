@@ -9,7 +9,7 @@ export interface ToastComps {
     setOpen: (open: boolean) => void;
 }
 
-export interface UseToastResult<
+export interface UseCoreToastResult<
     ToastPosition,
     AlertProps extends CoreAlertProps,
     ToastProps extends CoreToastProps<ToastPosition, AlertProps>,
@@ -18,11 +18,11 @@ export interface UseToastResult<
     comps: ToastComps;
 }
 
-export default function useToast<
+export default function useCoreToast<
     ToastPosition,
     AlertProps extends CoreAlertProps,
     ToastProps extends CoreToastProps<ToastPosition, AlertProps>,
->(rawProps: ToastProps): UseToastResult<ToastPosition, AlertProps, ToastProps> {
+>(rawProps: ToastProps): UseCoreToastResult<ToastPosition, AlertProps, ToastProps> {
     const props = useMergeDefaultProps("Toast", rawProps);
 
     const { open: propOpen, onClose, duration, type } = props;
