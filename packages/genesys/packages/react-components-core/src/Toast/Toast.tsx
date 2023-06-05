@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { ToastProps } from "./Toast.types";
 import { useControlled } from "@peersyst/react-hooks";
 
+/**
+ * @deprecated Use `useToast` instead.
+ */
 export default function Toast({
     type,
     duration,
