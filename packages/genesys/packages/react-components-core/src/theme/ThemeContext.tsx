@@ -1,19 +1,30 @@
 import { createContext, useEffect, useState } from "react";
-import { ThemeContextType, ThemeProviderProps } from "./ThemeContext.types";
+import { ThemeContextType, CoreThemeProviderProps } from "./ThemeContext.types";
 import { Themes } from "../config";
 import useTheme from "../config/hook/useTheme";
+import { useThemeKey } from "./hook";
 
 export const ThemeContext = createContext<ThemeContextType>({} as any);
 
 export const ThemeProvider = ({
+    storeTheme,
     systemColorScheme,
     storageTheme,
     setStorageTheme,
     onThemeChange,
     children,
-}: ThemeProviderProps): JSX.Element => {
-    const [themeKey, setThemeKey] = useState(storageTheme || systemColorScheme);
+}: CoreThemeProviderProps): JSX.Element => {
+    const configTheme = useThemeKey();
+
+    const [themeKey, setThemeKey] = useState(storageTheme || configTheme || systemColorScheme);
     const theme = useTheme(themeKey);
+
+    useEffect(() => {
+        if (storeTheme)
+            console.warn(
+                "[RNC]: Theme storage is deprecated. In v4.0.0 theme will have to be stored externally and provide it via `theme` prop.",
+            );
+    }, [storeTheme]);
 
     useEffect(() => {
         if (storageTheme) setThemeKey(storageTheme);
@@ -28,8 +39,10 @@ export const ThemeProvider = ({
     }, [themeKey]);
 
     const setTheme = (newThemeKey: keyof Themes): void => {
-        setStorageTheme(newThemeKey);
-        setThemeKey(newThemeKey);
+        if (storeTheme) {
+            setStorageTheme(newThemeKey);
+            setThemeKey(newThemeKey);
+        }
     };
 
     return (

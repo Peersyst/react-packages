@@ -1,14 +1,15 @@
-import {FC, PropsWithChildren, useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
     Themes,
     useConfig,
     ThemeProvider as CoreThemeProvider,
+    ThemeProviderProps,
 } from "@peersyst/react-components-core";
 import { useColorScheme } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeProvider as StyledComponentsProvider } from "@peersyst/react-native-styled";
 
-const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
+const ThemeProvider = ({ children, storeTheme }: ThemeProviderProps) => {
     const projectName = useConfig("projectName");
     const storageKey = projectName + "-theme";
     const systemColorScheme = useColorScheme();
@@ -22,6 +23,7 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <CoreThemeProvider
+            storeTheme={storeTheme}
             systemColorScheme={systemColorScheme || "light"}
             storageTheme={storageTheme}
             setStorageTheme={handleSetStorageTheme}

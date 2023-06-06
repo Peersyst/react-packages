@@ -1,14 +1,15 @@
-import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     Theme,
     ThemeProvider as CoreThemeProvider,
     Themes,
     useConfig,
+    ThemeProviderProps,
 } from "@peersyst/react-components-core";
 import { ThemeProvider as StyledComponentsProvider } from "styled-components";
 import getColorScheme from "./getColorScheme";
 
-const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
+const ThemeProvider = ({ children, storeTheme }: ThemeProviderProps) => {
     const projectName = useConfig("projectName");
     const storageKey = projectName + "-theme";
     const [systemColorScheme, setSystemColorScheme] = useState(getColorScheme());
@@ -46,6 +47,7 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <CoreThemeProvider
+            storeTheme={storeTheme}
             systemColorScheme={systemColorScheme}
             storageTheme={storageTheme}
             setStorageTheme={setStorageTheme}

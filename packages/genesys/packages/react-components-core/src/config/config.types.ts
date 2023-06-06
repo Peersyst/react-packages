@@ -38,6 +38,7 @@ export interface Themes extends CoreThemes {}
 
 export interface BaseCoreConfig {
     projectName: string;
+    theme?: keyof Themes;
     themes: Themes;
     translate: TranslateFn;
     locale: string;
