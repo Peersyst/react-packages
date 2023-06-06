@@ -16,7 +16,7 @@ export const ThemeProvider = ({
 }: CoreThemeProviderProps): JSX.Element => {
     const configTheme = useThemeKey();
 
-    const [themeKey, setThemeKey] = useState(storageTheme || configTheme || systemColorScheme);
+    const [themeKey, setThemeKey] = useState(configTheme || storageTheme || systemColorScheme);
     const theme = useTheme(themeKey);
 
     useEffect(() => {
