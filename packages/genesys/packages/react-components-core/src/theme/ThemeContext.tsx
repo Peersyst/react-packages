@@ -27,11 +27,15 @@ export const ThemeProvider = ({
     }, [storeTheme]);
 
     useEffect(() => {
-        if (storageTheme) setThemeKey(storageTheme);
+        if (configTheme) setThemeKey(configTheme);
+    }, [configTheme]);
+
+    useEffect(() => {
+        if (!configTheme && storageTheme) setThemeKey(storageTheme);
     }, [storageTheme]);
 
     useEffect(() => {
-        if (!storageTheme) setThemeKey(systemColorScheme);
+        if (!storageTheme && !configTheme) setThemeKey(systemColorScheme);
     }, [systemColorScheme]);
 
     useEffect(() => {
