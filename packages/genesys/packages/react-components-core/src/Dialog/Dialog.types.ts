@@ -29,6 +29,7 @@ export type DialogButtonsLayoutAlignment = "start" | "end" | "center" | "stretch
 
 export interface DialogProps<P extends ExtendedCoreDialogConfig<{}> = ExtendedCoreDialogConfig<{}>>
     extends CommonModalComponentProps {
+    notch?: ReactNode;
     title?: string;
     content?: ReactNode;
     buttons?: DialogButton<Omit<P["actions"], "component" | "type" | "action">>[];

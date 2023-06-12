@@ -41,6 +41,7 @@ const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
     const props = useMergeDefaultProps("Dialog", rawProps);
 
     const {
+        notch,
         title,
         content,
         buttons,
@@ -75,6 +76,7 @@ const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
             {...modalProps}
         >
             <Col gap={14}>
+                {notch}
                 {title && <DialogTitle style={titleStyle}>{title}</DialogTitle>}
                 {typeof content === "string" ? (
                     <DialogMessage style={contentStyle}>{content}</DialogMessage>

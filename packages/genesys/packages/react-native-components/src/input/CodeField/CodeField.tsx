@@ -9,6 +9,7 @@ const CodeField = (rawProps: CodeFieldProps) => {
     const props = useMergeDefaultProps("CodeField", rawProps);
 
     const {
+        type,
         digits,
         gap,
         name,
@@ -62,6 +63,7 @@ const CodeField = (rawProps: CodeFieldProps) => {
         >
             {(value, setValue, context, style, setFocused) => (
                 <CodeInputs
+                    type={type}
                     digits={digits}
                     gap={gap}
                     onBlur={onBlur}
