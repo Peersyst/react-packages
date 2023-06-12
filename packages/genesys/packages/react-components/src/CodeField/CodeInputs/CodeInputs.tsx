@@ -5,6 +5,7 @@ import { CodeInput, CodeInputsRoot } from "./CodeInputs.styles";
 import { useNumericInput } from "@peersyst/react-components-core";
 
 const CodeInputs = ({
+    type,
     digits,
     gap = 8,
     placeholder,
@@ -97,7 +98,7 @@ const CodeInputs = ({
                     value={value.split("")[i]}
                     onChange={handleChange(i)}
                     key={i.toString()}
-                    type="tel"
+                    type={type === "numeric" ? "tel" : "text"}
                     ref={refs.current[i]}
                     onKeyDown={handleKeyDown(i)}
                     onFocus={handleFocus}

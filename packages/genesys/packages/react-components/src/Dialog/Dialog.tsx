@@ -42,6 +42,7 @@ const Dialog = createModal<DialogProps>((props): JSX.Element => {
     } = useComponentConfig("Dialog");
 
     const {
+        notch,
         title,
         content,
         buttons,
@@ -61,6 +62,7 @@ const Dialog = createModal<DialogProps>((props): JSX.Element => {
 
     return (
         <DialogRoot size={size} className={cx("Dialog", capitalize("sm"))} {...modalProps}>
+            {notch}
             {title && <DialogTitle className="DialogTitle">{title}</DialogTitle>}
             <DialogBody className="DialogBody">{content}</DialogBody>
             <DialogActions

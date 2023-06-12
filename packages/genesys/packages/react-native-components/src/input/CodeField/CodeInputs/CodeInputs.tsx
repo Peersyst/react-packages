@@ -6,6 +6,7 @@ import { NativeSyntheticEvent, TextInput, TextInputKeyPressEventData } from "rea
 import { CodeInput } from "./CodeInputs.styles";
 
 const CodeInputs = ({
+    type,
     digits,
     gap = 8,
     onBlur,
@@ -85,7 +86,7 @@ const CodeInputs = ({
                     value={value.split("")[i]}
                     onChange={handleChange(i)}
                     key={i.toString()}
-                    keyboardType="number-pad"
+                    keyboardType={type === "numeric" ? "number-pad" : "default"}
                     ref={refs.current[i]}
                     onKeyPress={handleKeyPress(i)}
                     onFocus={handleFocus}
