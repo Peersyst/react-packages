@@ -2,7 +2,6 @@ import { createModal } from "../ModalProvider";
 import { DialogRoot, DialogTitle, DialogMessage } from "./Dialog.styles";
 import { Col } from "../../layout/Col";
 import { Row } from "../../layout/Row";
-import { useState } from "react";
 import {
     DIALOG_ACTION_COLOR_MAP,
     DialogButtonsLayoutAlignment,
@@ -13,6 +12,7 @@ import {
 import { FlexStyle } from "react-native";
 import { DialogProps } from "./Dialog.types";
 import { useDialogStyles } from "./hooks";
+import { useControlled } from "@peersyst/react-hooks";
 
 const DIALOG_BUTTONS_JUSTIFY_MAP: Record<
     DialogButtonsLayoutJustification,
@@ -33,7 +33,7 @@ const DIALOG_BUTTONS_ALIGN_MAP: Record<DialogButtonsLayoutAlignment, FlexStyle["
     baseline: "baseline",
 };
 
-const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
+const Dialog = createModal<DialogProps>((rawProps): JSX.Element => {
     const {
         actions: { component: ActionComponent, ...actionComponentProps },
     } = useComponentConfig("Dialog");
@@ -41,26 +41,36 @@ const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
     const props = useMergeDefaultProps("Dialog", rawProps);
 
     const {
+        open: openProp,
+        onClose,
         notch,
         title,
         content,
         buttons,
+        gap = 14,
         buttonsLayout: {
             direction = "row",
             justifyContent = "end",
             alignItems = "center",
-            gap = 20,
+            gap: buttonLayoutGap = 20,
             ...restButtonsLayout
         } = {},
+        animationIn = "fadeIn",
+        animationOut = "fadeOut",
         style: _style,
         ...modalProps
     } = props;
 
-    const { title: titleStyle, content: contentStyle, ...rootStyle } = useDialogStyles(props);
+    const {
+        title: titleStyle,
+        content: contentStyle,
+        buttons: buttonsStyle,
+        ...rootStyle
+    } = useDialogStyles(props);
 
     const ButtonsLayoutComponent = direction === "row" ? Row : Col;
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useControlled(true, openProp, openProp ? onClose : undefined);
 
     const closeDialog = () => {
         setOpen(false);
@@ -70,12 +80,12 @@ const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
         <DialogRoot
             open={open}
             onClose={closeDialog}
-            animationIn="fadeIn"
-            animationOut="fadeOut"
+            animationIn={animationIn}
+            animationOut={animationOut}
             style={rootStyle}
             {...modalProps}
         >
-            <Col gap={14}>
+            <Col gap={gap}>
                 {notch}
                 {title && <DialogTitle style={titleStyle}>{title}</DialogTitle>}
                 {typeof content === "string" ? (
@@ -86,7 +96,8 @@ const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
                 <ButtonsLayoutComponent
                     justifyContent={DIALOG_BUTTONS_JUSTIFY_MAP[justifyContent]}
                     alignItems={DIALOG_BUTTONS_ALIGN_MAP[alignItems]}
-                    gap={gap}
+                    gap={buttonLayoutGap}
+                    style={buttonsStyle}
                     {...restButtonsLayout}
                 >
                     {buttons?.map(({ text, type = "default", action, ...buttonProps }, key) => (
@@ -100,7 +111,7 @@ const Dialog = createModal((rawProps: DialogProps): JSX.Element => {
                             {text}
                         </ActionComponent>
                     )) || (
-                        <ActionComponent {...actionComponentProps} onPress={close}>
+                        <ActionComponent {...actionComponentProps} onPress={closeDialog}>
                             OK
                         </ActionComponent>
                     )}
