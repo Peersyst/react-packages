@@ -49,7 +49,7 @@ function List<T = any>(props: ListProps<T>): JSX.Element {
     };
 
     const { flex: contentFlex = 1, ...restContentContainerStyle } =
-        StyleSheet.flatten(contentContainerStyle);
+        StyleSheet.flatten(contentContainerStyle) || {};
 
     return (
         <ScrollView
