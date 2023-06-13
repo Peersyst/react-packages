@@ -313,6 +313,9 @@ const componentsConfig: ComponentsConfig = {
     ExpandableContent: {
         defaultProps: {},
     },
+    CircularProgress: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

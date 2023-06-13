@@ -17,6 +17,7 @@ export * from "./display/FlashList";
 export * from "./feedback/Alert";
 export * from "./feedback/Backdrop";
 export * from "./feedback/CenteredLoader";
+export * from "./feedback/CircularProgress";
 export * from "./feedback/ContainedSuspense";
 export * from "./feedback/Dialog";
 export * from "./feedback/Modal";
