@@ -5,6 +5,7 @@ import {
     RefreshControlPropsAndroid,
     RefreshControlPropsIOS,
     ScrollView,
+    StyleSheet,
 } from "react-native";
 import { useState } from "react";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
@@ -47,10 +48,13 @@ function List<T = any>(props: ListProps<T>): JSX.Element {
         setRefreshing(false);
     };
 
+    const { flex: contentFlex = 1, ...restContentContainerStyle } =
+        StyleSheet.flatten(contentContainerStyle);
+
     return (
         <ScrollView
             style={[{ flex: 1 }, style]}
-            contentContainerStyle={[{ flex: 1 }, contentContainerStyle]}
+            contentContainerStyle={{ flex: contentFlex }}
             horizontal
             scrollEnabled={false}
         >
@@ -66,6 +70,7 @@ function List<T = any>(props: ListProps<T>): JSX.Element {
                     ) : undefined
                 }
                 indicatorStyle={scrollIndicatorStyle}
+                contentContainerStyle={restContentContainerStyle}
                 {...rest}
             />
         </ScrollView>
