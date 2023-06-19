@@ -19,6 +19,7 @@ const CodeInputs = ({
 
     const refs = useRef([...Array(digits)].map(() => createRef<HTMLInputElement>()));
 
+    const isNumeric = type === "numeric";
     const { parse, format } = useNumericInput();
 
     const handleChange =
@@ -98,7 +99,7 @@ const CodeInputs = ({
                     value={value.split("")[i]}
                     onChange={handleChange(i)}
                     key={i.toString()}
-                    type={type === "numeric" ? "tel" : "text"}
+                    type={isNumeric ? "tel" : "text"}
                     ref={refs.current[i]}
                     onKeyDown={handleKeyDown(i)}
                     onFocus={handleFocus}
@@ -108,8 +109,8 @@ const CodeInputs = ({
                     disabled={disabled}
                     error={invalid}
                     className="CodeInput"
-                    parse={parse}
-                    format={format}
+                    parse={isNumeric ? parse : undefined}
+                    format={isNumeric ? format : undefined}
                 />
             ))}
         </CodeInputsRoot>
