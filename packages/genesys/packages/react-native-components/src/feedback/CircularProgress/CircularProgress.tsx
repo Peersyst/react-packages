@@ -5,6 +5,8 @@ import Animated, {
     WithTimingConfig,
     useAnimatedProps,
     useSharedValue,
+    withRepeat,
+    withSequence,
     withTiming,
 } from "react-native-reanimated";
 import { Circle, CircleProps } from "react-native-svg";
@@ -25,7 +27,7 @@ const CircularProgress = forwardRef(function CircularProgress<AnimationConfig = 
     const { props, comps } = useCircularProgress(rawProps);
 
     const {
-        value = 0,
+        value,
         animation = withTiming,
         animationConfig = { duration: 300, easing: Easing.linear },
         strokeLinecap,
@@ -43,7 +45,19 @@ const CircularProgress = forwardRef(function CircularProgress<AnimationConfig = 
     const animatedValue = useSharedValue(0);
 
     useEffect(() => {
-        animatedValue.value = animation(value, animationConfig as any);
+        if (value === undefined) {
+            animatedValue.value = withRepeat(
+                withSequence(
+                    withTiming(100, { duration: 600, easing: Easing.inOut(Easing.quad) }),
+                    withTiming(-100, { duration: 0 }),
+                    withTiming(0, { duration: 600, easing: Easing.inOut(Easing.quad) }),
+                ),
+                -1,
+                false,
+            );
+        } else {
+            animatedValue.value = animation(value, animationConfig as any);
+        }
     }, [value]);
 
     const animatedProps = useAnimatedProps<CircleProps>(

@@ -59,12 +59,10 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     };
 
     const handleOpen = () => {
-        if (!open) {
-            if (toastWasActive) {
-                hideToast();
-            }
-            onOpen?.();
+        if (toastWasActive) {
+            hideToast();
         }
+        onOpen?.();
     };
 
     const handleOpenChange = (newOpen: boolean) => {
