@@ -24,13 +24,22 @@ const ExpandableDisplay = (rawProps: ExpandableDisplayProps): JSX.Element => {
 
     return (
         <ExpandableDisplayRoot onPress={toggle} reverse={reverse} style={rootStyle}>
-            {isValidElement(children) ? (
-                <ElementStyler style={contentStyle}>
-                    {children as ReactElement<{ style?: any }, string | JSXElementConstructor<any>>}
-                </ElementStyler>
-            ) : (
-                <Text style={contentStyle}>{children}</Text>
-            )}
+            <View style={{ flex: 1 }}>
+                {isValidElement(children) ? (
+                    <ElementStyler style={contentStyle}>
+                        {
+                            children as ReactElement<
+                                { style?: any },
+                                string | JSXElementConstructor<any>
+                            >
+                        }
+                    </ElementStyler>
+                ) : (
+                    <Text style={contentStyle} adjustsFontSizeToFit>
+                        {children}
+                    </Text>
+                )}
+            </View>
             {icon && (
                 <View style={{ transform: [{ rotateZ: open ? "180deg" : "0deg" }] }}>
                     <ElementStyler style={{ ...contentStyle, ...iconStyle }}>
