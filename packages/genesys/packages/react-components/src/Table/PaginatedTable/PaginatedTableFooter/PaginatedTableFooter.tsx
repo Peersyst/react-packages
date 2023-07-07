@@ -13,10 +13,7 @@ function PaginatedTableFooter<TData = any>({
         <>
             <Count range={currentRange} total={totalRows} />
             <Pagination
-                onFirstPage={() => table.setPageIndex(0)}
-                onLastPage={() => table.setPageIndex(table.getPageCount() - 1)}
-                onNextPage={() => table.nextPage()}
-                onPreviousPage={() => table.previousPage()}
+                onPageChange={table.setPageIndex}
                 currentPage={currentPage}
                 totalPages={totalPages}
             />
