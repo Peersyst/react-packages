@@ -13,7 +13,7 @@ function PaginatedTableFooter<TData = any>({
         <>
             <Count range={currentRange} total={totalRows} />
             <Pagination
-                onPageChange={table.setPageIndex}
+                onPageChange={(pageIndex: number) => table.setPageIndex(pageIndex - 1)}
                 currentPage={currentPage}
                 totalPages={totalPages}
             />
