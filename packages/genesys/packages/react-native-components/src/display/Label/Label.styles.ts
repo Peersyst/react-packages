@@ -39,7 +39,7 @@ export const LabelText = styled(Text)<LabelTextProps>(
         return {
             alignSelf: placement === "left" || placement === "right" ? "center" : undefined,
             textAlign,
-            flex: 1,
+            flexShrink: 1,
             ...variantStyle,
         };
     },
