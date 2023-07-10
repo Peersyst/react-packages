@@ -24,8 +24,8 @@ export const LabelColRoot = styled(Col)<LabelRowRootProps>(({ alignment }) => ({
 }));
 
 export const LabelRowRoot = styled(Row)<LabelRowRootProps>(({ alignment }) => ({
-    alignItems: "center",
     justifyContent: labelFlexJustification[alignment],
+    flex: 1,
 }));
 
 export const LabelText = styled(Text)<LabelTextProps>(
@@ -39,6 +39,7 @@ export const LabelText = styled(Text)<LabelTextProps>(
         return {
             alignSelf: placement === "left" || placement === "right" ? "center" : undefined,
             textAlign,
+            flex: 1,
             ...variantStyle,
         };
     },
