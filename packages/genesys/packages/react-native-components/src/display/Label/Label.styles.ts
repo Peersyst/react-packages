@@ -25,7 +25,7 @@ export const LabelColRoot = styled(Col)<LabelRowRootProps>(({ alignment }) => ({
 
 export const LabelRowRoot = styled(Row)<LabelRowRootProps>(({ alignment }) => ({
     justifyContent: labelFlexJustification[alignment],
-    flex: 1,
+    width: "100%",
 }));
 
 export const LabelText = styled(Text)<LabelTextProps>(
