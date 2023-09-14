@@ -40,7 +40,7 @@ const Alert = (props: AlertProps): JSX.Element => {
                             <ElementStyler style={iconStyle}>{icon}</ElementStyler>
                         </Row>
                     )}
-                    <Row flex={1}>
+                    <Row flex={1} alignItems="center" style={{ height: "100%" }}>
                         {typeof content === "string" ? (
                             <Text style={textStyle} lineBreakMode="head">
                                 {content}
