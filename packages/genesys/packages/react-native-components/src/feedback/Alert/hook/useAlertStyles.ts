@@ -9,7 +9,7 @@ export default function useAlertStyles(props: AlertProps): {
 } {
     const computedStyles = useComputeStyles("Alert", props);
 
-    const [text, container, icon] = useSplitTextAndViewStyles(computedStyles);
+    const [text, container, { icon = {} }] = useSplitTextAndViewStyles(computedStyles);
 
     return { text, container, icon };
 }
