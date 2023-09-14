@@ -2,11 +2,11 @@ import { AlertAction, AlertRoot } from "./Alert.styles";
 import { AlertProps } from "./Alert.types";
 import useGetAlertIcon from "./hook/useGetAlertIcon";
 import { Row } from "../../layout/Row";
-import { Icon } from "../../display/Icon";
 import { Text } from "react-native";
-import { Col } from "../../layout/Col";
 import useAlertStyles from "./hook/useAlertStyles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { ElementStyler } from "../../util/ElementStyler";
+import { ReactElement, isValidElement } from "react";
 
 const Alert = (props: AlertProps): JSX.Element => {
     const {
@@ -33,11 +33,11 @@ const Alert = (props: AlertProps): JSX.Element => {
             square={square}
             {...rest}
         >
-            <Col flex={1} style={{ padding: 14 }}>
-                <Row flex={1} alignItems="center" gap={10}>
+            <Row style={{ padding: 14, width: "100%" }}>
+                <Row flex={1} gap={10}>
                     {icon && (
                         <Row>
-                            <Icon style={textStyle}>{icon}</Icon>
+                            <ElementStyler style={textStyle}>{icon}</ElementStyler>
                         </Row>
                     )}
                     <Row flex={1}>
@@ -45,13 +45,17 @@ const Alert = (props: AlertProps): JSX.Element => {
                             <Text style={textStyle} lineBreakMode="head">
                                 {content}
                             </Text>
+                        ) : isValidElement(content) ? (
+                            <ElementStyler style={textStyle}>
+                                {content as ReactElement}
+                            </ElementStyler>
                         ) : (
                             content
                         )}
                     </Row>
                 </Row>
                 {action && <AlertAction style={textStyle}>{action}</AlertAction>}
-            </Col>
+            </Row>
         </AlertRoot>
     );
 };
