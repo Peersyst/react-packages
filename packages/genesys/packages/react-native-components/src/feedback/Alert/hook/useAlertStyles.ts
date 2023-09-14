@@ -5,10 +5,11 @@ import { useComputeStyles, useSplitTextAndViewStyles } from "../../../hooks";
 export default function useAlertStyles(props: AlertProps): {
     container: ViewStyle;
     text: TextStyle;
+    icon: TextStyle;
 } {
     const computedStyles = useComputeStyles("Alert", props);
 
-    const [text, container] = useSplitTextAndViewStyles(computedStyles);
+    const [text, container, icon] = useSplitTextAndViewStyles(computedStyles);
 
-    return { text, container };
+    return { text, container, icon };
 }

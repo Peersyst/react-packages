@@ -23,7 +23,7 @@ const Alert = (props: AlertProps): JSX.Element => {
     const defaultIcon = useGetAlertIcon(type);
     const icon = iconProp === true ? defaultIcon : iconProp;
 
-    const { text: textStyle, container: containerStyle } = useAlertStyles(props);
+    const { text: textStyle, container: containerStyle, icon: iconStyle } = useAlertStyles(props);
 
     return (
         <AlertRoot
@@ -37,7 +37,7 @@ const Alert = (props: AlertProps): JSX.Element => {
                 <Row flex={1} gap={10}>
                     {icon && (
                         <Row>
-                            <ElementStyler style={textStyle}>{icon}</ElementStyler>
+                            <ElementStyler style={iconStyle}>{icon}</ElementStyler>
                         </Row>
                     )}
                     <Row flex={1}>
