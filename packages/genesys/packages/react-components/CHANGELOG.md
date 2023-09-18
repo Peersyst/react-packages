@@ -1,5 +1,10 @@
 # Versions
 
+## 3.9.11
+
+[Select] Add open prop to controll the visibility of the select
+[Package.json] Update `react-components-core`
+
 ## 3.8.0
 
 [Typography] Add `numberOfLines` prop to `Typography`. It works in a similar way as: https://reactnative.dev/docs/text#numberoflines

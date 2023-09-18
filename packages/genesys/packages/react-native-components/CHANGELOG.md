@@ -1,5 +1,10 @@
 # Versions
 
+## 3.2.25
+
+[Select] refactor: get the open, onClose, onOpen props from the core.
+[Package.json] Update `react-components-core`
+
 ## 3.0.0-alpha.19
 
 [CopyButton] fix: CopyButton now uses CopyIcon from theme
