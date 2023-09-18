@@ -8,7 +8,15 @@ export default function useLayout(): [
     const [layout, setLayout] = useState<LayoutRectangle>();
 
     const onLayout = (event: LayoutChangeEvent) => {
-        setLayout(event.nativeEvent.layout);
+        const eventLayout = event.nativeEvent.layout;
+        if (
+            !layout ||
+            Object.entries(eventLayout).some(
+                ([key, value]) =>
+                    Math.round(value) !== Math.round(layout[key as keyof LayoutRectangle]),
+            )
+        )
+            setLayout(event.nativeEvent.layout);
     };
 
     return [layout, onLayout];

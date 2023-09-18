@@ -8,6 +8,7 @@ const CodeField = (rawProps: CodeFieldProps) => {
     const props = useMergeDefaultProps("CodeField", rawProps);
 
     const {
+        type,
         digits,
         gap,
         name,
@@ -59,6 +60,7 @@ const CodeField = (rawProps: CodeFieldProps) => {
         >
             {(value, setValue, context) => (
                 <CodeInputs
+                    type={type}
                     digits={digits}
                     gap={gap}
                     placeholder={placeholder}

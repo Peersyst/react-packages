@@ -1,6 +1,6 @@
 # Versions
 
-## 1.6.2
+## 1.7.7
 
 [Select] Move open prop to the Core
 

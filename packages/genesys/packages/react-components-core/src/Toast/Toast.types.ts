@@ -34,6 +34,9 @@ export type CoreToastProps<
     duration?: number;
 };
 
+/**
+ * @deprecated
+ */
 export type ToastProps = Pick<CoreToastProps<any>, "type" | "duration" | "open" | "onClose"> & {
     /**
      * Toast renderer

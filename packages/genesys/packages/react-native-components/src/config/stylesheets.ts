@@ -15,6 +15,7 @@ import {
     expandableStylesheet,
     expandableContentStylesheet,
 } from "../display/Expandable";
+import { circularProgressStylesheet } from "../feedback/CircularProgress";
 
 export default createStylesheets(
     buttonStylesheet,
@@ -32,4 +33,5 @@ export default createStylesheets(
     expandableDisplayStylesheet,
     expandableStylesheet,
     expandableContentStylesheet,
+    circularProgressStylesheet,
 );

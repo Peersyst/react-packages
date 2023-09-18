@@ -1,5 +1,9 @@
 export { default as ModalProvider } from "./ModalProvider";
-export type { CommonModalComponentProps, ModalProviderProps } from "./ModalProvider.types";
+export type {
+    CommonModalComponentProps,
+    ModalProviderProps,
+    ModalWithId,
+} from "./ModalProvider.types";
 export * from "./ModalContext";
 export * from "./hooks";
 export { default as createModal } from "./utils/createModal";

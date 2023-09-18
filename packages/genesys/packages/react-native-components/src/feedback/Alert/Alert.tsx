@@ -17,6 +17,7 @@ const Alert = (props: AlertProps): JSX.Element => {
         elevation = 0,
         square,
         style: _style,
+        ...rest
     } = useMergeDefaultProps("Alert", props);
 
     const defaultIcon = useGetAlertIcon(type);
@@ -25,7 +26,13 @@ const Alert = (props: AlertProps): JSX.Element => {
     const { text: textStyle, container: containerStyle } = useAlertStyles(props);
 
     return (
-        <AlertRoot type={type} style={containerStyle} elevation={elevation} square={square}>
+        <AlertRoot
+            type={type}
+            style={containerStyle}
+            elevation={elevation}
+            square={square}
+            {...rest}
+        >
             <Col flex={1} style={{ padding: 14 }}>
                 <Row flex={1} alignItems="center" gap={10}>
                     {icon && (

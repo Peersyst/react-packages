@@ -11,8 +11,8 @@ export const TypographyRoot = styled.div<TypographyRootProps>(
         fontStyle,
         fontWeight,
         font,
-        singleLine,
         color,
+        numberOfLines = 0,
     }) => css`
         overflow: hidden;
         display: block;
@@ -30,12 +30,12 @@ export const TypographyRoot = styled.div<TypographyRootProps>(
         font-style: ${fontStyle};
         font-weight: ${fontWeight};
         font-family: ${font && theme.fonts?.[font as keyof ThemeFonts]};
-        ${singleLine &&
+        ${numberOfLines &&
         css`
-            width: 100%;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow-x: hidden;
+            -webkit-line-clamp: ${numberOfLines};
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            word-wrap: break-word; /* Important for long words! */
         `};
 
         color: ${color};

@@ -15,6 +15,7 @@ import Switch from "./Switch.playground";
 import CodeField from "./CodeField.playground";
 import Chip from "./Chip.playground";
 import Expandable from "./Expandable.playground";
+import CircularProgress from "./CircularProgress.playground";
 
 export default {
     Welcome,
@@ -34,4 +35,5 @@ export default {
     CodeField,
     Chip,
     Expandable,
+    CircularProgress,
 };

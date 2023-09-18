@@ -4,6 +4,7 @@ import { DeepPartial } from "@peersyst/react-types";
 
 export interface BaseCoreCreateConfig {
     projectName: string;
+    theme?: Config["theme"];
     themes?: Partial<Config["themes"]>;
     translate?: Config["translate"];
     locale?: Config["locale"];

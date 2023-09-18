@@ -1,8 +1,17 @@
-import { FlatList, FlatListProps, RefreshControl, RefreshControlPropsAndroid, RefreshControlPropsIOS, ScrollView } from "react-native";
+import {
+    FlatList,
+    FlatListProps,
+    RefreshControl,
+    RefreshControlPropsAndroid,
+    RefreshControlPropsIOS,
+    ScrollView,
+    StyleSheet,
+} from "react-native";
 import { useState } from "react";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 
-export interface ListProps<T = any> extends Omit<FlatListProps<T>, "refreshControl" | "refreshing"> {
+export interface ListProps<T = any>
+    extends Omit<FlatListProps<T>, "refreshControl" | "refreshing"> {
     refreshControlProps?: RefreshControlPropsIOS & RefreshControlPropsAndroid;
     loading?: boolean;
 }
@@ -20,6 +29,8 @@ function List<T = any>(props: ListProps<T>): JSX.Element {
         loading = false,
         refreshControlProps = {},
         indicatorStyle,
+        contentContainerStyle,
+        style,
         ...rest
     } = useMergeDefaultProps("List", props);
 
@@ -37,8 +48,16 @@ function List<T = any>(props: ListProps<T>): JSX.Element {
         setRefreshing(false);
     };
 
+    const { flex: contentFlex = 1, ...restContentContainerStyle } =
+        StyleSheet.flatten(contentContainerStyle) || {};
+
     return (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }} horizontal scrollEnabled={false}>
+        <ScrollView
+            style={[{ flex: 1 }, style]}
+            contentContainerStyle={{ flex: contentFlex }}
+            horizontal
+            scrollEnabled={false}
+        >
             <FlatList
                 refreshControl={
                     onRefresh || loading ? (
@@ -51,6 +70,7 @@ function List<T = any>(props: ListProps<T>): JSX.Element {
                     ) : undefined
                 }
                 indicatorStyle={scrollIndicatorStyle}
+                contentContainerStyle={restContentContainerStyle}
                 {...rest}
             />
         </ScrollView>

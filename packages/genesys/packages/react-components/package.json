@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components",
     "author": "Peersyst",
-    "version": "3.7.4",
+    "version": "3.9.11",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-components-core": "^1.6.2",
+        "@peersyst/react-components-core": "^1.7.7",
         "@peersyst/react-hooks": "^2.2.9",
         "@peersyst/react-types": "^1.6.1",
         "@peersyst/react-utils": "^2.4.0",
@@ -83,5 +83,5 @@
         "access": "public"
     },
     "sideEffects": false,
-    "gitHead": "d6d9575454dbfdd5f548466a66a103e86d19a069"
+    "gitHead": "fee1bbfe4eb851db5deff3a9761175cedb024f01"
 }

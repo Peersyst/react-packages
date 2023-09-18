@@ -15,7 +15,7 @@ export type DialogButton<P = {}> = {
     text: string;
     action?: () => any;
     type?: DialogButtonType;
-} & P;
+} & Omit<P, "text" | "action" | "type">;
 
 export type DialogButtonsLayoutJustification =
     | "start"
@@ -27,11 +27,13 @@ export type DialogButtonsLayoutJustification =
 
 export type DialogButtonsLayoutAlignment = "start" | "end" | "center" | "stretch" | "baseline";
 
-export interface DialogProps<P extends ExtendedCoreDialogConfig<{}> = ExtendedCoreDialogConfig<{}>>
-    extends CommonModalComponentProps {
+export interface DialogProps<
+    DialogConfig extends ExtendedCoreDialogConfig<{}> = ExtendedCoreDialogConfig<{}>,
+> extends CommonModalComponentProps {
+    notch?: ReactNode;
     title?: string;
     content?: ReactNode;
-    buttons?: DialogButton<Omit<P["actions"], "component" | "type" | "action">>[];
+    buttons?: DialogButton<Omit<DialogConfig["actions"], "component" | "type" | "action">>[];
     buttonsLayout?: {
         direction?: "column" | "row";
         gap?: string | number;
