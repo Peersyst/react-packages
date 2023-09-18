@@ -53,6 +53,10 @@ function InnerSelect<T>({
         if (!disabled && !readonly) setOpen(!open);
     };
 
+    function handleOnClickAway() {
+        if (open) setOpen(false);
+    }
+
     const displayContent = useSelectDisplayContent<T, SelectItemProps<T>>(
         value,
         multiple,
@@ -63,7 +67,7 @@ function InnerSelect<T>({
     const isPlaceholder = !renderedValue && !!placeholder;
 
     return (
-        <ClickAwayListener onClickAway={() => setOpen(false)}>
+        <ClickAwayListener onClickAway={handleOnClickAway}>
             <SelectRoot className="Select">
                 <SelectDisplay
                     onClick={handleClick}
