@@ -3,6 +3,7 @@
 ## 3.0.2
 
 [Select] refactor: get the open, onClose, onOpen props from the core.
+[Package.json] Update `react-components-core`
 
 ## 3.0.0-alpha.19
 

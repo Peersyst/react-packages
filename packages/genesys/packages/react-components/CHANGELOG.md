@@ -3,7 +3,7 @@
 ## 3.7.4
 
 [Select] Add open prop to controll the visibility of the select
-[Package.json] Update `react-component-core`
+[Package.json] Update `react-components-core`
 
 ## 3.7.3
 
