@@ -1,5 +1,9 @@
 # Versions
 
+## 3.0.2
+
+[Select] refactor: get the open, onClose, onOpen props from the core.
+
 ## 3.0.0-alpha.19
 
 [CopyButton] fix: CopyButton now uses CopyIcon from theme

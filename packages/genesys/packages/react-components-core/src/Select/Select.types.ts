@@ -30,6 +30,18 @@ export interface CoreSelectProps<
      */
     autoFocus?: boolean;
     /**
+     * Controlled menu open
+     */
+    open?: boolean;
+    /**
+     * onOpen handler
+     */
+    onOpen?: () => void;
+    /**
+     * onCLose handler
+     */
+    onClose?: () => void;
+    /**
      * Customize how display renders selected options
      */
     renderValue?: (val: ReactNode | ReactNode[]) => ReactNode;

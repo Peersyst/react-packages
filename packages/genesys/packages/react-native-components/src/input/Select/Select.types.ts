@@ -36,18 +36,6 @@ export type SelectProps<T, Multiple extends boolean = false> = FormControlledCom
      */
     icon?: ReactElement;
     /**
-     * Controlled menu open
-     */
-    open?: boolean;
-    /**
-     * onOpen handler
-     */
-    onOpen?: () => void;
-    /**
-     * onCLose handler
-     */
-    onClose?: () => void;
-    /**
      * Header element
      */
     header?: ReactNode;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     ClearItem,
     DisplayContent,
@@ -22,6 +22,7 @@ import { ClickAwayListener } from "../ClickAwayListener";
 import { SelectItem, SelectItemProps } from "./SelectItem";
 import { FormControl } from "../FormControl";
 import { FormControlLabel } from "../FormControlLabel";
+import { useControlled } from "@peersyst/react-hooks";
 
 function InnerSelect<T>({
     clear,
@@ -37,8 +38,11 @@ function InnerSelect<T>({
     dropdownElement,
     options = [],
     children,
+    open: openProp,
+    onClose,
+    onOpen,
 }: InnerSelectProps<T>): JSX.Element {
-    const [open, setOpen] = useState<boolean>(autoFocus);
+    const [open, setOpen] = useControlled(autoFocus, openProp, openProp ? onClose : onOpen);
     const { setFocused } = useFormControl();
 
     useEffect(() => {
@@ -114,6 +118,9 @@ export default function Select<T = any, Multiple extends boolean = false>(
         LabelProps = {},
         Label = FormControlLabel,
         options,
+        open,
+        onClose,
+        onOpen,
         ...rest
     } = useMergeDefaultProps("Select", props);
 
@@ -148,6 +155,9 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     multiple={multiple}
                     options={options}
                     clear={clear}
+                    open={open}
+                    onClose={onClose}
+                    onOpen={onOpen}
                 >
                     {children}
                 </InnerSelect>
