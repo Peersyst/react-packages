@@ -1,6 +1,6 @@
 # Versions
 
-## 3.2.21
+## 3.2.25
 
 [Select] refactor: get the open, onClose, onOpen props from the core.
 [Package.json] Update `react-components-core`
