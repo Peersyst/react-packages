@@ -6,7 +6,7 @@ import { AlertRootProps } from "@peersyst/react-components-core";
 export const AlertRoot = styled(Paper)<AlertRootProps>(({ theme, type }) => {
     const statusColor = type && type !== "loading" ? theme.palette.status[type] : undefined;
     return {
-        flex: 1,
+        width: "100%",
         justifyContent: "center",
         minHeight: 56,
         borderRadius: theme.borderRadius,

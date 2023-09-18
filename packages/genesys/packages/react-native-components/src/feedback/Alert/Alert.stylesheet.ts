@@ -15,5 +15,10 @@ export const alertStylesheet = stylesheet(Alert)(({ fromTheme, fromProps }) => {
         color: currentColor((color) =>
             getLuminance(color as string) > 0.5 ? "#000000" : "#FFFFFF",
         ),
+        icon: {
+            color: currentColor((color) =>
+                getLuminance(color as string) > 0.5 ? "#000000" : "#FFFFFF",
+            ),
+        },
     };
 });
