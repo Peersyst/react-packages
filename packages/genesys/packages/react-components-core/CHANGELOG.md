@@ -1,5 +1,9 @@
 # Versions
 
+## 1.7.7
+
+[Select] Move open prop to the Core
+
 ## 1.5.0
 
 [Hash] Add Core HashProps

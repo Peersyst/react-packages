@@ -5,24 +5,14 @@ import { TablePaginationRoot } from "./TablePagination.styles";
 const TablePagination = ({
     currentPage,
     totalPages,
-    onNextPage,
-    onPreviousPage,
-    onFirstPage,
-    onLastPage,
+    onPageChange,
     style,
     className,
 }: TablePaginationProps): JSX.Element => {
-    const handleChange = (page: number) => {
-        if (page > currentPage) onNextPage();
-        else if (page < currentPage) onPreviousPage();
-        else if (page === 0) onFirstPage();
-        else onLastPage();
-    };
-
     return (
         <TablePaginationRoot
             page={currentPage}
-            onChange={handleChange}
+            onChange={onPageChange}
             count={totalPages}
             style={style}
             className={clsx("TablePagination", className)}

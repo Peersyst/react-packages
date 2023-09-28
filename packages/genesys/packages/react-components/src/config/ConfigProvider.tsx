@@ -1,10 +1,23 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 import { Config, ConfigProvider as CoreConfigProvider } from "@peersyst/react-components-core";
 import { ThemeProvider } from "../theme";
 
-const ConfigProvider: FC<PropsWithChildren<{ config: Config }>> = ({ config, children }) => (
+interface ConfigProviderProps {
+    config: Config;
+    /**
+     * @deprecated
+     */
+    storeTheme?: boolean;
+    children: ReactNode;
+}
+
+const ConfigProvider: FC<PropsWithChildren<ConfigProviderProps>> = ({
+    config,
+    storeTheme = false,
+    children,
+}) => (
     <CoreConfigProvider config={config}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider storeTheme={storeTheme}>{children}</ThemeProvider>
     </CoreConfigProvider>
 );
 
