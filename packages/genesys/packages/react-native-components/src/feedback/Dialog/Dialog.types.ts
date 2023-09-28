@@ -3,8 +3,8 @@ import { TextStyle, ViewStyle } from "react-native";
 import { ModalProps } from "../Modal";
 
 export type DialogStyle = ViewStyle & {
-    title?: TextStyle;
-    content?: TextStyle;
+    title?: ViewStyle & TextStyle;
+    content?: ViewStyle & TextStyle;
     buttons?: ViewStyle;
 };
 
