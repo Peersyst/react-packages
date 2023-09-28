@@ -1,5 +1,11 @@
 import { createModal } from "../ModalProvider";
-import { DialogRoot, DialogTitle, DialogMessage } from "./Dialog.styles";
+import {
+    DialogRoot,
+    DialogTitle,
+    DialogMessage,
+    DialogHeader,
+    DialogContent,
+} from "./Dialog.styles";
 import { Col } from "../../layout/Col";
 import { Row } from "../../layout/Row";
 import {
@@ -61,12 +67,7 @@ const Dialog = createModal<DialogProps>((rawProps): JSX.Element => {
         ...modalProps
     } = props;
 
-    const {
-        title: titleStyle,
-        content: contentStyle,
-        buttons: buttonsStyle,
-        ...rootStyle
-    } = useDialogStyles(props);
+    const { rootStyle, titleStyle, contentStyle, buttonsStyle } = useDialogStyles(props);
 
     const ButtonsLayoutComponent = direction === "row" ? Row : Col;
 
@@ -87,11 +88,23 @@ const Dialog = createModal<DialogProps>((rawProps): JSX.Element => {
         >
             <Col gap={gap}>
                 {notch}
-                {title && <DialogTitle style={titleStyle}>{title}</DialogTitle>}
-                {typeof content === "string" ? (
-                    <DialogMessage style={contentStyle}>{content}</DialogMessage>
-                ) : (
-                    content
+                {!!title && (
+                    <DialogHeader style={titleStyle.rootStyle}>
+                        {typeof title === "string" ? (
+                            <DialogTitle style={titleStyle.textStyle}>{title}</DialogTitle>
+                        ) : (
+                            title
+                        )}
+                    </DialogHeader>
+                )}
+                {!!content && (
+                    <DialogContent style={contentStyle.rootStyle}>
+                        {typeof content === "string" ? (
+                            <DialogMessage style={contentStyle.textStyle}>{content}</DialogMessage>
+                        ) : (
+                            content
+                        )}
+                    </DialogContent>
                 )}
                 <ButtonsLayoutComponent
                     justifyContent={DIALOG_BUTTONS_JUSTIFY_MAP[justifyContent]}
