@@ -3,7 +3,7 @@ import { BackdropProps } from "./Backdrop.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "react-native-modal";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { Toaster, useToast } from "../ToastProvider";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 
@@ -36,7 +36,6 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         panResponderThreshold,
         propagateSwipe = true,
         avoidKeyboard = false,
-        keyboardShouldPersistTaps,
         style,
     } = useMergeDefaultProps("Backdrop", props);
 
@@ -108,29 +107,19 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             statusBarTranslucent
             avoidKeyboard={avoidKeyboard}
         >
-            <ScrollView
-                scrollEnabled={false}
-                keyboardShouldPersistTaps={keyboardShouldPersistTaps}
-                style={{ flex: 1 }}
-                contentContainerStyle={{ flex: 1 }}
-                horizontal
-            >
-                <>
-                    {typeof children === "function" ? children(open, handleOpenChange) : children}
-                    {entered && !toastWasActive && toastActive && open && (
-                        <View
-                            style={{
-                                marginTop: 0,
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                            }}
-                        >
-                            <Toaster />
-                        </View>
-                    )}
-                </>
-            </ScrollView>
+            {typeof children === "function" ? children(open, handleOpenChange) : children}
+            {entered && !toastWasActive && toastActive && open && (
+                <View
+                    style={{
+                        marginTop: 0,
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                    }}
+                >
+                    <Toaster />
+                </View>
+            )}
         </Modal>
     );
 }
