@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { ScrollViewProps } from "react-native";
 import { ModalProps } from "react-native-modal";
 
 export interface BackdropProps {
@@ -105,6 +106,14 @@ export interface BackdropProps {
      * Allows swipe events to propagate to children components (eg a ScrollView inside a modal)
      */
     propagateSwipe?: ModalProps["propagateSwipe"];
+    /**
+     * Whether to avoid the keyboard
+     */
+    avoidKeyboard?: boolean;
+    /**
+     * Keyboard should persist taps
+     */
+    keyboardShouldPersistTaps?: ScrollViewProps["keyboardShouldPersistTaps"];
     /**
      * Backdrop style
      */
