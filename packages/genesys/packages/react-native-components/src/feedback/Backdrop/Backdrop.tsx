@@ -104,7 +104,9 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             propagateSwipe={propagateSwipe}
             style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
             onResponderStart={() => toastActive && hideToast()}
-            statusBarTranslucent
+            statusBarTranslucent={
+                !avoidKeyboard /* Android bug: avoidKeyboard only works if statusBarTranslucent is false */
+            }
             avoidKeyboard={avoidKeyboard}
         >
             {typeof children === "function" ? children(open, handleOpenChange) : children}
