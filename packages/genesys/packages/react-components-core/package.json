@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-components-core",
     "author": "Peersyst",
-    "version": "1.7.7",
+    "version": "1.7.8",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -54,5 +54,5 @@
         "access": "public"
     },
     "sideEffects": false,
-    "gitHead": "fee1bbfe4eb851db5deff3a9761175cedb024f01"
+    "gitHead": "53facea43af580b519df37772bd6aa44b90a07d6"
 }
