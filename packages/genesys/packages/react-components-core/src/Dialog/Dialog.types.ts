@@ -31,7 +31,7 @@ export interface DialogProps<
     DialogConfig extends ExtendedCoreDialogConfig<{}> = ExtendedCoreDialogConfig<{}>,
 > extends CommonModalComponentProps {
     notch?: ReactNode;
-    title?: string;
+    title?: ReactNode;
     content?: ReactNode;
     buttons?: DialogButton<Omit<DialogConfig["actions"], "component" | "type" | "action">>[];
     buttonsLayout?: {
