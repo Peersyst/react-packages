@@ -41,6 +41,7 @@ function InnerSelect<T>({
     open: openProp,
     onClose,
     onOpen,
+    compare = (a, b) => a === b,
 }: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useControlled(autoFocus, openProp, openProp ? onClose : onOpen);
     const { setFocused } = useFormControl();
@@ -87,7 +88,7 @@ function InnerSelect<T>({
                         </SelectDropdown>
                     )}
                 </SelectDisplay>
-                <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
+                <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
                     <SelectMenu open={open} expandable={expandable}>
                         {clear && <ClearItem value={undefined}>{clear}</ClearItem>}
                         {children ||
@@ -125,6 +126,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         open,
         onClose,
         onOpen,
+        compare,
         ...rest
     } = useMergeDefaultProps("Select", props);
 
@@ -162,6 +164,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     open={open}
                     onClose={onClose}
                     onOpen={onOpen}
+                    compare={compare}
                 >
                     {children}
                 </InnerSelect>

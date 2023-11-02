@@ -28,7 +28,7 @@ export type SelectProps<T, Multiple extends boolean = false> = FormControlledCom
 
 export type InnerSelectProps<T> = Pick<
     SelectProps<T>,
-    "placeholder" | "children" | "options" | "clear" | "open" | "onOpen" | "onClose"
+    "placeholder" | "children" | "options" | "clear" | "open" | "onOpen" | "onClose" | "compare"
 > &
     Required<
         Pick<

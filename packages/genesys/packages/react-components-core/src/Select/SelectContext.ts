@@ -6,6 +6,7 @@ export interface SelectContextType<T> {
     readonly: boolean;
     setValue: (value: T | T[]) => void;
     setOpen: (value: boolean) => void;
+    compare?: (a: T, b: T) => boolean;
 }
 
 export const SelectContext = createContext<any>({
@@ -14,6 +15,7 @@ export const SelectContext = createContext<any>({
     readonly: false,
     setValue: () => undefined,
     setOpen: () => undefined,
+    compare: (a: any, b: any) => a === b,
 });
 export const SelectProvider = SelectContext.Provider;
 export const SelectConsumer = SelectContext.Consumer;

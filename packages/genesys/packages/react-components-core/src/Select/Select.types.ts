@@ -50,6 +50,10 @@ export interface CoreSelectProps<
      */
     options?: SelectOption<T>[];
     /**
+     * Custom compare function for selected option
+     */
+    compare?: (a: T, b: T) => boolean;
+    /**
      * Select options with custom SelectItem
      */
     children?: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[];

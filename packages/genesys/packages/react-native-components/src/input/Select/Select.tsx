@@ -38,6 +38,7 @@ function InnerSelect<T>({
     open: openProp,
     onOpen,
     onClose,
+    compare = (a, b) => a === b,
 }: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useControlled(autoFocus, openProp, openProp ? onClose : onOpen);
 
@@ -96,7 +97,7 @@ function InnerSelect<T>({
                     )}
                 </View>
             </TouchableWithoutFeedback>
-            <SelectProvider value={{ value, setValue, setOpen, multiple, readonly }}>
+            <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
                 <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>
                     {clear && <SelectItem value={undefined}>{clear}</SelectItem>}
                     {children
@@ -144,6 +145,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         LabelProps = {},
         Label = FormControlLabel,
         options,
+        compare,
         style: _style,
         ...rest
     } = props;
@@ -188,6 +190,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     style={style}
                     options={options}
                     clear={clear}
+                    compare={compare}
                 >
                     {children}
                 </InnerSelect>
