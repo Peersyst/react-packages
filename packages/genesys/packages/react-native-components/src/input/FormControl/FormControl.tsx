@@ -29,6 +29,7 @@ function InnerFormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle =
         children,
         errorMsg,
         style: _style,
+        onPress,
     } = props;
 
     const context = useFormControl();
@@ -53,8 +54,12 @@ function InnerFormControl<T = any, LabelStyleType = LabelStyle, ComponentStyle =
         setFocused,
     );
 
+    const handlePress = () => {
+        onPress?.({ value, setValue });
+    };
+
     return (
-        <FormControlRoot gap={5} style={rootStyle}>
+        <FormControlRoot onPress={handlePress} style={rootStyle}>
             {label ? (
                 <LabelComponent
                     label={label}
