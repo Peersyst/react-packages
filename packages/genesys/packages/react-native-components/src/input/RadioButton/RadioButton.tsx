@@ -2,7 +2,7 @@ import { RadioButtonCoreStyle, RadioButtonProps } from "./RadioButton.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../../assets/icons";
 import { Label, LabelStyle } from "../../display/Label";
-import { FormControl } from "../FormControl";
+import { FormControl, FormControlEvent } from "../FormControl";
 import { IconButton } from "../IconButton";
 import { useRadioButtonStyles } from "./hooks";
 
@@ -23,6 +23,10 @@ export default function RadioButton(rawProps: RadioButtonProps) {
 
     const style = useRadioButtonStyles(props);
 
+    const handlePress = (e: FormControlEvent<boolean>) => {
+        e.setValue(!e.value);
+    };
+
     return (
         <FormControl<boolean, LabelStyle, RadioButtonCoreStyle>
             Label={[LabelProp, { placement: "right", ...LabelProps }]}
@@ -30,6 +34,7 @@ export default function RadioButton(rawProps: RadioButtonProps) {
             disabled={disabled}
             hideError={hideError}
             style={style}
+            onPress={handlePress}
             {...rest}
         >
             {(value, setValue, _, style) => {
