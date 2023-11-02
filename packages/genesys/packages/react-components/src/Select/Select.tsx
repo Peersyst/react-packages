@@ -62,6 +62,7 @@ function InnerSelect<T>({
         value,
         multiple,
         children || options,
+        compare,
     );
 
     const renderedValue = renderValue(displayContent);

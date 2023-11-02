@@ -50,6 +50,7 @@ function InnerSelect<T>({
         value,
         multiple,
         children || options,
+        compare,
     );
 
     const {
