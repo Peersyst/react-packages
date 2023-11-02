@@ -62,6 +62,7 @@ export type InnerSelectProps<T> = Pick<
     | "open"
     | "onOpen"
     | "onClose"
+    | "compare"
 > &
     Required<Pick<SelectProps<T>, "autoFocus" | "disabled" | "readonly" | "icon">> &
     Omit<SelectContextType<T>, "setOpen"> & {

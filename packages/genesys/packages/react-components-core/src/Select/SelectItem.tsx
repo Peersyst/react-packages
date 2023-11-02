@@ -13,8 +13,9 @@ function SelectItem<T>({ value, children }: SelectItemProps<T>): JSX.Element {
         readonly,
         value: selected,
         multiple,
+        compare,
     } = useContext<SelectContextType<T>>(SelectContext);
-    const isSelected = useSelected(value, selected, multiple);
+    const isSelected = useSelected(value, selected, multiple, compare);
 
     const handleSelect = () => {
         if (!readonly) {
