@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { ScrollViewProps } from "react-native";
 import { ModalProps } from "react-native-modal";
 
 export interface BackdropProps {
@@ -110,10 +109,6 @@ export interface BackdropProps {
      * Whether to avoid the keyboard
      */
     avoidKeyboard?: boolean;
-    /**
-     * Keyboard should persist taps
-     */
-    keyboardShouldPersistTaps?: ScrollViewProps["keyboardShouldPersistTaps"];
     /**
      * Backdrop style
      */

@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.2.27",
+    "version": "3.2.33",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {

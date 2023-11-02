@@ -1,4 +1,4 @@
-import { ChipVariant, CoreChipProps, ChipSize } from "@peersyst/react-components-core";
+import { ChipVariant, CoreChipProps, ChipSize, ThemeColor } from "@peersyst/react-components-core";
 import { TouchableWithoutFeedbackProps, TextStyle } from "react-native";
 import { GradientViewStyle } from "../../layout/GradientView";
 
@@ -26,6 +26,10 @@ export interface ChipProps extends CoreChipProps, Omit<TouchableWithoutFeedbackP
      * Whether Chip appears as pressable, does not affect onPress
      */
     pressable?: boolean;
+    /**
+     * Color of the Chip
+     */
+    color?: ThemeColor;
     /**
      * Chip style
      */

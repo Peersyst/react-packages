@@ -6,7 +6,6 @@ import Modal from "react-native-modal";
 import { View } from "react-native";
 import { Toaster, useToast } from "../ToastProvider";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { ScrollView } from "../../display/ScrollView";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -37,7 +36,6 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         panResponderThreshold,
         propagateSwipe = true,
         avoidKeyboard = false,
-        keyboardShouldPersistTaps,
         style,
     } = useMergeDefaultProps("Backdrop", props);
 
@@ -106,29 +104,24 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             propagateSwipe={propagateSwipe}
             style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
             onResponderStart={() => toastActive && hideToast()}
-            statusBarTranslucent
+            statusBarTranslucent={
+                !avoidKeyboard /* Android bug: avoidKeyboard only works if statusBarTranslucent is false */
+            }
             avoidKeyboard={avoidKeyboard}
         >
-            <ScrollView
-                scrollEnabled={false}
-                keyboardShouldPersistTaps={keyboardShouldPersistTaps}
-                style={{ flex: 1 }}
-                contentContainerStyle={{ flex: 1 }}
-            >
-                {typeof children === "function" ? children(open, handleOpenChange) : children}
-                {entered && !toastWasActive && toastActive && open && (
-                    <View
-                        style={{
-                            marginTop: 0,
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                        }}
-                    >
-                        <Toaster />
-                    </View>
-                )}
-            </ScrollView>
+            {typeof children === "function" ? children(open, handleOpenChange) : children}
+            {entered && !toastWasActive && toastActive && open && (
+                <View
+                    style={{
+                        marginTop: 0,
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                    }}
+                >
+                    <Toaster />
+                </View>
+            )}
         </Modal>
     );
 }

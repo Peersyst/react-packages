@@ -17,6 +17,7 @@ const Chip = (rawProps: ChipProps): JSX.Element => {
         onPressIn,
         onPressOut,
         onPress,
+        color: colorProp = "text",
         style: _style,
         pressable: _pressable,
         rounded: _rounded,
@@ -25,7 +26,7 @@ const Chip = (rawProps: ChipProps): JSX.Element => {
         ...touchableProps
     } = props;
 
-    const color = useColor("text");
+    const color = useColor(colorProp);
 
     const [pressed, setPressed] = useState(false);
 
