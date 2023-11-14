@@ -2,6 +2,11 @@ import { CoreFormControlProps, FormControlContextType } from "@peersyst/react-co
 import { LabelProps, LabelStyle } from "../../display/Label";
 import { TextStyle, ViewStyle } from "react-native";
 
+export interface FormControlEvent<T> {
+    value: T | undefined;
+    setValue: (value: T) => void;
+}
+
 export type FormControlStateStyle<S> = S & {
     required?: S;
     readonly?: S;
@@ -45,7 +50,7 @@ export interface FormControlProps<
         style: FormControlStateStyle<Partial<ComponentStyleType>>,
         context: FormControlContextType,
     ) => ComponentStyleType;
-    onPress?: () => void;
+    onPress?: (e: FormControlEvent<T>) => void;
 }
 
 export interface InnerFormControlProps<
