@@ -13,7 +13,6 @@ export * from "./display/ScrollView";
 export * from "./display/SectionList";
 export * from "./display/SvgIcon";
 export * from "./display/Typography";
-export * from "./display/FlashList";
 export * from "./feedback/Alert";
 export * from "./feedback/Backdrop";
 export * from "./feedback/CenteredLoader";

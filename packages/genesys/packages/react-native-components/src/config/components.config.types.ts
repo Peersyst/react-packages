@@ -59,7 +59,6 @@ import {
     ExpandableDisplayProps,
     ExpandableContentProps,
 } from "../display/Expandable";
-import { FlashListProps } from "../display/FlashList/FlashList.types";
 import { CircularProgressProps } from "../feedback/CircularProgress/CircularProgress.types";
 
 /**
@@ -75,7 +74,6 @@ export interface IconConfig extends ComponentConfig<IconProps> {}
 export interface ImageConfig extends ComponentConfig<ImageProps> {}
 export interface LabelConfig extends ComponentConfig<LabelProps> {}
 export interface ListConfig extends ComponentConfig<ListProps> {}
-export interface FlashListConfig extends ComponentConfig<FlashListProps> {}
 export interface PagerViewConfig extends ComponentConfig<PagerViewProps> {}
 export interface ScrollViewConfig extends ComponentConfig<ScrollViewProps> {}
 export interface TypographyConfig extends ComponentConfig<TypographyProps> {}
@@ -144,7 +142,6 @@ export interface ComponentsConfig {
     Image: ImageConfig;
     Label: LabelConfig;
     List: ListConfig;
-    FlashList: FlashListConfig;
     PagerView: PagerViewConfig;
     ScrollView: ScrollViewConfig;
     Typography: TypographyConfig;
