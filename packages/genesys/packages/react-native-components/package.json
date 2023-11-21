@@ -41,7 +41,7 @@
         "@babel/runtime": "^7.23.2",
         "@peersyst/react-components-core": "^1.7.9",
         "@peersyst/react-hooks": "^2.2.9",
-        "@peersyst/react-native-styled": "^3.0.0",
+        "@peersyst/react-native-styled": "^3.1.0",
         "@peersyst/react-native-utils": "^2.1.0",
         "@peersyst/react-types": "^1.6.2",
         "@peersyst/react-utils": "^2.4.0",
