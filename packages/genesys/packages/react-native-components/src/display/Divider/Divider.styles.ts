@@ -1,9 +1,9 @@
 import { DividerRootProps, DividerWidths, DividerWithChildrenProps } from "./Divider.types";
 import styled, { currentColor } from "@peersyst/react-native-styled";
-import { View } from "react-native";
+import { DimensionValue, View } from "react-native";
 import { Row } from "../../layout/Row";
 
-const dividerWidths: Record<DividerWidths, string> = {
+const dividerWidths: Record<DividerWidths, DimensionValue> = {
     sm: "25%",
     md: "50%",
     lg: "75%",

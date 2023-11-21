@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.3.0",
+    "version": "3.3.1",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -22,7 +22,7 @@
         "playground:ios": "yarn playground:start --ios"
     },
     "peerDependencies": {
-        "@types/react": "~18.2.14",
+        "@types/react": "~18.0.27",
         "@types/react-native": "0.72.6",
         "expo": "^49.0.0",
         "react": "^18.2.0",
@@ -42,7 +42,7 @@
         "@peersyst/react-components-core": "^1.7.9",
         "@peersyst/react-hooks": "^2.2.9",
         "@peersyst/react-native-styled": "^3.0.0",
-        "@peersyst/react-native-utils": "^2.0.2",
+        "@peersyst/react-native-utils": "^2.1.0",
         "@peersyst/react-types": "^1.6.2",
         "@peersyst/react-utils": "^2.4.0",
         "@react-native-async-storage/async-storage": "1.18.2",
@@ -66,7 +66,7 @@
         "react-native-svg": "14.0.0"
     },
     "devDependencies": {
-        "@types/react": "~18.2.14",
+        "@types/react": "~18.0.27",
         "@types/react-native": "0.72.6",
         "expo": "^49.0.0",
         "react": "^18.2.0",

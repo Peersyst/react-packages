@@ -2,7 +2,12 @@
 import { CodeInputsProps } from "./CodeInputs.types";
 import { Row } from "../../../layout/Row";
 import { createRef, useRef } from "react";
-import { NativeSyntheticEvent, TextInput, TextInputKeyPressEventData } from "react-native";
+import {
+    DimensionValue,
+    NativeSyntheticEvent,
+    TextInput,
+    TextInputKeyPressEventData,
+} from "react-native";
 import { CodeInput } from "./CodeInputs.styles";
 
 const CodeInputs = ({
@@ -79,7 +84,7 @@ const CodeInputs = ({
     };
 
     return (
-        <Row gap={gap} style={rootStyle}>
+        <Row gap={gap as DimensionValue} style={rootStyle}>
             {[...Array(digits)].map((_, i) => (
                 <CodeInput
                     placeholder={placeholder?.split("")[i]}
