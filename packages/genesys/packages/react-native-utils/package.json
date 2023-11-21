@@ -19,11 +19,11 @@
     },
     "peerDependencies": {
         "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.6",
-        "expo": "^48.0.9",
+        "@types/react-native": "0.72.6",
+        "expo": "^49.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.7"
+        "react-native": "0.72.6"
     },
     "peerDependenciesMeta": {
         "@types/react": {
@@ -34,17 +34,18 @@
         }
     },
     "dependencies": {
-        "@babel/runtime": "^7.16.7",
+        "@babel/runtime": "^7.23.0",
         "@peersyst/react-types": "^1.6.1",
-        "expo-clipboard": "~4.1.2"
+        "expo": "^49.0.0",
+        "expo-clipboard": "~4.3.1"
     },
     "devDependencies": {
-        "@types/react": "^18.0.27",
-        "@types/react-native": "0.71.6",
-        "expo": "^48.0.9",
+        "@types/react": "~18.2.14",
+        "@types/react-native": "^0.72.6",
+        "expo": "^49.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.71.7"
+        "react-native": "0.72.6"
     },
     "publishConfig": {
         "access": "public"
