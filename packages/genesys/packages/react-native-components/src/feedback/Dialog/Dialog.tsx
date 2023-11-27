@@ -15,7 +15,7 @@ import {
     useComponentConfig,
     useMergeDefaultProps,
 } from "@peersyst/react-components-core";
-import { FlexStyle } from "react-native";
+import { DimensionValue, FlexStyle } from "react-native";
 import { DialogProps } from "./Dialog.types";
 import { useDialogStyles } from "./hooks";
 import { useControlled } from "@peersyst/react-hooks";
@@ -109,7 +109,7 @@ const Dialog = createModal<DialogProps>((rawProps): JSX.Element => {
                 <ButtonsLayoutComponent
                     justifyContent={DIALOG_BUTTONS_JUSTIFY_MAP[justifyContent]}
                     alignItems={DIALOG_BUTTONS_ALIGN_MAP[alignItems]}
-                    gap={buttonLayoutGap}
+                    gap={buttonLayoutGap as DimensionValue}
                     style={buttonsStyle}
                     {...restButtonsLayout}
                 >

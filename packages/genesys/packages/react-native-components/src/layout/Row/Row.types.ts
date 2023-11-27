@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { FlexStyle, ViewProps } from "react-native";
+import { DimensionValue, FlexStyle, ViewProps } from "react-native";
 
 export interface RowProps extends ViewProps {
     flex?: number;
-    gap?: number | string;
+    gap?: DimensionValue;
     justifyContent?: FlexStyle["justifyContent"];
     alignItems?: FlexStyle["alignItems"];
     wrap?: boolean;

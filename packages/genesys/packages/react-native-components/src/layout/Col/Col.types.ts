@@ -1,8 +1,8 @@
-import { FlexStyle, ViewProps } from "react-native";
+import { DimensionValue, FlexStyle, ViewProps } from "react-native";
 import { ReactNode } from "react";
 
 export interface ColProps extends ViewProps {
-    gap?: number | string;
+    gap?: DimensionValue;
     justifyContent?: FlexStyle["justifyContent"];
     alignItems?: FlexStyle["alignItems"];
     flex?: number;
