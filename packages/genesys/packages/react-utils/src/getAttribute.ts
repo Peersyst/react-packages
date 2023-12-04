@@ -8,6 +8,6 @@ export default function <T extends object, K extends NestedKeys<T>>(
 ): DeepPick<T, K> {
     const [firstKey, ...restKeys] = key.split(".");
 
-    // @ts-ignore
+    // @ts-ignore+
     return restKeys.reduce((prev, curr) => prev[curr], obj[firstKey as keyof T]);
 }
