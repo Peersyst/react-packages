@@ -1,6 +1,6 @@
 # Versions
 
-## 3.3.5
+## 3.3.6
 
 [IconButton] feat: add `hitSlot` prop to `IconButton`
 
