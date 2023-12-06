@@ -1,5 +1,9 @@
 # Versions
 
+## 3.3.6
+
+[IconButton] feat: add `hitSlot` prop to `IconButton`
+
 ## 3.2.25
 
 [Select] refactor: get the open, onClose, onOpen props from the core.

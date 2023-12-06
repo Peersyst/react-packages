@@ -17,6 +17,7 @@ const IconButton = (rawProps: IconButtonProps): JSX.Element => {
         disabled: disabledProp = false,
         children,
         style: _style,
+        hitSlop,
     } = props;
 
     const [pressed, setPressed] = useState(false);
@@ -37,6 +38,7 @@ const IconButton = (rawProps: IconButtonProps): JSX.Element => {
             accessibilityRole="button"
             onPressIn={() => !disabled && setPressed(true)}
             onPressOut={() => !disabled && setPressed(false)}
+            hitSlop={hitSlop}
         >
             <IconButtonRoot style={rootStyle}>
                 {loading ? (
