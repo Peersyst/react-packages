@@ -1,5 +1,9 @@
 # Versions
 
+# 3.3.7
+
+[Backdrop] fix: Backdrop not filling entire screen (see)[https://github.com/react-native-modal/react-native-modal#the-backdrop-is-not-completely-filledcovered-on-some-android-devices-galaxy-for-one]
+
 ## 3.3.6
 
 [IconButton] feat: add `hitSlot` prop to `IconButton`
