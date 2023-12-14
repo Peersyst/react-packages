@@ -3,7 +3,6 @@ import { View } from "react-native";
 import { ColRoot } from "./Col.styles";
 import { ColProps } from "./Col.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { isValidGapChild } from "../../utils";
 
 const Col = (props: ColProps): JSX.Element => {
     const {
@@ -16,7 +15,7 @@ const Col = (props: ColProps): JSX.Element => {
         ...rest
     } = useMergeDefaultProps("Col", props);
 
-    const children = Children.toArray(childrenProp).filter(isValidGapChild);
+    const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 
     const hasGap =

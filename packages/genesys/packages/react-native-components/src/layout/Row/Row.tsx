@@ -3,7 +3,6 @@ import { RowRoot } from "./Row.styles";
 import { RowProps } from "./Row.types";
 import { View, StyleSheet } from "react-native";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
-import { isValidGapChild } from "../../utils";
 
 const Row = (props: RowProps): JSX.Element => {
     const {
@@ -17,7 +16,7 @@ const Row = (props: RowProps): JSX.Element => {
         ...rest
     } = useMergeDefaultProps("Row", props);
 
-    const children = Children.toArray(childrenProp).filter(isValidGapChild);
+    const children = Children.toArray(childrenProp).filter((child) => !!child);
     const childrenLength = Children.count(children);
 
     const style = StyleSheet.flatten(styleProp);
