@@ -6,6 +6,7 @@ import { Accessor } from "./accessors.types";
 
 type ThemeKey = FlattenedNestedKeys<Theme>;
 
+// @ts-ignore Not excessively deep
 export type FromThemeAccessor<K extends ThemeKey, R = DeepPick<Theme, K>> = Accessor<R>;
 
 export type FromTheme = <K extends ThemeKey, R = DeepPick<Theme, K>>(

@@ -11,6 +11,14 @@ import useButton from "./hooks/useButton";
 import { ContainedSuspense } from "../../feedback/ContainedSuspense";
 import { Row } from "../../layout/Row";
 
+abstract class Component {
+    constructor(protected readonly ctx: object) {}
+
+    abstract render(): JSX.Element;
+}
+
+abstract class AstronButton extends Component {}
+
 const Button = (rawProps: ButtonProps): JSX.Element => {
     const { props, computed } = useButton(rawProps);
 

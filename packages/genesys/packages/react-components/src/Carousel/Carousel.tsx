@@ -26,7 +26,7 @@ const Carousel = forwardRef((props: CarouselProps, ref): JSX.Element => {
     const carouselRef = useRef<HTMLElement>();
     const handleCarouselRef = useForkRef(carouselRef, ref);
     const indexChildRef = useRef<HTMLElement | null>();
-    const autoplayInterval = useRef<NodeJS.Timer>();
+    const autoplayInterval = useRef<NodeJS.Timeout>();
     const carouselResizeObserver = useMemo(
         () =>
             new ResizeObserver(() => {

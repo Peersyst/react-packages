@@ -4,7 +4,7 @@ import * as React from "react";
 export type BadgePosition = { horizontal?: "left" | "right"; vertical?: "bottom" | "top" };
 export type BadgeOverlap = "circular" | "rectangular";
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
     /**
      * Badge position
      */

@@ -31,7 +31,7 @@ export function hexToRgb(color: string) {
     let colors = color.match(re);
 
     if (colors && colors[0].length === 1) {
-        colors = colors.map((n) => n + n);
+        colors = colors.map((n) => n + n) as RegExpMatchArray;
     }
 
     return colors
@@ -193,7 +193,7 @@ export function getLuminance(color: string | ColorObject) {
         if ((color as ColorObject).type !== "color") {
             (val as number) /= 255; // normalized
         }
-        return val <= 0.03928
+        return (val as number) <= 0.03928
             ? (val as number) / 12.92
             : (((val as number) + 0.055) / 1.055) ** 2.4;
     }) as ColorValues;
