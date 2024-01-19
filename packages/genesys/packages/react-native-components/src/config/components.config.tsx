@@ -33,11 +33,6 @@ const componentsConfig: ComponentsConfig = {
             loading: false,
         },
     },
-    FlashList: {
-        defaultProps: {
-            loading: false,
-        },
-    },
     PagerView: {
         defaultProps: {
             initialPage: 0,

@@ -6,6 +6,7 @@ import Modal from "react-native-modal";
 import { View } from "react-native";
 import { Toaster, useToast } from "../ToastProvider";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import useBackdropDeviceHeight from "./hooks/useBackdropDeviceHeight";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -43,6 +44,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     const [entered, setEntered] = useState(false);
     const { toastActive, hideToast } = useToast();
     const [toastWasActive, setToastWasActive] = useState(toastActive);
+    const deviceHeight = useBackdropDeviceHeight();
 
     const handleClose = () => {
         if (closable && open) {
@@ -108,6 +110,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
                 !avoidKeyboard /* Android bug: avoidKeyboard only works if statusBarTranslucent is false */
             }
             avoidKeyboard={avoidKeyboard}
+            deviceHeight={deviceHeight}
         >
             {typeof children === "function" ? children(open, handleOpenChange) : children}
             {entered && !toastWasActive && toastActive && open && (

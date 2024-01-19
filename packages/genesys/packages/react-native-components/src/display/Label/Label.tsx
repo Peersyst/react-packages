@@ -1,5 +1,5 @@
 import { LabelProps } from "./Label.types";
-import { FlexStyle } from "react-native";
+import { DimensionValue, FlexStyle } from "react-native";
 import { LabelColRoot, LabelRowRoot, LabelText } from "./Label.styles";
 import { Fragment, isValidElement } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -48,7 +48,11 @@ const Label = (rawProps: LabelProps): JSX.Element => {
     ];
 
     return (
-        <RootComponent gap={gap} alignment={alignment} style={{ width: "100%", ...rootStyle }}>
+        <RootComponent
+            gap={gap as DimensionValue}
+            alignment={alignment}
+            style={{ width: "100%", ...rootStyle }}
+        >
             {direction.includes("reverse") ? content.reverse() : content}
         </RootComponent>
     );

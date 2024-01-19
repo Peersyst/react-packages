@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ViewStyle } from "react-native";
+import { DimensionValue, ViewStyle } from "react-native";
 
 export interface TabsProps {
     /**
@@ -17,7 +17,7 @@ export interface TabsProps {
     /**
      * Space between TabGroup and TabPanels
      */
-    gap?: string | number;
+    gap?: DimensionValue;
     /**
      * Tabs styles
      */
