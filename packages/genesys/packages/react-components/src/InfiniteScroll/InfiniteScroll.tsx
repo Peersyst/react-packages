@@ -19,7 +19,11 @@ const InfiniteScroll = (props: InfiniteScrollProps): JSX.Element => {
     return (
         <>
             {children}
-            {!end && <InfiniteScrollLoader visible={loading}>{loaderElement}</InfiniteScrollLoader>}
+            {!end && (
+                <InfiniteScrollLoader className="InfiniteScrollLoader" visible={loading}>
+                    {loaderElement}
+                </InfiniteScrollLoader>
+            )}
             {end && endElement}
             {!end && (
                 <OnScreenObserver offset={observerOffset} container={container}>
