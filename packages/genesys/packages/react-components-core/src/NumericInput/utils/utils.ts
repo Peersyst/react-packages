@@ -11,12 +11,21 @@ export function getGroupSeparator(locale?: string): string {
     return getDecimalSeparator(locale) === "," ? "." : ",";
 }
 
-export const formatNumber = (value: string, locale: string, maxDecimals?: number) => {
+export function formatInt(value: string): string {
+    // Remove leading zeros
+    return value.replace(/^0+(?!$)/, "");
+}
+
+export const formatNumber = (value: string, locale: string, maxDecimals?: number): string => {
     const decimalSeparator = getDecimalSeparator(locale);
 
     let [int, dec = ""] = value.split(".");
     if (value === "-0") int = int.replace("-0", "-");
-    return int + (value.includes(".") ? decimalSeparator : "") + dec.substring(0, maxDecimals);
+    return (
+        formatInt(int) +
+        (value.includes(".") ? decimalSeparator : "") +
+        dec.substring(0, maxDecimals)
+    );
 };
 
 export const isNumber = (str: string): boolean => {
