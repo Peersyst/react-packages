@@ -27,6 +27,9 @@ const Navigator = () => {
         };
     }, [theme]);
 
+    const parsedPlaygrounds = Object.values(playgrounds);
+    const welcome = parsedPlaygrounds.shift()!;
+
     return (
         <NavigationContainer theme={navigationTheme}>
             <Drawer.Navigator
@@ -35,9 +38,12 @@ const Navigator = () => {
                     headerRight: () => <SwitchThemeButton />,
                 }}
             >
-                {Object.values(playgrounds).map(({ name, component }) => (
-                    <Drawer.Screen key={name} name={name} component={component} />
-                ))}
+                <Drawer.Screen name={welcome.name} component={welcome.component} />
+                {Object.values(parsedPlaygrounds)
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map(({ name, component }) => (
+                        <Drawer.Screen key={name} name={name} component={component} />
+                    ))}
             </Drawer.Navigator>
         </NavigationContainer>
     );

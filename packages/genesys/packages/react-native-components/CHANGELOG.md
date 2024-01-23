@@ -1,5 +1,9 @@
 # Versions
 
+# 3.3.10
+
+[package.json] chore: update react-native-components
+
 # 3.3.7
 
 [Backdrop] fix: Backdrop not filling entire screen (see)[https://github.com/react-native-modal/react-native-modal#the-backdrop-is-not-completely-filledcovered-on-some-android-devices-galaxy-for-one]

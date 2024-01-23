@@ -1,5 +1,9 @@
 # Versions
 
+## 1.7.11
+
+[useNumericInput] Do not allow multiple zeros
+
 ## 1.7.7
 
 [Select] Move open prop to the Core
