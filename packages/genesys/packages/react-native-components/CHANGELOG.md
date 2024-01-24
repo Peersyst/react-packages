@@ -1,5 +1,9 @@
 # Versions
 
+# 3.3.11
+
+[Backdrop] fix: fix `avoidKeyboard` on Android.
+
 # 3.3.10
 
 [package.json] chore: update react-native-components

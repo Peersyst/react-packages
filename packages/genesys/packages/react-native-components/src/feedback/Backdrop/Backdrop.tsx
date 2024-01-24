@@ -3,7 +3,7 @@ import { BackdropProps } from "./Backdrop.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "react-native-modal";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { Toaster, useToast } from "../ToastProvider";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import useBackdropDeviceHeight from "./hooks/useBackdropDeviceHeight";
@@ -106,10 +106,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             propagateSwipe={propagateSwipe}
             style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
             onResponderStart={() => toastActive && hideToast()}
-            statusBarTranslucent={
-                !avoidKeyboard /* Android bug: avoidKeyboard only works if statusBarTranslucent is false */
-            }
-            avoidKeyboard={avoidKeyboard}
+            {...(Platform.OS === "ios" && { avoidKeyboard })}
             deviceHeight={deviceHeight}
         >
             {typeof children === "function" ? children(open, handleOpenChange) : children}
