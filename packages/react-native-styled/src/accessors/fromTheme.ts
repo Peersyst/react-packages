@@ -1,10 +1,10 @@
 import { getAttribute } from "@peersyst/react-utils";
 import { Theme } from "../theme";
 import createAccessor from "./createAccessor";
-import { FlattenedNestedKeys, DeepPick } from "@peersyst/react-types";
+import { NestedKeys, DeepPick } from "@swisstype/essential";
 import { Accessor } from "./accessors.types";
 
-type ThemeKey = FlattenedNestedKeys<Theme>;
+type ThemeKey = NestedKeys<Theme>;
 
 // @ts-ignore Not excessively deep
 export type FromThemeAccessor<K extends ThemeKey, R = DeepPick<Theme, K>> = Accessor<R>;

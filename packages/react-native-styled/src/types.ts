@@ -1,11 +1,12 @@
 import { Theme } from "@peersyst/react-native-styled";
-import { ScaledSize } from "react-native";
+import { AppStateStatus, ScaledSize } from "react-native";
 import { EdgeInsets } from "react-native-safe-area-context";
-import { AnyObject, Inject } from "@peersyst/react-types";
+import { AnyObject, Inject } from "@swisstype/essential";
 import { FromTheme } from "./accessors/fromTheme";
 import { FromProps } from "./accessors/fromProps";
 import { FromDimensions } from "./accessors/fromDimensions";
 import { FromSafeAreaInsets } from "./accessors/fromSafeAreaInsets";
+import { FromAppState } from "./accessors/fromAppState";
 
 export type Styled<S> = Omit<S, "color"> & { color?: string };
 
@@ -13,12 +14,14 @@ export type SX<TStyle> = (p: {
     theme: Theme;
     dimensions: ScaledSize;
     safeAreaInsets: EdgeInsets;
+    appState: AppStateStatus;
 }) => TStyle;
 
 export type StyledParams<P extends { style?: P["style"] }, E = {}> = {
     theme: Theme;
     dimensions: ScaledSize;
     safeAreaInsets: EdgeInsets;
+    appState: AppStateStatus;
 } & P &
     E;
 
@@ -31,6 +34,7 @@ export type StylesheetParams<P> = {
     fromProps: FromProps<P>;
     fromDimensions: FromDimensions;
     fromSafeAreaInsets: FromSafeAreaInsets;
+    fromAppState: FromAppState;
 };
 
 export type StylesheetFunction<P extends { style?: P["style"] }> = (

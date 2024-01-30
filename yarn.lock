@@ -4125,6 +4125,11 @@
     regenerator-runtime "^0.13.7"
     resolve-from "^5.0.0"
 
+"@swisstype/essential@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@swisstype/essential/-/essential-0.0.5.tgz#dccc39c6692b32bce7f8faa52f2a2ce5e1c62d8b"
+  integrity sha512-tM5Z+Dbib2MLBNe3BcxTkiQ14gkglWLnXR4loCn/JmGFBDkbe3FSIGMp6jcwbkXZBhKbFBMtI5UZW7rGTtt17w==
+
 "@tanstack/react-table@^8.7.9":
   version "8.11.6"
   resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.11.6.tgz#ae234355eaae230ede95ebcbadb3251482eb6087"

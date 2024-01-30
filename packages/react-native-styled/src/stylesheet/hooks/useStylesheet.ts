@@ -1,4 +1,4 @@
-import { AnyObject } from "@peersyst/react-types";
+import { AnyObject } from "@swisstype/essential";
 import { JSXElementConstructor, useContext, useMemo } from "react";
 import { StylesheetContext } from "../context";
 import { getComponentStylesheetName } from "../utils";

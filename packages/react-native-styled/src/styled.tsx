@@ -5,7 +5,8 @@ import { deepmerge } from "@peersyst/react-utils";
 import { StyleSheet, useWindowDimensions } from "react-native";
 import { StyledFunction, StyledComponentProps, StyledParams, Stylesheet } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Loosen } from "@peersyst/react-types";
+import { Loosen } from "@swisstype/essential";
+import { useAppState } from "./hooks/useAppState";
 
 /**
  * Makes a styled component
@@ -33,11 +34,13 @@ export default function styled<
             const theme = useTheme();
             const dimensions = useWindowDimensions();
             const safeAreaInsets = useSafeAreaInsets();
+            const appState = useAppState();
 
             const params = {
                 theme,
                 dimensions,
                 safeAreaInsets,
+                appState,
                 ...styledComponentProps,
             } as StyledParams<P, E>;
 
@@ -51,10 +54,13 @@ export default function styled<
                 if (styledSx) styles = deepmerge(styles, styledSx(params));
                 if (styleProp) styles = deepmerge(styles, StyleSheet.flatten(styleProp));
                 if (sxProp)
-                    styles = deepmerge(styles, sxProp({ theme, dimensions, safeAreaInsets }));
+                    styles = deepmerge(
+                        styles,
+                        sxProp({ theme, dimensions, safeAreaInsets, appState }),
+                    );
 
                 return resolveStyles(params, styles);
-            }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString()]);
+            }, [theme, dimensions, safeAreaInsets, styleProp, rest, sxProp?.toString(), appState]);
 
             const finalProps = {
                 ...props,

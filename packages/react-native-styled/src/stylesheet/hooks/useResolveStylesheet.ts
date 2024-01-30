@@ -4,6 +4,7 @@ import { useWindowDimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useMemo } from "react";
 import { resolveStyles } from "../../helpers";
+import { useAppState } from "../../hooks/useAppState";
 
 export interface ResolveStylesheetOptions<P extends StyledComponentProps<P["style"]>> {
     bypass?: boolean;
@@ -24,16 +25,17 @@ export default function useResolveStylesheet<P extends StyledComponentProps<P["s
     const theme = useTheme();
     const dimensions = useWindowDimensions();
     const safeAreaInsets = useSafeAreaInsets();
+    const appState = useAppState();
 
     return useMemo(() => {
         if (!styles) return {};
 
-        const params = { theme, dimensions, safeAreaInsets, ...props };
+        const params = { theme, dimensions, safeAreaInsets, appState, ...props };
 
         const computedSyles = compute[0](styles);
 
         if (bypass) return computedSyles || {};
 
         return resolveStyles(params, computedSyles) || {};
-    }, [theme, dimensions, safeAreaInsets, props, ...compute[1]]);
+    }, [theme, dimensions, safeAreaInsets, props, appState, ...compute[1]]);
 }
