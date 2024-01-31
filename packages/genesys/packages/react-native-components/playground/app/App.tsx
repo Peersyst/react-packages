@@ -1,4 +1,4 @@
-import { ConfigProvider, StatusBar } from "@peersyst/react-native-components";
+import { ConfigProvider, StatusBar, ToastProvider } from "@peersyst/react-native-components";
 import Navigator from "./Navigator";
 import stylesheets from "../stylesheets";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -10,8 +10,10 @@ export default function App() {
         <SafeAreaProvider>
             <ConfigProvider config={config}>
                 <StylesheetProvider stylesheets={stylesheets}>
-                    <Navigator />
-                    <StatusBar />
+                    <ToastProvider>
+                        <Navigator />
+                        <StatusBar />
+                    </ToastProvider>
                 </StylesheetProvider>
             </ConfigProvider>
         </SafeAreaProvider>

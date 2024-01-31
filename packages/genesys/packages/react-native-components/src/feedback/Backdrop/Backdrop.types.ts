@@ -110,6 +110,12 @@ export interface BackdropProps {
      */
     avoidKeyboard?: boolean;
     /**
+     * If true, renders the backdrop in a react-native `Modal`.
+     * If false, renders the backdrop with a portal in the `ModalProvider`.
+     * @default false
+     */
+    native?: boolean;
+    /**
      * Backdrop style
      */
     style?: ModalProps["style"];

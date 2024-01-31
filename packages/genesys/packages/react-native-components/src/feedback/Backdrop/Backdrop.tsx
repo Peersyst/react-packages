@@ -1,12 +1,13 @@
-import { useState } from "react";
 import { BackdropProps } from "./Backdrop.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { useTheme } from "@peersyst/react-native-styled";
 import Modal from "react-native-modal";
-import { Platform, View } from "react-native";
-import { Toaster, useToast } from "../ToastProvider";
+import { Platform } from "react-native";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import useBackdropDeviceHeight from "./hooks/useBackdropDeviceHeight";
+import { MODAL_PORTAL_HOST } from "../ModalProvider";
+import { Fragment } from "react";
+import { Portal } from "../../util/Portal";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -37,13 +38,11 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         panResponderThreshold,
         propagateSwipe = true,
         avoidKeyboard = false,
+        native = false,
         style,
     } = useMergeDefaultProps("Backdrop", props);
 
     const [open, setOpen] = useControlled(defaultOpen, propsOpen);
-    const [entered, setEntered] = useState(false);
-    const { toastActive, hideToast } = useToast();
-    const [toastWasActive, setToastWasActive] = useState(toastActive);
     const deviceHeight = useBackdropDeviceHeight();
 
     const handleClose = () => {
@@ -54,17 +53,10 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
     };
 
     const handleEntered = () => {
-        setEntered(true);
-        if (toastWasActive) {
-            setToastWasActive(false);
-        }
         onEntered?.();
     };
 
     const handleOpen = () => {
-        if (toastWasActive) {
-            hideToast();
-        }
         onOpen?.();
     };
 
@@ -75,53 +67,43 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
 
     const { palette } = useTheme();
 
+    const [Root, rootProps] = native ? [Fragment, {}] : [Portal, { name: MODAL_PORTAL_HOST }];
+
     return (
-        <Modal
-            isVisible={open}
-            onModalWillHide={handleClose}
-            onModalHide={onExited}
-            onBackdropPress={closeOnBackdropTap ? handleClose : undefined}
-            onBackButtonPress={handleClose}
-            swipeDirection={
-                !swipeable || (toastActive && !toastWasActive) ? undefined : swipeDirection
-            }
-            swipeThreshold={swipeable && closable ? swipeThreshold : 9999}
-            onSwipeComplete={() => swipeable && handleClose()}
-            onModalWillShow={handleOpen}
-            onModalShow={handleEntered}
-            useNativeDriverForBackdrop
-            hasBackdrop={renderBackdrop}
-            backdropColor={backdropColor ?? palette.backdrop}
-            backdropOpacity={backdropOpacity ?? 1}
-            animationIn={animationIn === "none" ? "fadeIn" : animationIn}
-            animationInTiming={animationIn === "none" ? 0.01 : animationInTiming}
-            animationOut={animationOut === "none" ? "fadeOut" : animationOut}
-            animationOutTiming={animationOut === "none" ? 0.01 : animationOutTiming}
-            backdropTransitionInTiming={backdropTransitionInTiming}
-            backdropTransitionOutTiming={backdropTransitionOutTiming}
-            onSwipeStart={onSwipeStart}
-            onSwipeMove={onSwipeMove}
-            onSwipeCancel={onSwipeCancel}
-            panResponderThreshold={panResponderThreshold}
-            propagateSwipe={propagateSwipe}
-            style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
-            onResponderStart={() => toastActive && hideToast()}
-            {...(Platform.OS === "ios" && { avoidKeyboard })}
-            deviceHeight={deviceHeight}
-        >
-            {typeof children === "function" ? children(open, handleOpenChange) : children}
-            {entered && !toastWasActive && toastActive && open && (
-                <View
-                    style={{
-                        marginTop: 0,
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                    }}
-                >
-                    <Toaster />
-                </View>
-            )}
-        </Modal>
+        <Root {...rootProps}>
+            <Modal
+                isVisible={open}
+                onModalWillHide={handleClose}
+                onModalHide={onExited}
+                onBackdropPress={closeOnBackdropTap ? handleClose : undefined}
+                onBackButtonPress={handleClose}
+                swipeDirection={swipeable ? swipeDirection : undefined}
+                swipeThreshold={swipeable && closable ? swipeThreshold : 9999}
+                onSwipeComplete={() => swipeable && handleClose()}
+                onModalWillShow={handleOpen}
+                onModalShow={handleEntered}
+                useNativeDriverForBackdrop
+                hasBackdrop={renderBackdrop}
+                backdropColor={backdropColor ?? palette.backdrop}
+                backdropOpacity={backdropOpacity ?? 1}
+                animationIn={animationIn === "none" ? "fadeIn" : animationIn}
+                animationInTiming={animationIn === "none" ? 0.01 : animationInTiming}
+                animationOut={animationOut === "none" ? "fadeOut" : animationOut}
+                animationOutTiming={animationOut === "none" ? 0.01 : animationOutTiming}
+                backdropTransitionInTiming={backdropTransitionInTiming}
+                backdropTransitionOutTiming={backdropTransitionOutTiming}
+                onSwipeStart={onSwipeStart}
+                onSwipeMove={onSwipeMove}
+                onSwipeCancel={onSwipeCancel}
+                panResponderThreshold={panResponderThreshold}
+                propagateSwipe={propagateSwipe}
+                style={[{ margin: 0, justifyContent: "center", alignItems: "center" }, style]}
+                {...(Platform.OS === "ios" && { avoidKeyboard })}
+                deviceHeight={deviceHeight}
+                coverScreen={native}
+            >
+                {typeof children === "function" ? children(open, handleOpenChange) : children}
+            </Modal>
+        </Root>
     );
 }

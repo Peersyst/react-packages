@@ -7,6 +7,10 @@ export interface SelectMenuProps {
      */
     open: boolean;
     /**
+     * Sets menu open
+     */
+    setOpen: (open: boolean) => void;
+    /**
      * Menu style
      */
     style?: ViewStyle;

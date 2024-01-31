@@ -5,7 +5,7 @@ import { deepmerge } from "@peersyst/react-utils";
 import { StyleSheet, useWindowDimensions } from "react-native";
 import { StyledFunction, StyledComponentProps, StyledParams, Stylesheet } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Loosen } from "@peersyst/react-types";
+import { Loosen } from "@swisstype/essential";
 
 /**
  * Makes a styled component

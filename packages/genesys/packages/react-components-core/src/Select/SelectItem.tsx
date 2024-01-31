@@ -15,6 +15,7 @@ function SelectItem<T>({ value, children }: SelectItemProps<T>): JSX.Element {
         multiple,
         compare,
     } = useContext<SelectContextType<T>>(SelectContext);
+
     const isSelected = useSelected(value, selected, multiple, compare);
 
     const handleSelect = () => {

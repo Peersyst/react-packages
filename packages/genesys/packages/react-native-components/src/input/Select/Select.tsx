@@ -98,8 +98,14 @@ function InnerSelect<T>({
                     )}
                 </View>
             </TouchableWithoutFeedback>
-            <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
-                <SelectMenu open={open} style={menuStyle} header={header} footer={footer}>
+            <SelectMenu
+                open={open}
+                setOpen={setOpen}
+                style={menuStyle}
+                header={header}
+                footer={footer}
+            >
+                <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
                     {clear && <SelectItem value={undefined}>{clear}</SelectItem>}
                     {children
                         ? Children.map(children, (child) => {
@@ -114,8 +120,8 @@ function InnerSelect<T>({
                                   {option.label}
                               </SelectItem>
                           ))}
-                </SelectMenu>
-            </SelectProvider>
+                </SelectProvider>
+            </SelectMenu>
         </View>
     );
 }

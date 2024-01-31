@@ -1,4 +1,4 @@
-import { AnyObject } from "@peersyst/react-types";
+import { AnyObject } from "@swisstype/essential";
 import { Stylesheet } from "../types";
 
 /**
