@@ -1,7 +1,7 @@
-import { PortalHost } from "@gorhom/portal";
 import { ModalManager } from "./ModalManager";
 import { ModalProvider as CoreModalProvider } from "@peersyst/react-components-core";
 import { ReactNode } from "react";
+import { PortalHost } from "../../util/Portal";
 
 interface ModalProviderProps {
     children?: ReactNode;

@@ -4,7 +4,7 @@ import { ThemeProvider } from "../theme";
 import { GlobalStylesProvider } from "./globalStyles";
 import { StylesheetProvider } from "@peersyst/react-native-styled";
 import stylesheets from "./stylesheets";
-import { PortalProvider } from "@gorhom/portal";
+import { PortalProvider } from "../util/Portal";
 
 interface ConfigProviderProps {
     config: Config;
