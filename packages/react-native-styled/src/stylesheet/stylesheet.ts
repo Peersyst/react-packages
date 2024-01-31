@@ -6,13 +6,7 @@ import {
     StylesheetFunction,
     StylesheetWithMetadata,
 } from "../types";
-import {
-    fromTheme,
-    fromProps,
-    fromDimensions,
-    fromSafeAreaInsets,
-    fromAppState,
-} from "../accessors";
+import { fromTheme, fromProps, fromDimensions, fromSafeAreaInsets } from "../accessors";
 import { getComponentStylesheetName } from "./utils";
 
 /**
@@ -32,7 +26,6 @@ export default function stylesheet<P extends StyledComponentProps<P["style"]>>(
             fromProps,
             fromDimensions,
             fromSafeAreaInsets,
-            fromAppState,
         } as any) || {}) as Stylesheet<P["style"]> as StylesheetWithMetadata<P["style"]>;
         stylesheet._metadata = {
             component: getComponentStylesheetName(Component),

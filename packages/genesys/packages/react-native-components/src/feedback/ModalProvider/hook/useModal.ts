@@ -1,16 +1,13 @@
-import {
-    ModalContext,
-    useModal as useModalCore,
-    UseModalResult,
-} from "@peersyst/react-components-core";
-import { useContext } from "react";
+import { useModal as useModalCore, UseModalResult } from "@peersyst/react-components-core";
 
+/**
+ * @deprecated
+ */
 export default function (): UseModalResult {
-    const { overrideModal } = useContext(ModalContext);
-    const { hideModal, isModalActive } = useModalCore();
+    const { showModal, hideModal, isModalActive } = useModalCore();
 
     return {
-        showModal: overrideModal,
+        showModal,
         hideModal,
         isModalActive,
     };

@@ -1,6 +1,9 @@
 import { TouchableWithoutFeedback } from "react-native";
 import { useModalState } from "@peersyst/react-components-core";
 
+/**
+ * @deprecated
+ */
 export function ModalManager(): JSX.Element {
     const stateModals = useModalState();
 

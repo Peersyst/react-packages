@@ -1,14 +1,15 @@
-import { Children, ReactElement, useContext } from "react";
+import { Children, ReactElement } from "react";
 import { SelectItemsView, SelectMenuRoot } from "./SelectMenu.styles";
 import { SelectMenuProps } from "./SelectMenu.types";
 import { List } from "../../../display/List";
-import { SelectContext, useMergeDefaultProps } from "@peersyst/react-components-core";
+import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { Keyboard } from "react-native";
 
 export default function SelectMenu(props: SelectMenuProps): JSX.Element {
-    const { open, style, header, footer, children } = useMergeDefaultProps("SelectMenu", props);
-
-    const { setOpen } = useContext(SelectContext);
+    const { open, style, header, footer, children, setOpen } = useMergeDefaultProps(
+        "SelectMenu",
+        props,
+    );
 
     return (
         <SelectMenuRoot

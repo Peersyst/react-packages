@@ -10,5 +10,3 @@ export { default as fromSafeAreaInsets } from "./fromSafeAreaInsets";
 export * from "./fromSafeAreaInsets";
 export { default as fromTheme } from "./fromTheme";
 export * from "./fromTheme";
-export { default as fromAppState } from "./fromAppState";
-export * from "./fromAppState";

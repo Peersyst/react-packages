@@ -4,6 +4,7 @@ import { ThemeProvider } from "../theme";
 import { GlobalStylesProvider } from "./globalStyles";
 import { StylesheetProvider } from "@peersyst/react-native-styled";
 import stylesheets from "./stylesheets";
+import { PortalProvider } from "@gorhom/portal";
 
 interface ConfigProviderProps {
     config: Config;
@@ -24,7 +25,9 @@ const ConfigProvider: FC<PropsWithChildren<ConfigProviderProps>> = ({
         <CoreConfigProvider config={config}>
             <ThemeProvider storeTheme={storeTheme}>
                 <StylesheetProvider stylesheets={stylesheets}>
-                    <GlobalStylesProvider>{children}</GlobalStylesProvider>
+                    <GlobalStylesProvider>
+                        <PortalProvider>{children}</PortalProvider>
+                    </GlobalStylesProvider>
                 </StylesheetProvider>
             </ThemeProvider>
         </CoreConfigProvider>

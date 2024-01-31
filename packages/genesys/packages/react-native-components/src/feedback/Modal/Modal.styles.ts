@@ -5,6 +5,7 @@ import { IconButton } from "../../input/IconButton";
 export const ModalRoot = styled(Paper)(({ theme, dimensions: { width, height } }) => ({
     maxHeight: height * 0.8,
     maxWidth: width * 0.8,
+    width: "100%",
     padding: 20,
     backgroundColor: theme.palette.background,
     borderRadius: theme.borderRadius,

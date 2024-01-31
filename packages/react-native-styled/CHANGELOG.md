@@ -2,7 +2,6 @@
 
 ## 3.2.0
 
-[accessors] Add `fromAppState` accessor
 [types] Remove `@peersyst/react-types` in favor of `@swisstype/essential`
 [types] Potential fix to untyped theme when accessing through `fromTheme`
 
