@@ -22,6 +22,7 @@ const Hash = (props: HashProps): JSX.Element => {
         variant,
         url,
         hashToSharePayload,
+        numberOfLines = 1,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
     const translate = useTranslate();
@@ -35,7 +36,12 @@ const Hash = (props: HashProps): JSX.Element => {
 
     //Components
     const text = (
-        <Typography numberOfLines={1} style={textStyle} variant={variant} {...typographyProps}>
+        <Typography
+            numberOfLines={numberOfLines}
+            style={textStyle}
+            variant={variant}
+            {...typographyProps}
+        >
             {formatHash(hash, ellipsis, length)}
         </Typography>
     );
