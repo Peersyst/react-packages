@@ -1,1 +1,1 @@
-export { default as goToSettings } from "./goToSettings";
+export { default as openSettings } from "./openSettings";
