@@ -1,5 +1,9 @@
 # Versions
 
+# 3.4.5
+
+[goToSettings] feat: add util to go to the settings of the app.
+
 # 3.4.4
 
 [QrScanner] fix: remove `StatusBar` to fix app moving up and down in android.
