@@ -1,9 +1,9 @@
-import { Button, Modal, ModalProps, Row, ScrollView, TextField, useToast, Col } from "../../src";
+import { Button, Modal, ModalProps, useToast, Col } from "../../src";
 import playground from "../playground";
 import { useState } from "react";
 import styled from "@peersyst/react-native-styled";
 
-export const StyledModal = styled(Modal)(({ safeAreaInsets, dimensions }) => ({
+export const StyledModal = styled(Modal)(() => ({
     backgroundColor: "white",
 }));
 

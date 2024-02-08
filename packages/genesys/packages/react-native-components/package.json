@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.4.3",
+    "version": "3.5.0-alpha.0",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -67,6 +67,7 @@
     "devDependencies": {
         "@types/react": "^18.0.0",
         "@types/react-native": "0.72.6",
+        "@types/react-reconciler": "^0.28.8",
         "expo": "^49.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
