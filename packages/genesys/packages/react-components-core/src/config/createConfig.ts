@@ -21,7 +21,7 @@ export default function createConfigCore(
         themes: createThemes(defaultThemes, themes),
         translate: translate || defaultTranslate,
         locale: locale || defaultLocale,
-        validators: { defaultValidators, ...validators },
+        validators: { ...defaultValidators, ...validators },
         components: deepmerge(defaultComponents, components || {}),
         ...deepmerge(restDefaults, extraConfig),
     };
