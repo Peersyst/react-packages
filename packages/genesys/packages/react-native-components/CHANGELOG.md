@@ -1,5 +1,9 @@
 # Versions
 
+# 3.4.4
+
+[QrScanner] fix: remove `StatusBar` to fix app moving app and down in android.
+
 # 3.3.11
 
 [Backdrop] fix: fix `avoidKeyboard` on Android.

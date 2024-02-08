@@ -6,7 +6,6 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { StyleSheet } from "react-native";
 import { Backdrop } from "../../feedback/Backdrop";
 import { CrossIcon } from "../../assets/icons";
-import { StatusBar } from "../../layout/StatusBar";
 import { useQrScannerStyles } from "./hooks";
 
 const QrScanner = (rawProps: QrScannerProps): JSX.Element => {
@@ -58,7 +57,6 @@ const QrScanner = (rawProps: QrScannerProps): JSX.Element => {
                         ) : (
                             <IdleQrScanner />
                         )}
-                        <StatusBar hidden translucent appearance="dark" />
                     </>
                 );
             }}
