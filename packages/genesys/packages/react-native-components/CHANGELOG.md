@@ -2,7 +2,7 @@
 
 # 3.4.4
 
-[QrScanner] fix: remove `StatusBar` to fix app moving app and down in android.
+[QrScanner] fix: remove `StatusBar` to fix app moving up and down in android.
 
 # 3.3.11
 
