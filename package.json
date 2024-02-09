@@ -7,7 +7,8 @@
         "release:build": "lerna run --parallel --ignore \"playground\" build",
         "release:publish": "lerna publish from-package --dist-tag latest --contents build",
         "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\"",
-        "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx"
+        "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx",
+        "clean": "rm -rf packages/*/build && rm -rf packages/genesys/packages/*/build"
     },
     "devDependencies": {
         "@babel/cli": "^7.16.8",
