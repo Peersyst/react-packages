@@ -4,6 +4,8 @@ import { TabsContext } from "../../TabsContext";
 import { TabIndicatorProps } from "./TabIndicator.types";
 import { Animated } from "react-native";
 
+const AnimatedTabIndicatorRoot = Animated.createAnimatedComponent(TabIndicatorRoot);
+
 export default function TabIndicator({
     tabGroupLayout,
     style,
@@ -44,11 +46,11 @@ export default function TabIndicator({
     }, [tabX, tabGroupX]);
 
     return (
-        <TabIndicatorRoot style={{ width: widthAnim, left: posAnim, ...style }}>
+        <AnimatedTabIndicatorRoot style={{ width: widthAnim, left: posAnim, ...style }}>
             {cloneElement(indicator, {
                 ...indicator?.props,
                 style: { ...indicator?.props.style, flex: 1 },
             })}
-        </TabIndicatorRoot>
+        </AnimatedTabIndicatorRoot>
     );
 }
