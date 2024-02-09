@@ -1,5 +1,9 @@
 # Versions
 
+# 3.4.4
+
+[QrScanner] fix: fix `StatusBar` moving the app up and down when opening the qr scanner on android.
+
 # 3.3.11
 
 [Backdrop] fix: fix `avoidKeyboard` on Android.
