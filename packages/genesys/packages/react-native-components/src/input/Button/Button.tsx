@@ -1,23 +1,14 @@
 import { ButtonRoot } from "./Button.styles";
-import { TouchableWithoutFeedback, Text } from "react-native";
+import { TouchableWithoutFeedback, Text, GestureResponderEvent } from "react-native";
 import { isValidElement, ReactElement, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
 import { ElementStyler } from "../../util/ElementStyler";
-import { GestureResponderEvent } from "react-native-modal";
 import { filter } from "@peersyst/react-utils";
 import { ButtonProps } from "./Button.types";
 import useButton from "./hooks/useButton";
 import { ContainedSuspense } from "../../feedback/ContainedSuspense";
 import { Row } from "../../layout/Row";
-
-abstract class Component {
-    constructor(protected readonly ctx: object) {}
-
-    abstract render(): JSX.Element;
-}
-
-abstract class AstronButton extends Component {}
 
 const Button = (rawProps: ButtonProps): JSX.Element => {
     const { props, computed } = useButton(rawProps);
