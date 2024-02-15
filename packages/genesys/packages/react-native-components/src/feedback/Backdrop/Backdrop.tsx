@@ -1,6 +1,5 @@
 import { BackdropProps } from "./Backdrop.types";
 import { useControlled } from "@peersyst/react-hooks";
-import Modal from "react-native-modal";
 import { Platform } from "react-native";
 import { useMergeDefaultProps, useTheme } from "@peersyst/react-components-core";
 import useBackdropDeviceHeight from "./hooks/useBackdropDeviceHeight";
@@ -8,6 +7,7 @@ import { MODAL_PORTAL_HOST } from "../ModalProvider";
 import { Fragment } from "react";
 import { Portal } from "../../util/Portal";
 import { ThemeOverrideProvider } from "../../theme";
+import { ReactNativeModal } from "./react-native-modal";
 
 export default function Backdrop(props: BackdropProps): JSX.Element {
     const {
@@ -37,7 +37,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         onSwipeCancel,
         panResponderThreshold,
         propagateSwipe = true,
-        avoidKeyboard = false,
+        avoidKeyboard: avoidKeyboardProp = false,
         native = false,
         style,
     } = useMergeDefaultProps("Backdrop", props);
@@ -65,6 +65,8 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         else handleClose();
     };
 
+    const avoidKeyboard = avoidKeyboardProp && Platform.OS === "ios";
+
     const theme = useTheme();
 
     const [Root, rootProps] = native ? [Fragment, {}] : [Portal, { hostName: MODAL_PORTAL_HOST }];
@@ -73,7 +75,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         <Root {...rootProps}>
             {/* Portal theme as well (if theme is not portalled, local theme overrides would be ignored) */}
             <ThemeOverrideProvider theme={theme}>
-                <Modal
+                <ReactNativeModal
                     isVisible={open}
                     onModalWillHide={handleClose}
                     onModalHide={onExited}
@@ -108,12 +110,12 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
                         },
                         style,
                     ]}
-                    {...(Platform.OS === "ios" && { avoidKeyboard })}
+                    avoidKeyboard={avoidKeyboard}
                     deviceHeight={deviceHeight}
                     coverScreen={native}
                 >
                     {typeof children === "function" ? children(open, handleOpenChange) : children}
-                </Modal>
+                </ReactNativeModal>
             </ThemeOverrideProvider>
         </Root>
     );
