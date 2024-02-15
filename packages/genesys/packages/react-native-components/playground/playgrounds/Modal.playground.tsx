@@ -1,10 +1,12 @@
-import { Button, Modal, ModalProps, useToast, Col } from "../../src";
+import { Button, Modal, ModalProps, useToast, Col, TextField } from "../../src";
 import playground from "../playground";
 import { useState } from "react";
 import styled from "@peersyst/react-native-styled";
 
 export const StyledModal = styled(Modal)(() => ({
     backgroundColor: "white",
+    position: "absolute",
+    bottom: 20,
 }));
 
 const Wrapper = (props: ModalProps): JSX.Element => {
@@ -13,7 +15,10 @@ const Wrapper = (props: ModalProps): JSX.Element => {
     return (
         <>
             <StyledModal open={open} {...props} avoidKeyboard={true} onClose={() => setOpen(false)}>
-                <Button onPress={() => showToast("WORKS :)")}>Show toast</Button>
+                <Col gap={20}>
+                    <Button onPress={() => showToast("WORKS :)")}>Show toast</Button>
+                    <TextField />
+                </Col>
             </StyledModal>
             <Col gap={20}>
                 <Button onPress={() => showToast("WORKS :)")}>Show toast</Button>
