@@ -40,7 +40,10 @@ const Button = (rawProps: ButtonProps): JSX.Element => {
         () =>
             setPressed(pressed);
 
-    const { textStyle, rootStyle } = useButtonStyles(props, computed, pressed);
+    const {
+        textStyle,
+        rootStyle: { gap = 16, ...rootStyle },
+    } = useButtonStyles(props, computed, pressed);
 
     return (
         <TouchableWithoutFeedback
@@ -60,7 +63,7 @@ const Button = (rawProps: ButtonProps): JSX.Element => {
                     fallback={loadingElement}
                 >
                     <Row
-                        gap={16}
+                        gap={gap}
                         alignItems="center"
                         style={{ justifyContent: rootStyle["justifyContent"] || "center" }}
                     >
