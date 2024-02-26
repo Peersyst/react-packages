@@ -5,6 +5,7 @@ import { GlobalStylesProvider } from "./globalStyles";
 import { StylesheetProvider } from "@peersyst/react-native-styled";
 import stylesheets from "./stylesheets";
 import { PortalProvider } from "../util/Portal";
+import { FiberProvider } from "../hooks/useReactInternals";
 
 interface ConfigProviderProps {
     config: Config;
@@ -26,7 +27,9 @@ const ConfigProvider: FC<PropsWithChildren<ConfigProviderProps>> = ({
             <ThemeProvider storeTheme={storeTheme}>
                 <StylesheetProvider stylesheets={stylesheets}>
                     <GlobalStylesProvider>
-                        <PortalProvider>{children}</PortalProvider>
+                        <FiberProvider>
+                            <PortalProvider>{children}</PortalProvider>
+                        </FiberProvider>
                     </GlobalStylesProvider>
                 </StylesheetProvider>
             </ThemeProvider>

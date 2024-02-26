@@ -15,6 +15,7 @@ import {
     useReducer,
     useRef,
 } from "react";
+import { useContextBridge } from "../../hooks/useReactInternals";
 
 interface PortalType {
     name: string;
@@ -357,12 +358,18 @@ const PortalComponent = (props: PortalProps) => {
     const handleOnUpdateRef = useRef<Function>();
     //#endregion
 
+    // Get context bridge to forward contexts to the portal
+    const ContextBridge = useContextBridge();
+    const childrenWithContextBridge = useMemo(() => {
+        return <ContextBridge>{children}</ContextBridge>;
+    }, [ContextBridge, children]);
+
     //#region callbacks
     const handleOnMount = useCallback(() => {
         if (_providedHandleOnMount) {
-            _providedHandleOnMount(() => addUpdatePortal(name, children));
+            _providedHandleOnMount(() => addUpdatePortal(name, childrenWithContextBridge));
         } else {
-            addUpdatePortal(name, children);
+            addUpdatePortal(name, childrenWithContextBridge);
         }
     }, [_providedHandleOnMount, addUpdatePortal]);
     handleOnMountRef.current = handleOnMount;
@@ -378,11 +385,11 @@ const PortalComponent = (props: PortalProps) => {
 
     const handleOnUpdate = useCallback(() => {
         if (_providedHandleOnUpdate) {
-            _providedHandleOnUpdate(() => addUpdatePortal(name, children));
+            _providedHandleOnUpdate(() => addUpdatePortal(name, childrenWithContextBridge));
         } else {
-            addUpdatePortal(name, children);
+            addUpdatePortal(name, childrenWithContextBridge);
         }
-    }, [_providedHandleOnUpdate, addUpdatePortal, children]);
+    }, [_providedHandleOnUpdate, addUpdatePortal, childrenWithContextBridge]);
     handleOnUpdateRef.current = handleOnUpdate;
     //#endregion
 
@@ -406,7 +413,7 @@ const PortalComponent = (props: PortalProps) => {
         if (mountedRef.current) {
             handleOnUpdateRef.current?.();
         }
-    }, [children]);
+    }, [childrenWithContextBridge]);
     //#endregion
 
     return null;
