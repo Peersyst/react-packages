@@ -4,6 +4,7 @@ import { SelectItemProps, SelectItemStyles } from "./SelectItem";
 import { FormControlledComponentProps } from "../FormControl";
 import { CoreSelectProps, SelectContextType } from "@peersyst/react-components-core";
 import { LabelProps } from "../../display/Label";
+import { SelectMenuStyle } from "./SelectMenu";
 
 export interface DisplayStylesProps {
     open: boolean;
@@ -23,7 +24,7 @@ export type DisplayStyle = BaseDisplayStyle & {
 
 export type SelectStyle = Omit<ViewStyle, "display"> & {
     display?: DisplayStyle;
-    menu?: ViewStyle;
+    menu?: SelectMenuStyle;
     item?: SelectItemStyles;
 };
 
