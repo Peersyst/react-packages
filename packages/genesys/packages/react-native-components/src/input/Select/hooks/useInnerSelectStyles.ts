@@ -3,11 +3,12 @@ import { SelectItemStyles } from "../SelectItem";
 import { useMemo } from "react";
 import { extractTextStyles } from "@peersyst/react-native-utils";
 import { SelectStyle } from "../Select.types";
+import { SelectMenuStyle } from "../SelectMenu";
 
 export interface UseInnerSelectStylesResult {
     style: ViewStyle;
     display: [TextStyle, ViewStyle & { placeholderColor?: ColorValue; icon?: TextStyle }];
-    menu: ViewStyle;
+    menu: SelectMenuStyle;
     item: SelectItemStyles;
 }
 

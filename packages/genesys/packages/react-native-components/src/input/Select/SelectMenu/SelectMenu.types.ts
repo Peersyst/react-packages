@@ -1,6 +1,14 @@
 import { ReactNode } from "react";
 import { ViewStyle } from "react-native";
 
+export type SelectMenuStyle = ViewStyle & {
+    content?: ViewStyle & {
+        list?: ViewStyle & {
+            container?: ViewStyle;
+        };
+    };
+};
+
 export interface SelectMenuProps {
     /**
      * Menu is open
@@ -13,7 +21,7 @@ export interface SelectMenuProps {
     /**
      * Menu style
      */
-    style?: ViewStyle;
+    style?: SelectMenuStyle;
     /**
      * Header element
      */
