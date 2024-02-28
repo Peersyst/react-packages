@@ -22,6 +22,7 @@ const Hash = (props: HashProps): JSX.Element => {
         variant,
         url,
         hashToSharePayload,
+        numberOfLines = 1,
         ...typographyProps
     } = useMergeDefaultProps("Hash", props);
     const translate = useTranslate();
@@ -33,9 +34,19 @@ const Hash = (props: HashProps): JSX.Element => {
     const { fontSize: typographyVariantSize, ...typographyVariantStyles } = typography[variant];
     const copyFontSize = (textStyle.fontSize ? textStyle.fontSize : typographyVariantSize!) + 4;
 
+    if (showCopyIcon && numberOfLines !== 1)
+        console.warn(
+            `Tried to render a Hash with showCopyIcon and numberOfLines different than 1. The showCopyIcon prop can only be used with numberOfLines = 1.`,
+        );
+
     //Components
     const text = (
-        <Typography numberOfLines={1} style={textStyle} variant={variant} {...typographyProps}>
+        <Typography
+            numberOfLines={numberOfLines === "auto" ? undefined : numberOfLines}
+            style={textStyle}
+            variant={variant}
+            {...typographyProps}
+        >
             {formatHash(hash, ellipsis, length)}
         </Typography>
     );
@@ -47,7 +58,7 @@ const Hash = (props: HashProps): JSX.Element => {
             ) : (
                 text
             )}
-            {showCopyIcon && (
+            {showCopyIcon && numberOfLines === 1 && (
                 <CopyButton
                     message={translate("copied_to_clipboard")}
                     text={hash}

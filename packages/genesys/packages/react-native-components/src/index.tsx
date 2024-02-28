@@ -57,4 +57,5 @@ export * from "./util/CopyButton";
 export * from "./util/ElementStyler";
 export * from "./util/Hash";
 export * from "./util/LayoutSnitch";
+export * from "./util/Portal";
 export * from "./utils";

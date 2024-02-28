@@ -1,4 +1,4 @@
-import { AnyObject } from "@peersyst/react-types";
+import { AnyObject } from "@swisstype/essential";
 
 export type AccessorResolverFn = <S extends AnyObject>(style: S, property: string) => S;
 

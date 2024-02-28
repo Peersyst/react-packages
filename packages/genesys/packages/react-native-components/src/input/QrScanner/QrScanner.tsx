@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { BackButton, ChildrenWrapper, IdleQrScanner, QrScannerRoot } from "./QrScanner.styles";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Backdrop } from "../../feedback/Backdrop";
 import { CrossIcon } from "../../assets/icons";
-import { StatusBar } from "../../layout/StatusBar";
 import { useQrScannerStyles } from "./hooks";
+import { StatusBar } from "../../layout/StatusBar";
 
 const QrScanner = (rawProps: QrScannerProps): JSX.Element => {
     const props = useMergeDefaultProps("QrScanner", rawProps);
@@ -58,7 +58,7 @@ const QrScanner = (rawProps: QrScannerProps): JSX.Element => {
                         ) : (
                             <IdleQrScanner />
                         )}
-                        <StatusBar hidden translucent appearance="dark" />
+                        <StatusBar hidden={Platform.OS === "ios"} translucent appearance="dark" />
                     </>
                 );
             }}

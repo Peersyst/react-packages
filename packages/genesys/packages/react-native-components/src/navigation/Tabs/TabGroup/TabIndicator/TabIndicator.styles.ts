@@ -1,7 +1,7 @@
 import styled from "@peersyst/react-native-styled";
-import { Animated, View } from "react-native";
+import { View } from "react-native";
 
-export const TabIndicatorRoot = styled(Animated.View)(() => ({
+export const TabIndicatorRoot = styled(View)(() => ({
     position: "absolute",
     bottom: 0,
     zIndex: 2,

@@ -7,14 +7,16 @@ import { Theme } from "./theme.types";
 export const ThemeOverrideContext = createContext<ThemeOverrideContextType>({} as any);
 
 export const ThemeOverrideProvider = ({
-    theme: themeKey,
+    theme: themeProp,
     overrides,
     children,
 }: ThemeOverrideProviderProps): JSX.Element => {
     const themes = useThemes();
     const inheritedTheme = useTheme();
 
-    const theme = (themeKey ? themes[themeKey] : inheritedTheme) as Theme;
+    const theme =
+        (typeof themeProp === "string" ? themes[themeProp] : themeProp) ||
+        (inheritedTheme as Theme);
 
     const overriddenTheme = overrides ? overrides(theme) : theme;
 

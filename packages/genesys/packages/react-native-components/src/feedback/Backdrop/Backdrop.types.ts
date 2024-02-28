@@ -1,47 +1,47 @@
 import { ReactElement } from "react";
-import { ModalProps } from "react-native-modal";
+import { ModalProps as ReactNativeModalProps } from "./react-native-modal";
 
 export interface BackdropProps {
     /**
      * Content in animation
      */
-    animationIn?: ModalProps["animationIn"] | "none";
+    animationIn?: ReactNativeModalProps["animationIn"] | "none";
     /**
      * Animation in timing
      */
-    animationInTiming?: ModalProps["animationInTiming"];
+    animationInTiming?: ReactNativeModalProps["animationInTiming"];
     /**
      * Content out animation
      */
-    animationOut?: ModalProps["animationOut"] | "none";
+    animationOut?: ReactNativeModalProps["animationOut"] | "none";
     /**
      * Animation out timing
      */
-    animationOutTiming?: ModalProps["animationOutTiming"];
+    animationOutTiming?: ReactNativeModalProps["animationOutTiming"];
     /**
      * Whether the backdrop should be rendered
      */
-    renderBackdrop?: ModalProps["hasBackdrop"];
+    renderBackdrop?: ReactNativeModalProps["hasBackdrop"];
     /**
      * Backdrop color
      */
-    backdropColor?: ModalProps["backdropColor"];
+    backdropColor?: ReactNativeModalProps["backdropColor"];
     /**
      * Backdrop opacity
      */
-    backdropOpacity?: ModalProps["backdropOpacity"];
+    backdropOpacity?: ReactNativeModalProps["backdropOpacity"];
     /**
      * Backdrop in timing
      */
-    backdropTransitionInTiming?: ModalProps["backdropTransitionInTiming"];
+    backdropTransitionInTiming?: ReactNativeModalProps["backdropTransitionInTiming"];
     /**
      * Backdrop out timing
      */
-    backdropTransitionOutTiming?: ModalProps["backdropTransitionOutTiming"];
+    backdropTransitionOutTiming?: ReactNativeModalProps["backdropTransitionOutTiming"];
     /**
      * Backdrop is open
      */
-    open?: ModalProps["isVisible"];
+    open?: ReactNativeModalProps["isVisible"];
     /**
      * Backdrop is open on mount
      */
@@ -57,37 +57,37 @@ export interface BackdropProps {
     /**
      * onClose handler
      */
-    onClose?: ModalProps["onModalWillHide"];
+    onClose?: ReactNativeModalProps["onModalWillHide"];
     /**
      * onExited handler
      */
-    onExited?: ModalProps["onModalHide"];
+    onExited?: ReactNativeModalProps["onModalHide"];
     /**
      * onOpen handler
      */
-    onOpen?: ModalProps["onModalWillShow"];
+    onOpen?: ReactNativeModalProps["onModalWillShow"];
     /**
      * onEntered handler
      */
-    onEntered?: ModalProps["onModalShow"];
+    onEntered?: ReactNativeModalProps["onModalShow"];
     /**
      * onSwipeStart handler
      */
-    onSwipeStart?: ModalProps["onSwipeStart"];
+    onSwipeStart?: ReactNativeModalProps["onSwipeStart"];
     /**
      * onSwipeMove handler
      * Called on each swipe event
      */
-    onSwipeMove?: ModalProps["onSwipeMove"];
+    onSwipeMove?: ReactNativeModalProps["onSwipeMove"];
     /**
      * onSwipeCancel handler
      */
-    onSwipeCancel?: ModalProps["onSwipeCancel"];
+    onSwipeCancel?: ReactNativeModalProps["onSwipeCancel"];
     /**
      * PanResponder threshold
      * The threshold for when the panResponder should pick up swipe events
      */
-    panResponderThreshold?: ModalProps["panResponderThreshold"];
+    panResponderThreshold?: ReactNativeModalProps["panResponderThreshold"];
     /**
      * Backdrop can be closed by swiping its content
      */
@@ -96,23 +96,29 @@ export interface BackdropProps {
      * Swipe threshold
      * Swiping threshold that when reached closes the backdrop
      */
-    swipeThreshold?: ModalProps["swipeThreshold"];
+    swipeThreshold?: ReactNativeModalProps["swipeThreshold"];
     /**
      * Swipe direction
      */
-    swipeDirection?: ModalProps["swipeDirection"];
+    swipeDirection?: ReactNativeModalProps["swipeDirection"];
     /**
      * Allows swipe events to propagate to children components (eg a ScrollView inside a modal)
      */
-    propagateSwipe?: ModalProps["propagateSwipe"];
+    propagateSwipe?: ReactNativeModalProps["propagateSwipe"];
     /**
      * Whether to avoid the keyboard
      */
     avoidKeyboard?: boolean;
     /**
+     * If true, renders the backdrop in a react-native `Modal`.
+     * If false, renders the backdrop with a portal in the `ModalProvider`.
+     * @default false
+     */
+    native?: boolean;
+    /**
      * Backdrop style
      */
-    style?: ModalProps["style"];
+    style?: ReactNativeModalProps["style"];
     /**
      * Backdrop content
      */

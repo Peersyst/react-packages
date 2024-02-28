@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.3.9",
+    "version": "3.4.8",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -22,7 +22,7 @@
         "playground:ios": "yarn playground:start --ios"
     },
     "peerDependencies": {
-        "@types/react": "~18.0.27",
+        "@types/react": "^18.0.0",
         "@types/react-native": "0.72.6",
         "expo": "^49.0.0",
         "react": "^18.2.0",
@@ -39,12 +39,12 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.23.2",
-        "@peersyst/react-components-core": "^1.7.9",
-        "@peersyst/react-hooks": "^2.2.9",
-        "@peersyst/react-native-styled": "^3.1.1",
-        "@peersyst/react-native-utils": "^2.1.0",
+        "@peersyst/react-components-core": "^1.7.13",
+        "@peersyst/react-hooks": "^2.2.10",
+        "@peersyst/react-native-styled": "^3.2.3",
+        "@peersyst/react-native-utils": "^2.1.1",
         "@peersyst/react-types": "^1.6.2",
-        "@peersyst/react-utils": "^2.4.0",
+        "@peersyst/react-utils": "^2.4.1",
         "@react-native-async-storage/async-storage": "1.18.2",
         "@react-native-community/hooks": "^3.0.0",
         "expo": "^49.0.0",
@@ -55,9 +55,9 @@
         "expo-linear-gradient": "~12.3.0",
         "expo-localization": "~14.3.0",
         "expo-status-bar": "~1.6.0",
+        "react-native-animatable": "^1.4.0",
         "react-native-gesture-handler": "~2.12.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
-        "react-native-modal": "^13.0.1",
         "react-native-pager-view": "6.2.2",
         "react-native-qrcode-svg": "^6.2.0",
         "react-native-reanimated": "~3.3.0",
@@ -65,7 +65,7 @@
         "react-native-svg": "13.9.0"
     },
     "devDependencies": {
-        "@types/react": "~18.0.27",
+        "@types/react": "^18.0.0",
         "@types/react-native": "0.72.6",
         "expo": "^49.0.0",
         "react": "^18.2.0",
@@ -76,5 +76,5 @@
         "access": "public"
     },
     "sideEffects": false,
-    "gitHead": "371daf52004452cd65eaf1100906bf8e38a87818"
+    "gitHead": "fd6cdbc155495c54871fc14a9a90c6d19c7fc9c0"
 }

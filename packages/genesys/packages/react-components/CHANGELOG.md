@@ -1,5 +1,9 @@
 # Versions
 
+## 3.9.16
+
+[package.json] Update `react-components-core`
+
 ## 3.9.11
 
 [Select] Add open prop to controll the visibility of the select

@@ -1,7 +1,7 @@
 import { Theme } from "@peersyst/react-native-styled";
 import { ScaledSize } from "react-native";
 import { EdgeInsets } from "react-native-safe-area-context";
-import { AnyObject, Inject } from "@peersyst/react-types";
+import { AnyObject, Inject } from "@swisstype/essential";
 import { FromTheme } from "./accessors/fromTheme";
 import { FromProps } from "./accessors/fromProps";
 import { FromDimensions } from "./accessors/fromDimensions";

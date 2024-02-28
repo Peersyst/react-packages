@@ -1,4 +1,4 @@
-import { useTheme } from "@peersyst/react-native-components";
+import { ModalProvider, useTheme } from "@peersyst/react-native-components";
 import { emphasize } from "@peersyst/react-utils";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
@@ -27,18 +27,26 @@ const Navigator = () => {
         };
     }, [theme]);
 
+    const parsedPlaygrounds = Object.values(playgrounds);
+    const welcome = parsedPlaygrounds.shift()!;
+
     return (
         <NavigationContainer theme={navigationTheme}>
-            <Drawer.Navigator
-                initialRouteName="Home"
-                screenOptions={{
-                    headerRight: () => <SwitchThemeButton />,
-                }}
-            >
-                {Object.values(playgrounds).map(({ name, component }) => (
-                    <Drawer.Screen key={name} name={name} component={component} />
-                ))}
-            </Drawer.Navigator>
+            <ModalProvider>
+                <Drawer.Navigator
+                    initialRouteName="Home"
+                    screenOptions={{
+                        headerRight: () => <SwitchThemeButton />,
+                    }}
+                >
+                    <Drawer.Screen name={welcome.name} component={welcome.component} />
+                    {Object.values(parsedPlaygrounds)
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map(({ name, component }) => (
+                            <Drawer.Screen key={name} name={name} component={component} />
+                        ))}
+                </Drawer.Navigator>
+            </ModalProvider>
         </NavigationContainer>
     );
 };

@@ -16,6 +16,8 @@ import CodeField from "./CodeField.playground";
 import Chip from "./Chip.playground";
 import Expandable from "./Expandable.playground";
 import CircularProgress from "./CircularProgress.playground";
+import NumericField from "./NumericField.playground";
+import Modal from "./Modal.playground";
 
 export default {
     Welcome,
@@ -36,4 +38,6 @@ export default {
     Chip,
     Expandable,
     CircularProgress,
+    NumericField,
+    Modal,
 };

@@ -1,10 +1,9 @@
 import { ButtonRoot } from "./Button.styles";
-import { TouchableWithoutFeedback, Text } from "react-native";
+import { TouchableWithoutFeedback, Text, GestureResponderEvent } from "react-native";
 import { isValidElement, ReactElement, useState } from "react";
 import { Icon } from "../../display/Icon";
 import useButtonStyles from "./hooks/useButtonStyles";
 import { ElementStyler } from "../../util/ElementStyler";
-import { GestureResponderEvent } from "react-native-modal";
 import { filter } from "@peersyst/react-utils";
 import { ButtonProps } from "./Button.types";
 import useButton from "./hooks/useButton";
@@ -41,7 +40,10 @@ const Button = (rawProps: ButtonProps): JSX.Element => {
         () =>
             setPressed(pressed);
 
-    const { textStyle, rootStyle } = useButtonStyles(props, computed, pressed);
+    const {
+        textStyle,
+        rootStyle: { gap = 16, ...rootStyle },
+    } = useButtonStyles(props, computed, pressed);
 
     return (
         <TouchableWithoutFeedback
@@ -61,7 +63,7 @@ const Button = (rawProps: ButtonProps): JSX.Element => {
                     fallback={loadingElement}
                 >
                     <Row
-                        gap={16}
+                        gap={gap}
                         alignItems="center"
                         style={{ justifyContent: rootStyle["justifyContent"] || "center" }}
                     >
