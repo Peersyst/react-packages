@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-hooks",
     "author": "Peersyst",
-    "version": "2.2.11",
+    "version": "2.2.12",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@peersyst/react-utils": "^2.4.1"
+        "@peersyst/react-utils": "^2.4.2"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",
