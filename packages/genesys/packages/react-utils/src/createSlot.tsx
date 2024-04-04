@@ -8,6 +8,10 @@ export default function <
     Component: JSXElementConstructor<P> = (p: P) => <Fragment {...p} />,
 ): JSXElementConstructor<P> {
     const Slot: JSXElementConstructor<P> = (props: P) => <Component {...props} />;
-    Object.defineProperty(Slot, "name", { value: slot, writable: false });
+    Object.entries(Component).forEach(([key, value]) => {
+        if (key !== "name")
+            Object.defineProperty(Slot, key, { value, writable: false, enumerable: true });
+    });
+    Object.defineProperty(Slot, "name", { value: slot, writable: true, enumerable: true });
     return Slot;
 }

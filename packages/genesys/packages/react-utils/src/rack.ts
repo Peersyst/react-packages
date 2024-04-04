@@ -59,17 +59,22 @@ export default function <
 
     const Rack = RackComponent as ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>> &
         Slots<K[], E>;
-    Object.defineProperty(Rack, "name", { value: factory.name, writable: false });
+    Object.defineProperty(Rack, "name", { value: factory.name, writable: true, enumerable: true });
 
     for (const [name, element] of Object.entries(extensions)) {
         Object.defineProperty(Rack, name, {
             value: createSlot(name, element as JSXElementConstructor<any>),
             writable: false,
+            enumerable: true,
         });
     }
     for (const slot of slots) {
         if (!Rack[slot as keyof typeof Rack])
-            Object.defineProperty(Rack, slot, { value: createSlot(slot), writable: false });
+            Object.defineProperty(Rack, slot, {
+                value: createSlot(slot),
+                writable: false,
+                enumerable: true,
+            });
     }
 
     return Rack;
