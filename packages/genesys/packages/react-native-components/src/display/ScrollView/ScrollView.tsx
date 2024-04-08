@@ -4,7 +4,6 @@ import {
     RefreshControlPropsIOS,
     ScrollView as BaseScrollView,
     ScrollViewProps as BaseScrollViewProps,
-    TouchableWithoutFeedback,
 } from "react-native";
 import { useState } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -52,7 +51,7 @@ const ScrollView = (props: ScrollViewProps): JSX.Element => {
                 }
                 {...rest}
             >
-                <TouchableWithoutFeedback>{children}</TouchableWithoutFeedback>
+                {children}
             </BaseScrollView>
         </BaseScrollView>
     );

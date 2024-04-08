@@ -7,7 +7,7 @@ import { Children, isValidElement, ReactElement, ReactNode } from "react";
 export default function extractSlots(
     children: ReactNode,
 ): [Record<string, ReactElement>, ReactNode] {
-    let slots: Record<string, ReactElement> = {};
+    let slots: Record<string | symbol | number, ReactElement> = {};
     let remainingChildren: ReactNode[] = [];
     Children.forEach(children, (child) => {
         if (isValidElement(child)) {
@@ -20,7 +20,14 @@ export default function extractSlots(
                 slots = { ...slots, ...fragmentSlots };
                 remainingChildren = [...remainingChildren, fragmentRemainingChildren];
             } else if (typeof childType === "function" && "name" in childType) {
-                slots[childType.name] = elementChild;
+                if (slots[childType.name])
+                    slots[childType.name] = (
+                        <>
+                            {slots[childType.name]}
+                            {elementChild}
+                        </>
+                    );
+                else slots[childType.name] = elementChild;
             } else remainingChildren.push(child);
         } else remainingChildren.push(child);
     });

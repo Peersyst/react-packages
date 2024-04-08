@@ -18,6 +18,7 @@ import Expandable from "./Expandable.playground";
 import CircularProgress from "./CircularProgress.playground";
 import NumericField from "./NumericField.playground";
 import Modal from "./Modal.playground";
+import Portal from "./Portal.playground";
 
 export default {
     Welcome,
@@ -40,4 +41,5 @@ export default {
     CircularProgress,
     NumericField,
     Modal,
+    Portal,
 };

@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-styled",
     "author": "Peersyst",
-    "version": "3.2.3",
+    "version": "3.2.5",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -35,7 +35,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.23.4",
-        "@peersyst/react-utils": "^2.4.1"
+        "@peersyst/react-utils": "^2.4.3"
     },
     "devDependencies": {
         "@swisstype/essential": "^0.0.5",

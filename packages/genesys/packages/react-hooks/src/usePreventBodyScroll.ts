@@ -7,5 +7,11 @@ export default function usePreventBodyScroll(prevent: boolean): void {
         } else {
             document.documentElement.style.removeProperty("overflow");
         }
+
+        return () => {
+            if (prevent) {
+                document.documentElement.style.removeProperty("overflow");
+            }
+        }
     }, [prevent]);
 }
