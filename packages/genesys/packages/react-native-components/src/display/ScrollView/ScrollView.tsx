@@ -4,7 +4,6 @@ import {
     RefreshControlPropsIOS,
     ScrollView as BaseScrollView,
     ScrollViewProps as BaseScrollViewProps,
-    View,
 } from "react-native";
 import { useState } from "react";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -52,9 +51,7 @@ const ScrollView = (props: ScrollViewProps): JSX.Element => {
                 }
                 {...rest}
             >
-                <View style={{ flex: 1 }} onStartShouldSetResponder={() => true}>
-                    {children}
-                </View>
+                {children}
             </BaseScrollView>
         </BaseScrollView>
     );
