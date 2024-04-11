@@ -227,8 +227,7 @@ export function useContextMap(): ContextMap {
         if (
             context &&
             context !== FiberContext &&
-            context.displayName &&
-            !IGNORED_CONTEXTS_DISPLAY_NAMES.has(context.displayName) &&
+            (!context.displayName || !IGNORED_CONTEXTS_DISPLAY_NAMES.has(context.displayName)) &&
             !contextMap.has(context)
         ) {
             contextMap.set(
