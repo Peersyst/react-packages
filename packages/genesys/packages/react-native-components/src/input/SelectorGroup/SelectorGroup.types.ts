@@ -2,7 +2,7 @@ import { CoreSelectorGroupProps, SelectorDirection } from "@peersyst/react-compo
 import { LabelProps } from "../../display/Label";
 import { RowProps } from "../../layout/Row";
 import { FormControlledComponentProps } from "../FormControl";
-import { NativeSelectorController, SelectorProps } from "./Selector/Selector.types";
+import { NativeSelectorController } from "./Selector/Selector.types";
 
 export type SelectorGroupLayoutProps = Pick<RowProps, "gap" | "justifyContent" | "alignItems">;
 
@@ -11,7 +11,7 @@ export type SelectorGroupProps<
     Multiple extends boolean = false,
     D extends SelectorDirection = "column",
 > = FormControlledComponentProps<
-    CoreSelectorGroupProps<T, SelectorProps<T>, LabelProps, D, Multiple, NativeSelectorController>
+    CoreSelectorGroupProps<T, LabelProps, D, Multiple, NativeSelectorController>
 > &
     SelectorGroupLayoutProps & {
         selectorLabelProps?: Omit<LabelProps, "label">;

@@ -1,5 +1,5 @@
 import { ReactChild } from "@peersyst/react-types";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import { CoreFormControlledComponentProps } from "../FormControl";
 import { CoreLabelProps } from "../Label";
 import { CoreSelectorProps, SelectorController } from "./Selector/Selector.types";
@@ -19,7 +19,6 @@ export interface SelectorOption<T> {
 
 export type CoreSelectorGroupProps<
     T,
-    CustomSelectorProps,
     LP extends CoreLabelProps,
     D extends SelectorDirection = "column",
     Multiple extends boolean = false,
@@ -37,7 +36,7 @@ export type CoreSelectorGroupProps<
         /**
          * Add custom Selector components
          */
-        children?: ReactElement<CustomSelectorProps>[];
+        children?: ReactNode;
         /**
          * Selector direction
          */
