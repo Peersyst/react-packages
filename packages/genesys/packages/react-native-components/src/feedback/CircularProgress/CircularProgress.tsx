@@ -2,7 +2,6 @@ import { ForwardedRef, RefAttributes, forwardRef, useEffect } from "react";
 import { CircularProgressProps } from "./CircularProgress.types";
 import Animated, {
     Easing,
-    WithTimingConfig,
     useAnimatedProps,
     useSharedValue,
     withRepeat,
@@ -17,6 +16,7 @@ import {
 } from "./CircularProgress.styles";
 import { useCircularProgress, useCircularProgressShape, useCircularProgressStyles } from "./hooks";
 import { View } from "react-native";
+import { WithTimingConfig } from "../../types/react-native-reanimated";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 

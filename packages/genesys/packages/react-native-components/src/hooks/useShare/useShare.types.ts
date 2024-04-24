@@ -1,4 +1,4 @@
-import { ShareContent, ShareOptions, ShareSharedAction } from "react-native";
+import { ShareContent, ShareOptions, ShareAction } from "react-native";
 
 export interface UseShareParams {
     /**
@@ -12,7 +12,7 @@ export interface UseShareParams {
     /**
      * Callback when the share is successful
      */
-    onShare?: (sharedAction?: ShareSharedAction) => unknown;
+    onShare?: (sharedAction?: ShareAction) => unknown;
 }
 
 export interface UseShareReturn {
