@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-components",
     "author": "Peersyst",
-    "version": "3.6.0-alpha.0",
+    "version": "3.6.0",
     "license": "MIT",
     "main": "./src/index.tsx",
     "engines": {
@@ -39,8 +39,8 @@
         "@babel/runtime": "^7.24.4",
         "@peersyst/react-components-core": "^1.7.19",
         "@peersyst/react-hooks": "^2.2.15",
-        "@peersyst/react-native-styled": "^3.3.0-alpha.0",
-        "@peersyst/react-native-utils": "^2.2.0-alpha.0",
+        "@peersyst/react-native-styled": "^3.3.0",
+        "@peersyst/react-native-utils": "^2.2.0",
         "@peersyst/react-types": "^1.6.2",
         "@peersyst/react-utils": "^2.5.0",
         "@react-native-async-storage/async-storage": "1.21.0",
