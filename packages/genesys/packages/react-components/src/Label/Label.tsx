@@ -5,6 +5,7 @@ import { capitalize, cx } from "@peersyst/react-utils";
 import { useMediaQuery } from "@peersyst/react-hooks";
 import { useTheme } from "../theme";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { Fragment, isValidElement } from "react";
 
 const Label = (props: LabelProps): JSX.Element => {
     const {
@@ -42,15 +43,23 @@ const Label = (props: LabelProps): JSX.Element => {
 
     const RootComponent = direction.includes("row") ? LabelRowRoot : LabelColRoot;
     const content = [
-        <LabelText
-            key="label"
-            placement={placement}
-            alignment={alignment}
-            className={cx("Label", capitalize(placement) + "Placement", singleLine && "SingleLine")}
-            variant={variant}
-        >
-            {label}
-        </LabelText>,
+        isValidElement(label) ? (
+            <Fragment key="label">{label}</Fragment>
+        ) : (
+            <LabelText
+                key="label"
+                placement={placement}
+                alignment={alignment}
+                className={cx(
+                    "Label",
+                    capitalize(placement) + "Placement",
+                    singleLine && "SingleLine",
+                )}
+                variant={variant}
+            >
+                {label}
+            </LabelText>
+        ),
         <LabelChildren key="children" className="LabelChildren">
             {children}
         </LabelChildren>,
