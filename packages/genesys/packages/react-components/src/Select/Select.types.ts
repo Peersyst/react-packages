@@ -24,11 +24,23 @@ export type SelectProps<T, Multiple extends boolean = false> = FormControlledCom
      * Dropdown element
      */
     dropdownElement?: ReactElement | false;
+    /**
+     * Custom display element
+     */
+    display?: ReactElement;
 };
 
 export type InnerSelectProps<T> = Pick<
     SelectProps<T>,
-    "placeholder" | "children" | "options" | "clear" | "open" | "onOpen" | "onClose" | "compare"
+    | "placeholder"
+    | "children"
+    | "options"
+    | "clear"
+    | "open"
+    | "onOpen"
+    | "onClose"
+    | "compare"
+    | "display"
 > &
     Required<
         Pick<

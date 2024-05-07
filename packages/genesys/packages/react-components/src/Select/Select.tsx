@@ -42,6 +42,7 @@ function InnerSelect<T>({
     onClose,
     onOpen,
     compare = (a, b) => a === b,
+    display,
 }: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useControlled(autoFocus, openProp, openProp ? onClose : onOpen);
     const { setFocused } = useFormControl();
@@ -71,24 +72,26 @@ function InnerSelect<T>({
     return (
         <ClickAwayListener onClickAway={handleOnClickAway}>
             <SelectRoot className="Select">
-                <SelectDisplay
-                    onClick={handleClick}
-                    open={open}
-                    disabled={disabled}
-                    readonly={readonly}
-                    className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
-                >
-                    <DisplayContent
-                        className={cx("DisplayContent", isPlaceholder && "Placeholder")}
+                {display || (
+                    <SelectDisplay
+                        onClick={handleClick}
+                        open={open}
+                        disabled={disabled}
+                        readonly={readonly}
+                        className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
                     >
-                        {renderedValue || placeholder}
-                    </DisplayContent>
-                    {dropdownElement && (
-                        <SelectDropdown open={open} className="SelectDropdown">
-                            {dropdownElement}
-                        </SelectDropdown>
-                    )}
-                </SelectDisplay>
+                        <DisplayContent
+                            className={cx("DisplayContent", isPlaceholder && "Placeholder")}
+                        >
+                            {renderedValue || placeholder}
+                        </DisplayContent>
+                        {dropdownElement && (
+                            <SelectDropdown open={open} className="SelectDropdown">
+                                {dropdownElement}
+                            </SelectDropdown>
+                        )}
+                    </SelectDisplay>
+                )}
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
                     <SelectMenu open={open} expandable={expandable}>
                         {clear && <ClearItem value={undefined}>{clear}</ClearItem>}
