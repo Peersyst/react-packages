@@ -131,6 +131,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         onClose,
         onOpen,
         compare,
+        display,
         ...rest
     } = useMergeDefaultProps("Select", props);
 
@@ -169,6 +170,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     onClose={onClose}
                     onOpen={onOpen}
                     compare={compare}
+                    display={display}
                 >
                     {children}
                 </InnerSelect>
