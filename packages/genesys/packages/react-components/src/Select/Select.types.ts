@@ -50,6 +50,11 @@ export type InnerSelectProps<T> = Pick<
     > &
     Pick<SelectContextType<T>, Exclude<keyof SelectContextType<any>, "setOpen">>;
 
+export interface SelectWrapperStyles {
+    disabled: boolean;
+    readonly: boolean;
+}
+
 export interface SelectDisplayStyles {
     open: boolean;
     disabled: boolean;
