@@ -8,5 +8,10 @@ export default {
 
 const Template: ComponentStory<typeof CircularProgress> = (args) => <CircularProgress {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Indeterminate = Template.bind({});
+Indeterminate.args = {};
+
+export const Determinate = Template.bind({});
+Determinate.args = {
+    value: 50,
+};

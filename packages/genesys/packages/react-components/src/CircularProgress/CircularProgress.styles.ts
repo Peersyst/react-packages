@@ -30,16 +30,16 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
-function getCircularProgressRootStyles(variant: CircularProgressProps["variant"]) {
-    if (variant === "indeterminate") {
+function getCircularProgressRootStyles(value: CircularProgressProps["value"]) {
+    if (!value) {
         return css`
             animation: ${circularRotateKeyframe} 1.4s linear infinite;
         `;
     }
 }
 
-function getCircularProgressCircleStyles(variant: CircularProgressProps["variant"]) {
-    if (variant === "determinate") {
+function getCircularProgressCircleStyles(value: CircularProgressProps["value"]) {
+    if (value) {
         return css`
             transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         `;
@@ -53,9 +53,9 @@ function getCircularProgressCircleStyles(variant: CircularProgressProps["variant
 }
 
 export const CircularProgressRoot = styled.span<CircularProgressProps>(
-    ({ variant }) => css`
+    ({ value }) => css`
         display: inline-block;
-        ${getCircularProgressRootStyles(variant)};
+        ${getCircularProgressRootStyles(value)};
     `,
 );
 
@@ -66,10 +66,10 @@ export const CircularProgressSvg = styled.svg(
 );
 
 export const CircularProgressCircle = styled.circle<CircularProgressProps>(
-    ({ variant }) => css`
+    ({ value }) => css`
         stroke: currentColor;
         stroke-linecap: round;
-        ${getCircularProgressCircleStyles(variant)};
+        ${getCircularProgressCircleStyles(value)};
     `,
 );
 

@@ -27,10 +27,6 @@ export interface CircularProgressProps {
      */
     thickness?: number;
     /**
-     * CircularProgress variant
-     */
-    variant?: "determinate" | "indeterminate";
-    /**
      * CircularProgress children
      */
     children?: ReactNode;

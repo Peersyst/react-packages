@@ -22,7 +22,6 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
         color: colorProp = "primary",
         size = 40,
         thickness = 4,
-        variant = "indeterminate",
         children,
     } = useMergeDefaultProps("CircularProgress", props);
 
@@ -31,7 +30,7 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
     const circleStyle: CSSProperties = {};
     const rootStyle: CSSProperties = {};
 
-    if (variant === "determinate") {
+    if (value) {
         const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
         circleStyle.strokeDasharray = circumference.toFixed(3);
         circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
@@ -44,7 +43,7 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
                 className={cx("CircularProgress", className)}
                 style={{ width: size, height: size, color, ...rootStyle, ...style }}
                 role="progressbar"
-                variant={variant}
+                value={value}
             >
                 <CircularProgressSvg
                     className="CircularProgressSvg"
@@ -58,8 +57,8 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
                         r={(SIZE - thickness) / 2}
                         fill="none"
                         strokeWidth={thickness}
-                        variant={variant}
-                    ></CircularProgressCircle>
+                        value={value}
+                    />
                 </CircularProgressSvg>
             </CircularProgressRoot>
             {children && (
