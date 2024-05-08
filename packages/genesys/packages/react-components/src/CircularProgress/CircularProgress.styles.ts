@@ -83,3 +83,10 @@ export const CircularProgressContent = styled.div(
         justify-content: center;
     `,
 );
+
+export const CircularProgressWrapper = styled.div(
+    () => css`
+        position: relative;
+        display: inline-flex;
+    `,
+);

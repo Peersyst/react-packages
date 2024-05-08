@@ -4,6 +4,7 @@ import {
     CircularProgressContent,
     CircularProgressRoot,
     CircularProgressSvg,
+    CircularProgressWrapper,
 } from "./CircularProgress.styles";
 import { cx } from "@peersyst/react-utils";
 import { useColor, useMergeDefaultProps } from "@peersyst/react-components-core";
@@ -38,7 +39,7 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
     }
 
     return (
-        <>
+        <CircularProgressWrapper>
             <CircularProgressRoot
                 className={cx("CircularProgress", className)}
                 style={{ width: size, height: size, color, ...rootStyle, ...style }}
@@ -58,6 +59,6 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
                 </CircularProgressSvg>
             </CircularProgressRoot>
             {children && <CircularProgressContent>{children}</CircularProgressContent>}
-        </>
+        </CircularProgressWrapper>
     );
 }
