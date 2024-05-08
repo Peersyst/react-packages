@@ -1,3 +1,5 @@
+/* Greatly inspired by MUI's `CircularProgress` */
+
 import styled, { css, keyframes } from "styled-components";
 import { CircularProgressProps } from "./CircularProgress.types";
 
