@@ -66,3 +66,4 @@ export * from "./Upload";
 export * from "./utils";
 export * from "./DeprecatedSlider";
 export * from "./DepcrecatedRangeSlider";
+export * from "./CircularProgress";

@@ -64,6 +64,7 @@ import { ColorInputProps } from "../ColorInput";
 import { SelectorGroupProps, SelectorProps } from "../SelectorGroup";
 import { DialogProps } from "../Dialog";
 import { CodeFieldProps } from "../CodeField";
+import { CircularProgressProps } from "../CircularProgress";
 
 /**
  * No config for:
@@ -148,6 +149,7 @@ export interface ToggleButtonConfig extends ComponentConfig<ToggleButtonProps> {
 export interface ToolbarConfig extends ComponentConfig<ToolbarConfig> {}
 export interface TypographyConfig extends ComponentConfig<TypographyProps> {}
 export interface UploadConfig extends ComponentConfig<UploadProps> {}
+export interface CircularProgressConfig extends ComponentConfig<CircularProgressProps> {}
 
 export interface ComponentsConfig {
     Alert: AlertConfig;
@@ -220,4 +222,5 @@ export interface ComponentsConfig {
     Toolbar: ToolbarConfig;
     Typography: TypographyConfig;
     Upload: UploadConfig;
+    CircularProgress: CircularProgressConfig;
 }
