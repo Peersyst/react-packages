@@ -1,3 +1,5 @@
+/* Greatly inspired by MUI's `CircularProgress` */
+
 import { CircularProgressProps } from "./CircularProgress.types";
 import {
     CircularProgressCircle,
