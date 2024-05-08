@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import { CircularProgressProps } from "./CircularProgress.types";
 
 const circularRotateKeyframe = keyframes`
   0% {
@@ -27,23 +28,45 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
-export const CircularProgressRoot = styled.span(
-    ({ theme }) => css`
+function getCircularProgressRootStyles(variant: CircularProgressProps["variant"]) {
+    if (variant === "indeterminate") {
+        return css`
+            animation: ${circularRotateKeyframe} 1.4s linear infinite;
+        `;
+    }
+}
+
+function getCircularProgressCircleStyles(variant: CircularProgressProps["variant"]) {
+    if (variant === "determinate") {
+        return css`
+            transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        `;
+    } else {
+        return css`
+            animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+            stroke-dasharray: 80px, 200px;
+            stroke-dashoffset: 0px;
+        `;
+    }
+}
+
+export const CircularProgressRoot = styled.span<CircularProgressProps>(
+    ({ variant }) => css`
         display: inline-block;
-        animation: ${circularRotateKeyframe} 1.4s linear infinite;
-        color: red;
+        ${getCircularProgressRootStyles(variant)};
     `,
 );
 
 export const CircularProgressSvg = styled.svg(
-    ({ theme }) => css`
+    () => css`
         display: block;
     `,
 );
 
-export const CircularProgressCircle = styled.circle(
-    ({ theme }) => css`
+export const CircularProgressCircle = styled.circle<CircularProgressProps>(
+    ({ variant }) => css`
         stroke: currentColor;
-        animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+        stroke-linecap: round;
+        ${getCircularProgressCircleStyles(variant)};
     `,
 );

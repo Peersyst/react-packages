@@ -26,4 +26,8 @@ export interface CircularProgressProps {
      * CircularProgress thickness
      */
     thickness?: number;
+    /**
+     * CircularProgress variant
+     */
+    variant?: "determinate" | "indeterminate";
 }
