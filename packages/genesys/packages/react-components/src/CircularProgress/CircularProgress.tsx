@@ -1,6 +1,7 @@
 import { CircularProgressProps } from "./CircularProgress.types";
 import {
     CircularProgressCircle,
+    CircularProgressContent,
     CircularProgressRoot,
     CircularProgressSvg,
 } from "./CircularProgress.styles";
@@ -19,6 +20,7 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
         size = 40,
         thickness = 4,
         variant = "indeterminate",
+        children,
     } = useMergeDefaultProps("CircularProgress", props);
 
     const { backgroundColor = "transparent" } = style;
@@ -36,23 +38,26 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
     }
 
     return (
-        <CircularProgressRoot
-            className={cx("CircularProgress", className)}
-            style={{ width: size, height: size, color, ...rootStyle, ...style }}
-            role="progressbar"
-            variant={variant}
-        >
-            <CircularProgressSvg viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
-                <CircularProgressCircle
-                    style={circleStyle}
-                    cx={SIZE}
-                    cy={SIZE}
-                    r={(SIZE - thickness) / 2}
-                    fill={backgroundColor}
-                    strokeWidth={thickness}
-                    variant={variant}
-                />
-            </CircularProgressSvg>
-        </CircularProgressRoot>
+        <>
+            <CircularProgressRoot
+                className={cx("CircularProgress", className)}
+                style={{ width: size, height: size, color, ...rootStyle, ...style }}
+                role="progressbar"
+                variant={variant}
+            >
+                <CircularProgressSvg viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
+                    <CircularProgressCircle
+                        style={circleStyle}
+                        cx={SIZE}
+                        cy={SIZE}
+                        r={(SIZE - thickness) / 2}
+                        fill={backgroundColor}
+                        strokeWidth={thickness}
+                        variant={variant}
+                    ></CircularProgressCircle>
+                </CircularProgressSvg>
+            </CircularProgressRoot>
+            {children && <CircularProgressContent>{children}</CircularProgressContent>}
+        </>
     );
 }

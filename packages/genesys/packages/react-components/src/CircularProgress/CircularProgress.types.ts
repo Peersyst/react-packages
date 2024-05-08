@@ -1,5 +1,5 @@
 import { ThemeColor } from "@peersyst/react-components-core";
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export interface CircularProgressProps {
     /**
@@ -30,4 +30,8 @@ export interface CircularProgressProps {
      * CircularProgress variant
      */
     variant?: "determinate" | "indeterminate";
+    /**
+     * CircularProgress children
+     */
+    children?: ReactNode;
 }

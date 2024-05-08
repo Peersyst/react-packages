@@ -70,3 +70,16 @@ export const CircularProgressCircle = styled.circle<CircularProgressProps>(
         ${getCircularProgressCircleStyles(variant)};
     `,
 );
+
+export const CircularProgressContent = styled.div(
+    () => css`
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `,
+);
