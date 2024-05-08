@@ -16,15 +16,13 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
     const {
         value = 0,
         className,
-        style = {},
+        style,
         color: colorProp = "primary",
         size = 40,
         thickness = 4,
         variant = "indeterminate",
         children,
     } = useMergeDefaultProps("CircularProgress", props);
-
-    const { backgroundColor = "transparent" } = style;
 
     const color = useColor(colorProp);
 
@@ -46,19 +44,27 @@ export default function CircularProgress(props: CircularProgressProps): JSX.Elem
                 role="progressbar"
                 variant={variant}
             >
-                <CircularProgressSvg viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
+                <CircularProgressSvg
+                    className="CircularProgressSvg"
+                    viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
+                >
                     <CircularProgressCircle
+                        className="CircularProgressCircle"
                         style={circleStyle}
                         cx={SIZE}
                         cy={SIZE}
                         r={(SIZE - thickness) / 2}
-                        fill={backgroundColor}
+                        fill="none"
                         strokeWidth={thickness}
                         variant={variant}
                     ></CircularProgressCircle>
                 </CircularProgressSvg>
             </CircularProgressRoot>
-            {children && <CircularProgressContent>{children}</CircularProgressContent>}
+            {children && (
+                <CircularProgressContent className="CircularProgressContent">
+                    {children}
+                </CircularProgressContent>
+            )}
         </CircularProgressWrapper>
     );
 }
