@@ -2,6 +2,7 @@ import { forwardRef, Ref } from "react";
 import { PaperRoot } from "./Paper.styles";
 import { PaperProps } from "./Paper.types";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
+import { cx } from "@peersyst/react-utils";
 
 const Paper = forwardRef(function Paper(props: PaperProps, ref) {
     const {
@@ -17,7 +18,7 @@ const Paper = forwardRef(function Paper(props: PaperProps, ref) {
         <PaperRoot
             elevation={elevation}
             square={square}
-            className={className}
+            className={cx("Paper", className)}
             style={style}
             ref={ref as Ref<HTMLDivElement>}
             {...rest}
