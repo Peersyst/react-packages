@@ -204,6 +204,13 @@ export type ContextMap = Map<React.Context<any>, any> & {
     get<T>(context: React.Context<T>): T | undefined;
 };
 
+const IGNORED_CONTEXTS_DISPLAY_NAMES = new Set([
+    "TextAncestorContext",
+    "RootTagContext",
+    "ScrollViewContext",
+    "VirtualizedListContext",
+]);
+
 /**
  * Returns a map of all contexts and their values.
  */
@@ -217,7 +224,12 @@ export function useContextMap(): ContextMap {
     let node = fiber;
     while (node) {
         const context = node.type?._context;
-        if (context && context !== FiberContext && !contextMap.has(context)) {
+        if (
+            context &&
+            context !== FiberContext &&
+            (!context.displayName || !IGNORED_CONTEXTS_DISPLAY_NAMES.has(context.displayName)) &&
+            !contextMap.has(context)
+        ) {
             contextMap.set(
                 context,
                 ReactCurrentDispatcher?.current?.readContext(wrapContext(context)),

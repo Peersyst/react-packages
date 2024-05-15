@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { SelectDisplayStyles, SelectDropdownProps } from "./Select.types";
+import { SelectDisplayStyles, SelectDropdownProps, SelectWrapperStyles } from "./Select.types";
 import { SelectItem } from "./SelectItem";
 
 export const SelectRoot = styled.div`
@@ -16,10 +16,29 @@ export const displayBorder = css<SelectDisplayStyles>`
         }};
 `;
 
-export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, readonly }) => {
+export const SelectDisplayWrapper = styled.div<SelectWrapperStyles>(({ disabled, readonly }) => {
+    const cursor = disabled || readonly ? "default" : "pointer";
+
+    return css`
+        display: contents;
+        cursor: ${cursor};
+
+        * {
+            cursor: ${cursor};
+        }
+    `;
+});
+
+export const SelectDisplayTrigger = styled.div`
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+`;
+
+export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme }) => {
     const disabledStyles = css`
         color: ${theme.palette.disabled};
-        cursor: auto;
     `;
 
     return css`
@@ -27,8 +46,6 @@ export const SelectDisplay = styled.div<SelectDisplayStyles>(({ theme, readonly 
         justify-content: space-between;
         align-items: center;
         flex: 1;
-
-        cursor: ${readonly ? "auto" : "pointer"};
 
         min-height: 36px;
 

@@ -1,5 +1,4 @@
-import { ReactChild } from "@peersyst/react-types";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { TextStyle, ViewStyle } from "react-native";
 
 export type StatelessExpandableDisplayStyle = ViewStyle &
@@ -15,7 +14,7 @@ export interface ExpandableDisplayProps {
     icon?: ReactElement | boolean;
     reverse?: boolean;
     style?: ExpandableDisplayStyle;
-    children?: ReactChild;
+    children?: ReactNode;
 }
 
 export interface ExpandableDisplayRootProps {

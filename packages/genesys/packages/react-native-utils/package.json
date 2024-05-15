@@ -1,7 +1,7 @@
 {
     "name": "@peersyst/react-native-utils",
     "author": "Peersyst",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "license": "MIT",
     "main": "./src/index.ts",
     "engines": {
@@ -18,34 +18,29 @@
         "release": "yarn build && npm publish build"
     },
     "peerDependencies": {
-        "@types/react": "^18.0.0",
-        "@types/react-native": "0.72.6",
-        "expo": "^49.0.0",
+        "@types/react": "^18.2.79",
+        "expo": "^50.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.72.6"
+        "react-native": "0.73.6"
     },
     "peerDependenciesMeta": {
         "@types/react": {
             "optional": true
-        },
-        "@types/react-native": {
-            "optional": true
         }
     },
     "dependencies": {
-        "@babel/runtime": "^7.23.4",
+        "@babel/runtime": "^7.24.4",
         "@peersyst/react-types": "^1.6.2",
-        "expo": "^49.0.0",
-        "expo-clipboard": "~4.3.1"
+        "expo": "^50.0.0",
+        "expo-clipboard": "~5.0.1"
     },
     "devDependencies": {
-        "@types/react": "^18.0.0",
-        "@types/react-native": "0.72.6",
-        "expo": "^49.0.0",
+        "@types/react": "^18.2.79",
+        "expo": "^50.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-native": "0.72.6"
+        "react-native": "0.73.6"
     },
     "publishConfig": {
         "access": "public"

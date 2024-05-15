@@ -3,9 +3,9 @@ import { RadioButtonProps } from "./RadioButton.types";
 import { cx } from "@peersyst/react-utils";
 import { RadioCheckedIcon, RadioUncheckedIcon } from "../assets/icons";
 import { Label } from "../Label";
-import { FormControl } from "../FormControl";
 import { useMergeDefaultProps } from "@peersyst/react-components-core";
 import { useRef } from "react";
+import PointerFormControl from "../common/PointerFormControl";
 
 export default function RadioButton(props: RadioButtonProps) {
     const {
@@ -26,7 +26,7 @@ export default function RadioButton(props: RadioButtonProps) {
     };
 
     return (
-        <FormControl<boolean>
+        <PointerFormControl<boolean>
             Label={[LabelProp, { placement: "right", ...LabelProps }]}
             defaultValue={defaultValue}
             disabled={disabled}
@@ -46,6 +46,6 @@ export default function RadioButton(props: RadioButtonProps) {
                     {value ? checkedIcon : icon}
                 </RadioButtonRoot>
             )}
-        </FormControl>
+        </PointerFormControl>
     );
 }

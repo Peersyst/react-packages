@@ -5,6 +5,8 @@ import {
     SelectDisplay,
     SelectDropdown,
     SelectRoot,
+    SelectDisplayWrapper,
+    SelectDisplayTrigger,
 } from "./Select.styles";
 import { SelectMenu } from "./SelectMenu";
 import {
@@ -42,6 +44,7 @@ function InnerSelect<T>({
     onClose,
     onOpen,
     compare = (a, b) => a === b,
+    display,
 }: InnerSelectProps<T>): JSX.Element {
     const [open, setOpen] = useControlled(autoFocus, openProp, openProp ? onClose : onOpen);
     const { setFocused } = useFormControl();
@@ -71,24 +74,28 @@ function InnerSelect<T>({
     return (
         <ClickAwayListener onClickAway={handleOnClickAway}>
             <SelectRoot className="Select">
-                <SelectDisplay
-                    onClick={handleClick}
-                    open={open}
-                    disabled={disabled}
-                    readonly={readonly}
-                    className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
-                >
-                    <DisplayContent
-                        className={cx("DisplayContent", isPlaceholder && "Placeholder")}
-                    >
-                        {renderedValue || placeholder}
-                    </DisplayContent>
-                    {dropdownElement && (
-                        <SelectDropdown open={open} className="SelectDropdown">
-                            {dropdownElement}
-                        </SelectDropdown>
+                <SelectDisplayWrapper disabled={disabled} readonly={readonly}>
+                    {display || (
+                        <SelectDisplay
+                            open={open}
+                            disabled={disabled}
+                            readonly={readonly}
+                            className={cx("SelectDisplay", open && "Open", disabled && "Disabled")}
+                        >
+                            <DisplayContent
+                                className={cx("DisplayContent", isPlaceholder && "Placeholder")}
+                            >
+                                {renderedValue || placeholder}
+                            </DisplayContent>
+                            {dropdownElement && (
+                                <SelectDropdown open={open} className="SelectDropdown">
+                                    {dropdownElement}
+                                </SelectDropdown>
+                            )}
+                        </SelectDisplay>
                     )}
-                </SelectDisplay>
+                    <SelectDisplayTrigger onClick={handleClick} />
+                </SelectDisplayWrapper>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
                     <SelectMenu open={open} expandable={expandable}>
                         {clear && <ClearItem value={undefined}>{clear}</ClearItem>}
@@ -128,6 +135,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
         onClose,
         onOpen,
         compare,
+        display,
         ...rest
     } = useMergeDefaultProps("Select", props);
 
@@ -166,6 +174,7 @@ export default function Select<T = any, Multiple extends boolean = false>(
                     onClose={onClose}
                     onOpen={onOpen}
                     compare={compare}
+                    display={display}
                 >
                     {children}
                 </InnerSelect>

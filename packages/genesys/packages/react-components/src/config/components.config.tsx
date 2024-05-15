@@ -419,6 +419,9 @@ const componentsConfig: ComponentsConfig = {
             Label: FormControlLabel,
         },
     },
+    CircularProgress: {
+        defaultProps: {},
+    },
 };
 
 export default componentsConfig;

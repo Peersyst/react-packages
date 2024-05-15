@@ -11,6 +11,10 @@ import { useExpandableStyles } from "./hooks";
 import { ForwardedRef } from "react";
 
 const Expandable = rack(
+    {
+        Display: ExpandableDisplay,
+        Content: ExpandableContent,
+    },
     function Expandable(rawProps: ExpandableProps, slots, ref: ForwardedRef<View>) {
         const props = useMergeDefaultProps("Expandable", rawProps);
 
@@ -32,11 +36,6 @@ const Expandable = rack(
                 </ExpandableProvider>
             </View>
         );
-    },
-    ["Display", "Content"],
-    {
-        Display: ExpandableDisplay,
-        Content: ExpandableContent,
     },
 );
 

@@ -1,80 +1,95 @@
 import {
     ForwardRefExoticComponent,
     ForwardedRef,
-    JSXElementConstructor,
+    ComponentType,
     PropsWithoutRef,
     ReactNode,
     RefAttributes,
     forwardRef,
 } from "react";
-import extractSlots from "./extractSlots";
+import extractSlots, { SlotsResult, SlotType } from "./extractSlots";
 import createSlot from "./createSlot";
 
-//eslint-disable-next-line @typescript-eslint/ban-types
-export type Slots<S extends string[], E extends object> = {
-    [K in Exclude<S[number], keyof E>]: JSXElementConstructor<{ children: ReactNode }>;
-} & {
-    [K in keyof E]: E[K];
+export type SlotParams<
+    T extends SlotType = SlotType,
+    C extends ComponentType<any> = ComponentType<any>,
+> = {
+    component: C;
+    type: T;
 };
 
-//eslint-disable-next-line @typescript-eslint/ban-types
-export type SlotElements<S extends string[]> = {
-    [K in S[number]]: JSX.Element;
+export type SlotsOptions = Record<string, ComponentType<any> | SlotParams>;
+
+export type Slots<S extends SlotsOptions> = {
+    [K in keyof S]: S[K] extends SlotParams ? S[K]["component"] : S[K];
 };
+
+export type PickSlotsType<S extends SlotsOptions> = {
+    [K in keyof S]: S[K] extends SlotParams<infer T> ? T : SlotType.SLOT;
+};
+
+export type RackSlots<S extends SlotsOptions> = SlotsResult<PickSlotsType<S>>;
+
+export function Slot<C extends ComponentType<any>>(component: C): SlotParams<SlotType.SLOT, C> {
+    return { component, type: SlotType.SLOT };
+}
+
+export function ArraySlot<C extends ComponentType<any>>(
+    component: C,
+): SlotParams<SlotType.ARRAY, C> {
+    return { component, type: SlotType.ARRAY };
+}
 
 /**
  * Utility that creates racks and its slots.
- * IMPORTANT: Recursive racks are supported.
- *   However, internal racks have to be extracted as a Component, as doing Rack.InternalRack.Slot doesn't work.
- *   The solution is to have a const InternalRack = rack(..., ["Slot"]) and const Rack = rack(..., [InternalRack], { InternalRack })
  *
  * @param factory
  * @param slots
  * @param extensions
  */
-export default function <
-    P extends { children: ReactNode },
-    S extends string[],
-    K extends S[number],
-    E extends {
-        //@ts-ignore
-        [x: K]: JSXElementConstructor<any>;
-    },
-    T,
->(
-    factory: (props: P, slots: SlotElements<K[]>, ref: ForwardedRef<T>) => JSX.Element,
-    slots: K[],
-    // @ts-ignore
-    extensions: E = {},
-): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>> & Slots<K[], E> {
+export default function rack<S extends SlotsOptions, P extends { children?: ReactNode }, T>(
+    slotsOptions: S,
+    factory: (props: P, slots: RackSlots<S>, ref: ForwardedRef<T>) => JSX.Element,
+): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>> & Slots<S> {
+    const slots = Object.entries(slotsOptions).reduce(
+        (acc, [key, value]) => [
+            ...acc,
+            [key, typeof value === "object" && "component" in value ? value : Slot(value)] as [
+                key: keyof S,
+                params: SlotParams,
+            ],
+        ],
+        [] as [key: keyof S, params: SlotParams][],
+    );
+
+    const slotsDef = slots.reduce(
+        (acc, [key, { type }]) => ({
+            ...acc,
+            [key]: type,
+        }),
+        {} as PickSlotsType<S>,
+    );
+
     const RackComponent = forwardRef<T, P>(function RackComponent(
         { children, ...rest }: P,
         ref,
     ): JSX.Element {
-        const [slots, remainingChildren] = extractSlots(children);
+        const [slots, remainingChildren] = extractSlots(slotsDef, children);
 
         // @ts-ignore
         return factory({ children: remainingChildren, ...rest }, slots, ref);
     });
 
     const Rack = RackComponent as ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>> &
-        Slots<K[], E>;
+        Slots<S>;
     Object.defineProperty(Rack, "name", { value: factory.name, writable: true, enumerable: true });
 
-    for (const [name, element] of Object.entries(extensions)) {
-        Object.defineProperty(Rack, name, {
-            value: createSlot(name, element as JSXElementConstructor<any>),
+    for (const [slot, { component }] of slots) {
+        Object.defineProperty(Rack, slot, {
+            value: createSlot(slot as string, component),
             writable: false,
             enumerable: true,
         });
-    }
-    for (const slot of slots) {
-        if (!Rack[slot as keyof typeof Rack])
-            Object.defineProperty(Rack, slot, {
-                value: createSlot(slot),
-                writable: false,
-                enumerable: true,
-            });
     }
 
     return Rack;
