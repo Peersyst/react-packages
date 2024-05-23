@@ -11,6 +11,7 @@ const radioColor = css(({ theme }) => ({
 }));
 
 export const RadioButtonRoot = styled.span`
+    flex-shrink: 0;
     box-sizing: border-box;
     position: relative;
     display: flex;
