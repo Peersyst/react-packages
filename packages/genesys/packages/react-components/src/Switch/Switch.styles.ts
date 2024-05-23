@@ -4,6 +4,7 @@ import { emphasize } from "@peersyst/react-utils";
 
 export const SwitchRoot = styled.span<SwitchStyleProps>`
     display: block;
+    flex-shrink: 0;
     box-sizing: border-box;
     position: relative;
     isolation: isolate;
