@@ -14,6 +14,7 @@ const CodeInputs = ({
     context: { invalid, disabled, readonly, focused, setFocused },
     onBlur,
     onFocus,
+    autoCapitalize = true,
 }: CodeInputsProps) => {
     const [focusIndex, setFocusIndex] = useState<number | undefined>(undefined);
 
@@ -28,7 +29,8 @@ const CodeInputs = ({
             if (!force && value.length === digits) return;
 
             const newValue = value.slice(0, digits).split("");
-            newValue[index] = digit;
+            newValue[index] = autoCapitalize ? digit.toUpperCase() : digit;
+
             setValue(newValue.join(""));
 
             if (force) {
