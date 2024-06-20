@@ -31,6 +31,7 @@ const CodeField = (rawProps: CodeFieldProps) => {
         placeholder,
         onBlur,
         onFocus,
+        autoCapitalize,
         ...rest
     } = props;
 
@@ -69,6 +70,7 @@ const CodeField = (rawProps: CodeFieldProps) => {
                     context={context}
                     onBlur={onBlur}
                     onFocus={onFocus}
+                    autoCapitalize={autoCapitalize}
                 />
             )}
         </FormControl>
