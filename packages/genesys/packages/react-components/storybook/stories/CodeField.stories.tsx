@@ -17,4 +17,5 @@ Example.args = {
     onBlur: undefined,
     label: "LABEL",
     style: { width: "100%" },
+    autoCapitalize: true,
 };
