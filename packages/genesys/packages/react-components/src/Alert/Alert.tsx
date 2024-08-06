@@ -29,9 +29,9 @@ const Alert = (props: AlertProps): JSX.Element => {
             square={square}
         >
             <Row flex={1} gap={10} wrap wrapGap={10} justifyContent="space-between">
-                <Row flex={1} alignItems="flex-start" gap={10}>
-                    <Row flex={0.05}>{icon}</Row>
-                    <Row flex={0.95}>{content}</Row>
+                <Row className="AlertContent" flex={1} alignItems="flex-start" gap={10}>
+                    <Row flex={0}>{icon}</Row>
+                    <Row flex={1}>{content}</Row>
                 </Row>
                 {action && <AlertAction className="AlertAction">{action}</AlertAction>}
             </Row>
