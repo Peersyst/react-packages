@@ -129,6 +129,7 @@ const Popover = ((props: PopoverProps): JSX.Element => {
 
     const popperElement = (
         <PopoverPopper
+            className="PopoverPopperRoot"
             style={{
                 display: !fullyVisible ? "none" : undefined,
             }}
