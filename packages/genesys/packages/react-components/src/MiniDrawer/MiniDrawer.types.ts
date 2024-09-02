@@ -1,7 +1,10 @@
 import { DrawerPosition, DrawerProps } from "../Drawer";
 
 export interface MiniDrawerProps
-    extends Pick<DrawerProps, "size" | "className" | "style" | "children" | "position"> {
+    extends Omit<
+        DrawerProps,
+        "defaultOpen" | "open" | "onClose" | "onExited" | "transitionsDuration"
+    > {
     /**
      * Controls MiniDrawers' expanded state
      */

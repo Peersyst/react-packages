@@ -6,7 +6,7 @@ function formatSize(v: number | string): string {
     return typeof v === "string" ? v : v + "px";
 }
 
-export const MiniDrawerRoot = styled(Drawer).attrs({ variant: "permanent" })<MiniDrawerRootProps>(
+export const MiniDrawerRoot = styled(Drawer)<MiniDrawerRootProps>(
     ({
         size: { size = 300, mobileSize: mobileSizeProp } = {},
         position,

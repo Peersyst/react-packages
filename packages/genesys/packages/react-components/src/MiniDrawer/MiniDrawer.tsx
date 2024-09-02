@@ -11,11 +11,13 @@ const MiniDrawer = (props: MiniDrawerProps): JSX.Element => {
         className,
         size = { size: 300 },
         transitionDuration = "300ms",
+        variant = "permanent",
         ...rest
     } = useMergeDefaultProps("MiniDrawer", props);
 
     return (
         <MiniDrawerRoot
+            variant={variant}
             expanded={expanded}
             collapsedSize={collapsedSize}
             transitionDuration={transitionDuration}
