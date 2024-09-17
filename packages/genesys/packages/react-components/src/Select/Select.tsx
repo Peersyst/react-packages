@@ -75,6 +75,7 @@ function InnerSelect<T>({
         <ClickAwayListener onClickAway={handleOnClickAway}>
             <SelectRoot className="Select">
                 <SelectDisplayWrapper disabled={disabled} readonly={readonly}>
+                    <SelectDisplayTrigger onClick={handleClick} />
                     {display || (
                         <SelectDisplay
                             open={open}
@@ -94,7 +95,6 @@ function InnerSelect<T>({
                             )}
                         </SelectDisplay>
                     )}
-                    <SelectDisplayTrigger onClick={handleClick} />
                 </SelectDisplayWrapper>
                 <SelectProvider value={{ value, setValue, setOpen, multiple, readonly, compare }}>
                     <SelectMenu open={open} expandable={expandable}>
