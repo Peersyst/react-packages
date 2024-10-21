@@ -1,15 +1,24 @@
-import styled from "styled-components";
+import { alpha } from "@peersyst/react-utils";
+import styled, { css } from "styled-components";
 
-export const TableBodyRoot = styled.tbody`
-    position: relative;
+export const TableBodyRoot = styled.tbody(
+    ({ theme }) => css`
+        position: relative;
 
-    background-color: inherit;
+        background-color: inherit;
 
-    tr {
-        height: 3.25rem;
+        tr {
+            height: 3.25rem;
 
-        td {
-            border-bottom: var(--table-cell-border);
+            &.TableRowClickable {
+                &:hover {
+                    background-color: ${alpha(theme.palette.primary, 0.1)};
+                }
+            }
+
+            td {
+                border-bottom: var(--table-cell-border);
+            }
         }
-    }
-`;
+    `,
+);
