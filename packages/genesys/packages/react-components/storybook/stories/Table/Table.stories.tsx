@@ -26,6 +26,13 @@ Empty.args = {
     columns,
 };
 
+export const RowClickable = Template.bind({});
+RowClickable.args = {
+    data,
+    columns,
+    onRowClick: (row) => console.log(row)
+};
+
 const ManualSortingTemplate: ComponentStory<typeof ManualSortingTable> = (args) => (
     <ManualSortingTable style={{ height: "400px" }} {...args} />
 );

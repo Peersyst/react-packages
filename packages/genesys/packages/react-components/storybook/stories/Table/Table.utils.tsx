@@ -67,6 +67,7 @@ export const columns: ColumnDef<Person>[] = [
     {
         accessorKey: "firstName",
         cell: (info) => info.getValue(),
+        header: () => <span>First Name</span>,
     },
     {
         accessorFn: (row) => row.lastName,
