@@ -37,6 +37,7 @@ const InnerTable = forwardRef(function InnerTable(
         data,
         autoResetPageIndex = false,
         sorting: sortingProp,
+        onRowClick,
         ...tableOptions
     } = useMergeDefaultProps("Table", props);
 
@@ -85,7 +86,7 @@ const InnerTable = forwardRef(function InnerTable(
                 <TableContainer className="TableContainer" ref={(r) => setRef(containerRef, r)}>
                     <TableElement className="Table">
                         <TableHead ref={headerRef} />
-                        <TableBody />
+                        <TableBody onRowClick={onRowClick} />
                     </TableElement>
                 </TableContainer>
                 {!loading && !rows.length && (
