@@ -13,6 +13,7 @@ export interface InnerTableProps<TData = any>
     className?: string;
     style?: CSSProperties;
     sorting?: SortingState;
+    onRowClick?: (row: TData) => void;
 }
 
 export interface TableProps<TData = any> extends InnerTableProps<TData> {
