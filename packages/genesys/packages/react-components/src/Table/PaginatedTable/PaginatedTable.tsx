@@ -21,6 +21,7 @@ const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
         data,
         getPaginationRowModel: getPaginationRowModelProp,
         className,
+        showPagination = true,
         ...rest
     } = useMergeDefaultProps("PaginatedTable", props);
 
@@ -40,7 +41,7 @@ const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
 
     return (
         <PaginatedTableRoot
-            footer={<PaginatedTableFooter Pagination={Pagination} Count={Count} />}
+            footer={showPagination && <PaginatedTableFooter Pagination={Pagination} Count={Count} />}
             data={data}
             state={{
                 ...state,
