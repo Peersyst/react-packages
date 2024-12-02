@@ -41,7 +41,11 @@ const PaginatedTable = (props: PaginatedTableProps): JSX.Element => {
 
     return (
         <PaginatedTableRoot
-            footer={showPagination && <PaginatedTableFooter Pagination={Pagination} Count={Count} />}
+            footer={
+                showPagination ? (
+                    <PaginatedTableFooter Pagination={Pagination} Count={Count} />
+                ) : undefined
+            }
             data={data}
             state={{
                 ...state,
