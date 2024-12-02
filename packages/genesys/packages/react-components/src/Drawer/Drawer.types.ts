@@ -75,4 +75,8 @@ export interface DrawerProps {
      * Drawer content
      */
     children: ReactNode;
+    /**
+     * Unmount when drawer is exited
+     */
+    unmountOnExit?: boolean;
 }

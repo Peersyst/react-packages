@@ -28,6 +28,7 @@ export default function Drawer(props: DrawerProps) {
         },
         renderBackdrop,
         renderAtRoot,
+        unmountOnExit,
     } = useMergeDefaultProps("Drawer", props);
 
     const [open, setOpen] = useControlled(defaultOpen, variant === "permanent" ? true : propOpen);
@@ -53,6 +54,7 @@ export default function Drawer(props: DrawerProps) {
         },
         renderBackdrop: renderBackdrop ?? variant === "temporary",
         renderAtRoot,
+        unmountOnExit,
     };
 
     const backdropProps: ExposedBackdropProps = {

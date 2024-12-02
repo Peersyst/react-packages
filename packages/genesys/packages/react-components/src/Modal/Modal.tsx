@@ -24,6 +24,7 @@ export default function Modal(props: ModalProps): JSX.Element {
         renderBackdrop,
         renderAtRoot,
         preventScroll = true,
+        unmountOnExit,
     } = useMergeDefaultProps("Modal", props);
 
     const [open, setOpen] = useControlled(defaultOpen, propOpen);
@@ -50,6 +51,7 @@ export default function Modal(props: ModalProps): JSX.Element {
         },
         renderAtRoot,
         renderBackdrop,
+        unmountOnExit,
     };
 
     return (

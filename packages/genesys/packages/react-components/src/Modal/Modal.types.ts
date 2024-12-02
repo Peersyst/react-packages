@@ -66,4 +66,8 @@ export interface ModalProps {
      * Modal content
      */
     children?: ReactNode;
+    /**
+     * Unmount when modal is exited
+     */
+    unmountOnExit?: boolean;
 }

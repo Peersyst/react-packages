@@ -36,6 +36,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
         renderBackdrop = true,
         renderAtRoot = false,
         children,
+        unmountOnExit = false,
     } = useMergeDefaultProps("Backdrop", props);
 
     const [open, setOpen] = useControlled(defaultOpen, propsOpen);
@@ -55,6 +56,7 @@ export default function Backdrop(props: BackdropProps): JSX.Element {
             in={open}
             duration={transitionsDuration}
             onExited={onExited}
+            unmountOnExit={unmountOnExit}
         >
             <BackdropRoot
                 transparent={transparent}

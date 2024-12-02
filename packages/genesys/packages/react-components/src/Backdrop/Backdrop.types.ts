@@ -62,6 +62,10 @@ export interface BackdropProps {
      * Backdrop content
      */
     children?: ReactElement;
+    /**
+     * Unmount when backdrop is exited
+     */
+    unmountOnExit?: boolean;
 }
 
 export interface BackdropStyles {
@@ -80,6 +84,7 @@ export type ForwardedBackdropProps = Pick<
     | "childrenAnimation"
     | "renderAtRoot"
     | "renderBackdrop"
+    | "unmountOnExit"
 >;
 
 export type ExposedBackdropProps = Pick<

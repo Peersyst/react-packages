@@ -75,6 +75,7 @@ const componentsConfig: ComponentsConfig = {
             transitionsDuration: 400,
             renderBackdrop: true,
             renderAtRoot: false,
+            unmountOnExit: false,
         },
     },
     BackgroundImage: {
