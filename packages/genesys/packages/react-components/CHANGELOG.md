@@ -1,5 +1,10 @@
 # Versions
 
+## 3.9.40
+
+[package.json] Update `react-components`
+[PaginatedTable] add showPagination prop
+
 ## 3.9.16
 
 [package.json] Update `react-components-core`

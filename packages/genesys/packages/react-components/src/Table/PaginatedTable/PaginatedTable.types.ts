@@ -10,4 +10,5 @@ export interface PaginatedTableProps<TData = any>
         Loosen<PaginationState, "pageIndex"> {
     Pagination?: JSXElementConstructor<TablePaginationProps>;
     Count?: JSXElementConstructor<TableCountProps>;
+    showPagination?: boolean;
 }
