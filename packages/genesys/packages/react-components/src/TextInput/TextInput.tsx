@@ -38,6 +38,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
         onKeyDown,
         onBlur,
         onFocus,
+        onPaste,
         ...rest
     } = useMergeDefaultProps("TextInput", props);
 
@@ -118,6 +119,7 @@ export default function TextInput<HTMLT extends HTMLInput>(
                                 maxLength,
                                 onSubmit,
                                 onKeyDown,
+                                onPaste,
                             })}
                             {suffix}
                             {valid && validElement && (

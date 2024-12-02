@@ -1,6 +1,6 @@
 // TODO: Check if a headless hook can be built between rwc and rnc
 import { CodeInputsProps } from "./CodeInputs.types";
-import { createRef, useRef, KeyboardEvent, useState, useEffect } from "react";
+import { createRef, useRef, KeyboardEvent, useState, useEffect, ClipboardEvent } from "react";
 import { CodeInput, CodeInputsRoot } from "./CodeInputs.styles";
 import { useNumericInput } from "@peersyst/react-components-core";
 
@@ -39,10 +39,12 @@ const CodeInputs = ({
                 return;
             }
 
-            if (digit && refs.current[index + 1]) {
-                refs.current[index + 1].current?.focus();
-            } else if (newValue[index] && index === digits - 1) {
-                refs.current[index].current?.blur();
+            if (digit) {
+                if (newValue.length < digits && refs.current[index + 1]) {
+                    refs.current[index + 1].current?.focus();
+                } else {
+                    refs.current[index].current?.blur();
+                }
             }
         };
 
@@ -55,6 +57,22 @@ const CodeInputs = ({
                 handleChange(index - 1)("", true);
                 refs.current[index - 1].current?.focus();
             }
+        }
+    };
+
+    const handlePaste = (index: number) => (e: ClipboardEvent) => {
+        e.preventDefault();
+
+        const clipboardData = e.clipboardData?.getData("text").slice(0, digits - value.length);
+        const data = autoCapitalize ? clipboardData?.toUpperCase() : clipboardData;
+
+        const newValue = value + data;
+        setValue(newValue);
+
+        if (newValue.length === digits) {
+            refs.current[index].current?.blur();
+        } else {
+            refs.current[newValue.length - 1].current?.focus();
         }
     };
 
@@ -104,6 +122,7 @@ const CodeInputs = ({
                     type={isNumeric ? "tel" : "text"}
                     ref={refs.current[i]}
                     onKeyDown={handleKeyDown(i)}
+                    onPaste={handlePaste(i)}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     selectOnFocus

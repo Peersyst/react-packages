@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, RefObject, KeyboardEvent } from "react";
+import { ChangeEvent, ReactNode, RefObject, KeyboardEvent, ClipboardEvent } from "react";
 import { CoreTextInputProps } from "@peersyst/react-components-core";
 import { FormControlledComponentProps } from "../FormControl";
 import { LabelProps } from "../Label";
@@ -21,6 +21,7 @@ export interface TextInputContextTypes<HTMLT> {
     maxLength?: number;
     onSubmit?: () => any;
     onKeyDown?: (event: KeyboardEvent) => void;
+    onPaste?: (event: ClipboardEvent) => void;
 }
 
 export interface TextInputProps
@@ -69,6 +70,10 @@ export interface TextInputProps
      * onKeyDown handler
      */
     onKeyDown?: (event: KeyboardEvent) => void;
+    /**
+     * onPaste handler
+     */
+    onPaste?: (event: ClipboardEvent) => void;
 }
 
 export interface Children<HTMLT> {
