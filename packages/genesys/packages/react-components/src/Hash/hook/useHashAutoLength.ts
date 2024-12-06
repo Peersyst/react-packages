@@ -27,7 +27,7 @@ export default function (
                 );
                 const newLength = Math.max(Math.min(computedWidth, hash.length), 1);
 
-                if (newLength > autoLength + 1 || newLength < autoLength) {
+                if (newLength > autoLength || newLength < autoLength) {
                     setAutoLength(newLength);
                 }
             }
