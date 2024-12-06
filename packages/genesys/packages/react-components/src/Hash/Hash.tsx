@@ -47,6 +47,7 @@ const Hash = (props: HashProps): JSX.Element => {
             className={clsx("Hash", className)}
             style={style}
             ref={rowRef}
+            title={isAutoLength && autoLength < hash.length ? hash : undefined}
         >
             <HashWrapper
                 ref={hashRef}
