@@ -54,16 +54,17 @@ export const TableHeaderTitle = styled.span<TableHeaderTitleProps>(
         white-space: nowrap;
         text-overflow: ellipsis;
         text-align: ${alignment};
+        width: 100%;
     `,
 );
 
 export const TableHeaderSortButtonContainer = styled.div<TableHeaderSortButtonContainerProps>(
     ({ isSorted }) => css`
-    display: flex;
-    opacity: ${isSorted ? "1" : "0"}};
-    width: ${isSorted ? "auto" : "0px"};
-    transition: opacity 200ms;
-`,
+        display: flex;
+        opacity: ${isSorted ? "1" : "0"};
+        width: ${isSorted ? "auto" : "0px"};
+        transition: opacity 200ms;
+    `,
 );
 
 export const TableSortButton = styled(IconButton)<TableSortButtonProps>(
