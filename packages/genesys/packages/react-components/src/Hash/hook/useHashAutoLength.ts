@@ -22,12 +22,12 @@ export default function (
                 const copyButtonWidth = copyButtonRef.current?.clientWidth || 0;
                 const gapWidth = copyButtonWidth ? gap : 0;
 
-                const computedWidth = Math.floor(
+                const computedLength = Math.floor(
                     (autoLength * (rowWidth - gapWidth - copyButtonWidth)) / addressWidth,
                 );
-                const newLength = Math.max(Math.min(computedWidth, hash.length), 1);
+                const newLength = Math.max(Math.min(computedLength, hash.length), 1);
 
-                if (newLength > autoLength + 1 || newLength < autoLength) {
+                if (newLength > autoLength || newLength < autoLength) {
                     setAutoLength(newLength);
                 }
             }
