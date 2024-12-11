@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledImg = styled.img`
+export const ImageRoot = styled.img`
     display: block;
     position: relative;
 

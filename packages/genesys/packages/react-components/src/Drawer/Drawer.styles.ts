@@ -6,7 +6,7 @@ function formatSize(v: number | string): string {
     return typeof v === "string" ? v : v + "px";
 }
 
-export const DrawerMenu = styled(Paper)<{
+export const DrawerRoot = styled(Paper)<{
     size: NonNullable<DrawerProps["size"]>;
     position: NonNullable<DrawerProps["position"]>;
 }>(({ size: { size = "300px", mobileSize: mobileSizeProp }, position }) => {

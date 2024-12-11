@@ -1,4 +1,4 @@
-import { DrawerMenu } from "./Drawer.styles";
+import { DrawerRoot } from "./Drawer.styles";
 import { DrawerProps } from "./Drawer.types";
 import { useControlled } from "@peersyst/react-hooks";
 import { Backdrop, ExposedBackdropProps, ForwardedBackdropProps } from "../Backdrop";
@@ -64,7 +64,7 @@ export default function Drawer(props: DrawerProps) {
 
     return (
         <Backdrop {...backdropProps} {...forwardedBackdropProps}>
-            <DrawerMenu
+            <DrawerRoot
                 position={position}
                 size={size}
                 className={cx("Drawer", className)}
@@ -74,7 +74,7 @@ export default function Drawer(props: DrawerProps) {
                 square
             >
                 {children}
-            </DrawerMenu>
+            </DrawerRoot>
         </Backdrop>
     );
 }
