@@ -6,7 +6,6 @@ export const TableOverlayRoot = styled.div(
     ({ theme }) => css`
         position: absolute;
 
-        display: flex;
         align-items: center;
         justify-content: center;
 

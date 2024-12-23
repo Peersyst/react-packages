@@ -1,9 +1,9 @@
 import { CSSProperties, MutableRefObject, ReactNode } from "react";
 
-export interface TableLoadingOverlayRect {
-    top: number;
-    width: number;
-    height: number;
+export interface LoadingOverlayRect {
+    top?: number;
+    width?: number;
+    height?: number;
 }
 
 export interface TableOverlayProps {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { TableLoadingOverlayRect, TableOverlayProps } from "./TableOverlay.types";
+import { LoadingOverlayRect, TableOverlayProps } from "./TableOverlay.types";
 import { TableOverlayRoot } from "./TableOverlay.styles";
 import clsx from "clsx";
 
@@ -10,11 +10,16 @@ const TableLoadingOverlay = ({
     className,
     style = {},
 }: TableOverlayProps): JSX.Element => {
-    const [loadingOverlayRect, setLoadingOverlayRect] = useState<TableLoadingOverlayRect>({
-        top: 0,
-        width: 0,
-        height: 0,
+    const [overlayRect, setOverlayRect] = useState<LoadingOverlayRect>({
+        top: undefined,
+        width: undefined,
+        height: undefined,
     });
+
+    const overlayRectIsInitialized =
+        overlayRect.top !== undefined &&
+        overlayRect.width !== undefined &&
+        overlayRect.height !== undefined;
 
     useEffect(() => {
         const currentContainerRef = containerRef.current;
@@ -25,10 +30,10 @@ const TableLoadingOverlay = ({
                     currentContainerRef.clientHeight - (headerRef.current?.clientHeight || 0);
 
                 if (
-                    currentContainerRef.clientWidth !== loadingOverlayRect.width ||
-                    newLoadingOverlayHeight !== loadingOverlayRect.height
+                    currentContainerRef.clientWidth !== overlayRect.width ||
+                    newLoadingOverlayHeight !== overlayRect.height
                 )
-                    setLoadingOverlayRect((rect) => ({
+                    setOverlayRect((rect) => ({
                         ...rect,
                         width: currentContainerRef.clientWidth,
                         height: newLoadingOverlayHeight,
@@ -45,10 +50,10 @@ const TableLoadingOverlay = ({
                     (containerRef.current?.clientHeight || 0) - currentHeaderRef.clientHeight;
 
                 if (
-                    currentHeaderRef.clientHeight !== loadingOverlayRect.top ||
-                    newLoadingOverlayHeight !== loadingOverlayRect.height
+                    currentHeaderRef.clientHeight !== overlayRect.top ||
+                    newLoadingOverlayHeight !== overlayRect.height
                 )
-                    setLoadingOverlayRect((rect) => ({
+                    setOverlayRect((rect) => ({
                         ...rect,
                         top: currentHeaderRef.clientHeight,
                         height: newLoadingOverlayHeight,
@@ -61,9 +66,10 @@ const TableLoadingOverlay = ({
             className={clsx("TableOverlay", className)}
             style={{
                 ...style,
-                top: loadingOverlayRect.top,
-                width: loadingOverlayRect.width,
-                height: loadingOverlayRect.height,
+                display: overlayRectIsInitialized ? "flex" : "none",
+                top: overlayRect.top,
+                width: overlayRect.width,
+                height: overlayRect.height,
             }}
         >
             {children}
