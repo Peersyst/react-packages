@@ -26,18 +26,20 @@ const TableLoadingOverlay = ({
 
         if (currentContainerRef)
             new ResizeObserver(() => {
-                const newLoadingOverlayHeight =
-                    currentContainerRef.clientHeight - (headerRef.current?.clientHeight || 0);
+                if (headerRef.current !== undefined) {
+                    const newLoadingOverlayHeight =
+                        currentContainerRef.clientHeight - headerRef.current.clientHeight;
 
-                if (
-                    currentContainerRef.clientWidth !== overlayRect.width ||
-                    newLoadingOverlayHeight !== overlayRect.height
-                )
-                    setOverlayRect((rect) => ({
-                        ...rect,
-                        width: currentContainerRef.clientWidth,
-                        height: newLoadingOverlayHeight,
-                    }));
+                    if (
+                        currentContainerRef.clientWidth !== overlayRect.width ||
+                        newLoadingOverlayHeight !== overlayRect.height
+                    )
+                        setOverlayRect((rect) => ({
+                            ...rect,
+                            width: currentContainerRef.clientWidth,
+                            height: newLoadingOverlayHeight,
+                        }));
+                }
             }).observe(currentContainerRef);
     }, [containerRef]);
 
@@ -46,18 +48,20 @@ const TableLoadingOverlay = ({
 
         if (currentHeaderRef)
             new ResizeObserver(() => {
-                const newLoadingOverlayHeight =
-                    (containerRef.current?.clientHeight || 0) - currentHeaderRef.clientHeight;
+                if (containerRef.current !== undefined) {
+                    const newLoadingOverlayHeight =
+                        containerRef.current.clientHeight - currentHeaderRef.clientHeight;
 
-                if (
-                    currentHeaderRef.clientHeight !== overlayRect.top ||
-                    newLoadingOverlayHeight !== overlayRect.height
-                )
-                    setOverlayRect((rect) => ({
-                        ...rect,
-                        top: currentHeaderRef.clientHeight,
-                        height: newLoadingOverlayHeight,
-                    }));
+                    if (
+                        currentHeaderRef.clientHeight !== overlayRect.top ||
+                        newLoadingOverlayHeight !== overlayRect.height
+                    )
+                        setOverlayRect((rect) => ({
+                            ...rect,
+                            top: currentHeaderRef.clientHeight,
+                            height: newLoadingOverlayHeight,
+                        }));
+                }
             }).observe(currentHeaderRef);
     }, [headerRef]);
 
