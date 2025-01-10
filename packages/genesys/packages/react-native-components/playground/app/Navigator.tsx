@@ -8,7 +8,7 @@ import { SwitchThemeButton } from "./components";
 
 const Drawer = createDrawerNavigator();
 
-const Navigator = () => {
+const Navigator = (): JSX.Element => {
     const theme = useTheme();
 
     const navigationTheme = useMemo(() => {

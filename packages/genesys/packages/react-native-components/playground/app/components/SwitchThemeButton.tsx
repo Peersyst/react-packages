@@ -1,7 +1,7 @@
 import { IconButton, useSetTheme, useTheme } from "@peersyst/react-native-components";
 import { MoonIcon, SunIcon } from "../icons";
 
-const SwitchThemeButton = () => {
+const SwitchThemeButton = (): JSX.Element => {
     const theme = useTheme();
     const setTheme = useSetTheme();
 
