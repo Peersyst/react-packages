@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StylesheetProvider } from "@peersyst/react-native-styled";
 import config from "./config";
 
-export default function App() {
+export default function App(): JSX.Element {
     return (
         <SafeAreaProvider>
             <ConfigProvider config={config}>
